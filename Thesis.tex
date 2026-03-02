@@ -59,12 +59,13 @@
 
 \ifxetexorluatex
   \usepackage{unicode-math}
-  \setmainfont{EB Garamond}
-  \setmathfont{Garamond Math}
-  \setmonofont[Scale=MatchLowercase]{Source Code Pro}
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmathfont{Latin Modern Math}
+  \setmonofont[Scale=MatchLowercase]{Latin Modern Mono}
 \else
-  \usepackage[lf]{ebgaramond}
-  \usepackage[oldstyle,scale=0.7]{sourcecodepro}
+  \usepackage{lmodern}
+  \usepackage[T1]{fontenc}
   \singlespacing
 \fi
 

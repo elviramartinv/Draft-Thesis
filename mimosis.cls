@@ -208,13 +208,14 @@
 
 \setkomafont{part}{\normalfont\huge\scshape}
 
-\setkomafont{sectioning}{\normalfont\scshape}
+\setkomafont{sectioning}{\normalfont\bfseries}
 \setkomafont{descriptionlabel}{\normalfont\bfseries}
 
 \setkomafont{caption}{\small}
 \setkomafont{captionlabel}{\usekomafont{caption}}
 
-% Large number for chapter
+% Smaller format for chapter number and name
+\setkomafont{chapter}{\normalfont\Large\sffamily}
 \renewcommand*{\chapterformat}{%
-  \fontsize{50}{55}\selectfont\thechapter\autodot\enskip
+  \fontsize{20}{24}\selectfont\chapappifchapterprefix{\nobreakspace}\thechapter\autodot\enskip
 }
