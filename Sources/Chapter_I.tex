@@ -1,27 +1,97 @@
-\begin{center}
-  \textsc{Chapter 1}
-\end{center}
-\begin{center}
-  \textsc{Theoretical context of Higgs boson pair production}
-\end{center}
+%\begin{center}
+%  \title{Chapter 1}
+%\end{center}
+%\begin{center}
+%  \textsc{Theoretical context of Higgs boson pair production}
+%\end{center}
+\setcounter{secnumdepth}{0}
+\newcounter{ns}
 
+\addcontentsline{toc}{chapter}{Chapter 1}
+\chapter*{\Large{Chapter 1}}
+\setcounter{ns}{1}
+\section*{Theoretical context}
+% > intro
+% - what is SM
+%    - historical context <
+%    - experimentally corroborated <
+%    - EWSB <
+%    - limits of SM < and relation with HH <
+% - Description of sections <
 
-> intro
-- what is SM
-    - historical context <
-    - experimentally corroborated <
-    - EWSB <
-    - limits of SM < and relation with HH <
-- Description of sections <
-
-The Standard Model (SM) of particle physics [ref] is a renormalisable quantum field theory that describes the elementary particles and their fundamental interactions. Formulated in the early 1970s as a consolidation of theories and experimental discoveries from the previous decade, SM predictions have been well corroborated by numerous observations in collider experiments. The discovery of the Higgs boson is the final entry on this extensive checklist, theorised as a direct consequence of the Brout-Englert-Higgs (BEH) mechanism, which is responsible for the spontaneous electroweak symmetry breaking (EWSB). 
+\noindent The Standard Model (SM) of particle physics {\color{red} [ref]} is a renormalizable quantum field theory that describes the elementary particles and their fundamental interactions. Formulated in the early 1970s as a consolidation of theories and experimental discoveries from the previous decade, SM predictions have been well corroborated by numerous observations in collider experiments. The discovery of the Higgs boson is the final entry on this extensive checklist, theorized as a direct consequence of the Brout-Englert-Higgs (BEH) mechanism, which is responsible for the spontaneous electroweak symmetry breaking (EWSB). 
 
 Nevertheless, despite the excellent agreement the SM has yielded, a large body of evidence ranging from subnuclear to astrophysical phenomena suggests that its current formulation is incomplete. This makes a more comprehensive theory necessary to provide a complete picture. Exploring the scalar sector is a promising way to research physics Beyond the SM (BSM), where the connection between the Higgs boson self-interaction and the nature of the Higgs potential plays a fundamental role. Therefore, measuring the Higgs boson self-coupling constant, which is currently unconstrained by observation, could offer invaluable insights. 
 
 The present chapter discusses the importance of studying HH production in this context and aims to establish its theoretical basis. Section 1 provides a concise overview of the SM formulation. Section 2 focuses on double Higgs boson production and describes its phenomenology. In Section 3, the status of collider experiments and previous results obtained at the LHC are discussed.
 
 
-1.1 SM
+\section{Structure of the Standard Model of particle physics}
+%1.1 SM
+
+%1- what is (more technical) - what are the particles and matter < 
+%2- how it works <
+%3- formalism (Lagrangian) <
+
+
+
+\noindent The SM was initially proposed by S. Glashow, A. Salam, and S. Weinberg {\color{red} [ref]} and has been demonstrated to be the most compelling theoretical framework for synthesizing fundamental constituents and their interactions. It is a renormalizable quantum field theory (QFT) based on quantum mechanics and special relativity that satisfies gauge invariance. According to this framework, elementary particles are defined as indivisible entities devoid of internal structure, and correspond to excited states of underlying quantum field, which are mathematically described by QFT.
+
+The SM also encompasses three of the four fundamental interactions. These are the electromagnetic, weak, and strong interactions, each connected to different intrinsic charges of the matter particles: the electromagnetic charge, the weak isospin, and the color charge. These interactions are described by the exchange of particle mediators, which arise as a consequence of local gauge invariance. The description of the gravitational force could not be included in the SM, which is a limitation of the model. However, it can be disregarded at the particle level scale since it is a force with such a weak intensity that its effect has practically no influence compared to the other forces.
+
+The mathematical formulation of the SM is based on a Lagrangian density, $\mathcal{L}$, which condenses all the necessary information to describe the propagation and interactions of the particle fields. The Lagrangian $\mathcal{L}$ is defined as a scalar function of the fields $\phi_i$, their derivatives $\partial_\mu \phi_i$, and the space-time coordinates, $x^\mu$, and preserves invariance under local gauge symmetries. The invariance of the system under specific set of transformations constitutes the fundamental principle for the SM formalism. According to the postulate of Noether's theorem {\color{red} [ref]}, each global continuous symmetry of a physical system results in a conserved quantity. These quantities are the intrinsic charges of the matter particles associated with each interaction, and they manifest as a consequence of the symmetry of the SM Lagrangian under the continuous group $SU(3)_C \times SU(2)_L \times U(1)_Y$. Furthermore, as a direct consequence of local gauge symmetry, the introduction of vector fields is imperative, and their quantum excitations result in the particles that mediate the interactions: the strong interaction, invariant under $SU(3)_C$ and described by quantum chromodynamics (QCD); and the electroweak (EWK) force, unifying the $SU(2)_L \times U(1)_Y$ symmetries.
+
+Fields?
+
+\section{Particle content}
+
+According to the SM, the elementary particles can be classified depending on their spin. Two types of particles are distinguished: fermions with spin 1/2 and bosons with integer spin (0 or 1). The former arise from Lorentz spinor fields and constitute all known matter. In regard to the latter, a distinction is made between gauge bosons, corresponding to spin 1, which are associated with the vector fields and responsible for mediating interactions between fermions; and the Higgs boson, with spin 0, linked to a scalar field and responsible for the mechanism by which fermions and bosons acquire their mass. The particle content and their properties are illustrated in Figure 1.1, and discussed in detail next.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../figures/chapter_I/SM_particles-005.png}
+    \caption{Particle content of the Standard Model.}
+    \label{fig:SM_particles}
+\end{figure}
+
+
+\section{Fundamental interactions}
+
+
+The particle content in the SM can be separated into  . The gauge sector and the scalar sector are the foundations of the SM 
+
+
+
+
+The evolution of the quantum fields is enterely determined by a density Lagrangian, defined as a scalar function of the fields and their derivatives. 
+
+
+The fundamental interactions are described as exchange of force-mediating particles, the vector bosons, 
+
+Three of the four known fundamental interactions are described in the SM as an exchange of force-mediating particles, the gauge bosons, result of the invariance of the theory under local gauge symmetries.
+
+
+ which are completely determined by the QFT Lagrangian density.
+
+
+The interactions that take place between them 
+
+
+The Standard Model (SM) is a renormalizable quantum gauge field theory that unifies the description of electromagnetic, weak, and strong interactions through the symmetry group. In this framework, elementary particles are interpreted as quantum excitations of fundamental fields, while their interactions are completely determined by a Lagrangian density constructed from the principles of gauge invariance, chirality, and quantum consistency. The spontaneous breaking of electroweak symmetry, implemented through the Higgs mechanism, generates the masses of vector bosons and fermions without compromising the renormalizability of the model. Although extraordinarily successful in its predictive power, the SM is recognized as an effective theory, valid up to energy scales where the emergence of new physics is expected to complete its structure.
+
+The Standard Model (SM) of particle physics is the theoretical framework that describes the fundamental constituents of the Universe and their interactions. Initially proposed by S. Glashow, A. Salam, and S. Weinberg [1], the model has significantly evolved along the years; it has been rigorously tested across a wide range of energy levels and represents the outcome of a long and continuous interplay between experimental observations and theoretical innovations.
+
+The gauge sector and the scalar sector are the foundations of the SM. They are closely
+interconnected but rely on different theoretical concepts of gauge invariance and spontaneous
+symmetry breaking. They are discussed separately in what follows, with a focus on
+the properties of the Higgs boson and a summary of experimental measurements.
+
+. Elementary particles correspond to
+excited states of quantum elds. The propagation and interactions of elds in a
+QFT are fully determined by a Lagrangian density, L, that depends on the elds,
+i, their derivatives, @ i and the space-time coordinates, x.
+
+
 1.1.0 Fields and gauge structure
 1.1.1 Elementary particles
 1.1.2 Fundamental interactions
