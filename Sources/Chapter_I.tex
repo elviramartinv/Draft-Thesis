@@ -1,4 +1,4 @@
-\chapter{Theoretical context}
+\part{Theoretical context}
 % > intro
 % - what is SM
 %    - historical context <
@@ -6,7 +6,7 @@
 %    - EWSB <
 %    - limits of SM < and relation with HH <
 % - Description of sections <
-
+\chapter{Theoretical context}
 \noindent The Standard Model (SM) of particle physics {\color{red} [ref]} is a renormalizable quantum field theory that describes the elementary particles and their fundamental interactions. Formulated in the early 1970s as a consolidation of theories and experimental discoveries from the previous decade, SM predictions have been well corroborated by numerous observations in collider experiments. The discovery of the Higgs boson is the final entry on this extensive checklist, theorized as a direct consequence of the Brout-Englert-Higgs (BEH) mechanism, which is responsible for the spontaneous electroweak symmetry breaking (EWSB).
 
 Nevertheless, despite the excellent agreement the SM has yielded, a large body of evidence ranging from subnuclear to astrophysical phenomena suggests that its current formulation is incomplete. This makes a more comprehensive theory necessary to provide a complete picture. Exploring the scalar sector is a promising way to research physics Beyond the SM (BSM), where the connection between the Higgs boson self-interaction and the nature of the Higgs potential plays a fundamental role. Therefore, measuring the Higgs boson self-coupling constant, which is currently unconstrained by observation, could offer invaluable insights.
@@ -27,10 +27,9 @@ The present chapter discusses the importance of studying HH production in this c
 
 The SM also encompasses three of the four fundamental interactions. These are the electromagnetic, weak, and strong interactions, each connected to different intrinsic charges of the matter particles: the electromagnetic charge, the weak isospin, and the color charge. These interactions are described by the exchange of particle mediators, which arise as a consequence of local gauge invariance. The description of the gravitational force could not be included in the SM, which is a limitation of the model. However, it can be disregarded at the particle level scale since it is a force with such a weak intensity that its effect has practically no influence compared to the other forces.
 
-The mathematical formulation of the SM is based on a Lagrangian density, $\mathcal{L}$, which condenses all the necessary information to describe the propagation and interactions of the particle fields. The Lagrangian $\mathcal{L}$ is defined as a scalar function of the fields $\phi_i$, their derivatives $\partial_\mu \phi_i$, and the space-time coordinates, $x^\mu$, and preserves invariance under local gauge symmetries. The invariance of the system under specific set of transformations constitutes the fundamental principle for the SM formalism. According to the postulate of Noether's theorem {\color{red} [ref]}, each global continuous symmetry of a physical system results in a conserved quantity. These quantities are the intrinsic charges of the matter particles associated with each interaction, and they manifest as a consequence of the symmetry of the SM Lagrangian under the continuous group $SU(3)_C \times SU(2)_L \times U(1)_Y$. Furthermore, as a direct consequence of local gauge symmetry, the introduction of vector fields is imperative, and their quantum excitations result in the particles that mediate the interactions: the strong interaction, invariant under $SU(3)_C$ and described by quantum chromodynamics (QCD); and the electroweak (EWK) force, unifying the $SU(2)_L \times U(1)_Y$ symmetries.
+The mathematical formulation of the SM is based on a Lagrangian density, $\mathcal{L}$, which condenses all the necessary information to describe the propagation and interactions of the particle fields. The Lagrangian $\mathcal{L}$ is defined as a scalar function of the fields $\phi_i$, their derivatives $\partial_\mu \phi_i$, and the space-time coordinates, $x^\mu$, and preserves invariance under local gauge symmetries. The invariance of the system under specific set of transformations constitutes the fundamental principle for the SM formalism. According to the postulate of Noether's theorem {\color{red} [ref]}, each global continuous symmetry of a physical system results in a conserved quantity. These quantities are the intrinsic charges of the matter particles associated with each interaction, and they manifest as a consequence of the symmetry of the SM Lagrangian under the continuous group $SU(3)_C \times SU(2)_L \times U(1)_Y$. Furthermore, as a direct consequence of local gauge symmetry, the introduction of vector fields is imperative, and their quantum excitations result in the particles that mediate the interactions: the strong interaction, invariant under $SU(3)_C$ and described by quantum chromodynamics (QCD); and the electroweak (EWK) force, unifying the $SU(2)_L \otimes U(1)_Y$ symmetries.
 
-Fields?
-Limitations?
+SM Limitations? BSM theories???
 
 \subsection{Particle content}
 
@@ -44,60 +43,736 @@ According to the SM, the elementary particles can be classified depending on the
 \end{figure}
 
 
-\noindent\textbf{Fermions}
+\noindent\textbf{Matter particles: Fermions}
 
 \noindent Due to the relativistic nature of the SM, quantum excitations of spinorial fields that transform in the spin-1/2 representation of the Lorentz group give rise to half-integer spin particles called fermions. Experimental observations of fermions have demonstrated the existence of twelve fermions: six quark fields and six lepton fields, which will be detailed below. The 12 fermions are arranged into three generations of mass, with each generation consisting of two quarks with electric charges of $Q=+2/3$ and $Q=-1/3$ and two leptons with charges of $Q=-1$ and $Q=0$. The difference in mass between the families is related to their coupling strength with scalar fields. The first family, being the one with the lowest mass, constitutes stable matter, while the particles of the other families are predominantly unstable and decay rapidly. Each fermion has a corresponding antiparticle with the same spacetime characteristics (mass and spin) but opposite intrinsic quantum numbers (charges), meaning when a particle and its antiparticle interact, they annihilate each other. 
 
 
 \noindent\textbf{Quarks} 
-Each generation contains a quark doublet composed of an up-type quark $Q=+2/3$: up (u), charm (c) and top (t); and a down-type quark $Q=-1/3$ down (d), strange (s), bottom (b). The first-family quarks, up and down, are the lightest, with masses of 2.2 and 4.7 MeV, respectively. Their counterparts in subsequent generations reach mass ranges of GeV in the second family, with masses of 1.27 GeV and 93.4 MeV for charm and strange, and of the order of hundreds of GeV in the third generation, composed of top and bottom, with masses of about 172.7 and 4.2 GeV, respectively.
+Each generation contains a quark doublet composed of an up-type quark $Q=+2/3$: up (u), charm (c) and top (t); and a down-type quark $Q=-1/3$ down (d), strange (s), bottom (b). The first-family quarks, up and down, are the lightest, with masses of 2.2 and 4.7 MeV, {\color{red} [ref]} respectively. Their counterparts in subsequent generations reach mass ranges of GeV in the second family, with masses of 1.27 GeV and 93.4 MeV for charm and strange, and of the order of hundreds of GeV in the third generation, composed of top and bottom, with masses of about 172.7 and 4.2 GeV, respectively.
 
 Of all the particle content of the SM, only quarks are subject to all three forces. They are the only fermions that carry color charge connected to the strong force, in addition to their electric charge. The strong interaction, as described by quantum chromodynamics, leads to the phenomena known as QCD color confinement, thereby implying that quarks cannot exist as a free states, as observed for leptons, but can only be detected as bound states, called \textsc{hadrons}hadrons. Only color-neutral hadrons exist in nature, so the only possible states are mesons, composed of a quark-antiquark pair, and baryons, formed by three quarks. The top quark, however, is an exception, since its very high mass and therefore its high instability cause it to decay via electroweak interaction before it can form a bound state. At very high energies, the strong force weakens, causing quarks to behave like asymptotically free particles and allowing their interactions to be studied in proton colliders like the LHC.
 
 \noindent\textbf{Leptons} 
+\noindent The other variety of fermions are known as leptons, which, devoid of color charge, interact solely through the weak and electromagnetic forces. Each family of lepton doublets consists of a charged lepton with electric charge $Q=1$: electron ($e$), muon ($\mu$) o tau ($\tau$); and the corresponding neutrino ($\nu$) with $Q=0$.
 
+The three charged leptons have masses that differ by up to four orders of magnitude: the electron has a mass of 511 keV, the muon 105.7 MeV, and the tau 1.8 GeV {\color{red} [ref]}. Consequently, the electron is the only stable charged lepton, while muons have a mean lifetime of 2.2 $\mu s$ and the tau has a mean lifetime of 2.9 x 10-13 s. In collider experiments, the muon receives a Lorentz boost large enough to be detected as stable particles thanks to their high momentum and the size of the experiment. The tau, on the other hand, is highly unstable and can only be inferred from its decay products.
+
+Neutral leptons, neutrinos, share the same lepton flavor as their corresponding charged leptons, finding $\nu_e$,$\nu_{\mu}$ and $\nu_{\tau}$. Because they are electrically neutral, neutrinos only interact with matter through the weak force, which makes direct detection in experiments unfeasible. Their indirect signature is revealed by the missing energy in the final state. In the classical formulation of the SM, the neutrino is assumed to be massless. This assumption, however, is contradicted by the observation of neutrino oscillations in 1998 {\color{red} [ref]}, implying that neutrinos are massive particles with upper limits of $m(\nu_e) < 1.1$ eV, $m(\nu_\mu) < 0.19$ MeV, and $m(\nu_\tau) < 18.2$ MeV. In order to account for the phenomenon of neutrino oscillations, the interplay between flavor and mass eigenstates is depicted by the Pontecorvo-Maki-Nakagawa-Sakata (PMNS) matrix, introduced as a revision to the SM.
+
+\noindent\textbf{Bosons}
+
+\noindent\textbf{Force-carrying particles: Gauge Bosons}
+
+\noindent Gauge bosons are spin-1 particles responsible for mediating the fundamental interactions of the SM. They are the excitations of each gauge field associated with local symmetries, so the number of bosons mediator each force depends on the dimension of the gauge group, and their properties arise from the corresponding interaction's Lagrangian.
+
+The symmetry gauge group $SU(3)_C$ is associated with the strong interaction and involves eight generators known as gluons (g). Gluons are massless and electrically neutral particles that carry color charge and therefore interact with other colored particles, meaning themselves and quarks. As a result of being colored particles, gluons cannot be directly observed as free particles, yet their existence is inferred from the hadronic jets produced by gluon emission, with the firs experimental evidence appearing in 1979 {\color{red} [ref]}.
+
+The electroweak sector unified in the symmetry $SU(2)_L \otimes U(1)_Y$ consists of four generators. The photon ($\gamma$), a neutral, massless particle, is associated with the electromagnetic force. The other three generators are the two $W^{\pm}$ and $Z$ bosons, which are responsible for the charged and neutral currents of the weak force, respectively. The $W$ and $Z$ bosons were directly observed in 1983, and the two charged $W$ bosons with opposite charges $Q=\pm1$ have identical masses of 80.3 GeV while the mass of the neutral $Z$ boson is 91.2 GeV.
+
+\noindent\textbf{Scalar Boson: Higgs Boson}
+
+\noindent To endow the $W^{\pm}$ and $Z$ bosons with mass, the $SU(2)_L \otimes U(1)_Y$ must be broken. This symmetry breaking process is realized through the Brout-Englert-Higgs mechanism, which introduces a scalar field that preserves renormalizability and gauge invariance within the SM. The quantum excitation of this field is the Higgs boson, the only fundamental non-gauge spin-0 or scalar boson in the SM. It couples directly to all other particles, except for photons and gluons, imparting mass to them, as has been proven experimentally. Its description and properties are intimately linked to the EWSB mechanism, detailed in section {\color{red} [section EWSB]}.
+
+% The Higgs boson is unique among the other particles because it is the only non-gauge spin-0 or scalar boson in the SM. It emerged as a result of the Brout-Englert-Higgs mechanism, which was developed to explain bosons with non-zero mass, contrary to previous theoretical predictions. Likewise, the Higgs boson interacts directly with the other particles, except for photons and gluons, imparting mass to them, as has been proven experimentally. Its description and properties are intimately linked to the EWSB mechanism, detailed in section {\color{red} [section EWSB]}.
 
 \subsection{Fundamental interactions}
 
+\noindent\textbf{Strong interaction}
 
-The particle content in the SM can be separated into  . The gauge sector and the scalar sector are the foundations of the SM
+\noindent The strong interaction is described by the theory of QCD, which is based on the local gauge invariance under the non-abelian group $SU(3)_C$. The subscript C denotes color, the conserved charge associated with the symmetry. As previously stated, each particle in the SM is characterized by a field $\psi(x)$, and since only quarks carry color charge, only quark fields have a non-trivial representation under this group. The interaction between these particles is described by the Lagrangian, which, in the case of quarks, corresponds to the Dirac Lagrangian density.
+
+\begin{equation} 
+\mathcal{L}_{\text{Dirac}} = \bar{\psi}(x)(i\slashed{\partial} - m)\psi(x)
+\label{eq:dirac_lagrangian}
+\end{equation}
+
+\noindent where $\psi$ is the bi-spinor quark field at the space-time coordinates $x$, $m$ is the quark mass, and $\not{\partial} = \gamma^\mu \partial_\mu$ is the Dirac operator, representing the contraction of the Dirac matrices $\gamma^\mu$ with the first order space-time derivatives $\partial_\mu$. The Dirac Lagrangian is defined to be invariant under global $SU(3)$ transformations, but loses its invariance under local $SU(3)$ transformations. Fermion fields transform in the following way under $SU(3)_C$ group: 
+
+\begin{equation} 
+\psi(x) \rightarrow e^{\left(i g_s \theta^a(x) \frac{\lambda_a}{2}\right)} \psi(x), \quad 
+\label{lagrangian_transformation}
+\end{equation}
+
+\noindent with \(\lambda_a\) being the eight Gell-Mann matrices that generate the group, \(\theta^a\) arbitrary constants, and \(g_s\) the strong coupling constant. To restore local gauge invariance, understood as the preservation of the invariance of the Lagrangian density \eqref{eq:dirac_lagrangian} under the transformation \eqref{lagrangian_transformation}, the derivative $\partial_\mu$ is redefined as covariant derivative \(D_{\mu}\):
+
+\begin{equation} 
+D_\mu = \partial_\mu + i g_s \frac{\lambda_a}{2} G^a_\mu 
+\label{covariant_derivative}
+\end{equation} 
+
+\noindent where the new gauge vector fields \(G^a_\mu\) correspond to the eight gluon fields, the gauge bosons mediators for the strong interaction. Incorporating the vector fields ensures that the covariant derivative transforms equivalently as the quark fields and, consequently, the Lagrangian density is promoted to be invariant under local gauge transformations.  
+
+To complete the Lagrangian density, a kinetic term for the gluon fields is included in the form:
+
+\begin{equation}
+-\frac{1}{4}G^{\mu\nu}_a G^a_{\mu\nu}
+\end{equation}
+
+\noindent where \(G^a_{\mu\nu}\) can be interpreted as the gluon field-strength tensor, and is defined as follows:
+
+\begin{equation} 
+G^a_{\mu\nu} = \partial_\mu G^a_\nu - \partial_\nu G^a_\mu + g_s f^{abc} G^b_\mu G^c_\nu 
+\label{gluon_field}
+\end{equation} 
+
+\noindent with \(f^{abc}\) symbols denoting the structure constants of the \(SU(3)\) gauge group. The final term of the strength field tensor is incorporated due to the non-abelian nature of $SU(3)_C$, resulting in gluon self-interactions. The full QCD Lagrangian finally reads: 
+
+\begin{equation}
+\mathcal{L}_{\text{QCD}} = \bar{\psi}(x)(i\slashed{\partial} - m)\psi(x) - g_s \bar{\psi}(x) \gamma^\mu \frac{\lambda_a}{2} \psi(x) G^a_\mu - \frac{1}{4} G_a^{\mu\nu} G^a_{\mu\nu}
+\label{QCD_Lagrangian}
+\end{equation} 
+
+\noindent The first term is equivalent to the original Dirac Lagrange equation \eqref{eq:dirac_lagrangian}, and denotes the unperturbed propagation of the quark. The second term is attributed to the introduction of the covariant derivative and signifies the interaction of the quark with the vector field \(G_\mu\). The strength of the interaction is parameterized by the constant $g_s$, which is typically expressed through the redefinition: \(\alpha_s=g_s^2/4\pi\). The third term has been incorporated as a kinetic term of the vector field, leading to cubic and quartic self-interactions of the gluon fields, a general feature of non-abelian gauge theories.
+
+In this formulation, the imposition of local gauge invariance under SU(3) transformations has yielded the introduction of gauge bosons, the gluons, and their interactions with fermionic fields, the quarks. The $SU(3)$ group implies the presence of eight gluons, which are distinguished solely by the color charge they carry. It is noteworthy that explicit mass terms in the form of \(G_a^{\mu\nu} G^a_{\mu\nu}\) for the gauge bosons in \eqref{QCD_Lagrangian} would result in the violation of gauge invariance of the Lagrangian.
+
+\noindent\textbf{Electroweak interaction}
+
+\noindent The electroweak (EWK) group provides a unified description of the electromagnetic and weak interactions. It is derived from the imposition of a local gauge invariance mechanism under the group $SU(2)_L \otimes U(1)_Y$. 
+
+% electromagnetic sector
+The gauge group $U(1)_{em}$ is the abelian group associated with the electromagnetic sector, whose description is encapsulated in the theory of Quantum Electrodynamics (QED). Since QED is based on the same principles as QCD, the final expression of the Lagrangian \(\mathcal{L}_{QED}\) can be derived from the Dirac Lagrangian \eqref{eq:dirac_lagrangian} as a starting point. The Dirac Lagrangian is consistent with global invariance under the group $U(1)_{em}$, yet is incompatible with local transformations. In order to promote invariance from global to local, it is necessary to replace the canonical derivative with a covariant derivative, \(D_\mu\), expressed as follows:
+
+\begin{equation}
+    D_\mu = \partial_\mu - i e A_\mu
+\label{derivative_electro}
+\end{equation}
+
+\noindent where the coupling constant is denoted by $e$ and corresponds to the unit of electric charge, while the term \(A_\mu\) represents the electromagnetic force carrier field, known as the photon field. In order to complete Lagrangian density, a kinetic term is introduced for the photon fields that accounts for the propagation of the photon, which depends on the field strength tensor \(F^{\mu\nu}\), defined as:
+
+\begin{equation}
+    F^{\mu\nu} = \partial^\mu A^\nu - \partial^\nu A^\mu
+\label{tensor_electro}
+\end{equation}
+
+\noindent where, in contrast to the non-abelian group of the strong interaction, QED does not predict self-interaction of the photon. The QED Lagrangian is thus expressed as:
+
+\begin{equation}
+    \mathcal{L}_{\text{QED}} = \bar{\psi}(i\!\not{\partial} - m)\psi + e\,\bar{\psi} A^\mu \gamma_\mu \psi - \frac{1}{4} F^{\mu\nu} F_{\mu\nu}
+\label{lagrangian_electro}
+\end{equation}
+
+In this formulation, the photon field emerges as a consequence of imposing local gauge invariance under $U(1)_{em}$, as well as its interactions with charged fermions, with the electric charge, $Q$, being the quantity conserved in the interaction. Similarly to the gluon field, it is imperative to reiterate the conclusion previously reached, which states that the incorporation of a hypothetical mass term for the photon would result in a violation of the invariance of the Lagrangian.
+
+% Weak description sector
+The non-abelian group $SU(2)_L$ is responsible for describing the weak interaction, which differs substantially from the other forces, therefore requires a more complex structure. Unlike the electromagnetic and strong interactions, the weak interaction universally couples to all fermions connecting different flavors of fermions through the Cabibbo-Kobayashi-Maskawa (CKM) mixing matrix. Additionally, the it is the only force observed to violate charge (C), parity (P), and combined charge-parity (CP) symmetries, all of which are conserved in the other interactions. The violation of parity {\color{red} [ref]} is indicative of the existence of \textit{chirality}, a fermion property according to which particles couple differently. Chirality is introduced into the theory as a Lorentz-invariant quantity corresponding to the eigenvalues \(\gamma^5=i\gamma^0\gamma^1\gamma^2\gamma^3\). This is used to define the left and right chirality projection operators as \(\frac{1-\gamma^5}{2}\) y \(\frac{1+\gamma^5}{2}\) respectively, giving rise to left (\(\psi_L\)) and right (\(\psi_R\) chirality fields. In the limit of a massless particle, chirality corresponds to helicity, which is defined as the normalized projection of the spin vector onto the spacial momentum vector. 
+
+The weak interaction affects only left-handed fermions (or right-handed anti-fermions), as reflected by the L subscript in the $SU(2)_L$ symmetry, which refers to the left-handed chirality of the fermions involved in the interaction. Gauge invariance under this group results in the presence of three gauge fields, \(W^i_\mu(i=1,2,3)\). Thus, each fermionic field in the SM is represented as a left-handed doublet (\(\psi_L\)) that participates in the weak interaction and two right-handed singlets (\(\psi_R,\psi'_R\)) that do not interact with the gauge fields \(W^i_\mu\) and are therefore excluded from the weak interaction:
+\begin{equation}
+\begin{gathered}
+    \psi_L \equiv \frac{1 - \gamma^5}{2}\begin{pmatrix}\psi \\\psi'\end{pmatrix}=\begin{pmatrix}\psi_L \\\psi'_L\end{pmatrix} \\
+    \psi_R \equiv \frac{1 + \gamma^5}{2}\,\psi \\
+    \psi'_R \equiv \frac{1 + \gamma^5}{2}\,\psi'
+\label{fermionic_fields}
+\end{gathered}
+\end{equation}
+% espacio y aparte entre cada ecuación
+
+where \(\psi\) and \(\psi'\) represents either the neutrino and charged lepton fields or the up- and down-type quark fields. Note that these two sectors are separate, and neither the strong nor the electroweak interactions can transform quark fields into lepton fields or vice-versa, since a direct lepton-quark coupling is not predicted in the SM. 
+
+The reason the weak interaction acts only on left-chirality doublets is explained by the conserved charged associated with the symmetry group $SU(2)_L$: the weak isospin \(I_3\). For left-handed fermions, weak isospin has a value of $I_3=+1/2$ for up-type fermions, and $I_3=-1/2$ for down-type-fermions, while right-handed fermions are associated with isospin $I_3=0$. According to this, it is notable that the right-handed neutrino (and the left-handed anti-neutrino) is sterile, because it does not carry charge for any of the interactions described by the SM: no electric charge, no weak isospin, and no color. 
+
+The weak Lagrangian $L_{WK}$ can be separated into left-handed and right-handed components, expressed as:
+%decir que la dependencia de x está omitida? igual no ponerlo descompuesto, sino el total usando la 1.10 de Luca?
+
+\begin{equation}
+    \mathcal{L}_{WK} = i\,\bar{\psi}_L \gamma_\mu D^\mu \psi_L + i\,\bar{\psi}_R \gamma^\mu \partial_\mu \psi_R + i\,\bar{\psi}'_R \gamma^\mu \partial_\mu \psi'_R - \frac{1}{4} W^i_{\mu\nu} W_i^{\mu\nu}
+\label{weak_lagrangian}
+\end{equation}
+
+\noindent where as in the QCD Lagrangian, the last term corresponds to the kinetic term of the boson fields, and the covariant derivative, which is introduced to ensure gauge invariance, is described as follows:
+
+\begin{equation}
+    D_\mu = \partial_\mu + i g_W\, T_i\, W_\mu^i
+\label{weak_covariant_derivative}
+\end{equation}
+
+\noindent being \(g_W\) the weak coupling constant, \(W^i_\mu(i=1,2,3)\) are the three gauge fields, and \(T^i_\mu=\sigma_i/2\), with \(\sigma_i\) the Pauli's matrices. The tensor field \(W^i_{\mu\nu}\) associated to the weak force carrier is then defined as:
+
+\begin{equation}
+    W_{\mu\nu}^i = \partial_\mu W_\nu^i - \partial_\nu W_\mu^i + i g \epsilon_{ijk} W_{\mu j} , W_{\nu k}
+\label{weak_strenth_tensor}
+\end{equation}
+
+\noindent where \(\epsilon_{ijk}\), knows as Levi-Civita tensor, signifies the structure constants of $SU(2)_L$. The last term of the strength field tensor appears as a direct consequence of non-abelian group, leading to cubic and quartic interaction terms between gauge fields. 
+
+It is essential to acknowledge that the Lagrangian lacks a mass term since the field transform differently based on their chirality, and consequently, a term \(m\overline{\psi}\psi=m(\overline{\psi_R}\psi_L+\overline{\psi_L}\psi_R)\) does not respect invariance under $SU(2)_L$ transformations. Thus, within this formulation, local gauge invariance is only preserved by the mass term being omitted. This would imply massless fermions and vector bosons, which is in stark contradiction with experimentally observed phenomena. Furthermore, in the formulation of the weak interaction, the physical fields \(W^{\pm}_\mu\) and $Z_\mu$ that give rise to the corresponding gauge bosons \(W^{\pm}\) and $Z$ do not correspond directly to the three gauge fields \(W^i_\mu(i=1,2,3)\).  
+
+% electroweak unification
+The formalism that addresses the incongruity between theoretical and observable findings consists of unifying electromagnetic and weak interactions, wherein the group $SU(2)_L\otimes U(1)_Y$ becomes the fundamental symmetry of the system. In the context of the unification, the mechanism responsible for electroweak breaking is postulated to elucidate the process by which gauge fields are reorganized, thereby giving rise to the physical fields that are observed in interactions, as will be further explored in the upcoming discussion. 
+
+Before spontaneous symmetry breaking, the fundamental quantities conserved are the weak isospin $T_3$ and the weak hypercharge $Y$. The linear combination of these quantities yields the electromagnetic charge conserved after symmetry breaking, $Q$, according to the Gell-Mann-Nishijima expression:
+
+\begin{equation}
+    Q=T_3+\frac{Y}{2}
+\label{GMN}
+\end{equation}
+
+\noindent which illustrates the correlation between the hypercharge group, $U(1)_Y$, and the electromagnetic sector $U(1)_{em}$. Therefore, the $U(1)_Y$ group emerges as the fundamental group of unification inspired by QED. The Lagrangian $L_Y$ can then be written as:  
+
+\begin{equation}
+    \mathcal{L}_Y = i\,\bar{\psi}\gamma^\mu D_\mu \psi - \frac{1}{4} B_{\mu\nu} B^{\mu\nu}
+\label{Y_lagrangian}
+\end{equation}
+
+\noindent where:
+
+\begin{equation}
+    D_\mu = \partial_\mu + i\, g_Y\, Y\, B_\mu
+\label{Y_cov_der}
+\end{equation}
+
+\noindent is the covariant derivative of $U(1)_Y$, $g_Y$ is identified as the coupling constant and the strength tensor field $B_{\mu\nu}$ is introduced as a condition for gauge invariance conditions, described as follows:
+
+\begin{equation}
+    B_{\mu\nu} = \partial_\mu B_\nu - \partial_\nu B_\mu
+\label{Y_strength_tensor}
+\end{equation}
+
+\noindent where $B_{\mu\nu}$ couples equally to the left- and right-handed components of the fermion fields, which, recalling expression \eqref{weak_covariant_derivative}, ultimately leading to the two covariant derivatives of the electromagnetic and weak interactions:
+
+
+\begin{equation}
+\begin{gathered}
+D_{\mu,L} = \partial_{\mu} 
++ i g\, T_i\, W^i_{\mu} 
++ i g'\, \frac{Y}{2}\, B_{\mu} \\
+D_{\mu,R} = \partial_{\mu} 
++ i g'\, \frac{Y}{2}\, B_{\mu}
+\label{WY_covariant_derivatives}
+\end{gathered}
+\end{equation}
+
+
+In light of the aforementioned elements, the final expression of the electroweak (EWK) Lagrangian $\mathcal{L}_{EWK}$ introduced to guarantee local gauge invariance under the two fundamental symmetry $SU(2)_L\otimes U(1)_Y$ transformations, can be written as:
+
+\begin{equation}
+    \mathcal{L}_{EWK} = \bar{\Psi}_L \left( i \slashed{D}_L \right) \Psi_L + \bar{\psi}_R \left( i \slashed{D}_R \right) \psi_R + \bar{\psi}'_R \left( i \slashed{D}_R \right) \psi'_R - \frac{1}{4} W^i_{\mu\nu} W^{i\mu\nu} - \frac{1}{4} B_{\mu\nu} B^{\mu\nu}
+\label{EW_Lagrangian}
+\end{equation}
+
+\noindent which can be expressed as a combination of different contributions:
+
+\begin{equation}
+    \mathcal{L}_{EWK}=\mathcal{L}_{free} + \mathcal{L}_{CC} + \mathcal{L}_{NC} + \mathcal{L}_{kin}
+\end{equation}
+
+\begin{itemize}
+    \item The free term $\mathcal{L}_{free}$ describes the propagation of fermion fields in the absence of any interactions.
+
+    \item The term $\mathcal{L}_{CC}$ refers to charged current interactions, which couples the fermionic fields $\psi_L$ and $\psi'_L$. The fields that mediate the interaction manifest as linear combinations of the gauge fields of the $SU(2)_L$ interaction, \(W^3_\mu\): 
+    
+    \begin{equation}
+        W^{\pm}_{\mu} = \frac{1}{\sqrt{2}} \left( W^{1}_{\mu} \mp i\, W^{2}_{\mu} \right)
+    \end{equation}
+    
+    \noindent and corresponds to the physical $W^{\pm}_{\mu}$ fields associated with the charged $W^{\pm}$ bosons that interact with the fermions.
+    
+    \item A neutral current term $\mathcal{L}_{NC}$ interacting with neutral fields that can be expressed in terms of the physical field, $Z_{\mu}$, associated with the neutral boson $Z$, and the photon field, $A_{\mu}$, trough a linear superposition of the gauge fields \(W^3_\mu\) and $B_\mu$, according to:
+
+    \begin{equation}
+        \begin{pmatrix} A_\mu \\ Z_\mu \end{pmatrix} = \begin{pmatrix} \cos\theta_W & \sin\theta_W \\ -\sin\theta_W & \cos\theta_W \end{pmatrix} \begin{pmatrix} B_\mu \\ W^3_\mu \end{pmatrix}
+    \end{equation}
+    
+    \noindent where $\theta_W$ is the Weinberg angle, a free parameter of the SM that parametrizes the mixing of gauge fields to create the observables of neutral current interactions, $Z_{\mu}$ and $A_{\mu}$. The Weinberg angle is defined in terms of the coupling constants for the weak and electromagnetic groups as follows:
+    
+    \begin{equation}
+        \theta_W = \arctan\!\left( \frac{g_W}{g_Y} \right)
+    \end{equation}
+    
+    \item The EWK Lagrange equation is finally complete with the addition of the kinetic terms $\mathcal{L}_{kin}$ for the gauge fields, whose behavior is determined by the field strengths $W^i_{\mu\nu}$ and $B_{\mu\nu}$ previously introduced at \eqref{weak_strenth_tensor} and \eqref{Y_strength_tensor}. Once more, the introduction of the kinetic terms corresponds to a rich self-interaction structurer of the gauge bosons: the existence of trilinear and quadrilinear self-couplings of the bosons $W^{\pm}$, $Z$ and $\gamma$ is predicted by the theory.
+    
+\end{itemize}
+
+Up to this point, it has been assumed that bosons and fermions have no mass, since the addition of mass terms in the EWK Lagrangian would break gauge invariance. Therefore, direct boson and fermion mass terms are not permitted in the theory. However, this assumption is not supported by experimental observation, with the expeption of the $\gamma$ boson and gluons. In order to account for the collected evidence while maintaining gauge invariance, the mechanism proposed in 1964 by R. Brout, F. Englert, and P. Higgs is relied on, as it provides an explanation of the mass acquisition through the spontaneous symmetry breaking of the electroweak symmetry. 
+
+
+\subsection{The Brout-Englert-Higgs-Mechanism}
+
+Given that the EWK theory as it stands fails to account for the mass of electroweak bosons, there is a clear need to incorporate additional mass terms into the Lagrangian $\mathcal{L}_{EWK}$. The origin of this additional degree of freedom, corresponding to the mass term, is a direct consequence of the so-called electroweak symmetry breaking, which occurs when the potential of a system is invariant under symmetry transformations, but its individual ground states are not. 
+
+In SM, spontaneous symmetry breaking takes place through the Brout-Englert-Higgs (BEH) mechanism {\color{red} [ref]}. This mechanism elucidates the process by which the masses of gauge bosons and fermions are generated upon the breaking of the electroweak symmetry, $SU(2)_L\otimes U(1)_Y$, at low energies. According to Goldstone's theorem {\color{red} [ref]}, for each generator of a continuous global symmetry that breaks spontaneously, a scalar field associated with a massless spin-0 boson (Goldstone boson) appears. In a theory with local gauge symmetry, gauge bosons and Goldstone bosons recombine to form massive bosons, thereby giving rise to the Higgs mechanism. The breaking of EWK symmetry is therefore based on the introduction of a weak isospin doublet, whose potential has a non-trivial minimum, leading to spontaneous symmetry breaking. The new complex scalar $SU(2)_L$ doublet $\phi$, known as the Higgs field, is written as follows:
+
+\begin{equation}
+    \phi = \begin{pmatrix} \phi^{+} \\ \phi^{0} \end{pmatrix} = \frac{1}{\sqrt{2}} \begin{pmatrix} \phi_{1} + i\,\phi_{2} \\ \phi_{3} + i\,\phi_{4} \end{pmatrix}
+\end{equation}
+
+\noindent where $\phi^+$ is a charge field with $I_3=+1/2$, $\phi^0$ is a neutral field with $I_3=-1/2$. It is imperative that the field be scalar in order to satisfy spacial isotropy; otherwise, the expectacion value on the vacuum would be frame-dependent. Furthermore, the expectation value in the vacuum must be constant to satisfy homogeneity. Given that the hypercharge of the field is $Y_{\phi}=1$, and according to expression \eqref{WY_covariant_derivatives}, the covariant derivative is described by:
+
+\begin{equation}
+    D_\mu = \partial_\mu - ig\,W^i_\mu \frac{\sigma_i}{2} - \frac{1}{2} ig' B_\mu
+\end{equation}
+
+Consequently, the BEH Lagrangian of the complex scalar field $\phi$ can be written as:
+
+\begin{equation}
+    \mathcal{L}_{BEH} = (D_\mu \phi)^\dagger (D^\mu \phi) - V(\phi^\dagger \phi)
+\end{equation}
+
+\noindent where the scalar potential $V(\phi^\dagger \phi)$ is selected with a specific form that induces spontaneous symmetry breaking, meaning the potential has multiple ground states with a vacuum expectation value that is different from zero. Therefore, the symmetry breaking occurs when the system selects one of these vacuum states as the minimum energy state. The potential that satisfies this condition is given by the following form:
+
+\begin{equation}
+    V(\phi^\dagger \phi) = -\mu^2\,\phi^\dagger \phi + \lambda\,(\phi^\dagger \phi)^2 \quad 
+    \label{higgs_potential}
+\end{equation}
+
+\noindent where $\mu^2$ and $\lambda$ are the constants of the model. The possible values that the parameters $\mu^2$ and $\lambda$ can take to ensure the stability of the theory, i.e., ensuring that the potential is bounded from below, are outlined next. In the free case $\lambda=0$, the stability condition is verified only if $\mu^2<0$. On the alternative scenario where $\lambda>0$, the two possibilities $\mu^2>0$ or $\mu^2<0$ are allowed. In the case of $\mu^2<0$, the potential is a concave function with a minimum at the origin $V(\phi_0=0)=0$. This minimum is unique and symmetric under phase transformations, so the system is said to have exact symmetry. Conversely, if $\mu^2>0$, the potential adopts a \textit{Mexican hat} shape, as illustrated in \ref{fig:SM_particles}. In this scenario, the potential at $V(\phi_0=0)=0$ becomes an unstable local maximum, while the minimum is found for the doublet that satisfies:
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/chapter_I/higgs-champ.png}
+    \caption{Shape of the Higgs potential \eqref{higgs_potential} for the case $\mu^2>0$: the origin becomes an unestable local maximum and the symmetry-breaking minimum at $|\phi_0|=v/\sqrt2$}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{equation}
+    \phi^\dagger \phi = \frac{\mu^2}{2\lambda} \equiv \frac{v^2}{2}
+\end{equation}
+
+\noindent being $v$ the Vacuum Expectation Value (VEV). Because the Lagrangian is invariant under $SU(2)_L$ and $U(1)_Y$ phase transformations, the potential has an infinite number of degenerate minimum states:
+
+\begin{equation}
+    V(\phi_0)=-\frac{\lambda}{4}v^4
+\end{equation}
+
+\noindent whose solution correspond to $\phi_0=(v/\sqrt{2})e^{i\theta}$, which results in a circle centered at the origin. This degeneration of states with minimum potential is the underlying cause of symmetry breaking, since the application of a phase transformation in a specific point on the circle designated as the ground state results in another distinct minimum.
+
+Under the assumption that the Higgs potential adopts the form given by $\mu^2,\lambda>0$, among all possible states, the ground state may be expressed, without loss of generality, as:
+
+\begin{equation}
+    \phi_{\text{VEV}} = \frac{1}{\sqrt{2}} \begin{pmatrix} 0 \\ v \end{pmatrix}
+\end{equation}
+
+\noindent This choice entails the breaking of both the $SU(2)_L$ and $U(1)_Y$ symmetries, while preserving the $U(1)_{em}$ symmetry, according to the following scheme:
+
+\begin{equation}
+    SU(2)_L\times U(1)_Y\rightarrow U(1)_{em}
+\end{equation}
+
+\noindent From which it follows that three of the four generators are broken spontaneously, thus yielding three massless Goldstone bosons in accordance with the Goldstone theorem. 
+
+The spectrum of the particles can be determined by introducing small excitations to the Higgs field $\phi$ around the ground state, or the VEV. This field expansion around the minimum can be parametrized as:
+
+\begin{equation}
+    \phi(x) = \exp\!\left( \frac{i\,\sigma_i}{2}\,\theta^i(x) \right) \frac{1} {\sqrt{2}} \begin{pmatrix} 0 \\ v + H(x) \end{pmatrix}
+\end{equation}
+
+\noindent where $H(x)$ and $\theta^i(x)$ are four real fields that represent the small perturbations. The three real fields $\theta^i(x)$ are associated with the Goldstone bosons; however, these bosons are not observed in Nature. The freedom to perform $SU(2)_L$ gauge transformations on $\phi$ can be used to absorb the three Goldstone bosons:
+
+\begin{equation}
+    \phi(x) = \frac{1}{\sqrt{2}} \begin{pmatrix} 0 \\ v + H(x) \end{pmatrix}
+    \label{phi_parametrization}
+\end{equation}
+
+After these transformations, any unphysical dependence on $\theta^i(x)$ is canceled, and the sole remaining field is the $H(x)$ field. This $H(x)$ field is associated with the massive boson, known as the Higgs boson, thereby completing the SM theory. Consequently, the BEH Lagrangian can be expressed as a function of the Higgs boson and ultimately assumes the following form: 
+
+\begin{align} 
+&\mathcal{L}_{\text{BEH}} = \tfrac12\,\partial_\mu H\,\partial^\mu H + \tfrac{g_w^2 v^2}{4} W^+_\mu W^{-\mu} + \tfrac12 \tfrac{g_w^2 + g_Y^2}{4} v^2 Z_\mu Z^\mu + \tfrac12 \mu^2 H^2 
+\label{eq:beh1}\\
+&\tfrac{g_w^2}{2} v H\, W^+_\mu W^{-\mu} + \tfrac{g_Y^2}{2} v H\, Z_\mu Z^\mu 
+\label{eq:beh2}\\
+&\tfrac{g_w^2}{2} H^2 W^+_\mu W^{-\mu} + \tfrac{g_Y^2}{4} H^2 Z_\mu Z^\mu 
+\label{eq:beh3}\\
+&\tfrac{\mu^2}{v} H^3 + \tfrac{\mu^2}{4 v^2} H^4 
+\label{eq:beh4}
+\end{align}
+
+\noindent where it is demonstrated that the degrees of freedom associated with the $\theta^i(x)$ fields become longitudinal degrees of fredom, thereby giving rise to the massive terms of the $W^{\pm}$, $Z$ and $H$ bosons in \eqref{eq:beh1}:
+
+\begin{equation}
+    M_Z = \sqrt{\frac{g_{w}^{2} + g_{Y}^{2}}{2}}\, v \qquad M_{W^\pm} = \frac{g_{w} v}{2} = M_Z \cos\theta_W \qquad M_H = 2\sqrt{\lambda}v=\sqrt{2}\,\mu
+\end{equation}
+
+\noindent from where it can be inferred that the Higgs mass is not predicted in the SM, as $\lambda$ is a free parameter of the theory. The absence of terms involving the photon field, $A_{\mu}$, indicates the fact that the $U(1)_{em}$ symmetry is preserved, thereby confirming the photon's masslessness. The remaining terms in the Lagrangian $\mathcal{L}_{BEH}$ describe the interactions between bosons. The terms in \eqref{eq:beh2} and \eqref{eq:beh3} corresponds to the trilinear and quadrilinear interaction respectively between the $H$ and the gauge bosons, $W^{\pm}$ and $Z$, that can be written under the forms:
+
+\begin{equation}
+    \lambda_{V} = \frac{2}{v}\, M_{V}^{2} \qquad\text{and}\qquad \lambda_{2V} = \frac{1}{v^{2}}\, M_{V}^{2}
+\end{equation}
+
+\noindent where in this context $V$ is used to denote \textit{vector} and indicates the vector bosons, $W^{\pm}$ or $Z$. 
+
+Meanwhile, \eqref{eq:beh4} illustrates the trilinear and quadrilinear self-interactions of the Higgs $H$, defined as follows:
+
+\begin{equation}
+ \lambda_{HHH} = \lambda_{HHHH} = \frac{M_H^{2}}{v^{2}}
+    \label{higgs_self_coupling}
+\end{equation}
+
+According to these definitions, the Higgs potential reveals a more convenient formulation:
+
+\begin{equation}
+\begin{split}
+    V(H) & = 2\mu^{2} H^{2} + \frac{\mu^{2}}{v} H^{3} + \frac{\mu^{2}}{4v} H^{4} = \\
+& = \frac{1}{2} M_H^{2} H^{2} + \lambda_{HHH} v H^{3} + \lambda_{HHHH} H^{4} 
+    \label{higgs_pot}
+\end{split}
+\end{equation}
+
+The presence of the Higgs self-interaction terms in $\mathcal{L}_{BEH}$ \eqref{eq:beh4} implies that double and triple Higgs production is predicted in the SM, while \eqref{higgs_self_coupling} and \eqref{higgs_pot} evidences that it is directly related to the parameters of the scalar potential and entirely determined by the Higgs mass at the VEV. Measuring the double Higgs production process, therefore, represents a crucial test of validity of the SM and the EWSB.
+
+
+From the potential form \eqref{higgs_potential} it is also noteworthy that the constant term that appears, while not affecting the SM, contributes to vacuum energy, which is associated with the cosmological constant that determines the curvature of the Universe. The value predicted by the SM for this constant is incompatible with astronomical observations, thus constituting a dilemma that necessitates a proper quantum theory of gravity or a mechanism to reduce the Higgs field vacuum energy density.
+
+At this stage, the free parameters of the BEH mechanism are the VEV, $v$, and the mass of the Higgs, $M_H$. The former corresponds to the energy scale of the electroweak symmetry, which can be estimated from the relation between the mass of the $W^{\pm}$ boson and the Fermi constant, $G_F$, that is precisely determined from the muon lifetime:
+
+\begin{equation}
+    \frac{G_F}{\sqrt{2}} = \left( \frac{g}{2\sqrt{2}} \right)^{2} \frac{1}{M_W^{2}} \;\rightarrow\; v = \sqrt{\frac{1}{\sqrt{2}\,G_F}} \approx 246\,\text{GeV}
+\end{equation}
+
+Thus far, the mechanism that creates the mass terms of vector and scalar bosons has been detailed. However, the assumption that fermions are massless has persisted until now. To understand how their mass is generate, it is necessary to introduce the Yukawa Lagrangian density as an additional term to the SM Lagrangian. As the Yukawa interaction couples the left and right chiral fields, it can be expressed using the notation in \eqref{fermionic_fields}:
+
+\begin{equation}
+    \mathcal{L}_{\text{Yukawa}} = -y_f \left( \bar{\Psi}_L \phi\, \psi'_R + \bar{\psi}'_R \phi^\dagger \Psi_L \right) - y'_f \left( \bar{\Psi}_L \sigma_2 \phi^{*}\, \psi'_R + \bar{\psi}'_R \sigma_2 \phi^{*\,\dagger} \Psi_L \right) 
+    \label{yukawa_lagrangian}
+\end{equation}
+
+\noindent being $y_f$ and $y_f'$ the coupling constants for the two components of the fermion $SU(2)_L$ doublets: the component $I_3=-1/2$ couples to the Higgs field $\phi$, while the conjugated field $\phi^*$ is introduced to allow the coupling of the component $I_3=+1/2$. After EWSB, $\phi^*$ takes the form:
+
+\begin{equation}
+    \phi^{*} = \frac{1}{\sqrt{2}} \begin{pmatrix} v + H \\ 0 \end{pmatrix}
+    \label{phi_conjugated}
+\end{equation}
+
+By injecting the scalar doublet $\phi$ parametrized as in \eqref{phi_parametrization}, and the newly introduced $\phi^*$ in \eqref{phi_conjugated}, the Yukawa Lagrangian can be written more conveniently as:
+
+\begin{equation}
+    \mathcal{L}_{\text{Yukawa}} = -\sum_f M_f \left( \bar{\psi}_L \psi_R + \bar{\psi}_R \psi_L \right)\left( 1 + \frac{H}{v} \right)
+\end{equation}
+
+\noindent where the fermionic mass term $M_f$ explicitly appear. In this formulation, the fermions mass generation is explained by the Yukawa interaction of the Higgs field with the fermions, and it is proportional to the strength of the Yukawa couplings $y_f$ and to the VEV $v$ according to:
+
+\begin{equation}
+    M_f = y_f\,\frac{v}{\sqrt{2}}
+\end{equation}
+
+In essence, the BEH mechanism resolves the inconsistency of the electroweak theory by introducing a new Higgs boson scalar field with a non-zero VEV, thereby providing bosons and fermions with mass. Following the symmetry breaking, the scalar field generates Goldstone bosons, which are absorbed by the $W^{\pm}$ and $Z$ gauge fields and become their longitudinal degree of freedom, resulting in their mass. Additionally, the Higgs boson couples to the left- and right-handed components of the fermionic fields in a Yukawa interaction, determining the masses of the fermions trough a purely quantum-relativistic mechanism. The interaction between the Higgs boson, vector bosons and fermions are governed by the corresponding gauge and Yukawa couplings, together with the VEV $v$, which constitute the fundamental free parameters of the theory. After EWSB, these parameters establish the masses of all SM particles, revealing that the Higgs interactions with them are found to be proportional to their masses. Consequently, the Higgs boson decays preferentially into the heaviest particles that are kinematically accessible, as will be detailed subsequently.
+
+\subsection{Phenomenology of the Higgs boson}
+
+\noindent Despite the theoretical robustness of the proposed BEH mechanism in 1964, experimental confirmation did not occur until July 4, 2012, when the CMS and ATLAS collaborations at the LHC claimed the discovery of a new particle compatible with the Higgs boson predicted by the SM {\color{red} [ref]}. The discovery was accomplished independently by the two experiments utilizing data collected during LHC Run I at center-of-mass energies of $\sqrt{s}=7$ and $\sqrt{s}=8$ TeV. The experimental observation of the Higgs boson led to the confirmation of the BEH mechanism as a part of the SM, and the measurement of its mass, with a value of approximately $m_H=125$ GeV, allowed the final free parameter of the theory to be determined.
+
+In the wake of the recent discovery, the scientific community is now directing its efforts toward characterizing the new particle, with the aim of furthering the exploration of the EWSB. A thorough investigation is necessary to make precise measurements of the Higgs properties: measurements of the Higgs couplings via exclusive production modes and decay channels, its spin-parity, and its differential production cross section must be performed and contrasted with the predictions of the SM. The following paragraphs provide an overview of the results of more than a dozen years of research at the LHC on the characterization of the Higgs boson phenomenology.
+
+\noindent \textbf{Production modes}
+    
+\noindent The various mechanisms of Higgs production can be depicted using Feynman diagrams. In these visual representations, the left side of the diagram corresponds to the initial state, and the right side corresponds to the final state. Fields are symbolized by different style lines: solid for fermions, wavy for gauge bosons, dashed for scalars and spring-like for gluons. The points where the lines meet are called vertices and represent interaction terms in the Lagrangian. Thus, the probability of a process is determined by the coupling associated with each vertex and quantified by the cross section. Figure \ref{fig:H_feynman} presents the Feynman diagrams for the Higgs boson production mechanisms
+
+
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{subfigure}{0.25\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_I/feynman/ggf.png}
+    \end{subfigure}
+    \begin{subfigure}{0.25\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_I/feynman/VBF.png}
+    \end{subfigure}
+    \begin{subfigure}{0.25\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_I/feynman/VH.png}
+    \end{subfigure}
+    \begin{subfigure}{0.25\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_I/feynman/ttH.png}
+    \end{subfigure}
+    \begin{subfigure}{0.25\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_I/feynman/tH.png}
+    \end{subfigure}
+    
+    \caption{Leading-order Feynman diagrams describing the main Higgs boson production modes at the LHC: gluon-gluon fusion (a), vector boson fusion (b), associated production with gauge boson (c) associated production with pair of top/bottom quarks (d) associated production with single top quark (e)}
+    
+    \label{fig:H_feynman}
+\end{figure}
+
+Figure \ref{fig:H_xsec} illustrates the cross sections of the main production modes for a Higgs boson with a mass of 125 GeV as a function of the collision center-of-mass energy in a proton collider. Several mechanisms contribute to the production of the Higgs boson. The dominant mechanism at the LHC ($\sqrt{s} = 13$ TeV) is gluon-gluon fusion (ggF), which proceeds through a heavy quark loop and has a cross section of about 49 pb. This is followed by vector boson fusion (VBF) production, which has a cross section of 3.8 pb, about 10 times smaller. In the VBF mechanism, two vector bosons interact to produce a Higgs boson, which in the final state appears alongside two high-momentum quarks, very close to the direction of the incident particles — the experimental signature that characterizes the process. The next mechanism is associated production with a single vector boson ($VH, V=W^{\pm},Z$), with a cross section of 2.3 pb. The study of the rare VH and VBF production mechanisms allows for a deeper dive into the Higgs boson's coupling to vector bosons. Lastly, there is associated production with heavy quarks: top pair ($t\overline{t}H$), bottom pair ($b\overline{b}H$, or single top ($tH$), which benefits from the Higgs boson's enhanced coupling with the heaviest fermions. The cross sections for these latter processes are around one order of magnitude smaller than the previous mechanisms. The $t\overline{t}H$ mechanism is of particular interest because it enables the direct determination of the top Yukawa coupling, $y_t$, as opposed to the indirect determination from ggF. 
+
+\noindent \textbf{Decay modes}
+
+\noindent The observed mass value of the Higgs boson is a genuine natural phenomenon: it lies at the intersection of all significant decay modes, preventing any single mode from dominating and enabling an exceptionally rich range of experimental channels. Thus, at a mass of 125 GeV, the Higgs boson decays into a variety of SM particles. The probability of its decay into each final state is described by the branching fractions, or branching ratios (BR), which are shown as a function of Higgs boson mass in the Figure \ref{fig:H_br}. The SM Higgs boson couples to vector bosons ($V$) with an amplitude proportional to the gauge boson mass squared $m^2_V$, and to fermions ($f$) with amplitude proportional to the fermion mass $m_f$:
+
+\begin{equation}
+    k_V \sim \frac{m_V^2}{v^2} \qquad k_f \sim \frac{m_f}{v}
+\label{H_couples}
+\end{equation}
+
+Consequently, Higgs coupling is enhanced for heavy particles. As presented in Figure \ref{fig:H_br}, the decay probabilities indicate that for a Higgs boson with a mass of 125 GeV, the most probable decay modes are $H\rightarrow bb$ and $H\rightarrow WW$, followed by $H\rightarrow gg$ and $H\rightarrow \tau\tau$, which involve vector bosons and third-generation fermions. Higgs decays into massless particles do not occur directly; rather, they require quantum loop-induced processes, which are in fact a key tool for investigating physics at energies higher than those directly reachable.  
+
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_I/H_production.png}
+        \caption{}
+        \label{fig:H_xsec}
+    \end{subfigure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_I/H_BR.png}
+        \caption{}
+        \label{fig:H_br}
+    \end{subfigure}
+    
+    \caption{The SM Higgs boson production cross section via different mechanisms at proton-proton colliders as a function of the center-of-mass energy, for a Higgs boson mass of 125 GeV (a). Decay branching ratios (BR) of the Higgs boson into the other SM particles as a function of the Higgs boson mass (b). {\color{red}[ref]}}
+    
+    \label{fig:higgs_xsec_br}
+\end{figure}
+
+
+
+\noindent \textbf{Experimental status}
+
+\noindent The Run I discovery of the Higgs boson was performed inclusively for all production modes, and led by the combination of high-resolution $H\rightarrow ZZ \rightarrow 4l$ and $H\rightarrow\gamma\gamma$ channels, which allowed for a precise determination of $m_H$. After the discovery claim, the analysis of the angular distributions in the $H\rightarrow ZZ \rightarrow 4l$ decay channel confirmed the spin $J$ and parity $P$ of the newly discovered particle, $J^P=0^+$, ruling out all alternative hypothesis at 99.9\% confidence level. Combining various decay channels also allowed for precise measurements of decay rates and coupling strengths, all consistent with SM predictions. Continued research into Higgs boson properties has advanced thanks to the LHC's exceptional performance, the robustness of the experiments, and the development of advanced experimental techniques. The latest findings on Higgs boson couplings, as measured by the CMS collaboration, are summarized in Figure \ref{fig:H_coupling}. Thus far, all observations confirm that the couplings with the $W$ and $Z$ gauge bosons scale quadratically with their masses and that the couplings with third-generation charged fermions and muons depend linearly on their masses.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/chapter_I/Higgs_10years.png}
+    \caption{Normalized Higgs boson coupling constants as a function of the boson and fermion masses, as measured by the CMS experiment during Run II data-taking. The square root of the boson coupling is reported in order to maintain a linear proportionality to the mass. {\color{red}[ref]}}
+    \label{fig:H_coupling}
+\end{figure}
+
+Thus far, the exploration of Higgs boson properties has revealed that it behaves in a manner consistent with the SM. Alghough constraints on its couplings partially depend on assumptions about BSM contributions and still allow for possible deviations, the scalar boson discovered 12 years ago is now precisely characterized and compatible with a SM Higgs boson. Experimentally, it has been confirmed that the Higgs mechanism breaks degeneracy between the three fermion families by coupling proportionally to their mass. However, there is still a crucial element missing from the full picture: the next fundamental stage in validating the EWSB mechanism is determining the Higgs boson's coupling to itself. The self-coupling value can be derived in the SM from \eqref{higgs_self_coupling}, $\lambda_{HHH}\approx0.13$, fully determined by $m_H$ and $v$. 
+
+Experimentally, the trilinear self-coupling $\lambda_{HHH}$ parameter is accessible at leading order (LO) from Higgs boson pair production rates, and at next-to-leading order (NLO) from cross-section measurements of single Higgs boson production, thanks to radiative NLO electroweak corrections arising from the trilinear coupling. This underscores the key importance of searches for HH production. Furthermore, the experimental determination of HH production has profound implications for BSM theories that introduce additional effective terms into the H potential, given that the kinematic and HH production rates are highly sensitive to new physics. Deviations from SM predictions may indicate the presence of extensions in the scalar sector, ranging from models with additional doublets or singlets to frameworks such as compositeness or supersymmetry. Therefore, directly determining the self-coupling value from HH production constitutes an essential closure test of the BEH mechanism and ultimately probes SM consistency.
+
+\subsection{Limitations of the Standard Model ???}
+
+\section{Higgs boson pair production}
+\noindent Higgs boson pair production (HH) represents one of the primary goals of the LHC program in the coming decades precisely because it provides direct access to the Higgs sector. The HH production rate depends directly on the trilinear self-coupling, $\lambda_{HHH}$, which, according to Equation \eqref{higgs_pot}, determines the structure of the Higgs potential. Therefore, the study of HH production is directly linked to the $\lambda_{HHH}$ parameter, whose crucial role has been strongly justified in this context.
+
+Conversely, the trilinear coupling is not the only interaction that contributes to Higgs boson pair production. In addition to the Higgs self-coupling, which is often considered the primary driver of HH searches, HH production provides a means of testing other SM parameters. Specific production modes involve the Yukawa coupling to the top quark, $y_t$, as well as the trilinear and quadrilinear couplings with vector bosons, $\lambda_V$ and $\lambda_{2V}$. The producion mechanisms of an on-shell Higgs boson pair, as detailed in this section, are characterized by different interactions from which the contribution of the trilinear coupling must be disentangled from other effects.
+
+Di-Higgs production is a very rare process in particle colliders: its SM cross-section for proton-proton collisions at center-of-mass energy of $\sqrt{13}$ TeV is expected to be $\sigma_{HH} \sim 32.7$ fb, three orders of magnitude smaller than single Higgs production. Precise measurements of couplings involved in HH production are still challenging to perform directly; the trilinear self-coupling is expected to be determined with precision of approximately 30\% by the end of the High Luminosity LHC phase (expected in 2041) {\color{red}[ref]}}. Sec. \ref{subsec:SM_production} details all production mechanisms that contribute to SM HH production. Moreover, effects of physics BSM can already be probed with the current LHC configuration (see \ref{sec:LHC}): small deviations of SM values can lead to significant variations in cross-section rates and kinematics of HH production. An overview of these effects is given in Sec. \ref{subsec:BSM_production}.
+
+
+\subsection{Di-Higgs production in the SM}
+\label{subsec:SM_production}
+
+\noindent In proton-proton collisions, HH production occurs via different mechanisms depending on the collision energy. The six main mechanisms as a function of collision energy are shown in Figure \ref{fig:HH_xsec}. Ath the LHC, operating at an energy of 13 TeV, the two dominant production mechanisms are fusion of gluons (ggF) and vector bosons (VBF). While experimental research has predominantly focused on these two modes, advancements in experimental apparatus and techniques are gradually adding other production mechanisms to the analysis landscape. The following section provides an in-depth description of the two primary HH production modes, ggF and VBF, and a brief overview of additional production modes that occur at LHC energies.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{figures/chapter_I/HH_xsec.jpg}
+    \caption{Total cross section at NLO of the theoretical perturbative QCD calculation for the six largest HH production modes at proton-proton colliders as a function of collision energy. The thickness of the lines corresponds to the scale and PDF uncertainties added linearly (see section \ref{sec:pp_pheno}). {\color{red}[ref]}}
+    \label{fig:HH_xsec}
+\end{figure}
+
+\noindent \textbf{Gluon fusion $gg\rightarrow HH$}
+
+\noindent Gluon gluon fusion (ggF) is the dominant HH production mode at LHC. Gluons, massless particles, do not interact directly with the Higgs boson; instead, third-generation heavy quarks mediate the interaction through loops. The dominant contribution to the loop comes from the top quark in 99\% of cases, followed by the b quark in the remaining 1\%. Figure \ref{fig:HH_ggF_diagrams} shows the first-order Feynman diagrams involved in the process: in the triangle diagram (\ref{fig:HH_triangle}), an off-shell H boson splits into two Higgs bosons, and in the box diagram (\ref{fig:HH_box}), the two Higgs bosons are radiated from the heavy quarks. Thus, the triangle contribution depends linearly on the Higgs self-coupling parameter $\lambda_{HHH}$ and the Yukawa coupling $y_t$, while the box diagram only depends quadratically on $y_t$.
+
+\begin{figure}[t]
+    \centering
+
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/ggf_triangle.png}
+        \caption{}
+        \label{fig:HH_triangle}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/ggf_box.png}
+        \caption{}
+        \label{fig:HH_box}
+    \end{subfigure}
+
+    \caption{Diagrams contributing to the Higgs boson pairs production via gluon-gluon fusion (ggF), with interfering triangle (a) and box (b) diagrams.}
+    \label{fig:HH_ggF_diagrams}
+\end{figure}
+
+Although the two diagrams have similar amplitudes, they interact via destructive interference, resulting in an extremely small total cross section of approximately 31 fb. Figure \ref{fig:ggf_contributions} shows this phenomenon, depicting the differential cross section corresponding to the triangle and box diagrams, as well as the destructive interference that occurs between them. At NNLO precision {\color{red}[ref]} and with a Higgs boson mass of 125 GeV and a center-of-mass energy of 13 TeV, the final cross section is:
+
+\begin{equation}
+    \sigma_{ggH}
+= 31.05^{+2.2\%}_{-5.0\%}\,(\text{scale})
+^{+4.0\%}_{-18.0\%}\,(m_t)
+\pm 2.1\%\,(\text{PDF} + \alpha_s) \ \text{fb}
+\end{equation}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/chapter_I/ggF_contributions.png}
+    \caption{Differential cross section as a function of the invariant mass of the Higgs pair for the different contributions to the gluon fusion production diagrams and their interference. {\color{red}[ref]}}
+    \label{fig:ggf_contributions}
+\end{figure}
+
+
+\noindent \textbf{Vector boson fusion: $qq'\rightarrow jjHH$}
+
+\noindent The vector boson fusion (VBF) mechanism is the subdominant production mode at the LHC energy ranges. The two Higgs bosons are radiated from a virtual W or Z boson, or from the splitting of a single Higgs boson. The LO Feynman diagrams that contribute to this process are shown in Figure \ref{fig:HH_VBF_diagrams}. The diagrams reveal the linear (\ref{fig:HH_vbf_kl_kv}) and quadratic (\ref{fig:HH_vbf_kv}) dependence on the Higgs coupling to one vector boson $\lambda_{V}$, where \ref{fig:HH_vbf_kl_kv} also involves the trilinear self-coupling $\lambda_{HHH}$. Conversely, \ref{fig:HH_vbf_k2v} contribution evidences the linear dependence on the coupling between two vector bosons and two Higgs bosons, $\lambda_{2V}$.
+
+\begin{figure}[t]
+    \centering
+
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/vbf_kl_kv.png}
+        \caption{}
+        \label{fig:HH_vbf_kl_kv}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/vbf_kv.png}
+        \caption{}
+        \label{fig:HH_vbf_kv}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/vbf_k2v.png}
+        \caption{}
+        \label{fig:HH_vbf_k2v}
+    \end{subfigure}
+
+    \caption{Diagrams contributing to the Higgs boson pairs production via vector boson fusion (VBF)}
+    \label{fig:HH_VBF_diagrams}
+\end{figure}
+
+The final state of this production mode is characterized by the presence of two additional high-energy quarks that appear in close proximity to the initial direction of the colliding particles, forming the distinctive VBF signature. The VBF total cross section predicted in the SM is around $\sim 1.7$ fb. Similar to ggF production, the total HH VBF cross-section results from the interference of contributing Feynman diagrams. Thus, the differential cross-section of the VBF production diagrams results in significant cancellations, as represented in Figure \ref{fig:VBF_contributions}. At NNNLO precision {\color{red}[ref]}, it is computed for a Higgs boson mass of 125 GeV and a center-of-mass energy of 13 TeV:
+
+\begin{equation}
+    \sigma_{VBF}
+= 1.739^{+0.03\%}_{-0.04\%}\,(\text{scale})
+\pm 2.1\%\,(\text{PDF} + \alpha_s)\ \text{fb}
+\end{equation}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/chapter_I/VBF_contributions.png}
+    \caption{Differential cross section as a function of the invariant mass of the Higgs pair for the different contributions to the vector boson fusion production diagrams and their interference. {\color{red}[ref]}}
+    \label{fig:VBF_contributions}
+\end{figure}
+
+Although its cross-section is one order of magnitude smaller than gluon fusion cross-section, the clean VBF signature advantageously allows for the detection of the VBF signal: the two jets typical of the final state, with high invariant mass and large separation in pseudorapidity, can be used to identify the signal. Furthermore, VBF production uniquely allows access to $\lambda_{2V}$, through the contribution from the Fig. \ref{fig:HH_vbf_k2v} diagram, which is inaccessible via ggF.
+
+\noindent \textbf{Top quark pair associated production: $qq'/gg\rightarrow t\overline{t}HH$}
+
+\noindent In the double top quark associated HH production, the two Higgs bosons are either radiated from the top quarks or produced via Higgs boson self-coupling. This production mechanism results in a total cross-section of approximately $\sim 0.8$ fb. Figure \ref{fig:HH_ttHH_diagrams} presents the LO Feynman diagrams contributing to the ttHH process, and illustrates the dependence of the production mode on the trilinear coupling $\lambda_{HHH}$, and on the Yukawa coupling, $y_t$.
+
+\begin{figure}[t]
+    \centering
+
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/ttHH_c2.png}
+        \caption{}
+        \label{fig:HH_ttHH_c2}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/ttHH_kt.png}
+        \caption{}
+        \label{fig:HH_ttHH_kt}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/ttHH_kt_kl.png}
+        \caption{}
+        \label{fig:HH_ttHH_kt_kl}
+    \end{subfigure}
+
+    \caption{Diagrams describing the Higgs boson pairs production via top quark pair associated production (ttHH)}
+    \label{fig:HH_ttHH_diagrams}
+\end{figure}
+
+\noindent \textbf{Vector boson associated production: $qq'\rightarrow VHH$}
+
+\noindent Vector boson associated production originates from the radiation of two Higgs bosons from a massive vector boson $W$ or $Z$. Its predicted cross-section lies around $\sim 0.9$ fb at LHC energy ranges. Like the VBF production mechanism, it provides access to trilinear self-coupling, and to Higgs couplings to one ($\lambda_V$) and two $\lambda_2V$ vector bosons. Figure \ref{fig:HH_VHH_diagrams} presents the Feynman diagrams describing the process at LO. 
+
+\begin{figure}[t]
+    \centering
+
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/VHH_kv_kl.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/VHH_kv_kv.png}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/VHH_k2v.png}
+        \caption{}
+    \end{subfigure}
+
+    \caption{Diagrams describing the Higgs boson pairs production via vector boson associated production (VHH)}
+    \label{fig:HH_VHH_diagrams}
+\end{figure}
+
+\noindent \textbf{Single top quark associated production: $qq'\rightarrow tjHH$}
+
+\noindent In the single top quark associated production process (tHH), the two Higgs bosons can be produced through the \textit{t-} or \textit{s-}channel, as illustrated in the diagrams in Figure \ref{fig:HH_tHH_diagrams}. It is the sole process that is sensitive to both HH couplings to vector bosons, $\lambda_{V}$ and $\lambda_{2V}$, and to top quarks $y_t$, but the cross-section is so small for a Higgs boson mass of 125 GeV at $\sqrt{13}$ TeV ($\sigma_{tHH}\sim 0.03$ fb) that it is hardly detectable at the LHC.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\linewidth]{figures/chapter_I/HH_feynman/tHH.png}
+    \caption{Diagrams describing the Higgs boson pairs production via single top quark associated production (tHH)}
+    \label{fig:HH_tHH_diagrams}
+\end{figure}
+
+\vspace{5}
+\noindent As detailed below and shown in Figure \ref{fig:HH_xsec}, SM HH production at the LHC is a very rare process, with a production rate $\mathcal{O}(10^3)$ times smaller than single Higgs production. Consequently, HH experimental searches — and those covered in this thesis — have primarly focused on the dominant mechanisms, ggF and VBF. Since the gluon fusion is the leading production mode, ggF searches provide the highest sensitivy to the trilinear self-coupling $\lambda_{HHH}$; on the other hand, VBF HH production provides additional handles for measuring $\lambda_{HHH}$ and allows for exploration of the VVHH interaction.
+
+It has been underscored that the total cross-section of each production mode stems from the interference of its corresponding diagrams. Thus, small SM HH cross-sections result from processes such as destructive interference between the triangle and box diagrams of the ggF mechanism (see Figure \ref{fig:ggf_contributions}). This phenomenon can be interpreted as meaning that the total HH cross-section depends heavily on the value of the Higgs self-coupling, and small deviations from the SM $\lambda_{HHH}$ value can significantly alter the interference, leading to large enhancements in the HH cross-section. Therefore, the focus shifts from the initial conception of HH production as a test of the SM to its interpretation as a probe of BSM physics, as discussed in more detail in the following section.
+
+\subsection{BSM Di-Higgs production: Towards Effective Field Theories}
+\label{subsec:BSM_production}
+
+\noindent In the context of the current SM formulation, while the BEH mechanism provides a satisfactory model to address the lack of massive particles due to the electroweak symmetry, many questions remain unanswered. There is a growing body of evidence from both experimental and theoretical studies that suggests the existence of new physics BSM in Nature (see Section \ref{sec:SM_limitations}). Owing to its deep connection to the scalar potential and, consequently, to the foundations of the scalar sector, HH exploration could offer insights into the realm of more fundamental theories at higher scales.
+
+In this regard, HH production serves as a probe for BSM physics. While testing the SM only requires computing the cross-section and comparing them with experimental data, exploring the possibility of alternative theories demands understanding how these cross sections vary outside the SM framework. Two scenarios for Higgs pair production arise in BSM physics studies: possible deviations from the SM predictions can be probed either withing a specific theoretical framework or through a model-independent effective field theory (EFT) approach. While specific models are associated with resonant production, EFT framework accounts for non-resonant production, which is the one that occurs in the SM. 
+
+\noindent \textbf{Resonant production}
+
+\noindent In the resonant scenario, a new particle X decays into a pair of Higgs bosons, giving rise to a characteristic resonance with mass $m_X>2 m_H$. Resonant HH signatures naturally appear in many extensions of the SM, including scalar-sector extensions like the Single model {\color{red}[ref]}, the Two-Higgs Doublet Model (2HDM){\color{red}[ref]} and the Minimal Supersymmetric Standard Model (MSSM) {\color{red}[ref]}; as well as in frameworks with warped extra dimensions (WED){\color{red}[ref]} that alter the relation between the Higgs field ant the matter fields. Despite their different theoretical motivations, these models typically predict the existence of a CP-event scalar spin-0 or spin-2 particles, with an intrinsic width negligible compared to the detector resolution, leading to similar experimental signatures. However, the mass of the resonance can span a wide range, from around 250 GeV up to 4 TeV in the most extreme scenarios. The presence of a common and clear signature allows these models to be probed simultaneously using a model-independent approach, although covering the full phase space requires scanning a broad set of mass hypotheses. Direct searches for new resonances decaying to HH constitute an important area of BSM searches, but they will not be covered in detail in this thesis. 
+
+
+\noindent \textbf{Non-Resonant production}
+
+\noindent The second BSM scenario — and the one that will be the main focus on this thesis work — is associated with non-resonant Higgs pair production. In this case, the effects of BSM physics manifest themselves as modifications of the coupling strengths involved in HH production. In particular, if new physics lies at an energy scale not directly reachable at the LHC, its presence can be detected at lower energies as modifications to the HH signature properties through loop-induced contributions that alter both the production rate and the kinematic properties of the Higgs boson pair. The theoretical framework to describe HH experimental signature modifications is provided by effective theories (EFTs). In EFTs, the SM Lagrangian is expanded with higher-order operators representing the low-energy effects induced by a complete theory at higher energy scale. 
+
+ 
+In the following, as a first step, the phenomenology of HH production in the presence of anomalous Higgs couplings will be discussed, and will serve as a basis for introducing the more general approach based on effective field theory.
+
+\noindent \textbf{HH anomalous couplings}
+\noindent En el SM model, el valor de $\lambda_{HHH}$ está determinado completamente por los valores de $v$ y $m_H$. Sin embargo, para estudiar posible BSM effects, se sigue un parametric approach, de forma que $\lambda_{HHH}$ se deja como parámetro libre, y posibles desviaciones respecto de SM se parametrizan a través del Higgs self-coupling modifier, defined as
+
+\noindent \textbf{Towards Effective Field Theories}
 
 
 
 
-The evolution of the quantum fields is enterely determined by a density Lagrangian, defined as a scalar function of the fields and their derivatives.
 
 
-The fundamental interactions are described as exchange of force-mediating particles, the vector bosons,
+EFTs provide a convenient theoretical framework to interpret the experimental results, potentially serving as a bridge to reinterpret them in the context of specific UV-complete models. The choice of the criterion to perform the expansion of the SM Lagrangian, and the choice of the symmetries that are imposed on the new theory and its fields, result in the definition of different EFTs.
+Two main EFTs are currently discussed in the context of HH searches. The first is called the standard model EFT (SMEFT), where the Higgs field is considered to be a doublet in the theory, as in the usual SM description, and the theory is formulated in a ��⁢��⁡(2) ×��⁡(1) invariant way, where the electroweak symmetry is broken by the scalar potential minimization. The SM Lagrangian is expanded with higher-order operators, whose contribution is suppressed by powers of 1/Λ, giving
+\textbf{Towards Effective Field Theories} (Chiara) - Elena 1.3.1
+To test the SM through Higgs pair production, it is sufficient to work out the cross sections using the SM prediction for the potential and compare these results to experiment. However, to gain insight into the possibility of alternative theories of EWSB, it is necessary to understand how these cross sections vary when we go outside the context of the SM. One way to do this is to compute the relevant pair production cross sections in specific alternative models. However, it would be good to have a formalism that is not so specific but rather summarises the deviations that might appear in a very wide class of models beyond the SM.
+This is the role of Effective Field Theory (EFT). It is one of the profound ideas of quantum field theory that interactions of arbitrary complexity that act at short distances can be approximated systematically by a Lagrangian with an enumerable set of parameters. This Lagrangian provides an “effective” description of any underlying model in this class. The EFT Lagrangian might not be renormalisable in the strictest sense, but it is nevertheless possible to carry out precise calculations that relate the parameters of this Lagrangian to observables [95]. For our purposes, the EFT Lagrangian will be the SM Lagrangian with corrections described by addition of local operators.
+The EFT formalism addresses the problem of calculating corrections to the predictions of the SM in a systematic way. For example, it might seem that the most straightforward way to describe the effects of new physics on the triple-Higgs coupling is simply to add to the SM Lagrangian a term
 
-Three of the four known fundamental interactions are described in the SM as an exchange of force-mediating particles, the gauge bosons, result of the invariance of the theory under local gauge symmetries.
-
-
- which are completely determined by the QFT Lagrangian density.
-
-
-The interactions that take place between them
-
-
-The Standard Model (SM) is a renormalizable quantum gauge field theory that unifies the description of electromagnetic, weak, and strong interactions through the symmetry group. In this framework, elementary particles are interpreted as quantum excitations of fundamental fields, while their interactions are completely determined by a Lagrangian density constructed from the principles of gauge invariance, chirality, and quantum consistency. The spontaneous breaking of electroweak symmetry, implemented through the Higgs mechanism, generates the masses of vector bosons and fermions without compromising the renormalizability of the model. Although extraordinarily successful in its predictive power, the SM is recognized as an effective theory, valid up to energy scales where the emergence of new physics is expected to complete its structure.
-
-The Standard Model (SM) of particle physics is the theoretical framework that describes the fundamental constituents of the Universe and their interactions. Initially proposed by S. Glashow, A. Salam, and S. Weinberg [1], the model has significantly evolved along the years; it has been rigorously tested across a wide range of energy levels and represents the outcome of a long and continuous interplay between experimental observations and theoretical innovations.
-
-The gauge sector and the scalar sector are the foundations of the SM. They are closely
-interconnected but rely on different theoretical concepts of gauge invariance and spontaneous
-symmetry breaking. They are discussed separately in what follows, with a focus on
-the properties of the Higgs boson and a summary of experimental measurements.
-
-Elementary particles correspond to excited states of quantum fields. The propagation and interactions of fields in a QFT are fully determined by a Lagrangian density, $\mathcal{L}$, that depends on the fields, $\phi_i$, their derivatives, $\partial_\mu \phi_i$ and the space-time coordinates, $x^\mu$.
+\section{Higgs boson pair searches at the LHC}
+\subsection{Di-Higgs decay modes}
+\subsection{Experimental status of double Higgs searches}
 
 
-
-1.1.0 Fields and gauge structure
-1.1.1 Elementary particles
-1.1.2 Fundamental interactions
-1.1.3 EWSB
-1.1.4 Phenomenology and experimental status of the Higgs boson
+1.1.0 Fields and gauge structure - falta algo sobre limitaciones (meter parrafo aquí, y referenciar subsection BSM production)
+1.1.1 Elementary particles <
+1.1.2 Fundamental interactions < 
+1.1.3 EWSB <
+1.1.4 Phenomenology of the Higgs boson <
+1.1.5 SM Limitations ?where?
 1.2 Higgs boson pair production
+- Experimental status of the Higgs boson 
 - SM y BSM
 
 Double Higgs searches at the LHC en algun momento?
