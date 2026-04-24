@@ -1,0 +1,112 @@
+\chapter{The Large Hadron Collider and the CMS detector}
+
+\noindent The European Organization for Nuclear Research (CERN) hosts the world's leading laboratory for particle physics and positions itself as pioneering force in fundamental scientific research and technological development within a unique environment of international collaboration and education. Founded in 1954 and located on the French-Swiss border near Geneva, the CERN scientific collaboration brings together more than 17000 members from hundreds of institutes worlwide. Throughout its history, CERN has established itself as a global scientific epicenter through its groundbreaking accelerators and experiments. Facilities such as the Proton Synchrotron (PS), the Super Proton Synchroton (SPS), and the Large Electron-Positron Collider (LEP) have enabled historic discoveries, including the W and Z bosons. Furthermore, CERN has also driven innovation far beyond particle physics, contributing significant advances to technology, most notably the World Wide Web.
+
+Today, the heart of CERN lies in the Large Hadron Collider (LHC), the most powerful particle accelerator ever built and the flagship facility of modern high-energy physics. The LHC is designed to collide proton beams at unprecedented energies and luminosities. This enables the study of extremely rare processes and the production of heavy particles that cannot be accessed elsewhere. Its 27-kilometer underground ring houses four interaction points, each equipped with a dedicated experiment tailored to different aspects of the physics program. The Compact Muon Solenoid (CMS), one of two general-purpose detectors, is designed to explore a wide range of phenomena, from precision measurements of SM processes to searches for new BSM physics. 
+
+The CERN complex no solo alberga los grandes experimentos generalistas del LHC, sino también detectores específicos más pequeños que amplían la cobertura científica del laboratorio. En conjunto, esta diversidad experimental refleja la amplitud de áreas que abarca la física de altas energías moderna y demuestra cómo el complejo del CERN ha evolucionado desde sus inicios hasta convertirse en una infraestructura única, capaz de abordar simultáneamente múltiples fronteras del conocimiento fundamental.
+
+The research presented in this thesis is conducted within the CMS Collaboration and is based on the analysis of proton-proton collision data collected during Run III, which corresponds to the years 2022 to 2025. This chapter is devoted to an introduction of the properties and operations of the LHC in Section \ref{sec:LHC} and the structure of the CMS detector in Section \ref{sec:CMS}. The algorithms for the detection and reconstruction of particles produced in collisions are describe in Section \ref{sec:POR}. Finally, the CMS trigger system and the related experimental challenges are detailed in Section \ref{sec:TRG}.
+
+%\section{pp collisions phenomenology ???}
+\section{The Large Hadron Collider}
+\label{sec:LHC}
+\noindent The initial proposal for the LHC collider was made in 1984, but it was not officially approved until 1994. Another 15 years passed before its first data-taking in 2009. The LHC ambicious project is designed to perform high-energy proton-proton (pp) collisions at a center-of-mass energy of 14 TeV and to deliver an instantaneous luminosity of $\mathcal{L}=10^{34}$ cm\textsuperscript{-2} s\textsuperscript{-1}. Originally intended as a discovery machinery, the LHC soon became a multipurpose collider capable of probing an extremely vast scientific program ranging from investigating rare processes to precisely measuring SM properties. Since the discovery of the Higgs boson in 2012, which confirmed the validity of the EWSB, the LHC has continued to operate —currently in its third operational run— and is expected to continue with upgraded luminosity specifications until the early 2040s.
+
+
+\subsection{Accelerator complex}
+\noindent 
+El accelerator complex at CERN consta de una sucesión de maquinas que boostea las particulas de manera secuencial hasta llegar a altas energías. La cadena de aceleración de protones la conforman diferentes etapas, de forma que cada acelerador incrementa la energía del beam de partículas antes de injectar el beam en la siguiente maquina de la secuencia, hasta llegar la pieza fina, el LHC. El esquema del complejo está representado en la figura \ref{fig:cern_complex}. La cadena de inyección comienza con una botella de gas de hidrógeno, en donde los electrones son stripped de los átomos de hidrógeno, lo que constituye la fuente de protones. The beams circulating in the accelerator complex are not continuous, but rather made of proton bunches, formed using the electric field generated in the Radio Frequency Quadrupoles (RFQ). Los proton bunches se producen inicialmente a una ener´gía de 750 keV, y posteriormente se inyectan en el Linear Accelerator (LINAC4), donde alcanzan energías de 160 MeV. Después, el beam es pasado a través de una serie de sincrotrones circulares, aumentando la energía hasta 1.4 GeV en el BOOSTER, 26 GeV after the PS, y 450 GeV tras el Super Proton Synchrotron (SPS). Tras el SPS, los proton bunches are ready para enviarse al anillo principal y la última pieza de la cadena, el LHC, donde el particle beam alcanza su target energy. El haz se separa en dos haces paralelos que se desvían hacia los dos tubos de vacío del LHC, circulando en sentidos opuestos, con lo que se tiene el beam dividido en counter-rotating parallel beam pipes. Una vez circulando, los protones se aceleran progresivamente, corresponding to about 485 keV por vuelta, y son shaped into the final proton bunches configuration thanks to radio-frequency cavities operated at 400MHz. Once
+the proton reach the nominal energy and the beam dynamics is stabilized, protons are
+brought to collide in four points along the LHC ring.
+
+Los cuatro puntos del LHC donde intersectan los beams están instrumentados con particle detectors installed in underground caverns. "A Toroidal LHC ApparatuS" (ATLAS) and the "Compact Muon Solenoid" (CMS) experiments están situados en los dos diametrically opposite puntos del anillo, y reciben la mayor luminosidad instantánea de colisión. Son los dos general purpose experiments del LHC, diseñados para cubrir un programa de física muy amplio y en gran medida similar. The "LHC beauty" (LHCb) se centra en el estudio de CP-violation y de matter-antimatter asymmetry by studying b quarks physics. "A Large Ion Collider Experiment" (ALICE) is focused mostly on heavy ion collision and quark-gluon plasmas. 
+
+
+
+\subsection{LHC Design and parameters}
+
+The LHC is installed in a 26.7 km long tunnel built between 1984 and 1989 to host the
+CERN Large Electron Positron (LEP) collider. The tunnel is located in the region nearby
+Geneva and extends across the French and the Swiss borders. In the LHC, two separate,
+counter-rotating particle beam lines are kept in orbit in two magnetic channels thanks to
+44 Chapter 2. Experimental apparatus
+the field generated by superconduting niobium-titanium coils. The particles are steered
+by a magnetic field of 8.3T generated by a current of about 11 kA in the 1232 dipole
+magnets, each measuring 15 metres of length and 35 tonnes of weight. The stability of
+the beam dynamics is ensured by 392 quadrupoles magnets measuring 5 to 7 metres of
+length, that focus the particles and keep them in a narrow beam. Special quadrupoles
+are installed in front of the collision points to squeeze the beams and increase the proton
+density in the collisions. Superconducting magnets are cooled with superfluid helium-4
+and kept to a working temperature of 1.9K.
+
+The LHC ring is made of eight 2.45km long arcs, where bending dipoles are placed, and
+and eight 545m long straight sections. Because the tunnel is inherited from LEP, the
+LHC design faces some space limitations: in the arcs, for instance, the tunnel has small
+internal diameter of 3.7 m. Therefore, instead of implementing separate rings of magnets
+for each of the beams, the two counter-rotating beamlines need to be hosted within a
+single cryogenic and mechanic assembly; the antiparallel magnetic fields are generated
+by two independent sets of coils, although they are are placed close enough to each other
+that they are coupled both magnetically and mechanically.
+The LHC electromagnets are made of copper-clad niobium-titanium superconductor,
+amounting globally to about 470 tonnes. The beams are kept on their circular path
+through the magnetic field of 1232 dipoles operating at 8.33 T, while 392 quadrupole
+magnets keep the particles focused in narrow beams. Dedicated quadrupoles squeeze
+the beams in proximity of the interaction points and magnets of higher multipole orders
+correct smaller imperfections in the magnetic field. The operating temperature of the
+magnets is 1.9 K (-271.25C); approximately 96 tonnes of superfluid helium-4 are needed
+to keep them cool.
+
+kept travelling in opposite directions before colliding in the designated
+interaction points once they have reached a target energy; although the design center-ofmass
+energy for proton-proton collisions is ps = 14TeV, the target energy of the LHC
+acceleration stage changed over the research phases, as detailed in Sec. 2.1.4: 3.5TeV
+until 2011, 4 TeV in 2012, 6.5 TeV from 2015 on.
+
+Luminosity
+
+
+\subsection{Operation}
+
+The accelerator is a 27 km circular collider built around
+100 m underground composed by two rings where two beams of protons or heavy
+ions circulate in opposite directions inside vacuum pipes. The beams are bended
+using 1232 superconducting dipoles, cooled down with super
+uid helium to 1.9 K,
+which generate an 8.3 T magnetic eld. To focus the beams and avoid spreading,
+392 quadrupole magnets are used
+
+The LHC is the last step of the accelerating chain in which the particles reach
+the operating energies. The CERN accelerator complex is shown in Fig. 2.1. At the
+beginning of the chain, hydrogen atoms are ionized and injected into the LINAC2,
+where they are accelerated to an energy of around 50 MeV. Then, the beam is passed
+through a series of circular synchrotrons, reaching 1.4 GeV after the BOOSTER,
+26 GeV after the PS and 450 GeV after the SPS, before they enter into the LHC
+and reach their target energy. The designed center-of-mass energy (ps) for protonproton
+collisions is 14 TeV, although the target energy has changed over the dierent
+phases: 7 TeV during 2010 and 8 TeV during 2011 and 2012 (3-year period called
+Run 1), 13 TeV during Run 2 (2015-2018) and 13.6 TeV during Run 3 (which started
+in 2022).
+
+The accelerator complex at CERN is a succession of machines that accelerate particles to increasingly higher energies to uncover the mysteries of the Universe. Each machine or accelerator boosts the energy of a beam of particles, before injecting the beam into the next machine in the sequence. In the Large Hadron Collider (LHC) – dark blue line – particle beams are accelerated up to the record energy of 6.5 TeV per beam. Most of the other smaller accelerators in the chain have their own experimental halls where beams are used for experiments at lower energies.
+
+
+Protons are progressively accelerated by Linac4 (purple), PS Booster (pink), PS (magenta), SPS (blue), and ultimately at the LHC (dark grey). The proton beams circulated through the LHC collide in the center of the four particle detectors (yellow dots): ATLAS, ALICE, CMS, and LHCb
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/chapter_II/cern_complex.png}
+    \caption{Schematic representation of the CERN accelerator complex. \ref{}}
+    \label{fig:cern_complex}
+\end{figure}
+
+- Schema CERN: accelerator complex (experiments)
+- design parameters: luminosity
+- operation and plan
+\section{CMS}
+\label{sec:CMS}
+
+\section{Physics objects reconstruction}
+\label{sec:POR}
+\section{Trigger???}
+\label{sec:TRG}

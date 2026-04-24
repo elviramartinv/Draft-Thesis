@@ -214,8 +214,4 @@
 \setkomafont{caption}{\small}
 \setkomafont{captionlabel}{\usekomafont{caption}}
 
-% Smaller format for chapter number and name
-\setkomafont{chapter}{\normalfont\Large\sffamily}
-\renewcommand*{\chapterformat}{%
-  \fontsize{20}{24}\selectfont\chapappifchapterprefix{\nobreakspace}\thechapter\autodot\enskip
-}
+\setkomafont{chapter}{\normalfont\huge\bfseries}
