@@ -103,10 +103,72 @@ Protons are progressively accelerated by Linac4 (purple), PS Booster (pink), PS 
 - Schema CERN: accelerator complex (experiments)
 - design parameters: luminosity
 - operation and plan
-\section{CMS}
+\section{The CMS Experiment}
 \label{sec:CMS}
-
-\section{Physics objects reconstruction}
+\subsection{Coordinate system and proton-proton collision phenomenology}
+%junto o por separado estas dos secciones?
+\subsection{Detector structure (subdetectors)}
+\subsection{CMS Trigger System}
+\subsection{Data Acquisition and Computing systems}
+%??? añadir esta subsection? o no me hace falta?
+\section{CMS physics objects reconstruction}
 \label{sec:POR}
+\subsection{The Particle Flow algorithm}
+\subsection{Final state particle reconstruction}
+\label{subsec:Finalstate}
+\subsection{Muon}
+%... ver como me cuadra mas
+\subsubsection{Muon}
+\subsubsection{Hadronic $\tau$ leptons}
+\label{subsec:Taus}
+\noindent The $\tau$-lepton is the heaviest lepton in the SM, with a mass of $1.777$ GeV. It is the only lepton that can decay both leptonically and hadronically, with a short lifetime of $2.9\times 10^{-13}$ s. Leptonic decays account for about $35\%$ of the $\tau$-lepton decay width, while hadronic decays account for approximately $64.8\%$, as shown in Table \ref{tab:tau_decays}, which reports the corresponding branching fractions. In all decays, neutrinos remain undetected, and it is not possible to measure the momentum of the decaying $\tau$ with exact precision.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{l c}
+        \hline
+        \textbf{Decay Mode} & \textbf{BR (\%)} \\
+        \hline
+        \multicolumn{2}{l}{\textbf{Leptonic decays}} \\
+        $\tau^- \to e^- \,\bar{\nu}_e\, \nu_\tau$ & 17.8 \\
+        $\tau^- \to \mu^- \,\bar{\nu}_\mu\, \nu_\tau$ & 17.4 \\
+        \hline
+        \multicolumn{2}{l}{\textbf{Hadronic decays}} \\
+        $\tau^- \to h^- \nu_\tau$ & 11.5 \\
+        $\tau^- \to h^- \pi^0 \nu_\tau$ & 25.9 \\
+        $\tau^- \to h^- \pi^0 \pi^0 \nu_\tau$ & 9.5 \\
+        $\tau^- \to h^- h^+ h^- \nu_\tau$ & 9.8 \\
+        $\tau^- \to h^- h^+ h^- \pi^0 \nu_\tau$ & 4.8 \\
+        \textit{Other} & 3.3 \\
+        \hline
+    \end{tabular}
+    \caption{Decay modes of the $\tau$ lepton and corresponding branching fractions (BR) in $\%$; the charged hadrons are denoted by h$^{\pm}$}
+    \label{tab:tau_decays}
+\end{table}
+
+
+In the leptonic decay mode, the lepton is accompanied by two neutrinos and is reconstructed simply as the corresponding electron or muon following the standard procedures describes in the previous sections, along with the to neutrinos emitted along the $\tau$-lepton flight direction. While neutrinos do not leave a direct trace upon escaping the detector, they do generate a momentum imbalance in the transverse plane. By measuring the missing transverse momentum in the event, their presence can be inferred. Therefore, the main challenge in identifying such decays lies in reconstructing the measuring the missing transverse energy (MET), which serves as an indirect measurement of neutrinos, as described in Section \ref{sec:MET}. In addition, the energy fraction of the decaying $\tau$-lepton carried by the electron or muon falls within a continuous spectrum, which makes it difficult to distinguish between leptonic $\tau$ decays and prompt leptons. These effects makes the identification and reconstruction of $\tau$ leptonic decay a particularly challenging task.
+
+Nevertheless, since leptonic decays are reconstructed based on the corresponding light lepton, discussing the reconstruction of $\tau$ leptons implicitly refers to hadronic $\tau$ ($\tau_h$) reconstruction. Hadronic decay can occur either directly or via intermediate resonances such as $\rho$(770) or $a_1$(1260), resulting in a variety of charged and neutral hadrons. Due to charge conservation, the decay products include and odd number of charged hadrons, typically one or three, which are reconstructed as hadron jets and a neutrino $\nu_{\tau}$. Due to the high particle multiplicity in hadronic $\tau$ decays, a reliable reconstruction algorithm must be able to identify the PF candidates associated with the charged hadrons, as well as the photons originating from $\pi^0$ decay; group them to determine the decay mode; and determine the kinematic properties of the $\tau_h$. To meet these requirements, the reconstruction of hadronically decaying $\tau$ leptons is operated in CMS with the Hadron-Plus-Strips (HPS) algorithm {\color{red}[\ref{}]}.
+
+The HPS algorithm is employed to identify and reconstruct $\tau_h$ candidates by verifying the compatibility of all PF jet candidates with a $\tau$-lepton. To this end, the HPS algorithm is seeded by the AK4 PF jet candidates reconstructed as in Section \ref{sec:Jet}, and for each seeding jet, all particles within a cone of radios $\Delta R<0.5$ around the jet axis are tested as hadron candidates or clusters of electron and photon candidates originating form neutral pions decays (photons from $\pi^0$ decays may convert into electron-positron pairs). These reconstructed objects are referred to as \textit{strips}, and their reconstruction is performed iteratively: candidates within the clustering region around each strip are progressively added, and the strip position is recomputed using a $p_T$-weighted average. The $\eta \times \varphi$ window is dynamically adjusted in each iteration to adapt to the strip $p_T$ and ensure optimal energy collection. This procedure is repeated until no further candidates are found. At this stage, the HPS algorithm combines both charged hadrons and strips inside the PF jet to form all the possible combinations of hadrons for the various decay modes (listed in Table \ref{tab:tau_decays}): h$^{\pm}$, h$^{\pm}\pi^0$, h$^{\pm}\pi^0\pi^0$, h$^{\pm}$h$^{\mp}$h$^{\pm}$ and h$^{\pm}$h$^{\mp}$h$^{\pm}\pi^0$ (plus the additional $\nu_{\tau}$). Each decay mode hypothesis includes additional quality and invariant mass requirements to ensure it aligns with a genuine $\tau_h$. Among all candidates within a seed region, the hadronic $\tau_h$ with the highest $p_T$ is selected.
+
+One of the major challenges in the $\tau_h$ reconstruction lies in accurately distinguishing genuine $\tau$ leptons from misidentified objects, such as background events involving QCD multi-jet production. To enhance the purity of the hadronic $\tau$ reconstruction, a convolutional neural network (CNN), the \textsc{DeepTau} identification method {\color{red}[\ref{}]}, has been adopted in CMS analyses since the end of the LHC Run 2 as a tool to discriminate real $\tau_h$ from quark and gluon jets, as well as from electrons and muons. This machine learning (ML)-based algorithm integrates information from high-level reconstructed $\tau_h$ features, the decay mode extracted from the HPS algorithm and low-level data used to construct the PF candidates. The \textsc{DeepTau} algorithm defines three different discriminators, each targeting a specificy type of background: jets \textsc{DeepTauVSjet}, electrons \textsc{DeepTauVSe}, and muons \textsc{DeepTauVSmu}. Each discriminator has a different set of working points (WP). 
+
+Although the origins of this identification method date back to Run 2, the \textsc{DeepTau} algorithm received major updates at the start of Run 3. This new version includes upgrades such as reducing discrepancies between data and simulation in regions of high hadronic purity by integrating domain adaptation techniques, and improving data handling, resulting in overall enhanced performance. The \textsc{DeepTau} algorithm has been shown to achieve a significant improvement in the identification and reconstruction of $\tau_h$ compared to previous algorithm. {\textcolor{red}{Figure illustrates this enhancement for the three discriminators.}}
+
+For example, for a given jet rejection level, the efficiency for genuine tau h candidates is increased by 10–30%.
+
+A further advancement in Run 3 pertains to boosted topologies. When $\tau$ leptons are produced by highly boosted resonances, their decay products become collimated within a narrow cone, often forming a single jet, similar to the behavior observed for AK8 jets. While no dedicated reconstruction existed in Run 2, an extension of the HPS algorithm has been developed for Run 3 to target high-momentum candidates by exploiting the jet substructure of the $\tau_h$ candidates. The algorithm reverses the final step in the clustering sequence that forms the large-radius jet to identify two sub-jets that are compatible with the expected topology of boosted $\tau$ decay. Specific requirements are in place to suppress misidentification with quark-gluon jets, electrons or muons. This approach has been shown to outperform the standard HPD for highly boosted $\tau$ leptons while maintaining optimal misidentification rates. The selected boosted $\tau$ candidates are then passed to the HPS algorithm for standard $\tau$ reconstruction.
+
+
+Hadronically decaying tau leptons are key elements for analysis involving complex final states, such as the $HH\rightarrow bb\tau\tau$ analysis, where robust $\tau$ reconstruction plays a central role. Accurate and reliable reconstruction and identification of $\tau$ leptons are essential, as the performance of the algorithms described in this section directly impacts the sensitivity to such signatures. Therefore, their validation becomes a crucial component of this work, which will focus on a detailed assessment of the identification algorithms used in Run-3 and its performance across the 2022-2026 data-taking periods in Chapter \ref{ch:Tau}.
+
+
+
+
+
+
+
 \section{Trigger???}
 \label{sec:TRG}
