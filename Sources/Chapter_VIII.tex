@@ -10,13 +10,13 @@ Something linking with Towards EFTs - EFTs for diHiggs - validity
 \subsection{EFTs validity range}
 \subsection{Multidimensionality problem}
 Need for HH signal modeling
-\section{HH signal modeling}
+\section{HH signal modeling techniques}
 Morphing techniques
 \subsection{Event-level reweighting}
 > description and experimental challenges
 > current use and evolution
 \subsection{Matrix inversion method}
-\section{Towards a full HEFT/SMEFT - ggHH production in HEFT and SMEFT}
+\section{A full HEFT/SMEFT model for ggHH production}
 > finding a good basis
 > performance in realistic analysis...
 
@@ -34,26 +34,26 @@ EFT descriptions: https://arxiv.org/html/2604.16596v1
 
 Modeling
 
-Effective modeling of Di-Higgs signals in EFT. 
+Effective modeling of Di-Higgs signals in EFT.
 
-sl1: HH searches beyond SM: 
-v1) 
-- Di-Higgs production and Higgs boson self-coupling λ3 → currently main goals at the LHC 
-- HH allows to test various BSM scenarios such as resonant production and EFT interpretations → BSM physics effects parametrized by coupling modifiers 
+sl1: HH searches beyond SM:
+v1)
+- Di-Higgs production and Higgs boson self-coupling λ3 → currently main goals at the LHC
+- HH allows to test various BSM scenarios such as resonant production and EFT interpretations → BSM physics effects parametrized by coupling modifiers
 - Combining BSM and SM searches is efficient and natural, but scanning multi-dimensional parameter spaces is a challenge → New physics effects can modify HH production rates and kinematics drastically due to complex interference patters not only in ggHH
-v2) 
-- Di-Higgs production provides direct access to the Higgs boson self-coupling λ3  → key target at the LHC 
+v2)
+- Di-Higgs production provides direct access to the Higgs boson self-coupling λ3  → key target at the LHC
 - HH allows to test various BSM scenarios: resonant production and EFT interpretations → BSM physics effects parametrized via coupling modifiers or Wilson coefficients
-- New physics effects can drastically modify signal rate and kinematics due to complex interference patterns 
+- New physics effects can drastically modify signal rate and kinematics due to complex interference patterns
 - Exploring these effects requires scanning high-dimensional parameter spaces → Efficient signal modeling needed
 
 sl2: Modeling HH signals in BSM scenarios / The need for HH signal modeling
 
 Ways to model / to save the simulation budget
- • Generator based reweighing (common in madGraph used at the moment i.e in qqHH, VHH, ttHH and HHH) 
- • Event level reweighting based on generator level variables such as used since many years in ggHH 
+ • Generator based reweighing (common in madGraph used at the moment i.e in qqHH, VHH, ttHH and HHH)
+ • Event level reweighting based on generator level variables such as used since many years in ggHH
  • “Matrix Method” linear combination of fixed signal shapes (basis points) -> Even better also saves processing time when scanning vast parameter spaces, used extensively by CMS in all HH/HHH processes
- 
+
  Exploring these effects requires scanning high-dimensional parameter spaces → computationally prohibitive Why morphing? Combine and Inference tools: tools to calculate limits can put limits on coupling values need a theoretical model for all possible coupling values What is morphing? Morphing: mapping of parameters using of set of values : Emulate a sample (e.g. ggF), with a new value of a parameter (e.g. ����, ��t) by reweighing other samples (interpolation/extrapolation) When we want to set constraints on parameters, being them deviations of the Higgs couplings on the kappa framework or Wilson coefficients in the EFT framework, we need to be able to continuously model the signal for a large variety of parameter combinations → simulating a large number of signal samples for different parameter combinations, but that is computationally very expensive and thus not feasible in practice. And even if we were able to do that, employing for example event-level reweighting techniques to model the signal for a large variety of parameter combinations would still be computationally expensive on the long flows of experimental analyses and thus not feasible in practice. The statistical interpretation of the results, which is typically done by performing a likelihood fit to the data, also becomes challenging in this context one of the methods used by experimentalists to handle this challenge: Matrix inversion method. It elegantly simplifies the problem, allowing to model the signal for a large variety of parameter combinations by simulating only a small number of signal samples and then using the matrix method to interpolate between them
 
  To model the signal for arbitrary coupling values, we need a theoretical description of how the HH cross section depends on these couplings --> Morphing techniques: Rely on the factorization of the HH cross section
@@ -61,6 +61,6 @@ Ways to model / to save the simulation budget
 
  sl3: Physical model
 
-Physical model behind reweighting and morphing  
+Physical model behind reweighting and morphing
 Basic idea: the HH cross section (or any differential observable) can be factorized into a coupling‑dependent part and a coupling‑independent part.
 Through some algebra, the coupling‑independent part can be eliminated, and the cross section at any point in parameter space can be written as a linear combination of a small set of input samples.
