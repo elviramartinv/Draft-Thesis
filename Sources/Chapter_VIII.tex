@@ -1,24 +1,167 @@
-\part{BSM interpretations: HH modeling}
+\part{BSM interpretations: gluon-fusion Di-Higgs modeling}
 
-\chapter{HH modeling}
-Something linking with limitations of the SM - HH searches beyond the SM
-Something linking with Towards EFTs - EFTs for diHiggs - validity
+\chapter{Modeling gluon-fusion Di-Higgs signal in EFT interpretations}
+%HH for BSM searches
+As repeatedly stressed in this these, searches for Higgs boson pairs are of critical importance, as they are directly related to the trilinear Higgs coupling parameter $\lambda$ and, consequently, to the underlying Higgs potential. The measurement of this parameter is essential in order to answer fundamental questions about the BEH mechanism, with implications for issues ranging from the nature of EWSB and the structure of the scalar sector to the stability of our Universe. The primary analysis of this thesis has centered on the SM framework to address these searches. However, Higgs boson pair production is a powerful tool for exploring new physics scenarios beyond the SM.
+
+%BSM approaches and interpretation frameworks
+In the context of a comprehensive theory, the search for new physics can be pursued rhough different approaches, each characterized by its own assumptions, advantages, and intrinsic limitations (see Sec. \ref{subsec:SM_limitations}). The strategy based on the direct search for new particles is usually formulated within explicit BSM scenarios; this approach is complicated by the large number of candidate models and the broad parameter space that each of them typically entails. A complementary strategy utilizes indirect evidence by performing precision measurements of SM observables to constrain the low-energy effects of heavy degrees of freedom, thereby gaining insight into the potential structure of ultraviolet physics (residing at scales far beyond the electroweak scale). In this sense, the setup is "model-independent", providing the most general parametrization of Nature based on observations at low energies. In this context, new physics is described through interpretive frameworks.
+
+%BSM searches in HH
+Accordingly, in the specific case of Higgs boson pair production, two categories of new signatures are typically considered in experimental searches for BSM physics, as outlined in Sec. \ref{subsec:BSM_production}. In the first scenario, a new, relatively light degree of freedom is expected to be exchanged and decay resonantly into a Higgs boson pair, allowing for direct observation of the new physics. The other type of signature corresponds to non-resonant Higgs boson pair production, where deviations from the SM predictions are parameterized in terms of operators and Wilson coefficients within an Effective Field Theory framework.
+
+%BSM effects
+In the field of indirect interpretations, the phenomenology of non-resonant Higgs boson pair production (covered in Sec. \ref{subsec:BSM_production}) implies that new physics could manifest as modifications to the interactions of the Higgs and the fields involved in its production, altering both the total rate of the process and its kinematics, leading to experimental signatures that may differ substantially from SM predictions. This dual sensitivity makes HH searches informative even in the absence of observation, but it is also what makes their interpretation challenging: to effectively constrain new physics, it is required to predict both the rate and the shape of the signal for every hypothesis under testing.
+
+%ggHH
+Among the various HH production mechanisms, gluon fusion plays a central role as the dominant channel at LHC energies. As the process is governed by the interference between diagrams involving the Higgs boson self-coupling and the Yukawa coupling, possible deviations from the SM can significantly alter this production process. At the phenomenological level, these modifications can be described by a reduced set of effective couplings that capture the leading effects in gluon fusion — $\kappa_{\lambda}$, $\kappa_t$, $c_2$, $c_g$ and $c_{2g}$ — as shown in Figure~\ref{fig:BSM_diagrams}. Therefore, each of these couplings parameters has a characteristic effect on the amplitude of the process, altering both the rate and the distribution of key observables, such as the invariant mass $m_{HH}$ .
+
+\begin{figure}
+    \centering
+    \input{figures/chapter_VIII/diagrams/ggHH}
+ 
+    \caption{Leading order Feynman diagrams contributing to \ggHH production. SOLUCIONAR ESTO}
+    \label{fig:BSM_diagrams}
+\end{figure}
+
+These effective couplings can therefore be understood as a low-energy manifestation of an EFT. The manner in which they interact with one another — or remain independent — is determined by the formalism adopted to construct the theory, which directly affects the interpretation of experimental results and the energy range within which the description remains valid. 
+
+% Use and limitations of signal modeling
+This formulation results in a continuous, multidimensional parameter space, which is both a blessing and a curse for experimentalists as it allows for the extraction of a multitude of results within a single analysis but also heavily increases the burden of modeling various signal topologies. Accordingly, the statistical interpretation of the results becomes unfeasible unless the signal can be modeled. This phenomenological richness necessitates a formulation capable of coherently predicting the behavior of process at any point in EFT space to save the computational budget required to simulate a large number of signal samples for different parameter combinations. 
+
+% matrix inversion 
+In response to this challenge, experimentalists have explored various methods. Among them, the so-called "matrix inversion method" has been the focus of extensive study by both ATLAS and CMS, as it has been employed in several analysis \cite{ATLAS:2024pov,CMS_combination}. This method elegantly simplifies the problem by allowing the signal to be modeled for a wide variety of parameter combinations by simulating only a small number of signal samples that can be linearly combined to reconstruct the signal at any point in EFT space. However, this approach presents inherent challenges, especially in high-dimensional cases such as those attempted to be addressed. Therefore, although the method is not newly developed, its systematic application to high-dimensional spaces and its coherent integration into broad EFT frameworks remains an open task and requires optimized development to correctly describe higher-dimensional spaces.
+
+The aim of this chapter is to further refine the method to expand the coverage beyond what was shown in previous ATLAS and CMS results \cite{ATLAS:2025tkn,CMS_combination}, which constitutes the main original contribution of this thesis to the BSM interpretation of HH searches. The chapter is organized as follows: the first section presents a detailed discussion of the two effective descriptions used in the HH context: the Higgs EFT (HEFT) and the Standar Model EFT (SMEFT). The second section introduces the development of signal modeling techniques to address the computational demands of scanning the entire parameter space imposed by the EFTs formulation, thereby enabling the BSM interpretation of the experimental results. \textcolor{red}{La tercera/ultima sección, recoge la teoría recabada hasta el momento y se dedica al desarrollo y aplicación real de las modeling techniques, así como el manejo que se hace de los problemas que estas técnicas llevan consigo inherentemente. Finalmente, se muestra una valudación en realistic analysis, tales como bbtt, 4b ... }
+
+
+
+
+
+ On the other hand, any known UV model (residing at scales well beyond
+the electroweak scale) can be mapped to such an effective Lagrangian, rendering a formulation of
+experimental results in terms of bounds on its parameters an extremely useful bridge between data
+and theory.
+
+https://arxiv.org/pdf/2604.16596v1
+
+In the case of NP at high scales, complementary descriptions have been adopted: modified Higgs couplings (the so-called κ-framework) based on a constant rescaling of SM couplings; the global SM Effective
+Field Theory (SMEFT) analysis [13,14], in which possible departures from the SM are parametrised in terms
+of higher-dimensional operators; and the effective couplings formalism [15], based on pseudo-observables that
+encode distortions in Higgs and electroweak interactions and can be written in terms of a subset of SMEFT
+Wilson coefficients. Compared to the κ-framework, an important advantage of SMEFT is that it can be
+matched consistently onto specific UV-complete scenarios. This makes it especially well suited for comparing
+the reach of indirect EFT-based probes with projections for direct searches for NP at high-energy frontier
+colliders
+
+https://arxiv.org/pdf/1710.08261
+
+ Of particular importance regarding the search for physics beyond the Standard Model (SM)
+are differential observables, such as the distribution of the invariant mass of the Higgs pairs mhh
+(see, e.g., [10–12]), since they are especially sensitive to effects of new physics (NP).
+
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{imagen.png}
+    \caption{Enter Caption}
+    \label{fig:placeholder}
+\end{figure}
+
+
+
 \section{EFT descriptions in HH}
 \label{subsec:EFTs}
-\subsection{Higgs EFT}
+With experimental HH analysis maturing this coverage of beyond SM scenarios is expanding and this ex-tends to the coverage of EFT scenarios in the Higgs EFT (HEFT) and SM EFT (SMEFT)
+frameworks. The high dimensionality of the associated parameter space however posed
+a significant computational challenge if not complemented by methods to effectively
+model the HH signal over the tested parameter space without the need for large scale
+simulation/processing. This work discussed one of these methods, the "matrix-inversion"
+method as applied to the EFT modeling of gluon-gluon fusion HH events. We discuss
+the basis choice and possible expansions of the method as well as possible uncertainty
+shemes
+
 \subsection{SMEFT}
+realización lineal, el Higgs en el doblete; expansión en $1/\Lambda^2$, base de Warsaw; los operadores $D{=}6$ que entran en $gg\to HH$ ($\mathcal{O}{H\square}$, $\mathcal{O}H$, $\mathcal{O}{tH}$, $\mathcal{O}{HG}$, $\mathcal{O}{tG}$); punto clave → impone correlaciones entre los 5 acoplamientos (p.ej. $c_g$ y $c{2g}$ ligados, $c_2$ ligado a $\kappa_t$) y conecta HH con single-H y con medidas EW.
+
+\subsection{Higgs EFT}
+ealización no lineal, Higgs como singlete EW; chiral counting en vez de dimensional; los 5 acoplamientos son libres e independientes → parametrización más general.
+
+\subsection{Relation between HEFT and SMEFT}
+ cuándo HEFT se reduce a SMEFT, new physics decoupling vs non-decoupling, qué escenarios físicos motivan cada uno, y por qué en HH la elección sí cambia la interpretación (no es cosmética). Aquí una tabla de mapeo HEFT↔SMEFT de los 5 acoplamientos es muy rentable.
+ 
 \subsection{EFTs validity range}
+truncamiento a $1/\Lambda^2$ vs términos $(D{=}6)^2$ y $D{=}8$; el criterio $m_{HH} \ll \Lambda$ y que HH puebla justo la cola de alto $m_{HH}$; clipping del espectro; unitariedad. Esto responde a tu - Validity range of the EFTs?? del Cap. I.
+
+%- Validity range of the effective theory? EFT regime?:
+%We now turn to our second question, namely how large the trilinear Higgs self-coupling can be in renormalisable models. As a first step, we need to identify the class of models with potentially the largest trilinear Higgs self-coupling modifications. For simplicity, we restrict ourselves to one particle extensions of the SM and focus on the regime where the new states are heavier than the SM ones but not necessarily yet in the EFT regime. This is motivated by the fact that we want to concentrate on the case where the leading effects in di-Higgs production are due to the deviation in the Higgs trilinear
+
 \subsection{Multidimensionality problem}
+5 parámetros continuos (más si se abre a VBF), interferencias no triviales, topologías muy distintas; los benchmark clusterizados como parche parcial y sus limitaciones. Cierre: hace falta poder predecir la señal en cualquier punto → modeling. Este es el pivote del capítulo.
 Need for HH signal modeling
+
 \section{HH signal modeling techniques}
+
+\subsection{The problem} 
+para poner límites hay que dar a los tools de inferencia (Combine) un modelo continuo de la señal; simular por punto es inviable; además el coste no es solo generación, es reconstrucción + toda la cadena de análisis.
+
+\subsection{The underlying physical model}
+la factorización: la amplitud se descompone en parte dependiente de los acoplamientos × parte independiente; de ahí que $\sigma$ (y cualquier observable diferencial) sea un polinomio en los acoplamientos con un número finito de términos. Enlaza con la Ec. \ref{eq:RHH} del Cap. I y generalízala a nivel diferencial. Esta subsección es la base común de 8.2.3–8.2.5 — merece la pena que esté antes que los métodos, no dentro de uno de ellos.
+
+
+https://arxiv.org/pdf/1710.08261
+In this paper we will present on the one hand such a fit of the theory prediction for the Higgspair production cross section in gluon fusion at the LHC in terms of effective couplings, considering
+both the total cross section as well as the ones differential in mhh and |cos θ∗
+|. At Leading Order
+(LO) the totality of the HH process is described by those two variables1
+. Beyond that, we will
+employ the formula to reinterpret exclusion bounds, derived assuming certain benchmark points in
+parameter space with a given kinematics, for points with modified kinematic distributions. In fact,
+different distributions in variables, such as mhh, will lead to different efficiencies of selection cuts,
+which can be accounted for, knowing the distributions in terms of effective couplings. Without
+such an analytic knowledge, a full monte-carlo (MC) simulation would actually be required for
+each parameter-space point, which is not feasible for a dense scan of the parameters. Finally, we
+will use the interpreted results to confront explicit models, mapped to an effective Lagrangian,
+efficiently with constraints from the LHC. To perform this exercise we collect from literature
+setups with additional scalars, including two-Higgs-doublet models (2HDM), vector-like fermions,
+and minimal composite Higgs models and provide a collection of relations between their explicit
+parameters and effective couplings after EWSB.
+
+\subsection{Generator-level reweighting}
+el módulo de reweighting de MG5; uso actual (qqHH, VHH, ttHH, HHH); coste y limitaciones.
+ 
 Morphing techniques
 \subsection{Event-level reweighting}
+el estándar histórico en ggHH: pesos a partir de variables a nivel generador ($m_{HH}$, $\cos\theta^*$); cómo se combina la parametrización LO con la normalización N(N)LO; limitaciones (binning, precisión LO, dependencia de la muestra de referencia, dilución estadística).
 > description and experimental challenges
 > current use and evolution
+
 \subsection{Matrix inversion method}
+formalismo: $\sigma(\vec{c}) = \sum_i w_i(\vec{c}),\sigma_i$ con la matriz de puntos base invertible; se aplica a nivel de análisis (después de selección y del discriminante ML), no evento a evento; ventajas en coste de procesado.
+> Basis choice and numerical stability -  independencia lineal, número de condición, amplificación de errores y pesos negativos, estadística de las muestras base. Aquí puedes ya dejar planteado el criterio que optimizas en 8.3.
+
 \section{A full HEFT/SMEFT model for ggHH production}
 > finding a good basis
 > performance in realistic analysis...
+\subsection{Setup}
+ generador, muestras, definición del espacio de parámetros, observable de morphing.
+
+\subsection{Building the basis}
+construcción de la base para el espacio HEFT de 5 parámetros y su restricción SMEFT.
+
+\subsection{Basis optimization}
+ figura de mérito, estrategia de búsqueda, base elegida.
+
+\subsection{Closure and validation}
+comparación contra muestras simuladas directamente, en distribuciones inclusivas y a nivel de análisis.
+
+\subsection{Performance in a realistic analysis - section o subsection? - depende de si tengo 4b, bbgg, bbtt} 
+ aplicación al bb$\tau\tau$ de los Caps. VI–VII: impacto en las distribuciones finales y en los límites.
+
+\subsection{Summary and outlook / going further?}
+extensión a otros modos de producción, NLO, uso en combinaciones.
 
 PAPERS
 EFT descriptions of Higgs boson pair production: L. Alasfar et al., Effective Field Theory descriptions of Higgs boson pair production, SciPost434 Phys. Comm. Rep. 2024, 2 (2024), doi:10.21468/SciPostPhysCommRep.2, 2304.01968.
@@ -39,7 +182,7 @@ Effective modeling of Di-Higgs signals in EFT.
 sl1: HH searches beyond SM:
 v1)
 - Di-Higgs production and Higgs boson self-coupling λ3 → currently main goals at the LHC
-- HH allows to test various BSM scenarios such as resonant production and EFT interpretations → BSM physics effects parametrized by coupling modifiers
+- HH allows to test various BSM scenarios such as resonant production and EFT interpretations → BSM physics effects parameterized by coupling modifiers
 - Combining BSM and SM searches is efficient and natural, but scanning multi-dimensional parameter spaces is a challenge → New physics effects can modify HH production rates and kinematics drastically due to complex interference patters not only in ggHH
 v2)
 - Di-Higgs production provides direct access to the Higgs boson self-coupling λ3  → key target at the LHC
