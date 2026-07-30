@@ -770,7 +770,7 @@ In the following, as a first step, the phenomenology of non-resonant HH producti
     \kappa_{\lambda} = \lambda_{HHH}/\lambda_{HHH}^{SM}
 \end{equation}
 
-This coupling rescaling approach is usually referred to as the $\kappa$-framework. The framework is also sensitive to single Higgs measurements affected by deviations from $\lambda_{HHH}$ SM value, due to loop corrections influencing several of these processes. Expressing the experimental results in terms of the coupling modifier allows for the consistent interpretation of both single and double Higgs production, opening the possibility of establising combined constraints on the value of the trilinear Higgs boson self-coupling.
+This coupling rescaling approach is usually referred to as the $\kappa$-framework. The framework is also sensitive to single Higgs measurements affected by deviations from $\lambda_{HHH}$ SM value, due to loop corrections influencing several of these processes. Expressing the experimental results in terms of the coupling modifier allows for the consistent interpretation of both single and double Higgs production, opening the possibility of establishing combined constraints on the value of the trilinear Higgs boson self-coupling.
 
 
 Modifications in the value of $\lambda_{HHH}$ predicted by the SM have a profound impact on the HH total cross section, as illustrated in Figure \ref{fig:HH_xsec_vs_kl} for all HH production mechanisms covered in \ref{subsec:SM_production}.
@@ -822,6 +822,7 @@ Variations in the coupling strength values also modify the kinematics of the HH 
     \label{fig:mHH_kl}
 \end{figure}
 
+% Además de los modificadores de acoplamiento del κ‑framework, una descripción más completa de los efectos de nueva física en la producción de pares de Higgs requiere introducir un conjunto reducido de effective couplings que capturan las deformaciones más relevantes de la amplitud ggHH. Estos parámetros (kl, kt, c2, cg, c2g) permiten describir de forma fenomenológica tanto las modificaciones de los acoplamientos SM como la aparición de nuevos vértices de contacto generados por operadores de dimensión seis.  .....
 
 \paragraph{Effective Field Theories}
 
@@ -829,8 +830,8 @@ Variations in the coupling strength values also modify the kinematics of the HH 
 
 Accordingly, new physics at a scale $\Lambda \gg v$ can be described by incorporating additional fields into the SM Lagrangian that only act at extremely short distances and high energies, meaning their internal structure can be disregarded within the current LHC range. In practice, this entails describing physics at scales below $\Lambda$ by integrating the heavy fields of an extended renormalizable theory that interact only at high energies. Therefore, from a \textit{bottom-up} perspective, $\Lambda$ can be interpreted as the scale up to which only SM fields propagate, while from a \textit{top-down} approach, it corresponds to the scale of the new physics. The resulting effective theory is not renormalizable; however, this is not problematic since an EFT only describes the low-energy manifestation of a more fundamental, renormalizable theory defined at higher scales. Consequently, this procedure generates higher-dimensional, non-renormalizable operators that capture the residual effects of those fields in the low-energy regime.
 
-The effective Lagrangian that accounts for the experimental results will be the SM Lagrangian with corrections described by the addition of local operators. The EFT Lagrangian, $\mathcal{L}_{EFT}$, can be constructed as an expansion of high-dimensional operators representing possible interactions arising from high-energy phenomena, accomapnied by coefficients proportional to $\Lambda^{D-4}$, which are highly suppressed at the current energy scale. Hence, the EFT Lagrangian can be written as follows:
-
+The effective Lagrangian that accounts for the experimental results will be the SM Lagrangian with corrections described by the addition of local operators. The EFT Lagrangian, $\mathcal{L}_{EFT}$, can be constructed as an expansion of high-dimensional operators representing possible interactions arising from high-energy phenomena, accomapnied by coefficients proportional to $\Lambda^{D-4}$, which are highly suppressed at the current energy scale. \textcolor{red}{Hence, if the expansion is organized according to the canonical dimension of the operators, the effective Lagrangian takes the form:}
+% ONLY CANONICAL
 \begin{equation}
     \mathcal{L}_{EFT}
 = \mathcal{L}_{SM}^{(D\leq4)}
@@ -840,9 +841,15 @@ The effective Lagrangian that accounts for the experimental results will be the 
 
 where $\mathcal{O}_i^{D}$ is the basis of invariant operators of dimension $D$, $\Lambda$ is the energy scale at which the SM loses validity, and $c_i$ are the Wilson coefficients that parametrize BSM physics. In the EFT Lagrangian, each term consists of operators that are invariant under $SU(3)_C\times SU(2)_L \times U(1)_Y$ local transformations of dimension $D$, and the SM term contains only operators up to $D=4$. Once the EFT is defined, any complete BSM model can be coupled to it; that is, it can be reduced to its low-energy manifestation to obtain an expression for the coefficients $c_i$ in terms of the model's fundamental parameters. From an experimental standpoint, Equation \ref{eq:eft_lagrangian} provides a general parametrization that allows for the study of various new physics signatures with a model-independent approach.
 
+
+%There is not a single way to formulate an EFT description of new physics that modifies the SM. The criterion used to expand the SM Lagrangian, and the symmetries imposed on the new theory and its fields, lead to the definition of different EFTs. In particular, the expansion of Equation \ref{eq:eft_lagrangian} presupposes that the operators can be ordered by their canonical dimension, which is the case in SMEFT but not in HEFT, where the Higgs field appears in interaction terms of arbitrary canonical dimension and the expansion is instead organized by loop order (see Section \ref{subsec:EFTs}). In the literature, two main EFT descriptions...
+
+
 There is not a single way to formulate an EFT description of new physics that modifies the SM. The criterion used to expand the SM Lagrangian, and the symmetries imposed on the new theory and its fields, lead to the definition of different EFTs. In the literature, two main EFT descriptions are described within two different formalisms in the context of HH searches: the Higgs EFT (HEFT) and the Standard Model EFT (SMEFT). The former treats the Higgs field as an electroweak singlet and employs a non‑linear realization of the $SU(2)_L\times U(1)_Y$ symmetry, allowing for a very general parametrization of deviations in Higgs interactions. The latter assumes the Higgs belongs to an $SU(2)_L\times U(1)_Y$ doublet field, as in the SM, and organizes new physics effects through a linear, gauge‑invariant expansion in higher‑dimensional operators. Both paths lead to self-consistent, gauge-invariant Lagrangians, but they differ in their assumptions and in the correlations they impose among effective couplings. In what follows, technical details of either formalism will not be elaborated (see Section \ref{subsec:EFTs} for a detailed description); instead, the focus will be directed towards the phenomenological consequences relevant for Higgs pair production.
 
-\paragraph{Leading-order EFT operators in HH production}
+%Two frameworks are commonly used in this context: Higgs Effective Field Theory (HEFT) and Standard Model Effective Field Theory (SMEFT)~\cite{Buchalla:2018yce, Heinrich:2022huh}. In the former, the Higgs boson is treated as a generic scalar singlet, where EWSB is non-linearly realized, and the EFT expansion is organized in terms of chiral dimensions. In the latter, the Higgs boson is treated as part of an $SU(2)$ doublet, with the same quantum numbers as in the SM. The EWSB is assumed to be linearly realized, leading to a more constrained description of BSM effects in the Higgs sector, with the EFT expansion expressed as a power series in $1/\Lambda$ according to canonical dimensions.
+
+\paragraph{Leading-order EFT operators in HH production / The effective coupling formalism}
 
 \noindent In the EFT formalism, leading effects in HH production arise from $D=6$ operators, since $D=5$ lepton-number violating operators have no impact on the Higgs phenomenology and can be neglected in this context. These operators modify Higgs and gauge boson interactions, resulting in deviations in production rates and kinematic distributions. Therefore, in principle, $D=6$ operators can significantly alter the scattering amplitudes, offering a window into new physics.
 
