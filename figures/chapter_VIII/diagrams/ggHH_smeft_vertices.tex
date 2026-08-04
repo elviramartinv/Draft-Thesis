@@ -1,0 +1,52 @@
+\begin{fmffile}{smeft_map}
+\begin{fmfgraph*}(220,110)
+  \fmfstraight
+  \fmfleft{i1,i2,i3,i4,i5}
+  \fmfright{o1,o2,o3,o4,o5}
+  \fmf{phantom}{i1,i2,i3,i4,i5}
+  \fmf{phantom}{o1,o2,o3,o4,o5}
+  \fmffreeze
+  \fmf{phantom}{i1,a11,a12,a13,a14,a15,a16,o1}
+  \fmf{phantom}{i2,a21,a22,a23,a24,a25,a26,o2}
+  \fmf{phantom}{i3,a31,a32,a33,a34,a35,a36,o3}
+  \fmf{phantom}{i4,a41,a42,a43,a44,a45,a46,o4}
+  \fmf{phantom}{i5,a51,a52,a53,a54,a55,a56,o5}
+  \fmffreeze
+
+  % ---------- cabecera: acoplamientos HEFT ----------
+  \fmfv{lab=\color{cat1}{$c_\PQt$},    decor.size=0, lab.dist=0, lab.angle=90}{a52}
+  \fmfv{lab=\color{cat1}{$c_2$},       decor.size=0, lab.dist=0, lab.angle=90}{a53}
+  \fmfv{lab=\color{cat6}{$c_{hhh}$},   decor.size=0, lab.dist=0, lab.angle=90}{a54}
+  \fmfv{lab=\color{cat3}{$c_\Pg$},     decor.size=0, lab.dist=0, lab.angle=90}{a55}
+  \fmfv{lab=\color{cat3}{$c_{2\Pg}$},  decor.size=0, lab.dist=0, lab.angle=90}{a56}
+
+  % ---------- fila c_H ----------
+  \fmfv{lab=$c_\PH:$, decor.size=0, lab.dist=0, lab.angle=180}{a41}
+  \fmfv{decor.shape=circle,  decor.filled=full,   decor.size=10,
+        foreground=(0.478,,0.129,,0.867)}{a44}
+
+  % ---------- fila c_Hkin ----------
+  \fmfv{lab=$c_{\PH kin}:$, decor.size=0, lab.dist=0, lab.angle=180}{a31}
+  \fmfv{decor.shape=hexagon, decor.filled=full,   decor.size=10,
+        foreground=(0.341,,0.565,,0.988)}{a32}
+  \fmfv{decor.shape=hexagon, decor.filled=shaded, decor.size=10,
+        foreground=(0.341,,0.565,,0.988)}{a33}
+  \fmfv{decor.shape=circle,  decor.filled=full,   decor.size=10,
+        foreground=(0.478,,0.129,,0.867)}{a34}
+
+  % ---------- fila c_tH ----------
+  \fmfv{lab=$c_{\PQt\PH}:$, decor.size=0, lab.dist=0, lab.angle=180}{a21}
+  \fmfv{decor.shape=hexagon, decor.filled=full,   decor.size=10,
+        foreground=(0.341,,0.565,,0.988)}{a22}
+  \fmfv{decor.shape=hexagon, decor.filled=shaded, decor.size=10,
+        foreground=(0.341,,0.565,,0.988)}{a23}
+
+  % ---------- fila c_HG ----------
+  \fmfv{lab=$c_{\PH G}:$, decor.size=0, lab.dist=0, lab.angle=180}{a11}
+  \fmfv{decor.shape=square, decor.filled=full,   decor.size=10,
+        foreground=(0.894,,0.145,,0.212)}{a15}
+  \fmfv{decor.shape=square, decor.filled=shaded, decor.size=10,
+        foreground=(0.894,,0.145,,0.212)}{a16}
+\end{fmfgraph*}
+\vspace{20 \unitlength}
+\end{fmffile}
