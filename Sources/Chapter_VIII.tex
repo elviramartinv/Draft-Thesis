@@ -19,24 +19,24 @@ Among the various HH production mechanisms, gluon fusion plays a central role as
 \begin{figure}
     \centering
     \input{figures/chapter_VIII/diagrams/ggHH}
- 
+
     \caption{Leading order Feynman diagrams contributing to $gg\to HH$ production.}
     \label{fig:BSM_diagrams}
 \end{figure}
 
-These effective couplings can therefore be understood as a low-energy manifestation of an EFT. The manner in which they interact with one another — or remain independent — is determined by the formalism adopted to construct the theory, which directly affects the interpretation of experimental results and the energy range within which the description remains valid. 
+These effective couplings can therefore be understood as a low-energy manifestation of an EFT. The manner in which they interact with one another — or remain independent — is determined by the formalism adopted to construct the theory, which directly affects the interpretation of experimental results and the energy range within which the description remains valid.
 
 % Use and limitations of signal modeling
-This formulation results in a continuous, multidimensional parameter space, which is both a blessing and a curse for experimentalists as it allows for the extraction of a multitude of results within a single analysis but also heavily increases the burden of modeling various signal topologies. Accordingly, the statistical interpretation of the results becomes unfeasible unless the signal can be modeled. This phenomenological richness necessitates a formulation capable of coherently predicting the behavior of process at any point in EFT space to save the computational budget required to simulate a large number of signal samples for different parameter combinations. 
+This formulation results in a continuous, multidimensional parameter space, which is both a blessing and a curse for experimentalists as it allows for the extraction of a multitude of results within a single analysis but also heavily increases the burden of modeling various signal topologies. Accordingly, the statistical interpretation of the results becomes unfeasible unless the signal can be modeled. This phenomenological richness necessitates a formulation capable of coherently predicting the behavior of process at any point in EFT space to save the computational budget required to simulate a large number of signal samples for different parameter combinations.
 
-% matrix inversion 
+% matrix inversion
 In response to this challenge, experimentalists have explored various methods. Among them, the so-called "matrix inversion method" has been the focus of extensive study by both ATLAS and CMS, as it has been employed in several analysis \cite{ATLAS:2024pov,CMS_combination}. This method elegantly simplifies the problem by allowing the signal to be modeled for a wide variety of parameter combinations by simulating only a small number of signal samples that can be linearly combined to reconstruct the signal at any point in EFT space. However, this approach presents inherent challenges, especially in high-dimensional cases such as those attempted to be addressed. Therefore, although the method is not newly developed, its systematic application to high-dimensional spaces and its coherent integration into broad EFT frameworks remains an open task and requires optimized development to correctly describe higher-dimensional spaces.
 
 The aim of this chapter is to further refine the method to expand the coverage beyond what was shown in previous ATLAS and CMS results \cite{ATLAS:2025tkn,CMS_combination}, which constitutes the main original contribution of this thesis to the BSM interpretation of HH searches. The chapter is organized as follows: the first section presents a detailed discussion of the two effective descriptions used in the HH context: the Higgs EFT (HEFT) and the Standar Model EFT (SMEFT). The second section introduces the development of signal modeling techniques to address the computational demands of scanning the entire parameter space imposed by the EFTs formulation, thereby enabling the BSM interpretation of the experimental results. \textcolor{red}{La tercera/ultima sección, recoge la teoría recabada hasta el momento y se dedica al desarrollo y aplicación real de las modeling techniques, así como el manejo que se hace de los problemas que estas técnicas llevan consigo inherentemente. Finalmente, se muestra una validación en realistic analysis, tales como bbtt, 4b ... }
 
 
 
-\section{EFT frameworks for $gg\to HH$ production}
+\section{EFT frameworks for \texorpdfstring{$gg\to HH$}{gg → HH} production}
 \label{subsec:EFTs}
 % On the other hand, any known UV model (residing at scales well beyond
 % the electroweak scale) can be mapped to such an effective Lagrangian, rendering a formulation of
@@ -44,29 +44,29 @@ The aim of this chapter is to further refine the method to expand the coverage b
 % and theory.
 When studying new physics that has not yet been covered, rather than dealing with the vast amount of possible extensions to the SM, the idea behind the EFT approach is to assume that a specifc structure of any BSM physics can be integrated into the SM, resulting in effective couplings that are accessible at currently tested energies. In this manner, a substantial theory space can be subject to experimental constraints by establishing limits on the effective couplings that embody the low-energy effects of new physics as observed in collider data.
 
-There is no single way to formulate an EFT description. In the context of this thesis, the central issue in formulating the EFT is the nature of the observed scalar and its role in EWSB. According to the SM, the physical Higgs boson and the three Goldsonte bosons — absorbed by th $W$ and $Z$ bosons — form a single $SU(2)_L$ doublet, as seen in equation \ref{eq:????}. However, the SM theory assumes the Higgs to be the fourth component of the doublet, whereas the only experimentally established facts are the existence of the three Goldstone bosons and a light neutral scalar with mass $m_H \simeq 125$~GeV and couplings compatible with the SM. The determination of whether this scalar is indeed the fourth component of the same doublet, or if it is instead a light, SM-like electroweak single, remains a hypothesis rather than a measurement. From these two possibilities arise the two internally consistent, gauge-invariant effective descriptions most commonly used in HH searches: HEFT, which adopts the more agnostic hypothesis where the physical Higgs boson is treated as an electroweak singlet; and SMEFT, which maintains the Higgs doublet structure, leading to a more restrictive hypothesis. 
+There is no single way to formulate an EFT description. In the context of this thesis, the central issue in formulating the EFT is the nature of the observed scalar and its role in EWSB. According to the SM, the physical Higgs boson and the three Goldsonte bosons — absorbed by th $W$ and $Z$ bosons — form a single $SU(2)_L$ doublet, as seen in equation \ref{eq:????}. However, the SM theory assumes the Higgs to be the fourth component of the doublet, whereas the only experimentally established facts are the existence of the three Goldstone bosons and a light neutral scalar with mass $m_H \simeq 125$~GeV and couplings compatible with the SM. The determination of whether this scalar is indeed the fourth component of the same doublet, or if it is instead a light, SM-like electroweak single, remains a hypothesis rather than a measurement. From these two possibilities arise the two internally consistent, gauge-invariant effective descriptions most commonly used in HH searches: HEFT, which adopts the more agnostic hypothesis where the physical Higgs boson is treated as an electroweak singlet; and SMEFT, which maintains the Higgs doublet structure, leading to a more restrictive hypothesis.
 
 The EFT formalism for Higgs boson pair production has already been briefly introduced in Section \ref{subsec:BSM_production}, along with the set of five effective couplings $\kappa_{\lambda}$, $\kappa_t$, $c_2$, $c_g$ and $c_{2g}$ that govern HH production via gluon fusion at leading order (see Fig~\ref{fig:BSM_diagrams}), and whose contribution can significantly alter the total cross section and the kinematic characteristics of HH events. Therefore, while HEFT treats these parameters as free, in SMEFT they are correlated by the structure of the doublet. The following section aims to provide a detailed description of the two EFTs used, specifying the higher-dimensional operators that supplement the SM Lagrangian in each of the formalisms and the characteristics that emerge from them.
 
 The generality of these EFT frameworks and the expanding coverage of BSM scenarios, as experimental HH analysis evolves, introduce a high dimensionality in the associated parameter space to be addressed. In this context, the cross section and kinematic distributions exhibit non-trivial variations due to interference between topologies. Therefore, covering the full space by predicting the signal at an arbitrary point in such space, as required for a statistical interpretation, cannot be accomplished through direct simulation. This motivates the development of modeling techniques, which will be discussed in the remainder of this chapter.
 
-\textcolor{red}{Las dos primeras secciones \ref{subsec:HEFT} and \ref{subsec:SMEFT} por tanto presentan los HEFT and SMEFT Lagrangians relevantes para la producción $gg\to HH$. 
+\textcolor{red}{Las dos primeras secciones \ref{subsec:HEFT} and \ref{subsec:SMEFT} por tanto presentan los HEFT and SMEFT Lagrangians relevantes para la producción $gg\to HH$.
 \textit{The rest of this section is organized as follows. Sections \ref{subsec:HEFT} and \ref{subsec:SMEFT} present the HEFT and SMEFT Lagrangians relevant for \ggHH production and the corresponding parameter spaces, haciendo hincapie en la alta dimensionalidad que ambos formalismos introducen al problema. Section \ref{subsec:HEFT_SMEFT} discusses the relation between the two descriptions and the physical scenarios that motivate each of them, and Section \ref{subsec:EFT_validity} addresses the range of validity of the effective expansions, an issue of particular importance in HH searches, which derive much of their sensitivity from the high-$m_{HH}$ tail. Section \ref{subsec:multidimensionality} closes by quantifying the dimensionality of the resulting parameter spaces and motivating the need for a dedicated signal modeling strategy. The presentation follows closely the conventions of Refs.~\cite{Alasfar:2023xpc,Buchalla:2018yce,Heinrich:2023rsd}.}}
 
 \subsection{Higgs EFT}
 \label{subsec:HEFT}
 % https://arxiv.org/pdf/1212.3305
 %\paragraph{A Higgs boson outside the doublet}
-Higgs EFT provides the most general effective description, as it does not assume that the physical Higgs is part of the $SU(2)_L$ linear doublet, as postulated in the SM. The HEFT approach treats the Higgs as a generic scalar singlet, independent of the Goldstone bosons that give mass to the $W^{\pm}$ and $Z$ bosons. Under this assumption, the SM Higgs particle becomes compatible with numerous new physics scenarios, such as composite Higgs \cite{}, pseudo-Goldstone\cite{}, or dilaton models\cite{}. These models feature a strongly interacting sector at the TeV scale that generates a light scalar resonance in the low-energy spectrum, while they may correct the strength of SM couplings at lower energies, which appears promising in the absence of new resonances in LHC data.
+Higgs EFT provides the most general effective description, as it does not assume that the physical Higgs is part of the $SU(2)_L$ linear doublet, as postulated in the SM. The HEFT approach treats the Higgs as a generic scalar singlet, independent of the Goldstone bosons that give mass to the $W^{\pm}$ and $Z$ bosons. Under this assumption, the SM Higgs particle becomes compatible with numerous new physics scenarios, such as composite Higgs \cite{Kaplan:1983fs,Agashe:2004rs}, pseudo-Goldstone \cite{Kaplan:1983sm,Contino:2010mh}, or dilaton models \cite{Goldberger:2008zz,Chacko:2012sy}. These models feature a strongly interacting sector at the TeV scale that generates a light scalar resonance in the low-energy spectrum, while they may correct the strength of SM couplings at lower energies, which appears promising in the absence of new resonances in LHC data.
 
 This approach, which does not refer to a specific model, describes the three longitudinal degrees of freedom associated with the electroweak gauge bosons at low energy through the dimensionless matrix $U(x)$, which encodes the spontaneous breaking of electroweak symmetry. The fact that $U(x)$ is dimensionless enables the construction of an effective theory in which gauge symmetry is non-linearly realized. This results in Higgs couplings to fermions and gauge bosons, as well as vertices involving one or two Higgs bosons, that are not correlated in the same way as in the linear regime of the SM or SMEFT. As a consequence, the resulting Lagrangian contains interaction terms of arbitrary canonical dimension, and its expansion has to be organized by a different criterion.
 
 % conteo chiral - https://link.springer.com/article/10.1007/JHEP09(2018)057
 % Therefore, the EFT expansion is not organized according to the canonical dimension of the operators, as is the case in the SM and SMEFT, where the contribution of new operators is suppressed by powers of $1/\Lambda$. Instead, in HEFT, the effective expansion is organized in terms of chiral dimensions, such that operators are classified according to the loop order at which they can first be generated chiral dimension one is assigned to derivatives, fermion bilinears and weak couplings, while gauge and scalar fields carry chiral dimension zero~\cite{Buchalla:2018yce}. Since $U(x)$ is dimensionless and the Higgs fields cost nothing in this counting, arbitrary polynomial dependencies on $h/v$ are admitted at a given chiral order, where $h$ is the Higgs field and $v$ the electroweak vacuum expectation value, and every power of $h$ therefore enters on the same footing. This allows vertices such as $ggH$, $ggHH$, or $t\bar{t}HH$ — which in SMEFT are correlated with one another — to be governed by independent parameters in HEFT.
 
- 
+
 % https://link.springer.com/article/10.1007/JHEP09(2018)057
-The required criterion is provided by chiral counting, equivalent to an expansion in loop orders $L$, implemented by assigning chiral dimensions $d_\chi\equiv 2L+2$ to fields and weak couplings~\cite{Buchalla:2013rka,Buchalla:2013wta}: 
+The required criterion is provided by chiral counting, equivalent to an expansion in loop orders $L$, implemented by assigning chiral dimensions $d_\chi\equiv 2L+2$ to fields and weak couplings~\cite{Buchalla:2013rka,Buchalla:2013eza}:
 %
 \begin{equation}
     d_\chi(A_\mu,\varphi,h) = 0\;, \qquad
@@ -82,9 +82,9 @@ where $A_\mu$ denotes a generic gauge field, $\varphi$ the Goldstone bosons, $h$
 \label{eq:heft_expansion}
 \end{equation}
 %
-whose successive terms are denoted $\mathcal{L}_2$, $\mathcal{L}_4$ and $\mathcal{L}_6$ according to their chiral dimension, and the expansion parameter is $f^2/\Lambda^2\simeq 1/16\pi^2$, where $f$ is the scale at which the effective expansion is valid and $\Lambda\simeq4\pi f$ is the scale of the new resonances~\cite{Heinrich:2022huh}. In this framework it is important to note that the chiral order of the Lagrangian does not necessarily coincide with the perturbative order of a given process. With this power counting in place, the explicit leading-order Lagrangian $\mathcal{L}_2$ built from the SM field content and symmetries.
+whose successive terms are denoted $\mathcal{L}_2$, $\mathcal{L}_4$ and $\mathcal{L}_6$ according to their chiral dimension, and the expansion parameter is $f^2/\Lambda^2\simeq 1/16\pi^2$, where $f$ is the scale at which the effective expansion is valid and $\Lambda\simeq4\pi f$ is the scale of the new resonances~\cite{Heinrich:2022huh}. In this framework it is important to note that the chiral order of the Lagrangian does not necessarily coincide with the perturbative order of a given process. With this power counting in place, the explicit leading-order Lagrangian $\mathcal{L}_2$ can be constructed from the SM field content and symmetries.
 
-\subsubsection{The leading-order chiral Lagrangian} 
+\subsubsection{The leading-order chiral Lagrangian}
 Following the notation in~\cite{Buchalla:2018yce}, the most general Lagrangian of chiral dimension two that captures the structure of the non-linear electroweak EFT can be written as:
 \begin{equation}
 \begin{split}
@@ -114,7 +114,7 @@ whose coefficients are free parameters of the theory. Hence, the SM is recovered
 
 The structure of Equations \ref{eq:heft_L2} and \ref{eq:heft_FU} makes the role of the chiral counting explicit. Because the Higgs field carries zero chiral dimension, the infinite series $F_U(h)$ and $V(h)$ cost nothing in the counting: every power of $h$ enters at the same order, and the coefficient of each is an independent parameter. This is what allows vertices such as $ggH$ and $ggHH$, or $t\bar{t}H$ and $t\bar{t}HH$ — each pair generated in SMEFT by one and the same dimension-six operator, and therefore correlated — to be governed by independent parameters in this formulation.
 
-The formalism built on this counting is known in the literature as the non-linear chiral EW Lagrangian \cite{1,2,3,4,5,6}, while in the context of Higgs boson pair searches it is commonly referred to as HEFT\footnote{The name is not universal: some authors reserve HEFT for the heavy-top limit of the Higgs-gluon interactions and use \textit{electroweak chiral Lagrangian} for the non-linear EFT described here~\cite{Buchalla:2018yce}}
+The formalism built on this counting is known in the literature as the non-linear chiral EW Lagrangian \cite{Feruglio:1992wf,Burgess:1999ha,Grinstein:2007iv,Contino:2010mh,Alonso:2012px,Buchalla:2013rka}, while in the context of Higgs boson pair searches it is commonly referred to as HEFT\footnote{The name is not universal: some authors reserve HEFT for the heavy-top limit of the Higgs-gluon interactions and use \textit{electroweak chiral Lagrangian} for the non-linear EFT described here~\cite{Buchalla:2018yce}}
 
 % https://arxiv.org/pdf/2212.00711  - quiero añadir esta información de la escala
 %Higgs Effective Field Theory (HEFT) instead is based on an expansion in terms of loop orders,
@@ -128,24 +128,22 @@ The formalism built on this counting is known in the literature as the non-linea
 
 
 
-\subsubsection{The phenomenological Lagrangian for \ggHH}
-Therefore, this LO Lagrangian represents the most general effective description of EWSB with a light scalar singlet and non-linearly realized gauge symmetry, and provides the starting point for constructing the phenomenological Lagrangian used in HH production. Therefore, when projected onto the interactions relevant for gluon-fusion Higgs pair production, this formal structure is reduced to a set of independent effective couplings. These parameters capture all possible LO deviations in the top–Higgs sector and in the effective Higgs–gluon interactions, and correspond precisely to the HEFT-based parametrization used in experimental and phenomenological studies of Higgs pair production. Thus, restricted to the terms relevant for $gg\to HH$ production, $\mathcal{L}_2+\mathcal{L}_4$ reduces to the following effective Lagrangian:
-%
+\subsubsection{The phenomenological Lagrangian for \texorpdfstring{\ggHH}{gg → HH}}
+Therefore, this LO Lagrangian represents the most general effective description of EWSB with a light scalar singlet and non-linearly realized gauge symmetry, and provides the starting point for constructing the phenomenological Lagrangian used in HH production. When projected onto the interactions relevant for gluon-fusion Higgs pair production, this formal structure is reduced to a set of independent effective couplings. These parameters capture all possible LO deviations in the top–Higgs sector and in the effective Higgs–gluon interactions, and correspond precisely to the HEFT-based parametrization used in experimental and phenomenological studies of Higgs pair production. It should be noted that the Higgs–gluon contact terms are absent from $\mathcal{L}_2$ and first arise at one loop, i.e. in $\mathcal{L}_4$; since $gg\to HH$ is itself loop-induced, both contribute at the same order. Thus, restricted to the terms relevant for $gg\to HH$ production, $\mathcal{L}_2+\mathcal{L}_4$ reduces to the following effective Lagrangian:%
 \begin{equation}
     \mathcal{L}_{\text{HEFT}}^{\HH}
     =-m_\PQt\left(c_\PQt\frac{h}{v}+c_{2}\frac{h^2}{v^2}\right)\PAQt\PQt-c_{hhh}\frac{m_h^2}{2v}h^3+\frac{\alpha_s}{8\pi}\left(c_{\Pg}\frac{h}{v}+c_{2\Pg}\frac{h^2}{v^2}\right)G^a_{\mu\nu}G^{a,\mu\nu}.
     \label{eq:heftL}
 \end{equation}
 %
-where the first three couplings $c_t$, $c_{2}$ and $c_{hhh}$ originate from $\mathcal{L}_2$, and correspond to the coupling between Higgs boson and top quarks, two Higgs boson and top quarks, and the effective Higgs self-coupling; while the Higgs-gluon couplings $c_{g}$ and $c_{2g}$ come from $\mathcal{L}_4$ and correspond to the coupling between Higgs boson and gluons and two Higgs bosons and gluons; a loop factor has been extracted explicitly from the definition of the latter two. A point in HEFT parameter space is thus fixed by:
+where the first three couplings $c_\PQt$, $c_{2}$ and $c_{hhh}$ originate from $\mathcal{L}_2$, and correspond to the coupling between Higgs boson and top quarks, two Higgs boson and top quarks, and the effective Higgs self-coupling; while the Higgs-gluon couplings $c_{\Pg}$ and $c_{2\Pg}$ come from $\mathcal{L}_4$ and correspond to the coupling between Higgs boson and gluons and two Higgs bosons and gluons; a loop factor has been extracted explicitly from the definition of the latter two. A point in HEFT parameter space is thus fixed by:
 %
 \begin{equation}
-    \mathbf{c}^{\text{HEFT}} = \{c_{hhh},\,c_t,\,c_2,\,c_g,\,c_{2g}\}\;,
+    \mathbf{c}^{\text{HEFT}} = \{c_{hhh},\,c_\PQt,\,c_2,\,c_\Pg,\,c_{2\Pg}\}\;,
     \label{eq:HEFT_param}
 \end{equation}
 %
-In the SM, $c_t = c_{hhh} = 1$ and $c_{tt} = c_{ggh} = c_{gghh} = 0$, while in general all five may take values of $\mathcal{O}(1)$. Although the couplings themselves belong to different orders of the chiral expansion, all diagrams contributing to $gg\to HH$ are of the same chiral dimension $d_\chi = 4$, i.e. of one-loop order, since the process is loop-induced given that the $\mathcal{L}_2$ couplings enter through loops while the $\mathcal{L}_4$ ones contribute already at tree level. It is commonly to refer to the $c_t$ and $c_{hhh}$ couplings in terms of the kappa framework\footnote{The kappa framework is a subset of HEFT where only the couplings of the SM are modified by a multiplicative factor, with no new couplings introduced.}\cite{}, with $\kappa_\lambda=c_{hhh}=\lambda/\lambda^{\text{SM}}$ and $\kappa_t=c_t=y_t/y_t^\text{SM}$, where $\lambda^{\text{SM}}=m_h^2 /(2 v^2)\approx0.13$ and $y^{\text{SM}}_t=\sqrt{2}\,m_t/v\approx1$ are the SM prediction for the Higgs trilinear self-coupling and the Yukawa coupling to the top quark. These HEFT couplings and their corresponding leading order diagrams for $gg\to HH$ can be seen in Figure~\ref{fig:BSM_diagrams}. The diagrams illustrate the interplay between the LO anomalous couplings (dots) and the next-to-leading order terms (squares) at tree level.
-\textcolor{red}{revisar notaciones}
+In the SM, $c_{hhh} = c_\PQt = 1$ and $c_2 = c_\Pg = c_{2\Pg} = 0$, while in general all five may take values of $\mathcal{O}(1)$. Although the couplings themselves belong to different orders of the chiral expansion, all diagrams contributing to $gg\to HH$ are of the same chiral dimension $d_\chi = 4$, i.e. of one-loop order, since the process is loop-induced given that the $\mathcal{L}_2$ couplings enter through loops while the $\mathcal{L}_4$ ones contribute already at tree level. It is commonly to refer to the $c_{hhh}$ and $c_\PQt$ couplings in terms of the kappa framework\footnote{The kappa framework is a subset of HEFT where only the couplings of the SM are modified by a multiplicative factor, with no new couplings introduced.}\cite{LHCHiggsCrossSectionWorkingGroup:2013rie,deFlorian:2016spz}, with $\kappa_\lambda=c_{hhh}=\lambda/\lambda^{\text{SM}}$ and $\kappa_t=c_\PQt=y_t/y_t^\text{SM}$, where $\lambda^{\text{SM}}=m_h^2 /(2 v^2)\approx0.13$ and $y^{\text{SM}}_t=\sqrt{2}\,m_t/v\approx1$ are the SM prediction for the Higgs trilinear self-coupling and the Yukawa coupling to the top quark. These HEFT couplings and their corresponding leading order diagrams for $gg\to HH$ can be seen in Figure~\ref{fig:BSM_diagrams}. The diagrams illustrate the interplay between the LO anomalous couplings (dots) and the next-to-leading order terms (squares) at tree level.
 
 
 \subsubsection{NLO QCD corrections}
@@ -179,7 +177,7 @@ In this scheme, the effective expansion is organized according to the canonical 
 \label{eq:smeft_expansion}
 \end{equation}
 %
-with $\mathcal{O}_i$ operators of canonical dimension larger than four built out of the SM fields, and $C_i$ the corresponding Wilson coefficients~\cite{Heinrich:2022huh}. Dimension-five operators violate lepton number and are irrelevant for Higgs phenomenology, so the leading corrections to Higgs observables arise at dimension six. A complete and non-redundant set of dimension-six operators is provided by the Warsaw basis~\cite{Grzadkowski:2010es}, of which only a small subset contributes to $gg\to HH$ production. 
+with $\mathcal{O}_i$ operators of canonical dimension larger than four built out of the SM fields, and $C_i$ the corresponding Wilson coefficients~\cite{Heinrich:2022huh}. Dimension-five operators violate lepton number and are irrelevant for Higgs phenomenology, so the leading corrections to Higgs observables arise at dimension six. A complete and non-redundant set of dimension-six operators is provided by the Warsaw basis~\cite{Grzadkowski:2010es}, of which only a small subset contributes to $gg\to HH$ production.
 
 In contrast to the chiral expansion of Equation \ref{eq:heft_expansion}, where the Higgs field carries zero chiral dimension and could appear in arbitrary powers at given order, in this formulation, the Higgs field — as a component of the doublet — always appears through the fixed combination $\phi^\dagger\phi$, meaning that a single operator generates the vertices involving one and two Higgs bosons at once. Therefore, while HEFT treats the couplings as independent parameters, in SMEFT they are related, which makes the description much more restrictive but at the same time more predictive, since it connects HH production to single-Higgs and electroweak precision observables within a single set of parameters.
 
@@ -189,13 +187,13 @@ In contrast to the chiral expansion of Equation \ref{eq:heft_expansion}, where t
 
 % https://iopscience.iop.org/article/10.1088/1742-6596/2438/1/012153 =  https://arxiv.org/pdf/2212.00711
 
-\subsubsection{The dimension-six Lagrangian for \ggHH}
+\subsubsection{The dimension-six Lagrangian for \texorpdfstring{\ggHH}{gg → HH}}
 %
-In contrast to the non-linear case, where the complete LO Lagrangian can be expressed explicitly in Equation \ref{eq:heft_L2}, the full set of dimension-six operators is far too extensive to work with directly: in the full generality of the flavor sector it contains 2499 real parameters, a large subset of which could in principle contribute to $gg\to HH$~\cite{Heinrich:2023rsd}. In order to obtain a manageable subset, it is imposed a flavor symmetry $U(2)_q\times U(2)_u\times U(3)_d$ in the quark sector, which forbids chirality-flipping bilinears involving light quarks and sets all fermion masses and Yukawa couplings to zero with the exception of the top quark. This reflects the prominent role expected of the top quark in many BSM scenarios. Therefore, the number of relevant operators are considerably reduced by excluding those that generate only electroweak loops, as their impact is significantly smaller in this channel. 
+In contrast to the non-linear case, where the complete LO Lagrangian can be expressed explicitly in Equation \ref{eq:heft_L2}, the full set of dimension-six operators is far too extensive to work with directly: in the full generality of the flavor sector it contains 2499 real parameters, a large subset of which could in principle contribute to $gg\to HH$~\cite{Heinrich:2023rsd}. In order to obtain a manageable subset, it is imposed a flavor symmetry $U(2)_q\times U(2)_u\times U(3)_d$ in the quark sector, which forbids chirality-flipping bilinears involving light quarks and sets all fermion masses and Yukawa couplings to zero with the exception of the top quark. This reflects the prominent role expected of the top quark in many BSM scenarios. Therefore, the number of relevant operators are considerably reduced by excluding those that generate only electroweak loops, as their impact is significantly smaller in this channel.
 
 Even within this reduced set, not all operators contribute at the same order. While SMEFT is organized by canonical dimension, the perturbative structure introduces an additional hierarchy linked to loop suppression factors. Thus, operators can be classified into two categories: those that can already be generated at tree level in the matching to the UV theory, and those that are necessarily loop-generated and therefore carry an implicit factor $L=(16\pi^2)^{-1}$. In this expansion, contributions without loop suppression are termed as \textit{leading}, while those that include additional $L=(16\pi^2)^{-1}$  factors are classified as \textit{subleading}~\cite{Heinrich:2023rsd}.
 
-The dimension-six SMEFT Lagrangian is typically given in the so-called Warsaw basis~\cite{Graz}, so that the leading contribution to $gg\to HH$ consists of five operators~\cite{Heinrich:2022huh}:
+The dimension-six SMEFT Lagrangian is typically given in the so-called Warsaw basis~\cite{Grzadkowski:2010es}, so that the leading contribution to $gg\to HH$ consists of five operators~\cite{Heinrich:2022huh}:
 %
 \begin{equation}
 \begin{split}
@@ -210,7 +208,7 @@ The dimension-six SMEFT Lagrangian is typically given in the so-called Warsaw ba
 \label{eq:smeft_lead}
 \end{equation}
 %
-where $\tilde{\phi}=i\sigma_2\phi^*$ is the charge conjugate of the Higgs doublet. Here, the first three coefficients modify the Higgs kinetic term and the scalar potential, and hence the trilinear self-coupling; $c_{\PQt\PH}$ modifies the top Yukawa interaction; and $c_{\PH G}$ generates a contact interaction between the Higgs doublet and two gluons. 
+where $\tilde{\phi}=i\sigma_2\phi^*$ is the charge conjugate of the Higgs doublet. Here, the first three coefficients modify the Higgs kinetic term and the scalar potential, and hence the trilinear self-coupling; $c_{\PQt\PH}$ modifies the top Yukawa interaction; and $c_{\PH G}$ generates a contact interaction between the Higgs doublet and two gluons.
 
 While the five operators in Eq.~\ref{eq:smeft_lead} capture the leading SMEFT effects in weakly coupled UV completions where loop-generated structures are suppressed, in strongly coupled scenarios it is possible to relax this assumption to allow for additional contributions. Therefore, loop-generated operators can make sizeable contributions in more general BSM scenarios, such as those with strong dynamics or heavy fermionic partners. This is particularly the case for the chromomagnetic dipole and the four-top interactions, which appear at the next order in the loop hierarchy and can be equally relevant in gluon fusion di-Higgs production in the aforementioned scenarios, populating a well-defined subset of the Warsaw basis. Therefore, their inclusion provide a more comprehensive and robust parameterization of the SMEFT effets relevant for Higgs pair production. Furthermore, these operators mix with the leading terms under RGE evolution, so their impact can be amplified at low scales if they are present in the UV. To account for these possibilities, and following ~\cite{Heinrich:2023rsd}, these contributions enter at subleading order according to the previous classification:
 %
@@ -265,10 +263,10 @@ After identifying the nine independent SMEFT effective parameters, the next logi
 
 \subsection{Translating between HEFT and SMEFT}
 \label{subsec:HEFT_SMEFT}
-% 
+%
 The two descriptions presented above are not independent alternatives, but rather complementary. In this sense, the differences in their respective approaches are reflected in the distinct ways each description encodes correlations among Higgs interactions. Therefore, while both frameworks aim to parameterize deviations from the SM, the choice between them determines which type of UV scenario can be consistently captured and, consequently, the physical significance of experimental results expressed in terms of those parameters. It is thus essential to understand not only the applicability of each formalism separately — which will be covered in the Section \ref{subsec:EFT_validity} — but also the relationship between the two and the extent to which that relationship can be trusted. This is why it is particularly informative to translate between the two descriptions.
 
-The qualitative statement of these relationships is based on the fact that HEFT makes no assumptions about how the observed scalar is embedded in the EWSB sector; therefore, any SMEFT Lagrangian can be rewritten in terms of the HEFT formalism. In this manner, SMEFT can be regarded as a subset of HEFT that emulates the SM structure. The most direct way to make this connection explicit is to construct the dictionary between the two sets of parameters, yielding a set of concrete relations between couplings that shows exactly which direction in HEFT space are accessible to the linear realization and which lie outside its reach. 
+The qualitative statement of these relationships is based on the fact that HEFT makes no assumptions about how the observed scalar is embedded in the EWSB sector; therefore, any SMEFT Lagrangian can be rewritten in terms of the HEFT formalism. In this manner, SMEFT can be regarded as a subset of HEFT that emulates the SM structure. The most direct way to make this connection explicit is to construct the dictionary between the two sets of parameters, yielding a set of concrete relations between couplings that shows exactly which direction in HEFT space are accessible to the linear realization and which lie outside its reach.
 
 To obtain the translation, the Higgs doublet in Eq. \ref{eq:smeft_lead} is expanded around its vacuum expectation value, and applying the field redefinition
 %
@@ -312,9 +310,9 @@ Several conclusions can be drawn from Table \ref{tab:heft_smeft}. The first nota
 \label{eq:smeft_gluon_relation}
 \end{equation}
 %
-so that in HEFT these two parameters are completely independent, whereas in SMEFT, at leading order, their ratio is fixed, so the image of the SMEFT parameter space is four-dimensional at LO. The second feature that can be gleaned from the correlations shown in the Table is that a variation in a single Wilson coefficient does not correspond to a variation in a single HEFT coupling, but rather to a displacement along a fixed direction involving several of them at once. This has practical implications for phenomenological fits, since a bound on an individual Wilson coefficient constrains a combination of anomalous couplings rather than any one of them in isolation. 
+so that in HEFT these two parameters are completely independent, whereas in SMEFT, at leading order, their ratio is fixed, so the image of the SMEFT parameter space is four-dimensional at LO. The second feature that can be gleaned from the correlations shown in the Table is that a variation in a single Wilson coefficient does not correspond to a variation in a single HEFT coupling, but rather to a displacement along a fixed direction involving several of them at once. This has practical implications for phenomenological fits, since a bound on an individual Wilson coefficient constrains a combination of anomalous couplings rather than any one of them in isolation.
 
-This can be seen in the diagram of Fig. \ref{fig:smeft_vertices}, which shows a clear visual representation of the correspondence between the five $gg\to HH$ interaction vertices in Fig. \ref{fig:BSM_diagrams} and each leading Wilson coefficient. Therefore, the figure illustrates the structure more directly: the two coefficients acting in the top sector $c_{\PQt\PH}$ and $c_{\PH kin}$, both contribute to the $\PQt\PAQt\PH$ and $\PQt\PAQt\PH\PH$ vertices at once, so that the contact interaction — which in HEFT is independently parameterized by $c_2$ — cannot be varied without simultaneously changing the Yukawa coupling; the trilinear vertex receives contributions from 
+This can be seen in the diagram of Fig. \ref{fig:smeft_vertices}, which shows a clear visual representation of the correspondence between the five $gg\to HH$ interaction vertices in Fig. \ref{fig:BSM_diagrams} and each leading Wilson coefficient. Therefore, the figure illustrates the structure more directly: the two coefficients acting in the top sector $c_{\PQt\PH}$ and $c_{\PH kin}$, both contribute to the $\PQt\PAQt\PH$ and $\PQt\PAQt\PH\PH$ vertices at once, so that the contact interaction — which in HEFT is independently parameterized by $c_2$ — cannot be varied without simultaneously changing the Yukawa coupling; the trilinear vertex receives contributions from
 $c_\PH$ and from $c_{\PH kin}$, which is therefore the only coefficient spanning three columns; and the final row reveals that $c_{\PH G}$ affects only the two gluonic vertices, which is the source of the relation depicted in Eq. \ref{eq:smeft_gluon_relation}.  Read column by column instead, it becomes apparent that no column is reached by a coefficient of its own. Every vertex shares its parametrization with at least one other, which is precisely what distinguishes the linear description from the non-linear one.
 %
 \begin{figure}
@@ -330,11 +328,11 @@ $c_\PH$ and from $c_{\PH kin}$, which is therefore the only coefficient spanning
 %
 It is crucial to note that a translation performed at the Lagrange level must be applied with particular care, as the two counting schemes are based on different assumptions. Therefore, while the HEFT coefficients do not exhibit explicit dependence on the $\Lambda$ scale, the validity of the SMEFT expansion is contingent upon the scale being sufficiently high compared to the relevant energies of the process. As a result, a point in the HEFT parameter space that satisfies all current experimental constraints may correspond to values of the Wilson coefficients for which the SMEFT expansion is no longer valid. In this sense, Table \ref{tab:heft_smeft} should be interpreted as a dictionary mapping between parameterizations and not as a license to move freely between them. The scope of applicability of each of these parameterizations will be discussed in more detail in the followin section \ref{subsec:EFT_validity}.
 
-At this stage, the selection of a framework becomes phenomenologically relevant insofar as HEFT and SMEFT describe genuinely different physical hypotheses. Higgs boson pair production is one of the few processes with the actual ability to distinguish between these two, since the couplings involving two Higgs bosons — $c_2$ and $c_{2\Pg}$ — do not contribute to the single-Higgs observables at leading order. In HEFT, however, they remain independent parameters, so Higgs pair production is the only process that can test them directly. Conversely, in SMEFT, these parameters are determined by the coefficients that also fix the $\PH\PQt\PAQt$ and $\PH\Pg\Pg$ vertices, which are strongly constrained by single-Higgs data; therefore, any constraints obtained from other processes are automatically propagated to them. Consequently, the same measured distribution corresponds to different regions of parameter space and supports different physical conclusions, depending on which description is adopted. This reveals the complementarity of both descriptions, which capture different physical hypotheses and must be evaluated in parallel when interpreting results from double-Higgs production. 
+At this stage, the selection of a framework becomes phenomenologically relevant insofar as HEFT and SMEFT describe genuinely different physical hypotheses. Higgs boson pair production is one of the few processes with the actual ability to distinguish between these two, since the couplings involving two Higgs bosons — $c_2$ and $c_{2\Pg}$ — do not contribute to the single-Higgs observables at leading order. In HEFT, however, they remain independent parameters, so Higgs pair production is the only process that can test them directly. Conversely, in SMEFT, these parameters are determined by the coefficients that also fix the $\PH\PQt\PAQt$ and $\PH\Pg\Pg$ vertices, which are strongly constrained by single-Higgs data; therefore, any constraints obtained from other processes are automatically propagated to them. Consequently, the same measured distribution corresponds to different regions of parameter space and supports different physical conclusions, depending on which description is adopted. This reveals the complementarity of both descriptions, which capture different physical hypotheses and must be evaluated in parallel when interpreting results from double-Higgs production.
 
 \subsection{Range of validity of the effective descriptions}
 \label{subsec:EFT_validity}
-% 
+%
 Once the translation between the two frameworks has been established, and given that the same HH distribution leads to different interpretations in each framework, it is necessary to establish the domain of applicability for each EFT within which the translation between parameterizations is meaningful. An effective description is only predictive within the energy range for which its expansion converges, and that range is defined differently for each of the frameworks introduced.
 
 In SMEFT, the validity of the description is determined by the physical scale that governs the effective expansion. Thus, the series in $1/\Lambda$ is meaningful only as long as
@@ -343,13 +341,13 @@ In SMEFT, the validity of the description is determined by the physical scale th
     \frac{c_i\,E^2}{\Lambda^2} \ll 1\;,
 \label{eq:eft_validity}
 \end{equation}
-where $E$ is the characteristic energy of the process. 
+where $E$ is the characteristic energy of the process.
 
 In HEFT, on the other hand, the expansion parameter is the loop factor $f^2/\Lambda^2\simeq1/16\pi^2$ from Equation \ref{eq:heft_expansion}, so there is no physical scale against which to compare the energies of the process; rather, its validity depends on the deviations in the Higgs couplings constituting the dominant effect of new physics in the electroweak regime. While this is an unproven assumption, it is well-supported by the current experimental situation, since the couplings of the Higgs boson are still known with a precision far below that achieved in the electroweak gauge sector (see Section \ref{subsec:H_phenomenology}) and, therefore, sizeable deviations in the Higgs sector alone cannot be ruled out. Additionally, both prescriptions are bounded by unitarity constraints, which restrict the maximum size of the effective couplings and delimit the energy range in which the theory can be used consistently.
 
 From this perspective, in HEFT the initial hypothesis does not translate into any parameters that need to be set, whereas in SMEFT, taking validity into account leads to operational decisions. In this context, the Higgs boson pair production process is particularly delicate. First, the relevant scale of the process is the invariant mass of the Higgs pair, so the criterion in equation \ref{eq:eft_validity} reads as $c_i\,\mHH^2/\Lambda^2\ll1$; that is, the validity criterion is evaluated in the regime of high values of $m_{HH}$. However, the high-$\mHH$ tail is precisely where non-resonant searches derive much of their sensitivity to anomalous couplings; thus, keeping the theory within its domain of applicability conflicts directly with the need to explore the most informative kinematic region. On the other hand, as discussed throughout this chapter, the $gg\to HH$ process is dominated by delicate cancellations between the box and triangle topologies, such that small differences in the treatment of the Wilson coefficients can have relatively large effects, particularly in differential distributions.
 
-As shown in Equation \ref{eq:eft_validity}, SMEFT predictions are directly linked to the scale parameter $\Lambda$ and not solely on the Wilson coefficients. This means that, for a specific value of $c_i$, the shape of the distribution $m_{HH}$ varies with $\Lambda$, and the SM shape is always recovered in the limit of large $\Lambda$, since the deformation of the SM parameter space becomes arbitrarily small. Consequently, the interpretability of results regarding the sensitivity of an analysis to a given set of Wilson coefficients requires specifying the assumed value of $\Labmda$. This fragility of the SMEFT prediction is further accentuated when considering the truncation of the series, discussed in Section \ref{subsec:SMEFT}. Thus, if the EFT is within its domain of validity, the different truncation options should produce consistent results; otherwise, negative cross sections may arise in large regions of parameter space beyond the reach of the expansion. This serve to underscore the cautionary note made in Section \ref{subsec:HEFT_SMEFT} regarding the dictionary in Table \ref{tab:heft_smeft}. Given the substantial differences between the two formalisms, a point in the HEFT parameter space may be consistent with all the constraints and, even so, result in values of the Wilson coefficients for which Equation \ref{eq:eft_validity} fails.
+As shown in Equation \ref{eq:eft_validity}, SMEFT predictions are directly linked to the scale parameter $\Lambda$ and not solely on the Wilson coefficients. This means that, for a specific value of $c_i$, the shape of the distribution $m_{HH}$ varies with $\Lambda$, and the SM shape is always recovered in the limit of large $\Lambda$, since the deformation of the SM parameter space becomes arbitrarily small. Consequently, the interpretability of results regarding the sensitivity of an analysis to a given set of Wilson coefficients requires specifying the assumed value of $\Lambda$. This fragility of the SMEFT prediction is further accentuated when considering the truncation of the series, discussed in Section \ref{subsec:SMEFT}. Thus, if the EFT is within its domain of validity, the different truncation options should produce consistent results; otherwise, negative cross sections may arise in large regions of parameter space beyond the reach of the expansion. This serve to underscore the cautionary note made in Section \ref{subsec:HEFT_SMEFT} regarding the dictionary in Table \ref{tab:heft_smeft}. Given the substantial differences between the two formalisms, a point in the HEFT parameter space may be consistent with all the constraints and, even so, result in values of the Wilson coefficients for which Equation \ref{eq:eft_validity} fails.
 
 The aforementioned considerations directly impact experimental practice. The usual experimental response to Equation \ref{eq:eft_validity} is to restrict the region of phase space considered in the interpretation, by clipping events above a certain threshold for $m_{HH}$. This procedure, commonly referred to as \textit{clipping}, ensures that the region used satisfies the validity criterion for the assumed $\Lambda$, but at the cost of reduced sensitivity.
 
@@ -366,7 +364,7 @@ The primary challenge arises from the high dimensionality inherent in these desc
 
 On the other hand, as demonstrated throughout this chapter, the amplitude of $gg\to HH$ is influenced by topologies that interfere non-trivially, and the resulting $m_{HH}$ distributions differ both in normalization and in shape. Depending on the region of parameter space, the spectrum may take on a wide variety of forms: from a pronounced dip at the invariant mass where the leading-order amplitude nearly cancels, to a strong enhancement in the low-$m_{HH}$ region driven by a large value of the trilinear coupling, or the characteristic double-peak structure already illustrated in Figure \ref{fig:mHH_kl}. These deviations correspond to distinct effective signals, with different selection efficiencies and different responses of the multivariate discriminants on which the analysis relies. Therefore, to scan this space, it is not sufficient to predict the rate at a single point; rather, a full differential prediction, propagated throughout the entire analysis chain, is necessary.
 
-To address the internal complexity of the EFT space, specific strategies are required. A common response to this situation has been to replace the continuum of predictions with a discrete set of representative points. This is exemplified by cluster analyses of the parameter space, partitioning it into regions whose members share a characteristic $m_{HH}$ shape and selecting a benchmark point for each of them~\cite{Carvalho:2015ttv,Carvalho:2016kzk}. This approach has been widely used and, and while practical, it faces limitations given that a discrete set of points yields a discrete set of results: it does not produce exclusion contours, cannot be profiled over, and does not allow the combination of channels or production modes in a common parameter space.
+To address the internal complexity of the EFT space, specific strategies are required. A common response to this situation has been to replace the continuum of predictions with a discrete set of representative points. This is exemplified by cluster analyses of the parameter space, partitioning it into regions whose members share a characteristic $m_{HH}$ shape and selecting a benchmark point for each of them~\cite{Carvalho:2015ttv,Carvalho:2016rys}. This approach has been widely used and, and while practical, it faces limitations given that a discrete set of points yields a discrete set of results: it does not produce exclusion contours, cannot be profiled over, and does not allow the combination of channels or production modes in a common parameter space.
 
 This final point is of the utmost importance when proposing solutions to address the problem. The likelihood fit required for statistical interpretation in an experimental search is constructed using inference tools that require the signal to be expressed as a continuous function of the parameters to be constrained. Therefore, the solution cannot rely on a set of simulated points. Instead, a prediction of the full differential signal is required for any point in the EFT parameter space, which should be obtained at an acceptable computational cost that does not depend on the density of the scan. Overcoming this practical challenge of interpreting $gg\to HH$ in order to provide a reliable differential prediction at any point in EFT space is the purpose of the signal modeling techniques introduced in the next Section \ref{sec:Modeling}.
 
@@ -529,23 +527,23 @@ techniques discussed in Section \ref{sec:modeling}. ?????
 
 SMEFT - revisar overleaf reweighting
 
-En la jerarquía adoptada aquí, los operadores leading —generados a nivel árbol en el matching UV— pueden contribuir tanto lineal como cuadráticamente a la sección eficaz, mientras que los operadores subleading, suprimidos por un factor 
+En la jerarquía adoptada aquí, los operadores leading —generados a nivel árbol en el matching UV— pueden contribuir tanto lineal como cuadráticamente a la sección eficaz, mientras que los operadores subleading, suprimidos por un factor
 1
 /
 16
 ��
 2
-, sólo se incluyen a nivel lineal a través de su interferencia con la parte leading. En consecuencia, el término 
+, sólo se incluyen a nivel lineal a través de su interferencia con la parte leading. En consecuencia, el término
 ∣
 ��
 sublead
 dim6
 ∣
 2
- se descarta, en coherencia con el orden de precisión considerado en Ref.~\cite{Heinrich:2023rsd}. 
+ se descarta, en coherencia con el orden de precisión considerado en Ref.~\cite{Heinrich:2023rsd}.
 
- 
-\subsection{The problem} 
+
+\subsection{The problem}
 para poner límites hay que dar a los tools de inferencia (Combine) un modelo continuo de la señal; simular por punto es inviable; además el coste no es solo generación, es reconstrucción + toda la cadena de análisis.
 
 \subsection{The underlying physical model}
@@ -572,14 +570,14 @@ parameters and effective couplings after EWSB.
 
 \subsection{Generator-level reweighting}
 el módulo de reweighting de MG5; uso actual (qqHH, VHH, ttHH, HHH); coste y limitaciones. - model-agnostic
- 
+
 Morphing techniques
 \subsection{Event-level reweighting}
 el estándar histórico en ggHH: pesos a partir de variables a nivel generador ($m_{HH}$, $\cos\theta^*$); cómo se combina la parametrización LO con la normalización N(N)LO; limitaciones (binning, precisión LO, dependencia de la muestra de referencia, dilución estadística).
 > description and experimental challenges
 > current use and evolution
 
-Cadamuro, Ingebretsen Carlson, Sjölin, Di-Higgs and Effective Field Theory: Signal Reweighting Beyond $m_{hh}$ 
+Cadamuro, Ingebretsen Carlson, Sjölin, Di-Higgs and Effective Field Theory: Signal Reweighting Beyond $m_{hh}$
 
 \subsection{Matrix inversion method}
 formalismo: $\sigma(\vec{c}) = \sum_i w_i(\vec{c}),\sigma_i$ con la matriz de puntos base invertible; se aplica a nivel de análisis (después de selección y del discriminante ML), no evento a evento; ventajas en coste de procesado.
@@ -600,7 +598,7 @@ construcción de la base para el espacio HEFT de 5 parámetros y su restricción
 \subsection{Closure and validation}
 comparación contra muestras simuladas directamente, en distribuciones inclusivas y a nivel de análisis.
 
-\subsection{Performance in a realistic analysis - section o subsection? - depende de si tengo 4b, bbgg, bbtt} 
+\subsection{Performance in a realistic analysis - section o subsection? - depende de si tengo 4b, bbgg, bbtt}
  aplicación al bb$\tau\tau$ de los Caps. VI–VII: impacto en las distribuciones finales y en los límites.
 
 \subsection{Summary and outlook / going further?}
@@ -609,7 +607,7 @@ extensión a otros modos de producción, NLO, uso en combinaciones.
 PAPERS
 EFT descriptions of Higgs boson pair production: L. Alasfar et al., Effective Field Theory descriptions of Higgs boson pair production, SciPost434 Phys. Comm. Rep. 2024, 2 (2024), doi:10.21468/SciPostPhysCommRep.2, 2304.01968.
 
-On the reinterpretations of non-resonant searches for Higgs boson pairs: https://link.springer.com/article/10.1007/JHEP02(2021)049#preview
+On the reinterpretations of non-resonant searches for Higgs boson pairs: https://link.springer.com/article/10.1007/JHEP02(2021)049\#preview
 
 STRUCTURE
 EFT descriptions

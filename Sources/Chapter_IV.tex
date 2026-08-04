@@ -1,4 +1,4 @@
-\chapter{The $\tau_h$ identification algorithms and their performance}
+\chapter{The \texorpdfstring{$\tau_h$}{τh} identification algorithms and their performance}
 \label{ch:Tau}
 
 
@@ -9,7 +9,7 @@ In CMS, the reconstruction and identification of hadronic $\tau$ leptons constit
 This chapter provides a detailed examination of the identification of hadronic $\tau$ leptons. Section \ref{sec:Tau_MisID} lays the groundwork and emphasizes the challenges associated with distinguishing genuine $\tau_h$ candidates from background objects. Section \ref{sec:DeepTau2.5} details the $\tau_h$ identification algorithm deployed for the early Run-3 data-taking period (\textsc{DeepTau v2.5}), and covers alternative identification strategies currently under study. Finally, in Section \ref{sec:Tau_validation}, the performance of the presented techniques is validated using Run-3 data. 
 
 
-\section{$\tau_h$ reconstruction and sources of misidentification}
+\section{\texorpdfstring{$\tau_h$}{τh} reconstruction and sources of misidentification}
 \label{sec:Tau_MisID}
 
 \noindent The $\tau$ leptons produced at the primary interaction point — known as 'prompt' $\tau$ particles — generally decay before reaching the innermost layers of the CMS detector due to their short lifetime. Their reconstruction therefore relies entirely on their visible decay products. $\tau$ leptons that decay leptonically are reconstructed following the standard procedures for prompt electrons and muons, and their identification is inferred from the global event topology (see Section \ref{subsec:Finalstate}). In contrast, isolated hadronically decaying $\tau$ leptons ($\tau_h$) are reconstructed using the Hadron-Plus-Strips (HPS) algorithm, which selects combinations of one or three charged tracks, together with electromagnetic energy deposits associated with neutral pions, to form a $\tau_h$ candidate. Neutral pions are reconstructed as \textit{strips}, i.e. clusters of electrons and photons with a dynamic size in $\eta-\phi$ plane, designed to capture the collimated decay products of $\pi^0\rightarrow\gamma\gamma$. Based on the number of charged hadrons (referred to as \textit{prongs}) and the presence of neutral pions, HPS assigns different $\tau$ lepton decay modes according to the hadronic decays listed in Table \ref{tab:tau_decays}. In CMS analysis, these decay modes are encoded using the standard HPS notation according to the number of prongs ($n_{prongs}$) and strips ($n_{strips}$):
@@ -61,7 +61,7 @@ These effects reflect the challenges associated with the complex topology of had
 
 
 
-\section{The $\tau_h$ identification algorithms}
+\section{The \texorpdfstring{$\tau_h$}{τh} identification algorithms}
 \label{sec:DeepTau2.5}
 
 \noindent Although the HPS algorithm provides an efficient reconstruction of hadronic $\tau$ candidates, it has been established that it faces intrinsic limitations, such as significant contamination from non-$\tau$ objects and misreconstruction of decay modes. Therefore, a dedicated identification approach is imperative to enhance the purity of the selected $\tau_h$ candidates. The challenge of discriminating between these candidates, given the large number of correlated observables involved in this type of task, has led to the adoption of advanced deep learning techniques capable of fully exploiting the available information and ensure robust performance across different data-taking conditions. The continuous development at CMS has therefore resulted in increasingly sophisticated identification algorithms that significantly surpass the initial approaches adopted during the first two LHC runs.
@@ -162,7 +162,7 @@ In summary, the use and continuous development of deep-learning algorithms has p
 
 
 
-\subsection{Alternative strategies for $\tau_h$ identification}
+\subsection{Alternative strategies for \texorpdfstring{$\tau_h$}{τh} identification}
 \label{subsec:PNet}
 \noindent The excellent performance delivered by the \textsc{DeepTau} algorithm is a compelling example of the potential benefits of leveraging advances in machine learning for object identification. In view of the expanding development of innovative techniques that are supported by increasingly sophisticated architectures, the CMS experiment has achieve notable advancements in the identification of hadronically decaying $\tau$. In recent years, new taggers based on modern architectures have emerged as part of a \textit{unified jet tagging} philosophy. The concept underlying this approach involves the simultaneous classification of the origin of the jet, whereby the $\tau$ candidate is treated as a jet, integrating the challenge of genuine $\tau_h$ identification with the classification of jet flavor. This strategy offers several benefits, including enhanced management of correlations between the identification of different objects and rejecting specific sources of contamination, as well as optimized use of computing resources through the utilization of a single, versatile algorithm.
 
@@ -192,7 +192,7 @@ In this context, the $\tau_h$ is treated as simply another jet, and the network 
 
 The application of the aforementioned strategies to the challenge of $\tau_h$ identification enables the assessment of the extent to which these techniques can offer performance that is competitive with or complementary to that of \textsc{DeepTau}, as discussed further in the following Section \ref{subsec:tau_IDcomparison}. 
 
-\subsection{Comparison between $\tau_h$ identification algorithms}
+\subsection{Comparison between \texorpdfstring{$\tau_h$}{τh} identification algorithms}
 \label{subsec:tau_IDcomparison}
 %DP2025-073 
 To understand the complementarity of the described algorithms for identifying hadronic $\tau$ leptons based on advanced ML techniques, the subsequent section presents a comparison of the performance of each of them: \textsc{DeepTau v2.5}, \textsc{PNet} and \textsc{UParT v2}. The comparison will be made in terms of efficiency in the reconstruction and identification of genuine $\tau_h$ versus the ability to reject misidentified objects, as well as the accuracy in classifying $\tau$ decay modes, with the aim of discerning the strenghts of each algorithm and understanding how they complement one another. 
@@ -262,7 +262,7 @@ of candidates identified exclusively by each algorithm or concurrently by multip
 
 Finally, it should be noted that while this text has focused on standard CMS strategies, additional algorithms have been developed to target topologies not adequately covered by standard reconstruction and identification techniques. These additional algorithms are briefly mentioned below: \textsc{DisTau} \textcolor{red}{ref}, used to identify $\tau_h$ candidates that have been produced displaced from the primary interaction vertex; \textsc{Boosted DeepTau} \textcolor{red}{ref}, specially designed for $\tau_h$ candidates that have been produced as part of a boosted $\tau\tau$ system; and a modified version of HPS algorithm tailored to low-$p_T$ $\tau_h$ candidates \textcolor{red}{ref}, accompanied by a dedicated energy flow neural network called \textsc{TauNet} \textcolor{red}{ref}.
 
-\section{Performance with $\sqrt{13.6}$ TeV data}
+\section{Performance with \texorpdfstring{$\sqrt{13.6}$}{√13.6} TeV data}
 \label{sec:Tau_validation}
 
 Validating the performance of the algorithms presented for reconstructing and identifying $\tau_h$ in real data is an essential step in ensuring the reliability of any physics analysis using hadronic $\tau$ particles. Therefore, although the algorithms detailed in the previous section have been extensively optimized and evaluated in simulations, it is imperative to verify their performance in each data run conducted by CMS, and, by doing so, monitor the behavior of the techniques developed and actually used in analyses under real experimental conditions.
@@ -504,7 +504,7 @@ These plots illustrate the difference in classifier response, mass reconstructio
 \noindent Overall, the evaluation of $\tau_h$ modeling in terms of data-to-MC comparisons has confirmed the robustness of hadronic $\tau$ identification and reconstruction algorithms. To further validate the $\tau$ lepton behavior in CMS, the following section presents the consistency of data collection throughout Run-3, with the aim of addressing possible effects arising from evolving detector conditions.
 
 
-\subsection{Stability of $\tau_h$ performance in Run-3 data}
+\subsection{Stability of \texorpdfstring{$\tau_h$}{τh} performance in Run-3 data}
 \label{subsec:TES_checks}
 %presentación PPD (1): https://indico.cern.ch/event/1569864/contributions/6612866/attachments/3109869/5512492/TauPOG_2024_2025Data_PPD_2407.pdf
 %presentación PPD (2): https://docs.google.com/presentation/d/178-DORdl0GOepSjdjDzxOgDB1sgRS6_t_pinHd4K7ro/edit?slide=id.g3c670cd6792_0_1#slide=id.g3c670cd6792_0_1

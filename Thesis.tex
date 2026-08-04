@@ -59,6 +59,26 @@
 
 \KOMAoptions{DIV = 12}
 
+% Vertical spacing at the bottom of the page.
+%
+% `scrbook' is loaded with `twoside', which switches on \flushbottom: every
+% page is forced to end exactly at the bottom margin. TeX achieves that by
+% stretching whatever elastic glue the page offers, and on a text page the
+% most elastic glue is the space around the headings -- KOMA declares e.g.
+% \subsubsection with `beforeskip = -3.25ex \@plus -1ex \@minus -.2ex'. The
+% result is that the same heading gets a visibly different gap above it on
+% every page (a range of ~1.2ex, i.e. ~5pt at 11pt).
+%
+% \raggedbottom disables that: the headings always get exactly their nominal
+% skip and the leftover space is collected at the foot of the page instead.
+% The trade-off is that pages no longer all end at the same height.
+%
+% To go back to aligned page bottoms, comment out the line below; to keep
+% them aligned *and* stabilise the headings, use \RedeclareSectionCommand
+% to drop the \@plus/\@minus components of the section skips instead.
+
+\raggedbottom
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Hyperlinks & bookmarks
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
