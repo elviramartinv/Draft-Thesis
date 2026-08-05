@@ -166,7 +166,7 @@ Section \ref{subsec:physical_model}.
 \subsection{Standard Model EFT}
 \label{subsec:SMEFT}
 %
-The SMEFT approach postis that the physical Higgs boson is retained as the fourth component of the $SU(2)_L$ doublet $\phi$, with the same quantum numbers as in the SM, and that the electroweak symmetry is realized linearly exactly as in Section \ref{subsec:BEH}. The Goldstone bosons and the physical scalar are therefore not independent objects but components of a single field, and every operator built from the field $\phi$ will necessarily affect them together. In this regard, SMEFT makes a stronger assumption than HEFT, which holds as long as the new physics is decoupled, i.e., when the heavy states of new physics obtain their mass from a mechanism unrelated to the EWSB, and therefore their effects disappear as their masses increase. In this sense, SMEFT adopts a more constrained descriptio of BSM effects in the Higgs sector, valid only for a subset of UV theories in which the low-energy limit can be obtained by decoupling the heavy physics and thus preserving the linear structure of the SM.
+The SMEFT approach postis that the physical Higgs boson is retained as the fourth component of the $SU(2)_L$ doublet $\phi$, with the same quantum numbers as in the SM, and that the electroweak symmetry is realized linearly exactly as in Section \ref{subsec:BEH}. The Goldstone bosons and the physical scalar are therefore not independent objects but components of a single field, and every operator built from the field $\phi$ will necessarily affect them together. In this regard, SMEFT makes a stronger assumption than HEFT, which holds as long as the new physics is decoupled, i.e., when the heavy states of new physics obtain their mass from a mechanism unrelated to the EWSB, and therefore their effects disappear as their masses increase. In this sense, SMEFT adopts a more constrained description of BSM effects in the Higgs sector, valid only for a subset of UV theories in which the low-energy limit can be obtained by decoupling the heavy physics and thus preserving the linear structure of the SM.
 
 In this scheme, the effective expansion is organized according to the canonical dimensions of the operators, as introduced in \textcolor{red}{Equation \ref{eq:eft_lagrangian}}, where each additional dimension is suppressed by a further power of the new physics scale $\Lambda$, so that at LO corrections:
 %
@@ -188,7 +188,7 @@ In contrast to the chiral expansion of Equation \ref{eq:heft_expansion}, where t
 % https://iopscience.iop.org/article/10.1088/1742-6596/2438/1/012153 =  https://arxiv.org/pdf/2212.00711
 
 \subsubsection{The dimension-six Lagrangian for \texorpdfstring{\ggHH}{gg → HH}}
-%
+%https://arxiv.org/pdf/2407.04747 : PHENOMENOLOGICAL RESULTS - echarle un ojo
 In contrast to the non-linear case, where the complete LO Lagrangian can be expressed explicitly in Equation \ref{eq:heft_L2}, the full set of dimension-six operators is far too extensive to work with directly: in the full generality of the flavor sector it contains 2499 real parameters, a large subset of which could in principle contribute to $gg\to HH$~\cite{Heinrich:2023rsd}. In order to obtain a manageable subset, it is imposed a flavor symmetry $U(2)_q\times U(2)_u\times U(3)_d$ in the quark sector, which forbids chirality-flipping bilinears involving light quarks and sets all fermion masses and Yukawa couplings to zero with the exception of the top quark. This reflects the prominent role expected of the top quark in many BSM scenarios. Therefore, the number of relevant operators are considerably reduced by excluding those that generate only electroweak loops, as their impact is significantly smaller in this channel.
 
 Even within this reduced set, not all operators contribute at the same order. While SMEFT is organized by canonical dimension, the perturbative structure introduces an additional hierarchy linked to loop suppression factors. Thus, operators can be classified into two categories: those that can already be generated at tree level in the matching to the UV theory, and those that are necessarily loop-generated and therefore carry an implicit factor $L=(16\pi^2)^{-1}$. In this expansion, contributions without loop suppression are termed as \textit{leading}, while those that include additional $L=(16\pi^2)^{-1}$  factors are classified as \textit{subleading}~\cite{Heinrich:2023rsd}.
@@ -371,6 +371,32 @@ This final point is of the utmost importance when proposing solutions to address
 
 \section{HH signal modeling techniques}
 \label{sec:Modeling}
+%
+As previously outlined, the two effective descriptions introduced in Section \ref{subsec:EFTs} do not provide a finite list of hypotheses to be tested, but rather a continuum of them: a five-dimensional space of independent couplings in HEFT, Equation \ref{eq:HEFT_param}, and a nine-dimensional space of Wilson coefficients in SMEFT, Equation \ref{eq:smeft_params}, on top of which the truncation scheme, the reference scale $\Lambda$ and the clipping threshold discussed in Section \ref{subsec:EFT_validity} must still be fixed. It has been demonstrated that the experimental interpretation of $gg\to HH$ searches in terms of EFT frameworks is highly influenced by the dimensionality of the parameter space. 
+
+This places effective descriptions in a challenging position from an experimental standpoint: to derive limits, the likelihood fit requires knowing the expected signal yield in every analysis category and every bin of the final discriminant as a continuous function of the EFT parameters to be constrained. This cannot be obtained by simulating each point independently: each sample must be generated, passed through the full detector simulation, reconstructed, and processed through the entire analysis chain up to the evaluation of the multivariate discriminants. Repeating this for a scan whose density grows exponentially with the dimension of the parameter space is not feasible. 
+
+%An initial solution to this problem could involve reweighting at the generator level, where the matrix element is reevaluated event by event at each target point. However, this method requires the matrix elements to be available and affordable to evaluate. for every event at every point of a dense scan. This approach is exact and widely used in tree-level HH processes, but in $gg\to HH$, which is loop‑induced already at LO, the cost of recomputing the full $m_\PQt$-dependent amplitude for each event renders it prohibitive.
+
+
+Furthermore, the interference structure of the $gg\to HH$ process causes the signal shape, selection efficiency, and the response of the discriminants to change qualitatively across the EFT space. As a result, what must be provided at each point in EFT space is not a rate, but a complete differential prediction. This precludes approximations based on simple rescaling, so the problem of multidimensionality becomes a modeling problem: how to provide a reliable differential prediction throughout the EFT space without resorting to exhaustive scans.
+
+
+
+Despite these difficulties, the effective frameworks share a structural property that makes the problem tractable. The HEFT and SMEFT Lagrangians, presented in equations \ref{eq:heftL}, \ref{eq:smeft_lead}, and \ref{eq:smeft_sublead}, the parameters of the theory — the HEFT couplings and the SMEFT Wilson coefficients — appear as constant coefficients multiplying a fixed set of local operators. Each Feynman diagram contributing to $gg\to HH$ is therefore associated with a definite monomial in those parameters, multiplied by a form factor that depends only on the kinematics of the process and on SM quantities such as $m_\PQt$, $\alpha_s$, and the collision energy. The amplitude is thus a linear combination of a finite
+set of parameter-independent form factors, and its square — hence the cross section — a polynomial in the parameters with a finite number of terms, each of them the product of a known monomial and a coefficient that carries all the dynamics but none of the parameter dependence. This is not an approximation but an identity: the parametrization can be shown to be exact at leading order~\cite{Carvalho:2016rys}, with the number of independent terms growing with the perturbative order~\cite{Buchalla:2018yce}. It is, in fact, the structure already encountered at the level of the total rate in Equation \ref{eq:RHH}, where the
+fifteen leading-order combinations $A_1,\dots,A_{15}$ appear. Crucially, the separation between the parameter-dependent and the parameter-independent parts takes place at the level of the matrix element, and therefore holds in every region of phase space independently: the same finite set of combinations describes any differential distribution, provided its coefficients are determined bin by bin. This analytical parametrization of the differential cross section is the common basis on which the modeling techniques used in HH searches are built. 
+
+
+The modeling techniques based on this analytical parametrization of the cross section mainly differ in the stage along the analysis chain at which the factorization is exploited. The most direct use is to determine the coefficients once and for all, by fitting the parametrization to a set of simulated samples, and then to employ the resulting polynomial to assign a weight to every event of a single reference sample: the ratio between the polynomial evaluated at the target point and the same polynomial evaluated at the reference point, in the bin where the event falls. This technique, known as \textit{event-level reweighting} (ELR), allows one sample to reproduce the prediction at any point of the parameter space, and the reweighted sample can then be used to build any observable of interest, and not only those used to derive the parametrization. Its cost, however, is that of a full pass over the event
+sample for every point evaluated, since the weights are assigned event by event. Taking it a step further, the \textit{matrix inversion method} exploits the factorization one stage further down the analysis chain: since the cross section at any point is a linear combination of a finite number of terms, the prediction can be expressed as a linear combination $\sigma(\mathbf{c}) = \sum_i w_i(\mathbf{c})\,\sigma_i$ over a reduced set of basis points, whose weights are obtained by inverting the matrix that relates them. The combination is performed directly over the final distributions rather than over individual events, so that the analysis chain is traversed only once per basis point and the cost of scanning no longer depends on the number of points evaluated.
+
+%There are several modeling techniques based on this analytical parameterization of the cross section, and their main difference lies in the stage along the analysis chain at which the factorization is exploited. One of the strategies adopted involves assigning a weight to be applied to each event in a single simulated sample, so that the prediction corresponding to any other point in the parameter space can be reproduced. In this technique, known as \textit{event-level reweighting}, the weight is obtained directly from the parameterization of the cross section, evaluated over a reduced set of variables at the generator level, thereby reducing the cost per point required to cover the parameter space using a single sample. However, this method operates on a per-event basis, which requires traversing the entire sample for each evaluated point. Taking it a step further, the so-called matrix inversion method is developed, exploiting the factorization one step further down the analysis chain. The idea behind this method is to express the prediction as a linear combination $\sigma(\mathbf{c}) = \sum_i w_i(\mathbf{c})\,\sigma_i$ over a reduced set of basis points, whose weights are obtained by inverting the matrix that relates them. In this way, it is possible to perform the combination directly over the final distributions, rather than over individual events, so that the analysis chain is traversed only once per basis point and the cost of scanning the space no longer depends on the number of points evaluated.
+
+However, both methods present certain limitations that can lead to weaknesses and unreliable predictions if they are not addressed optimally. Throughout this section, the caveats inherent to each method and the way to address them will be discussed. It is also noteworthy that the focus is on the matrix inversion method, with event-level reweighting regarded as a necessary instrument for extending the matrix inversion method. In this sense, the event-level reweighting will serve as very useful tool for tackling the problem through machine-learning-based optimization, allowing for the extension of the scope of the matrix inversion method beyond what has been published to date, which constitutes the main contribution in this thesis in this area.
+
+The remainder of this section is organized accordingly. Section \ref{subsec:physical_model} derives the physical model underlying the factorization of the cross section and its extension to differential distributions. Section \ref{subsec:ELR} presents the event-level reweighting formulation and its fundamental role in the optimization of the matrix inversion method. Finally, Section \ref{subsec:matrix_inversion} develops the matrix inversion method, its formalism and the numerical conditions its basis must satisfy, which constitute the starting point for the application presented in Section \ref{sec:full_model}.
+
 \paragraph{Parametrization of the cross section}
 
 SMEFT
@@ -526,32 +552,283 @@ techniques discussed in Section \ref{sec:modeling}. ?????
 
 
 
-SMEFT - revisar overleaf reweighting
-
-En la jerarquía adoptada aquí, los operadores leading —generados a nivel árbol en el matching UV— pueden contribuir tanto lineal como cuadráticamente a la sección eficaz, mientras que los operadores subleading, suprimidos por un factor
-1
-/
-16
-��
-2
-, sólo se incluyen a nivel lineal a través de su interferencia con la parte leading. En consecuencia, el término
-∣
-��
-sublead
-dim6
-∣
-2
- se descarta, en coherencia con el orden de precisión considerado en Ref.~\cite{Heinrich:2023rsd}.
-
-
-\subsection{The problem}
-para poner límites hay que dar a los tools de inferencia (Combine) un modelo continuo de la señal; simular por punto es inviable; además el coste no es solo generación, es reconstrucción + toda la cadena de análisis.
-
 \subsection{The underlying physical model}
-la factorización: la amplitud se descompone en parte dependiente de los acoplamientos × parte independiente; de ahí que $\sigma$ (y cualquier observable diferencial) sea un polinomio en los acoplamientos con un número finito de términos. Enlaza con la Ec. \ref{eq:RHH} del Cap. I y generalízala a nivel diferencial. Esta subsección es la base común de 8.2.3–8.2.5 — merece la pena que esté antes que los métodos, no dentro de uno de ellos.
+\label{subsec:physical_model}
+%
+As introduced above, the factorization of the cross section into a parameter-dependent part and a parameter-independent part carrying the kinematics of the event is the physical basis on which all modeling techniques rest. This factorization implies that the cross section is an exact polynomial function of the couplings with a finite and known number of terms, determined by the content of the Lagrangian and the perturbative order of the calculation. Furthermore, since it occurs at the level of the matrix element, it holds in every region of phase space independently.
+
+The starting point for expressing the factorization is the effective Lagrangian of Equation \ref{eq:heftL}. In this case, the five couplings that define the HEFT Lagrangian act as constant factors associated with the vertices of the different topologies of the $gg\to HH$ process, as illustrated in Figure \ref{fig:BSM_diagrams}. In essence, at leading order, each topology contributes to the total amplitude as a product of the couplings of its vertices — independent of the kinematics — and a function describing the dynamics of that topology — independent of the couplings. It becomes evident that, under this structure, the amplitude of the process takes the form:
+%
+\begin{equation}
+    \mathcal{M} = \ckt^{2}\,\mathcal{M}_{\dbox}
+    + \ckt\,\ckl\,\mathcal{M}_{\dtri}
+    + \cctwo\,\mathcal{M}_{2}
+    + \ckl\,\ccg\,\mathcal{M}_{\Pg}
+    + \cctwog\,\mathcal{M}_{2\Pg}\;,
+\label{eq:amplitude_decomposition}
+\end{equation}
+%
+where $\mathcal{M}_{\dbox}$ and $\mathcal{M}_{\dtri}$ denote the box and triangle contributions already present in the Standard Model, $\mathcal{M}_{2}$ denotes the contribution from the contact vertex $\ PQt\PAQt\HH$, and $\mathcal{M}_{\Pg}$ and $\mathcal{M}_{2\Pg}$ denote those of the topologies generated by the effective Higgs-gluon vertices. Thus, in Equation \ref{eq:amplitude_decomposition}, each of the $\mathcal{M}_i$ terms encapsulates the dynamic part associated with each of the $gg\to HH$ topologies, which is identical for any point in EFT space and depends solely on the parton Mandelstam variables $\hat{s}$ and $\hat{t}$ — equivalently, on $m_{HH}$ and the scattering angle $\cos\theta^{*}$ \cite{Carvalho:2017vnu} — and on the masses and coupling constants of the Standard Model.\\
+
+By integrating the square of the amplitude, $\overline{\left|\mathcal{M}\right|^{2}}$, over phase space and over the parton distribution functions, the monomials can be factored out from the integral because they do not depend on the integration variables. This preserves the polynomial structure, and the cross section takes the form:
+%
+\begin{equation}
+    \sigma_{\ggHH}(\mathbf{c}) = \mathrm{Poly}\left(\mathbf{c},\,\mathbf{A}\right)
+    = \sum_{i=1}^{N_A} A_i\, f_i(\mathbf{c})\;,
+\label{eq:poly_general}
+\end{equation}
+where the $f_i$ are the $N_A$ monomials in the EFT parameters, which are known analytically, while the $A_i$ denote the coefficients that capture the dynamics of the process.\\
+
+% Recuento HEFT
+The number of independent terms is therefore determined by combinatorics: $n$ structures will generate $n(n+1)/2$ independent terms. Thus, at leading order, the five structures generate $N_A=15$ independent terms — five squares and ten interference terms — which preciesly determines the parameterization at leading order.
+
+However, as outlined in Section \ref{subsec:HEFT}, the $gg\to HH$ process involves significant QCD corrections, necessitating their consideration. When extending the calculation to NLO, virtual and real-emission corrections give rise to topologies that introduce new amplitude structures in Equation \ref{eq:amplitude_decomposition}, with prefactors $\kappa_{\PQt}c_{\Pg}$ and $c_{\Pg}^{2}$,
+which do not exist independently at the LO. Since at this order only the interference between the LO and NLO amplitudes is retained, the additional terms introduce eight new independent combinations, all of which involve the Higgs-gluon coupling, thereby increasing the total number of terms from fifteen to $N_A = 23$. Although the functional form of Equation \ref{eq:poly_general} is preserved, it is important to note that these NLO corrections modify the values of the coefficients $A_i$ associated with the monomials $f_i$, since, as indicated in Section \ref{subsec:HEFT}, the $K$-factors are not uniform either in parameter space or along the $m_{HH}$ spectrum, which has direct consequences for modeling techniques.\\
+
+% Recuento SMEFT
+The same reasoning can be applied to SMEFT, since the Wilson coefficients linearly multiply the six-dimensional operators in the Lagrangian, so that the amplitude is once again linear in them and Equation \ref{eq:poly_general} retains its form. In the case of the SMEFT framework, the square of the modulus now takes the usual form of a constant term $A_0$, corresponding to the SM prediction, a set of linear terms arising from the interference between the SM and the six-dimensional operators, and a set of quadratic terms in the latter. According from the nine parameters in Equation \ref{eq:smeft_params}, a general quadratic form would require $1+9+9\cdot 10/2=55$ coefficients. However, the number of independent terms in SMEFT is also contingent upon the adopted truncation scheme, as elaborated in Sections \ref{subsec:SMEFT} and \ref{subsec:EFT_validity}. The quadratic truncation used in this work retains the linear and quadratic contributions of the four leading operators but discards the term $|\mathcal{M}^{\text{sublead}}_{\dim 6}|^{2}$, thereby ensuring that the five subleading coefficients appear only linearly. The resulting count is therefore $N_A = 40$ coefficients, $A_0,\dots,A_{39}$.
+
+It is noteworthy that, while in HEFT the physical model is fully determined once the perturbative order is established, in SMEFT the selection of truncation scheme is what shapes the model. Therefore, different truncations yield different polynomials, and consequently, different signal models that are not easily comparable. This reinforces the observation made in Section \ref{subsec:EFT_validity},which states that any result expressed in terms of Wilson coefficients must be accompanied by a specification of the scheme under which it was obtained.\\
+
+% Generalización diferencial
+So far, the discussion has been presented in terms of the total cross section. Throughout the preceding discussion, however, it has been emphasized that the factorization of Equation \ref{eq:poly_general} holds at the differential. Consequently, the same functional form and the same set of monomials describe any differential distribution, with the sole difference being that the coefficients are no longer global numbers but instead depend on the region of phase space under consideration, which in practice corresponds to a bin of the chosen observable:
+%
+\begin{equation}
+    \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c})
+    = \mathrm{Poly}\left(\mathbf{c},\,\mathbf{A}^{j}\right)
+    = \sum_{i=1}^{N_A} A^{j}_i\, f_i(\mathbf{c})\;,
+\label{eq:poly_differential}
+\end{equation}
+%
+where $\xi$ denotes a variable in phase space, and the index $j$ denotes the corresponding bin on which $A_i$ depends. This differential generalization is what makes it possible to predict not only the production rate but also the kinematics of the $HH$ system at an arbitrary point in parameter space.\\
+
+% Ec HEFT + SMEFT
+With this notation, the parameterizations discussed in the previous paragraphs can be written explicitly. For NLO HEFT in QCD, the twenty-three terms are organized as follows:
+%
+\begin{equation}\label{eq:heft_diff}
+\renewcommand{\arraystretch}{1.4}
+\begin{split}
+\frac{d}{d\xi_j}\sigma_{\ggHH}(\mathbf{c}^{\text{HEFT}}) &=
+\begin{pmatrix} A^j_1 \\ A^j_2 \\ A^j_3 \end{pmatrix}^{\!\!\top}
+\begin{pmatrix} \kappa_\PQt^4 \\ \kappa_{\lambda}\kappa_\PQt^3 \\ \kappa_{\lambda}^2 \kappa_\PQt^2  \end{pmatrix}
++
+\begin{pmatrix} A^j_4 \\ A^j_5 \\ A^j_6 \end{pmatrix}^{\!\!\top}
+\begin{pmatrix} \kappa_\PQt^2 c_2 \\ \kappa_{\lambda}\kappa_\PQt c_2 \\ c_2^2 \end{pmatrix} \\[4pt]
+&+
+\underbrace{
+\begin{pmatrix}
+A^j_7 \\ A^j_8 \\ A^j_9 \\ A^j_{10} \\ A^j_{11} \\ A^j_{12} \\ A^j_{13}
+\end{pmatrix}^{\!\!\top}
+\begin{pmatrix}
+c_{2\Pg}^2 \\
+\kappa_\PQt^2 c_{2\Pg} \\
+\kappa_{\lambda}c_\Pg\, c_{2\Pg} \\
+\kappa_{\lambda}\kappa_\PQt\, c_{2\Pg} \\
+\kappa_{\lambda}\kappa_\PQt^2 c_\Pg \\
+\kappa_{\lambda}^2 c_\Pg^2 \\
+\kappa_{\lambda}^2\kappa_\PQt\, c_\Pg
+\end{pmatrix}
++
+\begin{pmatrix}
+A^j_{14} \\ A^j_{15}
+\end{pmatrix}^{\!\!\top}
+\begin{pmatrix}
+c_2\, c_{2\Pg} \\
+\kappa_{\lambda} c_2\, c_\Pg
+\end{pmatrix}
+}_{\text{LO}} \\[4pt]
+&+
+\underbrace{
+\begin{pmatrix}
+A^j_{16} \\ A^j_{17} \\ A^j_{18} \\ A^j_{19} \\ A^j_{20} \\ A^j_{21}
+\end{pmatrix}^{\!\!\top}
+\begin{pmatrix}
+c_\Pg^2 c_{2\Pg} \\
+\kappa_\PQt\, c_\Pg\, c_{2\Pg} \\
+\kappa_\PQt^2 c_\Pg^2 \\
+\kappa_\PQt^3 c_\Pg \\
+\kappa_{\lambda} c_\Pg^3 \\
+\kappa_{\lambda} \kappa_\PQt\, c_\Pg^2
+\end{pmatrix}
++
+\begin{pmatrix}
+A^j_{22} \\ A^j_{23}
+\end{pmatrix}^{\!\!\top}
+\begin{pmatrix}
+c_2\, c_\Pg^2 \\
+\kappa_\PQt\, c_2\, c_\Pg
+\end{pmatrix}
+}_{\text{NLO}}\\
+&=\mathrm{Poly}(\mathbf{c}^{\text{HEFT}},\, \mathbf{A}^j)\;,
+\end{split}
+\end{equation}
+%
+where, as indicated, the first fifteen combinations come from the dominant-order topologies in Figure \ref{fig:BSM_diagrams} and the remaining eight come from the NLO corrections in QCD. Similarly, the SMEFT parameterization in terms of the nine parameters of Equation \ref{eq:smeft_params} can be written as follows:
+%
+\begin{equation}\label{eq:smeft_diff}
+\renewcommand{\arraystretch}{1.4}
+\begin{split}
+\frac{d}{d\xi_j}\sigma_{\ggHH}(\mathbf{c}^{\text{SMEFT}}) &= A^j_0
++ \underbrace{
+\underbrace{
+\begin{pmatrix} A^j_1 \\ A^j_2 \\ A^j_3 \\ A^j_4 \end{pmatrix}^{\!\!\top}
+\begin{pmatrix} c_{\PH} \\ c_{\PH\mathrm{kin}} \\ c_{\PQt\PH} \\ c_{\PH G} \end{pmatrix}
+}_{\text{linear}}
++ \underbrace{
+\begin{pmatrix} c_{\PH} & c_{\PH\mathrm{kin}} & c_{\PQt\PH} & c_{\PH G} \end{pmatrix}
+\begin{pmatrix}
+A^j_5 & A^j_6 & A^j_7 & A^j_8 \\
+0     & A^j_9 & A^j_{10} & A^j_{11} \\
+0     & 0     & A^j_{12} & A^j_{13} \\
+0     & 0     & 0        & A^j_{14}
+\end{pmatrix}
+\begin{pmatrix} c_{\PH} \\ c_{\PH\mathrm{kin}} \\ c_{\PQt\PH} \\ c_{\PH G} \end{pmatrix}
+}_{\text{quadratic}}
+}_{\text{leading operators only}} \\[14pt]
+&+ \underbrace{
+\underbrace{
+\begin{pmatrix} A^j_{15} \\ A^j_{16} \\ A^j_{17} \\ A^j_{18} \\ A^j_{19} \end{pmatrix}^{\!\!\top}
+\begin{pmatrix} c_{\PQt G} \\ c_{Q\PQt}^{(1)} \\ c_{Q\PQt}^{(8)} \\ c_{QQ\PQt\PQt} \\ c_{QQ}^{(8)} \end{pmatrix}
+}_{\text{linear}}
++ \underbrace{
+\begin{pmatrix} c_{\PH} & c_{\PH\mathrm{kin}} & c_{\PQt\PH} & c_{\PH G} \end{pmatrix}
+\begin{pmatrix}
+A^j_{20} & A^j_{21} & A^j_{22} & A^j_{23} & A^j_{24} \\
+A^j_{25} & A^j_{26} & A^j_{27} & A^j_{28} & A^j_{29} \\
+A^j_{30} & A^j_{31} & A^j_{32} & A^j_{33} & A^j_{34} \\
+A^j_{35} & A^j_{36} & A^j_{37} & A^j_{38} & A^j_{39}
+\end{pmatrix}
+\begin{pmatrix} c_{\PQt G} \\ c_{Q\PQt}^{(1)} \\ c_{Q\PQt}^{(8)} \\ c_{QQ\PQt\PQt} \\ c_{QQ}^{(8)} \end{pmatrix}
+}_{\text{quadratic}}
+}_{\text{contributions from subleading operators}}\\
+&=\mathrm{Poly}(\mathbf{c}^{\text{SMEFT}},\, \mathbf{A}^j)\;,
+\end{split}
+\end{equation}
+%
+where the triangular structure of the quadratic block of leading operators simply reflects the fact that the products $c_i c_j$ and $c_j c_i$ contribute to the same coefficient, while the second block, corresponding to the contributions of subleading operators and of dimension $4\times5$, captures the interactions between leading and subleading operators. The fifteen products between two subleading coefficients are absent, consistent with the adopted truncation.\\
+
+This directly applies to experimental searches, where what is needed is the distribution of the final observable — typically the output of a multivariate discriminator — following event reconstruction and selection. Since neither the detector response, nor the reconstruction, nor the selection criteria depend on the EFT parameters, the factorization survives the entire analysis chain and can be exploited directly on reconstructed quantities relevant to the analysis. 
+
+In this regard, it is worth noting that while the monomials $f_i$ are universal since they are determined by the content of the Lagrangian and the perturbation order, the coefficients are not. They depend on the region of phase space to which they refer, as well as on the conditions under which the calculation was performed: the center-of-mass energy, the parton distribution functions, and the scales used. Hence, when transferring the parameterization to the analysis level, the set of coefficients incorporates the acceptance and efficiency of the selection; therefore, a set of coefficients cannot be transferred directly from one context to another.\\
+
+After establishing the physical model that encodes the dependence on the EFT parameters, the goal of various modeling methods is to determine how to handle the finite set of coefficients $A_i$ that capture the dynamics of the process, in order to make predictions about any point in EFT space. To visualize this problem, it is helpful to rewrite the physical model by explicitly separating the known monomials, $f_i$, from the unknown coefficients, $A_i$. By grouping the $N_A$ monomials into the vector $\vec{f}(\mathbf{c})$ — an analytic and fully determined function of the EFT parameters — and the coefficients into a vector $\vec{a}$, Equations \ref{eq:poly_general} and \ref{eq:poly_differential} take the compact form:
+%
+\begin{equation}
+    \sigma_{\ggHH}(\mathbf{c}) = \vec{f}^{\;\top}(\mathbf{c})\cdot\vec{a}\;,
+\label{eq:master_model}
+\end{equation}
+%
+that also holds for the differential case by replacing  $\vec{a}$ with the vector of coefficients corresponding to the region under consideration.
+
+Described this way, the situation is accurately depicted, and the objective of the modeling becomes clear: to address the unknown part of the Equation \ref{eq:master_model}. The approach to tackling the problem distinguishes between the two techniques described below, which have already been introduced earlier. Event-level reweighting, discussed in detail in Section \ref{subsec:ELR}, is based on fixing $\vec{a}$ from a set of known predictions and then using Equation \ref{eq:master_model} as an analytical formula to assign a weight to each event in a reference sample. The matrix inversion method, on the other hand, avoids determining $\vec{a}$ by exploiting the fact that Equation \ref{eq:master_model} is linear in $\vec{a}$. Under this approach, a set of $N_A$ predictions at base points whose monomial vectors are linearly independent allows $\vec{a}$ to be eliminated from the problem and the prediction at any point in space to be expressed as a linear combination of the base predictions, with weights that are known analytic functions of $\mathbf{c}$, as will be detailed in \ref{subsec:matrix}. Finally, it should be noted that although the dependence on the EFT parameters is exact in the presented model, the various modeling techniques introduce uncertainty into the predictions, which will also be the subject of study in the following sections.
+
+\subsection{Event-level reweighting}
+% Descripción del método - intro e hilado con sección anterior
+La técnica de event-level reweighting es la explotación más directa del modelo descrito en la sección anterior, puesto que la forma de abordar el problema se basa en ajustar los coeficientes que acompañan a cada monomio para así evaluar de forma analítica la predicción diferencial en cualquier punto del espacio de parámetros. La idea detras del ELR consiste en partir de una muestra existente, generada en un punto de referencia - típicamente el SM - y asignarle a cada suceso un peso que reproduce el cambio de la predicción al desplazarse al punto objetivo. Este peso es simplemente el cociente entre dos evaluaciones de la Ecuación \ref{eq:master_model}
+
+...ese peso es simplemente el cociente entre dos evaluaciones de la Ecuación
+\ref{eq:master_model} con el mismo vector $\vec{a}$. De ello se sigue una propiedad
+práctica relevante: cualquier factor global que multiplique a los coeficientes de una
+región se cancela en el cociente, de modo que el método no requiere conocerlos en valor
+absoluto, sino únicamente su valor relativo dentro de cada región, ya que la normalización
+la aporta la propia muestra de referencia. Ésta conserva íntegramente su cinemática
+detallada, su respuesta del detector y su reconstrucción, y lo único que se modifica es el
+peso relativo con que cada suceso puebla el espacio fásico; conviene notar desde ahora que
+esta misma propiedad implica que el reparto de sucesos dentro de cada región permanece
+inalterado, por lo que el método no puede generar variaciones de forma más finas que el
+binado empleado. En este sentido, el ELR traslada toda la dependencia en los parámetros de
+la EFT desde la generación de sucesos hasta un escalar calculable suceso a suceso, con el
+consiguiente ahorro de presupuesto de simulación: una única muestra pasa a dar servicio a
+todo el espacio de parámetros. El precio a pagar es que los coeficientes deben haberse
+fijado previamente, lo que exige un conjunto de muestras simuladas dedicado a tal fin, y
+que dicha determinación se realiza necesariamente sobre un conjunto concreto de variables y
+un binado concreto, cuestiones que se discuten más adelante.
 
 
-https://arxiv.org/pdf/1710.08261
+El modelo físico establecido en la Sección \ref{subsec:physical_model} afirma que, si los
+coeficientes que acompañan a cada monomio son conocidos, la predicción diferencial en
+cualquier punto del espacio de parámetros puede evaluarse de forma analítica. El
+\textit{event-level reweighting} es la explotación más directa de ese enunciado: en lugar
+de simular una muestra en el punto de interés, se parte de una muestra ya existente,
+generada en un punto de referencia —típicamente el SM, por ser el que se dispone en todo
+análisis— y se le asigna a cada suceso un peso que reproduce el cambio de la predicción al
+desplazarse al punto objetivo. Puesto que ambos puntos se describen con el mismo conjunto
+de coeficientes, ese peso es simplemente el cociente entre dos evaluaciones de la Ecuación
+\ref{eq:master_model} con el mismo vector $\vec{a}$, de modo que la dinámica del proceso
+—lo único que la muestra simulada aporta y que el modelo no conoce— se cancela
+parcialmente y sólo interviene a través de dicho cociente. La muestra de referencia
+conserva íntegramente su cinemática detallada, su respuesta del detector y su
+reconstrucción, y lo único que se modifica es el peso relativo con que cada suceso puebla
+el espacio fásico. En este sentido, el método traslada toda la dependencia en los
+parámetros de la EFT desde la generación de sucesos hasta un escalar calculable suceso a
+suceso, con el consiguiente ahorro de presupuesto de simulación: una única muestra pasa a
+dar servicio a todo el espacio de parámetros. El precio a pagar es que los coeficientes
+deben haberse fijado previamente, lo que exige un conjunto de muestras simuladas dedicado a
+tal fin, y que dicha determinación se realiza necesariamente sobre un conjunto concreto de
+variables y un binado concreto, cuestiones que se discuten más adelante.
+
+ % - formulas
+
+ Formalmente, sean $\mathbf{c}$ el punto objetivo y $\mathbf{c}_{\text{ref}}$ el punto en el
+que se ha generado la muestra de referencia. Aplicando la Ecuación
+\ref{eq:poly_differential} a ambos puntos y eliminando los coeficientes por cociente, la
+predicción diferencial en el punto objetivo se obtiene como
+%
+\begin{equation}
+    \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c})
+    = \frac{\mathrm{Poly}\left(\mathbf{c},\,\mathbf{A}^{j}\right)}
+           {\mathrm{Poly}\left(\mathbf{c}_{\text{ref}},\,\mathbf{A}^{j}\right)}\;
+      \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c}_{\text{ref}})\;,
+\label{eq:elr_master}
+\end{equation}
+%
+expresión válida tanto en HEFT como en SMEFT sin más que emplear en cada caso el conjunto
+de monomios y de coeficientes correspondiente, es decir, la Ecuación \ref{eq:heft_diff} o
+la Ecuación \ref{eq:smeft_diff}. El factor que relaciona ambas predicciones depende
+únicamente de los dos puntos del espacio de parámetros y de la región $j$ considerada, y
+define el peso
+%
+\begin{equation}
+    w_j(\mathbf{c})
+    = \frac{\mathrm{Poly}\left(\mathbf{c},\,\mathbf{A}^{j}\right)}
+           {\mathrm{Poly}\left(\mathbf{c}_{\text{ref}},\,\mathbf{A}^{j}\right)}
+    = \frac{\sum_{i} A^{j}_i\, f_i(\mathbf{c})}
+           {\sum_{i} A^{j}_i\, f_i(\mathbf{c}_{\text{ref}})}\;,
+\label{eq:elr_weight}
+\end{equation}
+%
+que se asigna a todo suceso de la muestra de referencia que caiga en la región $j$. El
+punto de referencia es en principio arbitrario, con la única condición de que el
+denominador no se anule; la elección del SM responde a que es la muestra habitualmente
+disponible y la de mayor estadística.
+
+Conviene subrayar una propiedad de la Ecuación \ref{eq:elr_weight} que resulta esencial en
+la práctica. El peso se determina exclusivamente a partir de la posición del suceso en las
+variables $\xi$ empleadas para extraer los coeficientes, pero una vez asignado es un
+atributo del suceso completo. Por consiguiente, la muestra reponderada puede emplearse para
+construir la distribución de \textit{cualquier} observable, incluidas magnitudes
+reconstruidas y salidas de discriminantes multivariantes, sin restringirse al conjunto de
+variables utilizado para obtener la parametrización. Es esta propiedad, junto con la
+factorización a nivel de análisis discutida en la Sección \ref{subsec:physical_model}, la
+que hace del método una herramienta directamente aplicable en búsquedas experimentales.
+
+ % - determinación de los A_i
+
+% Limitaciones del método actual + mejoras
+ % - multireference
+ % - mas variables
+
+% Validación del método nuevo
+ % - cost scales
+% Tool para el matrix method
+
+PARA EL REWEIGHTING
+El punto esencial es que $N_A$ queda determinado por la estructura del Lagrangiano y por
+el orden perturbativo del cálculo, y no por la precisión con la que se desee describir la
+señal: la dependencia en los parámetros de la EFT es conocida de forma cerrada y lo único
+desconocido son los $N_A$ números $A_i$.
+
+https://arxiv.org/pdf/1710.08261 - Xanda 2017 (esto va al reweighting)
 In this paper we will present on the one hand such a fit of the theory prediction for the Higgspair production cross section in gluon fusion at the LHC in terms of effective couplings, considering
 both the total cross section as well as the ones differential in mhh and |cos θ∗
 |. At Leading Order
@@ -569,20 +846,112 @@ setups with additional scalars, including two-Higgs-doublet models (2HDM), vecto
 and minimal composite Higgs models and provide a collection of relations between their explicit
 parameters and effective couplings after EWSB.
 
-\subsection{Generator-level reweighting}
-el módulo de reweighting de MG5; uso actual (qqHH, VHH, ttHH, HHH); coste y limitaciones. - model-agnostic
+The $gg \to HH$ production is a $2 \to 2$ process. In the center-of-mass reference frame the kinematic properties of the final state can be fully characterized by two variables: the invariant mass of the two Higgs bosons $m_{HH}$ and the polar angle of one of the bosons in the center-of-momentum frame $|\cos\theta^|$. At leading order, all other observables describing the final state have no connection to the structure of the Lagrangian density from Eq. 1."
 
-Morphing techniques
-\subsection{Event-level reweighting}
 el estándar histórico en ggHH: pesos a partir de variables a nivel generador ($m_{HH}$, $\cos\theta^*$); cómo se combina la parametrización LO con la normalización N(N)LO; limitaciones (binning, precisión LO, dependencia de la muestra de referencia, dilución estadística).
 > description and experimental challenges
 > current use and evolution
 
 Cadamuro, Ingebretsen Carlson, Sjölin, Di-Higgs and Effective Field Theory: Signal Reweighting Beyond $m_{hh}$
 
+
+Existen varias técnicas de modelado desarrolladas sobre esta base, y cuya principal
+diferencia se basa en el punto along the analysis chain en el que se explota la
+factorización. Una de las estrategias adoptadas consiste en asignar un peso que aplicar a
+cada evento de una única muestra simulada, de forma que ésta reproduzca la predicción
+correspondiente a cualquier otro punto del espacio de parámetros. Esta técnica, conocida
+como \textit{event-level reweighting}, ha sido el estándar histórico en \ggHH y, a
+diferencia del generator-level reweighting descrito anteriormente, no recalcula el elemento
+de matriz: el peso se obtiene directamente de la parametrización analítica de la sección
+eficaz, evaluada sobre un conjunto reducido de variables a nivel generador ---
+tradicionalmente la masa invariante \mHH, complementada por $\cos\theta^*$. Puesto que dicha
+parametrización se deriva a LO, la normalización se recupera aplicando el factor N(N)LO
+correspondiente. El coste por punto es así prácticamente nulo, lo que permite cubrir el
+espacio de parámetros con una densidad arbitraria a partir de una sola muestra.
+
+Su precisión, sin embargo, está limitada por tres factores. El primero es el binning de la
+parametrización, que fija la resolución con la que se describe la deformación de las
+distribuciones. El segundo es la precisión LO con la que se obtienen los coeficientes: como
+se ha señalado en la Sección \ref{subsec:HEFT}, los $K$-factors no son uniformes ni en el
+espacio de parámetros ni a lo largo del espectro de \mHH, de modo que una normalización
+global no reproduce correctamente la forma de la distribución. El tercero, y más
+restrictivo, es la dependencia de la muestra de referencia: los puntos cuya cinemática
+difiere apreciablemente de la de dicha muestra requieren pesos grandes, con la consiguiente
+dilución de la estadística efectiva precisamente en las regiones que determinan la
+sensibilidad. Recientemente se ha propuesto una nueva formulación que aborda estas
+limitaciones, extendiendo la parametrización más allá de \mHH y derivándola a NLO en QCD
+tanto para HEFT como para SMEFT~\cite{Cadamuro:2025car}; ésta es la versión adoptada en este
+trabajo.
+
+Es aquí donde el event-level reweighting deja de
+ser una técnica competidora para convertirse en un ingrediente habilitante: al eliminar el
+requisito de que cada punto base corresponda a una muestra generada de forma independiente,
+abre la elección de la base a un proceso de optimización. La combinación de ambas técnicas
+constituye el desarrollo principal de este trabajo.
+
 \subsection{Matrix inversion method}
 formalismo: $\sigma(\vec{c}) = \sum_i w_i(\vec{c}),\sigma_i$ con la matriz de puntos base invertible; se aplica a nivel de análisis (después de selección y del discriminante ML), no evento a evento; ventajas en coste de procesado.
 > Basis choice and numerical stability -  independencia lineal, número de condición, amplificación de errores y pesos negativos, estadística de las muestras base. Aquí puedes ya dejar planteado el criterio que optimizas en 8.3.
+
+Su punto débil reside en la propia base. El número de puntos necesarios crece con la
+dimensión del espacio de parámetros, y no toda elección es igualmente válida: una base mal
+condicionada amplifica las incertidumbres estadísticas de las muestras que la componen hasta
+comprometer la predicción, dando lugar a pesos grandes de signos opuestos y, en última
+instancia, a secciones eficaces no físicas. Es aquí donde el event-level reweighting deja de
+ser una técnica competidora para convertirse en un ingrediente habilitante: al eliminar el
+requisito de que cada punto base corresponda a una muestra generada de forma independiente,
+abre la elección de la base a un proceso de optimización. La combinación de ambas técnicas
+constituye el desarrollo principal de este trabajo.
+
+\subsubsection{ESTO LO DEJO PARA MATRIX METHOD: Forma matricial y estrategias de explotación}
+%
+Resulta conveniente reescribir la Ecuación \ref{eq:poly_general} separando de forma
+explícita lo conocido de lo desconocido. Definiendo el vector de monomios
+$\vec{f}(\mathbf{c})=\left(f_1(\mathbf{c}),\dots,f_{N_A}(\mathbf{c})\right)^\top$ —una
+función analítica y conocida de los parámetros de la EFT— y el vector de coeficientes
+$\vec{a}=\left(A_1,\dots,A_{N_A}\right)^\top$, se obtiene
+%
+\begin{equation}
+    \sigma_{\ggHH}(\mathbf{c}) = \vec{f}^{\;\top}(\mathbf{c})\cdot\vec{a}\;,
+\label{eq:master_model}
+\end{equation}
+%
+que puede considerarse la ecuación maestra del modelado de señal en \ggHH. Su carácter
+bilineal —lineal en los monomios y lineal en los coeficientes— admite dos lecturas
+complementarias, que dan lugar precisamente a las dos familias de técnicas descritas a
+continuación. La primera consiste en determinar explícitamente $\vec{a}$ a partir de un
+conjunto de predicciones conocidas y utilizar después la Ecuación \ref{eq:master_model}
+como fórmula analítica para asignar un peso a cada suceso de una muestra de referencia:
+es la base del \textit{event-level reweighting} de la Sección \ref{subsec:ELR}. La
+segunda evita determinar $\vec{a}$: si se dispone de $N_A$ predicciones en puntos base
+$\{\mathbf{c}_1,\dots,\mathbf{c}_{N_A}\}$ cuyos vectores de monomios sean linealmente
+independientes, la matriz $C$ que los agrupa por filas es invertible y $\vec{a}$ puede
+eliminarse de la Ecuación \ref{eq:master_model}, expresando la predicción en cualquier
+punto del espacio como una combinación lineal de las predicciones base con pesos que son
+funciones analíticas de $\mathbf{c}$. Ésta es la idea del método de inversión matricial
+de la Sección \ref{subsec:matrix}.
+
+
+%--------------------------ESTO PARA EL FINAL DE 8.2
+Ambas estrategias comparten, sin embargo, un mismo punto de partida y una misma
+vulnerabilidad. El propio valor de $N_A$ —veintitrés en HEFT a NLO y cuarenta en SMEFT—
+constituye el número mínimo de predicciones independientes necesarias para fijar el
+modelo, y crece rápidamente con la dimensión del espacio de parámetros. Y, lo que resulta
+más problemático, no basta con alcanzarlo: la calidad de la predicción depende
+críticamente de \textit{dónde} se sitúen esos puntos, cuestión que se traduce en el
+condicionamiento del sistema lineal subyacente y que constituye el objeto de la Sección
+\ref{sec:full_model}.
+
+Por último, el propio valor de $N_A$ anticipa la dificultad central que se abordará en el
+resto del capítulo. Veintitrés términos en HEFT a NLO y cuarenta en SMEFT constituyen el
+número mínimo de predicciones independientes necesarias para determinar el modelo, y por
+tanto el número mínimo de muestras que cualquiera de las dos estrategias anteriores
+requiere. Este número crece rápidamente con la dimensión del espacio de parámetros y,
+lo que resulta más problemático, no basta con alcanzarlo: la calidad de la predicción
+depende críticamente de \textit{dónde} se sitúen esos puntos, cuestión que se traduce en
+el condicionamiento del sistema lineal y que constituye el objeto de la Sección
+\ref{sec:full_model}.
+%--------------------------FIN DE ESTO PARA EL FINAL DE 8.2
 
 \section{A full HEFT/SMEFT model for ggHH production}
 > finding a good basis
