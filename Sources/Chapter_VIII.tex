@@ -397,143 +397,6 @@ However, both methods present certain limitations that can lead to weaknesses an
 
 The remainder of this section is organized accordingly. Section \ref{subsec:physical_model} derives the physical model underlying the factorization of the cross section and its extension to differential distributions. Section \ref{subsec:ELR} presents the event-level reweighting formulation and its fundamental role in the optimization of the matrix inversion method. Finally, Section \ref{subsec:matrix_inversion} develops the matrix inversion method, its formalism and the numerical conditions its basis must satisfy, which constitute the starting point for the application presented in Section \ref{sec:full_model}.
 
-\paragraph{Parametrization of the cross section}
-
-SMEFT
-As in HEFT, the resulting cross section is a polynomial in the Wilson coefficients with
-a finite number of independent terms, although a substantially larger one given the
-higher dimensionality of Equation \ref{eq:smeft_params}; the explicit expansion is given
-in Appendix \ref{app:xsecparameterization} and its structure is discussed in Section
-\ref{subsec:physical_model}.
-
-HEFT
-
-\noindent Since the five couplings enter the amplitude linearly, the cross section
-normalized to its SM value is a polynomial in them with a finite number of terms. At
-leading order this yields the fifteen coefficients $A_1,\dots,A_{15}$ already introduced
-in Equation \ref{eq:RHH}. At NLO the $A_i$ are modified and eight further combinations
-appear, all of them involving the Higgs-gluon coupling $c_g$:
-%
-\begin{equation}
-\begin{split}
-    \Delta\sigma/\sigma_{\text{SM}} =\;&
-      A_{16}\,\kappa_t^3 c_g + A_{17}\,\kappa_t c_2 c_g
-    + A_{18}\,\kappa_t c_g^2 \kappa_\lambda + A_{19}\,\kappa_t c_g c_{2g} \\
-    &+ A_{20}\,\kappa_t^2 c_g^2 + A_{21}\,c_2 c_g^2
-    + A_{22}\,c_g^3 \kappa_\lambda + A_{23}\,c_g^2 c_{2g}\;,
-\end{split}
-\label{eq:heft_nlo_para}
-\end{equation}
-%
-bringing the total to twenty-three independent coefficients. The $A_i$ absorb all the
-dynamics multiplying each coupling combination, and their numerical values depend on the
-collision energy and on the phase-space region considered.
-
-
-
-
-Because the Higgs field no longer appears in the fixed combination $\phi^\dagger\phi$,
-the expansion cannot be organized by canonical dimension. Instead, HEFT is ordered by
-\textit{chiral dimensions}, a counting in which derivatives and gauge couplings carry
-weight one and the scalar fields carry weight zero, so that operators of chiral
-dimension $2L+2$ are those first generated at $L$ loops~\cite{Buchalla:2013rka}. The
-expansion parameter is therefore the loop factor $1/16\pi^2$ rather than a power of
-$v/\Lambda$: the leading-order Lagrangian reproduces the structure of the SM but with
-free coefficients, and deviations of $\mathcal{O}(1)$ from the SM values are admissible
-without any reference to a new physics scale. In this sense HEFT is not an expansion in
-the energy of the process, and it naturally accommodates \textit{non-decoupling} new
-physics, in which the heavy states acquire a significant fraction of their mass from
-EWSB itself and therefore do not decouple in the limit of large masses.
-
-Restricting the general Lagrangian to the operators relevant for \ggHH production, and
-following the conventions of Ref.~\cite{Buchalla:2018yce}, the terms of interest read:
-%
-\begin{equation}
-    \mathcal{L}_{\text{HEFT}}^{HH}
-    = -m_t\left(\kappa_t\frac{h}{v} + c_2\frac{h^2}{v^2}\right)\bar{t}t
-    \;-\; \kappa_{\lambda}\frac{m_H^2}{2v}h^3
-    \;+\; \frac{\alpha_s}{8\pi}\left(c_g\frac{h}{v}
-    + c_{2g}\frac{h^2}{v^2}\right)G^a_{\mu\nu}G^{a,\mu\nu}\;,
-    \label{eq:heftL}
-\end{equation}
-%
-where $\kappa_{\lambda}$ and $\kappa_t$ are the modifiers of the trilinear Higgs
-self-coupling and of the top Yukawa coupling already defined in Section
-\ref{subsec:BSM_production}, and $c_2$, $c_g$ and $c_{2g}$ are the effective couplings
-of two Higgs bosons to a top quark pair, of one Higgs boson to two gluons, and of two
-Higgs bosons to two gluons, respectively. The last two are written with an explicit
-$\alpha_s/8\pi$ prefactor, which makes their loop-induced nature manifest in the chiral
-counting: they arise from integrating out heavy coloured states running in the loop, and
-are one order higher in the expansion than the remaining three. A point in HEFT
-parameter space is thus fixed by
-%
-\begin{equation}
-    \mathbf{c}^{\text{HEFT}} = \{\kappa_{\lambda},\,\kappa_t,\,c_2,\,c_g,\,c_{2g}\}\;,
-\end{equation}
-%
-with the SM recovered for $\mathbf{c}^{\text{SM}}=\{1,1,0,0,0\}$. The corresponding
-leading-order diagrams are those shown in Figure \ref{fig:BSM_diagrams}: $\kappa_t$ and
-$\kappa_{\lambda}$ rescale the box and triangle topologies already present in the SM,
-while $c_2$, $c_g$ and $c_{2g}$ generate genuinely new topologies with no SM
-counterpart. It is worth noting that the $\kappa$-framework introduced in Section
-\ref{subsec:BSM_production} is recovered as the particular case
-$c_2 = c_g = c_{2g} = 0$, in which only the couplings already present in the SM are
-rescaled and no new interaction is introduced.\footnote{This makes explicit that the
-$\kappa$-framework, while phenomenologically useful, is a subset of HEFT rather than an
-independent description.}
-
-
-
-Since the five couplings of Equation \ref{eq:heftL} enter the amplitude linearly, the
-squared matrix element is a polynomial in $\mathbf{c}^{\text{HEFT}}$ with a finite
-number of terms. At leading order this yields the fifteen independent coupling
-combinations already collected in Equation \ref{eq:RHH}. When the calculation is
-extended to NLO QCD with full top-quark mass dependence~\cite{Buchalla:2018yce},
-real-emission and virtual diagrams introduce additional combinations involving $c_g$,
-and the number of independent terms grows to twenty-three, so that the cross section can
-be written compactly as
-%
-\begin{equation}
-    \sigma^{\text{NLO}}_{gg\to HH}(\mathbf{c}^{\text{HEFT}})
-    = \text{Poly}\left(\mathbf{c}^{\text{HEFT}},\,\mathbf{A}\right)\;,
-    \label{eq:heft_poly}
-\end{equation}
-%
-where the $A$-coefficients absorb all the dynamics multiplying each of the coupling
-combinations; the explicit expansion is given in Appendix
-\ref{app:xsecparameterization}. The origin of this factorization, and its extension to
-differential distributions, are discussed in Section \ref{subsec:physical_model}. ???????
-
-
-Since the five couplings of Equation \ref{eq:heftL} enter the amplitude linearly, the
-squared matrix element is a polynomial in $\mathbf{c}^{\text{HEFT}}$ whose coefficients
-carry the entire kinematic dependence of the process. At leading order this yields the
-fifteen independent coupling combinations already collected in Equation \ref{eq:RHH}.
-When the calculation is extended to NLO QCD with full top-quark mass
-dependence~\cite{Buchalla:2018yce}, real-emission and virtual diagrams introduce
-additional combinations involving $c_g$, and the number of independent terms grows to
-twenty-three, so that the cross section can be written compactly as
-%
-\begin{equation}
-    \sigma^{\text{NLO}}_{gg\to HH}(\mathbf{c}^{\text{HEFT}})
-    = \text{Poly}\left(\mathbf{c}^{\text{HEFT}},\,\mathbf{A}\right)\;,
-    \label{eq:heft_poly}
-\end{equation}
-%
-where the $A$-coefficients absorb all the dynamics multiplying each of the coupling
-combinations; the explicit expansion is given in Appendix
-\ref{app:xsecparameterization}.
-
-The property of Equation \ref{eq:heft_poly} that is of most practical relevance for this
-work is that nothing in its derivation is specific to the total cross section. The
-factorization between a coupling-dependent part and a coupling-independent part holds at
-the level of the matrix element, and therefore separately in every region of phase
-space. Consequently, the same functional form and the same set of twenty-three
-combinations describe any differential distribution, provided the $A$-coefficients are
-determined bin by bin in the observable of interest. This is what makes it possible to
-predict not only the rate but also the kinematics of the HH system at an arbitrary point
-of the parameter space, and it constitutes the physical basis of all the modeling
-techniques discussed in Section \ref{sec:modeling}. ?????
 % https://arxiv.org/pdf/2604.16596v1
 
 % In the case of NP at high scales, complementary descriptions have been adopted: modified Higgs couplings (the so-called κ-framework) based on a constant rescaling of SM couplings; the global SM Effective
@@ -724,55 +587,9 @@ Described this way, the situation is accurately depicted, and the objective of t
 
 \subsection{Event-level reweighting}
 % Descripción del método - intro e hilado con sección anterior
-La técnica de event-level reweighting es la explotación más directa del modelo descrito en la sección anterior, puesto que la forma de abordar el problema se basa en ajustar los coeficientes que acompañan a cada monomio para así evaluar de forma analítica la predicción diferencial en cualquier punto del espacio de parámetros. La idea detras del ELR consiste en partir de una muestra existente, generada en un punto de referencia - típicamente el SM - y asignarle a cada suceso un peso que reproduce el cambio de la predicción al desplazarse al punto objetivo. Este peso es simplemente el cociente entre dos evaluaciones de la Ecuación \ref{eq:master_model}
+The event-level reweighting technique is the most direct application of the model described in the previous section. This approach involves fixing the coefficient vector $\vec{a}$ to analytically evaluate the differential prediction at any point in the parameter space. Thus, instead of simulating a sample at the point of interest, the ELR approach involves starting with an existing sample generated at a reference point — typically the SM — and assigning each event a weight that reproduces the prediction. As both the reference point and the target point are described by the same set of coefficients, the weight is simply the ratio of two evaluations  of Equation \ref{eq:master_model} once $\vec{a}$ is known.\\
 
-...ese peso es simplemente el cociente entre dos evaluaciones de la Ecuación
-\ref{eq:master_model} con el mismo vector $\vec{a}$. De ello se sigue una propiedad
-práctica relevante: cualquier factor global que multiplique a los coeficientes de una
-región se cancela en el cociente, de modo que el método no requiere conocerlos en valor
-absoluto, sino únicamente su valor relativo dentro de cada región, ya que la normalización
-la aporta la propia muestra de referencia. Ésta conserva íntegramente su cinemática
-detallada, su respuesta del detector y su reconstrucción, y lo único que se modifica es el
-peso relativo con que cada suceso puebla el espacio fásico; conviene notar desde ahora que
-esta misma propiedad implica que el reparto de sucesos dentro de cada región permanece
-inalterado, por lo que el método no puede generar variaciones de forma más finas que el
-binado empleado. En este sentido, el ELR traslada toda la dependencia en los parámetros de
-la EFT desde la generación de sucesos hasta un escalar calculable suceso a suceso, con el
-consiguiente ahorro de presupuesto de simulación: una única muestra pasa a dar servicio a
-todo el espacio de parámetros. El precio a pagar es que los coeficientes deben haberse
-fijado previamente, lo que exige un conjunto de muestras simuladas dedicado a tal fin, y
-que dicha determinación se realiza necesariamente sobre un conjunto concreto de variables y
-un binado concreto, cuestiones que se discuten más adelante.
-
-
-El modelo físico establecido en la Sección \ref{subsec:physical_model} afirma que, si los
-coeficientes que acompañan a cada monomio son conocidos, la predicción diferencial en
-cualquier punto del espacio de parámetros puede evaluarse de forma analítica. El
-\textit{event-level reweighting} es la explotación más directa de ese enunciado: en lugar
-de simular una muestra en el punto de interés, se parte de una muestra ya existente,
-generada en un punto de referencia —típicamente el SM, por ser el que se dispone en todo
-análisis— y se le asigna a cada suceso un peso que reproduce el cambio de la predicción al
-desplazarse al punto objetivo. Puesto que ambos puntos se describen con el mismo conjunto
-de coeficientes, ese peso es simplemente el cociente entre dos evaluaciones de la Ecuación
-\ref{eq:master_model} con el mismo vector $\vec{a}$, de modo que la dinámica del proceso
-—lo único que la muestra simulada aporta y que el modelo no conoce— se cancela
-parcialmente y sólo interviene a través de dicho cociente. La muestra de referencia
-conserva íntegramente su cinemática detallada, su respuesta del detector y su
-reconstrucción, y lo único que se modifica es el peso relativo con que cada suceso puebla
-el espacio fásico. En este sentido, el método traslada toda la dependencia en los
-parámetros de la EFT desde la generación de sucesos hasta un escalar calculable suceso a
-suceso, con el consiguiente ahorro de presupuesto de simulación: una única muestra pasa a
-dar servicio a todo el espacio de parámetros. El precio a pagar es que los coeficientes
-deben haberse fijado previamente, lo que exige un conjunto de muestras simuladas dedicado a
-tal fin, y que dicha determinación se realiza necesariamente sobre un conjunto concreto de
-variables y un binado concreto, cuestiones que se discuten más adelante.
-
- % - formulas
-
- Formalmente, sean $\mathbf{c}$ el punto objetivo y $\mathbf{c}_{\text{ref}}$ el punto en el
-que se ha generado la muestra de referencia. Aplicando la Ecuación
-\ref{eq:poly_differential} a ambos puntos y eliminando los coeficientes por cociente, la
-predicción diferencial en el punto objetivo se obtiene como
+Formally, let $\mathbf{c}$ be the target point and $\mathbf{c}_{\text{ref}}$ be the point at which the initial reference sample was generated, after applying Equation \ref{eq:poly_differential} to both points, the differential prediction at the target point is obtained as:
 %
 \begin{equation}
     \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c})
@@ -782,11 +599,7 @@ predicción diferencial en el punto objetivo se obtiene como
 \label{eq:elr_master}
 \end{equation}
 %
-expresión válida tanto en HEFT como en SMEFT sin más que emplear en cada caso el conjunto
-de monomios y de coeficientes correspondiente, es decir, la Ecuación \ref{eq:heft_diff} o
-la Ecuación \ref{eq:smeft_diff}. El factor que relaciona ambas predicciones depende
-únicamente de los dos puntos del espacio de parámetros y de la región $j$ considerada, y
-define el peso
+Thus, once the coefficients $A_i$ are known, any point in the HEFT or SMEFT parameter space can be determined. The factor relating the two predictions will therefore depend solely on the parameters of the reference point and the target point and on the region $j$ under consideration, and is defined as:
 %
 \begin{equation}
     w_j(\mathbf{c})
@@ -797,97 +610,123 @@ define el peso
 \label{eq:elr_weight}
 \end{equation}
 %
-que se asigna a todo suceso de la muestra de referencia que caiga en la región $j$. El
-punto de referencia es en principio arbitrario, con la única condición de que el
-denominador no se anule; la elección del SM responde a que es la muestra habitualmente
-disponible y la de mayor estadística.
+where $w_j$ is the weight assigned to every event in the reference sample contained within region $j$, and the total weight by which the event contributes to the prediction at the target EFT point is:
+%
+\begin{equation}
+    w(e;\,\mathbf{c}) = w_{\text{ref}}(e)\;w_{j(e)}(\mathbf{c})\;,
+\label{eq:elr_event_weight}
+\end{equation}
+%
+where $w_{\text{ref}}(e)$ is the MC generator weight of each event $e$ in the reference sample, such that their sum reproduces $\sigma_{\ggHH}(\mathbf{c}_{\text{ref}})$; and $j(e)$ denotes the region in which each event falls.\\
 
-Conviene subrayar una propiedad de la Ecuación \ref{eq:elr_weight} que resulta esencial en
-la práctica. El peso se determina exclusivamente a partir de la posición del suceso en las
-variables $\xi$ empleadas para extraer los coeficientes, pero una vez asignado es un
-atributo del suceso completo. Por consiguiente, la muestra reponderada puede emplearse para
-construir la distribución de \textit{cualquier} observable, incluidas magnitudes
-reconstruidas y salidas de discriminantes multivariantes, sin restringirse al conjunto de
-variables utilizado para obtener la parametrización. Es esta propiedad, junto con la
-factorización a nivel de análisis discutida en la Sección \ref{subsec:physical_model}, la
-que hace del método una herramienta directamente aplicable en búsquedas experimentales.
+While the choice of reference point is, in principle, arbitrary, it is determined by the availability and quality of the sample in practice. To achieve optimal modeling, factors such as greater statistical power, good regional coverage, and the absence of empty bins should be considered. Furthermore, since the normalization of the prediction is provided entirely by the reference sample, the detector response and its reconstruction are preserved throughout the method. This allows the factorization to survive the analysis pipeline, resulting in savings in the simulation budget, as discussed in Section \ref{subsec:physical_model}. 
 
- % - determinación de los A_i
+On the other hand, once the quotient in Equation \ref{eq:elr_weight} has been determined, it can be used to construct the distribution of any observable, since it is an attribute of the complete event. Overall, the ELR maps the entire dependence on the EFT parameters, from the generation of events to a scalar that can be calculated event by event. The only prerequisite is that the coefficients grouped in the vector $\vec{a}$ must have been previously determined, which requires a dedicated procedure for that purpose, and this is what determines the actual scope of the method.\\
 
-% Limitaciones del método actual + mejoras
- % - multireference
- % - mas variables
+\subsubsection{Determination of the A coefficients}
+%
+Once the method is introduced and as demonstrated above, the results yielded by the ELR are contingent on the ability to ascertain the vector, $vec{a}$. To do so, since Equation \ref{eq:poly_differential} is linear in $\vec{a}$, it suffices to evaluate it at a set of points in parameter space for which the output is known to be equal to or greater than the number of terms $N_A$. In practice, the system is highly overdetermined, and the coefficients are obtained through a fitting process performed independently in each region of phase space. The process is determined by three choices:
+\begin{enumerate}
+    \item the set of variables $\xi$ on which the parameterization is defined, which determines the kinematic information captured by the coefficients,
+    \item the binning of these variables, which strikes a balance between resolution and statistical accuracy,
+    \item the fitting algorithm, which determines the stability of the coefficients and any potential bias that may arise.
+\end{enumerate}
+%
+In addition, the set of samples used for the fit is designed to cover a broader range of phase space that standard benchmark points, so that the parameterization is valid over the widest possible domain.
 
-% Validación del método nuevo
- % - cost scales
-% Tool para el matrix method
+The result of this procedure is the set of coefficients and their covariance matrix, which must be propagated to the final prediction in the form of additional uncertainty. Finally, once the coefficients are fixed, they are applied to the reference events using Equation \ref{eq:elr_event_weight}, thereby returning the desired prediction.\\
 
-PARA EL REWEIGHTING
-El punto esencial es que $N_A$ queda determinado por la estructura del Lagrangiano y por
-el orden perturbativo del cálculo, y no por la precisión con la que se desee describir la
-señal: la dependencia en los parámetros de la EFT es conocida de forma cerrada y lo único
-desconocido son los $N_A$ números $A_i$.
+The specific method for determining the coefficients $A_i$ has evolved over time to the most recent formulation used in this work. In the original formulation of the method \cite{Carvalho:2017vnu}, the coefficients were extracted at LO and differentially in $\xi=\{\mHH,\, |\cos\theta^*|\}$\footnote{a well-motivated choice at LO because $m_{HH}$ is the quantity most sensitive to BSM effects and is uncorrelated with $\cos\theta^*$, and both exhaust the kinematics of a $2\to2$ process, as discussed in Section \ref{subsec:physical_model}}. However, this prescription, which has been used for years as a standard procedure \cite{2510.07527}, has certain shortcomings that have become increasingly significant as searches become more sensitivity. First, the completeness of the pair $\{\mHH,\,|\cos\theta^*|\}$ is a valid statement only at the LO. When extending the calculation to NLO QCD, effects appear in the differential distributions induced by initial state radiation (ISR), for example, and the event kinematics are no longer determined by two variables. Furthermore, the distribution of $\cos\theta^*$ turns out to be practically flat throughout the EFT space, so it provides very little information about shape, and the parameterization effectively behaves as one-dimensional in $m_{HH}$, which strongly influences the response to other variables. Furthermore, the range of $m_{HH}$ used in early versions of the method has proven to be limited and its granularity modest, resulting in the invariant high-mass tail — which dominates the sensitivity of the \textit{boosted} categories — being poorly described.
 
-https://arxiv.org/pdf/1710.08261 - Xanda 2017 (esto va al reweighting)
-In this paper we will present on the one hand such a fit of the theory prediction for the Higgspair production cross section in gluon fusion at the LHC in terms of effective couplings, considering
-both the total cross section as well as the ones differential in mhh and |cos θ∗
-|. At Leading Order
-(LO) the totality of the HH process is described by those two variables1
-. Beyond that, we will
-employ the formula to reinterpret exclusion bounds, derived assuming certain benchmark points in
-parameter space with a given kinematics, for points with modified kinematic distributions. In fact,
-different distributions in variables, such as mhh, will lead to different efficiencies of selection cuts,
-which can be accounted for, knowing the distributions in terms of effective couplings. Without
-such an analytic knowledge, a full monte-carlo (MC) simulation would actually be required for
-each parameter-space point, which is not feasible for a dense scan of the parameters. Finally, we
-will use the interpreted results to confront explicit models, mapped to an effective Lagrangian,
-efficiently with constraints from the LHC. To perform this exercise we collect from literature
-setups with additional scalars, including two-Higgs-doublet models (2HDM), vector-like fermions,
-and minimal composite Higgs models and provide a collection of relations between their explicit
-parameters and effective couplings after EWSB.
+This has led to the expansion of the set of variables through a three-dimensional parameterization with $\xi=\{\mHH,\,|\cos\theta^*|,\,p_T^{\HH}\}$ \cite{Cadamuro:2025car}, where the inclusion of $p_T^{\HH}$ is based on two compelling reasons. First, while $\{\mHH,\,|\cos\theta^*|\}$ fully define the $gg\to HH$ production at LO, $\,p_T^{\HH}\}$ accounts for jet radiation entering the process at NLO. Furthermore, this quantity directly encodes the cuts that the analyses apply to the reconstructed objects, enabling the description of nonlinear effects introduced by the cuts in the differential distributions. The most recent line of research \cite{HHReweighting} maintains the three-dimensional parameterization and also addresses the problem of the $m_{HH}$ domain, such that in the latest formulation of the ELR — and the one used in this work — the granularity is increased by paying special attention to the high-mass tail. In this extension of the method, it is taken into account that subdividing the high-mass region using three-dimensional binning leaves numerous empty bins; thus, three-dimensional binning is used only below $1$~TeV, while one-dimensional binning is retained above that threshold. TABLE BIN EDGES CONSIDERED
 
-The $gg \to HH$ production is a $2 \to 2$ process. In the center-of-mass reference frame the kinematic properties of the final state can be fully characterized by two variables: the invariant mass of the two Higgs bosons $m_{HH}$ and the polar angle of one of the bosons in the center-of-momentum frame $|\cos\theta^|$. At leading order, all other observables describing the final state have no connection to the structure of the Lagrangian density from Eq. 1."
+It should be noted, however, that while the three-dimensional parameterization is the optimal choice when it comes to incorporating NLO effects, reproducing other quantities such as $p_T^H$, and gaining sensitivity to selection effects on them; the one-dimensional parameterization provides the best description of the $m_{HH}$ distribution itself. The choice between the two therefore depends on the context of application.
 
-el estándar histórico en ggHH: pesos a partir de variables a nivel generador ($m_{HH}$, $\cos\theta^*$); cómo se combina la parametrización LO con la normalización N(N)LO; limitaciones (binning, precisión LO, dependencia de la muestra de referencia, dilución estadística).
-> description and experimental challenges
-> current use and evolution
+The first two choices on the previous list are covered. The third point is also noteworthy in terms of the quality of the result, as a fit that weights the samples by their statistical precision automatically penalizes the less densely populated regions, which are often the ones containing the most characteristic information, and thereby introducing a bias. The selection of the algorithm is therefore key to balancing the stability of the coefficients with the absence of such bias, and its effect is particularly evident in the NLO QCD coefficients, whose determination proves to be the most unstable and is associated with the greatest uncertainties.
 
-Cadamuro, Ingebretsen Carlson, Sjölin, Di-Higgs and Effective Field Theory: Signal Reweighting Beyond $m_{hh}$
+%HEFT + SMEFT
+\subsubsection{Multi-reference approach}
+%
+The method is fully specified once the coefficients have been determined. The only remaining decision for its application is which reference events to weight in \ref{eq:elr_event_weight}. As noted earlier, there are factors to consider when selecting the reference sample to ensure reliable predictions. The SM is the intuitive choice, as it is available in any analysis; however, it is not optimal in the regions of greatest interest, such as the invariant high-mass tail. Therefore, reweighting toward EFT points that enrich this region involves applying large weights to very few events, resulting in statistical dilution and instability in the prediction. Furthermore, since the coefficients are fitted at the generator level, they do not account for the efficiency of the cuts, which can distort the distributions very differently in the SM and a strongly BSM kinematic point.
+
+The solution to this problem involves using a \textit{multi-reference} strategy, in which rather than using a single sample, a set of samples is used as a starting point. These samples are chosen for their statistical stability in different regions of phase space and for covering the kinematic diversity allowed by EFT space. In this strategy, each sample is reweighted independently, and the resulting predictions are combined region by region using a weighted average based on their statistical uncertainty. This procedure overcomes the limitations inherent of starting with a single signal topology, making ELR a more robust method for prediction.
+
+\subsubsection{Validation of the method}
+%
+The validation of the method can be carried out on two levels. The first operates at the generator level, prior to any selection of analysis, and serves to verify that the polynomials reproduce the distributions consistently throughout the parameter space. The results corresponding to the most recent formulation of the method \cite{HHReweighting} are shown in Figure \ref{elr_gen}, where $m_{HH}$ can be seen at an arbitrary point in EFT space, as well as the transverse momentum of the Higgs boson $p_T^H$ at a different point. The $p_T^H$ is shown here as a quantity of particular interest because it lies outside the set $\xi$ used in the extraction of coefficients. In both cases, it can be seen that the quantities are well described by the method, and the distributions depicted underscores the findings discussed throughout the analysis: while 1D is the preferred approach in the $m_{HH}$ spectrum, the 3D parametrization outperforms the 1D approach for $p_T^H$, and the multi-reference strategy consistently generates further enhancements.
+\begin{figure}
+  \centering
+  \begin{minipage}[b]{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_gen_mhh.pdf}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_gen_pth.pdf}
+  \end{minipage}
+  \caption{Validación del ELR a nivel de generador en un punto arbitrario del espacio HEFT,
+  definido por $\kappa_\lambda=1{,}33$, $\kappa_\PQt=1{,}04$, $c_2=0{,}45$, $c_\Pg=0{,}83$ y
+  $c_{2\Pg}=0{,}86$. Izquierda: distribución de \mHH obtenida a partir de las
+  parametrizaciones unidimensional y tridimensional, comparada con la simulación directa del
+  punto. Derecha: momento transverso del bosón de Higgs, magnitud ajena al conjunto $\xi$
+  empleado en la extracción de los coeficientes, reponderado desde el SM con ambas
+  parametrizaciones y con la estrategia tridimensional multi-referencia.}
+  \label{fig:elr_gen}
+\end{figure}
+%
+At a second stage, the method is applied to a realistic phase space, using information from the signal region published by the CMS $\HH\to b\bar{b}b\bar{b}$ search in Run 3 \cite{CMS:2026znu}, which provides all of the experimental selections applied to generator-level events for two of the four $\kappa_\ lambda$ scenarios used in the analysis and for the two topologies explored in the search: resolved and boosted. Figures \ref{fig:elr_4b_resolved} and \ref{fig:elr_4b_merged} show the agreement obtained in both regimes, which holds even in the boosted regime despite the fact that it accounts for only a tiny fraction of the total cross section. The effectiveness of the method in regions that account for less than one-thousandth of the cross section constitutes the most rigorous test among those presented, and validates the argument in Section \ref{subsec:physical_model} regarding the survival of the factorization throughout the entire chain of analysis.
+%
+\begin{figure}
+  \centering
+  \begin{minipage}[b]{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_4b_resolved_kl1.pdf}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_4b_resolved_kl2p45.pdf}
+  \end{minipage}
+  \caption{Distribución del momento transverso del sistema \HH tras aplicar la totalidad de
+  las selecciones de la región de señal de la categoría resuelta de la búsqueda
+  $\HH\to b\bar{b}b\bar{b}$ \cite{CMS:2026znu}, para los escenarios $\kappa_\lambda=1$
+  (izquierda) y $\kappa_\lambda=2{,}45$ (derecha). En ambos paneles se compara la predicción
+  obtenida con el ELR tridimensional multi-referencia con la simulación directa del punto
+  correspondiente.}
+  \label{fig:elr_4b_resolved}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{minipage}[b]{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_4b_merged_kl1.pdf}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_4b_merged_kl2p45.pdf}
+  \end{minipage}
+  \caption{Distribución del momento transverso del bosón de Higgs tras aplicar la totalidad
+  de las selecciones de la región de señal de la categoría fusionada de la búsqueda
+  $\HH\to b\bar{b}b\bar{b}$ \cite{CMS:2026znu}, para los mismos escenarios
+  $\kappa_\lambda=1$ (izquierda) y $\kappa_\lambda=2{,}45$ (derecha). Esta categoría accede a
+  una fracción minúscula de la sección eficaz total, lo que la convierte en la prueba más
+  exigente del método.}
+  \label{fig:elr_4b_merged}
+\end{figure}
+
+Overall, the discussion throughout this section has demonstrated that the ELR modeling method provides a differential prediction whose dependence on the EFT parameters is exact and can be evaluated at any point in EFT space, whether in five-dimensional HEFT or nine-dimensional SMEFT. The results presented indicate that this tool therefore allows for reliable predictions based on a limited simulation budget and with the advantage of constructing any observable a posteriori, including the reconstructed quantities on which experimental searches rely. Furthermore, the procedure does not merely provide a central prediction but also the uncertainty associated with the modeling itself, allowing it to be incorporated into the statistical fitting. Although the method has been extensively used in numerous analyses, its most recent formulations have considerably expanded its scope by considering its extension to NLO QCD, three-dimensional parameterization, the multi-reference strategy, and coverage of the invariant high-mass tail, as well as its generalization to the SMEFT formalism with subleading operators. All these improvements have transformed a procedure originally restricted to LO and the $m_{HH}$ distribution into a description that can be used in the regions and formalisms required by current searches.
+
+However, while ELR eliminates the need to simulate a sample for each point in the parameter space, it does not eliminate the cost of processing the resulting prediction: obtaining the final distribution at a given point requires iterating through the reference samples, evaluating the weight event by event, and reconstructing the histogram throughout the entire analysis chain. Moreover, this process must be repeated for each point in the scan and for each systematic variation. In a dense scan — especially within likelihood fit, where the signal must be evaluated continuously across the parameters — the cost can become prohibitive in certain searches. This consideration enables the use of ELR as a tool capable of establishing a natural reference against which to evaluate the convergence of any other modeling procedure, such as the matrix inversion method described below. Furthermore, the availability of an analytical and differential description plays a decisive role in this work, as it allows for the generation of $m_{HH}$ templates at arbitrary points without the need to simulate or process any events, and thus to evaluate the quality of a prediction at a negligible computational cost. This feature is essential for addressing the central problem of this chapter, which is the development and extension of the matrix inversion method. The ELR thus serves as the foundation upon which the optimization developed in Section \ref{sec:full_model} is built, once this modeling method is introduced in the following section.
 
 
-Existen varias técnicas de modelado desarrolladas sobre esta base, y cuya principal
-diferencia se basa en el punto along the analysis chain en el que se explota la
-factorización. Una de las estrategias adoptadas consiste en asignar un peso que aplicar a
-cada evento de una única muestra simulada, de forma que ésta reproduzca la predicción
-correspondiente a cualquier otro punto del espacio de parámetros. Esta técnica, conocida
-como \textit{event-level reweighting}, ha sido el estándar histórico en \ggHH y, a
-diferencia del generator-level reweighting descrito anteriormente, no recalcula el elemento
-de matriz: el peso se obtiene directamente de la parametrización analítica de la sección
-eficaz, evaluada sobre un conjunto reducido de variables a nivel generador ---
-tradicionalmente la masa invariante \mHH, complementada por $\cos\theta^*$. Puesto que dicha
-parametrización se deriva a LO, la normalización se recupera aplicando el factor N(N)LO
-correspondiente. El coste por punto es así prácticamente nulo, lo que permite cubrir el
-espacio de parámetros con una densidad arbitraria a partir de una sola muestra.
 
-Su precisión, sin embargo, está limitada por tres factores. El primero es el binning de la
-parametrización, que fija la resolución con la que se describe la deformación de las
-distribuciones. El segundo es la precisión LO con la que se obtienen los coeficientes: como
-se ha señalado en la Sección \ref{subsec:HEFT}, los $K$-factors no son uniformes ni en el
-espacio de parámetros ni a lo largo del espectro de \mHH, de modo que una normalización
-global no reproduce correctamente la forma de la distribución. El tercero, y más
-restrictivo, es la dependencia de la muestra de referencia: los puntos cuya cinemática
-difiere apreciablemente de la de dicha muestra requieren pesos grandes, con la consiguiente
-dilución de la estadística efectiva precisamente en las regiones que determinan la
-sensibilidad. Recientemente se ha propuesto una nueva formulación que aborda estas
-limitaciones, extendiendo la parametrización más allá de \mHH y derivándola a NLO en QCD
-tanto para HEFT como para SMEFT~\cite{Cadamuro:2025car}; ésta es la versión adoptada en este
-trabajo.
 
-Es aquí donde el event-level reweighting deja de
-ser una técnica competidora para convertirse en un ingrediente habilitante: al eliminar el
-requisito de que cada punto base corresponda a una muestra generada de forma independiente,
-abre la elección de la base a un proceso de optimización. La combinación de ambas técnicas
-constituye el desarrollo principal de este trabajo.
+%%%% ---------------- COSAS PENDIENTES ---------------- %%%%
+% DONDE ESTÁ SMEFT?
+% REGIONES ExpLORADAS : RANGOS DE LOS COUPLINGS
+
+
+
 
 \subsection{Matrix inversion method}
 formalismo: $\sigma(\vec{c}) = \sum_i w_i(\vec{c}),\sigma_i$ con la matriz de puntos base invertible; se aplica a nivel de análisis (después de selección y del discriminante ML), no evento a evento; ventajas en coste de procesado.
