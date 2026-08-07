@@ -721,79 +721,101 @@ Overall, the discussion throughout this section has demonstrated that the ELR mo
 However, while ELR eliminates the need to simulate a sample for each point in the parameter space, it does not eliminate the cost of processing the resulting prediction: obtaining the final distribution at a given point requires iterating through the reference samples, evaluating the weight event by event, and reconstructing the histogram throughout the entire analysis chain. Moreover, this process must be repeated for each point in the scan and for each systematic variation. In a dense scan — especially within likelihood fit, where the signal must be evaluated continuously across the parameters — the cost can become prohibitive in certain searches. This consideration enables the use of ELR as a tool capable of establishing a natural reference against which to evaluate the convergence of any other modeling procedure, such as the matrix inversion method described below. Furthermore, the availability of an analytical and differential description plays a decisive role in this work, as it allows for the generation of $m_{HH}$ templates at arbitrary points without the need to simulate or process any events, and thus to evaluate the quality of a prediction at a negligible computational cost. This feature is essential for addressing the central problem of this chapter, which is the development and extension of the matrix inversion method. The ELR thus serves as the foundation upon which the optimization developed in Section \ref{sec:full_model} is built, once this modeling method is introduced in the following section.
 
 
-
-
 %%%% ---------------- COSAS PENDIENTES ---------------- %%%%
-% DONDE ESTÁ SMEFT?
+% SMEFT?
 % REGIONES ExpLORADAS : RANGOS DE LOS COUPLINGS
-
-
+% TABLA DE BINNEADO???
 
 
 \subsection{Matrix inversion method}
 \label{subsec:matrix_inversion}
-formalismo: $\sigma(\vec{c}) = \sum_i w_i(\vec{c}),\sigma_i$ con la matriz de puntos base invertible; se aplica a nivel de análisis (después de selección y del discriminante ML), no evento a evento; ventajas en coste de procesado.
-> Basis choice and numerical stability -  independencia lineal, número de condición, amplificación de errores y pesos negativos, estadística de las muestras base. Aquí puedes ya dejar planteado el criterio que optimizas en 8.3.
-
-Su punto débil reside en la propia base. El número de puntos necesarios crece con la
-dimensión del espacio de parámetros, y no toda elección es igualmente válida: una base mal
-condicionada amplifica las incertidumbres estadísticas de las muestras que la componen hasta
-comprometer la predicción, dando lugar a pesos grandes de signos opuestos y, en última
-instancia, a secciones eficaces no físicas. Es aquí donde el event-level reweighting deja de
-ser una técnica competidora para convertirse en un ingrediente habilitante: al eliminar el
-requisito de que cada punto base corresponda a una muestra generada de forma independiente,
-abre la elección de la base a un proceso de optimización. La combinación de ambas técnicas
-constituye el desarrollo principal de este trabajo.
-
-\subsubsection{ESTO LO DEJO PARA MATRIX METHOD: Forma matricial y estrategias de explotación}
-%
-Resulta conveniente reescribir la Ecuación \ref{eq:poly_general} separando de forma
-explícita lo conocido de lo desconocido. Definiendo el vector de monomios
-$\vec{f}(\mathbf{c})=\left(f_1(\mathbf{c}),\dots,f_{N_A}(\mathbf{c})\right)^\top$ —una
-función analítica y conocida de los parámetros de la EFT— y el vector de coeficientes
-$\vec{a}=\left(A_1,\dots,A_{N_A}\right)^\top$, se obtiene
+% Descripcon general
+The following modeling method, called the Matrix Inversion Method, is based on the same physical model as in the previous Section \ref{subsec:physical_model}, but exploits it in a direction opposite to that of event-level reweighting. While ELR sought to determine the coefficients of the parameterization $A_i$, the matrix method seeks to eliminate dependence on them. To develop this method, it is useful to rewrite Equation \ref{eq:poly_differential} by explicitly separating the monomial vector $\vec{f}(\mathbf{c}) = (f_1(\mathbf{c}),\ dots,f_{N_A}(\mathbf{c}))^\top$ and the coefficient vector $\vec{a} = (A_1,\dots,A_{N_A})^\top$. In this way, the known analytical function of the EFT parameters is contained in $\vec{f}(\mathbf{c})$, while the information to be determined is contained in the vector $\vec{a}$. Accordingly, the prediction of the cross section can be written as:
 %
 \begin{equation}
     \sigma_{\ggHH}(\mathbf{c}) = \vec{f}^{\;\top}(\mathbf{c})\cdot\vec{a}\;,
 \label{eq:master_model}
 \end{equation}
 %
-que puede considerarse la ecuación maestra del modelado de señal en \ggHH. Su carácter
-bilineal —lineal en los monomios y lineal en los coeficientes— admite dos lecturas
-complementarias, que dan lugar precisamente a las dos familias de técnicas descritas a
-continuación. La primera consiste en determinar explícitamente $\vec{a}$ a partir de un
-conjunto de predicciones conocidas y utilizar después la Ecuación \ref{eq:master_model}
-como fórmula analítica para asignar un peso a cada suceso de una muestra de referencia:
-es la base del \textit{event-level reweighting} de la Sección \ref{subsec:ELR}. La
-segunda evita determinar $\vec{a}$: si se dispone de $N_A$ predicciones en puntos base
-$\{\mathbf{c}_1,\dots,\mathbf{c}_{N_A}\}$ cuyos vectores de monomios sean linealmente
-independientes, la matriz $C$ que los agrupa por filas es invertible y $\vec{a}$ puede
-eliminarse de la Ecuación \ref{eq:master_model}, expresando la predicción en cualquier
-punto del espacio como una combinación lineal de las predicciones base con pesos que son
-funciones analíticas de $\mathbf{c}$. Ésta es la idea del método de inversión matricial
-de la Sección \ref{subsec:matrix_inversion}.
+Its bilinear nature — linear in the monomials and linear in the coefficients — allows for two complementary interpretations. While the ELR in Section \ref{subsec:ELR} relies on the explicit determination of $\vec{a}$, the matrix inversion method eliminates $\vec{a}$ from the problem. For this purpose, the method requires predictions at a set of $N_A$ basis points ${\mathbf{c}1,\dots,\mathbf{c}{N_A}}$, that is, $N_A$ EFT scenarios for which the cross section or differential distribution is known. Evaluating Equation \ref{eq:master_model} at each of these yields a linear system in $\vec{a}$:
+%
+\begin{equation}
+  \vec{\sigma}_{\text{base}} \equiv
+  \begin{pmatrix}
+    \sigma_{\ggHH}(\mathbf{c}_1) \\ \vdots \\ \sigma_{\ggHH}(\mathbf{c}_{N_A})
+  \end{pmatrix}
+  =
+  \underbrace{
+  \begin{pmatrix}
+    \vec{f}^{\;\top}(\mathbf{c}_1) \\ \vdots \\ \vec{f}^{\;\top}(\mathbf{c}_{N_A})
+  \end{pmatrix}}_{F}
+  \cdot\;\vec{a}\;,
+\label{eq:matrix_system}
+\end{equation}
+%
+where the matrix $F$ groups the monomial vectors evaluated at the basis points by row. If these vectors are linearly independent, then $F$ is invertible, and the system can be solved: $\vec{a} = F^{-1},\vec{\sigma}_{\text{base}}$. Rather than using this solution to recover the coefficients, however, it suffices to substitute it back into Equation \ref{eq:master_model}, thereby eliminating $\vec{a}$ entirely from the problem:
+%
+\begin{equation}
+    \sigma_{\ggHH}(\mathbf{c})
+    = \underbrace{\vec{f}^{\;\top}(\mathbf{c})\,F^{-1}}_{\textstyle \vec{w}^{\;\top}(\mathbf{c})}
+      \cdot\;\vec{\sigma}_{\text{base}}
+    = \sum_{k=1}^{N_A} w_k(\mathbf{c})\,\sigma_{\ggHH}(\mathbf{c}_k)\;.
+\label{eq:matrix_master}
+\end{equation}
+In this manner, the prediction at any point in parameter space is expressed as a linear combination of the predictions at the $N_A$ base points, with weights $\vec{w}(\mathbf{c}) = \left(F^{-1}\right)^{\top}\vec{f}(\mathbf{c})$ that are known analytic functions of the coordinates of the target point and those of the basis, completely eliminating the dependence on the coefficients $A_i$ and thus requiring no fit.\\
 
+Since the matrix $F$ is constructed exclusively from the couplings of the base points, and the monomial vector is universal, nothing in the previous derivation depends on the region of phase space under consideration. Therefore, the argument can be systematically repeated for each bin $j$ simply by substituting $\vec{a}\to\vec{a}^{,(j)}$ in Equation \ref{eq:master_model} and the total cross sections with the corresponding differential predictions in Equation \ref{eq:matrix_system}. The matrix inversion is consistent, as are the weights:
+%
+\begin{equation}
+    \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c})
+    = \sum_{k=1}^{N_A} w_k(\mathbf{c})\;
+      \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c}_k)\;.
+\label{eq:matrix_differential}
+\end{equation}
+%
+where it should be noted that the weights $w_k(\mathbf{c})$ are not indexed by $j$, meaning that the same linear combination can reproduce any differential distribution. In addition, the previously established and reiterated argument regarding the preservation of the factorization throughout the analysis chain is maintained; the index $j$ can refer equally to a bin of a generated variable or to a bin of the final observable of the search following the complete selection of the analysis.\\
 
-%--------------------------ESTO PARA EL FINAL DE 8.2
-Ambas estrategias comparten, sin embargo, un mismo punto de partida y una misma
-vulnerabilidad. El propio valor de $N_A$ —veintitrés en HEFT a NLO y cuarenta en SMEFT—
-constituye el número mínimo de predicciones independientes necesarias para fijar el
-modelo, y crece rápidamente con la dimensión del espacio de parámetros. Y, lo que resulta
-más problemático, no basta con alcanzarlo: la calidad de la predicción depende
-críticamente de \textit{dónde} se sitúen esos puntos, cuestión que se traduce en el
-condicionamiento del sistema lineal subyacente y que constituye el objeto de la Sección
-\ref{sec:full_model}.
+%%%%%------------AÑADIRÉ EL STATS AWARE?????---------------
+%It should also be noted that, if more than $N_A$ basis points are available, the system in Equation \ref{eq:matrix_system} becomes overdetermined, and $F$ is no longer strictly invertible. The solution then involves a least-squares fit, in which the statistical information from the base predictions can be explicitly incorporated through their covariance matrix. This extension of the method, which allows for the use of broader bases than the minimum required, is discussed in Section \ref{sec:full_model}.
 
-Por último, el propio valor de $N_A$ anticipa la dificultad central que se abordará en el
-resto del capítulo. Veintitrés términos en HEFT a NLO y cuarenta en SMEFT constituyen el
-número mínimo de predicciones independientes necesarias para determinar el modelo, y por
-tanto el número mínimo de muestras que cualquiera de las dos estrategias anteriores
-requiere. Este número crece rápidamente con la dimensión del espacio de parámetros y,
-lo que resulta más problemático, no basta con alcanzarlo: la calidad de la predicción
-depende críticamente de \textit{dónde} se sitúen esos puntos, cuestión que se traduce en
-el condicionamiento del sistema lineal y que constituye el objeto de la Sección
-\ref{sec:full_model}.
-%--------------------------FIN DE ESTO PARA EL FINAL DE 8.2
+\subsubsection{Practical advantages and scope of application}
+% ventajas y ámbito de uso 
+The practical advantage is immediate: the combination is performed directly on the final histograms of the analysis rather than event by event, so that the analysis chain is traversed only once per base pair. Consequently, generating a prediction at an arbitrary point in parameter space is reduced to a weighted sum of $N_A$ previously calculated histograms, with weights evaluated analytically. In contrast to ELR, the scanning cost is no longer dependent on the number of evaluated points, leading to a substantial reduction in computational expense. Its appeal in the experimental context is therefore evident, since the method allows for a complete EFT interpretation based solely on a small number of fully processed samples, with the added advantage that it can be implemented directly within the statistical fitting tool, as the EFT parameters can be treated as continuous parameters of the likelihood fit. This decoupling of the EFT interpretation from the generation and processing of the samples, while moving it to the final stage of the analysis, offers a clear operational advantage.
+
+Because of this, ATLAS and CMS have used this method extensively to interpret their searches for Higgs boson pair production \cite{CMS_combination, ATLAS:2024pov, ATLAS:2025tkn}, and is implemented in the standard statistical modeling tools used by the scientific community. The application of the method is not restricted to the $gg\to HH$ process; rather, the same construction applies to other production modes, such as $qqHH$, $VHH$, and $t\bar{t}HH$, as well as to the production of three Higgs bosons, provided that the cross section allows for the factorization described in Section \ref{subsec:physical_model}.
+
+To date, the EFT interpretations using this modeling strategy have been carried out in parameter spaces of reduced dimensionality, where the number of basis points required to solve the system is minimal. One example is the case of one-dimensional scanning in $\kappa_{\lambda}$, where, by fixing the remaining couplings to their SM values, the amplitude of Equation \ref{eq:amplitude_decomposition} reduces to the box and triangle structures; thus, $N_A=3$ independent predictions are sufficient to determine the model. The same number of basis points is required when exploring the plane $(\kappa_{\lambda},\kt)$, which consists of the same amplitude structures. Adding the contact vertex $c_2$, however, introduces a third structure, bringing the the total to six. It is within this three-dimensional restriction of HEFT space that the most recent experimental interpretations are situated. In these cases of low problem dimensionality, the required number of predictions is typically on par with the number of BSM scenarios generated by a standard analysis. The basis selection is then made heuristically: the kinematically most disparate scenarios are selected by direct inspection of their $m_{HH}$ spectra, and the choice is validated a posteriori by comparing the method’s prediction with independently simulated data points — an approach that has worked reasonably well thanks to the low dimensionality of the cases.
+
+However, extending the coverage to the full HEFT space of five couplings, or to that of nine Wilson coefficients in SMEFT, causes the number of base points to increase to the 23 base points required by the NLO parameterization of Equation \ref{eq:heft_diff} and the 40 base points required by Equation \ref{eq:smeft_diff}, respectively. The choice of basis, therefore, is no longer subject to inspection, meaning that the quality of the prediction is contingent on the appropriate handling of the basis selection.\\
+
+\subsubsection{Basis choice}
+% Caveats: elección de la base
+
+Poorly chosen bases can lead to flawed method performance due to various potential issues. If not properly managed, these issues can compound, resulting in significant problems. First, the stability of the method is determined by the condition number of $F$ in Equation \ref{eq:matrix_system}, that is, the degree to which the monomial vectors approach degeneracy.  The points of a basis that generate nearly parallel monomial vectors produce an inverse matrix with very large entries and alternating signs, a behavior that is fully transmitted to the weights $w_k(\mathbf{c})$ in Equation \ref{eq:matrix_differential} and, with them, to the prediction.
+
+The consequences of a deficient basis can be roughly quantified. Assuming statistically independent basis points, the error propagation in Equation \ref{eq:matrix_differential} is
+%
+$$
+    \left[\Delta\left(\frac{d\sigma_{\ggHH}(\mathbf{c})}{d\xi_j}\right)\right]^{2}
+    = \sum_{k=1}^{N_A} w_k^{2}(\mathbf{c})\,
+      \left[\Delta\left(\frac{d\sigma_{\ggHH}(\mathbf{c}_k)}{d\xi_j}\right)\right]^{2}\;,
+$$
+%
+so that the quantity $\sum_k w_k^{2}(\mathbf{c})$ acts as an amplification factor for the statistical uncertainties of the samples that make up the basis. Since the weights are functions of the objective point, this factor can grow without limit. Consequently, in a poorly conditioned basis, a small cross section may end up being modeled as the difference between two much larger quantities, which can lead to disproportionate uncertainties precisely in regions that may prove to be decisive for the sensitivity of the analysis.
+
+On the other hand, an insufficiently independent basis can introduce a bias in the shape of the predicted distribution that is not accounted for by any assigned uncertainty, and which therefore propagates unchecked into the statistical fit. The combination of these two effects can lead to non-physical predictions or bins with negative values that are meaningless and can cause standard signal extraction tools to fail.
+
+It should also be noted that none of these properties are a global characteristic of the basis; rather, they are local to the point being predicted. For instance, the same basis may perform flawlessly in the SM environment and catastrophically in a given BSM direction, or it may correctly reproduce the overall performance while failing in the least populated bins of the distribution. It follows that validation limited to the inclusive effective section or to a handful of reference scenarios can be completely misleading, and the only way to obtain a meaningful evaluation is to perform it differentially across the entire domain to be covered.
+
+Furthermore, each base point requires a separate full simulation, which represents a considerable cost in the case of twenty-three or forty complete productions. After careful consideration, it has been determined that the selection of basis in a five- or nine-dimensional space cannot be addressed using the heuristic procedure applied to lower-dimensional spaces. This is due to the fact that there is no clear intuition that allows for the anticipation of the constraints on a set of twenty-three or forty points, and a systematic exploration of alternatives would require an unmanageable volume of simulations.\\
+
+\subsubsection{Basis optimization: the role of event-level reweighting}
+% ELR como tool para abordar el problema de forma sistematica
+Therefore, extending the method to high-dimensional systems — such as the case of complete EFT descriptions — requires a systematic approach to the problem of basis selection. It is necessary to define a search strategy capable of exploring the entire coupling domain under consideration, as well as to establish a performance metric that objectively quantifies the quality of a basis in that space. The objective is therefore to identify a favorable configuration in a search space whose dimensionality is comparable to that of problems typically addressed using machine learning techniques.
+
+However, evaluating the objective function to converge in a space of this dimensionality requires on the order of $10^5$ to $10^6$ evaluations of the objective function, which is unfeasible if one needs to simulate and process each sample of the test basis points and each objective sample. As previously mentioned, the ELR is a key factor in this matter. As outlined in Section \ref{subsec:ELR}, the ELR provides an analytical and differential description of the cross section, valid for any point in HEFT or SMEFT space, enabling the generation of templates for distributions of interest, such as $m_{HH}$, without the need for simulating or processing a single event, and at a negligible cost. Additionally, generating "toys" from the analytical distribution allows for reproducing the effect of a finite simulation statistic, thereby characterizing the error amplification previously discussed, so that the evaluation is not limited to shape agreement but incorporates the statistical precision that the basis would have in actual use. This provides a continuous test set across the entire coupling space, enabling precise measurement of the performance of any basis. Furthermore, it eliminates the need to simulate each basis point separately: the basis coordinates become completely free and optimizable.\\
+
+With these elements in place the search for the basis can be approached systematically within the framework of hyperparameter optimization, analogous to that of a machine learning problem, relying on a parameterization of the basis as a vector of hyperparameters, a bounded objective function that aggregates the discussed quality criteria — shape agreement with the true prediction, statistical accuracy of the resulting combination, and the absence of bins with negative content — and a global search algorithm. Under this approach, the choice that was traditionally guided by inspection becomes a reproducible procedure applicable to complete EFT models. The construction of a complete HEFT and SMEFT model for the $gg\to HH$ production constitutes the main contribution of this chapter and is the objective of Section \ref{sec:full_model}, where validity of the method will also be examined for the optimized bases that constitute the contribution of this work.
 
 \section{A full HEFT/SMEFT model for ggHH production}
 > finding a good basis
