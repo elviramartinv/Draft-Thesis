@@ -644,64 +644,75 @@ The solution to this problem involves using a \textit{multi-reference} strategy,
 
 \subsubsection{Validation of the method}
 %
-The validation of the method can be carried out on two levels. The first operates at the generator level, prior to any selection of analysis, and serves to verify that the polynomials reproduce the distributions consistently throughout the parameter space. The validation of the ELR-predicted spectra for $m_{HH}$ and $p_T^H$ in the most recent formulation of the method \cite{HHReweighting}, compared to MC simulated distributions, is shown in Figure \ref{elr_gen}, which presents the results in the HEFT framework; the behavior in SMEFT is entirely analogous. In SUBFIRUE $m_{HH}$ can be seen at an arbitrary point in HEFT space, while the transverse momentum of the Higgs boson $p_T^H$ is presented in SUBFIGUE at a different point. The $p_T^H$ is shown here as a quantity of particular interest because it lies outside the set $\xi$ used in the extraction of coefficients. In both cases, it can be seen that the quantities are well described by the method, and the distributions depicted underscores the findings discussed throughout the analysis: while 1D is the preferred approach in the $m_{HH}$ spectrum, the 3D parametrization outperforms the 1D approach for $p_T^H$, and the multi-reference strategy consistently generates further enhancements.
-\begin{figure}
+The validation of the method can be carried out on two levels. The first operates at the generator level, prior to any selection of analysis, and serves to verify that the polynomials reproduce the distributions consistently throughout the parameter space. The validation of the ELR-predicted spectra for $m_{HH}$ and $p_T^H$ in the most recent formulation of the method \cite{HHReweighting}, compared to MC simulated distributions, is shown in Figure \ref{fig:elr_gen}, which presents the results in the HEFT framework; the behavior in SMEFT is entirely analogous. Figure \ref{fig:elr_gen_mhh} shows $m_{HH}$ at an arbitrary point in HEFT space, while the transverse momentum of the Higgs boson $p_T^H$ is presented in Figure \ref{fig:elr_gen_pth} at a different point. The $p_T^H$ is shown here as a quantity of particular interest because it lies outside the set $\xi$ used in the extraction of coefficients. In both cases, it can be seen that the quantities are well described by the method, and the distributions depicted underscores the findings discussed throughout the analysis: while 1D is the preferred approach in the $m_{HH}$ spectrum, the 3D parametrization outperforms the 1D approach for $p_T^H$, and the multi-reference strategy consistently generates further enhancements.
+\begin{figure}[h!]
   \centering
-  \begin{minipage}[b]{0.49\linewidth}
+  \begin{subfigure}[t]{0.49\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_gen_mhh.pdf}
-  \end{minipage}\hfill
-  \begin{minipage}[b]{0.49\linewidth}
+    \caption{\mHH distribution obtained from the one- and three-dimensional
+    parameterizations, compared to the direct simulation of the point
+    $\kappa_\lambda=1.33$, $\kappa_\PQt=1.04$, $c_2=0.45$, $c_\Pg=0.83$, $c_{2\Pg}=0.86$.}
+    \label{fig:elr_gen_mhh}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.49\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_gen_pth.pdf}
-  \end{minipage}
-  \caption{Validación del ELR a nivel de generador en un punto arbitrario del espacio HEFT,
-  definido por $\kappa_\lambda=1{,}33$, $\kappa_\PQt=1{,}04$, $c_2=0{,}45$, $c_\Pg=0{,}83$ y
-  $c_{2\Pg}=0{,}86$. Izquierda: distribución de \mHH obtenida a partir de las
-  parametrizaciones unidimensional y tridimensional, comparada con la simulación directa del
-  punto. Derecha: momento transverso del bosón de Higgs, magnitud ajena al conjunto $\xi$
-  empleado en la extracción de los coeficientes, reponderado desde el SM con ambas
-  parametrizaciones y con la estrategia tridimensional multi-referencia.}
+    \caption{Transverse momentum of the Higgs boson, a quantity outside the set $\xi$ used in
+    the extraction of the coefficients, reweighted from the SM with both parameterizations and
+    with the three-dimensional multi-reference strategy.}% TODO: indicar el punto HEFT concreto de este panel
+    \label{fig:elr_gen_pth}
+  \end{subfigure}
+  \caption{Validation of the ELR at generator level at arbitrary points of the HEFT parameter
+  space.}
   \label{fig:elr_gen}
 \end{figure}
 %
 At a second stage, the method is applied to a realistic phase space, using information from the signal region published by the CMS $\HH\to b\bar{b}b\bar{b}$ search in Run 3 \cite{CMS:2026znu}, which provides all of the experimental selections applied to generator-level events for two of the four $\kappa_\lambda$ scenarios used in the analysis and for the two topologies explored in the search: resolved and boosted. Figures \ref{fig:elr_4b_resolved} and \ref{fig:elr_4b_merged} show the agreement obtained in both regimes, which holds even in the boosted regime despite the fact that it accounts for only a tiny fraction of the total cross section. The effectiveness of the method in regions that account for less than one-thousandth of the cross section constitutes the most rigorous test among those presented, and validates the argument in Section \ref{subsec:physical_model} regarding the survival of the factorization throughout the entire chain of analysis.
 %
-\begin{figure}
+\begin{figure}[h!]
   \centering
-  \begin{minipage}[b]{0.49\linewidth}
+  \begin{subfigure}[t]{0.49\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_4b_resolved_kl1.pdf}
-  \end{minipage}\hfill
-  \begin{minipage}[b]{0.49\linewidth}
+    \caption{$\kappa_\lambda=1$.}
+    \label{fig:elr_4b_resolved_kl1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.49\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_4b_resolved_kl2p45.pdf}
-  \end{minipage}
-  \caption{Distribución del momento transverso del sistema \HH tras aplicar la totalidad de
-  las selecciones de la región de señal de la categoría resuelta de la búsqueda
-  $\HH\to b\bar{b}b\bar{b}$ \cite{CMS:2026znu}, para los escenarios $\kappa_\lambda=1$
-  (izquierda) y $\kappa_\lambda=2{,}45$ (derecha). En ambos paneles se compara la predicción
-  obtenida con el ELR tridimensional multi-referencia con la simulación directa del punto
-  correspondiente.}
+    \caption{$\kappa_\lambda=2.45$.}
+    \label{fig:elr_4b_resolved_kl2p45}
+  \end{subfigure}
+  \caption{Transverse momentum distribution of the \HH system after applying the full set of
+  signal region selections of the resolved category of the $\HH\to b\bar{b}b\bar{b}$
+  search \cite{CMS:2026znu}. In both panels the prediction obtained with the three-dimensional
+  multi-reference ELR is compared to the direct simulation of the corresponding point.}
   \label{fig:elr_4b_resolved}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
   \centering
-  \begin{minipage}[b]{0.49\linewidth}
+  \begin{subfigure}[t]{0.49\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_4b_merged_kl1.pdf}
-  \end{minipage}\hfill
-  \begin{minipage}[b]{0.49\linewidth}
+    \caption{$\kappa_\lambda=1$.}
+    \label{fig:elr_4b_merged_kl1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.49\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_VIII/elr_4b_merged_kl2p45.pdf}
-  \end{minipage}
-  \caption{Distribución del momento transverso del bosón de Higgs tras aplicar la totalidad
-  de las selecciones de la región de señal de la categoría fusionada de la búsqueda
-  $\HH\to b\bar{b}b\bar{b}$ \cite{CMS:2026znu}, para los mismos escenarios
-  $\kappa_\lambda=1$ (izquierda) y $\kappa_\lambda=2{,}45$ (derecha). Esta categoría accede a
-  una fracción minúscula de la sección eficaz total, lo que la convierte en la prueba más
-  exigente del método.}
+    \caption{$\kappa_\lambda=2.45$.}
+    \label{fig:elr_4b_merged_kl2p45}
+  \end{subfigure}
+  \caption{Transverse momentum distribution of the Higgs boson after applying the full set of
+  signal region selections of the merged category of the $\HH\to b\bar{b}b\bar{b}$
+  search \cite{CMS:2026znu}, for the same scenarios as in Figure \ref{fig:elr_4b_resolved}.
+  This category accesses a minuscule fraction of the total cross section, which makes it the
+  most demanding test of the method.}
   \label{fig:elr_4b_merged}
 \end{figure}
 
