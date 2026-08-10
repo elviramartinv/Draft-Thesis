@@ -879,81 +879,179 @@ for a problem with $n_c$ couplings — five in HEFT and nine in SMEFT — and $n
 
 In general, this involves $n_b\times n_c$ hyperparameters, that that is, $115$ in HEFT and $360$ in SMEFT, and also suffers from severe degeneracy: there are $n_b!$ equivalent bases that differ only in the order of their points, which the minimizer must explore without gaining any information in return.
 
-Therefore, to reduce the number of hyperparameters and resolve the degeneracy problem, a minimal form for the basis is postulated, inspired by the structure of the coefficients $A_i$ themselves. This formulation associates each basis point with one coefficient from Equations \ref{eq:heft_diff} and \ref{eq:smeft_diff}, activating only the couplings involved in the associated monomial and setting the remaining ones to zero. Thus, in HEFT, the point associated with $A_1$, whose monomial is $\kappa_t^4$, takes the form $[0,A_1,0,0,0]$ in the parameterization $[\kappa_\lambda,\kappa_t,c_2,c_g,c_{2g}]$; equivalently, for $A_2$, with monomial $\kappa_\lambda \kappa_t^3$, the associated form would be $[A_{2a},A_{2b},0,0,0]$; and so on up to $A_{23}$.
+Therefore, to reduce the number of hyperparameters and resolve the degeneracy problem, a minimal form for the basis is postulated, inspired by the structure of the coefficients $A_i$ themselves. This formulation associates each basis point with one coefficient from Equations \ref{eq:heft_diff} and \ref{eq:smeft_diff}, activating only the couplings involved in the associated monomial and setting the remaining ones to zero. Thus, in HEFT, the point associated with $A_1$, whose monomial is $\kappa_t^4$, takes the form $[0,A_1,0,0,0]$ in the parameterization $[\kappa_\lambda,\kappa_t,c_2,c_g,c_{2g}]$; equivalently, for $A_2$, with monomial $\kappa_\lambda \kappa_t^3$, the associated form would be $[A_{2a},A_{2b},0,0,0]$; and so on up to $A_{23}$. The full basis parametrization for HEFT is depicted in Table \ref{tab:basis_para_heft}, and the same rule applies to SMEFT, as shown in Table \ref{tab:basis_para_smeft}.
+\begin{table}
+    \centering
+    \begin{tabular}{@{}llccccc@{\hspace{2.5em}}llccccc@{}}
+        \toprule
+        & $f_i$ & $\kappa_{\lambda}$ & $\kappa_{\PQt}$ & $c_2$ & $c_\Pg$ & $c_{2\Pg}$
+        & & $f_i$ & $\kappa_{\lambda}$ & $\kappa_{\PQt}$ & $c_2$ & $c_\Pg$ & $c_{2\Pg}$ \\
+        \midrule
+        $A_{1}$ & $\kappa_\PQt^4$                    & 0 & $\bullet$ & 0 & 0 & 0
+      & $A_{13}$ & $\kappa_\lambda^2\kappa_\PQt c_\Pg$ & $\bullet$ & $\bullet$ & 0 & $\bullet$ & 0 \\
+        $A_{2}$ & $\kappa_\lambda\kappa_\PQt^3$      & $\bullet$ & $\bullet$ & 0 & 0 & 0
+      & $A_{14}$ & $c_2 c_{2\Pg}$                    & 0 & 0 & $\bullet$ & 0 & $\bullet$ \\
+        $A_{3}$ & $\kappa_\lambda^2\kappa_\PQt^2$    & $\bullet$ & $\bullet$ & 0 & 0 & 0
+      & $A_{15}$ & $\kappa_\lambda c_2 c_\Pg$        & $\bullet$ & 0 & $\bullet$ & $\bullet$ & 0 \\
+        $A_{4}$ & $\kappa_\PQt^2 c_2$                & 0 & $\bullet$ & $\bullet$ & 0 & 0
+      & $A_{16}$ & $c_\Pg^2 c_{2\Pg}$                & 0 & 0 & 0 & $\bullet$ & $\bullet$ \\
+        $A_{5}$ & $\kappa_\lambda\kappa_\PQt c_2$    & $\bullet$ & $\bullet$ & $\bullet$ & 0 & 0
+      & $A_{17}$ & $\kappa_\PQt c_\Pg c_{2\Pg}$      & 0 & $\bullet$ & 0 & $\bullet$ & $\bullet$ \\
+        $A_{6}$ & $c_2^2$                            & 0 & 0 & $\bullet$ & 0 & 0
+      & $A_{18}$ & $\kappa_\PQt^2 c_\Pg^2$           & 0 & $\bullet$ & 0 & $\bullet$ & 0 \\
+        $A_{7}$ & $c_{2\Pg}^2$                       & 0 & 0 & 0 & 0 & $\bullet$
+      & $A_{19}$ & $\kappa_\PQt^3 c_\Pg$             & 0 & $\bullet$ & 0 & $\bullet$ & 0 \\
+        $A_{8}$ & $\kappa_\PQt^2 c_{2\Pg}$           & 0 & $\bullet$ & 0 & 0 & $\bullet$
+      & $A_{20}$ & $\kappa_\lambda c_\Pg^3$          & $\bullet$ & 0 & 0 & $\bullet$ & 0 \\
+        $A_{9}$ & $\kappa_\lambda c_\Pg c_{2\Pg}$    & $\bullet$ & 0 & 0 & $\bullet$ & $\bullet$
+      & $A_{21}$ & $\kappa_\lambda\kappa_\PQt c_\Pg^2$ & $\bullet$ & $\bullet$ & 0 & $\bullet$ & 0 \\
+        $A_{10}$ & $\kappa_\lambda\kappa_\PQt c_{2\Pg}$ & $\bullet$ & $\bullet$ & 0 & 0 & $\bullet$
+      & $A_{22}$ & $c_2 c_\Pg^2$                     & 0 & 0 & $\bullet$ & $\bullet$ & 0 \\
+        $A_{11}$ & $\kappa_\lambda\kappa_\PQt^2 c_\Pg$ & $\bullet$ & $\bullet$ & 0 & $\bullet$ & 0
+      & $A_{23}$ & $\kappa_\PQt c_2 c_\Pg$           & 0 & $\bullet$ & $\bullet$ & $\bullet$ & 0 \\
+        $A_{12}$ & $\kappa_\lambda^2 c_\Pg^2$        & $\bullet$ & 0 & 0 & $\bullet$ & 0
+      & & & & & & & \\
+        \bottomrule
+    \end{tabular}
+    \caption{Basis parameterization for the NLO HEFT model. Each of the $N_A=23$ basis
+    points is associated with one coefficient $A_i$ of Equation~\ref{eq:heft_diff};
+    a bullet denotes a coupling that is left free at that point and enters the
+    optimization as a hyperparameter, while a zero denotes a coupling that is switched
+    off by construction.}
+    \label{tab:basis_para_heft}
+\end{table}
 
 
+\begin{table}
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{@{}ll ccccccccc@{}}
+        \toprule
+        & $f_i$ & $c_\PH$ & $c_{\PH\mathrm{kin}}$ & $c_{\PQt\PH}$ & $c_{\PH G}$
+        & $c_{\PQt G}$ & $c^{(1)}_{Q\PQt}$ & $c^{(8)}_{Q\PQt}$ & $c_{QQ\PQt\PQt}$ & $c^{(8)}_{QQ}$ \\
+        \midrule
+        $A_{0}$  & $1$                              & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        \midrule
+        $A_{1}$  & $c_\PH$                          & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        $A_{2}$  & $c_{\PH\mathrm{kin}}$            & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        $A_{3}$  & $c_{\PQt\PH}$                    & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 \\
+        $A_{4}$  & $c_{\PH G}$                      & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 \\
+        $A_{5}$  & $c_\PH^2$                        & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        $A_{6}$  & $c_\PH c_{\PH\mathrm{kin}}$      & $\bullet$ & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        $A_{7}$  & $c_\PH c_{\PQt\PH}$              & $\bullet$ & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 \\
+        $A_{8}$  & $c_\PH c_{\PH G}$                & $\bullet$ & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 \\
+        $A_{9}$  & $c_{\PH\mathrm{kin}}^2$          & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        $A_{10}$ & $c_{\PH\mathrm{kin}} c_{\PQt\PH}$& 0 & $\bullet$ & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 \\
+        $A_{11}$ & $c_{\PH\mathrm{kin}} c_{\PH G}$  & 0 & $\bullet$ & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 \\
+        $A_{12}$ & $c_{\PQt\PH}^2$                  & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 \\
+        $A_{13}$ & $c_{\PQt\PH} c_{\PH G}$          & 0 & 0 & $\bullet$ & $\bullet$ & 0 & 0 & 0 & 0 & 0 \\
+        $A_{14}$ & $c_{\PH G}^2$                    & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 \\
+        \midrule
+        $A_{15}$ & $c_{\PQt G}$                     & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 \\
+        $A_{16}$ & $c^{(1)}_{Q\PQt}$                & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 \\
+        $A_{17}$ & $c^{(8)}_{Q\PQt}$                & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 \\
+        $A_{18}$ & $c_{QQ\PQt\PQt}$                 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 \\
+        $A_{19}$ & $c^{(8)}_{QQ}$                   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ \\
+        \midrule
+        $A_{20}$ & $c_\PH c_{\PQt G}$               & $\bullet$ & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 \\
+        $A_{21}$ & $c_\PH c^{(1)}_{Q\PQt}$          & $\bullet$ & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 \\
+        $A_{22}$ & $c_\PH c^{(8)}_{Q\PQt}$          & $\bullet$ & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 \\
+        $A_{23}$ & $c_\PH c_{QQ\PQt\PQt}$           & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 \\
+        $A_{24}$ & $c_\PH c^{(8)}_{QQ}$             & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ \\
+        $A_{25}$ & $c_{\PH\mathrm{kin}} c_{\PQt G}$ & 0 & $\bullet$ & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 \\
+        $A_{26}$ & $c_{\PH\mathrm{kin}} c^{(1)}_{Q\PQt}$ & 0 & $\bullet$ & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 \\
+        $A_{27}$ & $c_{\PH\mathrm{kin}} c^{(8)}_{Q\PQt}$ & 0 & $\bullet$ & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 \\
+        $A_{28}$ & $c_{\PH\mathrm{kin}} c_{QQ\PQt\PQt}$  & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 \\
+        $A_{29}$ & $c_{\PH\mathrm{kin}} c^{(8)}_{QQ}$    & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ \\
+        $A_{30}$ & $c_{\PQt\PH} c_{\PQt G}$         & 0 & 0 & $\bullet$ & 0 & $\bullet$ & 0 & 0 & 0 & 0 \\
+        $A_{31}$ & $c_{\PQt\PH} c^{(1)}_{Q\PQt}$    & 0 & 0 & $\bullet$ & 0 & 0 & $\bullet$ & 0 & 0 & 0 \\
+        $A_{32}$ & $c_{\PQt\PH} c^{(8)}_{Q\PQt}$    & 0 & 0 & $\bullet$ & 0 & 0 & 0 & $\bullet$ & 0 & 0 \\
+        $A_{33}$ & $c_{\PQt\PH} c_{QQ\PQt\PQt}$     & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & $\bullet$ & 0 \\
+        $A_{34}$ & $c_{\PQt\PH} c^{(8)}_{QQ}$       & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & $\bullet$ \\
+        $A_{35}$ & $c_{\PH G} c_{\PQt G}$           & 0 & 0 & 0 & $\bullet$ & $\bullet$ & 0 & 0 & 0 & 0 \\
+        $A_{36}$ & $c_{\PH G} c^{(1)}_{Q\PQt}$      & 0 & 0 & 0 & $\bullet$ & 0 & $\bullet$ & 0 & 0 & 0 \\
+        $A_{37}$ & $c_{\PH G} c^{(8)}_{Q\PQt}$      & 0 & 0 & 0 & $\bullet$ & 0 & 0 & $\bullet$ & 0 & 0 \\
+        $A_{38}$ & $c_{\PH G} c_{QQ\PQt\PQt}$       & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & $\bullet$ & 0 \\
+        $A_{39}$ & $c_{\PH G} c^{(8)}_{QQ}$         & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & $\bullet$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Basis parameterization for the quadratically truncated SMEFT model. Each of
+    the $N_A=40$ basis points is associated with one coefficient $A_i$ of Equation~\ref{eq:smeft_diff}; a bullet denotes a Wilson coefficient left free at that point and entering the optimization as a hyperparameter, while a zero denotes one switched off by construction. The horizontal rules separate the SM point, the leading operators entering linearly and quadratically, the subleading operators entering linearly, and the mixed leading-subleading terms.}
+    \label{tab:basis_para_smeft}
+\end{table}
 
-The full basis parametrization for HEFT can be written as follows:
-\begin{multline}\Bigl[ \begin{bmatrix} 0, & A_1, & 0, & 0, & 0 \end{bmatrix},\,\\ %kt^4
- \begin{bmatrix} A_{2a}, & A_{2b}, & 0, & 0, & 0 \end{bmatrix},\,\\ % kt^3 kl
- \begin{bmatrix} A_{3a}, & A_{3b}, & 0, & 0, & 0 \end{bmatrix},\,\\ %kt^2 kl^2
- \begin{bmatrix} 0, & A_{4a}, & A_{4b}, & 0, & 0 \end{bmatrix},\,\\ %kt^2 c2
- \begin{bmatrix} A_{5a}, & A_{5b}, & A_{5c}, & 0, & 0 \end{bmatrix},\,\\ %kt kl c2
- \begin{bmatrix} 0, & 0, & A_{6}, & 0, & 0 \end{bmatrix},\,\\ %c2^2
- \begin{bmatrix} 0, & 0, & 0, & 0, & A_7 \end{bmatrix},\,\\ %c2g^2
- \begin{bmatrix} 0, & A_{8a}, & 0, & 0, & A_{8b} \end{bmatrix},\,\\ %kt^2c2g
- \begin{bmatrix} A_{9a}, & 0, & 0, & A_{9b}, & A_{9c} \end{bmatrix},\,\\ %cg c2g kl
- \begin{bmatrix} A_{10a}, & A_{10b}, & 0, & 0, & A_{10c} \end{bmatrix},\,\\ %kt c2g kl
- \begin{bmatrix} A_{11a}, & A_{11b}, & 0, & A_{11c}, & 0 \end{bmatrix},\,\\ %kt^2 cg kl
- \begin{bmatrix} A_{12a}, & 0, & 0, & A_{12b}, & 0 \end{bmatrix},\,\\ %cg^2 kl^2
- \begin{bmatrix} A_{13a}, & A_{13b}, & 0, & A_{13c}, & 0 \end{bmatrix},\,\\ %kt cg kl^2
- \begin{bmatrix} 0, & 0, & A_{14a}, & 0, & A_{14b} \end{bmatrix},\,\\ %c2 c2g
- \begin{bmatrix} A_{15a}, & 0, & A_{15b}, & A_{15c}, & 0 \end{bmatrix},\,\\ %c2 cg kl
- \begin{bmatrix} 0, & 0, & 0, & A_{16a}, & A_{16b} \end{bmatrix},\,\\ %cg^2 c2g
- \begin{bmatrix} 0, & A_{17a}, & 0, & A_{17b}, & A_{17c} \end{bmatrix},\,\\ %kt cg c2g
- \begin{bmatrix} 0, & A_{18a}, & 0, & A_{18b}, & 0 \end{bmatrix},\,\\ %kt^2 cg^2
- \begin{bmatrix} 0, & A_{19a}, & 0, & A_{19b}, & 0 \end{bmatrix},\,\\ %kt^3 cg
- \begin{bmatrix} A_{20a}, & 0, & 0, & A_{20b}, & 0 \end{bmatrix},\,\\ %cg^3 kl
- \begin{bmatrix}  A_{21a}, &  A_{21b}, & 0, & A_{21c}, & 0 \end{bmatrix},\,\\ %kt cg^2 kl
- \begin{bmatrix} 0, & 0, & A_{22a}, & A_{22b}, & 0 \end{bmatrix},\,\\ %c2 cg^2
- \begin{bmatrix} 0, & A_{23a}, & A_{23b}, & A_{23c}, & 0 \end{bmatrix} \Bigl] %kt c2 cg
-\end{multline}
-with each basis point in the form of $\begin{bmatrix} \kappa_{\lambda}, & \kt, & c_2, & c_g, & c_2g \end{bmatrix}$. 
 
-And its equivalent for SMEFT:
-\begin{multline}\Bigl[ \begin{bmatrix} 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\,
- \begin{bmatrix} A_{1}, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_H
- \begin{bmatrix} 0, & A_{2}, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{K,kin}
- \begin{bmatrix} 0, & 0, & A_{3}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ % c_{tH}
- \begin{bmatrix} 0, & 0, & 0, & A_{4}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{HG}
- \begin{bmatrix} 0, &  0, & 0, &  0, & A_{5}, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{tG}
- \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & A_{6}, & 0, & 0, & 0  \end{bmatrix},\,  %c_{Qt}
- \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & 0, & A_{7}, & 0, & 0  \end{bmatrix},\, \\% c_{Qt8}
- \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & 0, & 0, & A_{8}, & 0  \end{bmatrix},\,  %c_{QQtt}
- \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & 0, & 0, & 0, & A_{9}  \end{bmatrix},\, \\ % c_{QQ8}
- \begin{bmatrix} A_{10}, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, %c_H^2
- \begin{bmatrix} A_{11a}, & A_{11b}, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{H}c_{Hkin}
- \begin{bmatrix} A_{12a}, & 0, & A_{12b}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{H}c_{tH}
- \begin{bmatrix} A_{13a}, & 0, & 0, & A_{13b}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{H}c_{HG}
- \begin{bmatrix} 0, & A_{14}, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{H,kin}^2
- \begin{bmatrix} 0, &  A_{15a}, & A_{15b}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{Hkin}c_{uH}
- \begin{bmatrix} 0, &  A_{16a}, & 0, & A_{16b}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\,  %c_{Hkin}c_{HG}
- \begin{bmatrix} 0, & 0, & A_{17}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{tH}^2
-\begin{bmatrix} 0, & 0, &  A_{18a}, & A_{18b}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\,  %c_{tH}c_{HG}
- \begin{bmatrix} 0, & 0, & 0, & A_{19}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ % c_{Hg}^2
- \begin{bmatrix} A_{20a}, & 0, & 0, & 0, & A_{20b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{H}c_{tG}
- \begin{bmatrix} A_{21a}, & 0, & 0, & 0, & 0, & A_{21b}, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{H}c_{Qt}
- \begin{bmatrix} A_{22a}, & 0, & 0, & 0, & 0, & 0, & A_{22b}, & 0, & 0  \end{bmatrix},\, % c_{H}c_{Qt8}
- \begin{bmatrix} A_{23a}, & 0, & 0, & 0, & 0, & 0, & 0, & A_{23b}, & 0  \end{bmatrix},\, \\ %c_{H}c_{QQtt}
- \begin{bmatrix} A_{24a}, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & A_{24b}  \end{bmatrix},\, % c_{H}c_{QQ8}
- \begin{bmatrix} 0, &  A_{25a}, & 0, & 0, & A_{25b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{Hkin}c_{tG}
- \begin{bmatrix} 0, &  A_{26a}, & 0, & 0, & 0, & A_{26b}, & 0, & 0, & 0  \end{bmatrix},\,  %c_{Hkin}c_{Qt}
- \begin{bmatrix} 0, &  A_{27a}, & 0, & 0, & 0, & 0, & A_{27b}, & 0, & 0  \end{bmatrix},\, \\% c_{Hkin}c_{Qt8}
- \begin{bmatrix} 0, &  A_{28a}, & 0, & 0, & 0, & 0, & 0, & A_{28b}, & 0  \end{bmatrix},\,  %c_{Hkin}c_{QQtt}
- \begin{bmatrix} 0, &  A_{29a}, & 0, & 0, & 0, & 0, & 0, & 0, & A_{29b}  \end{bmatrix},\, \\% c_{Hkin}c_{QQ8}
- \begin{bmatrix} 0, &  0, &  A_{30a}, & 0, & A_{30b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{tH}c_{tG}
- \begin{bmatrix} 0, &  0, &  A_{31a}, & 0, & 0, & A_{31b}, & 0, & 0, & 0  \end{bmatrix},\, \\  %c_{tH}c_{Qt}
- \begin{bmatrix} 0, &  0, &  A_{32a}, & 0, & 0, & 0, & A_{32b}, & 0, & 0  \end{bmatrix},\, % c_{tH}c_{Qt8}
- \begin{bmatrix} 0, &  0, &  A_{33a}, & 0, & 0, & 0, & 0, & A_{33b}, & 0  \end{bmatrix},\, \\ %c_{tH}c_{QQtt}
- \begin{bmatrix} 0, &  0, &  A_{34a}, & 0, & 0, & 0, & 0, & 0, & A_{34b}  \end{bmatrix},\, % c_{tH}c_{QQ8}
- \begin{bmatrix} 0, &  0, & 0, &  A_{35a}, & A_{35b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{HG}c_{tG}
- \begin{bmatrix} 0, &  0, &  0, &  A_{36a}, & 0, & A_{36b}, & 0, & 0, & 0  \end{bmatrix},\,  %c_{HG}c_{Qt}
- \begin{bmatrix} 0, &  0, &  0, &  A_{37a}, & 0, & 0, & A_{37b}, & 0, & 0  \end{bmatrix},\, \\% c_{HG}c_{Qt8}
- \begin{bmatrix} 0, &  0, &  0, &  A_{38a}, & 0, & 0, & 0, & A_{38b}, & 0  \end{bmatrix},\,  %c_{HG}c_{QQtt}
- \begin{bmatrix} 0, &  0, &  0, &  A_{39a}, & 0, & 0, & 0, & 0, & A_{39b}  \end{bmatrix},\, % c_{HG}c_{QQ8}
-\Bigl] 
-\end{multline}
-with each basis point parametrized as $\begin{bmatrix} c_\PH, &  c_{\PH,kin}, &  c_{\PQt\PH}, & c_{\PH G}, & c_{\PQt G}, & c_{Q\PQt}^{(1)}, & c_{Q \PQt}^{(8)}, & c_{QQ\PQt\PQt}, & c_{QQ}^{(8)} \end{bmatrix}$
+% \begin{multline}\Bigl[ \begin{bmatrix} 0, & A_1, & 0, & 0, & 0 \end{bmatrix},\,\\ %kt^4
+%  \begin{bmatrix} A_{2a}, & A_{2b}, & 0, & 0, & 0 \end{bmatrix},\,\\ % kt^3 kl
+%  \begin{bmatrix} A_{3a}, & A_{3b}, & 0, & 0, & 0 \end{bmatrix},\,\\ %kt^2 kl^2
+%  \begin{bmatrix} 0, & A_{4a}, & A_{4b}, & 0, & 0 \end{bmatrix},\,\\ %kt^2 c2
+%  \begin{bmatrix} A_{5a}, & A_{5b}, & A_{5c}, & 0, & 0 \end{bmatrix},\,\\ %kt kl c2
+%  \begin{bmatrix} 0, & 0, & A_{6}, & 0, & 0 \end{bmatrix},\,\\ %c2^2
+%  \begin{bmatrix} 0, & 0, & 0, & 0, & A_7 \end{bmatrix},\,\\ %c2g^2
+%  \begin{bmatrix} 0, & A_{8a}, & 0, & 0, & A_{8b} \end{bmatrix},\,\\ %kt^2c2g
+%  \begin{bmatrix} A_{9a}, & 0, & 0, & A_{9b}, & A_{9c} \end{bmatrix},\,\\ %cg c2g kl
+%  \begin{bmatrix} A_{10a}, & A_{10b}, & 0, & 0, & A_{10c} \end{bmatrix},\,\\ %kt c2g kl
+%  \begin{bmatrix} A_{11a}, & A_{11b}, & 0, & A_{11c}, & 0 \end{bmatrix},\,\\ %kt^2 cg kl
+%  \begin{bmatrix} A_{12a}, & 0, & 0, & A_{12b}, & 0 \end{bmatrix},\,\\ %cg^2 kl^2
+%  \begin{bmatrix} A_{13a}, & A_{13b}, & 0, & A_{13c}, & 0 \end{bmatrix},\,\\ %kt cg kl^2
+%  \begin{bmatrix} 0, & 0, & A_{14a}, & 0, & A_{14b} \end{bmatrix},\,\\ %c2 c2g
+%  \begin{bmatrix} A_{15a}, & 0, & A_{15b}, & A_{15c}, & 0 \end{bmatrix},\,\\ %c2 cg kl
+%  \begin{bmatrix} 0, & 0, & 0, & A_{16a}, & A_{16b} \end{bmatrix},\,\\ %cg^2 c2g
+%  \begin{bmatrix} 0, & A_{17a}, & 0, & A_{17b}, & A_{17c} \end{bmatrix},\,\\ %kt cg c2g
+%  \begin{bmatrix} 0, & A_{18a}, & 0, & A_{18b}, & 0 \end{bmatrix},\,\\ %kt^2 cg^2
+%  \begin{bmatrix} 0, & A_{19a}, & 0, & A_{19b}, & 0 \end{bmatrix},\,\\ %kt^3 cg
+%  \begin{bmatrix} A_{20a}, & 0, & 0, & A_{20b}, & 0 \end{bmatrix},\,\\ %cg^3 kl
+%  \begin{bmatrix}  A_{21a}, &  A_{21b}, & 0, & A_{21c}, & 0 \end{bmatrix},\,\\ %kt cg^2 kl
+%  \begin{bmatrix} 0, & 0, & A_{22a}, & A_{22b}, & 0 \end{bmatrix},\,\\ %c2 cg^2
+%  \begin{bmatrix} 0, & A_{23a}, & A_{23b}, & A_{23c}, & 0 \end{bmatrix} \Bigl] %kt c2 cg
+% \end{multline}
+% with each basis point in the form of $\begin{bmatrix} \kappa_{\lambda}, & \kt, & c_2, & c_g, & c_2g \end{bmatrix}$. 
+
+% And its equivalent for SMEFT:
+% \begin{multline}\Bigl[ \begin{bmatrix} 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\,
+%  \begin{bmatrix} A_{1}, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_H
+%  \begin{bmatrix} 0, & A_{2}, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{K,kin}
+%  \begin{bmatrix} 0, & 0, & A_{3}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ % c_{tH}
+%  \begin{bmatrix} 0, & 0, & 0, & A_{4}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{HG}
+%  \begin{bmatrix} 0, &  0, & 0, &  0, & A_{5}, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{tG}
+%  \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & A_{6}, & 0, & 0, & 0  \end{bmatrix},\,  %c_{Qt}
+%  \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & 0, & A_{7}, & 0, & 0  \end{bmatrix},\, \\% c_{Qt8}
+%  \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & 0, & 0, & A_{8}, & 0  \end{bmatrix},\,  %c_{QQtt}
+%  \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & 0, & 0, & 0, & A_{9}  \end{bmatrix},\, \\ % c_{QQ8}
+%  \begin{bmatrix} A_{10}, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, %c_H^2
+%  \begin{bmatrix} A_{11a}, & A_{11b}, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{H}c_{Hkin}
+%  \begin{bmatrix} A_{12a}, & 0, & A_{12b}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{H}c_{tH}
+%  \begin{bmatrix} A_{13a}, & 0, & 0, & A_{13b}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{H}c_{HG}
+%  \begin{bmatrix} 0, & A_{14}, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{H,kin}^2
+%  \begin{bmatrix} 0, &  A_{15a}, & A_{15b}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{Hkin}c_{uH}
+%  \begin{bmatrix} 0, &  A_{16a}, & 0, & A_{16b}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\,  %c_{Hkin}c_{HG}
+%  \begin{bmatrix} 0, & 0, & A_{17}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{tH}^2
+% \begin{bmatrix} 0, & 0, &  A_{18a}, & A_{18b}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\,  %c_{tH}c_{HG}
+%  \begin{bmatrix} 0, & 0, & 0, & A_{19}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ % c_{Hg}^2
+%  \begin{bmatrix} A_{20a}, & 0, & 0, & 0, & A_{20b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{H}c_{tG}
+%  \begin{bmatrix} A_{21a}, & 0, & 0, & 0, & 0, & A_{21b}, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{H}c_{Qt}
+%  \begin{bmatrix} A_{22a}, & 0, & 0, & 0, & 0, & 0, & A_{22b}, & 0, & 0  \end{bmatrix},\, % c_{H}c_{Qt8}
+%  \begin{bmatrix} A_{23a}, & 0, & 0, & 0, & 0, & 0, & 0, & A_{23b}, & 0  \end{bmatrix},\, \\ %c_{H}c_{QQtt}
+%  \begin{bmatrix} A_{24a}, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & A_{24b}  \end{bmatrix},\, % c_{H}c_{QQ8}
+%  \begin{bmatrix} 0, &  A_{25a}, & 0, & 0, & A_{25b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{Hkin}c_{tG}
+%  \begin{bmatrix} 0, &  A_{26a}, & 0, & 0, & 0, & A_{26b}, & 0, & 0, & 0  \end{bmatrix},\,  %c_{Hkin}c_{Qt}
+%  \begin{bmatrix} 0, &  A_{27a}, & 0, & 0, & 0, & 0, & A_{27b}, & 0, & 0  \end{bmatrix},\, \\% c_{Hkin}c_{Qt8}
+%  \begin{bmatrix} 0, &  A_{28a}, & 0, & 0, & 0, & 0, & 0, & A_{28b}, & 0  \end{bmatrix},\,  %c_{Hkin}c_{QQtt}
+%  \begin{bmatrix} 0, &  A_{29a}, & 0, & 0, & 0, & 0, & 0, & 0, & A_{29b}  \end{bmatrix},\, \\% c_{Hkin}c_{QQ8}
+%  \begin{bmatrix} 0, &  0, &  A_{30a}, & 0, & A_{30b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{tH}c_{tG}
+%  \begin{bmatrix} 0, &  0, &  A_{31a}, & 0, & 0, & A_{31b}, & 0, & 0, & 0  \end{bmatrix},\, \\  %c_{tH}c_{Qt}
+%  \begin{bmatrix} 0, &  0, &  A_{32a}, & 0, & 0, & 0, & A_{32b}, & 0, & 0  \end{bmatrix},\, % c_{tH}c_{Qt8}
+%  \begin{bmatrix} 0, &  0, &  A_{33a}, & 0, & 0, & 0, & 0, & A_{33b}, & 0  \end{bmatrix},\, \\ %c_{tH}c_{QQtt}
+%  \begin{bmatrix} 0, &  0, &  A_{34a}, & 0, & 0, & 0, & 0, & 0, & A_{34b}  \end{bmatrix},\, % c_{tH}c_{QQ8}
+%  \begin{bmatrix} 0, &  0, & 0, &  A_{35a}, & A_{35b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{HG}c_{tG}
+%  \begin{bmatrix} 0, &  0, &  0, &  A_{36a}, & 0, & A_{36b}, & 0, & 0, & 0  \end{bmatrix},\,  %c_{HG}c_{Qt}
+%  \begin{bmatrix} 0, &  0, &  0, &  A_{37a}, & 0, & 0, & A_{37b}, & 0, & 0  \end{bmatrix},\, \\% c_{HG}c_{Qt8}
+%  \begin{bmatrix} 0, &  0, &  0, &  A_{38a}, & 0, & 0, & 0, & A_{38b}, & 0  \end{bmatrix},\,  %c_{HG}c_{QQtt}
+%  \begin{bmatrix} 0, &  0, &  0, &  A_{39a}, & 0, & 0, & 0, & 0, & A_{39b}  \end{bmatrix},\, % c_{HG}c_{QQ8}
+% \Bigl] 
+% \end{multline}
+% with each basis point parametrized as $\begin{bmatrix} c_\PH, &  c_{\PH,kin}, &  c_{\PQt\PH}, & c_{\PH G}, & c_{\PQt G}, & c_{Q\PQt}^{(1)}, & c_{Q \PQt}^{(8)}, & c_{QQ\PQt\PQt}, & c_{QQ}^{(8)} \end{bmatrix}$
 
 In this manner, each basis point corresponds exactly to one $A_i$ coefficient, which results in a reduction of the number of hyperparameters from $115$ to $53$ in HEFT and from $360$ to $65$ in SMEFT, while providing the basis with a natural ordering that eliminates factorial degeneracy and considerably simplifies the task of the minimizer.\\
 
@@ -1003,40 +1101,44 @@ In summary, the optimization procedure was carried out independently for the two
 
 \subsubsection{Optimized basis}
 %
-The algorithm optimization yields the best-performing basis sets for the two configurations, which are shown in Table \ref{tab:bestheft} for HEFT and in Table \ref{tab:bestsmeft} for SMEFT. To simplify the notation, each point of a basis is hereafter referred to as a benchmark and denoted by $\mathrm{BM}_i$, in analogy with the nomenclature already used for the representative scenarios in Refs. \cite{Carvalho:2015ttv,Carvalho:2016rys}. As previously mentioned, by construction, each benchmark is associated with exactly one coefficient $A_i$ of Equations \ref{eq:heft_diff} and \ref{eq:smeft_diff}, and the couplings not activated at a given benchmark are exactly zero.
+The algorithm optimization yields the best-performing basis sets for the two configurations, which are shown in Table \ref{tab:bestheft} for HEFT and in Table \ref{tab:bestsmeft} for SMEFT. To simplify the notation, each point of a basis is hereafter referred to as a benchmark and denoted by $\mathrm{BM}_i$, in analogy with the nomenclature already used for the representative scenarios in Refs. \cite{Carvalho:2015ttv,Carvalho:2016rys}. As previously mentioned, by construction, each benchmark is associated with exactly one coefficient $A_i$ of Equations \ref{eq:heft_diff} and \ref{eq:smeft_diff}, and the couplings not activated at a given benchmark are exactly zero. Note, however, that the benchmarks are labeled sequentially, and their numbering does not follow that of the coefficients $A_i$; the correspondence between the two, which is one-to-one by construction of the parameterization of Table \ref{tab:basis_para_heft}, is given in the second column. The labeling is pure bookkeeping and has no impact on the model.
 %
 \begin{table}
     \centering
-    \begin{tabular}{l|c|c|c|c|c}
-      Benchmark & \klambda & \kt & $c_2$ & $c_{g}$ & $c_{2g}$ \\
+    \begin{tabular}{l|c|c|c|c|c|c}
+      Benchmark & $A_i$ & $\kappa_{\lambda}$ & \kt & $c_2$ & $c_{g}$ & $c_{2g}$ \\
       \hline
-      $\mathrm{BM}_{1}$ & 0 & 2.349 & 0 & 0 & 0 \\
-      $\mathrm{BM}_{2}$ & 0 & 0 & 1.385 & 0 & 0 \\
-      $\mathrm{BM}_{3}$ & 0 & 2.206 & 2.532 & 0 & 0 \\
-      $\mathrm{BM}_{4}$ & 13.670 & 0.772 & 0 & 0 & 0 \\
-      $\mathrm{BM}_{5}$ & 6.579 & 1.469 & 0 & 0 & 0 \\
-      $\mathrm{BM}_{6}$ & 0 & 0 & -2.345 & 0 & 2.722 \\
-      $\mathrm{BM}_{7}$ & 8.548 & 0 & 0 & 2.561 & -2.314 \\
-      $\mathrm{BM}_{8}$ & 0 & 0 & 0 & 0 & 1.429 \\
-      $\mathrm{BM}_{9}$ & 14.530 & 2.469 & 0 & 0 & -1.468 \\
-      $\mathrm{BM}_{10}$ & 8.953 & 0 & 2.325 & -1.662 & 0 \\
-      $\mathrm{BM}_{11}$ & 0.249 & 0 & 0 & 4.782 & 0 \\
-      $\mathrm{BM}_{12}$ & -4.324 & -2.353 & 0 & -4.699 & 0 \\
-      $\mathrm{BM}_{13}$ & -14.192 & 0.834 & 2.654 & 0 & 0 \\
-      $\mathrm{BM}_{14}$ & 0 & 2.234 & 0 & 0 & 1.969 \\
-      $\mathrm{BM}_{15}$ & -11.201 & 1.058 & 0 & -3.321 & 0 \\
-      $\mathrm{BM}_{16}$ & 0 & 0 & 0 & -5.000 & -0.888 \\
-      $\mathrm{BM}_{17}$ & 0 & 1.713 & 0 & -5.000 & 1.748 \\
-      $\mathrm{BM}_{18}$ & 0 & 1.461 & 0 & 4.739 & 0 \\
-      $\mathrm{BM}_{19}$ & 0 & 0.929 & 0 & 5.000 & 0 \\
-      $\mathrm{BM}_{20}$ & -14.882 & 0 & 0 & -5.000 & 0 \\
-      $\mathrm{BM}_{21}$ & 13.347 & 0.856 & 0 & -0.849 & 0 \\
-      $\mathrm{BM}_{22}$ & 0 & 0 & -1.711 & -5.000 & 0 \\
-      $\mathrm{BM}_{23}$ & 0 & 1.640 & 1.919 & -4.236 & 0 \\
+      $\mathrm{BM}_{1}$  & $A_{1}$        & 0       & 2.349  & 0      & 0      & 0 \\
+      $\mathrm{BM}_{2}$  & $A_{6}$        & 0       & 0      & 1.385  & 0      & 0 \\
+      $\mathrm{BM}_{3}$  & $A_{4}$        & 0       & 2.206  & 2.532  & 0      & 0 \\
+      $\mathrm{BM}_{4}$  & $A_{2,3}$      & 13.670  & 0.772  & 0      & 0      & 0 \\
+      $\mathrm{BM}_{5}$  & $A_{2,3}$      & 6.579   & 1.469  & 0      & 0      & 0 \\
+      $\mathrm{BM}_{6}$  & $A_{14}$       & 0       & 0      & -2.345 & 0      & 2.722 \\
+      $\mathrm{BM}_{7}$  & $A_{9}$        & 8.548   & 0      & 0      & 2.561  & -2.314 \\
+      $\mathrm{BM}_{8}$  & $A_{7}$        & 0       & 0      & 0      & 0      & 1.429 \\
+      $\mathrm{BM}_{9}$  & $A_{10}$       & 14.530  & 2.469  & 0      & 0      & -1.468 \\
+      $\mathrm{BM}_{10}$ & $A_{15}$       & 8.953   & 0      & 2.325  & -1.662 & 0 \\
+      $\mathrm{BM}_{11}$ & $A_{12,20}$    & 0.249   & 0      & 0      & 4.782  & 0 \\
+      $\mathrm{BM}_{12}$ & $A_{11,13,21}$ & -4.324  & -2.353 & 0      & -4.699 & 0 \\
+      $\mathrm{BM}_{13}$ & $A_{5}$        & -14.192 & 0.834  & 2.654  & 0      & 0 \\
+      $\mathrm{BM}_{14}$ & $A_{8}$        & 0       & 2.234  & 0      & 0      & 1.969 \\
+      $\mathrm{BM}_{15}$ & $A_{11,13,21}$ & -11.201 & 1.058  & 0      & -3.321 & 0 \\
+      $\mathrm{BM}_{16}$ & $A_{16}$       & 0       & 0      & 0      & -5.000 & -0.888 \\
+      $\mathrm{BM}_{17}$ & $A_{17}$       & 0       & 1.713  & 0      & -5.000 & 1.748 \\
+      $\mathrm{BM}_{18}$ & $A_{18,19}$    & 0       & 1.461  & 0      & 4.739  & 0 \\
+      $\mathrm{BM}_{19}$ & $A_{18,19}$    & 0       & 0.929  & 0      & 5.000  & 0 \\
+      $\mathrm{BM}_{20}$ & $A_{12,20}$    & -14.882 & 0      & 0      & -5.000 & 0 \\
+      $\mathrm{BM}_{21}$ & $A_{11,13,21}$ & 13.347  & 0.856  & 0      & -0.849 & 0 \\
+      $\mathrm{BM}_{22}$ & $A_{22}$       & 0       & 0      & -1.711 & -5.000 & 0 \\
+      $\mathrm{BM}_{23}$ & $A_{23}$       & 0       & 1.640  & 1.919  & -4.236 & 0 \\
     \end{tabular}
-    \caption{Best basis found for the HEFT case: the 23 benchmark points $\mathrm{BM}_i$ used as input to the matrix method, given as the values of the five HEFT couplings. Couplings not activated at a given benchmark are exactly zero by construction. Values are quoted to three decimal places.}
+    \caption{Best basis found for the HEFT case: the 23 benchmark points $\mathrm{BM}_i$
+    used as input to the matrix method, given as the values of the five HEFT couplings.
+    The second column indicates the coefficient $A_i$ of Equation \ref{eq:heft_diff} that each benchmark is associated with through the parameterization of Table \ref{tab:basis_para_heft}. Where several coefficients share the same set of
+    active couplings, the corresponding indices are quoted together, since the association within such a group is a matter of bookkeeping and has no impact on the model. Couplings not activated at a given benchmark are exactly zero by construction. \textcolor{red}{está copiado del paper, tengo que ver si poner la notación con BM solo confunde e igual es mejor mantener solo los coeficientes, al fin y al cabo los benchmarks no aportan nada aquí}}
     \label{tab:bestheft}
 \end{table}
+
 
 \begin{table}
     \centering
