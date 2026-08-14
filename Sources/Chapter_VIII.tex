@@ -1397,7 +1397,7 @@ The generator-level validation in the preceding section has demonstrated the val
 % procedimiento
 The procedure followed to perform the validation is described below. First, it is necessary to construct the templates that will serve as input to the matrix. To accomplish this, the event-level reweighting described in Section \ref{subsec:multireference} is used on the data provided by the analysis to construct the points of the optimized basis shown in Table \ref{tab:bestheft}. This is performed independently for each topology; that is, the result after ELR is a set of basis for each topology. This enables the prediction of both the shape of the distributions and their normalization after the various selections for any configuration of the couplings. This therefore allows us to model the expected signals at the points $\kappa_\lambda$ and compare them with the direct simulation of those signals.
 
-The evaluation will be organized into three stages of increasing rigor. First, a comparison is made of the reconstructed kinematic distributions in both topologies to verify that the method can reliably reproduce the shape of the spectrum once it has been distorted by the selection process. Next, the focus will shift to how the method behaves under normalization, which is assessed through its dependence on the couplings of the product of acceptance and efficiency and the effective cross section following selection. Finally, the method is tested on two-dimensional coupling planes. In this scenario, the ELR serves as the reference, since the number of points to be evaluated is not compatible with full simulation. In all cases, agreement is quantified using the same metrics employed thus far, $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$, which allows the results to be interpreted in continuity with those at the generator level and compared with the systematic uncertainty specified in Section \ref {subsec:uncertainties}.\\
+The evaluation will be organized into three stages of increasing rigor. First, a comparison is made of the reconstructed kinematic distributions in both topologies to verify that the method can reliably reproduce the shape of the spectrum once it has been distorted by the selection process. Next, the focus will shift to how the method behaves under normalization, which is assessed through its dependence on the couplings of the product of acceptance and efficiency and the cross section following selection. Finally, the method is tested on two-dimensional coupling planes. In this scenario, the ELR serves as the reference, since the number of points to be evaluated is not compatible with full simulation. In all cases, agreement is quantified using the same metrics employed thus far, $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$, which allows the results to be interpreted in continuity with those at the generator level and compared with the systematic uncertainty specified in Section \ref {subsec:uncertainties}.\\
 
 \subsubsection{Differential distributions after selection}
 %
@@ -1458,64 +1458,108 @@ These results lead to the conclusion that the modeling method effectively preser
 
 \subsubsection{Normalization across the coupling space}
 %
-Hasta ahora se ha evaluado el acuerdo en los cuatro puntos del espacio de acoplamientos de los que se dispone simulación MC real. Sin embargo, un análisis experimental necesita conocer cuántos eventos de señal se esperan en la región de señal definida para cualquier configuración de acoplamientos. Por tanto, the coupling dependence of the normalization afater selection must also be accurately modeled. Para examinar esta dependencia, se aplica la matrix method to the selected cross section in each signal region, definida como
+So far, the agreement has been evaluated at the four points in the coupling space for which actual MC simulations are available. However, an experimental analysis requires knowledge of how many signal events are expected in the defined signal region for any coupling configuration. Therefore, the coupling dependence of the normalization after selection must also be accurately modeled. To examine this dependence, the matrix method is applied to the selected cross section in each signal region, defined as
 \begin{equation}
     \sigma^{r}_\text{sel}(\vec{c}) \;=\; \sigma_{ggHH}(\vec{c})\cdot (A\times\epsilon)^{r}(\vec{c}),
     \label{eq:sigmasel}
 \end{equation}
-donde $r$ recorre las regiones resolved y boosted y $\vec{c}$ denota el punto de acoplamientos. El primer factor de la expresión se conoce analíticamente y no plantea ningún problema de modelado, mientras que el segundo, la fracción de eventos que sobreviven en cada punto del espacio de acoplamientos, es el que lleva implicita la dependencia y por tanto el que permite demostrar la fidelidad del método, de forma separada para cada región de señal. La validación consiste entonces en comprobar que la predicción, que se muestra ahora continua en $\kappa_\lambda$, coincide con los cuatro puntos de los que se dispone simulación directa.
+where $r$ ranges over the resolved and boosted regimes, while $\vec{c}$ denotes the coupling point. The first factor in the expression is known analytically and poses no modeling problem, whereas the second — the fraction of events that survive at each point in the coupling space — is the one that implicitly contains the dependence and therefore makes it possible to demonstrate the accuracy of the method separately for each signal region. Validation consists of verifying that the prediction, which is now shown to be continuous at $\kappa_\lambda$, agrees with the four points for which direct simulation is available.
 
-Esto se ilustra en la Figura \ref{fig:klambda_scans_4b}, que muestra el escaneo resultante tanto para el producto $A\times\epsilon$ en la Figura \ref{fig:kl_scan_acceff}, como para $\sigma_\text{sel}$ en la Figura \ref{fig:kl_scan_xsecsel} para las dos regiones del análisis, con la boosted escalada por un factor diez para facilitar su visualizacion. En cada panel se superponen cinco predicciones: el método de la matriz aplicado a los 23 templates de la base de la Tabla \ref{tab:bestheft}, obtenidos a partir de las cuatro muestras mediante el ELR multirreferencia; las propias muestras simuladas; la predicción del ELR evaluada directamente en esos mismos cuatro puntos; y, finalmente, dos variantes del propio método de la matriz en las que el papel de la base no lo desempeñan los templates reponderados, sino las muestras simuladas: una construida sobre las cuatro, en cuyo caso el sistema queda sobredeterminado \textcolor{red}{y se resuelve mediante la pseudoinversa}, y otra sobre solo tres de ellas, $\kappa_\lambda = 1, 2.45$ y $5$. 
-
-Estas dos últimas reproducen el procedimiento con el que se han llevado a cabo hasta la fecha las interpretaciones EFT de baja dimensionalidad en las búsquedas experimentales, y que se describía en la Sección \ref{subsec:matrix_inversion}: al restringir el problema a la dirección $\kappa_\lambda$ y fijar el resto de acoplamientos a sus valores del SM, la amplitud se reduce a las contribuciones de caja y triángulo y la parametrización de la Ecuación \ref{eq:heft_diff} colapsa a tres términos, de modo que tres muestras constituyen ya una base completa y la inversión sobre esa dirección es exacta. La comparación entre ambas construcciones aísla por tanto lo que la base optimizada aporta más allá de esa solución mínima: la de 23 puntos resuelve el problema en las cinco dimensiones del espacio HEFT y se evalúa después a lo largo de esta dirección, mientras que las que parten de las muestras simuladas no proporcionan predicción alguna fuera de ella.\\ 
+This is illustrated in Figure \ref{fig:klambda_scans_4b}, which shows the resulting scan for both the product $A\times\epsilon$ in Figure \ref{fig:kl_scan_acceff} and for $\sigma_\ text{sel}$ in Figure \ref{fig:kl_scan_xsecsel} for the two regimes of the analysis, with the boosted signal scaled by a factor of ten to facilitate visualization. In each panel, five predictions are overlaid: 
+\begin{itemize}
+    \item the matrix method applied to the 23 templates from the basis in Table~\ref{tab:bestheft}, obtained from the four samples using multi-reference ELR
+    \item the $\HH\to b\bar{b}b\bar{b}$ MC simulated samples
+    \item the ELR prediction evaluated directly at those same four points
+    \item two variants of the matrix method in which the basis is given by the simulated samples rather than by the reweighted templates:
+    \begin{itemize}
+        \item one constructed using all four samples, in which case the system is overdetermined and \textcolor{red}{solved using the pseudoinverse};
+        \item one constructed using three samples, $\kappa_\lambda = 1,\, 2.45,\, 5$.
+    \end{itemize}
+\end{itemize}
+%
+These last two reproduce the procedure by which low-dimensional EFT interpretations have been carried out to date in experimental searches, as described in Section \ref{subsec:matrix_inversion}: by restricting the problem to the $\kappa_\lambda$ direction and fixing the remaining couplings to their SM values, the amplitude reduces to the box and triangle contributions. In this manner, the parameterization of Equation \ref{eq:heft_diff} collapses to three terms, so three samples already constitute a complete basis and the inversion along that direction is exact. Thus, the comparison between the two constructions highlights what the optimized basis contributes beyond the minimum solution: the 23 point basis solves the problem in the five dimensions of HEFT space and is then evaluated along this direction, whereas those based on the simulated samples provide no prediction outside of it.\\
 %
 \begin{figure}[h!]
   \centering
   \begin{subfigure}[t]{0.49\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_VIII/4b_kl_scan_acceff.png}
-    \caption{Producto aceptancia por eficiencia, $(A\times\epsilon)^{r}(\kappa_\lambda)$}
+    \caption{Acceptance times efficiency, $(A\times\epsilon)^{r}(\kappa_\lambda)$}
     \label{fig:kl_scan_acceff}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{0.49\linewidth}
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_VIII/4b_kl_scan_xsecsel.png}
-    \caption{Sección eficaz seleccionada, $\sigma^{r}_\text{sel}(\kappa_\lambda)$.}
+    \caption{Selected cross section, $\sigma^{r}_\text{sel}(\kappa_\lambda)$.}
     \label{fig:kl_scan_xsecsel}
   \end{subfigure}
-  \caption{Dependencia con $\kappa_\lambda$ de las dos magnitudes de la
-  Ecuación~\ref{eq:sigmasel} para las regiones de señal resolved (azul) y boosted (naranja,
-  escalada por un factor diez) de la búsqueda $\HH\to b\bar{b}b\bar{b}$ \cite{CMS:2026znu}.
-  En ambos paneles, la línea continua es la predicción del
-    método de la matriz de inversión aplicado a los 23 templates de la base de la
-    Tabla~\ref{tab:bestheft}; los cuadrados son las propias muestras simuladas, con su
-    incertidumbre estadística MC, y los rombos la predicción del ELR evaluada en esos mismos
-    puntos \textcolor{red}{igualmente con su incertidumbre estadística}. Las líneas discontinua y punteada se obtienen aplicando el método de la matriz
-    directamente a las cuatro muestras simuladas y a tres de ellas
-    ($\kappa_\lambda=1,\,2.45,\,5$), respectivamente. La banda rayada es la incertidumbre
-    estadística MC de los templates de la base y la banda sombreada la sistemática de cierre
-    basada en $d_W(H_{t},H_{m})$ de la Sección~\ref{subsec:uncertainties}.}
+  \caption{Dependence on $\kappa_\lambda$ of the two quantities entering
+  Equation~\ref{eq:sigmasel}, for the resolved (blue) and boosted (orange, scaled by a factor
+  of ten) signal regions of the $\HH\to b\bar{b}b\bar{b}$ search \cite{CMS:2026znu}. In both
+  panels, the solid line is the prediction of the matrix inversion method applied to the 23
+  basis templates of Table~\ref{tab:bestheft}; the squares are the simulated samples
+  themselves, with their MC statistical uncertainties, and the diamonds the ELR prediction
+  evaluated at those same points \textcolor{red}{likewise with their statistical
+  uncertainties}. The dashed and dotted lines are obtained by applying the matrix method
+  directly to the four simulated samples and to three of them
+  ($\kappa_\lambda=1,\,2.45,\,5$), respectively. The hatched band is the MC statistical
+  uncertainty of the basis templates and the shaded band the $d_W(H_{t},H_{m})$ closure
+  systematic of Section~\ref{subsec:uncertainties}.}
   \label{fig:klambda_scans_4b}
 \end{figure}
 %
-La Figura \ref{fig:klambda_scans_4b} arroja varias conclusiones sobre la $\kappa_\lambda$ dependencia de la normalización. En primer lugar, la Figura \ref{fig:kl_scan_xsecsel} muestra que el producto aceptancia por eficiencia crece en ambas regiones de señal hacia un máximo situado en torno a $\kappa_\lambda\approx2$ y cae abruptamente después, hasta alcanzar su mínimo cerca de $\kappa_\lambda\approx5$ en la región resolved y decrecer de forma monótona en la boosted. Esta estructura se sigue de la interferencia destructiva entre las contribuciones caja y triángulo, que hace que se suprima la parte baja del espectro en $m_{HH}$, de manera que los eventos que sobreviven son más duros y por tanto superan una selección diseñada en torno a topologías boosted. Para vlores mayores del acoplamiento el triángulo vuelve a dominar, el espectro se ablanda y la eficiencia decae. 
 
-La eficiencia es por tanto máxima en la misma región en la que la sección eficaz es mínima, y ambos efectos se compensan en el yield tal y como muestra la Figura \ref{fig:kl_scan_xsecsel}, donde se aprecia que el número de eventos seleccionados no coincide con el de la seccíon eficaz inclusiva, sino que aparece desplazado hacia valores mayores de $\kappa_\lambda$, especialmente notable en la región boosted donde la eficiencia decay más deprisa. 
+Figure \ref{fig:klambda_scans_4b} yields several conclusions regarding the $\kappa_\lambda$ dependence of the normalization. First, Figure \ref{fig:kl_scan_xsecsel} shows that the product of acceptance and efficiency increases in both signal regions toward a maximum located around $\kappa_\lambda\approx2$ and then drops abruptly, reaching a minimum near $\kappa_\lambda\approx5$ in the resolved region and decreasing monotonically in the boosted region. This structure stems from the destructive interference between the box and triangle contributions, which suppresses the low-energy part of the spectrum at $m_{HH}$, so that the surviving events are harder and pass a selection criterion designed for boosted topologies. For higher values of the coupling, the triangle contribution dominates again, the spectrum softens, and the efficiency decays.
+
+Efficiency is therefore maximum in the same region where the cross section is minimum, and these two effects balance each other out in the yield, as shown in Figure \ref{fig:kl_scan_xsecsel}, where it can be seen that the number of selected events does not coincide with that of the inclusive cross section. Rather, it is shifted toward higher values of $\kappa_\lambda$, a shift that is particularly noticeable in the boosted region where the efficiency decays more rapidly.
 
 En cuanto al acuerdo entre los puntos que se comparan, la predicción del método de la matriz reproduce los cuatro puntos simulados con una desviación de entre el $0.2$ y el $4.2\%$ en la región resolved y de entre el $0.6$ y el $2.8\%$ en la boosted, en todos los casos holgadamente dentro de la banda sistemática asignada, que crece desde en torno al $1\%$ en los extremos del escaneo hasta el $7.4\%$ en la región de interferencia. La banda es, de forma consistente, más ancha allí donde la eficiencia varía más rápidamente. La predicción del ELR coincide igualmente con la simulación, de manera que las tres descripciones resultan indistinguibles a simple vista.
 
 Fuera de los puntos para los que existe simulación directa, la comparación entre las curvas resulta igualmente informativa. Dentro del rango cubierto por las muestras simuladas, las tres curvas del método de la matriz son indistinguibles entre sí, necesario por construcción. \textcolor{red}{Fuera de él, sin embargo, en el boosted se aprecia que las bases construidas directamente sobre las muestras simuladas se apartan de la predicción de la base optimizada, tal y como se aprecia en la Figura \ref{fig:kl_scan_xsecsel}. La solución mínima interpola con fiabilidad entre los puntos a partir de los que se construye, pero su extrapolación más allá de ellos no tiene suficiente cobertura cinemática de la que sí dispone la base completa optimizada.}\\
 
-El modelado de la normalización resulta así tan fiel como el de las distribuciones diferenciales en los puntos en los que la comparación con simulación es posible. La validación permanece, sin embargo, confinada a una única dirección del espacio de acoplamientos, precisamente aquella para la que se dispone de simulación, mientras que el objeto del método es proporcionar la predicción en las cinco. Extenderla al espacio completo exige renunciar a la simulación como referencia y adoptar en su lugar la predicción del ELR, que sí puede evaluarse en cualquier punto. El cambio no es inocuo, y conviene precisar qué prueba se obtiene a cambio: el ELR no constituye una fuente de información independiente, puesto que los propios templates de la base se derivan de él, de modo que la comparación no somete a prueba el reponderado —común a ambas descripciones— sino exclusivamente la combinación lineal y la base sobre la que se apoya, que es el objeto de esta validación. La comparación tiene además el valor de contrastar dos procedimientos construidos de forma completamente distinta, evento a evento en un caso y como suma ponderada de histogramas ya procesados en el otro, cuyo acuerdo no está garantizado de antemano. Es este ejercicio, extendido a planos bidimensionales de acoplamientos, el que se aborda a continuación.
+Ha quedado presente que el modelado de la normalizacíon resulta tan fiel como el de las distribuciones diferenciales. Sin embargo, la validación permanece confinada a una única dirección del espacio de acoplamientos, que es donde se dispone de simulación, mientras que precisamente el objeto del método es proporcionar la prediccion en las cinco. Extenderla al espacio completo exige por tanto renunciar a la simulación como referencia y adoptar en su lugar la prediccíon del ELR, que es evaluable en cuqluier punto. Aunque ambas fuentes de modelado no son independientes en este entorno, esta prueba sirve como test adicional para someter a prueba es exclusivamente la base sobre la que se apoya el matrix method, así como contrastar dos procedimientos construidos de forma distinta. 
+
+\subsubsection{Beyond the $\kappa_\lambda$ direction}
+%
+%A continuación se aborda la comparación entre ELR y MM en planos bidimensionales de acoplamientos
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_kt_res_eff.pdf}\hfill
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_kt_res_diff.pdf}\hfill
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_kt_res_dw.pdf}\\[2pt]
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_kt_boo_eff.pdf}\hfill
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_kt_boo_diff.pdf}\hfill
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_kt_boo_dw.pdf}
+    \caption{The $\kappa_\lambda$--$\kappa_t$ plane of the $\HH\to b\bar{b}b\bar{b}$ search
+    \cite{CMS:2026znu}, for the resolved (top row) and boosted (bottom row) signal regions.
+    From left to right: the acceptance times efficiency obtained with the matrix inversion
+    method; the relative difference between the ELR prediction and that of the latter,
+    $(\epsilon_\text{ELR}-\epsilon_\text{MM})/\epsilon_\text{MM}$; and the Wasserstein
+    distance between the two $m_{HH}$ spectra after selection, $d_W(\text{ELR},\text{MM})$,
+    evaluated for $m_{HH}<1400$~GeV. The overlaid curves are isolines of $\sigma_{ggHH}$.}
+    \label{fig:scan2d_kl_kt}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_c2_res_eff.pdf}\hfill
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_c2_res_diff.pdf}\hfill
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_c2_res_dw.pdf}\\[2pt]
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_c2_boo_eff.pdf}\hfill
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_c2_boo_diff.pdf}\hfill
+    \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_c2_boo_dw.pdf}
+    \caption{The $\kappa_\lambda$--$c_2$ plane of the $\HH\to b\bar{b}b\bar{b}$ search
+    \cite{CMS:2026znu}, with the same arrangement of panels, colour scales and isolines as in
+    Figure~\ref{fig:scan2d_kl_kt}.}
+    \label{fig:scan2d_kl_c2}
+\end{figure}
 
 
-\
 
 
-  \subsubsection{Normalisation: acceptance, efficiency and selected cross section}
-  \subsubsection{Two-dimensional coupling planes}
-  \subsubsection{...SMEFT}
+
+
 
 
 \subsection{Summary and outlook / going further?}
