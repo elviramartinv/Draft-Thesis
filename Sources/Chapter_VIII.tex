@@ -848,7 +848,8 @@ This description, however, produces a perfect signal shape, which would skew the
 
 By generating these synthetic distributions, a controlled environment is established in which the predictions obtained from different sets of basis points can be consistently evaluated. The next issue to address is how to define a quantitative criterion that would translate these comparisons into a single measure of performance.\\
 
-\subsubsection{Quality matrix and objective function}
+\subsubsection{Quality metrics and objective function}
+\label{subsec:objective}
 %
 Therefore, once the method for generating signal shapes has been established, the optimization requires an objective function that quantifies the ability of the method to model the signal across the entire parameter space under consideration. Ideally, the template resulting from the matrix combination should match the one obtained by direct simulation — or, in this case, the toy distribution — and should also exhibit a statistical uncertainty that does not appreciably exceed that of the templates provided as input. In addition to these two quality criteria, a third criterion of a practical nature should be considered: the absence of negative event counts, which, even though they are covered by statistical uncertainty, lack physical meaning and cause standard signal extraction tools to fail. To quantify the three criteria in a single optimizable function, the histogram of a signal magnitude, such as $m_{HH}$, obtained from the toy models, $H_t$, is compared with that obtained using the matrix inversion method, $H_m$, through the following terms:
 %
@@ -1215,22 +1216,7 @@ In relation to this last feature, the kinematic coverage of the basis sets is il
 
 %As can be seen the different basis sets distribute nicely over a variety of kinematic scenarios. Figures with the individual benchmark shapes can be also found...?
 %SMEFT
-Finally, the enhancement resulting from the optimization is displayed in Figure \ref{fig:comparePSO}, which illustrates the Wasserstein distance $d_W(H_{t},H_{m})$ and the relative statistical error $f_{stat}(H_{t},H_{m})$ across several two-dimensional planes of the HEFT parameter space, evaluated for a non-optimized basis obtained using the heuristic inspection criteria of Section \ref{subsec:matrix_inversion} and for the optimized basis of Table \ref{tab:bestheft}. The comparison demonstrates the core argument presented in the previous section: the shortcomings of a basis are local rather than global. The non-optimized basis performs acceptably in the vicinity of the SM and degrades sharply along specific directions, where the statistical error increases by orders of magnitude and the predicted shape deviates appreciably from the target. In contrast, the optimized basis delivers a comparatively uniform performance across the entire plane, a property that makes it suitable for use as input to a likelihood fit in which the EFT parameters are treated as continuous.
-%
-\begin{figure}
-    \centering
-    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/stat_kl_kt_heft_start.pdf}
-    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/stat_kl_kt_elvira_3.pdf}\\
-    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/distance_kl_kt_heft_start.pdf}
-    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/distance_kl_kt_elvira_3.pdf}\\
-    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/stat_kl_c2_heft_start.pdf}
-    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/stat_kl_c2_elvira_3.pdf}\\
-    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/distance_c2_cg_corr_heft_start.pdf}
-    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/distance_c2_cg_corr_elvira_3.pdf}
-    \caption{Relative statistical error $f_{stat}(H_t,H_m)$ and Wasserstein distance $d_W(H_t,H_m)$ between the toy-based $m_{HH}$ shape $H_t$ and the shape $H_m$ obtained from the matrix inversion method, for a non-optimized basis (left) and for the basis    found via PSO and summarized in Table~\ref{tab:bestheft} (right), shown for different planes of the HEFT parameter space.}
-    \label{fig:comparePSO}
-\end{figure}
-\\
+
 
 This section has therefore described the procedure for obtaining optimized bases for each of the theoretical frameworks introduced, based on a reproducible optimization using the PSO algorithm, ensuring consistency in the description across the entire range of couplings in Table \ref{tab:ranges}. During the process, the performance of the method was evaluated based on quality metrics defined according to the problem, using test cases generated with the same analytical description that underlies the linear combination of the matrix inversion method. Therefore, a high score indicates that the optimization is functioning properly, as illustrated in Figure \ref{fig:convergence}; however, additional validation is necessary to fully ascertain the reliability of the method
 
@@ -1238,10 +1224,156 @@ This is the purpose of the two subsections that follow, in which the performance
 
 \subsection{Closure and validation at generator level}
 \label{subsec:closure}
-  % párrafo de entrada: qué distingue los dos ejercicios (closure vs validación)
-  \subsubsection{Toy-based closure}
-  \subsubsection{Validation on LHE events}
-  \subsubsection{Interpreting the metrics}   % los ejemplos W2/W10/W30/W60
+%
+The basis sets presented in the previous section were therefore obtained by maximizing the score of Equation \ref{eq:scorefunc} on test cases generated from the same analytical parameterization that the matrix inversion method is intended to use. By construction, the method is self-consistent, meaning that a high score confirms that the optimizer has converged to a well-conditioned basis. Therefore, once the optimal basis have been obtained by applying the procedure described in the preceding section, it is necessary to evaluate their performance, which is assessed at different levels.
+
+This section represents the initial level of evaluation, which is confined to the generator level. Detector simulation, the trigger, and analysis selection are deliberately excluded at this stage to ensure that the modeling itself can be isolated as the potential source of discrepancy between the target and the modeled template. Similarly, the evaluation is structured in two phases: an initial closure test phase, where the $m_{HH}$ distributions yielded by the matrix method are compared against toy templates; and a second phase that extends the $m_{HH}$ toy shapes based on a simplified model of the process to LHE events capable of capturing all the kinematic information of the process. In total generality, the consistency of the method is evaluated using the same metrics defined in the optimization process in Section \ref{subsec:objective}, so that the reliability of the description is interpreted in terms of the Wasserstein distance, i.e., the shape agreement, and the relative statistics error.\\
+
+\subsubsection{Toy-based closure}
+\ref{subsec:toy_evaluation}
+The method is evaluated against toy templates in the closure test, with the evaluation performed across a dense set of coupling configurations that covers the ranges in Table \ref{tab:ranges}. This scenario is the same one that served as the evaluation environment during optimization, as described in Section \ref{subsec:toy_evaluation}, where the target distribution $H_t$ is obtained directly by sampling the analytical prediction from Equation \ref{eq:heft_diff} using a finite number of toy models capable of replicating the sample size available in a real-world application; and $H_m$ is constructed by linearly combining, with the matrix inversion weights, the templates of the basis points generated in the same manner.
+
+Hence, the objective function and the basis both stem from the same parameterization, and since the inversion is an algebraic identity provided that the monomial matrix is not degenerate, the combination would reproduce the objective function exactly with infinite statistics. Consequently, any remaining discrepancy can only be attributed to the propagation of the finite size of the templates through the morphing weights, amplified to the extent that the basis is ill-conditioned according to the mechanism described in Section~\ref{subsec:matrix_inversion}.\\
+
+Under these conditions, the closure does not evaluate the correctness of the method, as it is correct by construction; instead, it determines the extent to which a specific basis deviates from that exact equality due to finite statistics. The metrics $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$ quantify the effects inherent to the choice of bases. It is important to note that while optimization required reducing them to a single number that would allow the ranking of the bases, the diagnosis requires a different approach, as the two metrics correspond to distinct modes of failure. Therefore, they are examined separately here to measure, respectively, the agreement in form and the degradation in precision relative to that of the input templates. Subjecting a non-optimized basis to the same closure test enables direct isolation of the contribution of optimization and verification that the score from Equation \ref{eq:scorefunc} translates into an effective improvement in modeling.
+
+This comparison between a non-optimized basis obtained using the heuristic inspection criteria of Section \ref{subsec:matrix_inversion} and the optimized basis of Table \ref{tab:bestheft} is illustrated in Figures \ref{fig:comparePSO_SM_like}, \ref{fig:comparePSO_BSM_like_1}, and \ref{fig:comparePSO_BSM_like_2}. The comparison is performed on two-dimensional planes of HEFT space ordered by increasing complexity, defined as the number of diagrams and interference terms involved in the description of the process.
+\textcolor{red}{SMEFT when ready}
+
+Accordingly, the simplest case is the $\kappa_\lambda$–$\kappa_t$ plane, as illustrated in Figure \ref{fig:comparePSO_SM_like}. In this scenario only the couplings present in the SM are modified, and the kinematic variations are the smoothest in the entire space due to their fewer diagrams. Despite the simplicity of the process, the non-optimized basis exhibits a distinctive structure: the highest values of
+$d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$ mark the minima of the cross section, indicating cancellations between diagrams. Conversely, the optimized basis causes these structures to become uniform until they are no longer present.
+
+The introduction of BSM effects complicates the modeling due to the increase in diagrams and interference terms.. In Figure \ref{fig:comparePSO_BSM_like_1}, where the parameter $c_2$ is varied with $\kappa_\lambda$, the non-optimized basis reaches significantly higher values than in the previous SM-like case, and these values follow the same pattern: the degradation continues to be concentrated in the cancellation directions, and optimization once again smooths it out. The most challenging scenario is shown in Figure \ref{fig:comparePSO_BSM_like_2}, which depicts a pure BSM case by focusing on the $c_2$–$c_g$ plane. Here, $c_{2g}$ remains coupled to $c_g$ via the correlation imposed by the SMEFT description \cite{Carvalho:2017vnu}, which maximizes the number of contributing diagrams and the complexity of the model. In this scenario, extreme deviations are observed in the non-optimized basis, which the optimized basis effectively resolves.
+%
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/stat_kl_kt_heft_start.pdf}
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/stat_kl_kt_elvira_3.pdf}\\
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/distance_kl_kt_heft_start.pdf}
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/distance_kl_kt_elvira_3.pdf}
+    \caption{Relative statistical error $f_{stat}(H_{t},H_{m})$ (top) and Wasserstein
+    distance $d_W(H_{t},H_{m})$ (bottom) between the toy-based $m_{HH}$ shape $H_{t}$ and
+    the shape $H_{m}$ obtained from the matrix inversion method, in the
+    $\kappa_\lambda$--$\kappa_t$ plane, for the non-optimized starting basis (left) and
+    for the basis found via PSO and summarized in Table~\ref{tab:bestheft} (right).}
+    \label{fig:comparePSO_SM_like}
+\end{figure}
+%
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/stat_kl_c2_heft_start.pdf}
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/stat_kl_c2_elvira_3.pdf}\\
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/distance_kl_c2_heft_start.pdf}
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/distance_kl_c2_elvira_3.pdf}
+    \caption{Relative statistical error $f_{stat}(H_{t},H_{m})$ (top) and Wasserstein
+    distance $d_W(H_{t},H_{m})$ (bottom) in the $\kappa_\lambda$--$c_2$ plane, for the
+    non-optimized starting basis (left) and for the basis of
+    Table~\ref{tab:bestheft} (right). Panels as in
+    Fig.~\ref{fig:comparePSO_SM_like}.}
+    \label{fig:comparePSO_BSM_like_1}
+\end{figure}
+%
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/stat_c2_cg_corr_heft_start.pdf}
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/stat_c2_cg_corr_elvira_3.pdf}\\
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/distance_c2_cg_corr_heft_start.pdf}
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/distance_c2_cg_corr_elvira_3.pdf}
+    \caption{Relative statistical error $f_{stat}(H_{t},H_{m})$ (top) and Wasserstein
+    distance $d_W(H_{t},H_{m})$ (bottom) in the $c_2$--$c_g$ plane, with $c_{2g}$ fixed by
+    the SMEFT correlation of~\cite{Carvalho:2017vnu}, for the non-optimized starting basis
+    (left) and for the basis of Table~\ref{tab:bestheft} (right). Panels as in
+    Fig.~\ref{fig:comparePSO_SM_like}.}
+    \label{fig:comparePSO_BSM_like_2}
+\end{figure}
+%
+
+The comparison demonstrates the core argument presented in the previous section: the shortcomings of a basis are local rather than global. The non-optimized basis performs acceptably in the vicinity of the SM and degrades sharply along specific directions, where the statistical error increases by orders of magnitude and the predicted shape deviates appreciably from the target. In contrast, the optimized basis delivers a comparatively uniform performance across the entire plane, a property that makes it suitable for use as input to a likelihood fit in which the EFT parameters are treated as continuous.\\
+
+%\textbf{PLOTS 1D y 2D de las métricas aquí? - abre el melon de que no es cmparable con LHE... yo diría que mejor no}
+
+\subsubsection{Extending the evaluation to LHE events}
+
+However, the previous approach is limited to the analysis of toy models, and these models are simplified representations of the process and do not contain complete kinematic information. The subsequent logical step is therefore to replace the sampled distributions with events generated using the full matrix element calculation, which do reproduce the complete kinematics of the process.\\
+
+The events used for validation have already been entered, since they constitute the same set of samples used to determine the $A_i$ coefficients of the parameterization, as described in Section \ref{subsec:ELR_coefficients}. A total of 5000 samples, each containing XXX events, corresponding to random combinations of coupling parameters drawn from Gaussian distributions centered around the SM values, ensuring that the generated events capture a wide variety of kinematic configurations. In addition, they cover wider ranges than those in Table \ref{tab:ranges} used in the basis optimization, and are therefore entirely contained within those ranges.
+
+\textcolor{red}{
+The generation process is performed at the matrix element level using \texttt{POWHEG-BOX-V2} \cite{powheg1,powheg2,powheg3}, for the nonlinear implementation of $gg\to HH$ up to NLO in QCD with full dependence on the top quark mass \cite{HEFTpowheg}, and the events are used without being subjected to a parton shower, since the matrix inversion method operates on distributions at the matrix element level. Full details of the generator configuration can be found in \cite{ELR_R5}.}
+
+Under these conditions, the evaluation is organized by reserving 1000 of the 5000 samples for modeling the basis points using ELR, while the remaining 4000 define the test set against which the prediction is evaluated, such that they are drawn from different sets. It should be noted, however, that since the coefficients $A_i$ on which the generation of toys — and thus the determination of the basis coordinates — is based, and the basis templates also come from a subset of these LHE events, validation on LHE should not be understood as independent of the parameterization; that is, it does not provide a prediction from a different source, but rather the complete kinematics of the process and a statistic whose structure is that of a truly generated sample, which is exactly what the toy environment lacks.\\
+
+%Resulta interesante por tanto constrastar el rendimiento del método sobre los eventos LHE con el que ya se obtuvo sobre los toys, con el fin de aislar el efecto de la generación. Para ello, resulta lógico plantear la evaluación en términos de las mismas métricas $d_W(H_{t},H_{m})$ y $f_{stat}(H_{t},H_{m})$ sobre el entorno LHE. Sin embargo, a fin de establecer una comparación coherente e informativa, es necesario atender a la naturaleza relativo de $f_{stat}(H_{t},H_{m})$, cuyo segundo término normaliza el error del template modelado al del propio objetivo, $\delta_i^{m}/\delta_i^{t}$, de modo que no cuantifica una propiedad del modelado en términos absolutos sino relativa a la precisión de la referencia frente a la que se evalúa. Puesto que esta referencia tiene diferente naturaleza en cada caso que se quiere comparar - un histograma muestreado con un número de toys frente a una muestra de eventos con su propia estadística - las dos distribuciones no comparten una escala común y su superposición no admite una lectura directa. Este no es el caso de la distancia de Wasserstein $d_W(H_{t},H_{m})$, que si que puede utilizarse como comparación entre entornos, y tampoco invalida $f_{stat}(H_{t},H_{m})$, que conserva plenamente su sentido dentro de cada entorno por separado, y como tal se ha empleado en el closure y se emplea de nuevo más adelante.
+
+The performance of the method is now evaluated on this LHE dataset using the same two metrics that supported the closure: $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$. Accordingly, each of the 4000 test points against which the method is evaluated returns a value for each metric, obtained by comparing the $m_{HH}$ spectrum of the LHE sample generated at that test point with the spectrum predicted by the method based on the templates generated by reweighting the remaining 1000 LHE samples. Therefore, the focus shifts from assessing the internal consistency of the linear combination to its capacity to generate a distribution derived from a complete calculation of the matrix element and that contains the correlations and kinematic effects absent from the simplified description. The resulting distributions $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$ are shown in Figure \ref{fig:performance}, normalized by the number of test points.
+%
+\begin{figure}
+    \centering
+    \includegraphics[width=0.48\linewidth]{figures/chapter_VIII/dist_logx.pdf}\hfill
+    \includegraphics[width=0.48\linewidth]{figures/chapter_VIII/stat_logx.pdf}
+    \caption{Distributions of the Wasserstein distance $d_W(H_{t},H_{m})$ (left) and of the
+    relative statistical error $f_{stat}(H_{t},H_{m})$ (right) between the $m_{HH}$ shape
+    $H_{t}$ of the LHE test samples and the shape $H_{m}$ obtained from the matrix
+    inversion method with the basis of Table~\ref{tab:bestheft}, evaluated over the 4000
+    LHE test points. Each histogram is normalized to the number of test points and the
+    horizontal axis is logarithmic in both panels.\textcolor{red}{Añadir SMEFT, quitar toys}}
+    \label{fig:performance}
+\end{figure}
+%
+It appears that both distributions are concentrated around low values and have sparsely populated tails, which underscores the reliability of the method in the vast majority of cases. Thus, a \textcolor{red}{percentage?} lies below $d_W(H_{t},H_{m})\approx10$, ensuring that the shape of the spectrum is reproduced with high fidelity, while the values of $f_{stat}(H_{t},H_{m})$ indicate that the linear combination does not significantly degrade the statistical accuracy of the templates used as input for the method. Neither metric, however, is conclusive on its own; rather, it is essential to examine their combined results to determine the suitability of a given data point for analysis.
+
+Figure \ref{fig:performance2D} compares the two metrics point-by-point across the 4000 test points. The resulting plot reveals four distinct quadrants, each exhibiting a unique performance pattern. Points with low $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$ represent an ideal prediction by the method, where the distributions agree and do so with high statistical precision. Those with low $d_W(H_{t},H_{m})$ and high $f_{stat}(H_{t},H_{m})$ are less favorable due to the statistical uncertainty associated with the prediction, but they maintain good agreement in shape. Somewhat worse are the cases where both metrics are high, indicating that the obtained shapes differ, although the discrepancy is at least partially covered by the statistical uncertainty assigned to the prediction. The most problematic quadrant is the one covering cases with high $d_W(H_{t},H_{m})$ and low $f_{stat}(H_{t},H_{m})$; ; for these cases, the modeled shape differs considerably from the true shape, without that difference being covered by any uncertainty. As a result, the bias propagates unnoticed into the final result. To sum up, the observed data are clearly favorable. The vast majority of the data fall in the optimal quadrant, a few fall in the suboptimal quadrants, and a considerably smaller number fall in the problematic quadrant.
+%
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\linewidth]{figures/chapter_VIII/distvsstat_heft_lhe.pdf}
+    \caption{Two-dimensional distribution of the Wasserstein distance $d_W(H_{t},H_{m})$
+    against the relative statistical error $f_{stat}(H_{t},H_{m})$ of the $m_{HH}$ shapes
+    obtained with the basis of Table~\ref{tab:bestheft}, evaluated over the 4000 LHE test
+    points. The four regions of the plane correspond to the performance regimes discussed
+    in the text\textcolor{red}{MARCAR LAS REGIONES?}}
+    \label{fig:performance2D}
+\end{figure}
+%
+
+%\textcolor{red}{COMPARAR CON toys? O NO MERECE LA PENA? si no lo pongo creo que tengo que explicar mejor el flujo de la validación}
+
+\subsubsection{Implications for realistic analysis}
+\label{subsec:uncertainties}
+%
+The above characterization establishes the behavior of the method, but the metrics must be translated into a concrete prescription for its use in an analysis. Based on the observed behavior, it can be concluded that the method is capable of reproducing the $m_{HH}$ spectrum of a kinematically complete LHE description with the same level of accuracy as it satisfied the closure condition, with the coupling configurations in which it fails representing a very small fraction of the explored space. Their presence, however, requires adding an additional uncertainty to the prediction specifically intended to account for these rare discrepancies.
+
+The quantity that emerges from the discussion as a logical basis for setting this uncertainty is $d_W(H_{t},H_{m})$ itself, since it is precisely this quantity that quantifies the discrepancy in a way that statistical uncertainty does not capture in the problematic quadrant. It is therefore proposed to assign to every signal distribution obtained using this method a bin-by-bin uncertainty \textcolor{red}{ranging from $d_W(H_{t},H_{m})/2$ to $d_W(H_{t},H_{m})$ percent of the content of the bin, independent of the statistical uncertainty of the prediction itself and added to it.}\\
+
+Therefore, the foundation for this uncertainty is entirely empirical, and the outcomes of its application is depicted at four representative test points, encompassing the full range, in Figure \ref{fig:heftexamples}. The figure presents a comparison of the $m_{HH}$ spectrum of the LHE sample with that predicted by the method; the proposed band is also superimposed to illustrate what each of the $d_W(H_{t},H_{m})$ values in the distribution represents in terms of the shape of the distribution, as well as to verify that the assigned uncertainty effectively covers the discrepancy across that entire range.
+
+The first point shown (top left) corresponds to $d_W(H_{t},H_{m})\approx2$, which, as can be seen in Figure \ref{fig:performance}, is the typical case and the one that describes the vast majority of test points: both distributions are indistinguishable to the naked eye, and the assigned band is correspondingly narrow. The next two (top right and bottom left), around values of $10$ and $30$, illustrate progressively more unfavorable situations where the discrepancy begins to become apparent; this discrepancy becomes clearly visible above $60$ (bottom right), in the rare cases where the method fails outright. \textcolor{red}{For these cases, the proposed band... ??}
+%
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/W2_mHH_WD.png}
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/W10_mHH_WD.png}\\
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/W30_mHH_WD.png}
+    \includegraphics[width=0.45\linewidth]{figures/chapter_VIII/W60_mHH_WD.png}
+    \caption{Comparison of the $m_{HH}$ shapes obtained from the LHE events and from the
+    matrix inversion method, for four test points spanning the range of Wasserstein
+    distances found in Fig.~\ref{fig:performance2D}, from $d_W(H_{t},H_{m})\approx2$ (top
+    left) to values above $60$ (bottom right). The hatched bands show the bin-by-bin
+    uncertainty proposed in this section, spanning $d_W(H_{t},H_{m})/2$ to
+    $d_W(H_{t},H_{m})$ per cent of the bin content of the matrix method template (dense and
+    sparse hatching respectively). They are independent of the statistical uncertainty of
+    the matrix method shape, which is shown as the filled band and as the error bars on the
+    points.}
+    \label{fig:heftexamples}
+\end{figure}
+%
+The Figure\ref{fig:heftexamples} demonstrate that the prescription is innocuous in cases where the method is already operating correctly and does not amplify uncertainty in the majority of the parameter space. However, it becomes important precisely in cases that are poorly described by the method and where statistical uncertainty alone would present a poorly modeled spectrum as well known. It is therefore justified to link the assignment of uncertainty to cover these cases to $d_W(H_{t},H_{m})$.
+
+Although the Wasserstein distance measured against the LHE spectrum itself — which is available by construction in a validation — has been used here, it remains to be specified how to obtain the value of $d_W(H_{t},H_{m})$ that determines the band in a specific application. To this end, the toy environment plays a crucial role, since its evaluation does not necessitate the generation or processing a single event; thus, $d_W(H_{t},H_{m})$ can be computed densely over complete planes of the coupling space, and it is then sufficient to read the corresponding value, so that the method can be applied in any analysis.\\
+
+This concludes the evaluation at the generator level. The closure has established that the optimization fulfills its purpose and that the resulting basis provides uniform performance across the coupling space, in contrast to the localized degradation exhibited by a non-optimized basis. Furthermore, the extension to LHE events has demonstrated that the method reproduces a spectrum derived from a full matrix element calculation equally well. Moreover, the few configurations in which the model fails without this being reflected in the statistical uncertainty are covered by a systematic rule based on $d_W(H_{t},H_{m})$, which can be evaluated at any point without simulation cost.
+
+These findings, however, are based on distributions that lack any selection criteria, and therefore do not take into account effects such as acceptance, efficiency, or resolution. This is not the case in a real analysis, where the observed spectrum is the one that survives the trigger, the reconstruction, and a set of cuts that depend on the kinematics of the events — and which therefore act differently on each point in the coupling space. It is therefore necessary to determine whether the agreement demonstrated here at the generator level holds at the end of the chain, which is the objective of the following Section \ref{subsec:realistic}.
 
 \subsection{Performance in a realistic analysis}
 \label{subsec:realistic}
@@ -1249,7 +1381,7 @@ This is the purpose of the two subsections that follow, in which the performance
   \subsubsection{Normalisation: acceptance, efficiency and selected cross section}
   \subsubsection{Two-dimensional coupling planes}
   \subsubsection{...SMEFT}
-
+No se contemplan po tanto efectos de aceptancia, eficiencia de reconstrucción o resolución
 
 \subsection{Closure and validation at generator level}
 
