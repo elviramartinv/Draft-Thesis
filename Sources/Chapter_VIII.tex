@@ -639,6 +639,7 @@ The first two choices on the previous list are covered. The third point is also 
 
 %HEFT + SMEFT
 \subsubsection{Choice of the reference: the multi-reference strategy}
+\label{subsec:multireference}
 %
 The method is fully specified once the coefficients have been determined. The only remaining decision for its application is which reference events to weight in \ref{eq:elr_event_weight}. As noted earlier, there are factors to consider when selecting the reference sample to ensure reliable predictions. The SM is the intuitive choice, as it is available in any analysis; however, it is not optimal in the regions of greatest interest, such as the invariant high-mass tail. Therefore, reweighting toward EFT points that enrich this region involves applying large weights to very few events, resulting in statistical dilution and instability in the prediction. Furthermore, since the coefficients are fitted at the generator level, they do not account for the efficiency of the cuts, which can distort the distributions very differently in the SM and a strongly BSM kinematic point.
 
@@ -710,7 +711,7 @@ At a second stage, the method is applied to a realistic phase space, using infor
     \label{fig:elr_4b_merged_kl2p45}
   \end{subfigure}
   \caption{$p_T^H$ after applying the full set of
-  signal region selections of the merged category of the $\HH\to b\bar{b}b\bar{b}$
+  signal region selections of the boosted category of the $\HH\to b\bar{b}b\bar{b}$
   search \cite{CMS:2026znu}, for the same scenarios as in Figure \ref{fig:elr_4b_resolved}.
   This category accesses a minuscule fraction of the total cross section, which makes it the
   most demanding test of the method.}
@@ -1340,6 +1341,8 @@ Figure \ref{fig:performance2D} compares the two metrics point-by-point across th
     \label{fig:performance2D}
 \end{figure}
 %
+Although the discussion has been conducted entirely in terms of $m_{HH}$, the weights $w_k(\mathbf{c})$ of Equation \ref{eq:matrix_differential} do not depend on the bin index, and therefore neither on the variable whose bins are being combined, so that the same linear combination reproduces any distribution once the basis templates are provided for it. Since the LHE events carry the full kinematics of the process, any other observable can be built from them and evaluated with the same two metrics. The choice of $m_{HH}$ here is one of relevance rather than of principle, as it is the variable on which the basis was optimized and the one that concentrates the sensitivity to the EFT parameters; the agreement obtained for other quantities is examined in Section \ref{subsec:realistic}, where the validation is carried out on the observables that a search actually reconstructs.
+
 
 %\textcolor{red}{COMPARAR CON toys? O NO MERECE LA PENA? si no lo pongo creo que tengo que explicar mejor el flujo de la validación}
 
@@ -1378,22 +1381,88 @@ Although the Wasserstein distance measured against the LHE spectrum itself — w
 
 This concludes the evaluation at the generator level. The closure has established that the optimization fulfills its purpose and that the resulting basis provides uniform performance across the coupling space, in contrast to the localized degradation exhibited by a non-optimized basis. Furthermore, the extension to LHE events has demonstrated that the method reproduces a spectrum derived from a full matrix element calculation equally well. Moreover, the few configurations in which the model fails without this being reflected in the statistical uncertainty receive a systematic uncertainty derived from $d_W(H_{t},H_{m})$, which can be evaluated at any point without simulation cost and which absorbs the discrepancy everywhere except in the extreme tail of the distribution, where the residual cases are both rare and confined to coupling configurations that experimental scans do not explore.
 
-These findings, however, are based on distributions that lack any selection criteria, and therefore do not take into account effects such as acceptance, efficiency, or resolution. This is not the case in a real analysis, where the observed spectrum is the one that survives the trigger, the reconstruction, and a set of cuts that depend on the kinematics of the events — and which therefore act differently on each point in the coupling space. It is therefore necessary to determine whether the agreement demonstrated here at the generator level holds at the end of the chain, which is the objective of the following Section \ref{subsec:realistic}.
+These findings, however, are based on distributions that lack any selection criteria, and therefore do not take into account effects such as acceptance, efficiency, or resolution. This is not the case in a real analysis, where the observed spectrum is the one that survives the trigger, the reconstruction, and a set of cuts that depend on the kinematics of the events — and which therefore act differently on each point in the coupling space. It is therefore necessary to determine whether the agreement demonstrated here at the generator level holds at the end of the chain, which is the objective of the following Section \ref{subsec:realistic}.\\
+
 
 \subsection{Performance in a realistic analysis}
 \label{subsec:realistic}
-  \subsubsection{...HEFT: 4b}
+%%%%% enlace
+The generator-level validation in the preceding section has demonstrated the validity of the method in the toys environment for which it was optimized, as well as for LHE events, which include the complete calculation of the matrix element. However, validation of the inversion matrix method cannot be considered complete until it is evaluated in terms of realistic analyses, in which criteria are applied that act on the kinematics of the events and are therefore dependent on the point in coupling space. Given that each coupling configuration generates a distinct spectrum — and therefore different acceptance and efficiency — it is essential to ensure that the agreement demonstrated prior to selection remains consistent a posteriori. This distinction makes validation under realistic conditions the final and decisive step in the evaluation chain, since it is the only environment in which a modeling error can manifest as a bias in the predicted performance of the analysis and, ultimately, in the limits derived from it.
+
+%%% 4b, bbtt, bbgg analisis - esto tendré que motivarlo un po
+\textcolor{red}{Tendré que incluir bbtt y motivarlo todo un poco mejor cuando sepa lo que incluyo} The scenario chosen for this purpose is the recent analysis by the CMS Collaboration targeting the $gg\to HH$ production in the $4b$ final state \cite{XXX}, which covers both the resolved regime, with four separately reconstructed $b$ jets; and the boosted regime, in which the decay products of each Higgs boson are collected in a single large-radius jet. The publication of the analysis provides event trees with generator-level information for four different values of $\kappa_\lambda = 0, 1, 2.45$, and $5$ in HEPData \cite{XXX}, allowing the reproduction of the effect of the complete analysis chain. In this context, the focus of this validation is on the boosted regime, since it represents the most unfavorable case the method may encounter: the reduced phase space and the more restrictive selection result in limited statistics, leading to significant variations in acceptance and efficiency across the coupling space that are particularly sensitive to extreme coupling values. If the method is capable of maintaining its accuracy under these challenging conditions, it is reasonable to assert its validity in less demanding regions.\\
+
+%el mismo ejercicio puede extenderse a otros estados finales, en particular al canal $bb\tau\tau$ descrito en los Capítulos \ref{chap:VI} y \ref{chap:VII}, cuya selección responde a una lógica distinta y ofrece por tanto una comprobación complementaria.
+
+% procedimiento
+The procedure followed to perform the validation is described below. First, it is necessary to construct the templates that will serve as input to the matrix. To accomplish this, the event-level reweighting described in Section \ref{subsec:multireference} is used on the data provided by the analysis to construct the points of the optimized basis shown in Table \ref{tab:bestheft}. This is performed independently for each topology; that is, the result after ELR is a set of basis for each topology. This enables the prediction of both the shape of the distributions and their normalization after the various selections for any configuration of the couplings. This therefore allows us to model the expected signals at the points $\kappa_\lambda$ and compare them with the direct simulation of those signals.
+
+The evaluation will be organized into three stages of increasing rigor. First, a comparison is made of the reconstructed kinematic distributions in both topologies to verify that the method can reliably reproduce the shape of the spectrum once it has been distorted by the selection process. Next, the focus will shift to how the method behaves under normalization, which is assessed through its dependence on the couplings of the product of acceptance and efficiency and the effective cross section following selection. Finally, the method is tested on two-dimensional coupling planes. In this scenario, the ELR serves as the reference, since the number of points to be evaluated is not compatible with full simulation. In all cases, agreement is quantified using the same metrics employed thus far, $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$, which allows the results to be interpreted in continuity with those at the generator level and compared with the systematic uncertainty specified in Section \ref {subsec:uncertainties}.\\
+
+\subsubsection{Differential distributions after selection}
+%
+The initial validation stage compares the distributions of events that survive the selection process for each signal region to ensure the robustness of the method.  A comparison is made between three overlapping predictions: the direct simulation of the point, obtained directly from the event trees of the analysis, serves as the true reference; the prediction returned by the multi-reference ELR for that same point, which is the intermediate step from which the base templates are constructed; and the prediction from the matrix inversion method itself, obtained as a linear combination of those templates. The inclusion of the prediction returned by ELR in this context is not unfounded; rather, it responds to the practical need to discern the origin of potential sources of error in the matrix inversion method. A discrepancy shared by both ELR and the matrix method points to a limitation of the reweighting, whereas a discrepancy affecting only the latter can be directly attributed to the linear combination — and thus to the basis — which is the ultimately objective of this validation process.
+
+It should be noted that the four simulated samples, which serve as a reference, also constitute the set of references that feeds the ELR from which the basis templates are derived. In this sense, the test does not constitute a validation against a completely independent source of information, but should be understood solely as the definitive test of the validity of the model subjected to the complete analysis chain.\\
+
+The variable chosen in this case to perform the comparison is the transverse momentum of the Higgs boson pair, $p_T^{HH}$. This choice is intended to demonstrate the independence of the method from the target variable, since $m_{HH}$ has already been thoroughly examined and is also the variable upon which the optimization itself is based. In this regard, it is informative to use an observable other than the one that guided the construction of the method, since the accuracy of its description is not guaranteed by construction but rather depends on whether the factorization discussed in Section \ref{subsec:physical_model} is preserved throughout the entire chain.\\
+% de igual forma, se muestran ptH y mHH en el apendice? ptH en boosted? govierna la asignación de un suceso a esa categoria (ver ELR)
+
+The comparison is performed for the four available values $\kappa_\lambda = 0, 1, 2.45$, and $5$, which represent different kinematic behaviors: while the first two are kinematically similar and therefore describe the quasi-SM regime, the third lies near the region of maximum destructive interference, where the cross section reaches its minimum, and the fourth represents the most extreme configuration, with a markedly soft spectrum and, consequently, very low efficiency in the boosted category, making it more sensitive to the reduced phase space and the restrictive selection criteria.\\
+
+The results of the comparison are shown in Figures \ref{fig:pthh_4b_res} and \ref{fig:pthh_4b_boo}, which are dedicated to the resolved and boosted regimes, respectively. The distributions are shown as differential cross sections, so that their integral reproduces the cross section after selection and the comparison therefore probes, beyond the shape, the absolute normalization of each prediction. In all panels, the prediction of the matrix method is accompanied by the uncertainty band stipulated in Section \ref{subsec:uncertainties}, constructed from the corresponding value of $d_W(H_{t},H_{m})$. The legend lists the two metrics, $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$, evaluated against the simulation for both the ELR and the matrix method.
+
+When evaluating the resolved regime, Figure \ref{fig:pthh_4b_res} shows that the agreement among the three curves is excellent for the four signal points, with the only noticeable differences occurring at the tails of the distributions, where statistical fluctuations dominate.
+
+On the other hand, as explained, the fully boosted regime is more challenging, which is reflected in the distributions in Figure \ref{fig:pthh_4b_boo}, which in turn are associated with larger statistical uncertainties. In such cases, isolated bins are observed where neither the statistical uncertainty nor the proposed $d_W(H_{t},H_{m})$-based uncertainty band makes the modeling methods compatible with the direct simulation. More significantly, however, in those bins, the predictions from the matrix method and the ELR shift together, such that the discrepancy is common and, as discussed above, cannot be attributed to the linear combination. It is noteworthy that the Wasserstein distance of the matrix method is, in all cases, slightly lower than that of the ELR itself from which it is derived, confirming that the inversion does not introduce any appreciable degradation in shape compared to the templates it combines. The greatest discrepancies in the boosted case are concentrated at the point $\kappa_\lambda=5$, whose soft spectrum places it in the worst-case scenario for this category, since only a very small fraction of its events exceeds the selection threshold. This low efficiency also makes it a marginal point for analysis, so its practical relevance is actually limited.\\
+%
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_res_kl0.png}\hfill
+    \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_res_kl1.png}\\[2pt]
+    \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_res_kl2p45.png}\hfill
+    \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_res_kl5.png}
+    \caption{Differential cross section as a function of the transverse momentum of the
+    Higgs boson pair, $p_T^{HH}$, in the resolved category of the
+    $\HH\to b\bar{b}b\bar{b}$ search \cite{CMS:2026znu}, for $\kappa_\lambda=0$ (top left),
+    $1$ (top right), $2.45$ (bottom left) and $5$ (bottom right), with all remaining
+    couplings set to their SM values. Each panel compares the direct simulation of the point
+    (blue), the prediction of the multi-reference ELR (orange) and the one obtained with the
+    matrix inversion method from the basis of Table~\ref{tab:bestheft} (red). The legend
+    quotes, for the latter two, the Wasserstein distance $d_W(H_{t},H_{m})$ and the relative
+    statistical error $f_{stat}(H_{t},H_{m})$ of Section~\ref{subsec:objective}, both
+    evaluated with respect to the simulation. The hatched bands show the modeling
+    systematic uncertainty prescribed in Section~\ref{subsec:uncertainties}, \textcolor{red}{spanning
+    $d_W(H_{t},H_{m})/2$ and $d_W(H_{t},H_{m})$ per cent of the bin content of the matrix
+    method template, and are independent of its statistical uncertainty, which is shown as
+    the error bars on the points. The lower panel displays the ratio of each prediction to
+    the simulation.}
+}
+    \label{fig:pthh_4b_res}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_boo_kl0.png}\hfill
+    \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_boo_kl1.png}\\[2pt]
+    \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_boo_kl2p45.png}\hfill
+    \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_boo_kl5.png}
+    \caption{Differential cross section as a function of $p_T^{HH}$ in the boosted category
+    of the $\HH\to b\bar{b}b\bar{b}$ search \cite{CMS:2026znu}, for the same four values of
+    $\kappa_\lambda$ and with the same arrangement of panels, predictions, uncertainty bands
+    and metrics as in Figure~\ref{fig:pthh_4b_res}.}
+    \label{fig:pthh_4b_boo}
+\end{figure}
+
+These results lead to the conclusion that the modeling method effectively preserves shape accuracy in shape at the analysis level, even in the most restrictive category and for the most complex coupling configurations. The comparison has been restricted, however, to the four values of $\kappa_\lambda$ for which direct simulation is available, so that the normalization it probes is that of four isolated points. The purpose of the method, as motivated in Section \ref{subsec:matrix_inversion}, is instead to provide the signal prediction continuously across the coupling space, which requires that the fraction of events retained by each selection be modeled with the same fidelity as the shape. This correct modeling of post-selection normalization is what is examined next.
+
+\subsubsection{}
+
+
   \subsubsection{Normalisation: acceptance, efficiency and selected cross section}
   \subsubsection{Two-dimensional coupling planes}
   \subsubsection{...SMEFT}
-No se contemplan po tanto efectos de aceptancia, eficiencia de reconstrucción o resolución
 
-\subsection{Closure and validation at generator level}
-
-comparación contra muestras simuladas directamente, en distribuciones inclusivas y a nivel de análisis.
-
-\subsection{Performance in a realistic analysis - section o subsection? - depende de si tengo 4b, bbgg, bbtt}
- aplicación al bb$\tau\tau$ de los Caps. VI–VII: impacto en las distribuciones finales y en los límites.
 
 \subsection{Summary and outlook / going further?}
 extensión a otros modos de producción, NLO, uso en combinaciones.
