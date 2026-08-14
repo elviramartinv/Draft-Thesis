@@ -1399,26 +1399,45 @@ The procedure followed to perform the validation is described below. First, it i
 
 The evaluation will be organized into three stages of increasing rigor. First, a comparison is made of the reconstructed kinematic distributions in both topologies to verify that the method can reliably reproduce the shape of the spectrum once it has been distorted by the selection process. Next, the focus will shift to how the method behaves under normalization, which is assessed through its dependence on the couplings of the product of acceptance and efficiency and the effective cross section following selection. Finally, the method is tested on two-dimensional coupling planes. In this scenario, the ELR serves as the reference, since the number of points to be evaluated is not compatible with full simulation. In all cases, agreement is quantified using the same metrics employed thus far, $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$, which allows the results to be interpreted in continuity with those at the generator level and compared with the systematic uncertainty specified in Section \ref {subsec:uncertainties}.\\
 
-\subsubsection{Kinematic distributions}
+\subsubsection{Differential distributions after selection}
+%
+The initial validation stage compares the distributions of events that survive the selection process for each signal region to ensure the robustness of the method.  A comparison is made between three overlapping predictions: the direct simulation of the point, obtained directly from the event trees of the analysis, serves as the true reference; the prediction returned by the multi-reference ELR for that same point, which is the intermediate step from which the base templates are constructed; and the prediction from the matrix inversion method itself, obtained as a linear combination of those templates. The inclusion of the prediction returned by ELR in this context is not unfounded; rather, it responds to the practical need to discern the origin of potential sources of error in the matrix inversion method. A discrepancy shared by both ELR and the matrix method points to a limitation of the reweighting, whereas a discrepancy affecting only the latter can be directly attributed to the linear combination — and thus to the basis — which is the ultimately objective of this validation process.
 
+It should be noted that the four simulated samples, which serve as a reference, also constitute the set of references that feeds the ELR from which the basis templates are derived. In this sense, the test does not constitute a validation against a completely independent source of information, but should be understood solely as the definitive test of the validity of the model subjected to the complete analysis chain.\\
 
-El resultado de la comparación se muestra en las Figuras \ref{fig:pthh_4b_res} y \ref{fig:pthh_4b_boo}, dedicadas respectivamente al régimen resolved y al boosted. En el primero, el acuerdo entre las tres predicciones es muy bueno para los cuatro puntos, y las únicas diferencias apreciables se localizan en las colas de las distribuciones, donde el número de eventos es reducido y las fluctuaciones estadísticas dominan. El régimen boosted, como cabía anticipar, resulta más exigente: el espacio fásico accesible es menor y la selección más restrictiva, de forma que la estadística disponible por bin cae sustancialmente y las incertidumbres asociadas crecen en la misma medida. Las mayores discrepancias se concentran en el punto $\kappa_\lambda=5$, cuyo espectro blando lo sitúa en el peor escenario posible para esta categoría, ya que solo una fracción muy pequeña de sus eventos supera el umbral de la selección; la propia baja eficiencia que provoca la discrepancia es, sin embargo, la que limita su relevancia práctica, puesto que la contribución de esa región al resultado del análisis es en ese punto marginal. En todos los casos las diferencias observadas quedan cubiertas por la combinación de la incertidumbre estadística de la predicción y de la sistemática de cierre derivada de $d_W(H_{t},H_{m})$ que se prescribió en la Sección \ref{subsec:uncertainties}, cuyos valores se indican punto a punto en la leyenda de cada panel.
+The variable chosen in this case to perform the comparison is the transverse momentum of the Higgs boson pair, $p_T^{HH}$. This choice is intended to demonstrate the independence of the method from the target variable, since $m_{HH}$ has already been thoroughly examined and is also the variable upon which the optimization itself is based. In this regard, it is informative to use an observable other than the one that guided the construction of the method, since the accuracy of its description is not guaranteed by construction but rather depends on whether the factorization discussed in Section \ref{subsec:physical_model} is preserved throughout the entire chain.\\
+% de igual forma, se muestran ptH y mHH en el apendice? ptH en boosted? govierna la asignación de un suceso a esa categoria (ver ELR)
 
+The comparison is performed for the four available values $\kappa_\lambda = 0, 1, 2.45$, and $5$, which represent different kinematic behaviors: while the first two are kinematically similar and therefore describe the quasi-SM regime, the third lies near the region of maximum destructive interference, where the cross section reaches its minimum, and the fourth represents the most extreme configuration, with a markedly soft spectrum and, consequently, very low efficiency in the boosted category, making it more sensitive to the reduced phase space and the restrictive selection criteria.\\
+
+The results of the comparison are shown in Figures \ref{fig:pthh_4b_res} and \ref{fig:pthh_4b_boo}, which are dedicated to the resolved and boosted regimes, respectively. The distributions are shown as differential cross sections, so that their integral reproduces the cross section after selection and the comparison therefore probes, beyond the shape, the absolute normalization of each prediction. In all panels, the prediction of the matrix method is accompanied by the uncertainty band stipulated in Section \ref{subsec:uncertainties}, constructed from the corresponding value of $d_W(H_{t},H_{m})$. The legend lists the two metrics, $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$, evaluated against the simulation for both the ELR and the matrix method.
+
+When evaluating the resolved regime, Figure \ref{fig:pthh_4b_res} shows that the agreement among the three curves is excellent for the four signal points, with the only noticeable differences occurring at the tails of the distributions, where statistical fluctuations dominate.
+
+On the other hand, as explained, the fully boosted regime is more challenging, which is reflected in the distributions in Figure \ref{fig:pthh_4b_boo}, which in turn are associated with larger statistical uncertainties. In such cases, isolated bins are observed where neither the statistical uncertainty nor the proposed $d_W(H_{t},H_{m})$-based uncertainty band makes the modeling methods compatible with the direct simulation. More significantly, however, in those bins, the predictions from the matrix method and the ELR shift together, such that the discrepancy is common and, as discussed above, cannot be attributed to the linear combination. It is noteworthy that the Wasserstein distance of the matrix method is, in all cases, slightly lower than that of the ELR itself from which it is derived, confirming that the inversion does not introduce any appreciable degradation in shape compared to the templates it combines. The greatest discrepancies in the boosted case are concentrated at the point $\kappa_\lambda=5$, whose soft spectrum places it in the worst-case scenario for this category, since only a very small fraction of its events exceeds the selection threshold. This low efficiency also makes it a marginal point for analysis, so its practical relevance is actually limited.\\
+%
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_res_kl0.png}\hfill
     \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_res_kl1.png}\\[2pt]
     \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_res_kl2p45.png}\hfill
     \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_res_kl5.png}
-    \caption{Distribuciones del momento transverso del par de bosones de Higgs $p_T^{HH}$
-    en la categoría resolved del análisis $\HH\to b\bar{b}b\bar{b}$ \cite{CMS:2026znu}, para
-    $\kappa_\lambda=0$ (arriba izquierda), $1$ (arriba derecha), $2.45$ (abajo izquierda) y
-    $5$ (abajo derecha). En cada panel se comparan la simulación directa del punto (azul),
-    la predicción del ELR multirreferencia (naranja) y la obtenida con el método de la
-    matriz de inversión a partir de la base de la Tabla~\ref{tab:bestheft} (rojo). La
-    leyenda indica, para cada punto, la distancia de Wasserstein $d_W(H_{t},H_{m})$ y el
-    error estadístico relativo $f_{stat}(H_{t},H_{m})$ definidos en la
-    Sección~\ref{subsec:objective}, evaluados respecto a la simulación.}
+    \caption{Differential cross section as a function of the transverse momentum of the
+    Higgs boson pair, $p_T^{HH}$, in the resolved category of the
+    $\HH\to b\bar{b}b\bar{b}$ search \cite{CMS:2026znu}, for $\kappa_\lambda=0$ (top left),
+    $1$ (top right), $2.45$ (bottom left) and $5$ (bottom right), with all remaining
+    couplings set to their SM values. Each panel compares the direct simulation of the point
+    (blue), the prediction of the multi-reference ELR (orange) and the one obtained with the
+    matrix inversion method from the basis of Table~\ref{tab:bestheft} (red). The legend
+    quotes, for the latter two, the Wasserstein distance $d_W(H_{t},H_{m})$ and the relative
+    statistical error $f_{stat}(H_{t},H_{m})$ of Section~\ref{subsec:objective}, both
+    evaluated with respect to the simulation. The hatched bands show the modeling
+    systematic uncertainty prescribed in Section~\ref{subsec:uncertainties}, \textcolor{red}{spanning
+    $d_W(H_{t},H_{m})/2$ and $d_W(H_{t},H_{m})$ per cent of the bin content of the matrix
+    method template, and are independent of its statistical uncertainty, which is shown as
+    the error bars on the points. The lower panel displays the ratio of each prediction to
+    the simulation.}
+}
     \label{fig:pthh_4b_res}
 \end{figure}
 
@@ -1428,17 +1447,16 @@ El resultado de la comparación se muestra en las Figuras \ref{fig:pthh_4b_res} 
     \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_boo_kl1.png}\\[2pt]
     \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_boo_kl2p45.png}\hfill
     \includegraphics[width=0.46\linewidth]{figures/chapter_VIII/4b_pthh_boo_kl5.png}
-    \caption{Distribuciones del momento transverso del par de bosones de Higgs $p_T^{HH}$
-    en la categoría boosted del análisis $\HH\to b\bar{b}b\bar{b}$ \cite{CMS:2026znu}, para
-    los mismos cuatro valores de $\kappa_\lambda$ y con la misma disposición de paneles,
-    curvas y métricas que en la Figura~\ref{fig:pthh_4b_res}. La estadística disponible tras
-    la selección es aquí sensiblemente menor, lo que se traduce en incertidumbres mayores,
-    de manera particularmente acusada en el punto $\kappa_\lambda=5$.}
+    \caption{Differential cross section as a function of $p_T^{HH}$ in the boosted category
+    of the $\HH\to b\bar{b}b\bar{b}$ search \cite{CMS:2026znu}, for the same four values of
+    $\kappa_\lambda$ and with the same arrangement of panels, predictions, uncertainty bands
+    and metrics as in Figure~\ref{fig:pthh_4b_res}.}
     \label{fig:pthh_4b_boo}
 \end{figure}
 
+These results lead to the conclusion that the modeling method effectively preserves shape accuracy in shape at the analysis level, even in the most restrictive category and for the most complex coupling configurations. The comparison has been restricted, however, to the four values of $\kappa_\lambda$ for which direct simulation is available, so that the normalization it probes is that of four isolated points. The purpose of the method, as motivated in Section \ref{subsec:matrix_inversion}, is instead to provide the signal prediction continuously across the coupling space, which requires that the fraction of events retained by each selection be modeled with the same fidelity as the shape. This correct modeling of post-selection normalization is what is examined next.
 
-
+\subsubsection{}
 
 
   \subsubsection{Normalisation: acceptance, efficiency and selected cross section}
