@@ -1558,7 +1558,7 @@ The figures reveals that the structure of both planes is organized around the is
 
 As illustrated in top rows of Figures \ref{fig:scan2d_kl_kt} and \ref{fig:scan2d_kl_c2}, in the resolved region the agreement remains within a few percent of the total in both planes, with any differences falling well within the $d_W$-based systematic uncertainties outlined in Sec.~\ref{subsec:uncertainties}. On the other hand, the Wasserstein distance remains at values that, according to Figure \ref{fig:heftexamples}, correspond to indistinguishable spectra.
 
-Conversely, the performance in the boosted region, depicted in the bottom row, is degraded due to lower statistics. As expected, the relative differences are more significant in regions of lowest selected yield. Despite this, the two methods still show agreement within the available statistical limits across the entire plane, and the increase in $d_W(\text{ELR},\text{MM})$ occurs precisely where the assigned systematic error is also greatest, reinforcing the recommendation in Section \ref{subsec:uncertainties} designed to address the discrepancy. It should also be emphasized that these problematic regions are also those where the efficiency is so low that its contribution to the total number of expected events is marginal, thereby limiting their impact on any result. \textcolor{red}{En kt-kl d_w es bastante plano.. buscar otra escala?}
+Conversely, the performance in the boosted region, depicted in the bottom row, is degraded due to lower statistics. As expected, the relative differences are more significant in regions of lowest selected yield. Despite this, the two methods still show agreement within the available statistical limits across the entire plane, and the increase in $d_W(\text{ELR},\text{MM})$ occurs precisely where the assigned systematic error is also greatest, reinforcing the recommendation in Section \ref{subsec:uncertainties} designed to address the discrepancy. It should also be emphasized that these problematic regions are also those where the efficiency is so low that its contribution to the total number of expected events is marginal, thereby limiting their impact on any result. \textcolor{red}{En kt-kl $d_w$ es bastante plano.. buscar otra escala?}
 
 The same procedure was repeated for the remaining two-dimensional planes in the coupling space, as shown in Appendix \ref{app:additionalperf}, yielding similar conclusions.\\
 
@@ -1574,56 +1574,23 @@ It can thus be stated that the degree of agreement achieved with the complete EF
 
 
 
+\subsection{Summary and outlook}
+\label{subsec:summary_outlook}
+This chapter has addressed the problem of providing a reliable description of the signal for the $gg\to HH$ production in a continuous manner over the parameter space of a complete EFT description, which necessarily relies on effective modeling techniques to reconstruct the signal at points that have not been generated at a computational cost that is acceptable for experimental analysis.
+
+To this end, two such techniques have been examined in detail. Event-level reweighting provides a description whose dependence on the couplings is exact and differential, and which can be evaluated at any point in the chosen EFT formalism once the coefficients associated with the couplings of the theory are known. However, the computational cost of obtaining a prediction requires iterating through the reference samples event by event and reconstructing the histogram throughout the entire analysis chain, for each point in a scan and for each systematic variation. This method is not intended for widespread use in real-world analyses. Rather, in this work it is employed as a tool to develop the second method examined: the matrix inversion method, whose advantage lies precisely in eliminating this computational cost by reducing the prediction to a linear combination of a fixed set of templates with analytically known coefficients. However, it should be noted that the quality of the description is entirely determined by the choice of the basis, which in high-dimensional spaces does not allow for intuitive selection but instead requires systematic approaches such as the one discussed here.
+
+The central contribution of this chapter is therefore to exploit ELR as a tool specifically designed to address the basis selection problem in the matrix inversion method. Thus, by using event-level reweighting as a mechanism capable of generating a template at arbitrary points in the coupling space without simulating or processing a single event, the choice of basis becomes a well-formulated optimization problem, in which candidate basis can be evaluated on a massive way. To stablish a solid foundation, it is essential to define what constitutes a good basis, which has been done based on the pair of metrics introduced in Section \ref{subsec:objective} — the Wasserstein distance, which is sensitive to the fidelity of the predicted shape, and the relative statistical error, which is sensitive to the amplification of uncertainty induced by the linear combination. The toy based evaluation has been established as a framework for evaluating both metrics extensively over the entire domain, resulting in the bases shown in Tables \ref{tab:bestheft} and \textcolor{red}{tablaSMEFT}, which correspond to the 5D HEFT and 9D SMEFT formulations introduced in the chapter.
+
+The validation process has also confirmed that the basis construction holds up where it should; to this end, three levels of study have been proposed. The closure has demonstrated that the optimization converges adequately and that it provides the optimized basis with uniform performance across the parameter space, in contrast to the degradation exhibited by a non-optimized basis. The extension to LHE events has demonstrated that this same accuracy holds up when the simplified description is extended to a full matrix element calculation, and has served as the motivation for the systematic uncertainty derived from $d_W(H_{t},H_{m})$ in Section \ref{subsec:uncertainties}. Finally, validation in a realistic analysis served as the ultimate test of the method, demonstrating that the agreement holds up to the trigger, the reconstruction, and a selection that acts differently at each point in the coupling space. Taken together, these results support the use of the method and the basis obtained with the ML approach presented here as a signal model for an EFT interpretation over a coverage of the parameter space considerably broader than that explored to date.\\
 
 
+However, the solution presented here is neither definitive nor unique. First, it should be noted that throughout this chapter, the basis templates have been treated as exact inputs, so that the inversion returns the unique combination compatible with them. A natural refinement is to also provide the method with the statistical uncertainty of each template, turning the inversion into an estimation rather than the exact solution of a linear system. In this form, the prediction would be weighted by the precision of the inputs, so that those templates with higher precision are given greater weight than those with low statistical precision. Hence, the basis shifts from containing as many points as there are terms in the parameterization to having more points than that minimum, resulting in an overdetermined system that relaxes the optimization problem by providing a complementary approach: instead of seeking the best minimal basis, a larger set of points covering a broader region of space could be exploited collectively.
 
+Taking a different perspective, it is also worth mentioning that all the elements that define the optimization approach followed here — the observable on which it is performed, the metrics chosen to quantify the quality of a prediction, the way in which these are aggregated into a single objective function, and the algorithm used to explore the space of candidate bases — constitute a set of choices that are justified a posteriori by the obtained performance. However, a different set of choices could lead to a different basis with comparable performance. For each of these choices, alternatives can be considered, such as metrics sensitive to local disagreement between corresponding bins rather than to the global shift in the spectrum, which would complement the information provided by $d_W(H_{t},H_{m})$; objective functions that penalize numerical pathologies of the inversion, such as ill-conditioned matrices or weights of large magnitude; or search strategies based on the iterative refinement of a candidate basis through single-point exchanges, rather than the swarm-based search presented here. There is therefore no guarantee that the basis obtained in this work represents a global optimum rather than a solution that has proven sufficient for the established requirements.\\
 
+%Variantes en esta línea están siendo exploradas en el contexto de la extensión del método matricial a otros procesos multi-Higgs \cite{XXX}, y nada garantiza que la base obtenida en este trabajo represente un óptimo global y no una solución que ha demostrado ser suficiente para los requisitos establecidos.\\
 
+%Modeling Multi-Higgs signal in SM-like couplings and HEFT using the matrix method: beyond gluon-fusion production -- https://indico.cern.ch/event/1677272/contributions/7210716/attachments/3323485/5951006/Matrix_Method_MultiH_HEFT_HH_meeting_August_3_2026_v1.pdf
 
-\subsection{Summary and outlook / going further?}
-extensión a otros modos de producción, NLO, uso en combinaciones.
-
-PAPERS
-EFT descriptions of Higgs boson pair production: L. Alasfar et al., Effective Field Theory descriptions of Higgs boson pair production, SciPost434 Phys. Comm. Rep. 2024, 2 (2024), doi:10.21468/SciPostPhysCommRep.2, 2304.01968.
-
-On the reinterpretations of non-resonant searches for Higgs boson pairs: https://link.springer.com/article/10.1007/JHEP02(2021)049\#preview
-
-STRUCTURE
-EFT descriptions
-Reinterpretations / physics model
-Effective modeling in EFT
-
-EFT descriptions: https://arxiv.org/html/2604.16596v1
-
-Modeling
-
-Effective modeling of Di-Higgs signals in EFT.
-
-sl1: HH searches beyond SM:
-v1)
-- Di-Higgs production and Higgs boson self-coupling λ3 → currently main goals at the LHC
-- HH allows to test various BSM scenarios such as resonant production and EFT interpretations → BSM physics effects parameterized by coupling modifiers
-- Combining BSM and SM searches is efficient and natural, but scanning multi-dimensional parameter spaces is a challenge → New physics effects can modify HH production rates and kinematics drastically due to complex interference patters not only in ggHH
-v2)
-- Di-Higgs production provides direct access to the Higgs boson self-coupling λ3  → key target at the LHC
-- HH allows to test various BSM scenarios: resonant production and EFT interpretations → BSM physics effects parametrized via coupling modifiers or Wilson coefficients
-- New physics effects can drastically modify signal rate and kinematics due to complex interference patterns
-- Exploring these effects requires scanning high-dimensional parameter spaces → Efficient signal modeling needed
-
-sl2: Modeling HH signals in BSM scenarios / The need for HH signal modeling
-
-Ways to model / to save the simulation budget
- • Generator based reweighing (common in madGraph used at the moment i.e in qqHH, VHH, ttHH and HHH)
- • Event level reweighting based on generator level variables such as used since many years in ggHH
- • “Matrix Method” linear combination of fixed signal shapes (basis points) -> Even better also saves processing time when scanning vast parameter spaces, used extensively by CMS in all HH/HHH processes
-
- Exploring these effects requires scanning high-dimensional parameter spaces → computationally prohibitive Why morphing? Combine and Inference tools: tools to calculate limits can put limits on coupling values need a theoretical model for all possible coupling values What is morphing? Morphing: mapping of parameters using of set of values : Emulate a sample (e.g. ggF), with a new value of a parameter (e.g. ����, ��t) by reweighing other samples (interpolation/extrapolation) When we want to set constraints on parameters, being them deviations of the Higgs couplings on the kappa framework or Wilson coefficients in the EFT framework, we need to be able to continuously model the signal for a large variety of parameter combinations → simulating a large number of signal samples for different parameter combinations, but that is computationally very expensive and thus not feasible in practice. And even if we were able to do that, employing for example event-level reweighting techniques to model the signal for a large variety of parameter combinations would still be computationally expensive on the long flows of experimental analyses and thus not feasible in practice. The statistical interpretation of the results, which is typically done by performing a likelihood fit to the data, also becomes challenging in this context one of the methods used by experimentalists to handle this challenge: Matrix inversion method. It elegantly simplifies the problem, allowing to model the signal for a large variety of parameter combinations by simulating only a small number of signal samples and then using the matrix method to interpolate between them
-
- To model the signal for arbitrary coupling values, we need a theoretical description of how the HH cross section depends on these couplings --> Morphing techniques: Rely on the factorization of the HH cross section
-
-
- sl3: Physical model
-
-Physical model behind reweighting and morphing
-Basic idea: the HH cross section (or any differential observable) can be factorized into a coupling‑dependent part and a coupling‑independent part.
-Through some algebra, the coupling‑independent part can be eliminated, and the cross section at any point in parameter space can be written as a linear combination of a small set of input samples.
+Finally, the formulation developed here is not tied to the $gg\to HH$ process, but rather rests solely on the polynomial structure of the cross section in terms of effective couplings, a property shared by any multi-Higgs production mechanism. The same construction is therefore applicable to vector boson fusion, to the production associated with a pair of top quarks, and to the triple production of Higgs bosons, where the increased complexity of the parameter space involved makes the need for a modeling technique even more pressing. Similarly, this technique is not restricted to a single analysis, but rather constitutes a natural component for combinations and for the interpretations that the increase in statistical power in the coming years will make possible, which makes studies such as the one presented here absolutely essential for drawing future conclusions.
