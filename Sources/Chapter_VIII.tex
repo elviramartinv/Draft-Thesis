@@ -1522,8 +1522,12 @@ It has been demonstrated that the normalization modeling is just as accurate as 
 
 \subsubsection{Beyond the $\kappa_\lambda$ direction}
 %
-%A continuación se aborda la comparación entre ELR y MM en planos bidimensionales de acoplamientos
-2D plots \ref{fig:scan2d_kl_c2} and \ref{fig:scan2d_kl_kt}
+The final step, therefore, involves validation using two-dimensional plots of the coupling space. In this test, the density of the scan necessitates the use of ELR predictions — evaluated in each cell based on the same four samples used to construct the basis — instead of direct simulation as the reference. This test serves to build on the results obtained so far, evaluating the performance of the predictions in terms of both normalization and shape for the two signal regions characteristic of the analysis.
+
+To this end, Figures \ref{fig:scan2d_kl_kt} and \ref{fig:scan2d_kl_c2} show the $\kappa_\lambda$–$\kappa_t$ and $\kappa_\lambda$–$c_2$ planes, respectively, to illustrate their complementary behaviors: while the first corresponds to a SM-like scenario, where both couplings modulate interactions present in the SM, the second incorporates BSM physics through the contact interaction of two Higgs bosons with the top quark. For each plane, three different plots are shown for each topology: the product of acceptance and efficiency predicted by the matrix method, $(A\times\epsilon)^{r}(\vec{c})$; the relative difference between the ELR and the matrix method, $(\epsilon_\ text{ELR}-\epsilon_\text{MM})/\epsilon_\text{MM}$; and the Wasserstein distance between the two $m_{HH}$ spectra after selection.
+
+These figures therefore aim to demonstrate the regions of space accessible to each topology using the matrix method, as well as the extent to which the resulting description aligns with the ELR in predicting the signal. Additionally, the Wasserstein distance between the two predictions is used to ensure that the agreement in the number of selected events is not masking a discrepancy in the spectral shape that produces them. It is important to note, however, as previously mentioned, that the ELR and the matrix method are not independent sources. Therefore, these maps serve as an additional test of the prediction accuracy already established in previous sections to isolate the effect of the basis.
+%
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_kt_res_eff.pdf}\hfill
@@ -1532,16 +1536,10 @@ It has been demonstrated that the normalization modeling is just as accurate as 
     \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_kt_boo_eff.pdf}\hfill
     \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_kt_boo_diff.pdf}\hfill
     \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_kt_boo_dw.pdf}
-    \caption{The $\kappa_\lambda$--$\kappa_t$ plane of the $\HH\to b\bar{b}b\bar{b}$ search
-    \cite{CMS:2026znu}, for the resolved (top row) and boosted (bottom row) signal regions.
-    From left to right: the acceptance times efficiency obtained with the matrix inversion
-    method; the relative difference between the ELR prediction and that of the latter,
-    $(\epsilon_\text{ELR}-\epsilon_\text{MM})/\epsilon_\text{MM}$; and the Wasserstein
-    distance between the two $m_{HH}$ spectra after selection, $d_W(\text{ELR},\text{MM})$,
-    evaluated for $m_{HH}<1400$~GeV. The overlaid curves are isolines of $\sigma_{ggHH}$.}
+    \caption{The $\kappa_\lambda$--$\kappa_t$ plane of the CMS $\HH\to b\bar{b}b\bar{b}$ analysis \cite{CMS:2026znu}, for the resolved (top row) and boosted (bottom row) signal regions. From left to right: $A\times\epsilon$ as obtained by the matrix method; the relative difference between ELR and the matrix method; and the Wasserstein distance between the two selected \mHH spectra, $d_W(\text{ELR},\text{MM})$. The black (white) curves are isolines of $\sigma_{ggHH}$.}
     \label{fig:scan2d_kl_kt}
 \end{figure}
-
+%
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_c2_res_eff.pdf}\hfill
@@ -1551,10 +1549,29 @@ It has been demonstrated that the normalization modeling is just as accurate as 
     \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_c2_boo_diff.pdf}\hfill
     \includegraphics[width=0.33\linewidth]{figures/chapter_VIII/2d_kl_c2_boo_dw.pdf}
     \caption{The $\kappa_\lambda$--$c_2$ plane of the $\HH\to b\bar{b}b\bar{b}$ search
-    \cite{CMS:2026znu}, with the same arrangement of panels, colour scales and isolines as in
+    \cite{CMS:2026znu}, with the same arrangement of panels, color scales and isolines as in
     Figure~\ref{fig:scan2d_kl_kt}.}
     \label{fig:scan2d_kl_c2}
 \end{figure}
+%
+The figures reveals that the structure of both planes is organized around the isolines of $\sigma_{ggHH}$, such that the largest relative differences are systematically concentrated in the least efficient regions where destructive interference is particularly pronounced. Accordingly, in a realistic analysis environment, the same structural patterns observed at the generator level when comparing the optimized and non-optimized bases in Sec.~\ref{subsec:closure} are reproduced: the degradation of the modeling is local and appears to be associated with specific directions in the coupling space.
+
+As illustrated in top rows of Figures \ref{fig:scan2d_kl_kt} and \ref{fig:scan2d_kl_c2}, in the resolved region the agreement remains within a few percent of the total in both planes, with any differences falling well within the $d_W$-based systematic uncertainties outlined in Sec.~\ref{subsec:uncertainties}. On the other hand, the Wasserstein distance remains at values that, according to Figure \ref{fig:heftexamples}, correspond to indistinguishable spectra.
+
+Conversely, the performance in the boosted region, depicted in the bottom row, is degraded due to lower statistics. As expected, the relative differences are more significant in areas of low efficiency. Despite this, the two methods still show agreement within the available statistical limits across the entire plane, and the increase in $d_W(\text{ELR},\text{MM})$ occurs precisely where the assigned systematic error is also greatest, reinforcing the recommendation in Section \ref{subsec:uncertainties} designed to address the discrepancy. It should also be emphasized that these problematic regions are also those where the efficiency is so low that its contribution to the total number of expected events is marginal, thereby limiting their impact on any result. \textcolor{red}{En kt-kl d_w es bastante plano.. buscar otra escala?}
+
+The same procedure was repeated for the remaining two-dimensional planes in the coupling space, as shown in Appendix \ref{app:additionalperf}, yielding similar conclusions.\\
+
+
+
+This concludes the validation of the method under realistic conditions. The approach taken in the evaluations described has progressively increased the demands placed on the method. The shape of the distributions after selection, the normalization along the $\kappa_\lambda$ direction, and the behavior across complete planes of the coupling space have been tested throughout this section. At all three evaluation levels, the matrix method fed with the optimized basis returned satisfactory results, reproducing the reference prediction within the assigned uncertainties in both the \textit{resolved} and \textit{boosted} categories, where the latter constitutes the most unfavorable scenarios it can face and, therefore, the one that add the most value to this exercise.
+
+It can thus be stated that the degree of agreement achieved with the complete EFT model developed using the matrix method is sufficient for any realistic analysis, confirming that the conclusions obtained at the generator level hold up through the entire reconstruction and selection chain. This provides the necessary confidence to use the method in future studies, in which the coverage of the coupling space will be considerably greater than that explored to date, and the complexity of the analyses will increase at the same rate as the statistical power.
+
+%Los planos $\kappa_\lambda$–$c_{2g}$ presentan la misma organización en torno a las isolíneas de sección eficaz que los discutidos aquí. El plano $c_2$–$c_{2g}$ merece una mención aparte por tratarse de una configuración puramente BSM: en él el espectro de $m_{HH}$ se endurece progresivamente y los bosones de Higgs se producen cada vez más boosted, de modo que es la categoría boosted la que alcanza allí sus mayores eficiencias —creciendo al alejarse del punto SM en las direcciones en las que el espectro se endurece más—, mientras que la eficiencia de la categoría resuelta permanece prácticamente plana sobre todo el plano. El método reproduce también esta inversión del comportamiento entre topologías, lo que constituye una comprobación adicional de que la dependencia con los acoplamientos que modela no es un artefacto ajustado a la fenomenología del entorno del SM.
+
+
+
 
 
 
