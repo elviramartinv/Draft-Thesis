@@ -1,4 +1,281 @@
 \chapter{The HH-BTag and VBFjTag}
+\label{ch:taggers}
+The final state $HH\rightarrow bb\tau\tau$, on which the analysis described in Chapter \ref{ch:bbtt_analysis} is based, consists of two composite objects: the $H\rightarrow\tau\tau$ candidate and the $H\rightarrow bb$ candidate. Reconstructing these objects involves two distinct steps. The first step is identification, which involves determining the type of object based on its intrinsic properties. This includes both the identification of $\tau$ leptons, discussed in the preceding Chapter \ref{ch:Tau}, and the flavor classification of jets using standard CMS algorithms, introduced in Section \ref{subsec:Jets}. The second step is assignment, which determines which of all the identified candidates corresponds to the targeted final state. For the $H\rightarrow\tau\tau$ candidate, this decision is made using an explicit ordering criterion based on the isolation and transverse momentum of the candidates, described along with the rest of the selection in Chapter \ref{ch:bbtt_analysis}. Meanwhile, the jets that comprise the $H\rightarrow bb$ candidate require dedicated treatment, which is the subject of this chapter.
+
+In vector boson fusion production, a second pair of jets is added to these two jets in the final state. This pair does not result from the decay of any Higgs boson, but rather constitutes the characteristic signature of the VBF production mechanism. Thus, jets in the same final state play two distinct roles, and their correct assignment, in both cases, requires dedicated approaches that take into account the unique characteristics of each case, whether they are jets from the $H\rightarrow bb$ candidate or the characteristic jets of VBF production.
+
+In the first case, although the standard CMS $b$-tagging algorithms effectively identify jets originating from $b$ quarks, this information alone is insufficient to determine which jets constitute the $H\rightarrow bb$ candidate. The most straightforward strategy is to sort the jets according to their $b$-tagging score and select the top two. This approach, however, disregards crucial event information for the decision, such as the kinematics of the $H\rightarrow\tau\tau$ candidate, the missing transverse energy, and the angular relationship between the jets and the $\tau\tau$ system. Consequently, in events with more than two genuine $b$ jets, whether arising from additional radiation in the initial or final state, or from backgrounds such as $t\bar{t}$ pair production, the flavor score alone does not provide any decision criterion.
+
+The second case poses an even greater challenge to standard CMS identification algorithms. Jets characteristic of VBF production originate from light quarks scattered at small angles and possess no intrinsic properties that distinguish them from jets arising from initial-state radiation or from QCD processes. Instead, these jets are characterized by the high invariant mass of the pair they form and their isolation from the rest of the hadronic activity; these properties apply to the pair as a whole and not to the individual objects.
+
+Therefore, it is necessary to develop strategies dedicated to the assignment problem that go beyond the scope of standard CMS algorithms for jet identification, which rely on event information rather than information about the jet itself. Each strategy will be determined by the classification problem it is intended to address, as each of the problems described has different characteristics.\\
+
+To address the issue of candidate assignment for $H\rightarrow bb$ in the $HH\rightarrow bb\tau\tau$ analysis, \textcolor{red}{CMS} developed a classification algorithm called \textsc{HH-BTag} \cite{AN-19-283}. It consists of a recurrent neural network that assigns a score to each jet in the event based on how compatible it is with the hypothesis that the jet originates from Higgs decay. Originally designed for the non-resonant $HH\rightarrow bb\tau\tau$ analysis in Run-2, the work presented here builds upon that initial version and includes, on the one hand, its adaptation to the Run-2 resonant search, and on the other, its development, validation, and successive retraining for the analysis using Run-3 data, which is the main focus of this thesis.
+
+The starting point is therefore the \textsc{HH-BTag} algorithm. However, the architecture on which this algorithm is based does not encode any property specifically associated with $b$ quarks; rather, the particular nature of the problem lies solely in the definition of the reference truth used during training and the set of selected input variables. Thus, this scheme is reusable with a different truth definition and set of input variables, i.e., for any jet-process assignment problem. It is therefore natural to consider an analogous classification algorithm for assigning of VBF-characteristic jets on this same conceptual framework. This is the second original development presented in this thesis: the \textsc{VBFjTag} algorithm. This algorithm is used for the first time in the analysis of Run-3 and benefits from the classification performed by \textsc{HH-BTag} itself, operating in a chained manner within the analysis, as will be seen in detail in Chapter \ref{ch:bbtt_analysis}.\\
+
+This chapter aims to provide a detailed description of both taggers, laying the groundwork for identifying jets used in the $HH\rightarrow bb\tau\tau$ analysis discussed in subsequent chapters. It is worth noting that the machine learning concepts used in the description of both algorithms are introduced throughout the chapter as they become relevant, without going into more detail than is strictly required by the employed tools. \textcolor{red}{The chapter is structured as follows: Section \ref{sec:assignment} presents the jet assignment problem and its formulation as a supervised learning problem. Section \ref{sec:architecture} describes the architecture common to both algorithms and the training strategy followed. Sections \ref{sec:HHBTag} and \ref{sec:VBFjTag} detail, respectively, the development of \textsc{HH-BTag} and \textsc{VBFjTag}. Finally, Section \ref{sec:taggers_impact} evaluates the impact of both algorithms on the $HH\rightarrow bb\tau\tau$ analysis of Run-3.}
+
+
+\section{The jet assignment problem}
+\label{sec:assignment}
+The issue of assignment is not a novel one, and throughout the operation of the LHC, it has been addressed using various approaches. In the context of di-Higgs analysis in the $bb\tau\tau$ final state, explicit criteria were originally used to resolve the assignment of $b$-jets and VBF-jets without any training; it is worth reviewing these to understand their limitations before presenting the solution developed in this thesis.\\
+
+Regarding the $H\rightarrow bb$ candidate, the $b$-tagging discriminant sorting strategy was first employed in the initial search for Higgs boson pair production conducted by CMS \cite{CMS-HIG-15-013}, using data at $\sqrt{s} = 8$ TeV, where the two jets with the highest CSV discriminant values were identified as Higgs boson decay products. This criterion was maintained during the initial Run-2 analyses \cite{CMS:2018bbtt}, with only the discriminant itself being updated according to internal CMS recommendations, so that improvements were concentrated on identification. However, this criterion is limited by its very nature, since the jet is scored separately from the rest of the event and the physics underlying the Higgs boson decay process. The study of these analysis results identified the selection of the $H\rightarrow bb$ candidate as one of the least efficient steps in the analysis, thus motivating the development of dedicated tagging algorithms. This culminated in the \textsc{HH-BTag} algorithm, introduced in the non-resonant analysis of the complete Run-2 dataset \cite{CMS-HIG-20-010}, which is described in detail in the following sections, along with the performance improvement it introduces compared to the initial discriminant-based sorting.
+
+The assignment of the characteristic jets of VBF production, on the other hand, has always been based on a purely kinematic criterion in accordance with the signature specific to this process. Therefore, candidates are sought among the jets remaining after the $b$-pair assignment, with $p_T > 30$ GeV and $|\eta| < 4.7$, where the VBF jet pair is selected from the jet pair with the highest invariant mass among all possible pairs—a criterion motivated by VBF topology. While this assignment is well-founded — since it is based on the kinematic criteria of the event — it does not identify the VBF jets themselves, but rather selects the configuration that most closely resembles the one typically exhibited by these jets. However, this strategy does not account for the properties that characterize the VBF topology beyond the kinematics of the pair, such as the isolation of these jets from the rest of the hadronic activity of the event and their relative position with respect to other objects. In contrast to the review conducted for the assignment of the $H\rightarrow bb$ candidate, this strategy was maintained throughout the complete analysis of Run-2: the Run-3 analysis that forms the basis of this thesis represents the first modification to this procedure, involving the use of the \textsc{VBFjTag} discriminant, which will be detailed below.\\
+
+These explicit criteria, as well as their evolution toward trained algorithms, are not unique to the $bb\tau\tau$ channel. It is worth noting other well-motivated analyses in the di-Higgs context, such as the final states $bb\gamma\gamma$ and $bb\bar{b}b$, whose analyses have likewise evolved from rules based on $b$-tagging ordering and kinematic criteria to trained algorithms — an evolution that is particularly pronounced in the case of $bb\bar{b}b$ due to the increased combinatorial complexity of the final state. The assignment problem has therefore driven the development of specific architectures in recent years as a common approach to addressing the problem, and their application to final states with multiple Higgs bosons has yielded substantial improvements over conventional pairing methods. \textcolor{red}{añadir referencias de los análisis - cuantificar los improvements con algún número de ejemplo? ... revisar que sea cierto}\\
+
+To summarize, the aforementioned shortcomings of traditional methods are indicative of a shared tendency. Explicit criteria operate on a property of each object, or, at most, on a quantity constructed from the candidate pair, whereas the information that allows to determine the role played by each jet lies in the complete configuration of the event. Overcoming this limitation therefore requires reformulating the assignment as a learning problem, such that the decision is derived from the available global information rather than from a predefined rule. This formulation is discussed in the following Section \ref{subsec:supervised}.
+
+\subsection{Formulation as a supervised learning problem}
+\label{subsec:supervised}
+%
+The previous review shows that explicit criteria do not take into account — if not entirely, then to a large extent — the correlations between objects and the global structure that characterizes the different production topologies. Therefore, to overcome these limitations, it is logical to adopt an approach that can learn these relationships directly from examples where the correct answer is provided by simulation. In this context, formulating the problem as a supervised learning task provides a suitable framework: the model is trained on simulated events in which the correct assignment is known and learns to reproduce that decision based on the global information of the event.
+
+Thereby, instead of establishing a decision rule in advance, the assignment is reformulated as the task of tuning a function whose parameters are determined based on simulated examples, so that the model learns to identify the combination of jets that best aligns with the desired final state. As with any supervised machine learning problem, this approach requires defining essential elements for training, such as the model output, the information it receives to produce that output, and the reference — provided by the simulated \textit{ground truth} — against which that output is compared during parameter tuning. The decisions made regarding each of these elements determine the architecture of the algorithm and how its performance is evaluated.\\
+
+Starting with the output format, in the formulation adopted by the algorithms described in this chapter, the model assigns a separate score to each jet in the event so that the pair is constructed from the two jets with the highest scores. The output therefore includes one component for each jet,  permits the imposition of the condition that exactly two of them occupy the desired role. It should be noted that this is not the only possible formulation; an equally valid alternative would be to operate on pairs, constructing $N(N-1)/2$ combinations from $N$ jets in the event and evaluating each one. However, this is the approach adopted here, as it is derived directly from the original development of the \textsc{HH-BTag} algorithm \cite{HHBTag} upon which the present chapter is based.
+
+Nonetheless, the score assigned to a jet is not solely dependent on its properties; rather, the information received by the model is based on both the identity variables of each jet and global event quantities. The kinematics and $b$-tagging score of every jet, the kinematics of the $H\rightarrow\tau\tau$ candidate, the missing transverse energy, and the angular separations between any jet and the $\tau\tau$ system are some of the input variables for the model. The model also receives the complete set of jets in the event, so that the score for each jet is determined in the presence of the other candidates. The complete sets of variables used for each of the developed algorithms will be detailed in the corresponding sections.
+
+Finally, the reference against which this output is calibrated requires associating \textit{truth} labels with the jets from the samples used in training. The information at the generator level is the key factor here for determining whether a given jet belongs to the sought-after pair; therefore, the model parameters can be determined by minimizing the discrepancy between the predicted score and the label. The definition of this label is therefore the truly crucial element of the problem, as it must encode the role that the jet plays within the event, and thus its construction requires a dedicated procedure.\\
+
+Accordingly, two consequences follow from the output definition established in the method. The first is that the truth label can only be assigned to events that actually contain the sought-after decay — that is, two $b$-jets or two VBF jets, as the case may be. This means that both algorithms must be trained and evaluated on simulated signals, and the selection criteria applied when constructing the training sets must therefore ensure that such a label exists. Secondly, at least two jets are selected in every event; there is no threshold that the candidate must surpass. According to this formulation, it is not possible to define working points or to characterize performance using an efficiency metric accompanied by a misidentification rate, as is customary in identification discriminants (see, for example, Section \ref{ch:Tau}). The only question that arises is whether the selected pair is correct. Hence, the performance of the model is quantified using a purity metric defined over the event. Both of these issues concerning the construction of the ground truth and the metric used to evaluate performance are addressed in Sections \ref{subsec:groundtruth} and \ref{subsec:metric}, respectively.
+
+\subsection{Definition of the Ground Truth}
+%
+The definition of the true label is a key factor in the learning process of the model, and it requires careful study. Its formulation has undergone successive refinements since the initial version of the algorithm \cite{HHB-Tag}, based on performance studies conducted during each retraining round. This section describes the final form it takes, as applied to the models trained for the Run-3 analysis, highlighting only those changes that are conceptually relevant.
+
+The starting point is the generator-level information available in the simulated samples used during training. In generator-level particles, it is straightforward to identify the $b$ quarks originating from the Higgs boson decay or the outgoing quarks characteristic of VBF production. This information must be linked to the objects on which the algorithm ultimately operates, that is, the reconstructed jets. Between these two extremes — generated particles and reconstructed jets — there is an intermediate step: the definition of jets at the generator level.
+
+This intermedite step arises because the four-momentum of the quarks produced in the interaction does not adequately describe the object that the detector ultimately reconstructs, since fragmentation and hadronization distribute the initial energy among a set of particles whose angular distribution differs from that of the original quark. In order to make a comparison between objects of the same nature, jets at generator level are used; these are obtained by grouping the stable particles in the simulation using the same algorithm employed in the reconstruction, and thus constitute the generated analog of the reconstructed object.
+
+The label construction thus consists of two successive pairings, which are illustrated in Figure \ref{fig:groundtruth}. First, the jets generated from the process of interest are identified by associating them with the corresponding quarks previously identified. Then, the correspondence between the selected generated jets and the reconstructed jets is established. Both pairings are established using angular proximity criteria, as depicted in the diagram. It should be noted that the original development of the algorithm followed a different approach in the first matching step described, constructing a specific object at the generator level such that the association was implicit \cite{HHBTag}. In the approach adopted here, however, the association is made through explicit matching, directly using the standard CMS set of generated jets.
+%
+%%% candidate pair selection
+Criteria are also established to unambiguously select the two jets of interest. For the $H\rightarrow bb$ candidate, the pair whose invariant mass is closest to the Higgs boson mass is selected, as corresponds to the two b-jets originating from the Higgs\footnote{It should be emphasized that using the known mass of the boson introduces no bias whatsoever, since the ground truth is involved only in the training of the model and never in the analysis of the data}. This selection replaces the one used in the original development of the algorithm, which was based on taking the two highest-energy generated jets. \textcolor{red}{In the case of VBF jets, it holds that there are always two generated jets associated with the outgoing partons of the hard process - revisar}.
+
+%% overlap removal
+In addition, overlaps are eliminated to ensure that a given jet is assigned to a single role: in the case of $b$-jets, angular separation is required from both $\tau$ candidates, and in the case of VBF-jets, angular separation is required from the $\tau$ candidates and the previously identified $b$ pair. This requirement is imposed at both the generator and reconstructed levels to guarantee the comparability of both sets.
+
+% kinematic selection
+Behind the logic of the definition of the ground truth for training models, it should also be noted that all the steps described operate on sets of candidates previously defined by kinematic and quality requirements. The specific values differ depending on the objective of each algorithm presented here, notably in the required angular coverage, which is much wider in the case of VBF jets. This specific criteria will therefore be detailed in the corresponding sections \ref{sec:HHBTag} and \ref{sec:VBFjTag}, along with the selection process applied when preparing the training samples, which determines which events become part of the dataset and, consequently, the phase space in which the label exists and on which the model can be trained and evaluated.
+
+\textcolor{red}{no se si hacer esta anotacion aquí o etrará mejor en otro sitio}
+However, one selection criteria common to both taggers that deserves explicit mention is that events in which the two objects are so closely aligned that they do not form two distinct jets — a situation characteristic of configurations with higher transverse momentum — are excluded from the training set. Thus, the label, and therefore the model presented here, is defined only for resolved topologies, meaning the algorithms do not apply to more collimated configurations.\\
+%
+\newcommand{\jetglyph}[4]{% #1=name  #2=x  #3=y  #4=style
+  \node[#4] (#1) at (#2,#3) {};
+  \fill[black!45] (#2-0.19,#3+0.13) circle (0.42mm);
+  \fill[black!45] (#2+0.16,#3+0.06) circle (0.42mm);
+  \fill[black!45] (#2-0.06,#3-0.16) circle (0.42mm);
+  \fill[black!45] (#2+0.21,#3-0.19) circle (0.42mm);
+  \fill[black!45] (#2-0.22,#3-0.05) circle (0.42mm);
+}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  font=\sffamily\small, scale=0.95,
+  parton/.style ={circle, draw=violet!50!black, fill=violet!25, minimum size=8mm, inner sep=1pt},
+  tau/.style    ={circle, draw=orange!75!black, fill=orange!35, minimum size=6.5mm,
+                  inner sep=0pt, font=\sffamily\footnotesize},
+  gjet/.style   ={circle, draw=blue!55!black, fill=blue!10, minimum size=9mm, inner sep=0pt},
+  gjetsel/.style={circle, draw=blue!70!black, fill=blue!28, minimum size=9mm, inner sep=0pt, very thick},
+  rjet/.style   ={circle, draw=teal!60!black, fill=teal!10, minimum size=9mm, inner sep=0pt},
+  rjetsel/.style={circle, draw=teal!75!black, fill=teal!28, minimum size=9mm, inner sep=0pt, very thick},
+  gjetout/.style={circle, draw=red!60!black, fill=blue!8,  minimum size=9mm, inner sep=0pt, dashed, thick},
+  rjetout/.style={circle, draw=red!60!black, fill=teal!8,  minimum size=9mm, inner sep=0pt, dashed, thick},
+  xcross/.style ={draw=red!60!black, very thick, line cap=round},
+  lvl/.style    ={anchor=east, align=right, font=\sffamily\bfseries\small},
+  crit/.style   ={anchor=west, align=left, font=\sffamily\footnotesize, text=black!55},
+  ovl/.style    ={font=\sffamily\footnotesize, text=red!55!black, inner sep=1pt},
+  arw/.style    ={-{Latex[length=2.2mm]}, thick, draw=black!55},
+  lab/.style    ={font=\sffamily\footnotesize, inner sep=1.5pt, fill=white},
+]
+
+% ---------- generator quarks ----------
+\node[lvl] at (-0.4,6.4) {Generator\\quarks};
+\node[parton] (q1) at (2.4,6.4) {$\vphantom{\bar{q}}q$};
+\node[parton] (q2) at (6.0,6.4) {$\bar{q}$};
+
+% ---------- generator jets ----------
+\node[lvl] at (-0.4,3.9) {Generator\\jets};
+\jetglyph{g1}{0.6}{3.9}{gjet}
+\jetglyph{g2}{2.4}{3.9}{gjetsel}
+\jetglyph{g3}{4.2}{3.9}{gjetout}
+\jetglyph{g4}{6.0}{3.9}{gjetsel}
+\jetglyph{g5}{7.8}{3.9}{gjet}
+\draw[xcross] (3.90,3.60) -- (4.50,4.20);
+\draw[xcross] (3.90,4.20) -- (4.50,3.60);
+\node[tau] at (4.62,4.28) {$\tau$};
+\node[ovl] at (4.2,4.80) {overlap removal};
+
+\draw[arw] (q1) -- node[lab] {$\Delta R < 0.4$} (g2);
+\draw[arw] (q2) -- node[lab] {$\Delta R < 0.4$} (g4);
+
+\node[crit] at (8.7,4.15) {kinematic selection};
+\node[crit] at (8.7,3.65) {candidate pair selection};
+
+% ---------- reconstructed jets ----------
+\node[lvl] at (-0.4,1.0) {Reconstructed\\jets};
+\jetglyph{r1}{0.6}{1.0}{rjet}
+\jetglyph{r2}{2.4}{1.0}{rjetsel}
+\jetglyph{r3}{4.2}{1.0}{rjetout}
+\jetglyph{r4}{6.0}{1.0}{rjetsel}
+\jetglyph{r5}{7.8}{1.0}{rjet}
+\draw[xcross] (3.90,0.70) -- (4.50,1.30);
+\draw[xcross] (3.90,1.30) -- (4.50,0.70);
+\node[tau] at (4.62,1.38) {$\tau$};
+\node[ovl] at (4.2,1.92) {overlap removal};
+
+\draw[arw] (g2) -- node[lab] {$\Delta R < 0.3$} (r2);
+\draw[arw] (g4) -- node[lab] {$\Delta R < 0.3$} (r4);
+
+\node[crit] at (8.7,1.0) {kinematic selection};
+
+% ---------- labels ----------
+\node[lab, text=black!45]      at (0.6,0.15) {false};
+\node[lab, text=teal!60!black] at (2.4,0.15) {\textbf{true}};
+\node[lab, text=teal!60!black] at (6.0,0.15) {\textbf{true}};
+\node[lab, text=black!45]      at (7.8,0.15) {false};
+
+\end{tikzpicture}
+\caption{Scheme of the ground truth construction. The starting point is the pair of generator-level
+quarks: the $b$ quarks from the Higgs boson decay in the case of \textsc{HH-BTag}, and the outgoing quarks of the vector boson fusion process in the case of \textsc{VBFjTag}. Each quark is associated to the generator-level jet containing it, and among the jets thus associated the candidate pair is selected. Jets overlapping with the remaining objects of the final state are discarded, both at generator and at reconstruction level. A second, tighter angular matching establishes the correspondence with the reconstructed jets, which are labeled as \textit{true} when a matching generator-level jet is found and as \textit{false} otherwise.}
+\label{fig:groundtruth}
+\end{figure}
+
+All this leads to the conclusion that the ground truth is not a measurable property of the simulated event, but rather a constructed definition based on it. Therefore, it is worh noting that two reasonable but distinct definitions of truth can assign different labels to the same events and, consequently, lead to different purities for the same model. \textcolor{red}{The figures presented in this chapter are therefore comparable with one another since they are obtained in a manner consistent with the definition described here. Make sure this is the case and do not use old references.}\\
+
+The ground truth therefore serves a dual purpose. During training, it provides the reference against which the output of the model is adjusted, as described above. After training, the ground truth becomes the standard by which the performance of the model is judged, since evaluation consists of measuring how often the pair selected by the algorithm matches the assigned ground truth. Therefore, once the concept of a correct assignment has been established, the next step is to determine how this match is quantified.\\
+
+\subsection{The purity metric as performance evaluation}
+\label{subsec:metric}
+%
+As previously noted in Section \ref{subsec:supervised}, the model assigns a score to each candidate in the event, such that the pair is formed by selecting the two with the highest scores. Therefore, no threshold is established that a candidate must meet in order for a pair to be assigned; rather, the selection constitutes a relative choice among the available candidates. This approach prevents characterizing the performance of the model using an efficiency metric accompanied by a misidentification rate, and instead requires the use of a purity metric, whose precise definition — along with the conditions under which it can be meaningfully evaluated — is the subject of this section.
+
+The purity used to quantify the performance of the assignment strategy is defined as:
+%
+\begin{equation}
+P = \frac{N_{\mathrm{true}}}{N},
+\label{eq:purity}
+\end{equation}
+%
+where $N_{\mathrm{true}}$ is the number of events in which the pair selected by the algorithm matches the one designated by the ground truth, and $N$ is the total number of events in which a candidate is reconstructed. As mentioned earlier, the selection applied to the training and evaluation sets requires the presence of the two true jets that allow the ground truth to be defined. Consequently, in this context, $N$ is equivalent to the total number of events in those samples.\\
+
+In practice, purity is measured by sorting the jets in the event according to the score assigned by the corresponding model, and checking whether the first two are labeled \textit{true}. If so, the event contributes to $N_{\mathrm{true}}$. A visual representation of the process can be seen in Figure \ref{fig:purity}. It is therefore a strict, binary quantity at the event level, where both jets must be correctly identified; cases with a single correctly identified jet count the same as those where neither jet was correctly identified.\\
+%
+\providecommand{\jetglyph}[4]{% #1=name  #2=x  #3=y  #4=style
+  \node[#4] (#1) at (#2,#3) {};
+  \fill[black!45] (#2-0.19,#3+0.13) circle (0.42mm);
+  \fill[black!45] (#2+0.16,#3+0.06) circle (0.42mm);
+  \fill[black!45] (#2-0.06,#3-0.16) circle (0.42mm);
+  \fill[black!45] (#2+0.21,#3-0.19) circle (0.42mm);
+  \fill[black!45] (#2-0.22,#3-0.05) circle (0.42mm);
+}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  font=\sffamily\small, scale=0.92,
+  tjet/.style   ={circle, draw=teal!75!black, fill=teal!30, minimum size=9mm,
+                  inner sep=0pt, very thick},
+  fjet/.style   ={circle, draw=black!35, fill=black!7, minimum size=9mm, inner sep=0pt},
+  selbox/.style ={rounded corners=3pt, draw=violet!60!black, thick, dashed},
+  evt/.style    ={anchor=east, font=\sffamily\bfseries\small},
+  sc/.style     ={font=\sffamily\scriptsize, text=black!60},
+  ok/.style     ={font=\sffamily\large, text=teal!60!black},
+  no/.style     ={font=\sffamily\large, text=red!60!black},
+  hdr/.style    ={font=\sffamily\footnotesize\itshape, text=black!55},
+  sumbox/.style ={rounded corners=4pt, draw=black!30, fill=black!4,
+                  align=center, inner sep=6pt, font=\sffamily\small},
+]
+
+% ---------- header ----------
+\draw[-{Latex[length=2mm]}, draw=black!45] (1.0,5.45) -- (6.2,5.45);
+\node[hdr, anchor=south] at (3.6,5.55) {jets ordered by decreasing score};
+\node[hdr, anchor=south, text=violet!60!black] at (1.65,4.95) {selected pair};
+
+% ================= EVENT 1 =================
+\node[evt] at (-0.1,4.4) {Event 1};
+\draw[selbox] (0.45,3.78) rectangle (2.85,5.02);
+\jetglyph{a1}{1.0}{4.4}{tjet}
+\jetglyph{a2}{2.3}{4.4}{tjet}
+\jetglyph{a3}{3.6}{4.4}{fjet}
+\jetglyph{a4}{4.9}{4.4}{fjet}
+\jetglyph{a5}{6.2}{4.4}{fjet}
+\node[sc] at (1.0,3.62) {0.92};  \node[sc] at (2.3,3.62) {0.78};
+\node[sc] at (3.6,3.62) {0.15};  \node[sc] at (4.9,3.62) {0.10};
+\node[sc] at (6.2,3.62) {0.05};
+\node[ok] at (7.1,4.4) {$\checkmark$};
+
+% ================= EVENT 2 =================
+\node[evt] at (-0.1,2.4) {Event 2};
+\draw[selbox] (0.45,1.78) rectangle (2.85,3.02);
+\jetglyph{b1}{1.0}{2.4}{tjet}
+\jetglyph{b2}{2.3}{2.4}{fjet}
+\jetglyph{b3}{3.6}{2.4}{tjet}
+\jetglyph{b4}{4.9}{2.4}{fjet}
+\jetglyph{b5}{6.2}{2.4}{fjet}
+\node[sc] at (1.0,1.62) {0.85};  \node[sc] at (2.3,1.62) {0.55};
+\node[sc] at (3.6,1.62) {0.40};  \node[sc] at (4.9,1.62) {0.12};
+\node[sc] at (6.2,1.62) {0.08};
+\node[no] at (7.1,2.4) {$\times$};
+
+% ================= EVENT 3 =================
+\node[evt] at (-0.1,0.4) {Event 3};
+\draw[selbox] (0.45,-0.22) rectangle (2.85,1.02);
+\jetglyph{c1}{1.0}{0.4}{fjet}
+\jetglyph{c2}{2.3}{0.4}{fjet}
+\jetglyph{c3}{3.6}{0.4}{tjet}
+\jetglyph{c4}{4.9}{0.4}{tjet}
+\jetglyph{c5}{6.2}{0.4}{fjet}
+\node[sc] at (1.0,-0.38) {0.62};  \node[sc] at (2.3,-0.38) {0.58};
+\node[sc] at (3.6,-0.38) {0.45};  \node[sc] at (4.9,-0.38) {0.28};
+\node[sc] at (6.2,-0.38) {0.07};
+\node[no] at (7.1,0.4) {$\times$};
+
+% ---------- summary ----------
+\draw[dashed, draw=black!25] (7.50,-0.55) -- (7.50,5.15);
+\node[sumbox, anchor=west] at (7.85,2.4)
+  {$P = \dfrac{N_{\mathrm{true}}}{N} = \dfrac{1}{3} \approx 33\,\%$};
+
+\end{tikzpicture}
+\caption{Illustration of the purity metric on three simulated events. An event is marked with a check only if both selected jets carry the positive label (drawn in color), and thus contributes to $N_{\mathrm{true}}$.}
+\label{fig:purity}
+\end{figure}
+
+It is important to clarify the scope of this metric. Purity is a measure of the effectiveness of the algorithm in selecting the correct candidates from the available optiones, under the condition that the event contains the desired objects in a form that can be reconstructed. Accordingly, the contribution of the algorithm is isolated, deliberately excluding losses due to detector acceptance or reconstruction efficiency. The fraction of signal events in which the analysis ultimately reconstructs the correct candidate is thus broken down into these two terms: the probability that both objects are reconstructed and pass the selection, and the purity of the assignment once this condition is met. While the former is accounted for in the analysis through selection efficiencies, it is the latter that is put to the test here. Purity therefore quantifies the quality of the decision made, allowing for a meaningful comparison between classifiers.
+
+From the definition itself, it also follows that the purity defined here cannot be evaluated on background samples, since if the event does not contain the sought-after decay, $N_{\mathrm{true}}$ is meaningless because the correct pair does not exist. This is not incompatible with the algorithm operating on background events, since by design it will always select two jets, even if neither of them originates from the decay of interest. The behavior of the tagger with respect to background is therefore examined by looking at the shape of the scoring distributions, which is particularly relevant for the task of distinguishing the signal from the background — a task that must be addressed later in the analysis.\\
+
+As is logical given its parallelism with the ground truth, the purity metric is not only used for model evaluation but is also necessary during training. Since it is the measure that defines the quality of the model, purity is the metric monitored during training itself to determine when the model has reached optimal performance. It also serves to guide the optimization of the hyperparameters of the architecture, as it acts as an indicator of the performance of the model on the intended task.\\\\
+
+
+Thus far, three elements have been identified: the problem, the reference against which learning takes place, and the metric used to evaluate the result. The next step is to describe the model responsible for learning that relationship and the procedure by which its parameters are adjusted. Both are common to the two algorithms developed in this work, since \textsc{VBFjTag} reuses, without modification, the architecture designed for \textsc{HH-BTag}, which will be described in the following section. In contrast, the distinction between the two lies in the definition of the ground truth and the set of input variables, which will be addressed accordingly when discussing each algorithm separately.\\
+
+\section{A common architecture for jet assignment}
+\label{sec:architecture}
+Input features? introduccion a NN
+\subsection{Network architecture}
+\subsection{Training strategy}
+\subsection{Evaluation Feature importance}
+
+
+\section{The \textsc{HH-BTag} algorithm}
+\label{sec:HHBTag}
+footnote
+Las incertidumbres asociadas se obtienen a partir de los intervalos de confianza para proporciones binomiales, calculados según el método de Clopper-Pearson.
+
+\section{The \textsc{VBFjTag} algorithm}
+\label{sec:VBFjTag}
+
+\section{The algorithms impact???}
+\label{sec:taggers_impact}
+Esta no se si me convence mucho
 
 
 Intro / Motivation / Contexto dentro del analisis bbtautau / uso en Run-2 y Run-3; desarrollo del VBFjTag para Run-3
