@@ -354,7 +354,7 @@ Both conditions are adequately satisfied by a specific type of layer: the recurr
 
 It should be noted that the recurrent architecture is not the only one capable of satisfying the above conditions. Nevertheless, it is the solution adopted in the original development of \textsc{HH-BTag}, and consequently the one used in this study, maintaining the same structure and values of the hyperparameters of the network in all the versions presented in this chapter. In any case, the central recurrent block does not constitute the entire network; dense layers also play a role, acting on each jet separately, as will be seen later.\\
 
-With the conceptual framework thus established, the following sections provide detailed analysis of each of these elements: Section \ref{subsec:inputs} describes how the event is represented before being fed into the network; Section \ref{subsec:network} details its internal structure and how the final score is calculated; Section \ref{subsec:training} outlines the procedure used to determine its parameters; and Section \ref{subsec:featimp} describes the method used to examine, once the model has been trained, what information it actually uses.\\
+With the conceptual framework thus established, the following sections provide detailed analysis of each of these elements: Section \ref{subsec:inputs} describes how the event is represented before being fed into the network; Section \ref{subsec:network} details its internal structure and how the final score is calculated; Section \ref{subsec:training} outlines the procedure used to determine its parameters; and Section \ref{subsec:featimp} describes diagnostics applied to the model once trained, which examine the behavior of the training itself and identify which of the variables it receives are actually used.\\
 
 \subsection{Representation of the event}
 \label{subsec:inputs}
@@ -572,11 +572,66 @@ From the description above it follows that a score of the jet is related with th
 
 While the form of the model has been fully specified, the origin of the values that define it remains to be understood. These are the hyperparameters that describe the network and were introduced at the beginning of this section, i.e., quantities fixed before the training begins and left untouched by it, such as the number of layers in each block, the units that compose them, and the activation functions of the hidden layers. As already noted in the context of the dense block, these values were not chosen by hand, but rather, they are the result of an optimization procedure. A second group of hyperparameters shares that condition without describing the network itself, since it governs instead the way its parameters are fitted. It therefore remains to be described how those parameters, which the training does modify, are determined based on the simulated events, what decisions accompany this tuning, and how the hyperparameters that govern it are set, which is the subject of the following section.
 
-\subsection{Training strategy}
+\subsection{Training procedure}
+%
+The specific details of the training loop, which is illustrated in general terms in Figure \ref{fig:training_loop}, are discussed below. With the neural network architecture already described, the remaining elements in the figure address the examples events that feed into the cycle, the loss function that measures the discrepancy between the output and the label, how this measurement translates into a modification of the parameters, and when the process is considered complete. The discussion concludes with the procedure used to set the hyperparameters underlying the network itself and the training process.
+
+%1) conjuntos y division
+
+As elaborated in Section \ref{subsec:groundtruth}, the key information for parameter tuning is based on the ground truth label, which is defined for the simulated events — described in Sections \ref{sec:HHBTag} and \ref{sec:VBFjTag}. A batch of labeled examples is therefore available to serve as input for the network training. This dataset is not used to train a single model, but rather two different ones. The events are divided into two halves based on the parity of their event number, and a model is trained on each of these subsets. This allows each event to be evaluated in the analysis with the model that has not seen it during training, in order to avoid potential biases. Concurrently, one-quarter of the events randomly selected within each case is set aside for validation. In other words, this quarter is not used to adjust the parameters but is instead used during the training process itself to measure the performance of the model on events that were not part of the training set.
+
+%2) perdida y optimizador
+
+Each training iteration — that is, each parameter update — is performed on a batch of one hundred events. The network generates a score for each of its jets, and these scores are compared with their labels using the loss function. It should be noted that the purity defined in Section \ref{subsec:metric} cannot fulfill this role. This is because it depends solely on the order of the scores and not on their value, which makes it a discrete quantity whose derivative with respect to the parameters is zero, thus making it incapable of providing any indication as to in which direction to modify them. Instead, binary cross-entropy is used as the quantity to be minimized during training, which continuously penalizes the discrepancy between the score and the label, reaching its minimum when the two coincide.
+
+Guided by the loss function, the optimizer is responsible for adjusting the parameters; it determines how the value of that function translates into a specific change in each parameter. The magnitude of that change is dictated by the learning rate, whose value cannot be too large — since the model would oscillate without ever converging — nor too small, since the process will be excessively slow. The optimizer also incorporates a weight decay term, which penalizes large parameter values and thus limits overfitting. The optimizer used here is \textit{AdamW}, with a learning rate of $10^{-3}$ and a weight decay of $10^{-2}$.
 
 
-\subsection{Evaluation Feature importance}
+%3) criterio de parada
 
+However, while loss serves as an auxiliary function for training, the criterion for determining when to end training is whether the model is meeting its objective. Purity is therefore used at this stage, as it is the metric defined to ensure the accurate assignment of jets by the model. At the end of each epoch — once all training events have been processed — the purity obtained is evaluated on the set of events reserved for validation, so that the process stops when ten consecutive epochs have elapsed without that value exceeding the maximum reached so far. The parameters corresponding to the epoch in which the maximum was reached are the ones that define the final model. To narrow the search, a maximum of 1000 epochs is also set; in practice, this limit is never reached, since the condition described above interrupts the process much earlier, as is expected in stable training behavior.
+
+%4) optimizacion de los hipterparametros
+
+This establishes the training cycle by which the model parameters are adjusted in the network described above. The values describing the network and those governing the optimizer are listed in Table \ref{tab:hyperparams}. As previously stated, their determination is not arbitrary but requires a preliminary procedure independent of the training process, which consists of examining the performance of the network associated with a specific combination. To do so, it is necessary to train the model with that combination and measure the resulting purity on the validation set. Each evaluation is, therefore, a complete training run, which precludes an exhaustive exploration of the space of possibilities. Instead, Bayesian optimization is used, which constructs a probabilistic model of performance as a function of the hyperparameters based on the combinations already evaluated and uses it to decide which one to test next, seeking a balance between exploring poorly understood regions and refining those that have yielded good results.\footnote{The probabilistic model is a Gaussian process, and the selection criterion for the next combination is the upper confidence bound.} It should be emphasized that the configuration used in this work is derived largely from the optimization carried out during the original development of the algorithm, which has not been repeated in this work. One exception is the optimizer, for which \textit{AdamW} is used instead of the original \textit{Adam}. \textit{AdamW} allows weight decay to be applied directly to the parameters rather than through the loss function, which is what motivated the change: to adjust weight decay in a decoupled manner in order to examine different training behaviors. Consequently, weight decay was adjusted manually, within reasonable ranges.
+%   
+\begin{table}[t]
+\centering
+\caption{Hyperparameters of the network and of the training procedure. The values are used
+unchanged for both algorithms presented in this chapter.}
+\label{tab:hyperparams}
+\begin{tabular}{lc}
+\toprule
+\multicolumn{2}{l}{\textit{Network structure}} \\
+\midrule
+Type of recurrent layer            & LSTM \\
+Number of recurrent layers         & 5 \\
+Units per recurrent layer          & 74 \\
+Number of dense layers             & 13 \\
+Units per dense layer              & 15 \\
+Activation of the dense layers     & sigmoid \\
+Dropout rate\footnotemark          & 0 \\
+\midrule
+\multicolumn{2}{l}{\textit{Training}} \\
+\midrule
+Optimizer                          & AdamW \\
+Learning rate                      & $10^{-3}$ \\
+Weight decay                       & $10^{-2}$ \\
+Batch size                         & 100 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\footnotetext{The dropout rate was included among the optimized hyperparameters, dropout being a
+regularization technique that randomly deactivates a fraction of the units at each iteration. The
+optimization returned a value of zero, so that no dropout layer is instantiated in the model: the
+batch normalization applied after every layer already fulfills this role.}
+\\
+
+After careful consideration, the model has been determined in terms of its form and the values of its parameters. Once training is complete, the next step is to examine whether the process has behaved as expected. That is, whether the loss function has converged and whether the performance measured on the validation events matches that obtained on the training events, since a discrepancy between the two would indicate that the model has learned characteristics specific to the training events rather than the general relationship it should capture. If this is the case, the next evaluation to be considered has a more fundamental purpose: to understand which information, out of all that it receives, the model actually uses in its final decision, in order to guide the determination of the input features, which are, ultimately, the information the model will use to learn. Both of these questions are the subject of Section \ref{subsec:featimp}.
+
+\subsection{Diagnostics of the trained model}
+CURVAS DE APRENDIZAJE : LOSS FUNCTION Y PURITY FUNCTION
+FEATURE IMPORTANCE
 
 \section{The \textsc{HH-BTag} algorithm}
 \label{sec:HHBTag}
@@ -588,6 +643,8 @@ Las incertidumbres asociadas se obtienen a partir de los intervalos de confianza
 
 \section{The algorithms impact??? Perspectivas??}
 \label{sec:taggers_impact}
+
+pesos
 
 la arquitectura impone un orden sobre lo que es un conjunto, y que explorar variantes bidireccionales o invariantes bajo permutación es una vía abierta. 
  principista sería una arquitectura que opere directamente sobre conjuntos, sin orden, pero eso ya no es una variante: es otro algoritmo,
