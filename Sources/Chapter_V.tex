@@ -260,9 +260,321 @@ Thus far, three elements have been identified: the problem, the reference agains
 
 \section{A common architecture for jet assignment}
 \label{sec:architecture}
-Input features? introduccion a NN
+\textcolor{red}{No se si estoy poniendo muchos diagramas ahora que estoy descubriendo como hacerlos bien :) ; creo que dan apoyo visual a la descripcion que puede ser un poco difusa, pero igual me estoy pasando}
+%
+
+\noindent According to the formulation of the supervised learning problem outlined in Section \ref{subsec:supervised}, the function whose parameters are estimated from simulated examples is, in this case, a neural network. It is therefore useful to define key terms that will be helpful in the course of this chapter. Artificial neural networks, simply called neural networks (NNs), are parameterized functions capable of learning, from provided examples, the relationship between inputs and a desired output. These functions are constructed from elementary units, called artificial neurons, which apply a linear combination to their inputs, determined by a set of adjustable parameters known as \textit{weights}, and followed by a nonlinear function called \textit{activation}. These units are grouped into layers, and by chaining several of them together, a function is obtained capable of representing relationships that none of them describes separately. Furthermore, layers are distinguished by the way their units connect to those of the preceding layer: in a dense layer, each unit receives all the outputs from the previous layer, while other types impose specific connections, tailored to the structure of the data they are to process. The behavior of the network is thus determined by two sets of quantities of different natures: adjustable parameters, which are determined during training, and the hyperparameters, which are set in advance and determine the structure of the network — such as the number of layers, their type, and the number of units in each — as well as the training procedure.
+
+Training therefore consists of iteratively traversing the set of labeled examples, comparing at each step the output of the model with the ground truth label through a loss function that guides the adjustment of the parameters. Thus, in each iteration, the parameters are modified to reduce the value of the loss function. The size of that modification, and the way in which it is computed, are dictated by an optimization algorithm, or \textit{optimizer}, which is itself one of the hyperparameters fixed before the training begins. The examples are processed in batches, and each complete pass through the set is called an epoch. The performance achieved by the model at the end of each epoch, however, must be measured using the metric that quantifies the task assigned to it, which in this case is purity, as defined in Section \ref{subsec:metric}. It is therefore purity that determines when training should stop; training continues as long as purity improves and ends when it ceases to do so, retaining the parameters of the epoch at which it reached its maximum value. A schematic representation of the training process is shown in Figure \ref{fig:training_loop}.
+%
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  font=\sffamily\small,
+  data/.style  ={rounded corners=3pt, draw=black!40, fill=black!5,
+                 align=center, inner sep=5pt},
+  netbox/.style={rounded corners=4pt, draw=black!45, minimum width=1.9cm,
+                 minimum height=2.3cm},
+  band/.style  ={rounded corners=2pt, draw=black!45, fill=black!12,
+                 minimum width=1.4cm, minimum height=0.45cm, inner sep=0pt,
+                 font=\sffamily\scriptsize},
+  lossb/.style ={rounded corners=3pt, draw=violet!55!black, fill=violet!16,
+                 align=center, inner sep=5pt},
+  metb/.style  ={rounded corners=3pt, draw=teal!70!black, fill=teal!16,
+                 align=center, inner sep=5pt},
+  dec/.style   ={rounded corners=3pt, draw=teal!70!black, fill=white,
+                 align=center, inner sep=5pt, thick},
+  tag/.style   ={rounded corners=2pt, draw=black!35, fill=white, dashed,
+                 align=center, inner sep=3pt, font=\sffamily\scriptsize,
+                 text=black!60},
+  arw/.style   ={-{Latex[length=2.2mm]}, thick, draw=black!55},
+  loop/.style  ={-{Latex[length=2.2mm]}, thick, draw=black!45},
+  tiny/.style  ={-{Latex[length=1.5mm]}, draw=black!45},
+  lab/.style   ={font=\sffamily\footnotesize, inner sep=1.5pt, fill=white},
+  slab/.style  ={font=\sffamily\scriptsize, inner sep=1.5pt, text=black!60},
+]
+
+% ================= row 1 : parameter fitting =================
+\node[data] (batch) at (0,4.4) {batch of labeled\\examples $(x,\,y)$};
+
+\node[netbox] (net) at (3.6,4.4) {};
+\node[band] (l1) at (3.6,5.15) {layer};
+\node[band] (l2) at (3.6,4.40) {layer};
+\node[band] (l3) at (3.6,3.65) {layer};
+\draw[tiny] (l1) -- (l2);
+\draw[tiny] (l2) -- (l3);
+\node[anchor=south, text=black!70] at (3.6,5.65) {neural network};
+\node[slab, anchor=west, text=black!70] at (4.68,5.15) {$\theta$};
+
+\node[tag] (hp) at (0.3,6.3) {hyperparameters};
+\draw[dashed, -{Latex[length=2mm]}, draw=black!40] (hp.east) -- (net.north west);
+
+\node[lossb] (loss) at (8.2,4.4) {comparison with $y$\\$\rightarrow$ loss function};
+
+\draw[arw] (batch) -- (net);
+\draw[arw] (net)   -- node[lab] {output $\hat{y}$} (loss);
+
+% ---- inner loop : parameter update ----
+\draw[loop] (loss.south) -- (8.2,2.6) -- (3.6,2.6) -- (net.south);
+\node[lab, text=black!60] at (5.9,2.6) {update of $\theta$};
+
+% ================= epoch boundary =================
+\draw[dashed, draw=black!30] (-3.0,1.9) -- (10.2,1.9);
+\node[slab, anchor=east, fill=white] at (10.2,2.13) {end of epoch};
+
+% ================= row 2 : stopping decision =================
+\node[metb] (val) at (8.2,0.85)  {purity\\evaluation};
+\node[dec]  (dec) at (3.6,0.85)  {improved?};
+\node[data] (end) at (3.6,-1.05) {keep the parameters\\of the best epoch};
+
+\draw[arw] (loss) -- (val);
+\draw[arw] (val)  -- (dec);
+\draw[arw] (dec)  -- node[slab, anchor=west] {no} (end);
+
+% ---- outer loop : next epoch ----
+\draw[loop] (dec.west) -- (-2.3,0.85) -- (-2.3,4.4) -- (batch.west);
+\node[slab, anchor=south] at (1.7,0.95) {yes};
+\node[lab, rotate=90, text=black!60] at (-2.3,2.9) {next epoch};
+
+\end{tikzpicture}
+\caption{Scheme of the training cycle. A batch of labeled examples is presented to the network,
+whose output is compared with the reference true label through the loss function; the parameters
+$\theta$ are then modified so as to reduce its value, and the cycle is repeated for every group.
+Once the complete set has been traversed — one epoch — the performance reached by the model is
+evaluated through the purity. The hyperparameters are set before the training starts and are not
+modified by the cycle. The internal structure of the network, drawn here as a generic succession
+of layers, is detailed in Section \ref{subsec:network}.}
+\label{fig:training_loop}
+\end{figure}
+
+
+Based on this conceptual framework, the model intended to solve the assignment problem cannot be arbitrary; rather, it is subject to the problem described in Section \ref{subsec:supervised}. Thus, when considering the specific design of the model, it is essential to understand that the number of reconstructed jets varies from one event to another. As a result, the network structure cannot depend on the number of jets, but rather, it must produce a score for each one. Furthermore, since the decision involves comparing candidates with one another, the score assigned to each jet at the output must be informed by the presence and properties of the others.
+
+Both conditions are adequately satisfied by a specific type of layer: the recurrent layer. This layer traverses the elements of a sequence\footnote{The jets of an event are a set of simultaneous objects among which there is no intrinsic order; therefore, they do not by themselves constitute a sequence. Since the output of a recurrent layer is not invariant under permutations of its input, presenting them to the network requires fixing an ordering criterion, which thereby becomes part of the definition of the algorithm and is discussed later.} one after another, always applying the same operation to them, so that a single set of parameters suffices for an arbitrary number of elements. In doing so, it also maintains an internal state that is updated at each step, so that the value produced for each element incorporates information from the preceding elements. The variant used here, known as LSTM (\textit{Long Short-Term Memory}), incorporates an additional mechanism that maintains this state stable throughout long sequences. Applying such a layer to the jets of an event requires, however, that they first be expressed as an ordered numerical structure carrying a fixed set of quantities per jet.
+
+It should be noted that the recurrent architecture is not the only one capable of satisfying the above conditions. Nevertheless, it is the solution adopted in the original development of \textsc{HH-BTag}, and consequently the one used in this study, maintaining the same structure and values of the hyperparameters of the network in all the versions presented in this chapter. In any case, the central recurrent block does not constitute the entire network; dense layers also play a role, acting on each jet separately, as will be seen later.\\
+
+With the conceptual framework thus established, the following sections provide detailed analysis of each of these elements: Section \ref{subsec:inputs} describes how the event is represented before being fed into the network; Section \ref{subsec:network} details its internal structure and how the final score is calculated; Section \ref{subsec:training} outlines the procedure used to determine its parameters; and Section \ref{subsec:featimp} describes the method used to examine, once the model has been trained, what information it actually uses.\\
+
+\subsection{Representation of the event}
+\label{subsec:inputs}
+%
+To ensure the network can process all the information, it is necessary to define how the event is processed at its input, since the network does not operate directly on the reconstructed event, but rather on a representation of it. Therefore, it is essential to establish a method for translating the information of the event — that is, both the global variables and the ones associated with the set of jets of variable size and without intrinsic order — into an ordered sequence that the network can process. The decisions made during this translation affect the output of the network and therefore constitute the first step in defining the algorithm.
+
+To impose an ordered numerical structure on the event, it is arranged as a table in which each row corresponds to a reconstructed jet, such that each row contains two quantities: properties specific to the jet, whether its kinematics or its flavor discriminant; and global event quantities, such as the kinematics of the $H\rightarrow\tau\tau$ candidate or the missing transverse energy. These latter quantities are replicated identically across all rows, enabling the network processing each row separately to access to information about the entire event. The arrangement, in conjunction with the information propagation between rows provided by the recurrent block, ensures that the score assigned to each jet depends on its own properties, those of the event, and those of the \textcolor{red}{other} candidates.
+
+%y de las de los jets que le preceden en la secuencia. Que dependa además de los que le siguen es consecuencia de la normalización aplicada a la salida, y se verá al describir la arquitectura.
+
+Given that the output of a recurrent layer is not invariant under permutations of its input, the order in which the jets occupy the rows is also part of the definition of the algorithm, i.e., two different orders of the same jets from the event would produce different scores. It is therefore necessary to establish a criterion preferably based on a property specific to each jet to ensure that the ordering is reproducible. It is natural to do so by considering the physical meaning in accordance with the task designated for each classifier. Accordingly, the logical choice for \textsc{HH-BTag} is to arrange the jets from highest to lowest $b$-tagging discriminant, whereas \textsc{VBFjTag} is based instead on ordering from highest to lowest $|\eta|$, according to the kinematic characteristics of the jets within the VBF topology\footnote {One might consider using the invariant pair mass as a characteristic variable of the VBF topology. However, sorting requires a value associated with each jet separately, and deriving it from a pair property such as $m_{jj}$ would require fixing the partner of each jet in advance, which is precisely what the algorithm must determine.}. Under this assumption, the jets occupying the first positions in the sequence are those a priori most compatible with the desired role: those most similar to a $b$ quark in one case and those most advanced in the other. This criterion is applied when preparing the training samples, and must be reproduced identically when the model is evaluated within the analysis, since it is part of the input the model expects to receive.
+
+The table presented as a translation of the event must also be bounded, since, while the network is capable of processing the sequence it receives regardless of its length, events are not processed one by one, but rather in batches that are evaluated simultaneously. This requires that all events share the same format, so a common number of rows is established. This number is set to ten — a value large enough to ensure that no information is lost in any of the samples used — so that when there are fewer jets, the remaining rows are filled with zeros. To ensure that this artificial padding does not alter the result, a column is added to the table to serve as a validity indicator, with a value of one in the rows that actually correspond to a reconstructed jet, and zero in the others. This column does not serve as an input variable for the network, but rather as a mask, so that the empty rows are excluded from all stages of the calculation and their presence does not affect the scores assigned to the actual jets.
+
+A visualization of the representation of the event for use as input to the network is illustrated in Figure \ref{fig:input_tensor}, following the discussion in the preceding paragraphs.
+%
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  font=\sffamily\small,
+  jcell/.style ={draw=black!45, fill=black!10, minimum width=0.62cm,
+                 minimum height=0.46cm, inner sep=0pt, font=\sffamily\scriptsize},
+  ecell/.style ={draw=violet!55!black, fill=violet!14, minimum width=0.62cm,
+                 minimum height=0.46cm, inner sep=0pt,
+                 font=\sffamily\scriptsize, text=violet!35!black},
+  vcell/.style ={draw=black!45, fill=white, minimum width=0.72cm,
+                 minimum height=0.46cm, inner sep=0pt, font=\sffamily\scriptsize},
+  pcell/.style ={draw=black!25, dashed, fill=white, minimum width=0.62cm,
+                 minimum height=0.46cm, inner sep=0pt,
+                 font=\sffamily\scriptsize, text=black!35},
+  pvcell/.style={draw=black!25, dashed, fill=white, minimum width=0.72cm,
+                 minimum height=0.46cm, inner sep=0pt,
+                 font=\sffamily\scriptsize, text=black!35},
+  rlab/.style  ={anchor=east, font=\sffamily\scriptsize, text=black!60},
+  hlab/.style  ={anchor=south, font=\sffamily\scriptsize, text=black!60},
+  note/.style  ={anchor=west, align=left, font=\sffamily\scriptsize, text=black!55},
+  arw/.style   ={-{Latex[length=2mm]}, draw=black!50},
+]
+
+% ---------- column headers ----------
+\node[hlab] at (0.00,3.55) {valid};
+\node[hlab] at (2.06,3.55) {jet variables};
+\node[hlab] at (4.82,3.55) {event variables};
+\draw[draw=black!25] (-0.40,3.50) -- (0.40,3.50);
+\draw[draw=black!25] ( 0.71,3.50) -- (3.41,3.50);
+\draw[draw=black!25] ( 3.81,3.50) -- (5.83,3.50);
+
+% ---------- valid rows ----------
+\foreach \y/\n in {3.10/1, 2.58/2, 2.06/3, 1.54/4} {
+  \node[rlab] at (-0.50,\y) {jet \n};
+  \node[vcell] at (0.00,\y) {1};
+  \foreach \x in {1.05,1.72,2.39,3.06} { \node[jcell] at (\x,\y) {}; }
+  \node[ecell] at (4.15,\y) {$z_1$};
+  \node[ecell] at (4.82,\y) {$z_2$};
+  \node[ecell] at (5.49,\y) {$z_3$};
+}
+
+% ---------- padded rows ----------
+\foreach \y/\n in {1.02/5, 0.20/10} {
+  \node[rlab] at (-0.50,\y) {jet \n};
+  \node[pvcell] at (0.00,\y) {0};
+  \foreach \x in {1.05,1.72,2.39,3.06} { \node[pcell] at (\x,\y) {}; }
+  \foreach \x in {4.15,4.82,5.49} { \node[pcell] at (\x,\y) {}; }
+}
+\node[font=\sffamily\small, text=black!45] at (-0.72,0.62) {$\vdots$};
+\node[font=\sffamily\small, text=black!35] at ( 2.75,0.62) {$\vdots$};
+
+% ---------- ordering ----------
+\draw[arw] (-1.95,3.33) -- (-1.95,-0.03);
+\node[font=\sffamily\scriptsize, text=black!60, rotate=90] at (-2.20,1.65)
+     {fixed ordering criterion};
+
+% ---------- annotations ----------
+\draw[draw=black!35] (5.95,1.31) -- (6.15,1.31) -- (6.15,3.33) -- (5.95,3.33);
+\node[note] at (6.28,2.32) {same values\\in every row};
+
+\draw[draw=black!30] (5.95,-0.03) -- (6.15,-0.03) -- (6.15,1.25) -- (5.95,1.25);
+\node[note] at (6.28,0.61) {padding};
+
+\end{tikzpicture}
+\caption{Representation of the event received by the network. Each event is arranged as a
+fixed-size table of ten rows, one per jet, ordered according to a criterion specific to each
+algorithm. Every row carries the variables of the corresponding jet together with the global event variables, which are identical in all rows. The first column flags whether the row
+corresponds to an actual jet and is used by the network as a mask, so that the padded rows contribute neither to the intermediate layers nor to the final score.}
+\label{fig:input_tensor}
+\end{figure}
+%
+
+After determining the representation in the form of an ordered table, one final step remains before passing the information to the recurrent layers of the network. The quantities that comprise such table span a wide range. Depending on the variable being evaluated, these ranges can extend from several thousand GeV, as in the case of a transverse moment, to values bounded between zero and one, as would be the case with a discriminant. This disparity significantly  complicates the fitting process, as the variables with the largest scales tend to dominate the others. Therefore, it is necessary to establish comparable ranges among the columns, which is done using one of the following methods, depending on the specific variable being analyzed:
+\begin{itemize}
+    \item Variables with a narrow peak in their distribution: Standardized by subtracting their mean and dividing by the standard deviation. The result is truncated at five sigmas to prevent extreme values from skewing the fit.
+    \item Variables defined over a bounded domain: Linearly rescaled to the interval $[-1,1]$.
+    \item Variables expressed in an appropriate range, such as the $b$-tagging discriminant itself: No transformation is applied.
+\end{itemize}
+All three treatments aim to achieve the same goal: ensuring that all columns reach the network with values of order one. The choice of a zero-centered interval for the rescaled variables is not arbitrary, since inputs distributed around zero promote the convergence of the fit compared to those with a constant sign, and it also places this group in a position comparable to that of standardized variables, which, by definition, are also centered at zero.
+
+In practice, these operations are part of the network itself through the first two layers that comprise it. In this manner, the constants that define them are stored along with the network parameters, permitting the network to be applied directly to the untransformed values during analysis.\\
+
+
+This determines how the event enters the network. This framework is common to both algorithms presented here; only the ordering criteria and the specific choice of variables distinguish one from the other. The next step is to describe how the network handles the table: how it processes it, how the rows are combined with one another, and how the score assigned to each jet is constructed from them are the questions addressed below.\\
+
+
 \subsection{Network architecture}
+\label{subsec:network}
+%
+Given the described table, the network is organized as a sequence of blocks that operate on the input one after another. The first two blocks correspond to the standardization and rescaling layers already described, which allow the network to work with the disparate values in each column by bringing them to a comparable scale without altering the layout of the table. Next is the recurrent block, which serves as the central component responsible for processing the jet sequence. A dense block then processes the output to condense the information into a compact representation that can be used for the final decision. The final layer of the network is a single-unit dense layer, which is typical when the output must be compared to a binary label, and whose output is transformed to yield the final score for each jet. The entire architecture is represented in Figure \ref{fig:architecture} and each stage is described in detail in the following.\\
+%
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  font=\sffamily\small,
+  cell/.style  ={rounded corners=2pt, draw=black!45, fill=black!10,
+                 minimum width=1.0cm, minimum height=0.55cm, inner sep=0pt,
+                 font=\sffamily\scriptsize},
+  icell/.style ={rounded corners=2pt, draw=black!35, fill=white,
+                 minimum width=1.0cm, minimum height=0.55cm, inner sep=0pt,
+                 font=\sffamily\scriptsize, text=black!55},
+  rcell/.style ={rounded corners=2pt, draw=teal!70!black, fill=teal!18,
+                 minimum width=1.0cm, minimum height=0.55cm, inner sep=0pt,
+                 font=\sffamily\scriptsize},
+  band/.style  ={rounded corners=3pt, draw=black!45, fill=black!6,
+                 minimum height=0.6cm, minimum width=6.9cm, inner sep=0pt,
+                 font=\sffamily\scriptsize, text=black!70},
+  nband/.style ={rounded corners=3pt, draw=violet!55!black, fill=violet!14,
+                 minimum height=0.6cm, minimum width=6.9cm, inner sep=0pt,
+                 font=\sffamily\scriptsize, text=violet!35!black},
+  blab/.style  ={anchor=east, align=right, font=\sffamily\scriptsize, text=black!60},
+  jlab/.style  ={font=\sffamily\scriptsize, text=black!55},
+  numc/.style  ={circle, draw=black!55, fill=white, inner sep=0pt,
+                 minimum size=0.40cm, font=\sffamily\scriptsize, text=black!70},
+  arw/.style   ={-{Latex[length=1.8mm]}, draw=black!50},
+  harw/.style  ={-{Latex[length=1.6mm]}, draw=teal!65!black, thick},
+  skip/.style  ={-{Latex[length=1.8mm]}, dashed, draw=black!45},
+  note/.style  ={font=\sffamily\scriptsize, text=black!55},
+]
+
+\def\xa{0} \def\xb{1.5} \def\xc{3.0} \def\xd{4.5} \def\xe{5.75}
+
+% ---------- jet labels ----------
+\foreach \x/\n in {0/1, 1.5/2, 3.0/3, 4.5/4} { \node[jlab] at (\x,8.05) {jet \n}; }
+\node[jlab] at (\xe,8.05) {$\cdots$};
+
+% ---------- input ----------
+\node[blab] at (-1.85,7.45) {input table\\(Sec.~\ref{subsec:inputs})};
+\foreach \x in {0,1.5,3.0,4.5} { \node[icell] at (\x,7.45) {}; }
+\node[jlab] at (\xe,7.45) {$\cdots$};
+
+% ---------- 1 : preprocessing ----------
+\node[band] (pre) at (2.53,6.25) {standardization and rescaling};
+\node[numc] at (-1.45,6.25) {1};
+\foreach \x in {0,1.5,3.0,4.5} { \draw[arw] (\x,7.17) -- (\x,6.56); }
+
+% ---------- 2 : recurrent block ----------
+\node[blab] at (-1.85,4.85) {recurrent block\\(5 LSTM layers)};
+\node[numc] at (-1.45,4.85) {2};
+\node[rcell] (r1) at (\xa,4.85) {};
+\node[rcell] (r2) at (\xb,4.85) {};
+\node[rcell] (r3) at (\xc,4.85) {};
+\node[rcell] (r4) at (\xd,4.85) {};
+\node[jlab]  (r5) at (\xe,4.85) {$\cdots$};
+\draw[harw] (r1) -- (r2);
+\draw[harw] (r2) -- (r3);
+\draw[harw] (r3) -- (r4);
+\draw[harw] (r4) -- (r5);
+\foreach \x in {0,1.5,3.0,4.5} { \draw[arw] (\x,5.94) -- (\x,5.14); }
+
+% ---------- skip connection ----------
+\draw[skip] (pre.east) -- (6.85,6.25) -- (6.85,4.85) -- (6.15,4.85);
+\node[note, anchor=west, align=left] at (7.02,5.55) {input re-injected\\at every layer};
+
+% ---------- 3 : dense block + output layer ----------
+\node[blab] at (-1.85,3.45) {dense block\\(13 dense layers)};
+\foreach \x in {0,1.5,3.0,4.5} { \node[cell] at (\x,3.45) {}; }
+\node[jlab] at (\xe,3.45) {$\cdots$};
+\foreach \x in {0,1.5,3.0,4.5} { \draw[arw] (\x,4.56) -- (\x,3.74); }
+
+\node[blab] at (-1.85,2.15) {dense output layer};
+\foreach \x/\s in {0/$s_1$, 1.5/$s_2$, 3.0/$s_3$, 4.5/$s_4$} { \node[cell] at (\x,2.15) {\s}; }
+\node[jlab] at (\xe,2.15) {$\cdots$};
+\foreach \x in {0,1.5,3.0,4.5} { \draw[arw] (\x,3.16) -- (\x,2.44); }
+
+\draw[draw=black!45] (-1.02,3.73) -- (-1.17,3.73) -- (-1.17,1.87) -- (-1.02,1.87);
+\node[numc] at (-1.45,2.80) {3};
+
+% ---------- 4 : mask and normalisation ----------
+\node[nband] (norm) at (2.53,0.95) {mask and normalization: $y_j = 2\,s_j / \sum_k s_k$};
+\draw[draw=black!45] (-1.02,1.25) -- (-1.17,1.25) -- (-1.17,-0.35) -- (-1.02,-0.35);
+\node[numc] at (-1.45,0.45) {4};
+\foreach \x in {0,1.5,3.0,4.5} { \draw[arw] (\x,1.86) -- (\x,1.26); }
+
+% ---------- scores ----------
+\foreach \x/\s in {0/$y_1$, 1.5/$y_2$, 3.0/$y_3$, 4.5/$y_4$} {
+  \node[jlab] at (\x,-0.15) {\s};
+  \draw[arw] (\x,0.64) -- (\x,0.08);
+}
+\node[jlab] at (\xe,-0.15) {$\cdots$};
+\node[note] at (2.53,-0.85) {$\sum_j y_j = 2$};
+
+\end{tikzpicture}
+\caption{Architecture of the network. Each column corresponds to one of the jets of the event, in the order established in Section \ref{subsec:inputs}. The numbers on the left identify the stages described in the text.}
+\label{fig:architecture}
+\end{figure}
+
+
+
+Walking through Figure \ref{fig:architecture} from top to bottom:
+\begin{enumerate}
+    \item \textbf{Standardization and rescaling.} These constitute the first two layers of the model, and their function is to bring each column of the table to a comparable scale, as described in the previous section. They operate on a value-by-value basis, leaving the layout of the table intact so the data passed to the subsequent layers retains the format of one row per jet.
+    \item \textbf{Recurrent block.} This is the central stage of the network responsible for establishing relationships between the different candidates, and thus the one that gives the model the ability to make decisions through comparison. It consists of five LSTM layers, each with 74 units, followed by batch normalization, which readjusts the values produced by each layer based on the batch statistics to keep the internal distributions under control. The output of one layer is not sent directly to the next; rather, it is concatenated with the preprocessed input variables, to create an expanded set that feeds the next layer. In this manner, all layers have access to the original variables and not just the representation constructed by the preceding layer. Figure \ref{fig:architecture} shows this re-injection of the input as the dashed line originating from the preprocessing block.
+    \item \textbf{Dense block and dense output layer.} The goal of the dense layers is to reduce the representation obtained for each jet to the form from which the score is read. The separation between the block and the final output layer is crucial for this step: while the structure of the block is determined by the hyperparameters fixed through optimization, the final layer is entirely determined by the desired output format. Starting with the block, it consists of thirteen layers of fifteen units, followed by batch normalization. All of these layers are followed by a nonlinear activation, which is what makes stacking them meaningful: without it, any succession of dense layers would collapse into a single linear transformation. The function used here is the sigmoid, $\sigma(z) = (1+e^{-z})^{-1}$, which maps any real number to a value bounded between zero and one. Next, the dense layer with a single unit, which also uses the sigmoid activation function, produces a value $s_j$ per row. This is the only dense layer that is not followed by batch normalization, since its value must retain the scale in which it is interpreted. The choice of the sigmoid in this final layer is tied to the normalization that follows: the score of each jet is divided by the sum over the event, and the activation must therefore return a strictly positive value.\footnote{While other activations share this property, the sigmoid in particular present the additional property of being bounded, so that the values entering the normalization lie in a fixed range.} The dense layers — including those within the block and the one at the end — are applied independently to each row of the table, as are the standardization and rescaling layers. Therefore, the output corresponding to a row therefore depends solely on its content, without any influence from the others.
+    \item \textbf{Masking and normalization.} In the final step of the network, the mask sets the values corresponding to the filler rows to zero, ensuring do not affect the subsequent steps. The remaining true jets are divided by their sum over the event and multiplied by two, so that the final score of each jet, $y_j = 2\,s_j / \sum_k s_k$, lies between zero and two, and the sum of all scores in a single event equals two. This factor is not arbitrary but stems from the nature of the problem, which is to identify the two true jets in each event. Therefore, normalizing to two ensures that the reference value for a genuine candidate is one, and values further from one reflect the extent to which the score is distributed among the other jets. It is worth noting that this operation is part of the model itself, rather than a post-processing step.
+\end{enumerate}
+
+From the description above it follows that a score of the jet is related with those of the others in two distinct ways. The first is the recurrent block, which is the only stage in which information travels throught the sequence of jets. The second is the final normalization that takes place while the parameters are being adjusted: by setting the sum of the scores of the events to two, increasing the score of one candidate necessarily requires decreasing the scores of the others. If these mechanisms were omitted, the score of each jet would have no reference to the other candidates, which is precisely the limitation of explicit criteria that initially motivated the development of these algorithms.\\
+
+While the form of the model has been fully specified, the origin of the values that define it remains to be understood. These are the hyperparameters that describe the network and were introduced at the beginning of this section, i.e., quantities fixed before the training begins and left untouched by it, such as the number of layers in each block, the units that compose them, and the activation functions of the hidden layers. As already noted in the context of the dense block, these values were not chosen by hand, but rather, they are the result of an optimization procedure. A second group of hyperparameters shares that condition without describing the network itself, since it governs instead the way its parameters are fitted. It therefore remains to be described how those parameters, which the training does modify, are determined based on the simulated events, what decisions accompany this tuning, and how the hyperparameters that govern it are set, which is the subject of the following section.
+
 \subsection{Training strategy}
+
+
 \subsection{Evaluation Feature importance}
 
 
@@ -274,8 +586,25 @@ Las incertidumbres asociadas se obtienen a partir de los intervalos de confianza
 \section{The \textsc{VBFjTag} algorithm}
 \label{sec:VBFjTag}
 
-\section{The algorithms impact???}
+\section{The algorithms impact??? Perspectivas??}
 \label{sec:taggers_impact}
+
+la arquitectura impone un orden sobre lo que es un conjunto, y que explorar variantes bidireccionales o invariantes bajo permutación es una vía abierta. 
+ principista sería una arquitectura que opere directamente sobre conjuntos, sin orden, pero eso ya no es una variante: es otro algoritmo,
+ Un codificador transformer sin codificación posicional es equivariante bajo permutaciones por construcción. La autoatención hace que la salida de cada elemento sea una función simétrica de todos los demás: cada jet "atiende" a cada jet, y no hay ningún sentido de recorrido. Sale un valor por elemento, igual que ahora, así que el formato de entrada y de salida no cambiaría en absoluto — mismo tensor, mismo score por jet, misma normalización si se quisiera.
+
+El matiz importante es el de la codificación posicional: en lenguaje natural se añade precisamente para romper esa simetría, porque ahí el orden significa algo. Para un conjunto de jets simplemente no se añade, y la simetría se conserva. Es decir, la propiedad que buscas se obtiene por omisión, no por añadido.
+Deep Sets es la construcción mínima y el resultado fundacional: cualquier función invariante bajo permutaciones de un conjunto se puede escribir como $\rho!\left(\sum_i \phi(x_i)\right)$, y la versión equivariante da una salida por elemento. Es más simple que un transformer y menos expresiva, porque el acoplamiento entre elementos pasa por un único agregado — que es, curiosamente, lo mismo que hace tu normalización final por la suma.
+
+Es decir: llegaste a la misma arquitectura por otro camino — la inestabilidad del entrenamiento, no la asimetría. Y eso te conviene mucho, porque si escribes una línea de perspectivas, ya no es una sugerencia ajena sino tu propio plan documentado, y ahora con dos motivaciones que apuntan al mismo sitio: la estabilidad que observaste y la simetría que la recurrencia no da.
+
+Para que quede claro el alcance de un cambio así: resolvería la asimetría, eliminaría la necesidad del criterio de ordenación y quizá la inestabilidad. No tocaría nada más — la ground truth, la métrica de pureza, las variables de entrada y todo el aparato de evaluación se trasladan sin cambios. El coste es reentrenar, reoptimizar hiperparámetros y revalidar la cadena de análisis que consume los scores.
+
+Redes de grafos, con paso de mensajes sobre un grafo completamente conectado. Misma propiedad. Tiene una conexión bonita con tu trabajo: ParticleNet, cuyo discriminante usas como variable de entrada, es de esta familia — aunque opera sobre los constituyentes de un jet, no sobre el conjunto de jets del evento.
+
+En el contexto concreto del problema de asignación en física de altas energías, la vía que se ha explorado es la basada en atención. Sabes a qué modelo me refiero y me has dicho que no quieres citarlo, así que lo dejo aquí.
+
+Y en tu caso concreto no hay obstáculo de coste: la autoatención escala como $N^2$, y con $N \le 10$ eso es irrelevante.
 Esta no se si me convence mucho
 
 
