@@ -637,10 +637,6 @@ The examination approach addresses two issues. The first concerns the convergenc
 
 This establishes the model, both in terms of its form and the values of its parameters as well as the procedure for verifying that it behaves as it should. One final question however remains, which does not concern the model itself but rather the information provided to it: which of the variables it receives actually influence its decision, and, consequently, how the set of variables provided to it is determined.
 
-\subsubsection{Evaluation of the training}
-
-After careful consideration, the model has been determined in terms of its form and the values of its parameters. Once training is complete, the next step is to examine whether the process has behaved as expected. That is, whether the loss function has converged and whether the performance measured on the validation events matches that obtained on the training events, since a discrepancy between the two would indicate that the model has learned characteristics specific to the training events rather than the general relationship it should capture. If this is the case, the next evaluation to be considered has a more fundamental purpose: to understand which information, out of all that it receives, the model actually uses in its final decision, in order to guide the determination of the input features, which are, ultimately, the information the model will use to learn. Both of these questions are the subject of Section \ref{subsec:featimp}.
-
 \subsection{Selection of the input variables}
 %
 Con el modelo entrenaod, es necesario plantar las bases que serviran 
