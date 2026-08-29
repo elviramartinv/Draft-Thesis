@@ -570,7 +570,32 @@ Walking through Figure \ref{fig:architecture} from top to bottom:
 
 From the description above it follows that a score of the jet is related with those of the others in two distinct ways. The first is the recurrent block, which is the only stage in which information travels throught the sequence of jets. The second is the final normalization that takes place while the parameters are being adjusted: by setting the sum of the scores of the events to two, increasing the score of one candidate necessarily requires decreasing the scores of the others. If these mechanisms were omitted, the score of each jet would have no reference to the other candidates, which is precisely the limitation of explicit criteria that initially motivated the development of these algorithms.\\
 
-The values that fix this structure — the number of layers in each block, the number of units composing them, the activation of the dense layers — are hyperparameters of the model. As already note in the context of the dense block, these values were not chosen by hand, but rather, they are the result of an optimization procedure. Together with those governing the training they are listed and discussed in the following section.
+The values that fix this structure — the number of layers in each block, the number of units composing them, the activation of the dense layers — are the hyperparameters of the model that describe the network. Most of them have already appeared in the description above, and they are gathered in \ref{tab:hyperparams}. As already note in the context of the dense block, these values were not chosen by hand, but rather, from the optimization carried out in the original development of the algorithm \textcolor{red}{\cite{CMS-HIG-20-010,HHBTag}}, which has not been repeated in this work.
+
+
+
+%   
+\begin{table}[t]
+\centering
+\label{tab:hyperparams}
+\begin{tabular}{lc}
+\toprule
+Type of recurrent layer            & LSTM \\
+Number of recurrent layers         & 5 \\
+Units per recurrent layer          & 74 \\
+Number of dense layers             & 13 \\
+Units per dense layer              & 15 \\
+Activation of the dense layers     & sigmoid \\
+Dropout rate\footnotemark          & 0 \\
+\bottomrule
+\end{tabular}
+\caption{Hyperparameters describing the structure of the network. The values are used unchanged for both algorithms presented in this chapter.}
+\end{table}
+\footnotetext{The dropout rate was included among the optimized hyperparameters, dropout being a regularization technique that randomly deactivates a fraction of the units at each iteration. The optimization returned a value of zero, so that no dropout layer is instantiated in the model: the batch normalization applied after every layer already fulfills this role.}
+\\
+
+
+
 
 %While the form of the model has been fully specified, the origin of the values that define it remains to be understood. These are the hyperparameters that describe the network and were introduced at the beginning of this section, i.e., quantities fixed before the training begins and left untouched by it, such as the number of layers in each block, the units that compose them, and the activation functions of the hidden layers. As already noted in the context of the dense block, these values were not chosen by hand, but rather, they are the result of an optimization procedure. A second group of hyperparameters shares that condition without describing the network itself, since it governs instead the way its parameters are fitted. It therefore remains to be described how those parameters, which the training does modify, are determined based on the simulated events, what decisions accompany this tuning, and how the hyperparameters that govern it are set, which is the subject of the following section.
 
@@ -591,44 +616,35 @@ Guided by the loss function, the optimizer is responsible for adjusting the para
 
 %3) criterio de parada
 
-However, while loss serves as an auxiliary function for training, the criterion for determining when to end training is whether the model is meeting its objective. Purity is therefore used at this stage, as it is the metric defined to ensure the accurate assignment of jets by the model. At the end of each epoch — once all training events have been processed — the purity obtained is evaluated on the set of events reserved for validation, so that the process stops when ten consecutive epochs have elapsed without that value exceeding the maximum reached so far. The parameters corresponding to the epoch in which the maximum was reached are the ones that define the final model. To narrow the search, a maximum of 1000 epochs is also set; in practice, this limit is never reached, since the condition described above interrupts the process much earlier, as is expected in stable training behavior.\\
+However, while loss serves as an auxiliary function for training, the criterion for determining when to end training is whether the model is meeting its objective. Purity is therefore used at this stage, as it is the metric defined to ensure the accurate assignment of jets by the model. At the end of each epoch — once all training events have been processed — the purity obtained is evaluated on the set of events reserved for validation, so that the process stops when ten consecutive epochs have elapsed without that value exceeding the maximum reached so far, a number known as the \textit{patience} of the criterion. The parameters corresponding to the epoch in which the maximum was reached are the ones that define the final model. To narrow the search, a maximum of 1000 epochs is also set; in practice, this limit is never reached, since the condition described above interrupts the process much earlier, as is expected in stable training behavior.\\
 
-%4) elección de los hipterparametros
-
-Los valores que describen la red y los que gobiernan el optimizador se recogen en la Tabla \ref{tab:hyperparams}. Determinarlos exige un procedimiento ajeno al entrenamiento, puesto que la única manera de conocer el rendimiento asociado a una combinación concreta es entrenar el modelo con ella y medir la pureza resultante. Cada evaluación es, por tanto, un entrenamiento completo, lo que descarta explorar de forma exhaustiva el espacio de posibilidades y obliga a recurrir a una optimización bayesiana, que decide qué combinación probar a continuación a partir del rendimiento de las ya evaluadas.\footnote{El modelo probabilístico es un proceso gaussiano y el criterio de selección de la siguiente combinación es el de cota superior de confianza (\textit{upper confidence bound}).} Esa optimización se llevó a cabo en el desarrollo original del algoritmo y no se ha repetido aquí, de modo que la configuración empleada es la que resultó entonces, con dos salvedades: el optimizador, para el que se emplea AdamW en lugar del Adam original —en AdamW el decaimiento de los pesos se aplica directamente sobre los parámetros y no a través de la función de pérdida, lo que permite ajustarlo con independencia de la tasa de aprendizaje—, y el propio decaimiento, fijado a mano al examinar la estabilidad del entrenamiento.
-
-This establishes the training cycle by which the model parameters are adjusted in the network described above. The values describing the network and those governing the optimizer are listed in Table \ref{tab:hyperparams}. As previously stated, their determination is not arbitrary but requires a preliminary procedure independent of the training process, which consists of examining the performance of the network associated with a specific combination.
-The values used here are therefore derived from the Bayesian optimization performed in the original development of the algorithm \textcolor{red}{\cite{CMS-HIG-20-010,HHBTag}}, and has not been repeated in this work\footnote{The only exception is the optimizer, for which \textit{AdamW} is used instead of the original \textit{Adam}. \textit{AdamW} allows weight decay to be applied directly to the parameters rather than through the loss function, which is what motivated the change: to adjust weight decay in a decoupled manner in order to examine different training behaviors. Consequently, weight decay was adjusted manually, within reasonable ranges.}.\\
-
-%   
+This establishes the training cycle by which the model parameters are adjusted in the network described above. As with the structure of the netwokr, a second group of hyperparameters governs the training itself, whose values are those quoted above and is collected in Table \ref{tab:hyperparams_training}. They likewise derive from the optimization performed in the original development of the algorithm, which was not repeated here\footnote{The exception is the optimizer, for which \textit{AdamW} is used instead of the original \textit{Adam}. In \textit{AdamW} the weight decay is applied directly to the parameters rather than through the loss function, so that it can be adjusted separately; its value was set by hand while examining the stability of the training.}.
 \begin{table}[t]
 \centering
-\label{tab:hyperparams}
 \begin{tabular}{lc}
 \toprule
-\multicolumn{2}{l}{\textit{Network structure}} \\
-\midrule
-Type of recurrent layer            & LSTM \\
-Number of recurrent layers         & 5 \\
-Units per recurrent layer          & 74 \\
-Number of dense layers             & 13 \\
-Units per dense layer              & 15 \\
-Activation of the dense layers     & sigmoid \\
-Dropout rate\footnotemark          & 0 \\
-\midrule
-\multicolumn{2}{l}{\textit{Training}} \\
+\multicolumn{2}{l}{\textit{Parameter update}} \\
 \midrule
 Optimizer                          & AdamW \\
 Learning rate                      & $10^{-3}$ \\
 Weight decay                       & $10^{-2}$ \\
 Batch size                         & 100 \\
+\midrule
+\multicolumn{2}{l}{\textit{Stopping criterion}} \\
+\midrule
+Fraction reserved for validation   & 0.25 \\
+Patience (epochs)                  & 10 \\
+Maximum number of epochs           & 1000 \\
 \bottomrule
 \end{tabular}
-\caption{Hyperparameters of the network and of the training procedure. The values are used
-unchanged for both algorithms presented in this chapter.}
+\caption{Hyperparameters of the training procedure. Those governing the parameter update derive
+from the optimization carried out in the original development of the algorithm; those defining the
+stopping criterion were set directly. All are used unchanged for both algorithms presented in this
+chapter.}
+\label{tab:hyperparams_training}
 \end{table}
-\footnotetext{The dropout rate was included among the optimized hyperparameters, dropout being a regularization technique that randomly deactivates a fraction of the units at each iteration. The optimization returned a value of zero, so that no dropout layer is instantiated in the model: the batch normalization applied after every layer already fulfills this role.}
 \\
+
 
 The final consideration regarding the training process is to verify that it proceeded as expected. To do so, an evaluation of the metrics recorded during training is necessary: the loss function and purity, are examined at the end of each epoch on both the events used for training and those reserved for validation.
 
@@ -638,13 +654,24 @@ The examination approach addresses two issues. The first concerns the convergenc
 This establishes the model, both in terms of its form and the values of its parameters as well as the procedure for verifying that it behaves as it should. One final question however remains, which does not concern the model itself but rather the information provided to it: which of the variables it receives actually influence its decision, and, consequently, how the set of variables provided to it is determined.
 
 \subsection{Selection of the input variables}
-%
-Con el modelo entrenaod, es necesario plantar las bases que serviran 
-Las dos comprobaciones planteadas al final de la sección anterior se apoyan en información de procedencia distinta. La primera se obtiene del propio entrenamiento, que deja registro de su evolución; la segunda exige intervenir sobre el modelo ya entrenado y observar cómo responde. Ambas se describen a continuación como procedimientos comunes a los dos algoritmos, cuya aplicación concreta y cuyos resultados se presentan en las Secciones \ref{sec:HHBTag} y \ref{sec:VBFjTag}.
+%Entradilla
+The model and the procedure that determine its parameters have therefore been established given a set of variables received as input. The selection of variables is not trivial in this type of problem. While incorporating additional variables can expand the available information, it also introduces a greater number of parameters that must be adjusted. Consequently, a larger set does not necessarily guarantee a better model. Distinguishing between the variables that are worth including is a task that requires a judgment call based on how each variable contributes to the trained model. The procedure described below is common to both algorithms, and the sets of variables ultimately used are detailed in Sections \ref{sec:HHBTag} and \ref{sec:VBFjTag}.
+
+%El método
+Permutation importance is the tool used for this purpose. This tool involves taking one of the input variables from the pre-trained model and randomly permuting its values across all valid jets in the dataset on which it is evaluated. This ensures that the values of the variable remain the same and its distribution across the dataset remains unchanged, so the network continues to receive values of the same type as those it encountered during training. However, the correspondence between each value and the jet to which it belongs is no longer preserved, so the variable no longer provides any information about the candidate in whose row it appears. The model is then evaluated again, and the importance of the variable is defined as the drop in purity relative to the value obtained without permutation. The same procedure is repeated for each variable, permuting only one at a time and always starting from the unpermutated model.
+
+%Lectura de los valores
+The result of the procedure will determine which variables contribute the most information to the model. Therefore, regardless of the information contained in the variable, the primary concern is whether the model has effectively utilized that information: the measure is always relative to the specific model on which it is performed. On the other hand, correlated variables share importance, as when one of them is permuted, the others continue to make up for part of what that variable contributed. Hence, a low importance score is not decisive, unless it is verified that the variable in question is not correlated with the others — which can be verified using the correlation matrix of the input dataset.
+
+%Caracter iterativo
+%According to this interpretation, a variable whose permutation does not significantly alter the purity and that is not correlated with any other variable in the set is a candidate for removal. If the model maintains its performance after the removal and retraining, the decision is finalized. The selection of the input set is therefore an iterative process of training, testing, and retraining; consequently, the truly useful variables can only be identified after the training procedure is complete.
+
+The values obtained can be negative, indicating that the model performs marginally better with the variable permuted. Far from being meaningless, these cases delimit the scale of the statistical fluctuation of the procedure and provide the reference against which the remaining values are judged. A variable whose permutation alters the purity by no more than that fluctuation, and which is not correlated with any other variable in the set, is therefore a candidate for removal. If the model maintains its performance after the removal and retraining, the decision is finalized. The selection of the input set is therefore an iterative process of training, testing, and retraining; consequently, the truly useful variables can only be identified after the training procedure is complete.
+
+%Cierre
+Once the model has been established, the same measure of feature importance can also serve a descriptive purpose, that allows for the verification of whether the variables on which the decision is based align with what would be expected based on the physics if the process. In the development of each algorithm, it will therefore be used to determine the selection of input variables and to document the information on which the model is based.
 
 
-CURVAS DE APRENDIZAJE : LOSS FUNCTION Y PURITY FUNCTION
-FEATURE IMPORTANCE
 
 \section{The \textsc{HH-BTag} algorithm}
 \label{sec:HHBTag}
