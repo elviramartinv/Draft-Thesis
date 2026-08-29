@@ -655,7 +655,7 @@ This establishes the model, both in terms of its form and the values of its para
 
 \subsection{Selection of the input variables}
 %Entradilla
-The model and the procedure that determine its parameters have therefore been established given a set of variables received as input. The selection of variables is not trivial in this type of problem. While incorporating additional variables can expand the available information, it also introduces a greater number of parameters that must be adjusted. Consequently, a larger set does not necessarily guarantee a better model. Distinguishing between the variables that are worth including is a task that requires a judgment call based on how each variable contributes to the trained model. The procedure described below is common to both algorithms, and the sets of variables ultimately used are detailed in Sections \ref{sec:HHBTag} and \ref{sec:VBFjTag}.
+The model and the procedure that determine its parameters have therefore been established given a set of variables received as input. The selection of variables is not trivial in this type of problem. While incorporating additional variables can expand the available information, it also introduces a greater number of parameters that must be adjusted. Consequently, a larger set does not necessarily guarantee a better model. Distinguishing between the variables that are worth including is a task that requires a judgment call based on how each variable contributes to the trained model. The procedure described below is common to both algorithms, and the sets of variables ultimately used are detailed in Sections \ref{sec:HHBTag} and \ref{sec:VBFjTag}.\\
 
 %El método
 Permutation importance is the tool used for this purpose. This tool involves taking one of the input variables from the pre-trained model and randomly permuting its values across all valid jets in the dataset on which it is evaluated. This ensures that the values of the variable remain the same and its distribution across the dataset remains unchanged, so the network continues to receive values of the same type as those it encountered during training. However, the correspondence between each value and the jet to which it belongs is no longer preserved, so the variable no longer provides any information about the candidate in whose row it appears. The model is then evaluated again, and the importance of the variable is defined as the drop in purity relative to the value obtained without permutation. The same procedure is repeated for each variable, permuting only one at a time and always starting from the unpermutated model.
@@ -666,7 +666,7 @@ The result of the procedure will determine which variables contribute the most i
 %Caracter iterativo
 %According to this interpretation, a variable whose permutation does not significantly alter the purity and that is not correlated with any other variable in the set is a candidate for removal. If the model maintains its performance after the removal and retraining, the decision is finalized. The selection of the input set is therefore an iterative process of training, testing, and retraining; consequently, the truly useful variables can only be identified after the training procedure is complete.
 
-The values obtained can be negative, indicating that the model performs marginally better with the variable permuted. Far from being meaningless, these cases delimit the scale of the statistical fluctuation of the procedure and provide the reference against which the remaining values are judged. A variable whose permutation alters the purity by no more than that fluctuation, and which is not correlated with any other variable in the set, is therefore a candidate for removal. If the model maintains its performance after the removal and retraining, the decision is finalized. The selection of the input set is therefore an iterative process of training, testing, and retraining; consequently, the truly useful variables can only be identified after the training procedure is complete.
+The values obtained can be negative, indicating that the model performs marginally better with the variable permuted. Far from being meaningless, these cases delimit the scale of the statistical fluctuation of the procedure and provide the reference against which the remaining values are judged. A variable whose permutation alters the purity by no more than that fluctuation, and which is not correlated with any other variable in the set, is therefore a candidate for removal. If the model maintains its performance after the removal and retraining, the decision is finalized. The selection of the input set is therefore an iterative process of training, testing, and retraining; consequently, the truly useful variables can only be identified after the training procedure is complete.\\
 
 %Cierre
 Once the model has been established, the same measure of feature importance can also serve a descriptive purpose, that allows for the verification of whether the variables on which the decision is based align with what would be expected based on the physics if the process. In the development of each algorithm, it will therefore be used to determine the selection of input variables and to document the information on which the model is based.
@@ -675,11 +675,27 @@ Once the model has been established, the same measure of feature importance can 
 
 \section{The \textsc{HH-BTag} algorithm}
 \label{sec:HHBTag}
+Preámbulo (2–3 párrafos). Qué asigna el algoritmo, qué lugar ocupa en el análisis y en qué estado se encuentra. Aquí va tu «resumen histórico», y aquí es donde la asimetría se justifica sola: en \textsc{HH-BTag} es un párrafo —origen en el no resonante de Run-2, adaptación al resonante, reentrenamientos para Run-3—, y en \textsc{VBFjTag} es una frase, porque no hay historia que contar. Ambas secciones abren igual; lo que difiere es la extensión, y por un motivo evidente. Como subsección propia no lo pondría: en 5.4 quedaría vacía.
+.1 El proceso y la construcción del conjunto de entrenamiento. Contenido: qué caracteriza a los objetos buscados, las muestras simuladas, la selección cinemática y de calidad, y la particularización de la verdad de referencia.
+.2 Variables de entrada. Tabla y motivación agrupada por lo que codifica cada bloque, matriz de correlaciones e importancia por permutación.
+.3 Rendimiento. Y aquí van las curvas de aprendizaje, al principio de la subsección: primero se muestra que el entrenamiento fue sano, y solo después se citan cifras extraídas de él. Despues pureza y distribuciones de puntuacion
+
+intro: donde se usa, desarrollo etc
+1 - fenomenología, dataset preparation (seleccion + ground truth definition)
+2 - input variables: feature importance plots
+3 - performance of the model - training plots? purity plots
+cierre: conclusiones
+
 footnote
 Las incertidumbres asociadas se obtienen a partir de los intervalos de confianza para proporciones binomiales, calculados según el método de Clopper-Pearson.
 
 \section{The \textsc{VBFjTag} algorithm}
 \label{sec:VBFjTag}
+intro: donde se usa, desarrollo etc
+1 - fenomenología, dataset preparation (seleccion + ground truth definition) - encadenamiento de los dos algoritmos
+2 - input variables: feature importance plots
+3 - performance of the model - training plots? purity plots
+cierre: conclusiones
 
 \section{The algorithms impact??? Perspectivas??}
 \label{sec:taggers_impact}
