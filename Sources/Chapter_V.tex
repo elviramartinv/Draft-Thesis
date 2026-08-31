@@ -600,6 +600,7 @@ Dropout rate\footnotemark          & 0 \\
 %While the form of the model has been fully specified, the origin of the values that define it remains to be understood. These are the hyperparameters that describe the network and were introduced at the beginning of this section, i.e., quantities fixed before the training begins and left untouched by it, such as the number of layers in each block, the units that compose them, and the activation functions of the hidden layers. As already noted in the context of the dense block, these values were not chosen by hand, but rather, they are the result of an optimization procedure. A second group of hyperparameters shares that condition without describing the network itself, since it governs instead the way its parameters are fitted. It therefore remains to be described how those parameters, which the training does modify, are determined based on the simulated events, what decisions accompany this tuning, and how the hyperparameters that govern it are set, which is the subject of the following section.
 
 \subsection{Training procedure}
+\label{subsec:training}
 %
 The specific details of the training loop, which is illustrated in general terms in Figure \ref{fig:training_loop}, are discussed below. With the neural network architecture already described, the remaining elements in the figure address the examples events that feed into the cycle, the loss function that measures the discrepancy between the output and the label, how this measurement translates into a modification of the parameters, and when the process is considered complete.\\
 
@@ -654,11 +655,12 @@ The examination approach addresses two issues. The first concerns the convergenc
 This establishes the model, both in terms of its form and the values of its parameters as well as the procedure for verifying that it behaves as it should. One final question however remains, which does not concern the model itself but rather the information provided to it: which of the variables it receives actually influence its decision, and, consequently, how the set of variables provided to it is determined.
 
 \subsection{Selection of the input variables}
+\ref{subsec:featimp}
 %Entradilla
 The model and the procedure that determine its parameters have therefore been established given a set of variables received as input. The selection of variables is not trivial in this type of problem. While incorporating additional variables can expand the available information, it also introduces a greater number of parameters that must be adjusted. Consequently, a larger set does not necessarily guarantee a better model. Distinguishing between the variables that are worth including is a task that requires a judgment call based on how each variable contributes to the trained model. The procedure described below is common to both algorithms, and the sets of variables ultimately used are detailed in Sections \ref{sec:HHBTag} and \ref{sec:VBFjTag}.\\
 
 %El método
-Permutation importance is the tool used for this purpose. This tool involves taking one of the input variables from the pre-trained model and randomly permuting its values across all valid jets in the dataset on which it is evaluated. This ensures that the values of the variable remain the same and its distribution across the dataset remains unchanged, so the network continues to receive values of the same type as those it encountered during training. However, the correspondence between each value and the jet to which it belongs is no longer preserved, so the variable no longer provides any information about the candidate in whose row it appears. The model is then evaluated again, and the importance of the variable is defined as the drop in purity relative to the value obtained without permutation. The same procedure is repeated for each variable, permuting only one at a time and always starting from the unpermutated model.
+Permutation importance is the tool used for this purpose. This tool involves taking one of the input variables and randomly permuting its values across all valid jets in the dataset on which it is evaluated. This ensures that the values of the variable remain the same and its distribution across the dataset remains unchanged, so the network continues to receive values of the same type as those it encountered during training. However, the correspondence between each value and the jet to which it belongs is no longer preserved, so the variable no longer provides any information about the candidate in whose row it appears. The model is then evaluated again, and the importance of the variable is defined as the drop in purity relative to the value obtained without permutation. The same procedure is repeated for each variable, permuting only one at a time and always starting from the unpermuted input.
 
 %Lectura de los valores
 The result of the procedure will determine which variables contribute the most information to the model. Therefore, regardless of the information contained in the variable, the primary concern is whether the model has effectively utilized that information: the measure is always relative to the specific model on which it is performed. On the other hand, correlated variables share importance, as when one of them is permuted, the others continue to make up for part of what that variable contributed. Hence, a low importance score is not decisive, unless it is verified that the variable in question is not correlated with the others — which can be verified using the correlation matrix of the input dataset.
@@ -675,6 +677,139 @@ Once the model has been established, the same measure of feature importance can 
 
 \section{The \textsc{HH-BTag} algorithm}
 \label{sec:HHBTag}
+%
+So far, the shared elements in both algorithms have been identified: the event representation, the network architecture, the procedure for determining the network parameters, and the tools for examining the model once it has been trained. The distinguishing features of each algorithm are based on the specific processes they are designed to address. This section therefore discusses the specific elements of \textsc{HH-BTag}, whose purpose is to determine which of the reconstructed jets in the event constitute the candidate $H\rightarrow bb$.
+
+The starting point is the version developed for the di-Higgs analysis in the non-resonant final state $bb\tau\tau$ of the complete Run-2 dataset \cite{CMS-HIG-20-010}, where the algorithm was first introduced. The work presented here builds upon this version and has involved adapting the algorithm to the resonant search using the same Run-2 data, followed by its subsequent retraining for the Run-3 analysis, which constitutes the main focus of this thesis. While the network architecture has remained unchanged across the different versions, the changes stem from modifications to the problem conditions that vary with each data-collection period, as updates to the flavor identification algorithms, which serve as input variables, and the reconstruction conditions of the objects on which the algorithm operates. Concurrently, the new versions refine the definition of the ground truth referred to in Section \ref{subsec:groundtruth}, always in pursuit of the best performance. We therefore present here the various adjustments to the model under different conditions, as well as a comparison among them.\\
+
+This section is organized as follows. Section \ref{subsec:hhbtag_dataset} describes the phenomenology of the process and the preparation of the training dataset. Section \ref{subsec:hhbtag_inputs} presents the variables the model receives and the information it actually extracts from them. Finally, Section \ref{subsec:hhbtag_performance} reports the performance achieved and compares it to the explicit criterion it replaces.
+
+\subsection{$H\to bb$ : candidates and training set}
+
+%1- fisica
+The $H\to bb$ channel is the dominant decay mode of the Higgs boson, and its characteristic signature consists of two $b$ quarks emitted in opposite directions in the reference frame of the boson, and whose kinematics in the laboratory are determined by thes momentum of the Higgs boson. Upon hadronization, the $b$-quarks give rise to hadrons with a significant lifetime that travel a measurable distance before decaying, producing vertices displaced from the primary vertex — a property exploited by the flavor identification algorithms described in Section \ref{subsec:Jets}. Therefore, the applicability of this information is limited to the region covered by the track detector. Consequently, the problem is defined within the angular window $|\eta| < 2.5$. However, as argued in Section \ref{sec:assignment}, identifying jets consistent with the $b$-flavor alone is insufficient; rather, the candidates must also satisfy a selection criterion consistent with the Higgs decay.\\
+
+%2 - seleccion
+It is therefore necessary to identify the candidates on which the algorithm operates based on the phenomenology of the problem. The jets reconstructed within that angular window must have a transverse momentum $p_T > 20$ GeV — which is the lowest threshold to which the jet and its flavor discriminant are calibrated — and must also satisfy the jet identification quality criteria associated to each data-taking period. They are also required to have an angular separation of $\Delta R > 0.5$ from the two candidates that form the $\tau\tau$ pair, since the decay products of the $\tau$ particles can themselves be reconstructed as jets and compromise the set. Finally, at least two jets must satisfy these requirements to ensure that the $H\rightarrow bb$ candidate can form.\\
+
+%3 - muestras
+Regarding the samples used, the training set is constructed exclusively from simulated samples of the $HH\to bb\tau\tau$ signal, given that the reference label can only be defined for events containing the sought-after decay, as discussed in Section \ref{subsec:supervised}. In each retraining run, the signal samples comprise all available productions in each corresponding data-taking period. Thus, when available, they include resonant production, generated for spin-0 and spin-2 hypotheses in a mass range from 250 to 3000 GeV; and non-resonant production, which, in addition to the SM case, includes various BSM reference models. The mix of samples used in the dataset allows the algorithm to cover a wide range of kinematic configurations, thereby preventing the model from specializing in a specific regime and becoming biased toward a particular signal hypothesis.
+
+Therefore, the specific samples vary among versions of the algorithm. They depend on the availability of each data run, and other elements of the dataset preparation change accordingly, based on the recommendations associated with each data run, which are listed in Table \ref{tab:hhbtag_versions}. The initial version used all available simulated signal, including both gluon fusion and vector boson fusion. The second version, however, was retrained on reprocessed Run-2 samples and was restricted to gluon fusion production \textcolor{red}{since it was the only one available at that time — review}. The third version is the one developed for the partial analysis of Run-3 presented in this thesis, which again utilizes the available ggF and VBF production modes. The table outlines the evolution of the flavor discriminant appearing in the input variables and of the types of reconstructed jets\footnote{In Run-2, AK4 jets reconstructed by subtracting charged hadrons are used, which requires an additional stacking identifier in jets with lower $p_T$; in Run-3, PUPPI jets are used, in which stacking suppression is already applied at the particle level, eliminating the need for such an identifier.}. Within Run-3 the discriminant is updated once more: ParticleNet is used for the 2022 and 2023 periods and UParT for 2024, following the recommendation issued for each of them. It is also important to note that the base selection inherited from the corresponding analysis differs between versions, directly impacting sample composition.\\
+
+% 5 - ground truth 
+DESDE AQUÍ
+The ground-truth label is then constructed from these samples according to the general procedure described in Section \ref{subsec:groundtruth}, adapted to this process. The generated jets associated with the $H\rightarrow bb$ decay are subjected to the same kinematic thresholds and the same separation of candidates $\tau$ as their reconstructed counterparts, so that both sets are comparable. It is also required that there be exactly two generated jets that satisfy these conditions, and the correspondence with the reconstructed jets is established by requiring $\Delta R < 0.3$ between them. Only when at least two pairings are successful is the event accepted. As previously noted, this requirement limits the algorithm’s scope of validity to the resulting topologies: the most collimated configurations are excluded from the training set and are treated in the analysis using jets with larger radii, as detailed in Chapter \ref{ch:bbtt_analysis}. The statistics for the resulting events for each version after the entire specific selection process are shown in Table \ref{tab:hhbtag_versions}.
+
+
+
+Sobre estas muestras se construye entonces la etiqueta de referencia según el procedimiento general de la Sección \ref{subsec:groundtruth}, particularozado a este proceso. Los jets generados asociados a la desintegración $H\rightarrow bb$ se someten a los mismo umbarles cinemáticos y a la misma separación de los candidatos $\tau$ que sus homólogos reconstruidos, demanera que ambos conjuntos resulten comparables. Se requiere asimismo que existan exactamente dos jets generados que cumplan estas condiciones, y la correspondencia con los reconstruidos se establece exigiendo $\Delta R < 0.3$ entre unos y otros. Solo cuando al menos dos emparejamientos resultan exitosos el evento es admitido. Como ya se anticipó previamente, esta exigencia delimita el ámbito de validez del algoritmo a las topologías resultas: las configuraciones más colimadas quedan fuera del conjunto de entrenamiento y se tratan en el análisis mediante jets de radio mayor, según se detalla en el Capítulo \ref{ch:bbtt_analysis}. La estadística de los eventos resultantes para cada versión tras toda la selección específica se muestra en la Tabla \ref{tab:hhbtag_versions}.
+
+% versiones y tabla
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+                          & \textsc{v1}            & \textsc{v2}            & \textsc{v3} \\
+\midrule
+Analysis                  & Run-2 nonresonant      & Run-2 resonant         & Run-3 \\
+Signal hypotheses         & resonant, nonresonant  & resonant, nonresonant  & \textcolor{red}{nonresonant} \\
+Production modes          & ggF and VBF            & ggF                    & ggF and VBF \\
+Events after selection    & 5\,282\,013            & 3\,299\,451            & \textcolor{red}{XXX} \\
+Jet collection            & CHS                    & CHS                    & PUPPI \\
+Flavour discriminant      & DeepJet                & DeepJet                & ParticleNet, UParT \\
+\bottomrule
+\end{tabular}
+\caption{Successive versions of the \textsc{HH-BTag} algorithm and the elements of the training set
+preparation in which they differ.}
+\label{tab:hhbtag_versions}
+\end{table}
+
+Con esto queda definido el problema específico sobre el que opera el algoritmo. El siguiente paso es determinar la información que recibe la red como entrada acerca de cada uno de los candidatos formados. La fenomenología descita al comienzo sugiere qué magnitudes pueden resultar discriminantes, pero esto no basta para fijarlas: es el modelo ya entrenado el que revela cuáles emplea realmente, mediante el procedimiento descrito en la Sección \ref{subsec:inputvars}. La siguiente sección presenta ese conjunto de variables y la información que el algoritmo extrae de ellas.
+
+\subsection{Definition and assessment of the input set}
+% ESTOY DICIENDO QUE ES UN PROCESO ITERATIVO, PERO NO HABLO DE ITERACIONES; TAMPOCO DE QUE SE COGE DIRECTAMENTE DEL AN
+La red recibe, para cada jet candidato, un conjunto de magnitudes que se organizan en la estructura descrita en la Sección \ref{subsec:inputs}: las que caracterizan al propio jet ocupan las columnas específicas de su fila, mientras que las que describen el evento en su conjunto se replican idénticas en todas ellas. En total, para el algoritmo \textsc{HH-BTag}, se emplean catorce variables, que vienen recogidas en la Tabla \ref{tab:hhbtag_inputs}, agrupadas en cuatro familias: la puntuación de sabor y la cinemática del jet candidato, la cinemática de los demás objetos del evento, las distancias angulares entre el candidato y esos objetos, y las variables globales del evento.
+
+La elección de estas familias responde directamente a la fenomenología expuesta en la sección anterior. En cuanto al propio jet, la puntuación de sabor aporta la información de identificación, necesaria pero insuficiente por sí sola para resolver la asignación. Su cinemática, por otro lado, incluye su impulso transverso y su pseudorrapidez, así como su masa y su energía normalizadas al impulso transverso, haciendo esta información adimensional y por tanto independiente de la escala del jet, por lo que resultan comparables entre candidatos de muy distinto impulso. Para dotar al jet del contexto del sistema completo, se incluyen también las magnitudes del candidato $\tau\tau$ y de la energía transversa faltante, que restringen la cinemática del candidato $H\rightarrow bb$. Se usan igualmente las distancias angulares entre el jet y ese sistema, que traducen la relación que existe entre ellos en una magnitud directamente utilizable por el modelo. Por último, las variables globales — el periodo de toma de datos y el estado final reconstruido del par $\tau\tau$ — permiten que un único modelo cubra condiciones experimentales y canales distintos sin necesidad de entrenar uno por cada combinación.
+
+
+
+
+La contribución efectiva de cada una de ellas se cuantifica mediante la importancia por permutación descrita en la Sección \ref{subsec:inputvars}, cuyo resultado se recoge en la Figura \ref{fig:hhbtag_featimp}. \textcolor{red}{[Describir aquí el resultado: según la Tabla 28 de AN-25-103, el orden de importancia es la puntuación de sabor en primer lugar, seguida de $\eta$ del jet y de $\Delta\phi$ entre el jet y el sistema $\tau\tau$, y a continuación el impulso transverso del jet y sus variables de forma. Conviene comentar el peso dominante del discriminante de sabor, y el hecho de que las variables angulares se sitúen por delante de la cinemática del jet.]}
+
+Estos valores no admiten, sin embargo, una lectura aislada, puesto que las variables correlacionadas se reparten la importancia según se argumentó en la Sección \ref{subsec:inputvars}. La Figura \ref{fig:hhbtag_corr} muestra los coeficientes de correlación entre las variables de entrada, y debe leerse junto a la anterior: \textcolor{red}{[comentar aquí los grupos correlacionados que se observen, previsiblemente entre las magnitudes que describen el sistema $\tau\tau$ y la energía transversa faltante, y señalar si alguna importancia baja se explica por esa vía]}.
+
+El estudio se ha repetido en cada uno de los reentrenamientos del algoritmo, con resultados semejantes en todos ellos, por lo que se presentan únicamente los correspondientes a la versión v3. El conjunto de variables se ha mantenido asimismo estable a lo largo de las tres versiones, con la única salvedad del discriminante de sabor, sustituido al cambiar la colección de jets según se detalló en la sección anterior. Esa estabilidad no es un dato menor: indica que las magnitudes sobre las que descansa la decisión son las que la física del proceso hace esperar, y no un artefacto de las condiciones particulares de un periodo de toma de datos.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{ll}
+\toprule
+Variable & Description \\
+\midrule
+\multicolumn{2}{l}{\textit{b jet candidate}} \\
+\midrule
+PARTICLENET score        & Flavour discriminant applied to the jet candidate \\
+$p_T(\mathrm{jet})$      & Transverse momentum of the jet candidate \\
+$\eta(\mathrm{jet})$     & Pseudorapidity of the jet candidate \\
+$E(\mathrm{jet})/p_T$    & Energy of the jet, normalized to its transverse momentum \\
+$M(\mathrm{jet})/p_T$    & Mass of the jet, normalized to its transverse momentum \\
+\midrule
+\multicolumn{2}{l}{\textit{Other objects in the event}} \\
+\midrule
+$p_T(H\tau\tau)$         & Transverse momentum of the $\tau\tau$ system \\
+$\eta(H\tau\tau)$        & Pseudorapidity of the $\tau\tau$ system \\
+$p_T(\tau_1)+p_T(\tau_2)$& Scalar sum of the transverse momenta of the two $\tau$ candidates \\
+$p_T^{\mathrm{miss}}/p_T(H\tau\tau)$ & Missing transverse momentum, normalized to the scalar sum \\
+\midrule
+\multicolumn{2}{l}{\textit{Angular distances}} \\
+\midrule
+$\Delta\phi(\mathrm{jet},H\tau\tau)$ & Azimuthal distance between the jet and the $\tau\tau$ system \\
+$\Delta\eta(\mathrm{jet},H\tau\tau)$ & Pseudorapidity distance between the jet and the $\tau\tau$ system \\
+$\Delta\phi(p_T^{\mathrm{miss}},H\tau\tau)$ & Azimuthal distance between $p_T^{\mathrm{miss}}$ and the $\tau\tau$ system \\
+\midrule
+\multicolumn{2}{l}{\textit{Global event variables}} \\
+\midrule
+$\tau\tau$ final state   & Reconstructed final state of the $H\rightarrow\tau\tau$ decay \\
+Year                     & Data-taking period \\
+\bottomrule
+\end{tabular}
+\caption{Input variables of the \textsc{HH-BTag} algorithm. The $\tau\tau$ system is defined as the
+sum of the visible four-momenta of the two $\tau$ candidates. The variables of the first three
+groups are specific to each jet candidate, whereas those of the last group are common to the whole
+event and are therefore replicated in every row of the input table.}
+\label{tab:hhbtag_inputs}
+\end{table}
+
+\begin{figure}[t]
+\centering
+% \includegraphics[width=0.9\textwidth]{...}
+\caption{Permutation importance of the input variables of the \textsc{HH-BTag} algorithm, evaluated
+for the v3 training. Each entry gives the decrease in purity obtained when the values of the
+corresponding variable are randomly permuted among the jet candidates of the evaluation sample,
+leaving the remaining variables unchanged. Values compatible with zero indicate variables on which
+the trained model does not rely.}
+\label{fig:hhbtag_featimp}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+% \includegraphics[width=0.9\textwidth]{...}
+\caption{Linear correlation coefficients between the input variables of the \textsc{HH-BTag}
+algorithm, computed on the training sample of the v3 model. Groups of strongly correlated variables
+share their permutation importance, so that this figure and Figure \ref{fig:hhbtag_featimp} must be
+read together.}
+\label{fig:hhbtag_corr}
+\end{figure}
+
+
+%-------------------------------------------------------------------------------------------------------
+
+
 Preámbulo (2–3 párrafos). Qué asigna el algoritmo, qué lugar ocupa en el análisis y en qué estado se encuentra. Aquí va tu «resumen histórico», y aquí es donde la asimetría se justifica sola: en \textsc{HH-BTag} es un párrafo —origen en el no resonante de Run-2, adaptación al resonante, reentrenamientos para Run-3—, y en \textsc{VBFjTag} es una frase, porque no hay historia que contar. Ambas secciones abren igual; lo que difiere es la extensión, y por un motivo evidente. Como subsección propia no lo pondría: en 5.4 quedaría vacía.
 .1 El proceso y la construcción del conjunto de entrenamiento. Contenido: qué caracteriza a los objetos buscados, las muestras simuladas, la selección cinemática y de calidad, y la particularización de la verdad de referencia.
 .2 Variables de entrada. Tabla y motivación agrupada por lo que codifica cada bloque, matriz de correlaciones e importancia por permutación.
