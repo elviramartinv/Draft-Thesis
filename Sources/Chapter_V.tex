@@ -819,51 +819,95 @@ odd event-number samples, each evaluated on the events it has not seen during tr
 
 \begin{figure}[t]
 \centering
-% \includegraphics[width=0.9\textwidth]{...}
+\includegraphics[width=0.85\linewidth]{figures/chapter_V/par0_corrmatrix.png}
 \caption{Linear correlation coefficients between the input variables of the \textsc{HH-BTag}
-algorithm. \textcolor{red}{INCLUIR}}
+algorithm. \textcolor{red}{ACTUALIZAR}}
 \label{fig:hhbtag_corr}
 \end{figure}
 
 After determining the information received by the model and its actual utilization, the next step is to measure its performance and compare it with that of the explicit criterion it replaces to determine whether the algirhtm improves performance with respect to previous method, as well as to track its evolution across subsequent versions.
 
-\subsection{Training and performance}
+\subsection{Performance of the model}
+% AQUI IGUAL QUITO LA LOSS FUNCTION
+Moving forward, the model trained using the procedure outlined above will undergo a thorough evaluation. In accordance with the terms and process introduced in Section \ref{subsec:training}, the first evaluation the model undergoes is to ensure that the training process proceeded correctly. This involves examining the convergence of the purity and the loss function evaluated on the events used for training and on those reserved for validation. The results for these four metrics are shown in Figure \ref{fig:hhbtag_curves} as a function of the number of epochs, for the two models trained on each parity. Several complementary insights can be drawn from the figure.\\
 
-CRITERIO DE ORDENACIÓN? REVISAR LO QUE ESCRIBÍ ANTERIORMENTE
+Regarding the convergence of training metrics, purity rises rapidly during the initial iterations, from values close to \textcolor{red}{XX\%}, reaching a plateau at approximately \textcolor{red}{XX\%}, after which improvements are marginal. A similar pattern is observed for loss, which decreases from \textcolor{red}{XX\%} until it reaches stable values around \textcolor{red}{XX\%}.
 
+In comparing the two curves, it is notable that the validation curve shows noticeable fluctuations between epochs, a behavior that is not observed in the training curve. This is because the training curve is obtained as a cumulative average across all batches in the epoch and is therefore much smoother by design; whereas the validation curve is a single evaluation with the parameters already set and based on a dataset three times smaller, leading to greater noise in the curve. On the other hand, this dispersion is notably more pronounced in the loss than in the purity, which reflects the distinct nature of these two metrics. The loss is an unbounded average and highly sensitive to even a few misclassified events, which amplifies these fluctuations considerably. In contrast, purity is bounded by unity and is insensitive to how much the model is off, since it only considers whether the two highest-scoring candidates are correct. Therefore, the focus should be on the trend, which both curves share without a growing gap between them. \textcolor{red}{....mirarlo bien de las curvas finales, no se si se puede afirmar algo de la loss function en realidad, demasiadas oscilaciones, quizas mejor quitarla}.
+
+\textcolor{red}{Me cuesta un poco justificar todo esto, nunca me llegó a quedar muy claro - aunque no sean las distribuciones finales las que he puesto (tengo que buscar las de la última version), son todas muy parecidas en realidad}
+
+In any case, the design decision documented in Section \ref{subsec:training} regarding the selection of the training endpoint is perfectly illustrated in Figure \ref{fig:hhbtag_curves}: the sharp fluctuations in the loss function illustrate that the loss value on the validation set is an unreliable indicator of the quality of the assignment, whereas purity — the metric that defines the task — maintains stability and enables unambiguous identification of the point at which improvement ceases.
+
+It is also important to note that the two models — even and odd — differ in the number of epochs they complete, which is \textcolor{red}{approximately XX and XX, respectively}. This discrepancy does not reflect any systematic difference between the two halves of the sample, but rather stems from the fact that the stopping criterion depends on the specific fluctuations of each fit. What is important, therefore, is that both converge to the same plateau, which ensures that both halves lead to models with equivalent performance, a fact made evident in Figure \ref{fig:hhbtag_curves}.\\
+
+%
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=0.48\linewidth]{figures/chapter_V/hhbtag_curve_purity_odd.png}\hfill
+\includegraphics[width=0.48\linewidth]{figures/chapter_V/hhbtag_curve_loss_odd.png}\\[1ex]
+\includegraphics[width=0.48\linewidth]{figures/chapter_V/hhbtag_curve_purity_even.png}\hfill
+\includegraphics[width=0.48\linewidth]{figures/chapter_V/hhbtag_curve_loss_even.png}
+\caption{Evolution of the purity (left) and of the loss function (right) with the number of epochs,
+for the model trained on the odd event-number sample (top) and on the even one (bottom). Each panel
+shows the value measured on the events used for the fit (blue) and on those reserved for validation (orange).
+\textcolor{red}{ACTUALIZAR}}
+\label{fig:hhbtag_curves}
+\end{figure}
+%
+
+%--------------------------------------------------------------------
+
+Once it has been verified that the training behaves as expected, the performance of the model is evaluated in terms of purity across the different signal samples used. Figure \ref{fig:hhbtag_purity} illustrates the purity achieved on the \textcolor{red}{XXX} samples, broken down by \textcolor{red}{data collection period} and by signal scenario. \textcolor{red}{Cambiar esta figura: añadir HHBTag v1; en vez de poner todos los años por separado, poner evaluacion sobre los diferentes conjuntos de entrenamiento? Run-2 y Run-3 (dividido en 22+23 y 24) completos; que la performance se mantiene año por año comentarlo en el texto}. All figures show the purity achieved by the different versions of the model, as well as their comparison with direct assignment using the available standard flavor discriminants, applied according to the explicit ordering criterion described in Section \ref{sec:assignment}.
+
+The improvement introduced by the model with respect to the ordering criterion is substantial in all cases, consistently increasing purity by \textcolor{red}{$\sim 5$\%} based on the best-case scenario for standard discriminants, which is always attributed almost equally to \textsc{ParticleNet} and \textsc{RobustPar}. Regarding the comparison between the different versions, ... \textcolor{red}{lo rellenaré cuando saque los plots que quiero sacar, porque no es justo comparar la version entrenada con Run-2 sobre las muestras del Run-3}
+
+%footnote: Las incertidumbres asociadas se obtienen a partir de los intervalos de confianza para proporciones binomiales, calculados según el método de Clopper-Pearson.
+
+%La comparación con la versión anterior merece una precisión, puesto que esta se entrenó sobre las muestras y las condiciones de Run-2 y se evalúa aquí sobre las de Run-3. No se trata de un defecto del cotejo, sino precisamente de la pregunta que el reentrenamiento viene a responder: lo que se mide es cuánto rendimiento se pierde al aplicar a unas condiciones experimentales nuevas un modelo ajustado para las anteriores, y cuánto de esa pérdida recupera el reentrenamiento. Evaluar la versión anterior sobre los datos de Run-2 respondería a una pregunta distinta —si era adecuada en su momento—, que ya se abordó en su desarrollo correspondiente y que no interviene aquí.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=0.95\linewidth]{figures/chapter_V/hhbtag_purity_run3.pdf}
+\caption{Purity of the $H\rightarrow bb$ candidate selection on the Run-3 signal samples, for the
+retrained \textsc{HH-BTag} algorithm, for its previous version and for the \textsc{DeepJet},
+\textsc{ParticleNet} and \textsc{RobustParT} discriminants used through the explicit ordering
+criterion. Each panel corresponds to one data-taking period and each bin on the horizontal axis to
+one signal benchmark. Taken from \textcolor{red}{ACTUALIZAR - he cogido las dos primeras que he pillado}.}
+\label{fig:hhbtag_purity}
+\end{figure}
+
+However, purity is only useful for evaluating signal samples, since it is defined exclusively where there is a correct response, which is further guaranteed by the specific selection employed in the training set. To assess the performance of the algorithm against background samples, it is necessary to examine the shape of the score distribution. Figure \ref{fig:hhbtag_score} presents the distribution for the two highest-scoring jets in the event, comparing the signal to the two dominant backgrounds in the analysis: the dileptonic $t\bar{t}$ and Drell-–Yan backgrounds.
+
+The distribution confirms the previously established interpretation, which delimits the output to values between zero and two, with a pronounced peak at one — corresponding to events in which the two highest scores split the total equally — which is the reference value for a genuine candidate. The difference between signal and background lies in the tails, which are markedly higher for background processes, reflecting that, in the absence of two genuine $b$-jets, the total is not distributed between two equivalent candidates but tends to concentrate on a single one. Therefore, the score retains the ability to discriminate against the background beyond its assignment function. This information is reused in the classifier designed to separate the signal and background from the analysis, as will be detailed in Chapter \ref{ch:bbtt_analysis}.
+
+%
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.75\linewidth]{figures/chapter_V/hhbtag_score_leading_jet.png}
+\caption{Distribution of the \textsc{HH-BTag} score of the two highest-scoring jets of the event, for
+simulated nonresonant $HH$ signal and for the dileptonic $t\bar{t}$ and Drell--Yan backgrounds,
+normalized to unit area. \textcolor{red}{ACTUALIZAR}}
+\label{fig:hhbtag_score}
+\end{figure}
+\\
+
+It is concluded that the training behaves as expected and that the purity achieved substantially surpasses that of the explicit criterion the algorithm replaces. This is consistent across various time periods and signal scenarios, thereby validating the sample mix used in training and the decision to implement a single model for all time periods and channels. Concurrently, the shape of the score distribution showed that the algorithm provides useful information for separating the signal from the background. The model demonstrated satisfactory performance in all aspects of its evaluation.\\
+
+
+\\
+
+The \textsc{HH-BTag} algorithm has been characterized, starting from the formulation of the problem it addresses, trough the information it uses, to the performance it achieves. And there is something important to note for what follows: only the definition of the reference truth and the set of input variables are specific to $b$-jets. Consequently, the same framework introduced in the analysis of Run-2 is reused to address an assignment problem of a different nature, but one that shares the same fundamental elements.
+
+\section{The \textsc{VBFjTag} algorithm}
+\label{sec:VBFjTag}
 DESDE AQUI PARA ESCRIBIR
 
 %-------------------------------------------------------------------------------------------------------
 
 
-Preámbulo (2–3 párrafos). Qué asigna el algoritmo, qué lugar ocupa en el análisis y en qué estado se encuentra. Aquí va tu «resumen histórico», y aquí es donde la asimetría se justifica sola: en \textsc{HH-BTag} es un párrafo —origen en el no resonante de Run-2, adaptación al resonante, reentrenamientos para Run-3—, y en \textsc{VBFjTag} es una frase, porque no hay historia que contar. Ambas secciones abren igual; lo que difiere es la extensión, y por un motivo evidente. Como subsección propia no lo pondría: en 5.4 quedaría vacía.
-.1 El proceso y la construcción del conjunto de entrenamiento. Contenido: qué caracteriza a los objetos buscados, las muestras simuladas, la selección cinemática y de calidad, y la particularización de la verdad de referencia.
-.2 Variables de entrada. Tabla y motivación agrupada por lo que codifica cada bloque, matriz de correlaciones e importancia por permutación.
-.3 Rendimiento. Y aquí van las curvas de aprendizaje, al principio de la subsección: primero se muestra que el entrenamiento fue sano, y solo después se citan cifras extraídas de él. Despues pureza y distribuciones de puntuacion
-
-intro: donde se usa, desarrollo etc
-1 - fenomenología, dataset preparation (seleccion + ground truth definition)
-2 - input variables: feature importance plots
-3 - performance of the model - training plots? purity plots
-cierre: conclusiones
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.75\linewidth]{figures/chapter_V/hhbtag_score_leading_jet.png}
-\caption{Distribution of the \textsc{HH-BTag} score of the highest-scoring jet of the event, for
-simulated nonresonant $HH$ signal and for the dileptonic $t\bar{t}$ and Drell--Yan backgrounds,
-normalized to unit area. The score is bounded between zero and two by construction, with unity as
-the reference value of a genuine candidate. The tails above unity are markedly larger for the
-background processes, in which the total of two is not shared between two genuine $b$ jets.}
-\label{fig:hhbtag_score}
-\end{figure}
 
 
-footnote
-Las incertidumbres asociadas se obtienen a partir de los intervalos de confianza para proporciones binomiales, calculados según el método de Clopper-Pearson.
-
-\section{The \textsc{VBFjTag} algorithm}
-\label{sec:VBFjTag}
 intro: donde se usa, desarrollo etc
 1 - fenomenología, dataset preparation (seleccion + ground truth definition) - encadenamiento de los dos algoritmos
 2 - input variables: feature importance plots
