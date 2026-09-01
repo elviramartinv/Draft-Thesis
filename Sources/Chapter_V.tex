@@ -655,7 +655,7 @@ The examination approach addresses two issues. The first concerns the convergenc
 This establishes the model, both in terms of its form and the values of its parameters as well as the procedure for verifying that it behaves as it should. One final question however remains, which does not concern the model itself but rather the information provided to it: which of the variables it receives actually influence its decision, and, consequently, how the set of variables provided to it is determined.
 
 \subsection{Definition and use of the input variables}
-\ref{subsec:featimp}
+\label{subsec:featimp}
 %Entradilla
 The model and the procedure that determine its parameters have therefore been established given a set of variables received as input. The selection of variables is not trivial in this type of problem. While incorporating additional variables can expand the available information, it also introduces a greater number of parameters that must be adjusted. Consequently, a larger set does not necessarily guarantee a better model. Distinguishing between the variables that are worth including is a task that requires a judgment call based on the discriminant power of each variable and its contribution to the model. To this end, based on the phenomenology of the process, the variables with the greatest discriminatory power between the sought-after candidates and the others are proposed. Subsequently, once the model has been trained, it is determined which of these variables are actually used, since the contribution of a variable is not a property of the variable itself, but rather of what the model does with it.\\
 
@@ -690,7 +690,7 @@ The starting point is the version developed for the di-Higgs analysis in the non
 This section is organized as follows. Section \ref{subsec:hhbtag_dataset} describes the phenomenology of the process and the preparation of the training dataset. Section \ref{subsec:hhbtag_inputs} presents the variables the model receives and the information it actually extracts from them. Finally, Section \ref{subsec:hhbtag_performance} reports the performance achieved and compares it to the explicit criterion it replaces.
 
 \subsection{$H\to bb$ : candidates and training set}
-
+\label{subsec:hhbtag_dataset}
 %1- fisica
 The $H\to bb$ channel is the dominant decay mode of the Higgs boson, and its characteristic signature consists of two $b$ quarks emitted in opposite directions in the reference frame of the boson, and whose kinematics in the laboratory are determined by thes momentum of the Higgs boson. Upon hadronization, the $b$-quarks give rise to hadrons with a significant lifetime that travel a measurable distance before decaying, producing vertices displaced from the primary vertex — a property exploited by the flavor identification algorithms described in Section \ref{subsec:Jets}. Therefore, the applicability of this information is limited to the region covered by the track detector. Consequently, the problem is defined within the angular window $|\eta| < 2.5$. However, as argued in Section \ref{sec:assignment}, identifying jets consistent with the $b$-flavor alone is insufficient; rather, the candidates must also satisfy a selection criterion consistent with the Higgs decay.\\
 
@@ -726,10 +726,11 @@ Flavour discriminant      & DeepJet                & DeepJet                & Pa
 \label{tab:hhbtag_versions}
 \end{table}
 
-This delineates the specific problem on which the algorithm operates. The next step is to determine the information received as input by the network from each candidate. The described phenomenology initially suggests which variables may be discriminating, but this is not sufficient to determine them: it is the trained model that reveals which ones it actually uses, through the procedure described in Section \ref{subsec:inputvars}. The following section presents this set of variables and the information the algorithm extracts from them.
+This delineates the specific problem on which the algorithm operates. The next step is to determine the information received as input by the network from each candidate. The described phenomenology initially suggests which variables may be discriminating, but this is not sufficient to determine them: it is the trained model that reveals which ones it actually uses, through the procedure described in Section \ref{subsec:featimp}. The following section presents this set of variables and the information the algorithm extracts from them.
 
 
 \subsection{Definition and assessment of the input set}
+\label{subsec:hhbtag_inupts}
 %
 For each candidate jet, the network receives a set of quantities organized according to the structure described in Section \ref{subsec:inputs}: those that characterize the jet itself occupy the specific columns of its row, while those that describe the event as a whole are replicated identically across all rows. This set was not determined in the present work, but rather stems from the original development of the algorithm, in which various high-level quantities were investigated and those found to be the most discriminating ones were retained \cite{HHBTag}.\\
 
@@ -828,6 +829,7 @@ algorithm. \textcolor{red}{ACTUALIZAR}}
 After determining the information received by the model and its actual utilization, the next step is to measure its performance and compare it with that of the explicit criterion it replaces to determine whether the algirhtm improves performance with respect to previous method, as well as to track its evolution across subsequent versions.
 
 \subsection{Performance of the model}
+\label{subsec:hhbtag_performance}
 % AQUI IGUAL QUITO LA LOSS FUNCTION
 Moving forward, the model trained using the procedure outlined above will undergo a thorough evaluation. In accordance with the terms and process introduced in Section \ref{subsec:training}, the first evaluation the model undergoes is to ensure that the training process proceeded correctly. This involves examining the convergence of the purity and the loss function evaluated on the events used for training and on those reserved for validation. The results for these four metrics are shown in Figure \ref{fig:hhbtag_curves} as a function of the number of epochs, for the two models trained on each parity. Several complementary insights can be drawn from the figure.\\
 
@@ -901,10 +903,108 @@ The \textsc{HH-BTag} algorithm has been characterized, starting from the formula
 
 \section{The \textsc{VBFjTag} algorithm}
 \label{sec:VBFjTag}
+%
+In the $HH\to bb\tau\tau$ analysis, the jets from the event play two distinct roles: while some reconstruct the $H\to bb$ decay, others identify the vector boson fusion production topology. Now that the assignment of candidates for the first of these problems has been resolved in a satisfactory manner, it is natural to implement the same procedure for the second, ensuring that the selection of all jets involved in the analysis relies on the same type of algorithm and follows the same criteria. This initiative led to the development of the \textsc{VBFjTag} algorithm, which was developed in this work and applied for the first time in the analysis presented in Chapter \ref{ch:bbtt_analysis}.
+
+The general part of the scheme has already been described in Section \ref{sec:architecture}, and is reproduced here without any modifications. However, the two elements identified in the description of the \textsc{HH-BTag} as those that unambiguously define the problem require further discussion and elaboration. The first is the definition of the ground truth, which follows from a different phenomenology: the jets of interest now do not arise from the decay of a particle, but from the two scattered quarks that accompany the production of the Higgs boson pair. The second is the set of input variables, which must be reviewed to determine what information the model can use to learn under these new conditions.\\
+
+Given the analogy between the algorithms, the structure of this section mirrors that of the previous one, as do the criteria used to evaluate the results, so that both algorithms can be compared using the same standards. Section \ref{subsec:vbf_dataset} describes the phenomenology of the process, the selection of candidates, and the preparation of the training set. Section \ref{subsec:vbf_inputs} presents the proposed variables and the information the model extracts from them. Finally, Section \ref{subsec:vbf_performance} summarizes the achieved performance, measured once again in terms of the purity metric.\\
+
+\subsection{The VBF topology : candidates and training set}
+\label{subsec:vbf_dataset}
+%
+% 1 - fenomenología
+In the vector boson fusion mechanism, each of the initial quarks emits a $W$ or $Z$ boson, and it is these bosons that fuse to produce the Higgs boson pair. The quarks, which lose little momentum in the process, continue their trajectories at small angles relative to the beam direction, giving rise to two final jets that are widely separated in pseudorapidity, with high invariant mass and located far from the central region, where the $HH$ system occurs. In addition, the $t$-channel exchange is a color-singlet, so no color is transferred between the two quarks, and hadronic activity in the angular region between them is also suppressed. Together, these features result in a pair of jets that are far apart from each other and isolated from the rest of the event.\\
+
+% 2 - consecuencia para el problema de asignación
+This phenomenology frames the problem in terms that differ significantly from those of the $H\to bb$ channel. In that case, the most important variable for the model was an intrinsic property of the sought-after object: its flavor. In contrast, a VBF jet originates from a light quark and shares no distinguishing properties with the jets produced by radiation in any other process. The identification algorithms described in Section \ref{subsec:Jets} provide, along with the probability that the jet originates from a $b$-quark, analogous outputs for the $c$-quark or for a hadronic $\tau$, but none of them recognizes a VBF jet. Therefore, all of them would serve here solely to rule out other hypotheses. The only clue offered by its content comes from the separation between jets initiated by quarks and those initiated by gluons, given that the other jets in the event are predominantly of gluonic origin. This separation is, however, considerable weaker than that of heavy flavor. At the same time, these discriminants rely on the tracks of charged constituents, so their performance degrades beyond the acceptance of the tracker detector, precisely in the angular region where VBF jets are abundant. The discriminating information must therefore be sought in the position of the jet and its relationship to the rest of the event rather than in the object itself.\\
+
+
+% 3 - selección de candidatos
+On the other hand, the selection of candidates from which to search for the VBF-jet pair is derived from the set on which the purely kinematic criterion used in Run-2 operated; this criterion constructed all possible pairs from among the jets not assigned to the $b\bar{b}$ pair and retained the one with the highest invariant mass. In accordance, the algorithm is designed to be chained with the \textsc{HH-BTag} algorithm, so that it operates on the reconstructed jets after the other objects in the event have been processed. Candidates are selected by requiring a transverse momentum $p_T > 20$ GeV and a pseudorapidity $|\eta| < 4.7$, which covers the full acceptance of the calorimeter. Since it operates at the end of the processing chain, an angular separation of $\Delta R > 0.5$ is also required with respect to the two candidates forming the $\tau\tau$ pair and the two jets assigned to the $b\bar{b}$ pair. \textcolor{red}{Se descartan además los candidatos situados en la región $2.5 < |\eta| < 3.0$ con $p_T < 50$ GeV, donde ....?}. Furthermore, at least two jets must meet these criteria for the fusion pair to be formed.
+
+
+%La ventana angular era la misma, pero el umbral en momento transverso se situaba entonces en 30 GeV; aquí se rebaja a 20 GeV, lo que amplía el conjunto sobre el que se decide sin comprometer la elección, pues el algoritmo ordena en lugar de cortar y un candidato adicional no es una contaminación, sino una alternativa más que la red ha de descartar.
+
+%Es importante señalar aquí que aunque los dos jets asignados al par $b\bar{b}$ quedan excluidos de la elección de \textsc{VBFjTag}, si se figuran en el tensor de entrada, donde se identifica a cada uno de ellos mediante una variable que señala su condición. Tanto el bloque recurrente como la normalización de las puntuaciones acoplan entre sí todos los jets del evento, de modo que retirarlos privaría al modelo del contexto en el que ha de decidir.
+
+% 4 - Muestras
+In this case, the training set is limited to simulated production samples from the vector boson fusion of the Higgs boson pair, corresponding to the data-taking periods of early Run-3 (2022 to 2024). As previously explained, the sample mix includes the full range of coupling points $(\kappa_\lambda, c_{2V}, c_V)$ available, in order to ensure that the model covers a wide range of kinematic configurations without specializing in any one. In all cases, this involves non-resonant production, \textcolor{red}{por disponibilidad? o por que no quisimos incluir resonante?}. It should be noted that the restriction to this production mode is, once again, motivated by the need to define the ground truth. However, as with the \textsc{HH-BTag}, the algorithm is applied to all events in the analysis, so events produced by gluon fusion are treated as just another background in this context.
+
+% 5 - Ground truth
+Given the problem at hand, the definition of the true label is now based on the matrix element itself. Among the partons in the final state of the hard process, the two that are neither Higgs bosons nor $b$ quarks are identified, and which therefore correspond to the scattered quarks from the fusion vertex. These are associated with the nearest generated jet, requiring $\Delta R < 0.4$, equal to the radius at which the jets are reconstructed. The generated jets are then matched with the reconstructed jets that pass the candidate selection, within a cone of $\Delta R < 0.3$, such that only when both pairings are successful is the event labeled and admitted into the training set. An additional requirement at the generation level restricts the sample to resolved configurations and to those in which the $b\bar{b}$ pair and the $\tau\tau$ system are themselves well-defined, ensuring that the assignment is learned from events in which the entire topology of the process is present.
+
+% 6 - Puente
+This defines both the set of decisions to be made and the criteria by which each decision is evaluated. The specific information used by the network to make these decisions is not yet determined. The described phenomenology clearly indicates where to look — the position of the jet, its isolation, and its relationship to the rest of the event — but, as in the previous case, the proposal must be evaluated by the trained model.
+
+\subsection{Extending the input set}
+\label{subsec:vbf_inputs}
+%
+Los jets que superan la selección descrita son las filas del tensor que recibe la red
+
+
+
 DESDE AQUI PARA ESCRIBIR
+
 
 %-------------------------------------------------------------------------------------------------------
 
+1 — El tensor. Las filas del tensor que recibe la red las ocupan todos los jets que superan la selección descrita, ordenados por pseudorapidez absoluta decreciente, de manera que los más adelantados encabezan la secuencia; el criterio de ordenación difiere así del empleado en \textsc{HH-BTag} y responde a que la posición angular es aquí el rasgo que mejor caracteriza al objeto buscado. Entre esas filas figuran también los dos jets asignados al par $b\bar{b}$, que, aunque excluidos de la elección, se conservan en la entrada identificados mediante una variable que señala su condición: tanto el bloque recurrente como la normalización de las puntuaciones acoplan entre sí todos los jets del evento, de modo que retirarlos privaría al modelo del contexto en el que ha de decidir.
+
+2 — El conjunto heredado. El punto de partida es el conjunto de catorce variables que emplea \textsc{HH-BTag}, recogido en la Tabla \ref{tab:hhbtag_inputs}. Su pertinencia aquí no es automática, pero sí mayoritaria: las magnitudes que describen el contexto del evento —la cinemática del sistema $\tau\tau$, la energía transversa perdida y las variables globales de periodo y canal— caracterizan el suceso con independencia de qué jet se esté evaluando, y son tan aplicables a un problema como al otro. Las que describen el jet mismo —su momento transverso, su pseudorapidez y sus energías y masas normalizadas— y las que lo relacionan con el sistema $\tau\tau$ conservan asimismo su sentido, si bien el peso que el modelo les concede no tiene por qué ser el mismo, como se verá.
+
+3 — Las variables añadidas. A ese conjunto se incorporan tres magnitudes que responden directamente a la fenomenología descrita. La primera señala si el jet ha sido asignado al par $b\bar{b}$ por el \textsc{HH-BTag}, y con ella la red recibe explícitamente el resultado del paso anterior de la cadena. La segunda mide el aislamiento del jet, definido como la menor separación angular que lo separa de cualquier otro jet del evento, y traduce en una variable la supresión de actividad hadrónica que se sigue del carácter incoloro del intercambio. La tercera mide su posición relativa dentro del evento mediante la centralidad,
+
+\begin{equation}
+\mathcal{C}j = 1 - \left| \frac{2,(\eta_j - \eta_c)}{\eta{\max} - \eta_{\min}} \right| , \qquad \eta_c = \frac{\eta_{\max} + \eta_{\min}}{2},
+\label{eq:centrality}
+\end{equation}
+
+donde $\eta_{\max}$ y $\eta_{\min}$ son los valores extremos de pseudorapidez entre los jets del evento. La variable vale la unidad para un jet situado en el centro del intervalo y se anula en sus extremos, de manera que un jet de fusión, que por definición ocupa uno de los bordes, se caracteriza por valores próximos a cero. Frente a la pseudorapidez desnuda, la centralidad expresa la posición del jet en relación con la extensión angular del propio evento y no con el sistema de referencia del detector.
+
+4 — Las que se probaron y no se retuvieron. Se examinaron además otras magnitudes que la fenomenología sugería y que finalmente no se incorporaron al conjunto. Entre ellas, y de manera destacada, el discriminante entre jets iniciados por quarks y por gluones, que es la única información del contenido del jet con capacidad de distinguirlo positivamente, según se argumentó más arriba. Su incorporación no produjo una mejora apreciable del rendimiento, lo que confirma el argumento anterior antes que contradecirlo: la separación es débil de por sí, y se degrada justamente en la región angular en la que estos jets se concentran. Tampoco resultaron de utilidad la multiplicidad de jets del evento ni el momento transverso de los dos jets más adelantados normalizado a la masa invariante del par, magnitudes tomadas del análisis $HH\to bb\gamma\gamma$.
+
+5 — Las distribuciones.
+
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\textwidth]{figures/chapter_V/vbfjtag_input_distributions.pdf}
+\caption{Distributions of the input variables of the \textsc{VBFjTag} algorithm, shown separately for the jets labelled as originating from the vector boson fusion vertex and for the remaining jet candidates of the event, in simulated VBF $HH\to bb\tau\tau$ events.}
+\label{fig:vbfjtag_inputdist}
+\end{figure}
+6 — Determinado el conjunto, resta establecer de cuáles de sus elementos se sirve efectivamente el modelo, mediante el procedimiento descrito en la Sección \ref{subsec:featimp}. El resultado se recoge en la Figura \ref{fig:vbfjtag_featimp}, con los dos modelos entrenados sobre cada paridad presentados por separado. La jerarquía la encabeza el momento transverso del jet, seguido de su separación azimutal respecto del sistema $\tau\tau$. A continuación, y con pesos comparables entre sí, aparecen el discriminante de sabor, la separación en pseudorapidez respecto de ese mismo sistema, el aislamiento del jet y su pseudorapidez, y cierra el grupo la variable que señala la asignación previa al par $b\bar{b}$. Las restantes, que son las que describen el evento en su conjunto, quedan un orden de magnitud por debajo.
+
+7 — El orden admite la misma lectura que en el caso anterior, y la matriz de correlaciones de la Figura \ref{fig:vbfjtag_corr} permite sostenerla. El momento transverso encabeza la jerarquía porque, retirado el par $b\bar{b}$, los jets de fusión son con diferencia los más energéticos de cuanto queda, poblado en su mayor parte por radiación blanda. La separación azimutal ocupa el segundo lugar por la misma razón que en \textsc{HH-BTag}: es la única información azimutal del conjunto, y en efecto la matriz la muestra descorrelacionada de todas las demás variables, de modo que nada de lo que aporta puede recuperarse por otra vía. El discriminante de sabor se sitúa por encima de la variable que identifica los jets ya asignados, lo que a primera vista sorprende; pero ambas están correlacionadas al $0.69$, y la puntuación es la magnitud continua de la que la asignación se deriva, con lo que buena parte de lo que la segunda expresa está ya contenido en la primera. El aislamiento es, de las magnitudes incorporadas en este trabajo, la que alcanza mayor peso, y también aquí la razón es la ausencia de sustituto: es la única variable del conjunto que describe la relación del jet con los demás jets del evento y no con el sistema $\tau\tau$ ni con el detector. La centralidad, en cambio, obtiene un peso muy reducido pese a haber contribuido de manera apreciable a la mejora del rendimiento; la matriz muestra que está correlacionada al $0.61$ con la variable de asignación y al $0.54$ con el discriminante de sabor, pues los jets centrales son en su mayoría los del par $b\bar{b}$, de modo que lo que aporta es en gran medida recuperable a partir de información ya presente.
+
+Los floats
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/chapter_V/vbfjtag_feature_importance.jpg}
+\caption{Permutation importance of the input variables of the \textsc{VBFjTag} algorithm, shown separately for the two models trained on each event parity and evaluated on the opposite one.}
+\label{fig:vbfjtag_featimp}
+\end{figure}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/chapter_V/vbfjtag_corrmatrix_par0.jpg}
+\caption{Linear correlation coefficients between the input variables of the \textsc{VBFjTag} algorithm, computed over all valid jets of the training sample.}
+\label{fig:vbfjtag_corr}
+\end{figure}
+
+6 — La importancia por permutación. Determinado el conjunto, resta establecer de cuáles de sus elementos se sirve efectivamente el modelo, mediante el procedimiento descrito en la Sección \ref{subsec:featimp}. El resultado se recoge en la Figura \ref{fig:vbfjtag_featimp}. La jerarquía la encabeza con claridad la variable que identifica a los jets asignados al par $b\bar{b}$, seguida del momento transverso del jet; a continuación aparecen el discriminante de sabor, la pseudorapidez y la energía normalizada del jet, y la separación azimutal respecto del sistema $\tau\tau$. De las magnitudes incorporadas en este trabajo, es el aislamiento la que alcanza un peso mayor.
+
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\textwidth]{figures/chapter_V/vbfjtag_feature_importance.png}
+\caption{Permutation importance of the input variables of the \textsc{VBFjTag} algorithm, evaluated on simulated VBF $HH\to bb\tau\tau$ events of the opposite parity to the one used for training.}
+\label{fig:vbfjtag_featimp}
+\end{figure}
+7 — Lectura de la jerarquía. El orden resultante admite la misma lectura que en el caso anterior: alcanzan un peso elevado aquellas magnitudes que varían de un jet a otro dentro del evento y que a la vez aportan información no recuperable a partir del resto. La variable que señala la asignación previa cumple ambas condiciones de manera inmejorable, pues distingue dos jets entre todos los demás y expresa el resultado de una decisión tomada sobre el evento completo, que ninguna otra entrada contiene. El aislamiento se sitúa a continuación entre las nuevas por la misma razón: es la única que describe la relación del jet con los demás jets, y no con el sistema $\tau\tau$ ni con el detector. La centralidad, en cambio, obtiene un peso menor pese a haber contribuido de forma apreciable a la mejora del rendimiento; una y otra observación son compatibles, pues la centralidad es función de la pseudorapidez del jet y de la extensión angular del evento, de modo que el procedimiento, que permuta una variable cada vez, atribuye a la pseudorapidez parte de lo que la centralidad aporta.
+
+8 — Puente. Queda con ello caracterizada la información de la que dispone el modelo y establecido de cuál se sirve. Resta medir el rendimiento que alcanza y contrastarlo con el del criterio cinemático al que sustituye, que es el objeto de la sección siguiente.
 
 
 
