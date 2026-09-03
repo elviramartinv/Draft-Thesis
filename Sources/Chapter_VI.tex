@@ -1,4 +1,378 @@
-\part{The bbtt analysis}
-\chapter{bb\texorpdfstring{$\tau\tau$}{ττ} analysis setup}
+\part{The bb\texorpdfstring{$\tau\tau$}{ττ} analysis}
+\chapter{Search for nonresonant HH production in the bb\texorpdfstring{$\tau\tau$}{ττ} final state}
 \label{ch:bbtt_analysis}
-\section{algo de ZZ/ZH validation?}
+
+% =====================================================================
+% OUTLINE -- Chapter VI. Setup AND results in a single chapter.
+%
+% Structure inspired by two reference theses in the same final state:
+%   - Jaime (Run 2, 2023): splits setup (ch.4) and results (ch.5). Useful ideas
+%     taken from it: the "Analysis flow" grouping (pair -> bb -> VBF -> categories),
+%     a section of its own for corrections to simulated events, a section of its own
+%     for control plots after the baseline selection, the statistical procedure
+%     described before the results, a comparison with other HH channels, and a
+%     closing Summary.
+%   - Simona (Run 3, 2026): keeps results inside the analysis chapter
+%     (datasets+triggers / objects / selection+categorisation / background /
+%      discriminant / systematics / results). Confirms the merged layout.
+%
+% Reference material:
+%   - CMS PAS HIG-25-008          (~/papers/bbtautau/HIG-25-008-pas.pdf)
+%   - AN-25-103 v10               (~/papers/bbtautau/AN_25_103_v10_*.pdf)
+%   - Run-2 legacy: PLB 842 (2023) 137531  -> bib key CMS-HIG-20-010
+%   - Code: ~/CCLUbbtautauAnalysis/config/run3_base_config.py
+%           add_channels() l.32 / add_regions() l.106 / add_categories() l.967
+%           add_processes() l.1301 / add_systematics() l.1898 / add_features() l.2290
+%           get_qcd_regions() l.3280 (ABCD) / get_ff_regions() l.3319 (FF)
+%
+% Run 2 appears in exactly three places:
+%   (1) Sec. 6.1   -- the strategy is inherited from the published Run-2 analysis
+%   (2) Sec. 6.6.5 -- ABCD (my Run-2 work) as the predecessor of the Fake Factors
+%   (3) Sec. 6.13  -- final results combined with Run 2 at datacard level
+%
+% NOTE: a bib entry for CMS-PAS-HIG-25-008 is still missing (see Thesis.bib).
+% =====================================================================
+
+\section{Analysis strategy}
+\label{sec:bbtt_strategy}
+% - Why bbtautau: B(HH->bbtautau) = 7.3%, large yield combined with efficient tau
+%   and b identification -> historically one of the most sensitive channels.
+% - What is measured: ggHH (triangle/box interference -> kappa_lambda) and
+%   qqHH (-> kappa_2V), both as cross-section limits and as coupling constraints.
+% - (1) INHERITANCE FROM RUN 2. The strategy follows the published Run-2 search
+%   \cite{CMS-HIG-20-010}. Say explicitly what is carried over -- channel
+%   definition, elliptical mass selection, topological categorisation, DNN-based
+%   signal extraction -- so that the reader can read the rest of the chapter as a
+%   set of deltas rather than as a construction from zero.
+% - What is new in Run 3: extended phase space (boosted bb and boosted tautau),
+%   new trigger paths, retrained HH-BTag and the new VBFjTag (Ch. \ref{ch:taggers}),
+%   UParT b tagging in 2024, Fake Factors replacing ABCD, per-period fit.
+% - Close with an analysis-flow figure and a roadmap paragraph.
+
+\section{Data and simulated samples}
+\label{sec:bbtt_samples}
+
+\subsection{Data sets and data-taking periods}
+% 2022: 34.7/fb (preEE + postEE) | 2023: 27.7/fb (preBPix + postBPix) | 2024: 110/fb
+% -> 172/fb at 13.6 TeV. Table with period, L_int and the detector condition that
+% motivates each split (ECAL endcap water leak in 2022, BPix failure in 2023,
+% UParT and trigger changes in 2024). Primary datasets per channel
+% (Muon, EGamma, Tau, ParkingHH, ParkingVBF, Jet).
+% -> code: skip_processes in add_channels(), config/run3_dataset_*.py
+
+\subsection{Signal modelling}
+% ggHH: POWHEG v2 @ NLO. qqHH: MADGRAPH5_aMC@NLO 2.9.13 @ LO.
+% Anomalous-coupling samples and the matrix-inversion reweighting that gives access
+% to arbitrary (kappa_lambda, kappa_2V) -> forward-reference the EFT chapter.
+% -> code: tasks/ggFReweightModules.py, tasks/VBFReweightModules.py
+
+\subsection{Background modelling}
+% DY and W+jets: MG5_aMC@NLO NLO + FxFx. ttbar, single top, single H: POWHEG v2.
+% Diboson: PYTHIA8 LO. Triboson, ttV, ttVV: MG5_aMC@NLO.
+% PYTHIA 8.306 + CP5, NNPDF 3.0/3.1, GEANT4, pileup reweighting.
+% DY jet-multiplicity stitching -> tasks/dystitching.py, scripts/compute_DYnJetsFit.py
+
+\section{Trigger strategy}
+\label{sec:bbtt_triggers}
+% One of the strongest development lines of the Run-3 analysis -> own section.
+
+\subsection{Baseline triggers}
+% tau_e tau_h / tau_mu tau_h: single-lepton + cross lepton-tau (lower pT thresholds).
+% tau_h tau_h: di-tau, DeepTau at HLT in 2022-23 and ParticleNet in 2024.
+% Offline thresholds raised above the online ones to sit on the efficiency plateau.
+
+\subsection{New trigger paths for Run 3}
+% - di-tau + jet: extra central jet pT > 60 GeV, lowers the tau_h threshold by 5 GeV
+% - quad-jet + b (2024): >= 4 jets pT > 25 GeV, one tau_h and one b-tagged jet
+%   (ParticleNet) -> offline HT_ctjets > 400 GeV
+% - HH Parking and VBF Parking: parked streams with delayed reconstruction
+% - VBF: five algorithms, two AK4 jets with m_jj thresholds from 500 to 1000 GeV
+% - boosted: pTmiss trigger (offline pTmiss > 200 GeV), or AK8 pT > 230 GeV with
+%   m_SD > 40 GeV tagged by ParticleNet, plus a BoostedDeepTau vsJet requirement
+% -> code: isVBFParkTrigger / isQuadJetTrigger / isTauTauJetTrigger in add_channels()
+% Table: trigger menu per channel and per period. This table does a lot of work.
+
+\subsection{Trigger efficiency and scale factors}
+% Tag-and-probe, per period and per channel; how the OR of many paths is handled.
+% -> code: scripts/VBFtrigSF/
+
+\section{Physics object selection}
+\label{sec:bbtt_objects}
+% Deliberately short: reconstruction belongs to the detector chapter and tau_h
+% identification to Chapter \ref{ch:Tau}. Only analysis-level working points here.
+% A single summary table (Table 1 of the PAS) can absorb most of it.
+
+\subsection{Muons and electrons}
+% Muons: pT > 22/26/6 GeV (cross / single / VBF+mu), |eta| < 2.4, tight ID, I_rel < 0.15.
+% Electrons: pT > 25/31/13(18) GeV, |eta| < 2.5, tight MVA Iso+ID.
+% |d_xy| < 0.045 cm, |d_z| < 0.2 cm.
+
+\subsection{Hadronic tau leptons}
+% Resolved: HPS + DeepTau -- Medium vsJet, VVLoose vsE, VLoose/Tight vsMu.
+% Boosted: CA8 jets pT > 100 GeV, subjet seeding, BoostedDeepTau vsJet.
+% Note the boosted regime is new with respect to Run 2.
+
+\subsection{Jets and heavy-flavour identification}
+% AK4 (|eta| < 5.1) and AK8. b tagging: ParticleNet in 2022-23, UParT in 2024
+% -> justify the switch (best available per period). AK8: ParticleNet X->bb.
+
+\section{Analysis flow}
+\label{sec:bbtt_flow}
+% Grouping borrowed from Jaime: the event is built up candidate by candidate,
+% and the categorisation follows from what was built.
+
+\subsection{The \texorpdfstring{$H\to\tau\tau$}{H->tautau} candidate}
+% Channel assignment priority: tau_mu tau_h > tau_e tau_h > tau_h tau_h > boosted.
+% -> code: pairType 0/1/2/6. Opposite charge; Delta R > 0.5 resolved / < 0.8 boosted;
+% third-lepton veto against DY.
+% Neutrinos escape -> m_tautau is biased. A neural network regresses the neutrino
+% momenta in all four channels. Contrast with the Run-2 SVfit/FastMTT approach and
+% show what is gained in resolution.
+
+\subsection{The \texorpdfstring{$H\to bb$}{H->bb} candidate}
+% Resolved: two AK4, pT > 20 GeV, |eta| < 2.5, Delta R(j,l) > 0.5, assigned by
+%   HH-BTag (retrained for Run 3, Sec. \ref{sec:HHBTag}).
+% Boosted: one AK8, pT > 250 GeV, m_SD > 30 GeV, highest ParticleNet X->bb score.
+% This is where the Chapter \ref{ch:taggers} work enters the analysis -- say so
+% explicitly, and point out that the categorisation downstream depends on it.
+
+\subsection{VBF jet selection}
+% Remaining AK4: pT > 20 GeV (|eta| < 3) or pT > 50 GeV (3 < |eta| < 4.7),
+% |Delta eta| > 3, m_jj driven by the trigger. Ranked by VBFjTag
+% (Sec. \ref{sec:VBFjTag}); two highest scores selected.
+
+\subsection{Event categorization}
+% (a) Elliptical mass selection in the (m_tautau, m_bb) plane, optimised per channel:
+%     ~99% signal efficiency, background efficiency 62 / 60 / 54% in
+%     tau_mu tau_h / tau_e tau_h / tau_h tau_h. Quote Eqs. 2-4 of the PAS.
+%     The complement of the ellipse is the ttbar-enriched CR reused in Sec. 6.6.
+% (b) Topological categories, in priority order: boosted -> VBF -> resolved 2b
+%     -> resolved 1b1j (b-tag WP at 10% mistag).
+%     -> code: Category("boosted"), ("vbf_resolved"/"vbf_loose"), ("res2b"), ("res1b")
+% (c) 4 topologies x 4 tau-tau final states, with the low-yield topologies (boosted,
+%     VBF) merged into a single X tau_h channel -> 10 SRs per data-taking period.
+% Categorisation-scheme figure (Jaime has a good one, Fig. 4.3) + summary table.
+
+\subsection{Derived observables}
+% m_bb, m_tautau, m_HH, pT_HH and M_chi = m_bbtautau - (m_bb - m_H) - (m_tautau - m_H).
+% -> code: add_features() l.2290
+
+\section{Background estimation}
+\label{sec:bbtt_backgrounds}
+
+\subsection{Overview}
+% Backgrounds with genuine tau_h from simulation; jet -> tau_h misidentification
+% from data. Dominant: ttbar, DY, QCD multijet. State the split up front.
+
+\subsection{Drell--Yan production}
+% CRs: mumu and ee, 70 < m_ll < 110 GeV, pTmiss < 45 GeV, SR-like jet requirements.
+% Data/MC ratio fitted vs pT(ll) -- Gaussian at low pT plus linear at high pT --
+% per jet multiplicity, applied using the generator-level Z pT. Additional
+% normalisation vs (n_jet, n_bjet). Derived in mumu, validated in ee.
+% -> code: Category("DY_CR_baseline"/"DY_CR_res1b"/"DY_CR_res2b"/"DY_CR_boosted"/"DY_CR_VBF")
+% Worth contrasting with the 18-region sideband fit used in Run 2.
+
+\subsection{Top quark pair production}
+% Shape from simulation, normalisation corrected: top pT reweighting from the
+% NNLO QCD + NLO EW / POWHEG+PYTHIA8 ratio.
+
+\subsection{Jet\texorpdfstring{$\to\tau_h$}{ -> tau h} misidentification: the Fake Factor method}
+\label{subsec:bbtt_ff}
+% CORE SECTION -- leading experimental systematic (25% of Delta mu).
+% - Motivation: jet->tau_h rate is 1e-2 to 1e-3, poorly modelled in MC, and with two
+%   b jets required the necessary MC statistics is prohibitive.
+% - Three enriched CRs: QCD multijet (same charge, ~99% purity), ttbar (opposite
+%   charge + inverted ellipse, ~95%), W+jets (same charge, pTmiss > 60 GeV,
+%   m_T > 30 GeV, loose b-jet veto, ~80%).
+% - Each split into ID / anti-ID by the Medium DeepTauVsJet WP; FF(pT, eta) is the
+%   ID/anti-ID yield ratio after subtracting genuine-tau contributions, derived
+%   per channel -> FF_MJ, FF_tt, FF_Wj.
+% - Template region: same SR selection but the least isolated tau_h fails Medium.
+%   Process fractions r_tt and r_Wj from simulation, QCD fraction from data.
+% - Combined:  FF = r_tt*FF_tt + r_Wj*FF_Wj + (1 - r_tt - r_Wj)*FF_MJ,
+%   applied as an event weight to the template region.
+% - Closure and validation region.
+% -> code: get_ff_regions() l.3319, scripts/compute_FakeFactors.py,
+%    compute_FFProcessRatios.py, compute_rFactors.py
+
+\subsection{From ABCD to Fake Factors: the Run-2 heritage}
+\label{subsec:bbtt_abcd}
+% (2) MY OWN RUN-2 CONTRIBUTION. Keep it compact but do not undersell it.
+% - The ABCD construction: region A = OS + isolated tau_h (signal region),
+%   B = SS + isolated, C = OS + non-isolated (fails Medium, passes VVVLoose),
+%   D = SS + non-isolated. QCD shape taken from C, normalisation from B/D.
+%   -> code: get_qcd_regions() l.3280 keeps exactly these region names
+%      (os_iso / os_inviso / ss_iso / ss_inviso)
+% - The stability studies I carried out: the normalisation was tested by
+%   redefining regions C and D with four alternative DeepTauVsJet working point
+%   pairs (VVVLoose-VVLoose, VVLoose-VLoose, VLoose-Loose, Loose-Medium) and
+%   checking the C/D ratio against a constant fit; the ABCD prediction was
+%   compared with data-minus-background in a sideband defined by inverting the
+%   elliptical mass cut; and the whole method was repeated in shifted regions
+%   A'B'C'D' built on very loose working points, QCD-enriched and signal-poor.
+%   Where the standard C/D disagreed with the constant fit, an extra normalisation
+%   uncertainty was assigned. The arbitrariness of taking the shape from C rather
+%   than from B was also covered by a dedicated uncertainty.
+% - Why it was replaced for Run 3: ABCD gives one shape and one normalisation for
+%   an inclusive "QCD" object, whereas the Fake Factor method resolves the fake
+%   composition process by process and parametrises the transfer in (pT, eta).
+%   Frame the transition as a refinement of the same idea (measure the fakes where
+%   they dominate, transfer to where they do not), not as a repudiation.
+% - DECISION PENDING: whether this stays a subsection here or is folded into
+%   Sec. 6.6.4 as a set of paragraphs. Judge once written.
+
+\section{Corrections to simulated events}
+\label{sec:bbtt_corrections}
+% Section of its own, separate from the systematics (as Jaime does): here what is
+% applied, in Sec. 6.10 what is assigned as an uncertainty on it.
+% Pileup reweighting; L1 prefiring; trigger SFs; lepton reconstruction, ID and
+% isolation SFs; tau_h ID and energy scale; b-tagging efficiency SFs; JES/JER.
+% -> code: Corrections/{TAU,JME,LUM,MUO,EGM,BTV}
+
+\section{Distributions after the baseline selection}
+\label{sec:bbtt_controlplots}
+% Also a section of its own. Pre-fit data/MC in the baseline and in the control
+% regions, per channel and per period; m_HH and pT_HH in resolved 2b are the
+% representative pair (Figs. 2-3 of the PAS) because they separate signal best.
+% State that residual discrepancies are covered by the systematics and absorbed
+% by the fit -- do not leave the reader to wonder.
+% -> code: scripts/make_CR_plots_*.sh, Category("FFvalidation_CR")
+
+\section{Signal extraction}
+\label{sec:bbtt_extraction}
+
+\subsection{The DNN discriminants}
+% Two classifiers: one targeting qqHH (used in the VBF category) and one targeting
+% ggHH (all other categories). Three blocks:
+%   Lorentz Boost Network -> tau-tau mass regression -> classifying DenseNet.
+% Inputs: low-level (pTmiss and its covariance, four-momenta of all candidates and
+% of the composite H and HH candidates) and high-level (tagging scores including
+% HH-BTag, rapidity gaps, Fox-Wolfram moments, M_chi).
+
+\subsection{Training and validation}
+% 5-fold cross-validation; several random initialisations per fold; the final score
+% is the average of the ensemble, which reduces dependence on initialisation.
+% Show ROC / output distributions and the separation achieved.
+
+\subsection{Adaptive rebinning}
+% Flat-signal-yield binning, constrained by: signal statistical uncertainty < 20%
+% (30% for the most sensitive bins), positive DY and ttbar yields, and >= 10 data
+% events per bin in the FF template dataset; target bin count reduced iteratively
+% until all constraints are met.
+% -> code: config/binning_config.py
+
+\section{Systematic uncertainties}
+\label{sec:bbtt_systematics}
+% -> code: add_systematics() l.1898, get_norm_systematics() l.3327
+
+\subsection{Experimental uncertainties}
+% Luminosity (1.4 / 1.3 / 1.7% in 2022/23/24, partially correlated); pileup (4.6%);
+% trigger; lepton ID and isolation; tau_h ID and energy scale (four uncorrelated
+% decay modes); b tagging (heavy/light contamination plus statistical components);
+% JES/JER; electron energy scale and resolution.
+
+\subsection{Theoretical uncertainties}
+% ggHH: combined scale + top-mass scheme +6/-23%, PDF 1.5%, alpha_s 1.7%.
+% qqHH: scale +0.05/-0.03%, PDF+alpha_s 2.7%.
+% B(H->bb) +1.2/-1.3%, B(H->tautau) +1.7/-1.6%. bbH normalisation 100%.
+% Background cross sections 0.5-6%.
+
+\subsection{Uncertainties on the data-driven estimate}
+% FFs re-evaluated under tau_h, electron and jet energy scale variations -- found
+% subdominant except for ttbar. Simplified envelopes: 20% at 20 GeV rising to 100%
+% at 200 GeV for ttbar, 1% to 5% over the same range for W+jets and QCD multijet.
+% Garwood 95% CL intervals for the template-region statistics, propagated to the SR
+% with an average FF per DNN bin.
+
+\subsection{Statistical uncertainties of the simulated samples}
+% Barlow--Beeston bin-by-bin treatment.
+
+\subsection{Impact on the measurement}
+% Table 2 of the PAS: fake factors 25%, b tagging 10%, leptons and triggers 9%,
+% JEC 7%, other experimental 3%; statistical 74% overall with 35% from bin-by-bin;
+% theory 31% (HH), 27% (single-H), 14% (background).
+% The headline conclusion: the measurement is still statistically dominated.
+
+\section{Statistical procedure}
+\label{sec:bbtt_statistics}
+% Placed before the results, as in Jaime's thesis, so the results section can be
+% read without interruption.
+
+\subsection{The likelihood model}
+% Binned maximum-likelihood fit over the 10 SRs x 5 data-taking periods,
+% performed simultaneously. COMBINE / RooFit / RooStats.
+% -> code: LimitsArea/, scripts/NBAtoInferenceDatacardsParser.py
+
+\subsection{Observed and expected limits}
+% Profile likelihood ratio test statistic; asymptotic modified frequentist CLs.
+% Parameters of interest: mu, sigma(HH), or the coupling modifiers.
+
+\subsection{Nuisance parameters}
+% Normalisation vs shape uncertainties; correlation scheme across periods
+% and across processes.
+
+\section{Results}
+\label{sec:bbtt_results}
+
+\subsection{Post-fit distributions}
+% DNN scores in the 10 SRs after the fit; show 2024 as the representative period
+% (largest L_int), noting the others behave similarly.
+
+\subsection{Signal strength and significance}
+% mu = 2.6 +2.1 -1.7 ; observed (expected) significance 1.5 (0.7) sigma.
+% No significant excess over the background-only hypothesis.
+
+\subsection{Upper limits on the HH production cross section}
+% Per category and combined:
+%   inclusive ggHH+qqHH : 6.6 (3.9) x SM   -- resolved 2b drives it
+%   qqHH only           : 81 (85)  x SM    -- VBF category drives it
+% Per-year breakdown (Table 3): 2022 -> 17 (11), 2023 -> 8 (11), 2024 -> 8.3 (4.4).
+% Explain why 2024 dominates: luminosity, new triggers, UParT.
+
+\subsection{Constraints on the Higgs boson couplings}
+%   -4.1 < kappa_lambda < 11.2  (expected -2.2 < kappa_lambda < 9.2)
+%   -0.2 < kappa_2V < 2.3       (expected -0.2 < kappa_2V < 2.4)
+
+\section{Combination with the Run-2 data set}
+\label{sec:bbtt_combination}
+% (3) RUN 2 ENTERS HERE, at datacard level.
+
+\subsection{Combination procedure}
+% Combined with the published Run-2 search in the same final state
+% \cite{CMS-HIG-20-010}: 138/fb at 13 TeV -> 310/fb in total.
+% - Some Run-2 theory uncertainties were updated after publication (an extra
+%   uncertainty on heavy-flavour associated single-H production), so the standalone
+%   Run-2 result differs slightly from the published one -- say this explicitly.
+% - Correlation scheme: theory uncertainties (branching ratios, PDF, alpha_s,
+%   scales, and notably the joint QCD+m_top uncertainty in ggHH) correlated across
+%   Runs; all experimental uncertainties uncorrelated, because detector conditions
+%   and calibrations differ.
+% - The likelihood is the union of all binned shapes from both analyses; the
+%   coupling parametrisation follows the same matrix-inversion method in both.
+
+\subsection{Combined results}
+% mu = 0.9 +1.6 -1.4 ; observed (expected) significance 0.7 (0.8) sigma.
+%   inclusive : 4.0 (3.0) x SM   [Run 2 alone 3.5 (5.3) ; Run 3 alone 6.6 (3.9)]
+%   qqHH only : 62 (70)  x SM
+%   -2.5 < kappa_lambda < 9.4  (expected -1.5 < kappa_lambda < 8.4)
+%   0.02 < kappa_2V < 2.1      (expected -0.1 < kappa_2V < 2.2)
+% 2D exclusion in the kappa_2V - kappa_lambda plane, best fit at (7.1, 0.6).
+% Worth a comment: Run 3 observed is weaker than expected while Run 2 is stronger
+% than expected -- explain how the two combine rather than leaving it unremarked.
+
+\section{Comparison with other HH searches}
+\label{sec:bbtt_comparison}
+% Borrowed from Jaime (his Sec. 5.5), and it earns its place.
+% CMS Run-2 combination 3.4 (2.5); ATLAS 2.9 (2.4); ATLAS+CMS 2.5 (1.7 / 2.8);
+% ATLAS bbtautau with 196/fb -> 5.3 (2.4 / 2.8). Where bbtautau sits among
+% bbgammagamma, bbbb and bbWW.
+
+\section{Summary and outlook}
+\label{sec:bbtt_summary}
+% Each of the reference theses closes its analysis chapter with a summary.
+% - What was measured and with what sensitivity.
+% - What limits it now: statistically dominated (74%), fake factors the leading
+%   experimental systematic (25%).
+% - The impact of the Chapter \ref{ch:taggers} algorithms on this result -- this is
+%   where the thesis closes its own loop.
+% - Outlook: remaining Run-3 luminosity, then HL-LHC.
