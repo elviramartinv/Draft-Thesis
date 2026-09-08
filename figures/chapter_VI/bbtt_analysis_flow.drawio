@@ -1,0 +1,259 @@
+<mxfile host="65bd71144e">
+    <diagram name="bbtt analysis flow" id="bbtt-flow">
+        <mxGraphModel dx="1325" dy="688" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="820" pageHeight="700" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="t1" value="SAMPLES" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#8FA6C9;strokeColor=none;fontColor=#FFFFFF;fontSize=8;fontStyle=1;horizontal=0;spacing=0;" vertex="1" parent="1">
+                    <mxGeometry width="34" height="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1" value="6.2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#8FA6C9;" vertex="1" parent="1">
+                    <mxGeometry x="754" y="2" width="50" height="16" as="geometry"/>
+                </mxCell>
+                <mxCell id="l1a" value="data" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontStyle=2;fontColor=#7A8291;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="4" width="60" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b1data" value="CMS Run 3 — 172 fb⁻¹ · 2022 + 2023 + 2024 · √s = 13.6 TeV" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDF1F8;strokeColor=#8FA6C9;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="4" width="634" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="l1b" value="signal" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontStyle=2;fontColor=#7A8291;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="30" width="60" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b1sig1" value="ggHH" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDF1F8;strokeColor=#8FA6C9;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="30" width="311" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b1sig2" value="qqHH" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDF1F8;strokeColor=#8FA6C9;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="433" y="30" width="311" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="l1c" value="backgrounds" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=9;fontStyle=2;fontColor=#7A8291;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="56" width="60" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b1g1" value="DY" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDF1F8;strokeColor=#8FA6C9;dashed=1;dashPattern=1 2;fontSize=10;fontStyle=1;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="56" width="120" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b1g2" value="tt̄" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDF1F8;strokeColor=#8FA6C9;dashed=1;dashPattern=1 2;fontSize=10;fontStyle=1;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="238" y="56" width="120" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b1g3" value="W+jets" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F8FAFD;strokeColor=#BFCCE0;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#7A8291;" vertex="1" parent="1">
+                    <mxGeometry x="366" y="56" width="88" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b1g4" value="single t" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F8FAFD;strokeColor=#BFCCE0;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#7A8291;" vertex="1" parent="1">
+                    <mxGeometry x="462" y="56" width="88" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b1g5" value="single H" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F8FAFD;strokeColor=#BFCCE0;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#7A8291;" vertex="1" parent="1">
+                    <mxGeometry x="558" y="56" width="88" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b1g6" value="VV, VVV, tt̄V" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F8FAFD;strokeColor=#BFCCE0;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#7A8291;" vertex="1" parent="1">
+                    <mxGeometry x="654" y="56" width="90" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="sep1" value="" style="line;strokeWidth=1;html=1;strokeColor=#D8DCE4;dashed=1;dashPattern=2 3;" vertex="1" parent="1">
+                    <mxGeometry y="78" width="810" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="t2" value="TRIGGERS" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#A695C6;strokeColor=none;fontColor=#FFFFFF;fontSize=8;fontStyle=1;horizontal=0;spacing=0;" vertex="1" parent="1">
+                    <mxGeometry y="94" width="34" height="106" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2" value="6.3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#A695C6;" vertex="1" parent="1">
+                    <mxGeometry x="754" y="94" width="50" height="16" as="geometry"/>
+                </mxCell>
+                <mxCell id="h2a" value="single lepton" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#8A76B0;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="94" width="167" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="h2b" value="lepton + τ&lt;sub&gt;&lt;font color=&quot;#8A76B0&quot;&gt;h&lt;/font&gt;&lt;/sub&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#8A76B0;" vertex="1" parent="1">
+                    <mxGeometry x="221" y="94" width="167" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="h2c" value="τ&lt;sub&gt;&lt;font color=&quot;#8A76B0&quot;&gt;h&lt;/font&gt;&lt;/sub&gt; and jet based" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#8A76B0;" vertex="1" parent="1">
+                    <mxGeometry x="398" y="94" width="167" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="h2d" value="boosted topologies" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#8A76B0;" vertex="1" parent="1">
+                    <mxGeometry x="575" y="94" width="169" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2a1" value="single-μ" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F0EDF7;strokeColor=#A695C6;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="110" width="167" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2a2" value="single-e" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F0EDF7;strokeColor=#A695C6;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="136" width="167" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2b1" value="cross-μτ" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F0EDF7;strokeColor=#A695C6;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="221" y="110" width="167" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2b2" value="cross-eτ" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F0EDF7;strokeColor=#A695C6;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="221" y="136" width="167" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2c1" value="DiTau" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F0EDF7;strokeColor=#A695C6;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="398" y="110" width="167" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2c2" value="DiTauJet" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F0EDF7;strokeColor=#A695C6;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="398" y="136" width="167" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2c3" value="QuadJet + b" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F0EDF7;strokeColor=#A695C6;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="398" y="162" width="167" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2d1" value="MET" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F0EDF7;strokeColor=#A695C6;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="575" y="110" width="169" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2d2" value="AK8 + ParticleNet" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F0EDF7;strokeColor=#A695C6;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="575" y="136" width="169" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2park" value="VBF and HH parking streams — written to tape and reconstructed later" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F8F6FC;strokeColor=#C7BBDE;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#7A8291;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="187" width="700" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="sep2" value="" style="line;strokeWidth=1;html=1;strokeColor=#D8DCE4;dashed=1;dashPattern=2 3;" vertex="1" parent="1">
+                    <mxGeometry y="206" width="810" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="t3" value="OBJECTS" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#C193AC;strokeColor=none;fontColor=#FFFFFF;fontSize=8;fontStyle=1;horizontal=0;spacing=0;" vertex="1" parent="1">
+                    <mxGeometry y="221" width="34" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="s3" value="6.4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#C193AC;" vertex="1" parent="1">
+                    <mxGeometry x="754" y="216" width="50" height="16" as="geometry"/>
+                </mxCell>
+                <mxCell id="h3a" value="Leptons" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#A9738F;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="221" width="200" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="h3b" value="Jets" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#A9738F;" vertex="1" parent="1">
+                    <mxGeometry x="378" y="221" width="200" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="b3a" value="identification, isolation and kinematic selections&lt;br&gt;DeepTau and BoostedDeepTau for τ&lt;sub&gt;&lt;font color=&quot;#242833&quot;&gt;h&lt;/font&gt;&lt;/sub&gt;&lt;br&gt;opposite charge · additional lepton veto" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F7EEF3;strokeColor=#C193AC;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#242833;align=left;spacingLeft=8;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="44" y="237" width="322" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="b3b" value="AK4 and AK8 · kinematics · separation from the leptons&lt;br&gt;b tagging: ParticleNet (2022–23), UParT (2024)&lt;br&gt;AK8 identified as H → bb with ParticleNet" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F7EEF3;strokeColor=#C193AC;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#242833;align=left;spacingLeft=8;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="378" y="237" width="366" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="sep3" value="" style="line;strokeWidth=1;html=1;strokeColor=#D8DCE4;dashed=1;dashPattern=2 3;" vertex="1" parent="1">
+                    <mxGeometry y="281" width="810" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="t4" value="EVENT SELECTION" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#C4A17E;strokeColor=none;fontColor=#FFFFFF;fontSize=8;fontStyle=1;horizontal=0;spacing=0;" vertex="1" parent="1">
+                    <mxGeometry y="297" width="34" height="114" as="geometry"/>
+                </mxCell>
+                <mxCell id="s4" value="6.5" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#C4A17E;" vertex="1" parent="1">
+                    <mxGeometry x="754" y="292" width="50" height="16" as="geometry"/>
+                </mxCell>
+                <mxCell id="h4a" value="H → ττ candidate" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#A8825C;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="297" width="200" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="h4b" value="H → bb candidate" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#A8825C;" vertex="1" parent="1">
+                    <mxGeometry x="378" y="297" width="200" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="h4c" value="VBF jets" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#A8825C;" vertex="1" parent="1">
+                    <mxGeometry x="614" y="297" width="130" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4tt" value="four ττ final states&lt;br&gt;&lt;font style=&quot;font-size: 9px;&quot; color=&quot;#7A8291&quot;&gt;τ&lt;sub&gt;μ&lt;/sub&gt;τ&lt;sub&gt;h&lt;/sub&gt; · τ&lt;sub&gt;e&lt;/sub&gt;τ&lt;sub&gt;h&lt;/sub&gt; · τ&lt;sub&gt;h&lt;/sub&gt;τ&lt;sub&gt;h&lt;/sub&gt; · boosted τ&lt;sub&gt;h&lt;/sub&gt;τ&lt;sub&gt;h&lt;/sub&gt;&lt;br&gt;neutrino momenta from a regression network&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F7F1E9;strokeColor=#C4A17E;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="313" width="322" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4bb" value="" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F7F1E9;strokeColor=#C4A17E;dashed=1;dashPattern=1 2;" vertex="1" parent="1">
+                    <mxGeometry x="378" y="313" width="224" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4bbdiv" value="" style="line;strokeWidth=1;html=1;strokeColor=#C4A17E;dashed=1;dashPattern=2 2;direction=north;" vertex="1" parent="1">
+                    <mxGeometry x="485" y="313" width="10" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4bb1" value="resolved · 2 × AK4&lt;br&gt;&lt;b&gt;&lt;font color=&quot;#A8825C&quot;&gt;HH-BTag&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=9;fontColor=#242833;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="313" width="108" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4bb2" value="boosted · AK8&lt;br&gt;&lt;font style=&quot;font-size: 8px;&quot; color=&quot;#7A8291&quot;&gt;ParticleNet X → bb&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=9;fontColor=#242833;" parent="1" vertex="1">
+                    <mxGeometry x="492" y="313" width="108" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4vbf" value="two highest scores&lt;br&gt;&lt;b&gt;&lt;font color=&quot;#A8825C&quot;&gt;VBFjTag&lt;/font&gt;&lt;/b&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F7F1E9;strokeColor=#C4A17E;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#242833;" parent="1" vertex="1">
+                    <mxGeometry x="614" y="313" width="130" height="42" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4mass" value="elliptical selection on the (m&lt;sub&gt;&lt;font color=&quot;#242833&quot;&gt;ττ&lt;/font&gt;&lt;/sub&gt;, m&lt;sub&gt;&lt;font color=&quot;#242833&quot;&gt;bb&lt;/font&gt;&lt;/sub&gt;) mass plane, optimized per channel" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F7F1E9;strokeColor=#C4A17E;dashed=1;dashPattern=1 2;fontSize=10;fontColor=#242833;" parent="1" vertex="1">
+                    <mxGeometry x="44" y="361" width="700" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4c1" value="boosted" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F7F1E9;strokeColor=#C4A17E;fontSize=10;fontStyle=1;fontColor=#242833;" parent="1" vertex="1">
+                    <mxGeometry x="44" y="389" width="169" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4c2" value="VBF" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F7F1E9;strokeColor=#C4A17E;fontSize=10;fontStyle=1;fontColor=#242833;" parent="1" vertex="1">
+                    <mxGeometry x="221" y="389" width="169" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4c3" value="resolved 2b" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F7F1E9;strokeColor=#C4A17E;fontSize=10;fontStyle=1;fontColor=#242833;" parent="1" vertex="1">
+                    <mxGeometry x="398" y="389" width="169" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4c4" value="resolved 1b1j" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F7F1E9;strokeColor=#C4A17E;fontSize=10;fontStyle=1;fontColor=#242833;" parent="1" vertex="1">
+                    <mxGeometry x="575" y="389" width="169" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4ar1" style="endArrow=classic;html=1;rounded=0;strokeColor=#C4A17E;strokeWidth=1.1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="b4c1" target="b4c2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4ar2" style="endArrow=classic;html=1;rounded=0;strokeColor=#C4A17E;strokeWidth=1.1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="b4c2" target="b4c3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="b4ar3" style="endArrow=classic;html=1;rounded=0;strokeColor=#C4A17E;strokeWidth=1.1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="b4c3" target="b4c4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="sep4" value="" style="line;strokeWidth=1;html=1;strokeColor=#D8DCE4;dashed=1;dashPattern=2 3;" vertex="1" parent="1">
+                    <mxGeometry y="411" width="810" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="t5" value="BACKGROUND" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#A3B589;strokeColor=none;fontColor=#FFFFFF;fontSize=8;fontStyle=1;horizontal=0;spacing=0;" vertex="1" parent="1">
+                    <mxGeometry y="427" width="34" height="64" as="geometry"/>
+                </mxCell>
+                <mxCell id="s5" value="6.6" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#A3B589;" vertex="1" parent="1">
+                    <mxGeometry x="754" y="422" width="50" height="16" as="geometry"/>
+                </mxCell>
+                <mxCell id="h5a" value="genuine τ&lt;sub&gt;&lt;font color=&quot;#87996D&quot;&gt;h&lt;/font&gt;&lt;/sub&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#87996D;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="427" width="200" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="h5b" value="jet → τ&lt;sub&gt;&lt;font color=&quot;#87996D&quot;&gt;h&lt;/font&gt;&lt;/sub&gt; misidentification" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#87996D;" vertex="1" parent="1">
+                    <mxGeometry x="400" y="427" width="220" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="b5a" value="DY and tt̄ from simulation, corrected in dedicated control regions" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F1F5EA;strokeColor=#A3B589;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#242833;" parent="1" vertex="1">
+                    <mxGeometry x="44" y="443" width="344" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="b5b" value="fake factor method, measured from data in QCD, tt̄ and W+jets enriched regions" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F1F5EA;strokeColor=#A3B589;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#242833;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="443" width="344" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="sep5" value="" style="line;strokeWidth=1;html=1;strokeColor=#D8DCE4;dashed=1;dashPattern=2 3;" vertex="1" parent="1">
+                    <mxGeometry y="491" width="810" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="t6" value="DISCRIMINANT" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#7FB0A6;strokeColor=none;fontColor=#FFFFFF;fontSize=8;fontStyle=1;horizontal=0;spacing=0;" vertex="1" parent="1">
+                    <mxGeometry y="507" width="34" height="68" as="geometry"/>
+                </mxCell>
+                <mxCell id="s6" value="6.9" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#7FB0A6;" vertex="1" parent="1">
+                    <mxGeometry x="754" y="502" width="50" height="16" as="geometry"/>
+                </mxCell>
+                <mxCell id="b6a" value="two deep neural networks, targeting ggHH and qqHH&lt;br&gt;Lorentz Boost Network · ττ mass regression · DenseNet&lt;br&gt;&lt;font style=&quot;font-size: 8px;&quot; color=&quot;#7A8291&quot;&gt;5-fold cross-validation and ensembling · adaptive rebinning of the score&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#EBF4F1;strokeColor=#7FB0A6;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#242833;" parent="1" vertex="1">
+                    <mxGeometry x="44" y="510" width="700" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="sep6" value="" style="line;strokeWidth=1;html=1;strokeColor=#D8DCE4;dashed=1;dashPattern=2 3;" vertex="1" parent="1">
+                    <mxGeometry y="575" width="810" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="t7" value="STATISTICS" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#6B84AD;strokeColor=none;fontColor=#FFFFFF;fontSize=8;fontStyle=1;horizontal=0;spacing=0;" vertex="1" parent="1">
+                    <mxGeometry y="591" width="34" height="76" as="geometry"/>
+                </mxCell>
+                <mxCell id="s7" value="6.10–6.13" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#6B84AD;" vertex="1" parent="1">
+                    <mxGeometry x="754" y="586" width="60" height="16" as="geometry"/>
+                </mxCell>
+                <mxCell id="b7in1" value="theoretical signal model" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E9EEF6;strokeColor=#6B84AD;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="591" width="155" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="b7in2" value="background modeling" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E9EEF6;strokeColor=#6B84AD;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="44" y="635" width="155" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="b7join" value="" style="ellipse;html=1;fillColor=#6B84AD;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="216" y="627" width="4" height="4" as="geometry"/>
+                </mxCell>
+                <mxCell id="b7sys" value="normalization and shape&lt;br&gt;systematic uncertainties" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E9EEF6;strokeColor=#6B84AD;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="232" y="613" width="155" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="b7fit" value="binned maximum-likelihood fit&lt;br&gt;&lt;font style=&quot;font-size: 8px;&quot; color=&quot;#7A8291&quot;&gt;10 signal regions × 5 periods&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E9EEF6;strokeColor=#6B84AD;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="399" y="613" width="155" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="b7res" value="limits on σ(HH) · κ&lt;sub&gt;&lt;font color=&quot;#242833&quot;&gt;λ&lt;/font&gt;&lt;/sub&gt; and κ&lt;sub&gt;&lt;font color=&quot;#242833&quot;&gt;2V&lt;/font&gt;&lt;/sub&gt;&lt;br&gt;&lt;font style=&quot;font-size: 8px;&quot; color=&quot;#7A8291&quot;&gt;combined with Run 2 at datacard level&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#E9EEF6;strokeColor=#6B84AD;dashed=1;dashPattern=1 2;fontSize=9;fontColor=#242833;" vertex="1" parent="1">
+                    <mxGeometry x="566" y="613" width="178" height="32" as="geometry"/>
+                </mxCell>
+                <mxCell id="b7e1" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;html=1;rounded=0;strokeColor=#6B84AD;strokeWidth=1.1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="b7in1" target="b7join">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="b7e2" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;html=1;rounded=0;strokeColor=#6B84AD;strokeWidth=1.1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="b7in2" target="b7join">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="b7e3" style="endArrow=classic;html=1;rounded=0;strokeColor=#6B84AD;strokeWidth=1.1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="b7join" target="b7sys">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="b7e4" style="endArrow=classic;html=1;rounded=0;strokeColor=#6B84AD;strokeWidth=1.1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="b7sys" target="b7fit">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="b7e5" style="endArrow=classic;html=1;rounded=0;strokeColor=#6B84AD;strokeWidth=1.1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="b7fit" target="b7res">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
