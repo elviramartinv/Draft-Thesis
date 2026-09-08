@@ -18,6 +18,31 @@
 \usepackage{slashed}
 \usepackage{amssymb}
 \usepackage{tikz}
+
+\usetikzlibrary{positioning}
+
+% ---- Figura 6.1 : paleta por fase del diagrama de flujo -------------------
+\definecolor{phSam}{HTML}{9575CD}  \definecolor{phSamBg}{HTML}{EFE7F8}
+\definecolor{phTrg}{HTML}{E2879F}  \definecolor{phTrgBg}{HTML}{FBE9EE}
+\definecolor{phObj}{HTML}{E0A03C}  \definecolor{phObjBg}{HTML}{FBEFDB}
+\definecolor{phSel}{HTML}{7CAE7A}  \definecolor{phSelBg}{HTML}{E8F2E6}
+\definecolor{phBkg}{HTML}{5FA79E}  \definecolor{phBkgBg}{HTML}{E2EFEE}
+\definecolor{phDis}{HTML}{46B6C8}  \definecolor{phDisBg}{HTML}{E0F2F6}
+\definecolor{phSta}{HTML}{7986CB}  \definecolor{phStaBg}{HTML}{E9EBF7}
+
+\tikzset{
+  band/.style   = {draw=none, rounded corners=1pt},
+  tablab/.style = {white, font=\tiny\bfseries, rotate=90, anchor=center,
+                   inner sep=0pt},
+  bx/.style     = {fill=white, rounded corners=1pt, anchor=north west,
+                   inner sep=1pt, densely dotted, line width=0.45pt,
+                   align=center, font=\scriptsize},
+  bxs/.style    = {fill=white, rounded corners=1pt, anchor=north west,
+                   inner sep=1pt, solid, line width=0.9pt,
+                   align=center, font=\scriptsize},
+  grp/.style    = {anchor=west, font=\scriptsize\bfseries, inner sep=0pt},
+}
+
 \usetikzlibrary{positioning,arrows.meta}
 
 
@@ -58,6 +83,13 @@
 \providecommand{\mHH}{\ensuremath{m_{HH}}}
 \providecommand{\kl}{\ensuremath{\kappa_{\lambda}}}
 \providecommand{\kt}{\ensuremath{\kappa_{t}}}
+% MC Generators
+\providecommand{\POWHEG}{\textsc{Powheg}\xspace}
+\providecommand{\MGaMC}{\textsc{MadGraph5\_aMC@NLO}\xspace}
+\providecommand{\PYTHIA}{\textsc{Pythia}\xspace}
+\providecommand{\GEANT}{\textsc{Geant4}\xspace}
+\providecommand{\HERWIG}{\textsc{Herwig}\xspace}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Page layout
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

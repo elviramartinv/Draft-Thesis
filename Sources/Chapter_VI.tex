@@ -1,80 +1,260 @@
 \part{The bb\texorpdfstring{$\tau\tau$}{ττ} analysis}
 \chapter{Search for nonresonant HH production in the bb\texorpdfstring{$\tau\tau$}{ττ} final state}
 \label{ch:bbtt_analysis}
+% Entradilla
+Among the channels available for the production of Higgs boson pairs at the LHC, the final state in which one of the Higgs bosons decays into a pair of $b$-quarks and the other into a pair of $\tau$ leptons holds a privileged position, since it offers a favorable trade-off between the expected number of signal events and the accompanying background. Consequently, it is one of the channels most systematically explored in the successive searches conducted by CMS.
 
-% =====================================================================
-% OUTLINE -- Chapter VI. Setup AND results in a single chapter.
-%
-% Structure inspired by two reference theses in the same final state:
-%   - Jaime (Run 2, 2023): splits setup (ch.4) and results (ch.5). Useful ideas
-%     taken from it: the "Analysis flow" grouping (pair -> bb -> VBF -> categories),
-%     a section of its own for corrections to simulated events, a section of its own
-%     for control plots after the baseline selection, the statistical procedure
-%     described before the results, a comparison with other HH channels, and a
-%     closing Summary.
-%   - Simona (Run 3, 2026): keeps results inside the analysis chapter
-%     (datasets+triggers / objects / selection+categorisation / background /
-%      discriminant / systematics / results). Confirms the merged layout.
-%
-% Reference material:
-%   - CMS PAS HIG-25-008          (~/papers/bbtautau/HIG-25-008-pas.pdf)
-%   - AN-25-103 v10               (~/papers/bbtautau/AN_25_103_v10_*.pdf)
-%   - Run-2 legacy: PLB 842 (2023) 137531  -> bib key CMS-HIG-20-010
-%   - Code: ~/CCLUbbtautauAnalysis/config/run3_base_config.py
-%           add_channels() l.32 / add_regions() l.106 / add_categories() l.967
-%           add_processes() l.1301 / add_systematics() l.1898 / add_features() l.2290
-%           get_qcd_regions() l.3280 (ABCD) / get_ff_regions() l.3319 (FF)
-%
-% Run 2 appears in exactly three places:
-%   (1) Sec. 6.1   -- the strategy is inherited from the published Run-2 analysis
-%   (2) Sec. 6.6.5 -- ABCD (my Run-2 work) as the predecessor of the Fake Factors
-%   (3) Sec. 6.13  -- final results combined with Run 2 at datacard level
-%
-% NOTE: a bib entry for CMS-PAS-HIG-25-008 is still missing (see Thesis.bib).
-% =====================================================================
+The analysis presented in this chapter describes the strategy followed in the search for non-resonant production of Higgs boson pairs in this final state, considering the two relevant production mechanisms: gluon-gluon fusion, sensitive to the trilinear self-coupling $\lambda_{HHH}$ via interference between triangle and box diagrams, and vector boson fusion, which provides complementary sensitivity to the coupling of two Higgs bosons to two vector bosons. The analysis is performed using proton-proton collision data collected by CMS during the first years of LHC Run 3 — 2022, 2023, and 2024 — corresponding to an integrated luminosity of $172$ fb$^-1$. The search presented here builds on the work carried out on the complete Run 2 dataset \cite{}, but introduces significant developments that take advantage of the Run 3 improvements at various levels. 
 
-\section{Analysis strategy}
-\label{sec:bbtt_strategy}
-% - Why bbtautau: B(HH->bbtautau) = 7.3%, large yield combined with efficient tau
-%   and b identification -> historically one of the most sensitive channels.
-% - What is measured: ggHH (triangle/box interference -> kappa_lambda) and
-%   qqHH (-> kappa_2V), both as cross-section limits and as coupling constraints.
-% - (1) INHERITANCE FROM RUN 2. The strategy follows the published Run-2 search
-%   \cite{CMS-HIG-20-010}. Say explicitly what is carried over -- channel
-%   definition, elliptical mass selection, topological categorisation, DNN-based
-%   signal extraction -- so that the reader can read the rest of the chapter as a
-%   set of deltas rather than as a construction from zero.
-% - What is new in Run 3: extended phase space (boosted bb and boosted tautau),
-%   new trigger paths, retrained HH-BTag and the new VBFjTag (Ch. \ref{ch:taggers}),
-%   UParT b tagging in 2024, Fake Factors replacing ABCD, per-period fit.
-% - Close with an analysis-flow figure and a roadmap paragraph.
+The structure is therefore the same as that of the strategy followed in Run 2. The definition of the channels based on the decay mode of the $\tau\tau$ pair, the reconstruction of the two Higgs boson candidates, and the general signal extraction scheme are retained. As a result, this is not a completely new strategy, but rather a comprehensive revision of the established one, to which substantial modifications are introduced in virtually every step. First, the phase space covered is expanded to incorporate boosted configurations, both in the $bb$ pair and in the $\tau\tau$ pair. The trigger strategy is extended with the introduction of new triggers, including parking strategies that allow events below conventional thresholds to be recorded. The assignment of jets to the reconstructed candidates relies on the two algorithms developed in the previous chapter: \textsc{HH-BTag}, retrained for Run 3 conditions, and \textsc{VBFjTag}, introduced here for the first time in an analysis of this final state. Furthermore, new methods are developed for estimating fake $\tau$-leptons from multi-jet events, as well as a new DNN for signal extraction in different regions.
+
+The complete analysis workflow, from the datasets used to the extraction of results, is summarized schematically in Figure \ref{fig:bbtt_flow}. Following the analysis workflow, the data collected by CMS and the Monte Carlo simulated events undergo the same trigger selection, designed to isolate the objects of interest. Identification criteria and kinematic requirements that define the physical objects in the final state are then applied to the events that pass this selection. From these events, the Higgs boson candidate that decays into the $\tau\tau$ pair, the one that decays into the $b\bar{b}$ pair, and — when present — the jets characteristic of vector boson fusion topology are successively reconstructed. A selection based on the reconstructed invariant masses removes the region lacking signal contribution, and the surviving events are divided into mutually exclusive categories. In each category, the discrimination between signal and background is entrusted to a deep neural network whose output distribution constitutes the observable on which the statistical fitting is performed, from which the results are extracted.
+
+The chapter is organized along the same lines.
+El capítulo se organiza siguiendo ese mismo recorrido.
+
+
+
+\begin{figure}[tp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/chapter_VI/bbtt_analysis_flow.pdf}
+  \caption[Schematic of the bb$\tau\tau$ analysis chain]{%
+    Schematic representation of the analysis chain, one band per stage, with the
+    section developing each stage indicated on the right. \textcolor{red}{REVISAR CONTENIDO; HACER MÁS GRANDE, triggers: quad jet btau; revisar los 5.2...}}
+  \label{fig:bbtt_flow}
+\end{figure}
+
+
+
 
 \section{Data and simulated samples}
 \label{sec:bbtt_samples}
+The analysis is based on a comparison between the data recorded by CMS and the Standard Model prediction for the processes that contribute to this final state. The prediction is derived from simulated MC samples, produced using state-of-the-art generators, which are used to model both the signal and the backgrounds. The only exception is the contribution from events in which a quark or gluon jet is misidentified as a hadronic $\tau$ lepton: generating enough such events is computationally prohibitive, and the misidentification rate is in any case not modeled with the required precision, being highly sensitive to detector effects. This contribution is therefore estimated directly from the data.
 
 \subsection{Data sets and data-taking periods}
-% 2022: 34.7/fb (preEE + postEE) | 2023: 27.7/fb (preBPix + postBPix) | 2024: 110/fb
-% -> 172/fb at 13.6 TeV. Table with period, L_int and the detector condition that
-% motivates each split (ECAL endcap water leak in 2022, BPix failure in 2023,
-% UParT and trigger changes in 2024). Primary datasets per channel
-% (Muon, EGamma, Tau, ParkingHH, ParkingVBF, Jet).
-% -> code: skip_processes in add_channels(), config/run3_dataset_*.py
+%
+The analyzed data correspond to proton-proton collisions at $\sqrt{s} = 13.6$ TeV recorded by CMS with a beam-crossing interval of 25 ns during the years 2022, 2023, and 2024. Only events occurring during data-taking periods in which all subdetectors were operational and functioning correctly, as determined by the centralized certification procedure of the collaboration, are considered. The resulting available integrated luminosity amounts to $34.7$, $27.7$, and $110$ fb$^{-1}$ for 2022, 2023, and 2024, respectively, for a total of $172$ fb$^{-1}$.
 
-\subsection{Signal modelling}
+The recorded events are distributed across primary datasets, which are defined by the trigger paths that lead to their storage, and are in turn subdivided into eras — identified by a letter — that delimit intervals with homogeneous data-acquisition conditions. This analysis uses the \texttt{Muon} and \texttt{EGamma} datasets, which contain events selected by the isolated lepton and lepton plus $\tau_h$ triggers; \texttt{Tau}, associated with the double $\tau_h$ triggers; \texttt{JetMET}, which provides access to events selected by triggers based on jets and missing transverse energy; and the \texttt{ParkingHH} and \texttt{ParkingVBF} parking sets, introduced during Run 3 and described in Section \ref{sec:triggers}.
+
+During the 2022 and 2023 eras, incidents occurred in the detector that led to separate simulation campaigns. Consequently, the data-acquisition periods are named after the affected subsystem. In 2022, the incident affected one end of the electromagnetic calorimeter, resulting in the periods 2022preEE and 2022postEE; in 2023, a region of the barrel pixel detector was compromised, separating the periods 2023preBPix and 2023postBPix. In 2024, no equivalent incident occurred, so the data from that year are treated as a single period. Table \ref{tab:datataking_periods} lists the five resulting periods along with their integrated luminosity and the incident that caused each division. Furthermore, the 2022 and 2023 data were subsequently reprocessed to incorporate the corrections and algorithms available from the latest simulation campaigns, ensuring that all five periods are analyzed using a homogeneous reconstruction chain. The analysis is performed independently for each of these five periods, and the results are combined during the final stage of statistical fitting.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcl}
+\toprule
+Period & Eras & $\mathcal{L}_{\mathrm{int}}$ [fb$^{-1}$] & Detector condition motivating the split \\
+\midrule
+2022preEE    & C--D & 8.0   & \multirow{2}{5.2cm}{Loss of a region of the electromagnetic calorimeter endcap (EE)} \\
+2022postEE   & E--G & 26.7  & \\
+\addlinespace
+2023preBPix  & C    & 18.0  & \multirow{2}{5.2cm}{Loss of a region of the barrel pixel tracker (BPix)} \\
+2023postBPix & D    & 9.7   & \\
+\addlinespace
+2024         & C--I & 109.8 & No comparable malfunction \\
+\midrule
+Total        &      & 172.1 & \\
+\bottomrule
+\end{tabular}
+\caption{Data-taking periods considered in the analysis, with the certified integrated luminosity of each one and the detector malfunction that motivates its separation.\textcolor{red}{arreglar formato}}
+\label{tab:datataking_periods}
+\end{table}
+
+
+%\begin{figure}[t]
+%  \centering
+%  \includegraphics[width=0.8\linewidth]{figures/chapter_VI/run3_detector_issues_etaphi.png}
+%  \caption[Detector regions affected during the 2022 and 2023 data taking]{%    Regions of the CMS detector affected by an anomalous jet response during the 2022 and    2023 data taking, shown in the $\eta$--$\phi$ plane. The large blue area corresponds to    the region of the electromagnetic calorimeter endcap lost in 2022, and the large red band    to the region of the barrel pixel tracker affected in 2023. The remaining markings indicate    smaller areas of increased or decreased jet activity in the less affected eras; colors denote    the data-taking eras as given in the legend, and open boxes mark regions flagged in at least    three or in all four of them.}
+%  \label{fig:detector_issues}
+%\end{figure}
+
+
+\subsection{Signal modeling}
+%
+The production of Higgs boson pairs via gluon-gluon fusion is simulated using the \POWHEG v2.0 generator at NLO in QCD, while the production via vector boson fusion is simulated using \MADGRAPH5\_aMC@NLO 2.9.13. In both cases, additional samples are generated with anomalous values for the coupling modifiers, which allow for the coverage of the dependence of the cross section and the kinematics of the $HH$ system on these parameters.
+
+The dependence of the differential cross section on the coupling modifiers is polynomial and contains a finite number of terms, a consequence of the fact that the amplitude of the process is a finite sum of contributions whose coefficients depend on the couplings but whose kinematics do not. The prediction at any point in parameter space can therefore be obtained as a linear combination of the predictions at a reduced set of points, without the need to simulate a dedicated sample for each hypothesis.
+
+For gluon fusion production, samples are generated with $\kappa_\lambda = 0$, $1$, $2.45$, and $5$, while keeping $\kappa_t = 1$. The first three values are sufficient to completely determine the dependence of the differential cross section on $\kappa_\lambda$, which is quadratic because it is constructed from the interference between the triangle and box diagrams. The fourth value provides an additional control point. For production via vector boson fusion, whose amplitude depends simultaneously on $\kappa_V$, $\kappa_{2V}$, and $\kappa_\lambda$, samples are generated at eleven points in parameter space. In both cases, the prediction for an arbitrary value of the couplings is obtained from the samples generated using the reweighting procedure based on the inversion of the coefficient matrix that relates the simulated points to the terms of the cross section expansion. This approach allows for efficient exploration of the parameter space without requiring a dedicated sample for each hypothesis\footnote{The analysis therefore uses the standard formulation of the matrix inversion method, as applied in the searches published by CMS: its extension to higher-dimensional parameter spaces — which constitutes one of the original contributions of this work — is discussed in Chapter \ref{ch:eft_modeling}.}.
+
+
 % ggHH: POWHEG v2 @ NLO. qqHH: MADGRAPH5_aMC@NLO 2.9.13 @ LO.
 % Anomalous-coupling samples and the matrix-inversion reweighting that gives access
 % to arbitrary (kappa_lambda, kappa_2V) -> forward-reference the EFT chapter.
 % -> code: tasks/ggFReweightModules.py, tasks/VBFReweightModules.py
 
-\subsection{Background modelling}
+\subsection{Background modeling}
+%
+The dominant background contribution stems from Drell–Yan production, $Z/\gamma^* \to \ell\ell$, from top quark pair production, and from QCD multi-jet background. Processes with genuine $\tau$ leptons in the final state are modeled based on the simulation, while those in which a jet is misidentified as a $\tau_h$ — which correspond essentially to the multi-jet production, but also to a fraction of the $W$+jets and $t\bar{t}$ production — are estimated directly from the data, as detailed in Section \ref{sec:background}. The generators used for each process, along with the order in perturbation theory at which the generation is performed and the cross section used for their normalization, are listed in Table \ref{tab:mc_backgrounds}. Among these, the production of a single Higgs boson is considered separately because it reproduces the final state of the signal in the case of associated $ZH$ production with $Z \to b\bar{b}$ and $H \to \tau\tau$, despite its small cross section.
+
+Parton radiation effects, parton showering, and hadronization are simulated using \PYTHIA, and the detector response is modeled using \GEANT. Additional collisions occurring at the same beam-beam crossing or at adjacent crossings are superimposed on the main interaction in all simulated samples, which are then reprocessed to reproduce the pileup profile observed in the data.
 % DY and W+jets: MG5_aMC@NLO NLO + FxFx. ttbar, single top, single H: POWHEG v2.
 % Diboson: PYTHIA8 LO. Triboson, ttV, ttVV: MG5_aMC@NLO.
 % PYTHIA 8.306 + CP5, NNPDF 3.0/3.1, GEANT4, pileup reweighting.
 % DY jet-multiplicity stitching -> tasks/dystitching.py, scripts/compute_DYnJetsFit.py
 
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llc}
+\toprule
+Process & Generator & $\sigma\cdot\mathcal{B}$ [pb] \\
+\midrule
+$Z/\gamma^{*}\to\ell\ell$ + jets    & \MGaMC{} FxFx (NLO)          & 6282.6  \\
+$W\to\ell\nu$ + jets                & \MGaMC{} FxFx (NLO)          & 63425.1 \\
+$t\bar{t}$                          & \POWHEG{} (NLO)              & 923.4   \\
+Single $t$ ($tW$)                   & \POWHEG{} (NLO)              & 87.9    \\
+Single $t$ ($t$-, $s$-channel)      & \POWHEG{} (NLO)              & 236.0   \\
+Single $H$                          & \POWHEG{} (NLO)              & 37.9    \\
+$VV$                                & \PYTHIA{} 8 (LO)             & 182.9   \\
+$VVV$                               & \MGaMC{} (NLO)               & 0.50    \\
+$t\bar{t}VV$, $t\bar{t}VH$          & \MGaMC{} (NLO)               & 0.015   \\
+\midrule
+\multicolumn{3}{l}{Multi-jet and jet\,$\to\tau_h$ fakes: estimated from data (Section \ref{sec:background})} \\
+\bottomrule
+\end{tabular}
+\caption{Simulated background processes, the generator and perturbative accuracy used for their
+generation, and the cross section times branching fraction used for their normalization.}
+\label{tab:mc_backgrounds}
+\end{table}
+
+
 \section{Trigger strategy}
-\label{sec:bbtt_triggers}
+\label{sec:triggers}
+%
 % One of the strongest development lines of the Run-3 analysis -> own section.
+The selection criteria applied by the trigger system during data acquisition determine which events are recorded, setting the upper limit of the acceptance of the analysis. The trigger strategy builds upon the one used in the published Run 2 search and extends it in three directions. First, it includes the incorporation of paths that require jets in addition to leptons, which allows for lowering the lepton thresholds in exchange for requiring additional hadronic activity. Second, the \textit{parking} strategy is adopted, which involves writing events directly to disk during the final stages of an LHC run, when the instantaneous luminosity has dropped sufficiently to allow for more permissive thresholds without saturating the bandwidth. Finally, dedicated paths for boosted topologies that did not exist in Run 2 are introduced. The trigger strategy thus constitutes one of the strongest developments with respect to the Run 2 analysis.
+
+The available paths and their requirements are listed in Table \ref{tab:triggers}. To maximize efficiency, the paths are combined using logical disjunction. However, since some paths overlap significantly, when this overlap complicates the derivation of corrections, they are orthogonalized by inverting the selections associated with the others, so that each event is assigned to only one path.
+
+The online trigger requirement is carried over to the offline selection, requiring that the reconstructed objects correspond to the objects that activated the path and that they exceed more restrictive transverse moment thresholds than those applied online, so that the selection lies on the plateau of the efficiency curve rather than in the rising portion, where efficiency varies rapidly and modeling is less reliable. The specific values for each path are detailed, along with the selection criteria for each object type, in Section \ref{sec:objects}.
+
+
+El requisito online de disparo se propaga a la selección offline exigiendo que los objetos reconstruidos se correspondan con los objetos que activaron el camino, y que superen umbrales de momento transverso más restrictivos que los aplicados online, de manera que la selección se sotúe sobre la meseta de la curva de eficiencia y no sobre la zona de subida, donde la eficiencia varía rápidamente y su modelado resulta menos fiable. Los valores concretos, específicos de cada camino, se detallan junto con la selección de cada tipo de objeto en la Sección \ref{sec:objects}.
+
+
+\subsection{Baseline trigger paths}
+%
+El núcleo de la selección se basa en los caminos heredados del Run 2: los triggers de leptón único aislado, los caminos cruzados que exigen un leptón de menor momento acompañado de un $\tau_h$, y el camino de doble $\tau_h$ para el estado final completamente hadrónico. La estrategia de trigger cruzado permite rebajar sustancialmente el umbral sobre el leptón, aunque lo hace a costa de limitar la aceptancia angular a la región cubierta por el sistema de disparo de nivel 1 para los $\tau_h$. Esto se debe a que el $\tau_h$ es el más costoso de identificar en línea y por tanto condiciona la selección fijando la aceptancia alcanzable. Su identificación en el HLT reproduce de forma simplificada el algoritmo \textit{hadrons-plus-strips} descrito en la Sección \ref{sec:Tau_MisID}, sseguida de un discriminante de aprendizaje automático que en 2022 y 2023 es una versión de \textsc{DeepTau} adaptada a las restricciones de latencia del trigger, y que en 2024 pasa a serlo de \textsc{ParticleNet}; ambos son versiones en línea de los algoritmos que se presentan en el Capítulo \ref{ch:Tau}. Este cambio a partir de 2024 conlleva una mejora en la capacidad de discriminación que permite rebajar los umbrales del camino de doble $\tau_h$ manteniendo la tasa de registro, y ampliar la cobertura angular.
+
+
+%Papel	2022–2023	2024
+%Identificación de $\tau_h$ en línea	\textsc{DeepTau} (versión HLT)	\textsc{PNet}
+%Identificación de $\tau_h$ fuera de línea	\textsc{DeepTau} 2018 v2.5	\textsc{DeepTau} 2018 v2.5
+%Etiquetado de $b$ fuera de línea	\textsc{PNet}	\textsc{UParT}
+
+
+\subsection{New trigger paths in Run 3}
+%
+La primera novedad respecto al Run 2 es el camino DiTau+Jet, que acompaña los dos candidatos a $\tau_h$ de un jet central. El requisito adicional sobre el jet permite rebajar el umbral sobre ambos $\tau_h$ en una región del espectro donde la eficiencia de reconstrucción varía rápidamente. La ganancia en eficiencia de selección de señal respecto a la estrategia basada únicamente en el camino de doble $\tau_h$ es del $13\%$ integrada sobre todo el espectro, y asciende al $17\%$ en la región de baja masa invariante del sistema $HH$, que es precisamente la más sensible a variaciones del autoacoplo trilineal; para 2022 y 2023 esto equivale a unos $10$ fb$^{-1}$ adicionales de luminosidad. La segunda novedad, introducida en 2024 y registrada en el flujo de parking de $HH$, es un camino puramente hadrónico que exige cuatro jets centrales, entre los cuales al menos uno debe superar un requisito de etiquetado de quark $b$ y otro un requisito de etiquetado de $\tau_h$, ambos evaluados en línea. Este camino aporta una ganancia adicional del $15\%$ en aceptancia. Dado que su solapamiento con los anteriores dificultaría la derivación de las correcciones, se emplea en una región del espacio de fases completamente ortogonal, obtenida invirtiendo todas las selecciones fuera de línea asociadas a los caminos de doble $\tau_h$ y DiTau+Jet.
+
+La topología de fusión de bosones vectoriales presenta dos jets muy separados en pseudorapidez y con una gran masa invariante, una firma suficientemente distintiva como para construir caminos de disparo dedicados. Mientras que la búsqueda del Run 2 disponía de un único camino de este tipo, en el Run 3 se dispone de un conjunto amplio, en su mayoría registrado mediante la estrategia de parking a partir de 2023, que selecciona los jets VBF bien en solitario, bien en asociación con un leptón o un $\tau_h$. Su elección para el análisis se realiza de forma independiente para cada estado final atendiendo a dos criterios: la ganancia en eficiencia de señal respecto a la estrategia de base, y el solapamiento con los caminos ya empleados, puesto que un camino cuya ganancia esté íntegramente contenida en la de otro no incorpora sucesos nuevos y solo añade complejidad. El resultado es que en el estado final $\mu\tau_h$ se retiene únicamente el camino VBF$+\mu$, en $e\tau_h$ el inclusivo y el VBF$+e$, y en $\tau_h\tau_h$ el inclusivo junto con los que exigen uno o dos $\tau_h$. La ganancia alcanza el $30\%$ en el estado final completamente hadrónico. Los caminos VBF se combinan siempre entre sí mediante disyunción lógica, si bien en $\tau_h\tau_h$ el conjunto se considera únicamente para los sucesos que no satisfacen las selecciones de los caminos de doble $\tau_h$ y del camino hadrónico de parking.
+
+IMAGEN
+
+\subsection{Triggers for boosted topologies}
+%
+Cuando el sistema $HH$ se produce con un impulso elevado, los productos de desintegración del bosón que decae a $\tau\tau$ se coliman hasta quedar contenidos en un mismo cono y los umbrales del camino de doble $\tau_h$ dejan de ser eficientes. Para acceder a esta región se emplean dos caminos complementarios. El primero se basa en el momento transverso faltante calculado excluyendo la contribución de los muones: en la topología resuelta los dos bosones de Higgs se producen aproximadamente espalda contra espalda, de modo que las contribuciones de los neutrinos tienden a cancelarse, mientras que en el régimen boosted esa cancelación desaparece y el momento transverso faltante aumenta significativamente; además, al no imponer ningún requisito sobre la pseudorapidez, da acceso a sucesos que los caminos cruzados rechazarían. El segundo es un camino introducido por primera vez en el Run 3 y diseñado específicamente para pares de leptones $\tau$ colimados, que exige un jet de radio grande con una masa \textit{soft-drop} mínima, etiquetado en línea por un discriminante entrenado para separar $H \to \tau\tau$ de la producción multijet. Ambos se aplican en regiones ortogonales y mutuamente excluyentes, separadas por un umbral de $200$ GeV sobre el momento transverso faltante reconstruido fuera de línea; este valor se determina a partir de las curvas de eficiencia, y por encima de él el camino basado en momento transverso faltante supera el $90\%$ de eficiencia, con una pérdida respecto a la disyunción lógica de ambos limitada a unos tres puntos porcentuales.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l p{6.4cm} c}
+\toprule
+Trigger & Online requirements & Periods \\
+\midrule
+\multicolumn{3}{l}{\textit{Single lepton}} \\
+Single $\mu$ & one $\mu$, $p_{T} > 24$ GeV, tracker isolation & 2022--2024 \\
+Single $e$   & one $e$, $p_{T} > 30$ GeV, tight isolation     & 2022--2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{Lepton\,$+\,\tau_{h}$}} \\
+$\mu\tau_{h}$ & one $\mu$, $p_{T} > 20$ GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 27$ GeV, Loose ID & 2022--2024 \\
+$e\tau_{h}$   & one $e$, $p_{T} > 24$ GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 30$ GeV, Loose ID   & 2022--2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{$\tau_{h}$ and jet based}} \\
+DiTau     & two $\tau_{h}$, $p_{T} > 35$ GeV, $|\eta| < 2.1$, Medium ID & 2022--2024 \\
+DiTau$+$Jet & two $\tau_{h}$, $p_{T} > 30$ GeV, Medium ID $+$ one jet, $p_{T} > 60$ GeV & 2022--2024 \\
+QuadJet$+b+\tau_{h}$ & four jets, $p_{T} > 25$ GeV, $H_{T} > 250$ GeV $+$ one $b$-tagged and one $\tau_{h}$-tagged jet & 2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{VBF topologies}} \\
+VBF$+$DiTau & two $\tau_{h}$, $p_{T} > 20$ GeV, Medium ID $+$ two jets, $p_{T} > 115\,(40)$ GeV, $m_{jj} > 650$ GeV & 2022--2024 \\
+VBF$+\tau_{h}$ & one $\tau_{h}$, $p_{T} > 45$ GeV, Medium ID $+$ two jets, $p_{T} > 45$ GeV, $m_{jj} > 500$ GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+VBF$+\mu$ & one $\mu$, $p_{T} > 3$ GeV $+$ two jets, $p_{T} > 90\,(40)$ GeV, $m_{jj} > 600$ GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+VBF$+e$ & one $e$, $p_{T} > 12$--$17$ GeV, $|\eta| < 2.1$ $+$ two jets, $p_{T} > 45$ GeV, $m_{jj} > 500$ GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+VBF inclusive & two jets, $p_{T} > 105\,(40)$ GeV, $m_{jj} > 1000$ GeV, $\Delta\eta_{jj} > 3.5$; a variant additionally requiring a third jet is used in the same OR & 2023--2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{Boosted topologies}} \\
+MET no-$\mu$ & $p_{T}^{\text{miss}}$ and $H_{T}^{\text{miss}}$, both computed without muons, $> 120$ GeV & 2022--2024 \\
+AK8$+$PNet & one AK8 jet, $p_{T} > 230$ GeV, $m_{\text{SD}} > 40$ GeV, online $H\to\tau\tau$ score $> 0.30\ (0.03)$ & 2022--2024 \\
+\bottomrule
+\end{tabular}
+\caption{Trigger paths used in the analysis, grouped by the objects they require. Thresholds
+correspond to the 2022 and 2023 data taking; for two jets, the leading and subleading values
+are quoted as $p_{T} > x\,(y)$. All thresholds were re-optimized for 2024, when the online
+$\tau_{h}$ identification moved from \textsc{DeepTau} to \textsc{ParticleNet}, allowing the DiTau
+threshold to be lowered to $30$ GeV and the acceptance to be extended to $|\eta| < 2.3$. The
+working point of the online $H\to\tau\tau$ tagger was likewise loosened from $0.30$ to $0.03$
+during 2023 following a retraining of the algorithm. The QuadJet and VBF paths other than
+VBF$+$DiTau are recorded through the parking streams. The VBF inclusive path is used in the
+$e\tau_{h}$ and $\tau_{h}\tau_{h}$ final states only. Within each final state the logical OR of all
+applicable paths is used, with two exceptions: the QuadJet path is applied in an orthogonal
+region of phase space, and in the $\tau_{h}\tau_{h}$ final state the VBF paths are considered only
+for events failing the DiTau and QuadJet selections.}
+\label{tab:triggers}
+\end{table}
+
+
+
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l p{6.4cm} c}
+\toprule
+Trigger & Online requirements & Periods \\
+\midrule
+\multicolumn{3}{l}{\textit{Single lepton}} \\
+Single $\mu$ & one $\mu$, $p_{T} > 24$\GeV, tracker isolation & 2022--2024 \\
+Single $e$   & one $e$, $p_{T} > 30$\GeV, tight isolation     & 2022--2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{Lepton\,$+\,\tau_{h}$}} \\
+$\mu\tau_{h}$ & one $\mu$, $p_{T} > 20$\GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 27$\GeV, Loose ID & 2022--2024 \\
+$e\tau_{h}$   & one $e$, $p_{T} > 24$\GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 30$\GeV, Loose ID   & 2022--2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{$\tau_{h}$ and jet based}} \\
+DiTau     & two $\tau_{h}$, $p_{T} > 35$\GeV, $|\eta| < 2.1$, Medium ID & 2022--2024 \\
+DiTau$+$Jet & two $\tau_{h}$, $p_{T} > 30$\GeV, Medium ID $+$ one jet, $p_{T} > 60$\GeV & 2022--2024 \\
+QuadJet$+b+\tau_{h}$ & four jets, $p_{T} > 25$\GeV, $H_{T} > 250$\GeV $+$ one $b$-tagged and one $\tau_{h}$-tagged jet & 2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{VBF topologies}} \\
+VBF$+$DiTau & two $\tau_{h}$, $p_{T} > 20$\GeV, Medium ID $+$ two jets, $p_{T} > 115\,(40)$\GeV, $m_{jj} > 650$\GeV & 2022--2024 \\
+VBF$+\tau_{h}$ & one $\tau_{h}$, $p_{T} > 45$\GeV, Medium ID $+$ two jets, $p_{T} > 45$\GeV, $m_{jj} > 500$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+VBF$+\mu$ & one $\mu$, $p_{T} > 3$\GeV $+$ two jets, $p_{T} > 90\,(40)$\GeV, $m_{jj} > 600$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+VBF$+e$ & one $e$, $p_{T} > 12$--$17$\GeV, $|\eta| < 2.1$ $+$ two jets, $p_{T} > 45$\GeV, $m_{jj} > 500$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+VBF inclusive & two jets, $p_{T} > 105\,(40)$\GeV, $m_{jj} > 1000$\GeV, $\Delta\eta_{jj} > 3.5$; a variant additionally requiring a third jet is used in the same OR & 2023--2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{Boosted topologies}} \\
+MET no-$\mu$ & $p_{T}^{\text{miss}}$ and $H_{T}^{\text{miss}}$, both computed without muons, $> 120$\GeV & 2022--2024 \\
+AK8$+$PNet & one AK8 jet, $p_{T} > 230$\GeV, $m_{\text{SD}} > 40$\GeV, online $H\to\tau\tau$ score $> 0.30\ (0.03)$ & 2022--2024 \\
+\bottomrule
+\end{tabular}
+\caption{Trigger paths used in the analysis, grouped by the objects they require. Thresholds
+correspond to the 2022 and 2023 data taking; for two jets, the leading and subleading values
+are quoted as $p_{T} > x\,(y)$. All thresholds were re-optimized for 2024, when the online
+$\tau_{h}$ identification moved from \textsc{DeepTau} to \textsc{ParticleNet}, allowing the DiTau
+threshold to be lowered to $30$\GeV and the acceptance to be extended to $|\eta| < 2.3$. The
+working point of the online $H\to\tau\tau$ tagger was likewise loosened from $0.30$ to $0.03$
+during 2023 following a retraining of the algorithm. The QuadJet and VBF paths other than
+VBF$+$DiTau are recorded through the parking streams. The VBF inclusive path is used in the
+$e\tau_{h}$ and $\tau_{h}\tau_{h}$ final states only. Within each final state the logical OR of all
+applicable paths is used, with two exceptions: the QuadJet path is applied in an orthogonal
+region of phase space, and in the $\tau_{h}\tau_{h}$ final state the VBF paths are considered only
+for events failing the DiTau and QuadJet selections.}
+\label{tab:triggers}
+\end{table}
+
+
 
 \subsection{Baseline triggers}
 % tau_e tau_h / tau_mu tau_h: single-lepton + cross lepton-tau (lower pT thresholds).
@@ -95,6 +275,55 @@
 \subsection{Trigger efficiency and scale factors}
 % Tag-and-probe, per period and per channel; how the OR of many paths is handled.
 % -> code: scripts/VBFtrigSF/
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{l p{6.4cm} c}
+\toprule
+Trigger & Online requirements & Periods \\
+\midrule
+\multicolumn{3}{l}{\textit{Single lepton}} \\
+Single $\mu$ & one $\mu$, $p_{T} > 24$\GeV, tracker isolation & 2022--2024 \\
+Single $e$   & one $e$, $p_{T} > 30$\GeV, tight isolation     & 2022--2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{Lepton\,$+\,\tau_{h}$}} \\
+$\mu\tau_{h}$ & one $\mu$, $p_{T} > 20$\GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 27$\GeV, Loose ID & 2022--2024 \\
+$e\tau_{h}$   & one $e$, $p_{T} > 24$\GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 30$\GeV, Loose ID   & 2022--2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{$\tau_{h}$ and jet based}} \\
+DiTau     & two $\tau_{h}$, $p_{T} > 35$\GeV, $|\eta| < 2.1$, Medium ID & 2022--2024 \\
+DiTau$+$Jet & two $\tau_{h}$, $p_{T} > 30$\GeV, Medium ID $+$ one jet, $p_{T} > 60$\GeV & 2022--2024 \\
+QuadJet$+b+\tau_{h}$ & four jets, $p_{T} > 25$\GeV, $H_{T} > 250$\GeV $+$ one $b$-tagged and one $\tau_{h}$-tagged jet & 2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{VBF topologies}} \\
+VBF$+$DiTau & two $\tau_{h}$, $p_{T} > 20$\GeV, Medium ID $+$ two jets, $p_{T} > 115\,(40)$\GeV, $m_{jj} > 650$\GeV & 2022--2024 \\
+VBF$+\tau_{h}$ & one $\tau_{h}$, $p_{T} > 45$\GeV, Medium ID $+$ two jets, $p_{T} > 45$\GeV, $m_{jj} > 500$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+VBF$+\mu$ & one $\mu$, $p_{T} > 3$\GeV $+$ two jets, $p_{T} > 90\,(40)$\GeV, $m_{jj} > 600$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+VBF$+e$ & one $e$, $p_{T} > 12$--$17$\GeV, $|\eta| < 2.1$ $+$ two jets, $p_{T} > 45$\GeV, $m_{jj} > 500$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+VBF inclusive & two jets, $p_{T} > 105\,(40)$\GeV, $m_{jj} > 1000$\GeV, $\Delta\eta_{jj} > 3.5$; a variant additionally requiring a third jet is used in the same OR & 2023--2024 \\
+\addlinespace
+\multicolumn{3}{l}{\textit{Boosted topologies}} \\
+MET no-$\mu$ & $p_{T}^{\text{miss}}$ and $H_{T}^{\text{miss}}$, both computed without muons, $> 120$\GeV & 2022--2024 \\
+AK8$+$PNet & one AK8 jet, $p_{T} > 230$\GeV, $m_{\text{SD}} > 40$\GeV, online $H\to\tau\tau$ score $> 0.30\ (0.03)$ & 2022--2024 \\
+\bottomrule
+\end{tabular}
+\caption{Trigger paths used in the analysis, grouped by the objects they require. Thresholds
+correspond to the 2022 and 2023 data taking; for two jets, the leading and subleading values
+are quoted as $p_{T} > x\,(y)$. All thresholds were re-optimized for 2024, when the online
+$\tau_{h}$ identification moved from \textsc{DeepTau} to \textsc{ParticleNet}, allowing the DiTau
+threshold to be lowered to $30$\GeV and the acceptance to be extended to $|\eta| < 2.3$. The
+working point of the online $H\to\tau\tau$ tagger was likewise loosened from $0.30$ to $0.03$
+during 2023 following a retraining of the algorithm. The QuadJet and VBF paths other than
+VBF$+$DiTau are recorded through the parking streams. The VBF inclusive path is used in the
+$e\tau_{h}$ and $\tau_{h}\tau_{h}$ final states only. Within each final state the logical OR of all
+applicable paths is used, with two exceptions: the QuadJet path is applied in an orthogonal
+region of phase space, and in the $\tau_{h}\tau_{h}$ final state the VBF paths are considered only
+for events failing the DiTau and QuadJet selections.}
+\label{tab:triggers}
+\end{table}
+
+
 
 \section{Physics object selection}
 \label{sec:bbtt_objects}
