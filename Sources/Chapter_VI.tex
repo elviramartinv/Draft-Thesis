@@ -31,7 +31,7 @@ El capítulo se organiza siguiendo ese mismo recorrido.
 \label{sec:bbtt_samples}
 The analysis is based on a comparison between the data recorded by CMS and the Standard Model prediction for the processes that contribute to this final state. The prediction is derived from simulated MC samples, produced using state-of-the-art generators, which are used to model both the signal and the backgrounds. The only exception is the contribution from events in which a quark or gluon jet is misidentified as a hadronic $\tau$ lepton: generating enough such events is computationally prohibitive, and the misidentification rate is in any case not modeled with the required precision, being highly sensitive to detector effects. This contribution is therefore estimated directly from the data.
 
-\subsection{Data sets and data-taking periods}
+\subsection{Datasets and data-taking periods}
 %
 The analyzed data correspond to proton-proton collisions at $\sqrt{s} = 13.6$ TeV recorded by CMS with a beam-crossing interval of 25 ns during the years 2022, 2023, and 2024. Only events occurring during data-taking periods in which all subdetectors were operational and functioning correctly, as determined by the centralized certification procedure of the collaboration, are considered. The resulting available integrated luminosity amounts to $34.7$, $27.7$, and $110$ fb$^{-1}$ for 2022, 2023, and 2024, respectively, for a total of $172$ fb$^{-1}$.
 
@@ -128,16 +128,11 @@ The selection criteria applied by the trigger system during data acquisition det
 
 The available paths and their requirements are listed in Table \ref{tab:triggers}. To maximize efficiency, the paths are combined using logical disjunction. However, since some paths overlap significantly, when this overlap complicates the derivation of corrections, they are orthogonalized by inverting the selections associated with the others, so that each event is assigned to only one path.
 
-The online trigger requirement is carried over to the offline selection, requiring that the reconstructed objects correspond to the objects that activated the path and that they exceed more restrictive transverse moment thresholds than those applied online, so that the selection lies on the plateau of the efficiency curve rather than in the rising portion, where efficiency varies rapidly and modeling is less reliable. The specific values for each path are detailed, along with the selection criteria for each object type, in Section \ref{sec:objects}.
-
-
-El requisito online de disparo se propaga a la selección offline exigiendo que los objetos reconstruidos se correspondan con los objetos que activaron el camino, y que superen umbrales de momento transverso más restrictivos que los aplicados online, de manera que la selección se sotúe sobre la meseta de la curva de eficiencia y no sobre la zona de subida, donde la eficiencia varía rápidamente y su modelado resulta menos fiable. Los valores concretos, específicos de cada camino, se detallan junto con la selección de cada tipo de objeto en la Sección \ref{sec:objects}.
-
+The online trigger requirement is carried over to the offline selection, requiring that the reconstructed objects correspond to the objects that activated the path and that they exceed more restrictive $p_T$ thresholds than those applied online, so that the selection lies on the plateau of the efficiency curve rather than in the turn-on region, where efficiency varies rapidly and modeling is less reliable. The specific values for each path are detailed, along with the selection criteria for each object type, in Section \ref{sec:objects}.
 
 \subsection{Baseline trigger paths}
 %
-El núcleo de la selección se basa en los caminos heredados del Run 2: los triggers de leptón único aislado, los caminos cruzados que exigen un leptón de menor momento acompañado de un $\tau_h$, y el camino de doble $\tau_h$ para el estado final completamente hadrónico. La estrategia de trigger cruzado permite rebajar sustancialmente el umbral sobre el leptón, aunque lo hace a costa de limitar la aceptancia angular a la región cubierta por el sistema de disparo de nivel 1 para los $\tau_h$. Esto se debe a que el $\tau_h$ es el más costoso de identificar en línea y por tanto condiciona la selección fijando la aceptancia alcanzable. Su identificación en el HLT reproduce de forma simplificada el algoritmo \textit{hadrons-plus-strips} descrito en la Sección \ref{sec:Tau_MisID}, sseguida de un discriminante de aprendizaje automático que en 2022 y 2023 es una versión de \textsc{DeepTau} adaptada a las restricciones de latencia del trigger, y que en 2024 pasa a serlo de \textsc{ParticleNet}; ambos son versiones en línea de los algoritmos que se presentan en el Capítulo \ref{ch:Tau}. Este cambio a partir de 2024 conlleva una mejora en la capacidad de discriminación que permite rebajar los umbrales del camino de doble $\tau_h$ manteniendo la tasa de registro, y ampliar la cobertura angular.
-
+The core of the selection strategy is based on the detection paths inherited from Run 2: the isolated single-lepton triggers, the cross-trigger paths that require a lepton with lower momentum accompanied by a $\tau_h$, and the double $\tau_h$ path for the fully hadronic final state. The cross-trigger strategy enables a substantial lowering of the lepton threshold, although this comes at the cost of limiting the angular acceptance to the region covered by the Level 1 trigger system for the $\tau_h$. This is because the $\tau_h$ is the most difficult to identify online, thereby constraining the selection. Its identification in the HLT reproduces, in a simplified form, the \textit{hadrons-plus-strips} algorithm described in Section \ref{sec:Tau_MisID}, followed by a machine-learning discriminator that, in 2022 and 2023, is a version of \textsc{DeepTau} adapted to the latency constraints of the trgger, and which, in 2024, will change to \textsc{ParticleNet}; both are online versions of the algorithms presented in Chapter \ref{ch:Tau}. This change in 2024 leads to an improvement in discrimination capability that allows for lowering the thresholds of the double $\tau_h$ path while maintaining the registration rate and expanding the angular coverage of the paths involving $\tau_h$ lepton.
 
 %Papel	2022–2023	2024
 %Identificación de $\tau_h$ en línea	\textsc{DeepTau} (versión HLT)	\textsc{PNet}
@@ -146,182 +141,116 @@ El núcleo de la selección se basa en los caminos heredados del Run 2: los trig
 
 
 \subsection{New trigger paths in Run 3}
-%
-La primera novedad respecto al Run 2 es el camino DiTau+Jet, que acompaña los dos candidatos a $\tau_h$ de un jet central. El requisito adicional sobre el jet permite rebajar el umbral sobre ambos $\tau_h$ en una región del espectro donde la eficiencia de reconstrucción varía rápidamente. La ganancia en eficiencia de selección de señal respecto a la estrategia basada únicamente en el camino de doble $\tau_h$ es del $13\%$ integrada sobre todo el espectro, y asciende al $17\%$ en la región de baja masa invariante del sistema $HH$, que es precisamente la más sensible a variaciones del autoacoplo trilineal; para 2022 y 2023 esto equivale a unos $10$ fb$^{-1}$ adicionales de luminosidad. La segunda novedad, introducida en 2024 y registrada en el flujo de parking de $HH$, es un camino puramente hadrónico que exige cuatro jets centrales, entre los cuales al menos uno debe superar un requisito de etiquetado de quark $b$ y otro un requisito de etiquetado de $\tau_h$, ambos evaluados en línea. Este camino aporta una ganancia adicional del $15\%$ en aceptancia. Dado que su solapamiento con los anteriores dificultaría la derivación de las correcciones, se emplea en una región del espacio de fases completamente ortogonal, obtenida invirtiendo todas las selecciones fuera de línea asociadas a los caminos de doble $\tau_h$ y DiTau+Jet.
+% 
+The new additions to Run 3 broaden the acceptance of the baseline analysis strategy by addressing the regions of phase space that it covered less thoroughly. The first change from Run 2 came in 2022 and consists of the \textit{DiTau+Jet} path, where the additional jet requirement allows for a lower threshold on both $\tau_h$ in a region of the spectrum where reconstruction efficiency varies rapidly. In 2024, a new addition was introduced into the $HH$ parking strategy that also affects both $\tau_h$ and requires four central jets, at least one of which must satisfy a $b$-quark tagging requirement and another a $\tau_h$ tagging requirement, both evaluated offline. As it significantly overlaps with the previous paths, the new trigger introduced in 2024 is employed in a completely orthogonal region of phase space, obtained by inverting all the offline selections associated with the double $\tau_h$ and DiTau+Jet triggers.
 
-La topología de fusión de bosones vectoriales presenta dos jets muy separados en pseudorapidez y con una gran masa invariante, una firma suficientemente distintiva como para construir caminos de disparo dedicados. Mientras que la búsqueda del Run 2 disponía de un único camino de este tipo, en el Run 3 se dispone de un conjunto amplio, en su mayoría registrado mediante la estrategia de parking a partir de 2023, que selecciona los jets VBF bien en solitario, bien en asociación con un leptón o un $\tau_h$. Su elección para el análisis se realiza de forma independiente para cada estado final atendiendo a dos criterios: la ganancia en eficiencia de señal respecto a la estrategia de base, y el solapamiento con los caminos ya empleados, puesto que un camino cuya ganancia esté íntegramente contenida en la de otro no incorpora sucesos nuevos y solo añade complejidad. El resultado es que en el estado final $\mu\tau_h$ se retiene únicamente el camino VBF$+\mu$, en $e\tau_h$ el inclusivo y el VBF$+e$, y en $\tau_h\tau_h$ el inclusivo junto con los que exigen uno o dos $\tau_h$. La ganancia alcanza el $30\%$ en el estado final completamente hadrónico. Los caminos VBF se combinan siempre entre sí mediante disyunción lógica, si bien en $\tau_h\tau_h$ el conjunto se considera únicamente para los sucesos que no satisfacen las selecciones de los caminos de doble $\tau_h$ y del camino hadrónico de parking.
+The gain in signal selection efficiency provided by each approach compared to the Run 2 strategy — which is based solely on the double $\tau_h$ path — is shown in Figure \ref{fig:trigger_gain}, as a function of the invariant mass of the $HH$ system at the generator level and for two coupling hypotheses, $\kappa_\lambda=1$ and $5$. The DiTau+Jet path provides a $13\%$ gain integrated over the entire spectrum, and this gain increases to $17\%$ in the low invariant mass region, which is precisely the region most sensitive to variations in the trilinear self-coupling\footnote{The gains reflect the increase in the number of selected signal events. However, the number of background events that pass the selection also increases, so the numbers do not translate into an equivalent improvement in sensitivity}. For 2022 and 2023, this amounts to approximately $10$ fb$^{-1}$ of additional luminosity. The hadronic parking path contributes an additional $15\%$, with an opposite dependence: its gain is lower near the production threshold and increases toward higher masses, where the jets of the events are more energetic and more readily satisfy the $H_T$ and multiplicity requirements. The two are therefore complementary, and the orthogonalized combination of the two reveals the joint gain across the entire range. The comparison between the two coupling hypotheses also shows that the improvement is independent of the point in parameter space under consideration, since the gain curves are essentially identical in both figures. The change, however, stems from the $m_{HH}$ spectrum of the signal — superimposed in light gray in the figure — which, for the case $\kappa_\lambda = 5$, shifts toward the production threshold, so that the signal is concentrated precisely in the region where the new triggers contribute the most.\\
 
-IMAGEN
+Dedicated to the VBF topology, new triggers have been introduced that specifically exploit this distinctive signature. Although the Run 2 search already included a path that required two low-momentum $\tau_h$ particles accompanied by two jets with high invariant mass — and this path remains in Run 3, Run 3 offers a much broader set of options. The Run 3 VBF triggers, mostly recorded using the parking strategy, will be introduced starting in 2023 and include selections of VBF jets either on their own, referred to as the \textit{inclusive} path, or in association with a muon, an electron, or one or two $\tau_h$.
 
-\subsection{Triggers for boosted topologies}
-%
-Cuando el sistema $HH$ se produce con un impulso elevado, los productos de desintegración del bosón que decae a $\tau\tau$ se coliman hasta quedar contenidos en un mismo cono y los umbrales del camino de doble $\tau_h$ dejan de ser eficientes. Para acceder a esta región se emplean dos caminos complementarios. El primero se basa en el momento transverso faltante calculado excluyendo la contribución de los muones: en la topología resuelta los dos bosones de Higgs se producen aproximadamente espalda contra espalda, de modo que las contribuciones de los neutrinos tienden a cancelarse, mientras que en el régimen boosted esa cancelación desaparece y el momento transverso faltante aumenta significativamente; además, al no imponer ningún requisito sobre la pseudorapidez, da acceso a sucesos que los caminos cruzados rechazarían. El segundo es un camino introducido por primera vez en el Run 3 y diseñado específicamente para pares de leptones $\tau$ colimados, que exige un jet de radio grande con una masa \textit{soft-drop} mínima, etiquetado en línea por un discriminante entrenado para separar $H \to \tau\tau$ de la producción multijet. Ambos se aplican en regiones ortogonales y mutuamente excluyentes, separadas por un umbral de $200$ GeV sobre el momento transverso faltante reconstruido fuera de línea; este valor se determina a partir de las curvas de eficiencia, y por encima de él el camino basado en momento transverso faltante supera el $90\%$ de eficiencia, con una pérdida respecto a la disyunción lógica de ambos limitada a unos tres puntos porcentuales.
+The selection for analysis is performed independently for each final state based on two criteria: the gain in signal efficiency relative to the baseline strategy, and the overlap with paths already used, since a path whose gain is entirely contained within that of another path does not introduce new events and only adds complexity. The result is that in the final state $\mu\tau_h$, only the VBF$+\mu$ path is retained, while in $e\tau_h$ both the inclusive path and the VBF$+e$ path are selected, and in $\tau_h\tau_h$, the inclusive path is retained along with those requiring one or two $\tau_h$s. The gain is maximal for all channels in the low invariant mass region, reaching around $20\%$ in $\mu\tau_h$, $30\%$ in $e\tau_h$, and nearly $75\%$ in $\tau_h\tau_h$. This hierarchy reflects the fact that single-lepton and cross-lepton paths already effectively cover the semileptonic final states, whereas in the fully hadronic case, the baseline requires two $\tau_h$ above $35$ GeV, leaving much greater room for improvement.\\
 
-\begin{table}[t]
-\centering
-\small
-\begin{tabular}{l p{6.4cm} c}
-\toprule
-Trigger & Online requirements & Periods \\
-\midrule
-\multicolumn{3}{l}{\textit{Single lepton}} \\
-Single $\mu$ & one $\mu$, $p_{T} > 24$ GeV, tracker isolation & 2022--2024 \\
-Single $e$   & one $e$, $p_{T} > 30$ GeV, tight isolation     & 2022--2024 \\
-\addlinespace
-\multicolumn{3}{l}{\textit{Lepton\,$+\,\tau_{h}$}} \\
-$\mu\tau_{h}$ & one $\mu$, $p_{T} > 20$ GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 27$ GeV, Loose ID & 2022--2024 \\
-$e\tau_{h}$   & one $e$, $p_{T} > 24$ GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 30$ GeV, Loose ID   & 2022--2024 \\
-\addlinespace
-\multicolumn{3}{l}{\textit{$\tau_{h}$ and jet based}} \\
-DiTau     & two $\tau_{h}$, $p_{T} > 35$ GeV, $|\eta| < 2.1$, Medium ID & 2022--2024 \\
-DiTau$+$Jet & two $\tau_{h}$, $p_{T} > 30$ GeV, Medium ID $+$ one jet, $p_{T} > 60$ GeV & 2022--2024 \\
-QuadJet$+b+\tau_{h}$ & four jets, $p_{T} > 25$ GeV, $H_{T} > 250$ GeV $+$ one $b$-tagged and one $\tau_{h}$-tagged jet & 2024 \\
-\addlinespace
-\multicolumn{3}{l}{\textit{VBF topologies}} \\
-VBF$+$DiTau & two $\tau_{h}$, $p_{T} > 20$ GeV, Medium ID $+$ two jets, $p_{T} > 115\,(40)$ GeV, $m_{jj} > 650$ GeV & 2022--2024 \\
-VBF$+\tau_{h}$ & one $\tau_{h}$, $p_{T} > 45$ GeV, Medium ID $+$ two jets, $p_{T} > 45$ GeV, $m_{jj} > 500$ GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
-VBF$+\mu$ & one $\mu$, $p_{T} > 3$ GeV $+$ two jets, $p_{T} > 90\,(40)$ GeV, $m_{jj} > 600$ GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
-VBF$+e$ & one $e$, $p_{T} > 12$--$17$ GeV, $|\eta| < 2.1$ $+$ two jets, $p_{T} > 45$ GeV, $m_{jj} > 500$ GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
-VBF inclusive & two jets, $p_{T} > 105\,(40)$ GeV, $m_{jj} > 1000$ GeV, $\Delta\eta_{jj} > 3.5$; a variant additionally requiring a third jet is used in the same OR & 2023--2024 \\
-\addlinespace
-\multicolumn{3}{l}{\textit{Boosted topologies}} \\
-MET no-$\mu$ & $p_{T}^{\text{miss}}$ and $H_{T}^{\text{miss}}$, both computed without muons, $> 120$ GeV & 2022--2024 \\
-AK8$+$PNet & one AK8 jet, $p_{T} > 230$ GeV, $m_{\text{SD}} > 40$ GeV, online $H\to\tau\tau$ score $> 0.30\ (0.03)$ & 2022--2024 \\
-\bottomrule
-\end{tabular}
-\caption{Trigger paths used in the analysis, grouped by the objects they require. Thresholds
-correspond to the 2022 and 2023 data taking; for two jets, the leading and subleading values
-are quoted as $p_{T} > x\,(y)$. All thresholds were re-optimized for 2024, when the online
-$\tau_{h}$ identification moved from \textsc{DeepTau} to \textsc{ParticleNet}, allowing the DiTau
-threshold to be lowered to $30$ GeV and the acceptance to be extended to $|\eta| < 2.3$. The
-working point of the online $H\to\tau\tau$ tagger was likewise loosened from $0.30$ to $0.03$
-during 2023 following a retraining of the algorithm. The QuadJet and VBF paths other than
-VBF$+$DiTau are recorded through the parking streams. The VBF inclusive path is used in the
-$e\tau_{h}$ and $\tau_{h}\tau_{h}$ final states only. Within each final state the logical OR of all
-applicable paths is used, with two exceptions: the QuadJet path is applied in an orthogonal
-region of phase space, and in the $\tau_{h}\tau_{h}$ final state the VBF paths are considered only
-for events failing the DiTau and QuadJet selections.}
-\label{tab:triggers}
-\end{table}
+
+%Los caminos VBF se combinan siempre entre sí mediante disyunción lógica, si bien en $\tau_h\tau_h$ el conjunto se considera únicamente para los sucesos que no satisfacen las selecciones de los caminos de doble $\tau_h$ y del camino hadrónico de parking
+
+Finally, Run 3 incorporates paths that provide access to the boosted region, where the $\tau\tau$ are so collimated that the double $\tau_h$ path thresholds are no longer efficient. There are two new triggers: the first takes into account that in the boosted regime, the missing transverse momentum is greater than in the resolved regime, where $p_T^{MET}$ is largely compensated for by the two $\tau$ leptons exiting in opposite directions; the second requires a large-radius jet with a minimum \textit{soft-drop} mass\footnote{soft-drop}, labeled online by a discriminant trained to distinguish $H \to \tau\tau$ from multijet production.
+
+Figure \ref{fig:trigger_eff_boosted} illustrates the efficiency of the two paths and their logical disjunction as a function of missing transverse momentum, for two data-taking periods. The behavior of the two paths is markedly complementary. While the path based on missing transverse momentum reaches a plateau starting at about $200$ GeV, the path based on the large-radius jet precisely covers the region of low $p_T^{MET}$ where the other path is inefficient, and its efficiency decreases as $p_T^{MET}$ increases. The disjunction of the two remains above $90\%$ across the entire range, and a comparison between the two periods shows that the decline of the large-radius jet path is more pronounced in 2024, without this significantly affecting the combination in the region relevant to the analysis. For simplicity, the two triggers are applied in orthogonal and mutually exclusive regions separated by a threshold of $200$ GeV on the offline-reconstructed missing transverse momentum, which results in only a loss of efficiency of about 3 percentage points.
 
 
 
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{figures/chapter_VI/trigger_gain_kl1.png}
+        \caption{$\kappa_{\lambda} = 1$}
+        \label{fig:trigger_gain_kl1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{figures/chapter_VI/trigger_gain_kl5.png}
+        \caption{$\kappa_{\lambda} = 5$}
+        \label{fig:trigger_gain_kl5}
+    \end{subfigure}
+    \caption[Signal efficiency gain from the new Run-3 trigger paths]{%
+        Gain in signal selection efficiency provided by the DiTau$+$Jet path (blue), the QuadJet
+        parking path (purple), and their orthogonalized combination (gray), relative to a strategy
+        based on the DiTau path alone, as a function of the generator-level $HH$ invariant mass.
+        The normalized $m_{HH}$ distribution of the signal is superimposed in light gray. Results
+        are shown for the \subref{fig:trigger_gain_kl1} SM hypothesis and
+        \subref{fig:trigger_gain_kl5} the $\kappa_{\lambda} = 5$ benchmark. The distributions are
+        obtained in the $\tau_{h}\tau_{h}$ final state, in which these paths are used.}
+    \label{fig:trigger_gain}
+\end{figure}
 
-\begin{table}[t]
-\centering
-\small
-\begin{tabular}{l p{6.4cm} c}
-\toprule
-Trigger & Online requirements & Periods \\
-\midrule
-\multicolumn{3}{l}{\textit{Single lepton}} \\
-Single $\mu$ & one $\mu$, $p_{T} > 24$\GeV, tracker isolation & 2022--2024 \\
-Single $e$   & one $e$, $p_{T} > 30$\GeV, tight isolation     & 2022--2024 \\
-\addlinespace
-\multicolumn{3}{l}{\textit{Lepton\,$+\,\tau_{h}$}} \\
-$\mu\tau_{h}$ & one $\mu$, $p_{T} > 20$\GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 27$\GeV, Loose ID & 2022--2024 \\
-$e\tau_{h}$   & one $e$, $p_{T} > 24$\GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 30$\GeV, Loose ID   & 2022--2024 \\
-\addlinespace
-\multicolumn{3}{l}{\textit{$\tau_{h}$ and jet based}} \\
-DiTau     & two $\tau_{h}$, $p_{T} > 35$\GeV, $|\eta| < 2.1$, Medium ID & 2022--2024 \\
-DiTau$+$Jet & two $\tau_{h}$, $p_{T} > 30$\GeV, Medium ID $+$ one jet, $p_{T} > 60$\GeV & 2022--2024 \\
-QuadJet$+b+\tau_{h}$ & four jets, $p_{T} > 25$\GeV, $H_{T} > 250$\GeV $+$ one $b$-tagged and one $\tau_{h}$-tagged jet & 2024 \\
-\addlinespace
-\multicolumn{3}{l}{\textit{VBF topologies}} \\
-VBF$+$DiTau & two $\tau_{h}$, $p_{T} > 20$\GeV, Medium ID $+$ two jets, $p_{T} > 115\,(40)$\GeV, $m_{jj} > 650$\GeV & 2022--2024 \\
-VBF$+\tau_{h}$ & one $\tau_{h}$, $p_{T} > 45$\GeV, Medium ID $+$ two jets, $p_{T} > 45$\GeV, $m_{jj} > 500$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
-VBF$+\mu$ & one $\mu$, $p_{T} > 3$\GeV $+$ two jets, $p_{T} > 90\,(40)$\GeV, $m_{jj} > 600$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
-VBF$+e$ & one $e$, $p_{T} > 12$--$17$\GeV, $|\eta| < 2.1$ $+$ two jets, $p_{T} > 45$\GeV, $m_{jj} > 500$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
-VBF inclusive & two jets, $p_{T} > 105\,(40)$\GeV, $m_{jj} > 1000$\GeV, $\Delta\eta_{jj} > 3.5$; a variant additionally requiring a third jet is used in the same OR & 2023--2024 \\
-\addlinespace
-\multicolumn{3}{l}{\textit{Boosted topologies}} \\
-MET no-$\mu$ & $p_{T}^{\text{miss}}$ and $H_{T}^{\text{miss}}$, both computed without muons, $> 120$\GeV & 2022--2024 \\
-AK8$+$PNet & one AK8 jet, $p_{T} > 230$\GeV, $m_{\text{SD}} > 40$\GeV, online $H\to\tau\tau$ score $> 0.30\ (0.03)$ & 2022--2024 \\
-\bottomrule
-\end{tabular}
-\caption{Trigger paths used in the analysis, grouped by the objects they require. Thresholds
-correspond to the 2022 and 2023 data taking; for two jets, the leading and subleading values
-are quoted as $p_{T} > x\,(y)$. All thresholds were re-optimized for 2024, when the online
-$\tau_{h}$ identification moved from \textsc{DeepTau} to \textsc{ParticleNet}, allowing the DiTau
-threshold to be lowered to $30$\GeV and the acceptance to be extended to $|\eta| < 2.3$. The
-working point of the online $H\to\tau\tau$ tagger was likewise loosened from $0.30$ to $0.03$
-during 2023 following a retraining of the algorithm. The QuadJet and VBF paths other than
-VBF$+$DiTau are recorded through the parking streams. The VBF inclusive path is used in the
-$e\tau_{h}$ and $\tau_{h}\tau_{h}$ final states only. Within each final state the logical OR of all
-applicable paths is used, with two exceptions: the QuadJet path is applied in an orthogonal
-region of phase space, and in the $\tau_{h}\tau_{h}$ final state the VBF paths are considered only
-for events failing the DiTau and QuadJet selections.}
-\label{tab:triggers}
-\end{table}
-
-
-
-\subsection{Baseline triggers}
-% tau_e tau_h / tau_mu tau_h: single-lepton + cross lepton-tau (lower pT thresholds).
-% tau_h tau_h: di-tau, DeepTau at HLT in 2022-23 and ParticleNet in 2024.
-% Offline thresholds raised above the online ones to sit on the efficiency plateau.
-
-\subsection{New trigger paths for Run 3}
-% - di-tau + jet: extra central jet pT > 60 GeV, lowers the tau_h threshold by 5 GeV
-% - quad-jet + b (2024): >= 4 jets pT > 25 GeV, one tau_h and one b-tagged jet
-%   (ParticleNet) -> offline HT_ctjets > 400 GeV
-% - HH Parking and VBF Parking: parked streams with delayed reconstruction
-% - VBF: five algorithms, two AK4 jets with m_jj thresholds from 500 to 1000 GeV
-% - boosted: pTmiss trigger (offline pTmiss > 200 GeV), or AK8 pT > 230 GeV with
-%   m_SD > 40 GeV tagged by ParticleNet, plus a BoostedDeepTau vsJet requirement
-% -> code: isVBFParkTrigger / isQuadJetTrigger / isTauTauJetTrigger in add_channels()
-% Table: trigger menu per channel and per period. This table does a lot of work.
-
-\subsection{Trigger efficiency and scale factors}
-% Tag-and-probe, per period and per channel; how the OR of many paths is handled.
-% -> code: scripts/VBFtrigSF/
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{figures/chapter_VI/trigger_eff_boosted_2022.png}
+        \caption{2022postEE}
+        \label{fig:trigger_eff_boosted_2022}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{figures/chapter_VI/trigger_eff_boosted_2024.png}
+        \caption{2024}
+        \label{fig:trigger_eff_boosted_2024}
+    \end{subfigure}
+    \caption[Trigger efficiency for the boosted trigger paths]{%
+        Efficiency of the MET no-$\mu$ path (blue), the AK8$+$PNet path (orange), and their logical
+        OR (green), as a function of the missing transverse momentum, for the
+        \subref{fig:trigger_eff_boosted_2022} 2022postEE and
+        \subref{fig:trigger_eff_boosted_2024} 2024 data-taking periods. The distributions are
+        obtained from simulated signal samples covering both SM and BSM scenarios, selecting events
+        in which the reconstructed boosted $\tau_{h}$ candidates are matched to generated $\tau$
+        leptons. The 2023 period was also evaluated and found to show no relevant differences with
+        respect to 2022.}
+    \label{fig:trigger_eff_boosted}
+\end{figure}
 
 \begin{table}[t]
 \centering
 \small
-\begin{tabular}{l p{6.4cm} c}
+\begin{tabular}{l p{6.2cm} c}
 \toprule
-Trigger & Online requirements & Periods \\
-\midrule
+\textbf{Trigger} & \textbf{Online requirements} & \textbf{Periods} \\
+\midrule[\heavyrulewidth]
 \multicolumn{3}{l}{\textit{Single lepton}} \\
-Single $\mu$ & one $\mu$, $p_{T} > 24$\GeV, tracker isolation & 2022--2024 \\
-Single $e$   & one $e$, $p_{T} > 30$\GeV, tight isolation     & 2022--2024 \\
-\addlinespace
+\addlinespace[2pt]
+\quad Single $\mu$ & one $\mu$, $p_{T} > 24$ GeV, tracker isolation & 2022--2024 \\
+\quad Single $e$   & one $e$, $p_{T} > 30$ GeV, tight isolation     & 2022--2024 \\
+\midrule
 \multicolumn{3}{l}{\textit{Lepton\,$+\,\tau_{h}$}} \\
-$\mu\tau_{h}$ & one $\mu$, $p_{T} > 20$\GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 27$\GeV, Loose ID & 2022--2024 \\
-$e\tau_{h}$   & one $e$, $p_{T} > 24$\GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 30$\GeV, Loose ID   & 2022--2024 \\
-\addlinespace
+\addlinespace[2pt]
+\quad $\mu\tau_{h}$ & one $\mu$, $p_{T} > 20$ GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 27$ GeV, Loose ID & 2022--2024 \\
+\quad $e\tau_{h}$   & one $e$, $p_{T} > 24$ GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 30$ GeV, Loose ID   & 2022--2024 \\
+\midrule
 \multicolumn{3}{l}{\textit{$\tau_{h}$ and jet based}} \\
-DiTau     & two $\tau_{h}$, $p_{T} > 35$\GeV, $|\eta| < 2.1$, Medium ID & 2022--2024 \\
-DiTau$+$Jet & two $\tau_{h}$, $p_{T} > 30$\GeV, Medium ID $+$ one jet, $p_{T} > 60$\GeV & 2022--2024 \\
-QuadJet$+b+\tau_{h}$ & four jets, $p_{T} > 25$\GeV, $H_{T} > 250$\GeV $+$ one $b$-tagged and one $\tau_{h}$-tagged jet & 2024 \\
-\addlinespace
+\addlinespace[2pt]
+\quad DiTau       & two $\tau_{h}$, $p_{T} > 35$ GeV, $|\eta| < 2.1$, Medium ID & 2022--2024 \\
+\quad DiTau$+$Jet & two $\tau_{h}$, $p_{T} > 30$ GeV, Medium ID $+$ one jet, $p_{T} > 60$ GeV & 2022--2024 \\
+\quad QuadJet$+b+\tau_{h}$ & four jets, $p_{T} > 25$ GeV, $H_{T} > 250$ GeV $+$ one $b$-tagged and one $\tau_{h}$-tagged jet & 2024 \\
+\midrule
 \multicolumn{3}{l}{\textit{VBF topologies}} \\
-VBF$+$DiTau & two $\tau_{h}$, $p_{T} > 20$\GeV, Medium ID $+$ two jets, $p_{T} > 115\,(40)$\GeV, $m_{jj} > 650$\GeV & 2022--2024 \\
-VBF$+\tau_{h}$ & one $\tau_{h}$, $p_{T} > 45$\GeV, Medium ID $+$ two jets, $p_{T} > 45$\GeV, $m_{jj} > 500$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
-VBF$+\mu$ & one $\mu$, $p_{T} > 3$\GeV $+$ two jets, $p_{T} > 90\,(40)$\GeV, $m_{jj} > 600$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
-VBF$+e$ & one $e$, $p_{T} > 12$--$17$\GeV, $|\eta| < 2.1$ $+$ two jets, $p_{T} > 45$\GeV, $m_{jj} > 500$\GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
-VBF inclusive & two jets, $p_{T} > 105\,(40)$\GeV, $m_{jj} > 1000$\GeV, $\Delta\eta_{jj} > 3.5$; a variant additionally requiring a third jet is used in the same OR & 2023--2024 \\
-\addlinespace
+\addlinespace[2pt]
+\quad VBF$+$DiTau & two $\tau_{h}$, $p_{T} > 20$ GeV, Medium ID $+$ two jets, $p_{T} > 115\,(40)$ GeV, $m_{jj} > 650$ GeV & 2022--2024 \\
+\quad VBF$+\tau_{h}$ & one $\tau_{h}$, $p_{T} > 45$ GeV, Medium ID $+$ two jets, $p_{T} > 45$ GeV, $m_{jj} > 500$ GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+\quad VBF$+\mu$ & one $\mu$, $p_{T} > 3$ GeV $+$ two jets, $p_{T} > 90\,(40)$ GeV, $m_{jj} > 600$ GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+\quad VBF$+e$ & one $e$, $p_{T} > 12$--$17$ GeV, $|\eta| < 2.1$ $+$ two jets, $p_{T} > 45$ GeV, $m_{jj} > 500$ GeV, $\Delta\eta_{jj} > 2.5$ & 2023--2024 \\
+\quad VBF inclusive & two jets, $p_{T} > 105\,(40)$ GeV, $m_{jj} > 1000$ GeV, $\Delta\eta_{jj} > 3.5$; a variant additionally requiring a third jet is used in the same OR & 2023--2024 \\
+\midrule
 \multicolumn{3}{l}{\textit{Boosted topologies}} \\
-MET no-$\mu$ & $p_{T}^{\text{miss}}$ and $H_{T}^{\text{miss}}$, both computed without muons, $> 120$\GeV & 2022--2024 \\
-AK8$+$PNet & one AK8 jet, $p_{T} > 230$\GeV, $m_{\text{SD}} > 40$\GeV, online $H\to\tau\tau$ score $> 0.30\ (0.03)$ & 2022--2024 \\
+\addlinespace[2pt]
+\quad MET no-$\mu$ & $p_{T}^{\text{miss}}$ and $H_{T}^{\text{miss}}$, both computed without muons, $> 120$ GeV & 2022--2024 \\
+\quad AK8$+$PNet & one AK8 jet, $p_{T} > 230$ GeV, $m_{\text{SD}} > 40$ GeV, online $H\to\tau\tau$ score $> 0.30\ (0.03)$ & 2022--2024 \\
 \bottomrule
 \end{tabular}
-\caption{Trigger paths used in the analysis, grouped by the objects they require. Thresholds
-correspond to the 2022 and 2023 data taking; for two jets, the leading and subleading values
-are quoted as $p_{T} > x\,(y)$. All thresholds were re-optimized for 2024, when the online
-$\tau_{h}$ identification moved from \textsc{DeepTau} to \textsc{ParticleNet}, allowing the DiTau
-threshold to be lowered to $30$\GeV and the acceptance to be extended to $|\eta| < 2.3$. The
-working point of the online $H\to\tau\tau$ tagger was likewise loosened from $0.30$ to $0.03$
-during 2023 following a retraining of the algorithm. The QuadJet and VBF paths other than
-VBF$+$DiTau are recorded through the parking streams. The VBF inclusive path is used in the
-$e\tau_{h}$ and $\tau_{h}\tau_{h}$ final states only. Within each final state the logical OR of all
-applicable paths is used, with two exceptions: the QuadJet path is applied in an orthogonal
-region of phase space, and in the $\tau_{h}\tau_{h}$ final state the VBF paths are considered only
-for events failing the DiTau and QuadJet selections.}
+\caption{Trigger paths used in the analysis, grouped by the objects they require.}
 \label{tab:triggers}
 \end{table}
+% Thresholds correspond to the 2022 and 2023 data taking; for two jets, the leading and subleading values are quoted as $p_{T} > x\,(y)$. All thresholds were re-optimized for 2024, when the online $\tau_{h}$ identification moved from \textsc{DeepTau} to \textsc{ParticleNet}, allowing the DiTau threshold to be lowered to $30$ GeV and the acceptance to be extended to $|\eta| < 2.3$. The working point of the online $H\to\tau\tau$ tagger was likewise loosened from $0.30$ to $0.03$ during 2023 following a retraining of the algorithm. The QuadJet and VBF paths other than VBF$+$DiTau are recorded through the parking streams. The VBF inclusive path is used in the $e\tau_{h}$ and $\tau_{h}\tau_{h}$ final states only. Within each final state the logical OR of all applicable paths is used, with the exception of the QuadJet path, which is applied in an orthogonal region of phase space.
+
+
 
 
 
