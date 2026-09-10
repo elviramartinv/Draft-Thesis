@@ -207,69 +207,167 @@ Figure \ref{fig:trigger_eff_boosted} illustrates the efficiency of the two paths
 \begin{table}[t]
 \centering
 \small
-\begin{tabular}{l p{4.9cm} c c}
+\begin{tabular}{l p{5.4cm} c c}
 \toprule
 \textbf{Trigger} & \textbf{Online requirements} & \textbf{Final state} & \textbf{Periods} \\
 \midrule
 \midrule
 \multicolumn{4}{l}{\textit{Single lepton}} \\
 \midrule
-\quad Single $\mu$ & one $\mu$, $p_{T} > 24$ GeV, tracker isolation & $\tau_\mu\tau_h$ & 2022--2024 \\
-\quad Single $e$   & one $e$, $p_{T} > 30$ GeV, tight isolation     & $\tau_e\tau_h$   & 2022--2024 \\
-\addlinespace
+\quad Single $\mu$ & $p_{T}^{\mu} > 24$ GeV  & $\tau_\mu\tau_h$ & 2022--2024 \\
+\quad Single $e$   & $p_{T}^{e} > 30$ GeV   & $\tau_e\tau_h$   & 2022--2024 \\
+\midrule
 \multicolumn{4}{l}{\textit{Cross-lepton}} \\
 \midrule
-\quad $\mu\tau_{h}$ & one $\mu$, $p_{T} > 20$ GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 27$ GeV, Loose ID & $\tau_\mu\tau_h$ & 2022--2024 \\
-\quad $e\tau_{h}$   & one $e$, $p_{T} > 24$ GeV, $|\eta| < 2.1$ $+$ one $\tau_{h}$, $p_{T} > 30$ GeV, Loose ID   & $\tau_e\tau_h$   & 2022--2024 \\
-\addlinespace
+\quad $\mu\tau_{h}$ & $p_{T}^{\mu} > 20$ GeV, $p_{T}^{\tau_h} > 27$ GeV, $|\eta| < 2.1\,(2.3)$, Loose ID & $\tau_\mu\tau_h$ & 2022--2024 \\
+\quad $e\tau_{h}$   & $p_{T}^{e} > 24$ GeV, $p_{T}^{\tau_h} > 30$ GeV, $|\eta| < 2.1\,(2.3)$, Loose ID & $\tau_e\tau_h$ & 2022--2024 \\
+\midrule
 \multicolumn{4}{l}{\textit{$\tau_{h}$ and jet based}} \\
 \midrule
-\quad DiTau       & two $\tau_{h}$, $p_{T} > 35$ GeV, $|\eta| < 2.1$, Medium ID & $\tau_h\tau_h$ & 2022--2024 \\
-\quad DiTau$+$Jet & two $\tau_{h}$, $p_{T} > 30$ GeV, Medium ID $+$ one jet, $p_{T} > 60$ GeV & $\tau_h\tau_h$ & 2022--2024 \\
-\quad QuadJet$+b+\tau_{h}$ & four jets, $p_{T} > 25$ GeV, $H_{T} > 250$ GeV $+$ one $b$-tagged and one $\tau_{h}$-tagged jet & $\tau_h\tau_h$ & 2024 \\
-\addlinespace
+\quad DiTau       & $p_{T}^{\tau_h} > 35\,(30)$ GeV, $|\eta| < 2.1\,(2.3)$, Medium ID & $\tau_h\tau_h$ & 2022--2024 \\
+\quad DiTau$+$Jet & $p_{T}^{\tau_h} > 30\,(26)$ GeV, $|\eta| < 2.1\,(2.3)$, Medium ID; $p_{T}^{j} > 60$ GeV & $\tau_h\tau_h$ & 2022--2024 \\
+\quad QuadJet$+b+\tau_{h}$ & $p_{T}^{j} > 25$ GeV for four jets, $H_{T} > 250$ GeV; one $b$-tagged and one $\tau_{h}$-tagged & $\tau_h\tau_h$ & 2024 \\
+\midrule
 \multicolumn{4}{l}{\textit{VBF topologies}} \\
 \midrule
-\quad VBF$+$DiTau & two $\tau_{h}$, $p_{T} > 20$ GeV, Medium ID $+$ two jets, $p_{T} > 115\,(40)$ GeV, $m_{jj} > 650$ GeV & $\tau_h\tau_h$ & 2022--2024 \\
-\quad VBF$+\tau_{h}$ & one $\tau_{h}$, $p_{T} > 45$ GeV, Medium ID $+$ two jets, $p_{T} > 45$ GeV, $m_{jj} > 500$ GeV, $\Delta\eta_{jj} > 2.5$ & $\tau_h\tau_h$ & 2023--2024 \\
-\quad VBF$+\mu$ & one $\mu$, $p_{T} > 3$ GeV $+$ two jets, $p_{T} > 90\,(40)$ GeV, $m_{jj} > 600$ GeV, $\Delta\eta_{jj} > 2.5$ & $\tau_\mu\tau_h$ & 2023--2024 \\
-\quad VBF$+e$ & one $e$, $p_{T} > 12$--$17$ GeV, $|\eta| < 2.1$ $+$ two jets, $p_{T} > 45$ GeV, $m_{jj} > 500$ GeV, $\Delta\eta_{jj} > 2.5$ & $\tau_e\tau_h$ & 2023--2024 \\
-\quad VBF inclusive & two jets, $p_{T} > 105\,(40)$ GeV, $m_{jj} > 1000$ GeV, $\Delta\eta_{jj} > 3.5$; a variant additionally requiring a third jet is used in the same OR & $\tau_e\tau_h$, $\tau_h\tau_h$ & 2023--2024 \\
-\addlinespace
+\quad VBF$+$DiTau & $p_{T}^{\tau_h} > 20$ GeV, $|\eta| < 2.1\,(2.2)$, Medium ID; $p_{T}^{j_{1,2}} > 115,\,40$ GeV, $m_{jj} > 650$ GeV & $\tau_h\tau_h$ & 2022--2024 \\
+\quad VBF$+\tau_{h}$ & $p_{T}^{\tau_h} > 45$ GeV, $|\eta| < 2.1\,(2.3)$, Medium ID; $p_{T}^{j_{1,2}} > 45$ GeV, $m_{jj} > 500\,(650)$ GeV, $\Delta\eta_{jj} > 2.5$ & $\tau_h\tau_h$ & 2023--2024 \\
+\quad VBF$+\mu$ & $p_{T}^{\mu} > 3$ GeV; $p_{T}^{j_{1,2}} > 90\,(95),\,40\,(45)$ GeV, $m_{jj} > 600\,(750)$ GeV, $\Delta\eta_{jj} > 2.5$ & $\tau_\mu\tau_h$ & 2023--2024 \\
+\quad VBF$+e$ & $p_{T}^{e} > 12$--$17\,(22)$ GeV, $|\eta| < 2.1$; $p_{T}^{j_{1,2}} > 45\,(50)$ GeV, $m_{jj} > 500\,(600)$ GeV, $\Delta\eta_{jj} > 2.5$ & $\tau_e\tau_h$ & 2023--2024 \\
+\quad VBF inclusive & $p_{T}^{j_{1,2}} > 105\,(125),\,40\,(45)$ GeV, $m_{jj} > 1000\,(1050)$ GeV, $\Delta\eta_{jj} > 3.5$ & $\tau_e\tau_h$, $\tau_h\tau_h$ & 2023--2024 \\
+\midrule
 \multicolumn{4}{l}{\textit{Boosted topologies}} \\
 \midrule
-\quad MET no-$\mu$ & $p_{T}^{\text{miss}}$ and $H_{T}^{\text{miss}}$, both computed without muons, $> 120$ GeV & boosted $\tau_h\tau_h$ & 2022--2024 \\
-\quad AK8$+$PNet & one AK8 jet, $p_{T} > 230$ GeV, $m_{\text{SD}} > 40$ GeV, online $H\to\tau\tau$ score $> 0.30\ (0.03)$ & boosted $\tau_h\tau_h$ & 2022--2024 \\
+\quad MET no-$\mu$ & $p_{T}^{\text{miss}}$, $H_{T}^{\text{miss}} > 120$ GeV & boosted $\tau_h\tau_h$ & 2022--2024 \\
+\quad AK8$+$PNet & $p_{T}^{\text{AK8}} > 230$ GeV, $m_{\text{SD}} > 40$ GeV, online $H\to\tau\tau$ score $> 0.30\,(0.03)$ & boosted $\tau_h\tau_h$ & 2022--2024 \\
 \bottomrule
 \end{tabular}
-\caption{Trigger paths used in the analysis, grouped by the objects they require.}
+\caption[Trigger paths used in the analysis]{%
+  Trigger paths used in the analysis, grouped by the objects they require. Thresholds
+  correspond to the 2022 and 2023 data taking; where they were changed for 2024, the
+  updated value is given in parentheses.}
 \label{tab:triggers}
 \end{table}
+
+
+% For two jets, the leading and subleading values
+%   are quoted in that order. The 2024 changes follow the migration of the online $\tau_{h}$
+%   identification from \textsc{DeepTau} to \textsc{ParticleNet}, which allowed the
+%   thresholds to be lowered and the acceptance extended in $|\eta|$; in the VBF parking
+%   paths the jet and $m_{jj}$ requirements were instead tightened, and the $\Delta\eta_{jj}$
+%   requirement was dropped altogether. The working point of the online $H\to\tau\tau$ tagger
+%   was loosened from $0.30$ to $0.03$ already during 2023, following a retraining of the
+%   algorithm. The QuadJet and VBF paths other than VBF$+$DiTau are recorded through the
+%   parking streams. 
+
+% The quoted  thresholds correspond to the 2022 and 2023 data taking; for two jets, the leading and  subleading values are given in that order. All thresholds were re-optimized for 2024,  when the online $\tau_{h}$ identification moved from \textsc{DeepTau} to  \textsc{ParticleNet}, allowing the DiTau threshold to be lowered to $30$ GeV and the  acceptance to be extended to $|\eta| < 2.3$. The VBF parking paths were redefined more  substantially for that year, with higher jet and $m_{jj}$ thresholds and no  $\Delta\eta_{jj}$ requirement. The working point of the online $H\to\tau\tau$ tagger was  loosened from $0.30$ to $0.03$ during 2023 following a retraining of the algorithm. The  QuadJet and VBF paths other than VBF$+$DiTau are recorded through the parking streams.  Within each final state the logical OR of all applicable paths is used, with the exception  of the QuadJet path, which is applied in an orthogonal region of phase space.
+
+
 
 % Thresholds correspond to the 2022 and 2023 data taking; for two jets, the leading and subleading values are quoted as $p_{T} > x\,(y)$. All thresholds were re-optimized for 2024, when the online $\tau_{h}$ identification moved from \textsc{DeepTau} to \textsc{ParticleNet}, allowing the DiTau threshold to be lowered to $30$ GeV and the acceptance to be extended to $|\eta| < 2.3$. The working point of the online $H\to\tau\tau$ tagger was likewise loosened from $0.30$ to $0.03$ during 2023 following a retraining of the algorithm. The QuadJet and VBF paths other than VBF$+$DiTau are recorded through the parking streams. The VBF inclusive path is used in the $e\tau_{h}$ and $\tau_{h}\tau_{h}$ final states only. Within each final state the logical OR of all applicable paths is used, with the exception of the QuadJet path, which is applied in an orthogonal region of phase space.
 
 
 
 
-\section{Physics object selection}
+\section{Physics object preselection}
 \label{sec:bbtt_objects}
-% Deliberately short: reconstruction belongs to the detector chapter and tau_h
-% identification to Chapter \ref{ch:Tau}. Only analysis-level working points here.
-% A single summary table (Table 1 of the PAS) can absorb most of it.
+%
+The reconstruction of the objects involved in the $bb\tau\tau$ final state — muons, electrons, hadronic $\tau$ leptons, and jets — is performed using the candidates from the Particle Flow algorithm introduced in Section \ref{sec:POR}. Therefore, this section is limited to listing the identification criteria and the kinematic regions that define each object at the analysis level. It should be noted that the transverse momentum thresholds for reconstructed objects are directly related to the trigger strategy employed. Hence, they are not set here but are inherited by each event from the path that selected it: the objects that reconstruct the final state must geometrically coincide within the cone $\Delta R < 0.5$ with the objects that activated the trigger, and they must exceed a threshold
+%
+\begin{equation}
+    p_{T}^{\text{offline}} \geq p_{T}^{\text{online}} + \delta,
+    \label{eq:trigger_matching}
+\end{equation}
+%
+where $p_{T}^{\text{online}}$ is the online threshold listed in Table \ref{tab:triggers} and $\delta$ is a margin chosen such that the selection operates on the plateau of the efficiency curves and not on their turn-on region, where the efficiency depends critically on the exact value of the threshold. This margin is determined by the resolution with which each type of object is reconstructed online versus offline, and it is set at $1$ GeV for electrons, $2$ GeV for muons, and $5$ GeV for hadronic $\tau$s\footnote {The thresholds on the purely hadronic legs of the triggers coincide with those applied online, with the exception of the VBF+DiTau path, in which the two jets are required to have $p_{T} > 140$ and $60$ GeV. For the $p_{T}^{\text{miss}}$ path, whose rise curve is notably slower, $p_{T}^{\text{miss}} > 200$ GeV is required.}. Consequently, the preselections described below are deliberately non-stringent in $p_{T}$.
 
 \subsection{Muons and electrons}
-% Muons: pT > 22/26/6 GeV (cross / single / VBF+mu), |eta| < 2.4, tight ID, I_rel < 0.15.
-% Electrons: pT > 25/31/13(18) GeV, |eta| < 2.5, tight MVA Iso+ID.
-% |d_xy| < 0.045 cm, |d_z| < 0.2 cm.
+%
+Muons are selected within the acceptance of the muon chamber system, $|\eta| < 2.4$, requiring a \textit{tight} identification working point and a relative isolation, calculated within a cone of radius $\Delta R = 0.4$, of less than $0.15$. Electrons, on the other hand, are restricted to the coverage of the tracker, with $|\eta| < 2.5$, and are identified using a multivariate discriminant that combines identification and isolation information, operating at an efficiency of $80\%$. In both cases, the trajectory must be compatible with the primary vertex of the event, with transverse and longitudinal impact parameters less than $0.045$ and $0.2$ cm, respectively; and in the 2022postEE period, reconstructed electrons in the endcap region of the electromagnetic calorimeter affected by the power loss described in Section \ref{sec:bbtt_samples} are also discarded. A third-lepton veto is applied to this selection, so that events containing any additional muon or electron that satisfies a relaxed version of the above criteria are rejected, which suppresses the contribution from Drell–Yan and $t\bar{t}$ dilepton events while ensuring that the four channels are mutually exclusive.
 
 \subsection{Hadronic tau leptons}
-% Resolved: HPS + DeepTau -- Medium vsJet, VVLoose vsE, VLoose/Tight vsMu.
-% Boosted: CA8 jets pT > 100 GeV, subjet seeding, BoostedDeepTau vsJet.
-% Note the boosted regime is new with respect to Run 2.
+%
+Hadronic $\tau$ are reconstructed using the \textit{hadrons-plus-strips} algorithm and identified using \textsc{DeepTau} 2018 v2.5, as described in Section \ref{sec:DeepTau2.5}. Candidates with $p_T > 20$ GeV and $|\eta| < 2.5$ are accepted, provided they are compatible with the primary vertex via $|d_z| < 0.2$ cm, and reconstructed in one of the decay modes with one or three charged strips, with or without associated neutral pions. For electronic and muonic backgrounds, the \textit{VVLoose} and, respectively, \textit{Tight} working points are required in the semileptonic channels and \textit{VLoose} in the $\tau_h\tau_h$ channel, where contamination from light leptons is negligible. For jets, however, preselection is maintained at the loosest available working point, \textit{VVVLoose}; the \textit{Medium} point, which defines the signal region, is applied later, so that the band between the two remains available for constructing the control regions used to estimate the misidentified jet background. In the boosted channel, where the two $\tau$ particles are so collimated that their decay products fall within the same jet, the candidates come from the dedicated reconstruction described in Chapter \ref{ch:Tau} and are identified using the version of \textsc{DeepTau} trained specifically for this regime.
 
 \subsection{Jets and heavy-flavour identification}
-% AK4 (|eta| < 5.1) and AK8. b tagging: ParticleNet in 2022-23, UParT in 2024
-% -> justify the switch (best available per period). AK8: ParticleNet X->bb.
+%
+The jets are reconstructed by grouping Particle Flow candidates using the anti-$k_T$ algorithm, with a distance parameter of $R = 0.4$ for ordinary jets and $R = 0.8$ for large-radius jets intended for boosted topologies. Of these, those that overlap with the already selected $\tau$ candidates are discarded to avoid double-counting the same energy deposits, as are low-momentum jets reconstructed in the transition region $2.5 < |\eta| < 3.0$, where the resolution degrades significantly. The $b$-jet candidates are sought among jets with $p_T > 20$ GeV and $|\eta| < 2.5$ — an acceptance slightly larger than that used in Run 2, made possible by the extended coverage of the pixel detector —  while vector boson fusion jet candidates are accepted up to $|\eta| < 4.7$, taking advantage of the complete coverage of the front-end hadronic calorimeter. Large-radius jets, on the other hand, are required to have $p_T > 250$ GeV, $|\eta| < 2.5$, and a \textit{soft-drop} mass greater than $30$ GeV. The decision of which jets to include in the reconstruction of each candidate is made using the algorithms developed in Chapter \ref{ch:taggers}, as described in the following section.
+
+% \begin{table}[t]
+% \centering
+% \small
+% \begin{tabular}{l p{7.2cm}}
+% \toprule
+% \textbf{Variable} & \textbf{Requirement} \\
+% \midrule
+% \midrule
+% \multicolumn{2}{l}{\textit{Muons}} \\
+% \midrule
+% \quad $p_{T}$ & $> 6$ GeV; the effective threshold is set by the trigger matching, Eq.\ \ref{eq:trigger_matching} \\
+% \quad $|\eta|$ & $< 2.4$ \\
+% \quad Identification & Tight working point \\
+% \quad Isolation & $I_{\text{rel}} < 0.15$, within a cone of $\Delta R = 0.4$ \\
+% \quad Impact parameters & $|d_{xy}| < 0.045$ cm, $|d_{z}| < 0.2$ cm \\
+% \addlinespace
+% \multicolumn{2}{l}{\textit{Electrons}} \\
+% \midrule
+% \quad $p_{T}$ & $> 12$ GeV; the effective threshold is set by the trigger matching \\
+% \quad $|\eta|$ & $< 2.5$ \\
+% \quad Identification & Isolation-based multivariate discriminant, working point with $80\%$ signal efficiency \\
+% \quad Impact parameters & $|d_{xy}| < 0.045$ cm, $|d_{z}| < 0.2$ cm \\
+% \quad Region veto & Endcap region affected by the power loss, 2022postEE only \\
+% \addlinespace
+% \multicolumn{2}{l}{\textit{Third-lepton veto}} \\
+% \midrule
+% \quad Additional muons & $p_{T} > 6$ GeV, $|\eta| < 2.4$, medium or tight identification, $I_{\text{rel}} < 0.30$ \\
+% \quad Additional electrons & $p_{T} > 10$ GeV, $|\eta| < 2.5$, working point with $90\%$ signal efficiency \\
+% \addlinespace
+% \multicolumn{2}{l}{\textit{Hadronic $\tau$ leptons, resolved channels}} \\
+% \midrule
+% \quad $p_{T}$ & $> 20$ GeV; the effective threshold is set by the trigger matching \\
+% \quad $|\eta|$ & $< 2.5$ \\
+% \quad Impact parameter & $|d_{z}| < 0.2$ cm \\
+% \quad Decay mode & One or three charged hadrons, with or without associated neutral pions \\
+% \quad \textsc{DeepTau} against jets & $\geq$ VVVLoose at preselection; Medium in the signal region \\
+% \quad \textsc{DeepTau} against $e$ & $\geq$ VVLoose \\
+% \quad \textsc{DeepTau} against $\mu$ & $\geq$ Tight in $\tau_\mu\tau_h$ and $\tau_e\tau_h$; $\geq$ VLoose in $\tau_h\tau_h$ \\
+% \addlinespace
+% \multicolumn{2}{l}{\textit{Hadronic $\tau$ leptons, boosted channel}} \\
+% \midrule
+% \quad $p_{T}$ & $> 20$ GeV \\
+% \quad $|\eta|$ & $< 2.5$ \\
+% \quad Decay mode & One or three charged hadrons, with or without associated neutral pions \\
+% \quad \textsc{BoostedDeepTau} & Discriminants against jets, $e$ and $\mu$ above $0.72$, $0.1$ and $0.003$ \\
+% \addlinespace
+% \multicolumn{2}{l}{\textit{Jets of radius $R = 0.4$}} \\
+% \midrule
+% \quad Identification & Tight working point \\
+% \quad Cleaning & $\Delta R > 0.5$ from both $\tau$ candidates \\
+% \quad Transition region & Jets with $p_{T} < 50$ GeV in $2.5 < |\eta| < 3.0$ are discarded \\
+% \quad $b$ jet candidates & $p_{T} > 20$ GeV, $|\eta| < 2.5$ \\
+% \quad VBF jet candidates & $p_{T} > 20$ GeV, $|\eta| < 4.7$ \\
+% \addlinespace
+% \multicolumn{2}{l}{\textit{Jets of radius $R = 0.8$}} \\
+% \midrule
+% \quad $p_{T}$ & $> 250$ GeV \\
+% \quad $|\eta|$ & $< 2.5$ \\
+% \quad Soft-drop mass & $> 30$ GeV \\
+% \quad Cleaning & $\Delta R > 0.8$ from the $\tau$ candidates \\
+% \addlinespace
+% \multicolumn{2}{l}{\textit{$\tau\tau$ pair}} \\
+% \midrule
+% \quad Charge & The two candidates of opposite charge \\
+% \quad Separation & $\Delta R > 0.5$ between them \\
+% \bottomrule
+% \end{tabular}
+% \caption[Physics object selection criteria]{%
+%   Identification and acceptance criteria defining the physics objects used in the analysis.
+%   The transverse momentum thresholds quoted are preselection floors: the threshold that
+%   actually applies to a given event is the one imposed by the matching to the trigger path
+%   that selected it.}
+% \label{tab:object_selection}
+% \end{table}
+
 
 \section{Analysis flow}
 \label{sec:bbtt_flow}
@@ -312,7 +410,7 @@ Figure \ref{fig:trigger_eff_boosted} illustrates the efficiency of the two paths
 % m_bb, m_tautau, m_HH, pT_HH and M_chi = m_bbtautau - (m_bb - m_H) - (m_tautau - m_H).
 % -> code: add_features() l.2290
 
-\section{Background estimation}
+\section{Background modeling}
 \label{sec:bbtt_backgrounds}
 
 \subsection{Overview}
