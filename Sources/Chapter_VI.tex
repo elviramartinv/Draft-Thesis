@@ -281,7 +281,7 @@ where $p_{T}^{\text{online}}$ is the online threshold listed in Table \ref{tab:t
 
 \subsection{Muons and electrons}
 %
-Muons are selected within the acceptance of the muon chamber system, $|\eta| < 2.4$, requiring a \textit{tight} identification working point and a relative isolation, calculated within a cone of radius $\Delta R = 0.4$, of less than $0.15$. Electrons, on the other hand, are restricted to the coverage of the tracker, with $|\eta| < 2.5$, and are identified using a multivariate discriminant that combines identification and isolation information, operating at an efficiency of $80\%$. In both cases, the trajectory must be compatible with the primary vertex of the event, with transverse and longitudinal impact parameters less than $0.045$ and $0.2$ cm, respectively; and in the 2022postEE period, reconstructed electrons in the endcap region of the electromagnetic calorimeter affected by the power loss described in Section \ref{sec:bbtt_samples} are also discarded. A third-lepton veto is applied to this selection, so that events containing any additional muon or electron that satisfies a relaxed version of the above criteria are rejected, which suppresses the contribution from Drell–Yan and $t\bar{t}$ dilepton events while ensuring that the four channels are mutually exclusive.
+Muons are selected within the acceptance of the muon chamber system, $|\eta| < 2.4$, requiring a \textit{tight} identification working point and a relative isolation, calculated within a cone of radius $\Delta R = 0.4$, of less than $0.15$. Electrons, on the other hand, are restricted to the coverage of the tracker, with $|\eta| < 2.5$, and are identified using a multivariate discriminant that combines identification and isolation information, operating at an efficiency of $80\%$. In both cases, the trajectory must be compatible with the primary vertex of the event, with transverse and longitudinal impact parameters less than $0.045$ and $0.2$ cm, respectively; and in the 2022postEE period, reconstructed electrons in the endcap region of the electromagnetic calorimeter affected by the power loss described in Section \ref{sec:bbtt_samples} are also discarded. A third-lepton veto is applied on top of this selection, so that events containing any additional muon or electron that satisfies a relaxed version of the above criteria are rejected, which suppresses the contribution from Drell–Yan and $t\bar{t}$ dilepton events.
 
 \subsection{Hadronic tau leptons}
 %
@@ -372,32 +372,101 @@ The jets are reconstructed by grouping Particle Flow candidates using the anti-$
 % \end{table}
 
 
-\section{Analysis flow}
+\section{Event selection and categorization}
 \label{sec:bbtt_flow}
-% Grouping borrowed from Jaime: the event is built up candidate by candidate,
-% and the categorisation follows from what was built.
+%
+The criteria defining each of the analysis objects separately have been established. However, the analysis rests on the combinations they form among themselves so that the event is assembled candidate by candidate, following a specific order. First, the pair $\tau\tau$ is reconstructed, since it determines the channel to which the event is assigned. Next, the candidate $H\to b\bar{b}$ is constructed, taking care to filter out the jet selection with respect to the $\tau$ candidates once they have been selected. Finally, the jets remaining after the two Higgs boson candidates have been formed are examined for the topology characteristic of vector boson fusion.
+
+Once the candidates have been identified, the analysis proceeds to the definition of the signal regions. Events are first distributed among mutually exclusive categories, defined by the topology in which the event was reconstructed and by the final state of the $\tau\tau$ pair. Within the resolved categories, a requirement on the plane defined by the two reconstructed masses then removes the region where no signal is expected. It is therefore essential to address how the mass of each candidate is reconstructed, as will be done in each of the corresponding sections. These categories represent the regions from which the signal is ultimately extracted and, therefore, the way they are defined has a direct impact on the final results of the analysis. The following sections walk through each of these steps in the same order in which they are applied.
+
 
 \subsection{The \texorpdfstring{$H\to\tau\tau$}{H->tautau} candidate}
-% Channel assignment priority: tau_mu tau_h > tau_e tau_h > tau_h tau_h > boosted.
-% -> code: pairType 0/1/2/6. Opposite charge; Delta R > 0.5 resolved / < 0.8 boosted;
-% third-lepton veto against DY.
-% Neutrinos escape -> m_tautau is biased. A neural network regresses the neutrino
-% momenta in all four channels. Contrast with the Run-2 SVfit/FastMTT approach and
-% show what is gained in resolution.
+% FINAL STATES ASSIGNMENT AND SELECTION
+\subsubsection{Asignación del estado final y selección del par}
+%
+Una vez aplicada la preselección de la Sección \ref{sec:bbtt_objects}, el canal al que pertenece un suceso queda determinado por su contenido en leptones ligeros: los sucesos con un muón y ningún electrón se asignan al canal $\tau_\mu\tau_h$, los que contienen un electrón y ningún muón a $\tau_e\tau_h$, y los que no contienen ninguno de los dos a $\tau_h\tau_h$. Los sucesos con dos leptones ligeros, sean $\mu\mu$, $ee$ y $e\mu$, se conservan aparte y se emplean más adelante como regiones de control, ya que la contribución a la señal de la desintegración puramente leptonica del par $\tau\tau$ queda sepultada bajo la producción los dos fondos principales del análisis: Drell--Yan domina en $ee$ y $\mu\mu$ mientras que $e\mu$, donde el bosón $Z$ no puede contribuir directamente por conservación del sabor leptónico, está dominado por la desintegración dileptónica de pares $t\bar{t}$. Los sucesos que no encajan en ninguna de las configuraciones previstas se descartan.
+
+La asignación del canal descansa por tanto enteramente sobre los leptones ligeros, que han sido previamente seleccionados con criterios estrictos de identificación y aislamiento. Los leptones $\tau_h$, en cambio, se preseleccionan deliberadamente con el punto de trabajo más laxo disponible frente a jets, lo que permite construir las regiones de control sobre las que se apoya la estimación del fondo de jets mal identificados descrita en la Sección \ref{sec:bbtt_backgrounds}. Queda por tanto pendiente fijar el $\tau_h$ que acompaña al leptón ligero del canal que éste último fija, ya que un mismo suceso admite con frecuencia varias parejas compatibles entre las que hay que decidir. 
+
+La elección se resuelve ordenando todas las parejas posibles y seleccionando la primera. La ordenación se hace pierna a pierna, donde en los canales semileptónicos el leptón ligero ocupa siempre la posición principal, mientras que en $\tau_h\tau_h$ se consideran las dos permutaciones de los candidatos. Así, las parejas se ordenan primero por el aislamiento de la pierna principal, y si ese valor coincide, se da prioridad a la de mayor momento transverso. Si también coinciden en momento — lo que indica que comparten el candidato principal, como será el caso de los canales semileptónicos — , se recurre al aislamiento de la pierna secundaria, y en último término, a su momento transverso. En el caso de los $\tau_h$ ese aislamiento es la puntuación de \textsc{DeepTau} frente a jets, la misma variable sobre la que se aplicará más adelante el punto de trabajo que define la región de señal; la ordenación retiene así la pareja que menos probablemente proviene de un jet mal identificado y que, por tanto, más probabilidades tiene de sobrevivir a ese endurecimiento posterior.
+
+El canal boosted se trata como una extensión del puramente hadrónico, $b\tau_h\tau_h$, y solo se considera para los sucesos en los que no ha podido formarse ningun pareja resuelta. La prioridad aquí es siempre el canal resuelto, de forma que si en un mismo suceso se reconstruyen tanto dos $\tau_h$ del algoritmo estándar como dos candidatos procedentes de la reconstrucción dedicada a topologías colimadas, el suceso se asigna a $\tau_h\tau_h$ resuelto. En caso contrario, y siempre que el suceso no contenga ningún leptón ligero, los candidates boosted se emparejan si su separación angular se encuentra entre $0.05$ y $0.8$, un margen que permite que estén lo bastante próximos para quedar contenidos en un jet de radio grando, pero no tanto como para que ambos sean reconstrucciones del mismo objeto. Se busca entonces el jet que los contiene, de forma que si son varios los jets que satisfacen esa condición, se retiene el de mayor momento transverso, mientras que si no existe ninguno, la pareja se descarta. Sobre ese jet asociado se evalúa entonces un discriinante de \textsc{ParticleNet}, que cuantifica en una escala de cero a uno la compatibilidad del jet con albergar una desintegración $H\to\tau\tau$ frente a proceder de producción multijet, y se descartan las parejas cuyo jet no supera un valor mínimo de $0.1$, \textcolor{red}{por debajo del cual la eficiencia del camino de trigger correspondiente no está descrita de forma fiable por la simulación.}
+
+opposite charge??
+\subsubsection{Reconstrucción de la masa del par}
+
+Una vez seleccionado el par del candidato, es necesario detenerse en cómo se obtiene su masa invariante, lo cual no resulta trivial para el sistema $\tau\tau$. En toda desintegración del $\tau$ está contenido al menos un neutrino que escapa a la detección y que se lleva consigo una fracción no medida del momento, lo que hace inviable obtener la masa invariante del sistema $\tau\tau$  directamente de los productos visibles de la desintegración. La masa construida únicamente con lo visible aparece desplazada muy por debajo de los $125$ GeV y con una anchura considerable, que resulta insuficiente para el análisis. 
+
+En el Run 2 el problema se abordaba con un método basado en verosimilitud, que evaluaba la compatibilidad entre una hipótesis de masa y los momentos medidos de los productos de desintegración complementados con la energía transversa perdida del suceso. El análisis de Run 3 sustituye este procedimiento por una red neuronal entrenada para regresar directamente los momentos de los neutrinos, de modo que la masa se obtiene después sumando los cuadrimomentos reconstruidos. Así, la red recibe como entrada las variables categóricas que describen el suceso, como el canal del, el modo de desintegración y la carga de cada $\tau$, junto con los cuadrimomentos de los candidatos $\tau$, de los candidatos a jet de $b$ y de los sistemas que forman, el momento transverso perdido con su matriz de covarianza, y las puntuaciones de etiquetado de los jets. El entrenamiento se realiza por separado para cada período con muestras de señal y de los fondos de Drell--Yan, $t\bar{t}$ y $t\bar{t}H$. Los sucesos boosted, demasiado escasos para entrenar sobre ellos, se evalúan como si fueran $\tau_h\tau_h$. El resultado mejora la resolución en masa en torno a un $50\%$ respecto del método de verosimilitud y su capacidad de rechazo del fondo entre un $30$ y un $40\%$ según el canal, lo que justifica el cambio de estrategia. Este último método se conserva, no obstante, para los canales de control puramente leptónicos, que no intervienen en la extracción de la señal. Las masas de los canales de control puramente leptónicos, que no intervienen en la extracción de la señal, se siguen obteniendo con el método de verosimilitud introducido en el Run 2.
+
+
+% INNECESARIO?
+%Además del output del neutrino momenta, la red tiene otra salida que simultaneously classifies the events entre señal y los fondos con el objetivo de guiar el entrenamiento y mejorar la regresión al obligar a lared a aprender representaciones que distinguen los procesos. Las entradas a la red combinan variables categóricas, como el canal del suceso, el modo de desintegración y la carga de cada $\tau$, con las variables continuas, que comprenden los cuadrimomentos de los candidatos $\tau$, de los candidatos a jet de $b$ y de los sistemas que forman entre sí, el momento transverso perdido con su matriz de covarianza, y las puntuaciones de etiquetado de los jets.
+
+%A partir de toda esta información, el entrenamiento de la red se realiza por separado sobre meustras de señal y de los tres fondos que comparten con ella el estado final o la dominan en sección eficaz: Drell--Yan, producción de pares de quarks top y producción asociada de un top con un bosón de Higgs. Para impedir que los dos primeros, mucho más abundantes en simulación, dominen el aprendizaje, la composición de cada lote se equilibra por clases en lugar de aplicar los pesos de los sucesos directamente en la función de coste. 
+
+
+% NEXO? POR QUE QUEREMOS LA MASA INVARIANTE??
+
+figura? la mejora de la mass regression?
+
+
+ESCRIBIR DESDE AUQI
+
+
+
+
+El entrenamiento se realiza por separado para cada período de toma de datos, sobre muestras de señal y de los tres fondos que comparten con ella el estado final o la dominan en sección eficaz:
+
+Drell--Yan, producción de pares de quarks top y producción asociada de un top con un bosón de Higgs. Los sucesos boosted, demasiado escasos para entrenar sobre ellos, se evalúan como si pertenecieran al canal $\tau_h\tau_h$. El resultado mejora la resolución en masa en torno a un $50\%$ respecto del método de verosimilitud y su capacidad de rechazo del fondo entre un $30$ y un $40\%$ según el canal, lo que justifica el cambio de estrategia. Este último método se conserva, no obstante, para los canales de control puramente leptónicos, que no intervienen en la extracción de la señal.
+
+
+
+
+
 
 \subsection{The \texorpdfstring{$H\to bb$}{H->bb} candidate}
+%
+Una vez fijado el par $\tau\tau$, el candidato $H\to b\bar{b}$ se construye a partir de los jets preseleccionados que no se solapan con él. En la topología resuelta, la pregunta relevante no es cuáles de esos jets están etiquetados como provenientes de un quark $b$, sino cuáles de ellos proceden de la desintegración del bosón de Higgs, que no es lo mismo: en un suceso de señal hay habitualmente más jets con sabor pesado que los dos buscados, y la puntuación del etiquetado no distingue entre ellos. La asignación se realiza por ello con \textsc{HH-BTag}, el algoritmo presentado en la Sección \ref{sec:HHBTag}, que combina la puntuación del etiquetado de cada jet con su cinemática, con su posición relativa respecto de los demás objetos del suceso y con variables globales, y devuelve para cada jet la probabilidad de proceder del candidato. Los dos jets de mayor puntuación forman el candidato. La ganancia en pureza frente a la elección directa por puntuación de etiquetado se cuantifica en el Capítulo \ref{ch:taggers}.
+
+En la topología boosted, los dos quarks $b$ están lo bastante colimados como para quedar contenidos en un único jet de radio grande, y el candidato es directamente el jet de radio grande de mayor puntuación de \textsc{ParticleNet} frente a producción multijet. Esta distinción no es una elección del análisis sino una consecuencia de la cinemática: la separación angular entre los dos quarks escala aproximadamente como $\Delta R(b,b) \simeq 2m_H / p_T(H)$, de modo que por debajo de unos $300$ GeV de momento transverso del Higgs los dos jets se resuelven por separado, mientras que por encima de unos $600$ GeV el algoritmo de radio $0.4$ ya no es capaz de reconstruirlos como objetos distintos. La región intermedia, en la que ambas reconstrucciones son posibles, es la que motiva el orden de prioridad entre categorías descrito más adelante.
+
+A diferencia de la masa del par $\tau\tau$, la del candidato $H\to b\bar{b}$ se obtiene únicamente de observables visibles: la masa invariante del sistema de los dos jets en el caso resuelto, y la masa del jet de radio grande en el caso boosted. El pico de la distribución aparece aun así ligeramente por debajo de los $125$ GeV esperados, porque las desintegraciones semileptónicas de los hadrones $B$ producidos en la hadronización de los quarks $b$ contienen neutrinos que también escapan a la medida.
+
 % Resolved: two AK4, pT > 20 GeV, |eta| < 2.5, Delta R(j,l) > 0.5, assigned by
 %   HH-BTag (retrained for Run 3, Sec. \ref{sec:HHBTag}).
 % Boosted: one AK8, pT > 250 GeV, m_SD > 30 GeV, highest ParticleNet X->bb score.
 % This is where the Chapter \ref{ch:taggers} work enters the analysis -- say so
 % explicitly, and point out that the categorisation downstream depends on it.
 
-\subsection{VBF jet selection}
+\subsection{The VBF jet selection}
+%
+Reconstruidos los dos candidatos a bosón de Higgs, los jets que quedan en el suceso se examinan para determinar si su configuración es compatible con la producción por fusión de bosones vectoriales. El problema es formalmente el mismo que el de la asignación del candidato $H\to b\bar{b}$ —elegir dos jets entre varios sobre la base de su papel en el suceso y no de una propiedad individual—, y se resuelve del mismo modo: con \textsc{VBFjTag}, el algoritmo introducido en la Sección \ref{sec:VBFjTag}, que reproduce la arquitectura y la estrategia de entrenamiento de \textsc{HH-BTag} y añade a sus variables de entrada tres específicas de esta topología: si el jet ha sido ya seleccionado como candidato a jet de $b$, su aislamiento respecto del resto de jets del suceso, y su centralidad. Las dos últimas recogen las propiedades características de los jets de fusión de bosones vectoriales, que salen hacia adelante, muy separados en pseudorapidez y aislados de la actividad central del suceso. El entrenamiento se realiza sobre sucesos simulados de producción $qqHH$, y los dos jets de mayor puntuación constituyen la pareja candidata.
+
+Que un suceso disponga de una pareja así no basta, sin embargo, para clasificarlo como producido por fusión de bosones vectoriales; los requisitos cinemáticos que definen esa categoría se describen a continuación, junto con el resto del esquema de categorización.
+
 % Remaining AK4: pT > 20 GeV (|eta| < 3) or pT > 50 GeV (3 < |eta| < 4.7),
 % |Delta eta| > 3, m_jj driven by the trigger. Ranked by VBFjTag
 % (Sec. \ref{sec:VBFjTag}); two highest scores selected.
 
 \subsection{Event categorization}
+%
+Los pasos anteriores establecen la presencia de dos candidatos a bosón de Higgs en el suceso e identifican los objetos más probables para reconstruirlos, pero no mejoran por sí solos la proporción entre señal y fondo. Dado que la sección eficaz de producción de pares de Higgs es varios órdenes de magnitud menor que la de los procesos que la acompañan, los sucesos que superan la selección siguen estando ampliamente dominados por el fondo, y es la división en categorías la que permite aislar las regiones donde la señal es apreciable. Las categorías se definen siguiendo un orden de precedencia establecido por el número esperado de sucesos en cada una: se examina primero la categoría boosted en el sistema $b\bar{b}$, después la de fusión de bosones vectoriales y finalmente las dos categorías resueltas, de modo que cada suceso cae en una sola de ellas.
+
+La categoría boosted recoge los sucesos en los que un jet de radio grande con $p_T > 300$ GeV, $|\eta| < 2.5$ y masa \textit{soft-drop} entre $80$ y $170$ GeV supera el punto de trabajo dedicado de \textsc{ParticleNet}. La categoría de fusión de bosones vectoriales exige que se haya identificado una pareja de jets con la topología correspondiente, con una masa invariante superior a $500$ GeV y una separación en pseudorapidez $\Delta\eta_{jj} > 3.0$; este último valor procede de un estudio específico, ya que los caminos de trigger aceptan sucesos hasta $\Delta\eta_{jj} > 2.5$, pero relajar la selección hasta ahí aumenta apreciablemente la contaminación de producción por fusión de gluones sin mejorar la sensibilidad esperada. A ello se añade un umbral sobre la salida correspondiente de un clasificador multiclase, fijado de manera que se conserve al menos el $75\%$ de la aceptancia de la señal de fusión de bosones vectoriales. Los sucesos restantes se separan según la calidad del etiquetado de los dos jets asignados por \textsc{HH-BTag}: en la categoría res2b ambos superan el punto de trabajo medio del discriminante, y en la categoría res1b solo lo hace uno de ellos.
+
+Sobre las topologías resueltas se aplica además una selección conjunta en el plano definido por las dos masas reconstruidas. Conviene señalar que el propósito de este corte ha cambiado respecto de Run 2: como la discriminación entre señal y fondo recae ahora íntegramente en la red neuronal de extracción, la selección en masa ya no busca mejorar la relación entre señal y fondo, sino delimitar la región complementaria, que se emplea como región de control para derivar los factores de falsificación del fondo de $t\bar{t}$. El corte se define como una elipse en el plano $(m_{H\tau\tau}, m_{Hbb})$, con parámetros optimizados por separado en cada canal para aprovechar las distintas resoluciones de los objetos que intervienen, y ajustados para conservar el $99\%$ de la señal:
+%
+\begin{align}
+    \tau_\mu\tau_h &: \left(\frac{m_{H\tau\tau} - 116\,\text{GeV}}{61\,\text{GeV}}\right)^{2} + \left(\frac{m_{Hbb} - 114\,\text{GeV}}{228\,\text{GeV}}\right)^{2} < 1, \\
+    \tau_e\tau_h   &: \left(\frac{m_{H\tau\tau} - 119\,\text{GeV}}{57\,\text{GeV}}\right)^{2} + \left(\frac{m_{Hbb} - 109\,\text{GeV}}{232\,\text{GeV}}\right)^{2} < 1, \\
+    \tau_h\tau_h   &: \left(\frac{m_{H\tau\tau} - 117\,\text{GeV}}{54\,\text{GeV}}\right)^{2} + \left(\frac{m_{Hbb} - 134\,\text{GeV}}{169\,\text{GeV}}\right)^{2} < 1,
+\end{align}
+%
+con eficiencias sobre el fondo del $62$, $60$ y $54\%$ respectivamente. La mayor extensión de las elipses a lo largo del eje de $m_{Hbb}$ refleja que es en la dirección de $m_{H\tau\tau}$ donde el fondo se distribuye de forma más ancha, y por tanto donde un corte estrecho resulta más rentable. En las categorías boosted y de fusión de bosones vectoriales, cuya estadística es ya de por sí reducida, no se aplica ninguna selección en masa.
+
+Las cuatro categorías así definidas se evalúan en principio para cada uno de los cuatro estados finales del par $\tau\tau$, lo que daría dieciséis regiones. Sin embargo, las categorías boosted y de fusión de bosones vectoriales contienen tan pocos sucesos que sus cuatro canales se fusionan en uno solo, denominado $X\tau_h$, que los engloba a todos. El esquema resultante consta de diez categorías: las dos categorías resueltas en cada uno de los cuatro estados finales, más las categorías boosted y de fusión de bosones vectoriales en el canal fusionado. Replicado sobre los cinco períodos de toma de datos, el análisis explora simultáneamente cincuenta regiones de señal en el ajuste estadístico descrito en la Sección \ref{sec:bbtt_statistics}.
+
 % (a) Elliptical mass selection in the (m_tautau, m_bb) plane, optimised per channel:
 %     ~99% signal efficiency, background efficiency 62 / 60 / 54% in
 %     tau_mu tau_h / tau_e tau_h / tau_h tau_h. Quote Eqs. 2-4 of the PAS.
@@ -409,9 +478,6 @@ The jets are reconstructed by grouping Particle Flow candidates using the anti-$
 %     VBF) merged into a single X tau_h channel -> 10 SRs per data-taking period.
 % Categorisation-scheme figure (Jaime has a good one, Fig. 4.3) + summary table.
 
-\subsection{Derived observables}
-% m_bb, m_tautau, m_HH, pT_HH and M_chi = m_bbtautau - (m_bb - m_H) - (m_tautau - m_H).
-% -> code: add_features() l.2290
 
 \section{Background modeling}
 \label{sec:bbtt_backgrounds}
