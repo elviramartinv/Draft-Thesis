@@ -1,0 +1,40 @@
+% ---------------------------------------------------------------------------
+% Provenance table: expected/observed 95% CL upper limits on mu_HH in HH -> bbtautau
+% Every number is taken verbatim from the quoted reference (see comments).
+% The last column is DERIVED here, not quoted: mu * sqrt(L / 138 fb^-1).
+% Include with:  \input{Sources/Table_HH_bbtautau_limits}
+% ---------------------------------------------------------------------------
+\begin{table}[t]
+\centering
+\begin{tabular}{llccccl}
+\toprule
+ & Dataset & $\mathcal{L}$ [fb$^{-1}$] & Obs. & Exp. & Exp.$^{\dagger}$ & Source \\
+\midrule
+\multirow{3}{*}{CMS}
+  & Run 2 (2016--2018)         & 138 & 3.5 & 5.3 & 5.30 & \cite{CMS-PAS-HIG-25-008} \\
+  & Run 3 (2022--2024)         & 172 & 6.6 & 3.9 & 4.35 & \cite{CMS-PAS-HIG-25-008} \\
+  & Run 2 + Run 3              & 310 & 4.0 & 3.0 & 4.50 & \cite{CMS-PAS-HIG-25-008} \\
+\midrule
+\multirow{4}{*}{ATLAS}
+  & Run 2, original            & 140 & 5.9 & 3.3 & 3.32 & \cite{ATLAS-HH-bbtautau-Run2} \\
+  & Run 2, reanalysed          & 140 & 5.4 & 2.6 & 2.62 & \cite{ATLAS-HH-bbtautau-Run3} \\
+  & Run 3 (2022--2023)         &  56 & 7.9 & 4.3 & 2.74 & \cite{ATLAS-HH-bbtautau-Run3} \\
+  & Run 2 + Run 3              & 196 & 5.3 & 2.4 & 2.86 & \cite{ATLAS-HH-bbtautau-Run3} \\
+\bottomrule
+\end{tabular}
+\caption[Comparison of CMS and ATLAS upper limits in HH $\to$ bb$\tau\tau$]{%
+Observed and expected 95\% CL upper limits on the inclusive HH production cross
+section relative to the SM prediction, in the bb$\tau\tau$ final state. Expected
+limits are quoted under the background-only ($\mu = 0$) hypothesis. The CMS
+entries are the inclusive ggHH\,$+$\,qqHH limits of Table~3 of
+Ref.~\cite{CMS-PAS-HIG-25-008}; the ATLAS Run~3 entries are those of Table~4 of
+Ref.~\cite{ATLAS-HH-bbtautau-Run3}, where ``reanalysed'' denotes the same Run~2
+dataset processed with the improved Run~3 analysis, to be compared with the
+originally published result of Ref.~\cite{ATLAS-HH-bbtautau-Run2}.
+$^{\dagger}$Expected limit rescaled to a common integrated luminosity of
+138~fb$^{-1}$ as $\mu\sqrt{\mathcal{L}/138~\mathrm{fb}^{-1}}$, i.e.\ assuming
+purely statistical scaling; this column is derived here and is not quoted in the
+references. Note that the two Run~3 datasets are not equivalent, as the ATLAS
+result does not yet include the 2024 data-taking period.}
+\label{tab:hh_bbtautau_limits}
+\end{table}
