@@ -382,17 +382,16 @@ Once the candidates have been identified, the analysis proceeds to the definitio
 
 \subsection{The \texorpdfstring{$H\to\tau\tau$}{H->tautau} candidate}
 % FINAL STATES ASSIGNMENT AND SELECTION
-\subsubsection{Asignación del estado final y selección del par}
 %
 Una vez aplicada la preselección de la Sección \ref{sec:bbtt_objects}, el canal al que pertenece un suceso queda determinado por su contenido en leptones ligeros: los sucesos con un muón y ningún electrón se asignan al canal $\tau_\mu\tau_h$, los que contienen un electrón y ningún muón a $\tau_e\tau_h$, y los que no contienen ninguno de los dos a $\tau_h\tau_h$. Los sucesos con dos leptones ligeros, sean $\mu\mu$, $ee$ y $e\mu$, se conservan aparte y se emplean más adelante como regiones de control, ya que la contribución a la señal de la desintegración puramente leptonica del par $\tau\tau$ queda sepultada bajo la producción los dos fondos principales del análisis: Drell--Yan domina en $ee$ y $\mu\mu$ mientras que $e\mu$, donde el bosón $Z$ no puede contribuir directamente por conservación del sabor leptónico, está dominado por la desintegración dileptónica de pares $t\bar{t}$. Los sucesos que no encajan en ninguna de las configuraciones previstas se descartan.
 
 La asignación del canal descansa por tanto enteramente sobre los leptones ligeros, que han sido previamente seleccionados con criterios estrictos de identificación y aislamiento. Los leptones $\tau_h$, en cambio, se preseleccionan deliberadamente con el punto de trabajo más laxo disponible frente a jets, lo que permite construir las regiones de control sobre las que se apoya la estimación del fondo de jets mal identificados descrita en la Sección \ref{sec:bbtt_backgrounds}. Queda por tanto pendiente fijar el $\tau_h$ que acompaña al leptón ligero del canal que éste último fija, ya que un mismo suceso admite con frecuencia varias parejas compatibles entre las que hay que decidir. 
 
+
 La elección se resuelve ordenando todas las parejas posibles y seleccionando la primera. La ordenación se hace pierna a pierna, donde en los canales semileptónicos el leptón ligero ocupa siempre la posición principal, mientras que en $\tau_h\tau_h$ se consideran las dos permutaciones de los candidatos. Así, las parejas se ordenan primero por el aislamiento de la pierna principal, y si ese valor coincide, se da prioridad a la de mayor momento transverso. Si también coinciden en momento — lo que indica que comparten el candidato principal, como será el caso de los canales semileptónicos — , se recurre al aislamiento de la pierna secundaria, y en último término, a su momento transverso. En el caso de los $\tau_h$ ese aislamiento es la puntuación de \textsc{DeepTau} frente a jets, la misma variable sobre la que se aplicará más adelante el punto de trabajo que define la región de señal; la ordenación retiene así la pareja que menos probablemente proviene de un jet mal identificado y que, por tanto, más probabilidades tiene de sobrevivir a ese endurecimiento posterior.
 
 El canal boosted se trata como una extensión del puramente hadrónico, $b\tau_h\tau_h$, y solo se considera para los sucesos en los que no ha podido formarse ningun pareja resuelta. La prioridad aquí es siempre el canal resuelto, de forma que si en un mismo suceso se reconstruyen tanto dos $\tau_h$ del algoritmo estándar como dos candidatos procedentes de la reconstrucción dedicada a topologías colimadas, el suceso se asigna a $\tau_h\tau_h$ resuelto. En caso contrario, y siempre que el suceso no contenga ningún leptón ligero, los candidates boosted se emparejan si su separación angular se encuentra entre $0.05$ y $0.8$, un margen que permite que estén lo bastante próximos para quedar contenidos en un jet de radio grando, pero no tanto como para que ambos sean reconstrucciones del mismo objeto. Se busca entonces el jet que los contiene, de forma que si son varios los jets que satisfacen esa condición, se retiene el de mayor momento transverso, mientras que si no existe ninguno, la pareja se descarta. Sobre ese jet asociado se evalúa entonces un discriinante de \textsc{ParticleNet}, que cuantifica en una escala de cero a uno la compatibilidad del jet con albergar una desintegración $H\to\tau\tau$ frente a proceder de producción multijet, y se descartan las parejas cuyo jet no supera un valor mínimo de $0.1$, \textcolor{red}{por debajo del cual la eficiencia del camino de trigger correspondiente no está descrita de forma fiable por la simulación.}
 
-opposite charge??
 \subsubsection{Reconstrucción de la masa del par}
 
 Una vez seleccionado el par del candidato, es necesario detenerse en cómo se obtiene su masa invariante, lo cual no resulta trivial para el sistema $\tau\tau$. En toda desintegración del $\tau$ está contenido al menos un neutrino que escapa a la detección y que se lleva consigo una fracción no medida del momento, lo que hace inviable obtener la masa invariante del sistema $\tau\tau$  directamente de los productos visibles de la desintegración. La masa construida únicamente con lo visible aparece desplazada muy por debajo de los $125$ GeV y con una anchura considerable, que resulta insuficiente para el análisis. 
@@ -688,6 +687,41 @@ Las cuatro categorías así definidas se evalúan en principio para cada uno de 
 % CMS Run-2 combination 3.4 (2.5); ATLAS 2.9 (2.4); ATLAS+CMS 2.5 (1.7 / 2.8);
 % ATLAS bbtautau with 196/fb -> 5.3 (2.4 / 2.8). Where bbtautau sits among
 % bbgammagamma, bbbb and bbWW.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{llccccl}
+\toprule
+ & Dataset & $\mathcal{L}$ [fb$^{-1}$] & Obs. & Exp. & Exp.$^{\dagger}$ & Source \\
+\midrule
+\multirow{3}{*}{CMS}
+  & Run 2 (2016--2018)         & 138 & 3.5 & 5.3 & 5.30 & \cite{CMS-PAS-HIG-25-008} \\
+  & Run 3 (2022--2024)         & 172 & 6.6 & 3.9 & 4.35 & \cite{CMS-PAS-HIG-25-008} \\
+  & Run 2 + Run 3              & 310 & 4.0 & 3.0 & 4.50 & \cite{CMS-PAS-HIG-25-008} \\
+\midrule
+\multirow{4}{*}{ATLAS}
+  & Run 2, original            & 140 & 5.9 & 3.3 & 3.32 & \cite{ATLAS-HH-bbtautau-Run2} \\
+  & Run 2, reanalysed          & 140 & 5.4 & 2.6 & 2.62 & \cite{ATLAS-HH-bbtautau-Run3} \\
+  & Run 3 (2022--2023)         &  56 & 7.9 & 4.3 & 2.74 & \cite{ATLAS-HH-bbtautau-Run3} \\
+  & Run 2 + Run 3              & 196 & 5.3 & 2.4 & 2.86 & \cite{ATLAS-HH-bbtautau-Run3} \\
+\bottomrule
+\end{tabular}
+\caption[Comparison of CMS and ATLAS upper limits in HH $\to$ bb$\tau\tau$]{%
+Observed and expected 95\% CL upper limits on the inclusive HH production cross
+section relative to the SM prediction, in the bb$\tau\tau$ final state. Expected
+limits are quoted under the background-only ($\mu = 0$) hypothesis. The CMS
+entries are the inclusive ggHH\,$+$\,qqHH limits of Table~3 of
+Ref.~\cite{CMS-PAS-HIG-25-008}; the ATLAS Run~3 entries are those of Table~4 of
+Ref.~\cite{ATLAS-HH-bbtautau-Run3}, where ``reanalysed'' denotes the same Run~2
+dataset processed with the improved Run~3 analysis, to be compared with the
+originally published result of Ref.~\cite{ATLAS-HH-bbtautau-Run2}.
+$^{\dagger}$Expected limit rescaled to a common integrated luminosity of
+138~fb$^{-1}$ as $\mu\sqrt{\mathcal{L}/138~\mathrm{fb}^{-1}}$, i.e.\ assuming
+purely statistical scaling; this column is derived here and is not quoted in the
+references. Note that the two Run~3 datasets are not equivalent, as the ATLAS
+result does not yet include the 2024 data-taking period.}
+\label{tab:hh_bbtautau_limits}
+\end{table}
 
 \section{Summary and outlook}
 \label{sec:bbtt_summary}
