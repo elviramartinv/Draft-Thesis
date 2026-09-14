@@ -456,47 +456,59 @@ However, the identification of a candidate pair in a given event is not sufficie
 
 \subsection{Event categorization}
 % poner en algun sitio que está heredado del run 2 (y en qué puntos difiere), ya que en la linea472 si que estoy poniendo eso, pero esta descontextualizado
-Los pasos descritos establecen la presencia de dos candidatos a bosón de Higgs en el suceso e identifican los objetos que con mayor probabilidad proceden de ellos, de forma que dejan el suceso descrito en términos del candidato $H\to\tau\tau$, que fija el canal; el candidato $H\to b\bar{b}$, reconstruido en la topología resuelta, en la boosted o en ambas a la vez; y, cuando existe, la pareja de jets compatible con la fusión de bosones vectoriales. 
+The steps described establish the presence of two Higgs boson candidates in the event and identify the objects most likely to originate from them, thereby describing the event in terms of the candidate $H\to\tau\tau$, which determines the channel; the $H\to b\bar{b}$ candidate, reconstructed in the resolved topology, in the boosted topology, or in both simultaneously; and, when present, the jet pair consistent with the vector boson fusion signature.
 
-Esta descripción sin embargo no es suficiente para distinguir la señal del fondo, ya que reconstruir el suceso no lo depura, y sucesos de fondo pueden admitir la misma lectura que sucesos de señal. Además, dada la baja sección eficaz de producción de pares de Higgs en comparación con la de los procesos que la acompañan, los sucesos están ampliamente dominados por el fondo. Esta baja sección eficaz es al mismo tiempo el motivo por el que no es viable proceder a la extracción de señal mediante un endurecimiento de la selección, que restaría en gran medida señal, debilitaría el control de los fondos y limitaría el alcance del análisis a diferentes hipótesis de señal. La extracción de señal trata por tanto de conservar toda la información mediante el reparto de los sucesos en categorías mutuamente excluyentes, que permitan dividr el espacio de fases en regiones de diferentes composiciones en pureza de señal. Así, la sensibilidad global mejora precisamente porque el ajuste estadístico puede explotar el contraste entre categorías, tanto en composición como en comportamiento de las variables discriminantes.
+However, this description alone is not sufficient to distinguish the signal from the background, since background events can yield the same readings as signal events. Furthermore, given the low cross section for Higgs pair production in comparison to that of the accompanying processes, the events are largely dominated by the background. This low cross section is also the reason why it is not feasible to extract the signal by tightening the selection criteria, as this would significantly reduce the signal, weaken the control of the background, and limit the scope of the analysis to different signal hypotheses. Signal extraction therefore aims to preserve all information by dividing the events into mutually exclusive categories, which allow the phase space to be partitioned into regions with different signal-to-background ratios. In this manner, the overall sensitivity is enhanced precisely because the statistical fitting can exploit the contrast between categories, both in terms of composition and in the behavior of the discriminating variables.
 
-Dichas categorías se definen sobre los tres objetos reconstruidos, y las condiciones de cada una de ellas categoría actúan como criterios de reparto, ya que un suceso que no satisface las de una pasa a examinarse para la siguiente. Así, los diferentes canales asociados al estado final del par $\tau\tau$ conforman el primer criterio para dividir los eventos. El segundo lo consituye la topología en la que el suceso ha sido reconstruido, evaluando en primer lugar si el sistema $b\bar{b}$ está colimado -al que se le asignaria la categoría boosted $b\bar{b}$ -;posteriormente si el suceso no es identificado dentro de la categoría boosted, se examiena si presenta la característica de la fusión de bosones vectoriales - categoría VBF -; y finalmente, se reparte los sucesos restantes en categorías resueltas. El esquema se hereda en gran medida del análisis de Run 2, donde las diferencias introducides responden al espacio de fases añadido y a los algoritmos disponibles.
+These categories are defined on the aforementioned reconstructed objects, and the conditions of each category serve as classification criteria, since an event that does not satisfy the conditions of one category is then examined for the next. Accordingly, the different channels associated with the final state of the pair $\tau\tau$ constitute one criterion for classifying events. The other criterion is the topology in which the event was reconstructed, first evaluating whether the $b\bar{b}$ system is collimated — in which case it would be assigned to the boosted $b\bar{b}$ category —; subsequently, if the event is not identified within the boosted category, it is examined to see if it exhibits the characteristic of vector boson fusion — the VBF category —; and finally, the remaining events are distributed among resolved categories, which are further subdivided according to the quality of the jets, and to which a cut is applied in the $(m_{H\tau\tau}, m_{Hbb})$ plane. The scheme is largely inherited from the Run 2 analysis, where the introduced differences stem from the added phase space and the algorithms that become available in Run 3.
 
-El orden de precedencia que sigue la definición de las categorías garantiza que cada suceso caiga en una sola de ellas. Este orden, que se recoge en la Figura \ref{fig:category_flow}, no es arbitrario, sino que está diseñado de acuerdo al número esperado de sucesos en cada una, de manera que las categorías menos pobladas son dotadas de preferencia para evitar que sean las regiones más pobladas las que absorban eventos que pueden compartir parte del espacio de fases. 
+The order of precedence used in defining the categories ensures that each event falls into only one of them. This sequence, shown in Figure \ref{fig:category_flow}, is not arbitrary but is designed according to the expected number of events in each category, so that the less populated categories are given preference to prevent the more populated regions from absorbing events that might overlap in phase space.
+%
 
 \begin{figure}[tbp]
 \centering
-\definecolor{catGGF}{HTML}{7CAE7A}
+\definecolor{catGGF}{HTML}{4F8A4C}
 \definecolor{catGGFbg}{HTML}{E8F2E6}
-\definecolor{catVBF}{HTML}{5FA79E}
+\definecolor{catVBF}{HTML}{3E8D84}
 \definecolor{catVBFbg}{HTML}{E2EFEE}
 \begin{tikzpicture}[
     font=\sffamily\small,
     entry/.style = {draw=black!70, rounded corners=3pt, fill=black!10,
-                    align=flush center, inner sep=5pt, minimum width=58mm,
-                    text width=48mm, font=\sffamily\small\bfseries},
+                    align=flush center, inner sep=5pt, minimum width=68mm,
+                    text width=60mm, font=\sffamily\small\bfseries},
     dec/.style   = {draw=black!55, rounded corners=3pt, fill=white,
-                    align=flush center, inner sep=5pt, minimum width=58mm,
-                    text width=48mm, font=\sffamily\small},
+                    align=flush center, inner sep=5pt, minimum width=68mm,
+                    text width=60mm, font=\sffamily\small},
     ggf/.style   = {draw=catGGF, line width=1pt, rounded corners=3pt,
-                    fill=catGGFbg, align=center, inner sep=5pt,
-                    minimum width=26mm, font=\sffamily\bfseries},
+                    fill=catGGFbg, align=center, inner sep=4pt,
+                    minimum width=24mm, font=\sffamily\bfseries},
     vbf/.style   = {draw=catVBF, line width=1pt, rounded corners=3pt,
-                    fill=catVBFbg, align=center, inner sep=5pt,
-                    minimum width=26mm, font=\sffamily\bfseries},
+                    fill=catVBFbg, align=center, inner sep=4pt,
+                    minimum width=24mm, font=\sffamily\bfseries},
     ar/.style    = {-{Latex[length=2.2mm]}, draw=black!55},
     lbl/.style   = {font=\sffamily\scriptsize, inner sep=2pt, fill=white},
-    tag/.style   = {font=\sffamily\scriptsize\itshape, catGGF}
+    note/.style  = {font=\sffamily\scriptsize\itshape, text=black!60,
+                    align=left, text width=26mm}
   ]
-  \node[entry] (ini) {Event with both candidates reconstructed};
-  \node[dec, below=7mm of ini] (d1) {large-radius jet compatible with $H\to b\bar{b}$?};
-  \node[dec, below=7mm of d1]  (d2) {jet pair with a vector boson fusion topology?};
-  \node[dec, below=7mm of d2]  (d3) {how many jets pass the medium $b$ tagging working point?};
+  \node[entry] (ini) {Event with both Higgs boson candidates reconstructed};
 
-  \node[ggf, right=16mm of d1] (cb)  {boosted};
-  \node[vbf, right=16mm of d2] (cv)  {VBF};
-  \node[ggf, right=16mm of d3] (c2b) {res2b};
-  \node[ggf, below=7mm of c2b] (c1b) {res1b};
+  \node[dec, below=7mm of ini] (d1)
+    {\textbf{1.}~boosted $H\to b\bar{b}$ candidate?\par
+     \scriptsize AK8 jet with $p_{T}>300$ GeV, $|\eta|<2.5$,
+     $80<m_{\mathrm{SD}}<170$ GeV and $X_{bb}$ score $>0.75$};
+
+  \node[dec, below=7mm of d1] (d2)
+    {\textbf{2.}~vector boson fusion topology?\par
+     \scriptsize jet pair with $m_{jj}>500$ GeV and $|\Delta\eta_{jj}|>3$};
+
+  \node[dec, below=7mm of d2] (d3)
+    {\textbf{3.}~how many of the two jets are $b$ tagged?\par
+     \scriptsize medium working point};
+
+  \node[ggf, right=14mm of d1] (cb)  {boosted};
+  \node[vbf, right=14mm of d2] (cv)  {VBF};
+  \node[ggf, right=14mm of d3] (c2b) {res2b};
+  \node[ggf, below=9mm of c2b] (c1b) {res1b};
 
   \draw[ar] (ini) -- (d1);
   \draw[ar] (d1) -- (d2) node[lbl,midway,left]{no};
@@ -504,31 +516,26 @@ El orden de precedencia que sigue la definición de las categorías garantiza qu
   \draw[ar] (d1) -- (cb) node[lbl,midway,above]{yes};
   \draw[ar] (d2) -- (cv) node[lbl,midway,above]{yes};
   \draw[ar] (d3) -- (c2b) node[lbl,midway,above]{two};
-  \draw[ar] (d3.east) -- (c1b.west) node[lbl,pos=0.6,below]{one};
+  \draw[ar] (d3.east) -- (c1b.west) node[lbl,pos=0.62,below]{one};
 
-  \node[tag, right=3mm of cb]  {ggF};
-  \node[tag, right=3mm of c2b] {ggF};
-  \node[tag, right=3mm of c1b] {ggF};
+  \node[note, right=4mm of c2b] {$+$ mass cut};
+  \node[note, right=4mm of c1b] {$+$ mass cut};
 \end{tikzpicture}
-\caption[Esquema de asignación de categorías]{%
-    Orden en que se plantean las preguntas que asignan cada suceso a una categoría. Un suceso
-    que no satisface las condiciones de una pasa a examinarse para la siguiente, de modo que
-    cada uno cae en una sola. Se indican las categorías que apuntan a la producción por fusión
-    de gluones.}
+\caption[Category assignment scheme]{%
+    Sequence followed to assign each event to a category. \textcolor{red}{no me encanta, ya le daré una vuelta al esquema: poner numeritos o algo en vez de los modos de produccion,}}
 \label{fig:category_flow}
 \end{figure}
 
 
+The distinction made between VBF events and gluon-gluon fusion events — whether in boosted or resolved categories — is particularly relevant from a physical standpoint, since each production mode allows for different information to be extracted. Hence, while gluon fusion provides access to the trilinear coupling of the Higgs boson, vector boson fusion provides access to the coupling of two Higgs bosons to two vector bosons. Isolating one from the other therefore permits each to contribute to the measurement that best constrains the parameters, improving the sensitivity of the analysis when constraining the coupling parameters. The categories grouped by production mechanism is described next, although it does not correspond to the order in which they are introduced in the categorization flow.\\
 
-La separación que se sigue entre sucesos VBF y gluon gluon Fusion -ya sean en categorias boosted o resolved- es especialmente relevante por su interés físico, puesto que cada modo de producción permite extraer diferente información de ellos. Así, mientras que la fusión de gluones da acceso al acoplamiento trilineal del bosón de Higgs, la fusión de bosones vectoriales lo da al acoplamiento de dos bosones de Higgs a dos bosones vectoriales. Aislar por tanto una de otra permite que cada una contribuya a la medida que mejor restringe, mejorando la sensibilidad del análisis a la hora de constreñir los parametros de los acoplamientos. Se pasa a describir la agrupación de las categorías por mecanismo de producción, si bien no se corresponde con el orden en que se plantea a flujo de categorización.\\
-
-\subsubsection{Categorías de fusión de gluones}
+\subsubsection{Gluon gluon fusion categories}
 %
-La primera categoría que se examina es la categoría menos poblada de las cuatro, gluon fusion bb-boosted, que recoge los sucesos en los que se ha identificado un jet de radio grande que cumple $p_T > 300$ GeV, $|\eta| < 2.5$ y masa \textit{soft-drop} entre $80$ y $170$ GeV. Adicionalmente, al jet de radio grande se le pide superar un custom punto de trabajo de \textsc{ParticleNet}, optmizado específicamente para este análisis como se describirá en la Sección \ref{sec:bbtt_corrections}.
+The first category examined is the least populous of the four, $b\bar{b}$-boosted gluon fusion, which includes events in which the identified large-radius jet satisfies $p_T > 300$ GeV, $|\eta| < 2.5$, and a \textit{soft-drop} mass between $80$ and $170$ GeV. Additionally, the large-radius jet must pass a custom \textsc{ParticleNet} threshold, optimized specifically for this analysis as described in Section \ref{sec:bbtt_corrections}.\\
 
-Por otro lado, los sucesos reconstruidos en la topología resuelta responden al último paso de la cadena, tal y como puede verse en la Figura \ref{fig:category_flow}, y aquí entran por tanto aquellos que no entran ni en la categoría boosted ni en la de fusión de bosones vectoriales. Para further enhance la sensitivity in this region, los sucesos se reparten a su vez en dos categorías sugún la calidad del etiquetado de b-tagging de los dos jets con mayor puntuación de \textsc{HH-BTag}: resolved 2b, donde ambos superan el punto de trabajo medio del discriminante de b-tagging, y resolved 1b, donde solo lo hace uno de ellos. Esta separación aprovecha que la pureza de ambas es muy distinta, siendo la \textit{res2b} la categoría de mayor sensibilidad del análisis, y sin renunciar por ello a la estadística que aporta la región \textit{res1b}, que contribuye a restringir las normalizaciones del fondo en el ajuste.
+Conversely, the events reconstructed in the resolved topology correspond to the last step in the chain, as shown in Figure \ref{fig:category_flow}. This category encompasses those events that do not fall into either the boosted category or the vector boson fusion category. To further enhance the sensitivity in this region, the events are divided into two categories based on the quality of the b-tagging for the two jets with the highest \textsc{HH-BTag} scores: resolved 2b, where both jets exceed the medium working point of the b-tagging discriminant, and resolved 1b, where only one of them does. This separation takes advantage of the fact that the purity of the two categories is very different, with the \textit{res2b} category being the most sensitive in the analysis while still retaining the statistical information provided by the \textit{res1b} region, which helps constrain the background normalizations in the fit.
 
-Sobre estas categorias de lsa topologías resueltas, la alta estadística permite además aplicar una selección conjunta en el plano definido por las dos masas reconstruidas y que se representa en la Figura \ref{fig:mass_ellipse}. Conviene señalar que el propósito de este corte ha cambiado respecto de Run 2, donde los parámetros del corte se obtenían minimizando la aceptancia del fondo y se exigía conservar más del $90\%$ de la señal. Como la discriminación entre señal y fondo recae ahora íntegramente en la red neuronal de extracción, la selección en masa ya no persigue mejorar esa relación, sino delimitar la región complementaria, que se emplea como región de control para derivar los factores de falsificación del fondo de $t\bar{t}$. El corte se define como una elipse en el plano $(m_{H\tau\tau}, m_{Hbb})$, con parámetros optimizados por separado en cada canal para aprovechar las distintas resoluciones de los objetos que intervienen, y ajustados para conservar el $99\%$ de la señal:
+For these resolved categories, the high statistics also allows for a further selection in the plane defined by the two reconstructed masses, as shown in Figure \ref{fig:mass_ellipse}. It should be noted that the purpose of this cut has evolved compared to Run 2, where the cut parameters were obtained by minimizing the background acceptance and where it was required to preserve more than $90\%$ of the signal. Since the discrimination between signal and background now rests entirely on the signal extraction neural network, the mass selection no longer aims to improve that ratio, but rather to delimit the complementary region, which is used as a control region to derive the $t\bar{t}$ background falsification factors. The cut-off is defined as an ellipse in the $(m_{H\tau\tau}, m_{Hbb})$ plane, with parameters optimized separately for each channel to take advantage of the different resolutions of the objects involved, and adjusted to preserve $99\%$ of the signal:
 %
 \begin{align}
     \tau_\mu\tau_h &: \left(\frac{m_{H\tau\tau} - 110}{45}\right)^{2} + \left(\frac{m_{Hbb} - 118}{215}\right)^{2} \leq 1, \\
@@ -536,62 +543,53 @@ Sobre estas categorias de lsa topologías resueltas, la alta estadística permit
     \tau_h\tau_h   &: \left(\frac{m_{H\tau\tau} - 130}{36}\right)^{2} + \left(\frac{m_{Hbb} - 125}{222}\right)^{2} \leq 1,
 \end{align}
 %
-donde todas las magnitudes se expresan en GeV, y las eficiencias sobre el fondo son del \textcolor{red}{ $62$, $60$ y $54\%$ respectivamente}. La mayor extensión de las elipses a lo largo del eje de $m_{Hbb}$ refleja que es en la dirección de $m_{H\tau\tau}$ donde el fondo se distribuye de forma más ancha, y por tanto donde un corte estrecho resulta más rentable. En las categorias boosted y de VBF, cuya estadística es ya de por sí reducida, no se aplica ninguna selección en masa.
+where all quantities are expressed in GeV, and the efficiencies relative to the background are \textcolor{red}{$62$, $60$, and $54\%$, respectively}. The greater extension of the ellipses along the $m_{Hbb}$ axis reflects that it is in the direction of $m_{H\tau\tau}$ where the background is most widely distributed, and therefore where a narrow cut is most effective. In the boosted and VBF categories, where the statistics are already limited, no mass selection is applied.
 %
 \begin{figure}[tbp]
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_VI/mass_ellipse_2d_PLACEHOLDER.pdf}
-    \caption[Selección elíptica en el plano de las dos masas reconstruidas]{%
-        Distribución conjunta de las dos masas reconstruidas para la señal (izquierda) y para
-        la suma de los fondos simulados (derecha), en el canal $\tau_\mu\tau_h$. La curva
-        superpuesta delimita la región seleccionada; su complementario constituye la región
-        de control empleada para derivar los factores de falsificación del fondo de
-        $t\bar{t}$.}
+    \caption[elliptical mass cut]{%
+        2D distributions of the two reconstructed masses for the signal (left) and for the sum of simulated backgrounds (right). Both figures are shown in the $\tau_\mu\tau_h$ channel. The overlaid curve delineates the selected region.}
     \label{fig:mass_ellipse}
 \end{figure}
 \\ 
 
-\subsubsection{Categoría de fusión de bosones vectoriales}
+\subsubsection{Vector boson fusion category}
 %
-Como se ha dicho, separar esta categoría de las anteriores tiene un interés que va más allá de la ganancia en pureza, ya que los dos mecanismos de producción dan acceso a magnitudes distintas. Dado que la producción por fusión de gluones es mucho más abundante, en esta categoría constitutye ,junto al fondo, lo que contamina la señal VBF.
+As noted, separating this category from the previous ones is important for reasons that go beyond simply improving purity, since the two production mechanisms give access to different magnitudes. Because gluon fusion production is much more abundant, in this category it — along with the background — contributes to the contamination of the VBF category.
 
-Se sitúa por tanto en el punto intermedio de la cadena, donde los sucesos que no han entrado en la categoría boosted se examinan para determinar si presentan la topología de la fusión de bosones vectoriales antes de quedar redirigidos a las categorias resolved. Se exige para ello que se haya identificado una pareja de VBF jets, con masa invariante superior a $500$ GeV y una separación en pseudorapidez $\Delta\eta_{jj} > 3.0$, cortes cinemáticos que se definen atendiendo al mejor balance entre aceptancia y contaminación de fondo\footnote{Mientras que los caminos de trigger admiten sucesos hasta $\Delta\eta_{jj} > 2.5$, el estudio específico en esta phase space ha demostrado que relajar la selección hasta ahí aumenta apreciablemente la contaminación de producción por fusión de gluones sin mejorar la sensibilidad esperada en la categoría}. Una vez aislados los eventos VBF, no se llevan a cabo mayores subdivisiones dada su escasa estadística
+It is therefore situated at the midpoint of the chain flow, where events that have not been classified as boosted are examined to determine whether they exhibit the topology of a vector boson fusion before being redirected to the resolved categories. This requires the identification of a pair of VBF jets with an invariant mass greater than $500$ GeV and a pseudorapidity separation of $\Delta\eta_{jj} > 3.0$; these kinematic cuts are defined to achieve the best balance between acceptance and background contamination\footnote{While the trigger paths allow events up to $\Delta\eta_ {jj} > 2.5$, the specific study in this phase space has shown that relaxing the selection to that value significantly increases the production contamination from gluon-gluon fusion without improving the expected sensitivity in the category}. Once the VBF events have been isolated, no further subdivisions are performed due to their reduced statistics. \textcolor{red}{poner algo más aqui en contraste con Run 2?}
 \\
 
+%INVENTADO: [...] y de ahí también que, una vez aislada, no se subdivida. En Run 2 esta región se repartía a su vez en subcategorías asociadas a procesos concretos; ahora esa separación la realiza de forma continua la distribución de salida de la red con la que se extrae la señal, de manera que un reparto explícito no añadiría información.
 
-\subsubsection{Regiones de señal}
+
+\subsubsection{Signal regions}
 %
-Las cuatro categorías así definidas - vbf y ggf boosted, res1b y res2b - se evalúan en principio para cada uno de los cuatro estados finales del par $\tau\tau$ - etau, mutau, tautau y btautau. Sin embargo, las categorías boosted y de fusión de bosones vectoriales contienen tan pocos sucesos que sus cuatro canales se fusionan en uno solo que los engloba, denominado $X\tau_h$. El esquema resultante, representado en la Figura \ref{fig:categories}, consta por tanto de diez categorías finales: 
+The four categories defined in this way — ggf boosted, VBF, ggF res1b, and ggF res2b — are evaluated, in principle, for each of the four final states of the tau tau pair — $e\tau$, $\mu\tau$, $\tau\tau$, and $b\tau\tau$. However, due to the limited number of events in the boosted and vector boson fusion categories, their four channels have been merged into a single, overarching channel, denoted $X\tau_h$. The resulting scheme, shown in Figure \ref{fig:categories}, therefore consists of ten final categories:
 %
 \begin{itemize}
-    \item $\tau_\mu\tau_h$ res1b y $\tau_\mu\tau_h$ res2b;
-    \item $\tau_e\tau_h$ res1b y $\tau_e\tau_h$ res2b;
-    \item $\tau_h\tau_h$ res1b y $\tau_h\tau_h$ res2b;
-    \item $b\tau_h\tau_h$ res1b y $b\tau_h\tau_h$ res2b;
-    \item $X\tau_h$ boosted;
-    \item $X\tau_h$ VBF.
+    \item $\tau_\mu\tau_h$: res1b and res2b;
+    \item $\tau_e\tau_h$: res1b and res2b;
+    \item $\tau_h\tau_h$: res1b and res2b;
+    \item $b\tau_h\tau_h$: res1b and res2b;
+    \item $X\tau_h$: boosted;
+    \item $X\tau_h$: VBF.
 \end{itemize}
 %
-Replicado sobre los cinco períodos de toma de datos, el análisis explora simultáneamente cincuenta regiones de señal en el ajuste estadístico descrito en la Sección \ref{sec:bbtt_statistics}.
+Applied across the five data taking periods, the analysis simultaneously explores fifty signal regions in the statistical fit described in Section \ref{sec:bbtt_statistics}.
 %
 \begin{figure}[tbp]
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_VI/signal_regions_grid.pdf}
-    \caption[Esquema de regiones de señal del análisis]{%
-        Esquema de las regiones de señal. Las cuatro categorías topológicas, definidas por la
-        reconstrucción del sistema $b\bar{b}$ y por la presencia de la configuración
-        característica de la fusión de bosones vectoriales, se cruzan con los cuatro estados
-        finales del par $\tau\tau$. Los canales de las categorías boosted y de fusión de
-        bosones vectoriales se fusionan en uno solo, $X\tau_h$, dada su reducida estadística,
-        de modo que resultan diez regiones por período de toma de datos y cincuenta en total.}
+    \caption[Signal regions scheme]{%
+        Schematic diagram of the final signal regions.}
     \label{fig:categories}
 \end{figure}
 
-Con esto queda definido el conjunto de regiones sobre las que se realiza la medida. Para extraer la señal falta, sin embargo, saber cuánto fondo esperar en cada una de ellas, y esa predicción no se sigue de la categorización. Buena parte procede de la simulación, pero no toda: la contribución de jets identificados erróneamente como $\tau_h$, que domina las regiones de los canales puramente hadrónicos, no está descrita de forma fiable por los generadores y ha de estimarse a partir de los propios datos.
+This defines the set of regions over which the measurement is performed. However, extracting the signal requires determining the expected background levels in each region. As previously outlined, the vast majority of the background prediction comes from the simulation, with the exception of the contribution from jets erroneously identified as $\tau_h$, which dominates the regions of the purely hadronic channels and is not reliably described by the simulators, and therefore it is estimated from the data itself.
 
-Para ello se recurre precisamente a las condiciones que se han ido dejando relajadas de forma deliberada a lo largo de esta sección: el punto de trabajo laxo en la identificación de los $\tau_h$, la ausencia de requisito sobre la carga relativa del par y el complementario de la selección elíptica. El propósito de esas decisiones, anunciado en cada caso pero no justificado del todo, se hace ahora explícito: cada una de ellas delimita una región enriquecida en el fondo que se pretende medir y libre de señal. La sección siguiente describe cómo se modela cada contribución y, en particular, cómo se construye esa estimación basada en datos.
-
-
+To this end, the conditions that have been deliberately highlighted throughout this section are precisely the ones to be considered: the loose working point approach to identifying the $\tau_h$, the absence of any requirement regarding the relative charge of the pair, and the complementary region of the elliptic mass cut. The purpose of these decisions is now explicit: the intention behind these decisions was to delineate regions enriched in the background of interest and devoid of signal. The following section describes the modeling of each background contribution.
 
 ESCRIBIR DESDE AUQI
 
