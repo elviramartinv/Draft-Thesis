@@ -94,18 +94,32 @@
 % Page layout
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% The class sets DIV = 10, which gives the text only 7/10 of the page
-% width. Raising DIV widens the text block and narrows the margins.
-% Higher value = wider text. Keep an eye on the line length: beyond
-% ~80 characters per line readability starts to suffer.
+% The class builds the text area with KOMA's `typearea' (DIV = 10), which
+% always splits the margins in a fixed 1:2 ratio -- one part at the top and
+% two at the bottom, one part inside and two outside. That is the classical
+% book canon, but it left ~48mm of blank paper at the foot of every page,
+% and since the page number lives in the header (see \ohead below) nothing
+% was ever printed down there.
 %
-%   DIV = 12  ->  150mm text  (recommended)
-%   DIV = 14  ->  157mm text  (noticeably wider)
+% `geometry' overrides typearea and lets the margins be stated directly.
+% It is KOMA-aware: it recalculates the type area itself and switches
+% typearea off, so `DIV' must no longer be set here.
 %
-% BCOR is the binding correction (extra inner margin for the spine).
-% Set it to 0mm if the thesis will only ever be read as a PDF.
+%   inner/outer     the binding correction is now part of `inner'
+%   bindingoffset   extra inner margin on top of that; 0mm = PDF only
+%   headsep         gap between the header rule and the first text line
+%   footskip        baseline distance to the (currently empty) footer
+%
+% Resulting text block: 155mm wide, 237mm tall.
 
-\KOMAoptions{DIV = 12}
+\usepackage[a4paper,
+            inner         = 30mm,
+            outer         = 25mm,
+            top           = 28mm,
+            bottom        = 32mm,
+            bindingoffset = 0mm,
+            headsep       = 8mm,
+            footskip      = 12mm]{geometry}
 
 % Vertical spacing at the bottom of the page.
 %
