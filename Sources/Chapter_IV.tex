@@ -1,25 +1,7 @@
 \chapter{The \texorpdfstring{$\tau_h$}{τh} identification algorithms and their performance}
 \label{ch:Tau}
 
-
-\noindent The precise and accurate reconstruction of $\tau$ leptons is a crucial part of the $HH\rightarrow bb\tau\tau$ analysis covered in Chapter \ref{ch:bbtt_analysis}. Furthermore, a significant number of physical analyses — such as measurements of Higgs boson production \cite{CMS Collaboration, “Observation of the Higgs boson decay to a pair of τ leptons with
-the CMS detector”, Phys. Lett. B 779 (2018) 283,
-doi:10.1016/j.physletb.2018.02.004, arXiv:1708.00373., CMS Collaboration, “Measurements of Higgs boson production in the decay channel with
-a pair of τ leptons in proton–proton collisions at √
-s = 13 TeV”, Eur. Phys. J. C 83
-(2023), no. 7, 562, doi:10.1140/epjc/s10052-023-11452-8, arXiv:2204.12957.} and of its properties under CP symmetry \cite{CMS Collaboration, “Analysis of the CP structure of the Yukawa coupling between the
-Higgs boson and τ leptons in proton-proton collisions at √
-s = 13 TeV”, JHEP 06
-(2022) 012, doi:10.1007/JHEP06(2022)012, arXiv:2110.04836.}, and searches for new physics in final states with $\tau$ leptons \cite{[10] CMS Collaboration, “Searches for additional Higgs bosons and for vector leptoquarks in
-τ τ final states in proton-proton collisions at √
-s = 13 TeV”, JHEP 07 (2023) 073,
-doi:10.1007/JHEP07(2023)073, arXiv:2208.02717.
-[11] CMS Collaboration, “Search for a low mass resonance decaying to τ τ using data collected
-with a dedicated high-rate data stream”, CMS Physics Analysis Summary
-CMS-PAS-EXO-24-012, 2025.
-[12] CMS Collaboration, “Search for the pair production of long-lived supersymmetric
-partners of the tau lepton in proton-proton collisions at sqrts=13 TeV”, CMS Physics
-Analysis Summary CMS-PAS-EXO-24-020, 2025} — rely on the adequate identification of $\tau$ decay products and their properties. This broad physics program necessitates continuous development of reconstruction and identification techniques, which in CMS for $\tau$ leptons are coordinated within the Tau Physics Object Group (Tau POG). A central component of the study of $\tau$ leptons, which will be emphasized subsequently, involves validating the applied techniques to ensure their correct behavior in data.
+\noindent The precise and accurate reconstruction of $\tau$ leptons is a crucial part of the $HH\rightarrow bb\tau\tau$ analysis covered in Chapter \ref{ch:bbtt_analysis}. Furthermore, a significant number of physical analyses — such as measurements of Higgs boson production~\cite{CMS-HIG-16-043,CMS-HIG-19-010} and of the \CP structure of its Yukawa coupling to $\tau$ leptons~\cite{CMS-HIG-20-006}, and searches for new physics in final states with $\tau$ leptons ~\cite{CMS-HIG-21-001,CMS-PAS-EXO-24-012,CMS-PAS-EXO-24-020} — rely on the adequate identification of $\tau$ decay products and their properties. This broad physics program necessitates continuous development of reconstruction and identification techniques, which in CMS for $\tau$ leptons are coordinated within the Tau Physics Object Group (Tau POG). A central component of the study of $\tau$ leptons, which will be emphasized subsequently, involves validating the applied techniques to ensure their correct behavior in data.
 
 In CMS, the reconstruction and identification of hadronic $\tau$ leptons constitute two complementary steps. The reconstruction stage, performed by the HPS algorithm (see Section \ref{subsec:Taus}), assembles the visible decay products into a $\tau_h$ candidate and determines its decay mode and kinematic properties. The identification step then classifies this reconstructed candidates as a genuine $\tau$ lepton or as a misidentified jet, electron or muon. Since Run-2, this classification has been performed using the \textsc{DeepTau} algorithm, a convolutional neural network (CNN) that combines information from all individual reconstructed particles near the $\tau_h$ axis with properties of the $\tau_h$ candidate. Recent developments in Run-3 include the updated \textsc{DeepTau v2.5} algorithm, as well as alternative approaches to identify $\tau_h$, such as \textsc{PNet} and \textsc{UParT}, which aim to unify jet flavor tagging and $\tau$ identification within a common framework.
 
@@ -29,7 +11,9 @@ This chapter provides a detailed examination of the identification of hadronic $
 \section{\texorpdfstring{$\tau_h$}{τh} reconstruction and sources of misidentification}
 \label{sec:Tau_MisID}
 
-\noindent The $\tau$ leptons produced at the primary interaction point — known as 'prompt' $\tau$ particles — generally decay before reaching the innermost layers of the CMS detector due to their short lifetime. Their reconstruction therefore relies entirely on their visible decay products. $\tau$ leptons that decay leptonically are reconstructed following the standard procedures for prompt electrons and muons, and their identification is inferred from the global event topology (see Section \ref{subsec:Finalstate}). In contrast, isolated hadronically decaying $\tau$ leptons ($\tau_h$) are reconstructed using the Hadron-Plus-Strips (HPS) algorithm, which selects combinations of one or three charged tracks, together with electromagnetic energy deposits associated with neutral pions, to form a $\tau_h$ candidate. Neutral pions are reconstructed as \textit{strips}, i.e. clusters of electrons and photons with a dynamic size in $\eta-\phi$ plane, designed to capture the collimated decay products of $\pi^0\rightarrow\gamma\gamma$. Based on the number of charged hadrons (referred to as \textit{prongs}) and the presence of neutral pions, HPS assigns different $\tau$ lepton decay modes according to the hadronic decays listed in Table \ref{tab:tau_decays}. In CMS analysis, these decay modes are encoded using the standard HPS notation according to the number of prongs ($n_{prongs}$) and strips ($n_{strips}$):
+\noindent The $\tau$ leptons produced at the primary interaction point — known as \textit{prompt} $\tau$ particles — generally decay before reaching the innermost layers of the CMS detector due to their short lifetime. Their reconstruction therefore relies entirely on their visible decay products. $\tau$ leptons that decay leptonically are reconstructed following the standard procedures for prompt electrons and muons, and their identification is inferred from the global event topology (see Section \ref{subsec:Finalstate}). In contrast, isolated hadronically decaying $\tau$ leptons ($\tau_h$) are reconstructed using the Hadron-Plus-Strips (HPS) algorithm, which selects combinations of one or three charged tracks, together with electromagnetic energy deposits associated with neutral pions, to form a $\tau_h$ candidate. Neutral pions are reconstructed as \textit{strips}, i.e. clusters of electrons and photons with a dynamic size in $\eta-\phi$ plane, designed to capture the collimated decay products of $\pi^0\rightarrow\gamma\gamma$. Based on the number of charged hadrons (referred to as \textit{prongs}) and the presence of neutral pions, HPS assigns different $\tau$ lepton decay modes according to the hadronic decays listed in Table \ref{tab:tau_decays}. 
+
+In CMS analysis, these decay modes are encoded using the standard HPS notation according to the number of prongs ($n_{prongs}$) and strips ($n_{strips}$):
 \begin{equation}
     DM=5\times(n_{prongs}-1)+n_{strips}
 \end{equation}
@@ -44,11 +28,11 @@ With this convention one prong decays are assigned the labels 0, 1 or 2, while t
     \begin{minipage}{0.24\linewidth}\centering \footnotesize \textbf{DM10}\end{minipage}
     \begin{minipage}{0.26\linewidth}\centering \footnotesize \textbf{DM11}\end{minipage}
 
-    \caption{Schematic representation of the four HPS-DMs considered at analysis level. From left to right the DMs shown are: one prong (h$^{\pm}$), one prong plus strip (h$^{\pm}\pi^0$), three prongs (h$^{\pm}$h$^{\mp}$h$^{\pm}$) and three prongs plus strip (h$^{\pm}$h$^{\mp}$h$^{\pm}\pi^0$)  \textcolor{red}{ajustar el texto con las figuras}.}
+    \caption{Schematic representation of the four HPS-DMs considered at analysis level. From left to right the DMs shown are: one prong (h$^{\pm}$), one prong plus strip (h$^{\pm}\pi^0$), three prongs (h$^{\pm}$h$^{\mp}$h$^{\pm}$) and three prongs plus strip (h$^{\pm}$h$^{\mp}$h$^{\pm}\pi^0$)  \textcolor{red}{ref} \textcolor{red}{ajustar el texto con las figuras}.}
     \label{fig:tau_DMs}
 \end{figure}
 
-Although the HPS algorithm is designed to reconstruct and identify genuine hadronic $\tau$ decays, it is intentionally configured to prioritise high reconstruction efficiency, achieving values of around 90\%. Therefore, it inevitably suffers from contamination by other processes, meaning that a fraction of reconstructed $\tau_h$ candidates originates from objects that mimic the topology of hadronic $\tau$ decay. The dominant source of misidentification arises from jets, since the HPS algorithm is seeded by PF jets that can reproduce the charged-track multiplicity and electromagnetic signature characteristic of $\tau$ decays. In essence, a highly collimated quark or gluon jet can resemble a $\tau$ decay, as illustrated in Figure \ref{fig:tau_jet_sim}. Light leptons can also be misidentified as $\tau$ leptons: muons can produce a similar signature to that of a one-prong $\tau$ decay in cases where they deposit significant energy in the calorimeters; while electrons can occasionally produce electromagnetic showers tat reach the HCAL, mimicking the signature of a charged pion, and emit photons via bremsstrahlung radiation, which can be reconstructed by the HPS algorithm as strips. An example of these signatures is shown in Figure \ref{fig:ele_fake_tau}.
+Although the HPS algorithm is designed to reconstruct and identify genuine hadronic $\tau$ decays, it is intentionally configured to prioritise high reconstruction efficiency, achieving values of around 90\%. Therefore, it inevitably suffers from contamination by other processes, meaning that a fraction of reconstructed $\tau_h$ candidates originates from objects that mimic the topology of hadronic $\tau$ decay. The dominant source of misidentification arises from jets, since the HPS algorithm is seeded by PF jets that can reproduce the charged-track multiplicity and electromagnetic signature characteristic of $\tau$ decays. In essence, a highly collimated quark or gluon jet can resemble a $\tau$ decay, as illustrated in Figure \ref{fig:tau_jet_sim}. Light leptons can also be misidentified as $\tau$ leptons: muons can produce a similar signature to that of a one-prong $\tau$ decay in cases where they deposit significant energy in the calorimeters; while electrons can occasionally produce electromagnetic showers that reach the HCAL, mimicking the signature of a charged pion, and emit photons via bremsstrahlung radiation, which can be reconstructed by the HPS algorithm as strips. An example of these signatures is shown in Figure \ref{fig:ele_fake_tau}.
 
 \begin{figure}[h!]
 \centering
@@ -61,7 +45,7 @@ Although the HPS algorithm is designed to reconstruct and identify genuine hadro
 \begin{subfigure}[t]{0.48\linewidth}
     \centering
     \includegraphics[width=1\linewidth]{figures//chapter_IV/electron_faking_tau.png}
-    \caption{Schematic representation of the signatures identified by the HPS algorithm for an electron faking a $\tau_h$ (left) and a genuine $\tau_h$ (right).}
+    \caption{Schematic representation of the signatures identified by the HPS algorithm for an electron faking a $\tau_h$ (left) and a genuine $\tau_h$ (right). \textcolor{red}{hacer más grande esta figura}}
     \label{fig:ele_fake_tau}
 \end{subfigure}
 \caption{Examples of objects misidentified as $\tau_h$ candidates by the HPS algorithm}
@@ -88,7 +72,7 @@ This has led to the deployment of the \textsc{DeepTau} neural network-based algo
 
 \subsection{The standard CMS algorithm: {\normalfont\textsc{DeepTau}}}
 
-\noindent The \textsc{DeepTau} algorithm based on a convolutional deep neural network is designed to simultaneously discriminate hadronically decaying $\tau$ leptons from quark and gluon jets, electrons, and muons. As has already been noted, its primary goal is to enhance the purity of reconstructed $\tau_h$ candidates, addressing the inherent challenges posed by the highly collimated topology of hadronic $\tau$ decays and their similarity to narrow jets and electromagnetic objects. 
+\noindent The \textsc{DeepTau} \textcolor{red}{ref} algorithm based on a convolutional deep neural network is designed to simultaneously discriminate hadronically decaying $\tau$ leptons from quark and gluon jets, electrons, and muons. As has already been noted, its primary goal is to enhance the purity of reconstructed $\tau_h$ candidates, addressing the inherent challenges posed by the highly collimated topology of hadronic $\tau$ decays and their similarity to narrow jets and electromagnetic objects. 
 
 In order to achieve an optimal $\tau$ identification performance, the algorithm combines information from the high-level reconstructed $\tau$ features together with low-level inputs from the inner tracker, calorimeters and muon sub-detectors using particle flow candidates, electrons and muons reconstructed within the vicinity of the $\tau$ candidate. Therefore, the input for the algorithm includes high-level variables that are used during $\tau$ reconstruction or have been proven to provide discriminating power. Furthermore, low-level information for each object reconstructed within concentric geometric windows around the $\tau_h$ axis, includes the four-momentum, track quality, compatibility with the primary vertex (PV), as well as characteristics of energy deposits in the detector (ECAL, HCAL and muon station hits), among others. 
 
