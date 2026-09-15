@@ -72,7 +72,7 @@ Total        &      & 172.1 & \\
 %\end{figure}
 
 
-\subsection{Signal modeling}
+\subsection{Signal samples}
 %
 The production of Higgs boson pairs via gluon-gluon fusion is simulated using the \POWHEG v2.0 generator at NLO in QCD, while the production via vector boson fusion is simulated using \MADGRAPH5\_aMC@NLO 2.9.13. In both cases, additional samples are generated with anomalous values of the coupling modifiers, which make it possible to cover the dependence of the cross section and of the kinematics of the $HH$ system on these parameters.
 
@@ -86,7 +86,7 @@ For gluon fusion production, samples are generated with $\kappa_\lambda = 0$, $1
 % to arbitrary (kappa_lambda, kappa_2V) -> forward-reference the EFT chapter.
 % -> code: tasks/ggFReweightModules.py, tasks/VBFReweightModules.py
 
-\subsection{Background modeling}
+\subsection{Simulated background samples}
 %
 The dominant background contribution stems from Drell–Yan production, $Z/\gamma^* \to \ell\ell$, from top quark pair production, and from QCD multi-jet background. Processes with genuine $\tau$ leptons in the final state are modeled based on the simulation, while those in which a jet is misidentified as a $\tau_h$ — which correspond essentially to the multi-jet production, but also to a fraction of the $W$+jets and $t\bar{t}$ production — are estimated directly from the data, as detailed in Section \ref{sec:background}. The generators used for each process, along with the order in perturbation theory at which the generation is performed and the cross section used for their normalization, are listed in Table \ref{tab:mc_backgrounds}. Among these, the production of a single Higgs boson is considered separately because it reproduces the final state of the signal in the case of associated $ZH$ production with $Z \to b\bar{b}$ and $H \to \tau\tau$, despite its small cross section.
 
@@ -592,16 +592,22 @@ This defines the set of regions over which the measurement is performed. However
 
 To this end, the conditions that have been deliberately been left loose throughout this section are precisely the ones to be considered: the loose working point used to identify the $\tau_h$, the absence of any requirement regarding the relative charge of the pair, and the complementary region of the elliptic mass cut. Therefore, the intention behind these decisions was to delineate regions enriched in the background of interest and devoid of signal. The following section describes the modeling of each background contribution.
 
-ESCRIBIR DESDE AUQI
-
-\section{Background modeling}
+\section{Background estimation}
 \label{sec:bbtt_backgrounds}
+%
+Los procesos que pueblan las regiones que se han definido en la sección anterior, junto con los generadores empleados para simularlos, han sido previamente enumerados en la Seccíon \ref{sec:bbtt_samples}. No se ha explicado sin embargo la forma en la que se obtiene el número de sucesos esperado en cada región, que no se reduce a normalizar esas muestras a la luminosidad integrada de los datos, sino que requiere further considerations según el proceso considerado, y del origen del candidato a $\tau_h$. Como ya ha se ha hecho notar, los sucesos en los que ambos $\tau$ leptons son genuinos se toman directamente de la simulación. Sin embargo, las contribuciones principales de Drell--Yan y de producción de pares de quarks top presentan discrepancias conocidas frente a los datos que obligan a corregir su simulación. Por otro lado, la contribución de aquellos sucesos en los que un jet hadrónico ha sido erróneamente identificado como $\tau_h$, y que se denominará simplemente \textit{fakes} en lo sucesivo, no puede describirse de forma fiable con simulación MC, por lo que se estima sirviéndose directamente de los datos. 
 
-\subsection{Overview}
-% Backgrounds with genuine tau_h from simulation; jet -> tau_h misidentification
-% from data. Dominant: ttbar, DY, QCD multijet. State the split up front.
+Las deficiencias en la simulación que afectan a los fondos dominantes afectan en ambos casos a la descripción del momento transverso. En la producción Drell--Yan, la simulación no reproduce correctamente el momento transverso del bosón $Z$; la corrección correspondiente se obtiene comparando datos y simulación en canales de control de dos leptones ligeros de igual sabor, donde este proceso es prácticamente el único presente. En la producción $t\bar{t}$, el reponderado se aplica en función del momento transverso del quark top y se deriva directamente del cociente entre el cálculo de la sección eficaz diferencial a orden NNLO en QCD con correcciones electrodébiles a NLO y la predicción del generador empleado. El resto de procesos, cuya contribución al número total de sucesos en las regiones de señal es reducida, se toman íntegramente de la simulación, tanto en forma como en normalización.
 
-\subsection{Drell--Yan production}
+La contribución de \textit{fakes} por su parte no corresponde a un proceso físico concreto, sino que recibe aportaciones de la producción multi-jet QCD, donde el jet mal identificado puede tener origen tanto en un quark como en un gluón; de la producción de pares de quarks top, donde procede de los quarks de la desintegración; y de la producción de bosones $W$ en asociación con jets, donde proviene de la radiación en el estado inicial o final. La decisión de modelar la contribución de \textit{fakes} mediante data-driven methods viene justificada por dos factores que hacen que la MC simulation no sea accurate enough. El primero es puramente estadístico, y responde a la baja probabilidad de que un jet de quark o gluón sea identificado como $\tau_h$, que se sitúa entre $10^{-2}$ y $10^{-3}$. Combinada además con la exigencia de dos jets adicionales que cumplan los criterios de $b$-tagging, implicaría generar un volumen de simulación inasumible para poblar con suficiente estadística las regiones de señal. El segundo es el modelado imperfecto de esa identifcación errónea por parte de la simulación, debido principalmente a su dependencia de efectos de detector. Para hacer frente a ambas limitaciones se adopta una estrategia basada en los datos, en la que la contribución de \textit{fakes} se estima a partir de regiones enriquecidas en jets cuyos sucesos son independientes de los de las regiones de señal, de forma que se transfiera después la medida a estas últimas.
+
+
+ESCRIBIR DESDE AQUI
+
+%
+
+
+\subsection{Drell--Yan background modeling}
 % CRs: mumu and ee, 70 < m_ll < 110 GeV, pTmiss < 45 GeV, SR-like jet requirements.
 % Data/MC ratio fitted vs pT(ll) -- Gaussian at low pT plus linear at high pT --
 % per jet multiplicity, applied using the generator-level Z pT. Additional
@@ -609,7 +615,14 @@ ESCRIBIR DESDE AUQI
 % -> code: Category("DY_CR_baseline"/"DY_CR_res1b"/"DY_CR_res2b"/"DY_CR_boosted"/"DY_CR_VBF")
 % Worth contrasting with the 18-region sideband fit used in Run 2.
 
-\subsection{Top quark pair production}
+Los procesos que pueblan las regiones que se han definido en la sección anterior, junto con los generadores empleados para simularlos, han sido previamente enumerados en la Seccíon \ref{sec:bbtt_samples}. No se ha explicado sin embargo la forma en la que se obtiene el número de sucesos esperado en cada región, que no se reduce a normalizar esas muestras a la luminosidad integrada de los datos, sino que requiere further considerations según el proceso considerado, y del origen del candidato a $\tau_h$. Como ya ha se ha hecho notar, los sucesos en los que ambos $\tau$ leptons son genuinos se toman directamente de la simulación. Sin embargo, las contribuciones principales de Drell--Yan y de producción de pares de quarks top presentan discrepancias conocidas frente a los datos que obligan a corregir su simulación. Por otro lado, la contribución de aquellos sucesos en los que un jet hadrónico ha sido erróneamente identificado como $\tau_h$, y que se denominará simplemente \textit{fakes} en lo sucesivo, no puede describirse de forma fiable con simulación MC, por lo que se estima sirviéndose directamente de los datos. 
+
+Las deficiencias en la simulación que afectan a los fondos dominantes afectan en ambos casos a la descripción del momento transverso. En la producción Drell--Yan, la simulación no reproduce correctamente el momento transverso del bosón $Z$; la corrección correspondiente se obtiene comparando datos y simulación en canales de control de dos leptones ligeros de igual sabor, donde este proceso es prácticamente el único presente. En la producción $t\bar{t}$, el reponderado se aplica en función del momento transverso del quark top y se deriva directamente del cociente entre el cálculo de la sección eficaz diferencial a orden NNLO en QCD con correcciones electrodébiles a NLO y la predicción del generador empleado. El resto de procesos, cuya contribución al número total de sucesos en las regiones de señal es reducida, se toman íntegramente de la simulación, tanto en forma como en normalización.
+
+La contribución de \textit{fakes} por su parte no corresponde a un proceso físico concreto, sino que recibe aportaciones de la producción multi-jet QCD, donde el jet mal identificado puede tener origen tanto en un quark como en un gluón; de la producción de pares de quarks top, donde procede de los quarks de la desintegración; y de la producción de bosones $W$ en asociación con jets, donde proviene de la radiación en el estado inicial o final. La decisión de modelar la contribución de \textit{fakes} mediante data-driven methods viene justificada por dos factores que hacen que la MC simulation no sea accurate enough. El primero es puramente estadístico, y responde a la baja probabilidad de que un jet de quark o gluón sea identificado como $\tau_h$, que se sitúa entre $10^{-2}$ y $10^{-3}$. Combinada además con la exigencia de dos jets adicionales que cumplan los criterios de $b$-tagging, implicaría generar un volumen de simulación inasumible para poblar con suficiente estadística las regiones de señal. El segundo es el modelado imperfecto de esa identifcación errónea por parte de la simulación, debido principalmente a su dependencia de efectos de detector. Para hacer frente a ambas limitaciones se adopta una estrategia basada en los datos, en la que la contribución de \textit{fakes} se estima a partir de regiones enriquecidas en jets cuyos sucesos son independientes de los de las regiones de señal, de forma que se transfiera después la medida a estas últimas.
+
+
+\subsection{Top quark pair background modeling}
 % Shape from simulation, normalisation corrected: top pT reweighting from the
 % NNLO QCD + NLO EW / POWHEG+PYTHIA8 ratio.
 
@@ -658,7 +671,7 @@ ESCRIBIR DESDE AUQI
 % - DECISION PENDING: whether this stays a subsection here or is folded into
 %   Sec. 6.6.4 as a set of paragraphs. Judge once written.
 
-\section{Corrections to simulated events}
+\section{Object-level corrections to simulated events}
 \label{sec:bbtt_corrections}
 % Section of its own, separate from the systematics (as Jaime does): here what is
 % applied, in Sec. 6.10 what is assigned as an uncertainty on it.
