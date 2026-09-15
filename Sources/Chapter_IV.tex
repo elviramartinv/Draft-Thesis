@@ -2,9 +2,26 @@
 \label{ch:Tau}
 
 
-\noindent The precise and accurate reconstruction of $\tau$ leptons is a crucial part of the $HH\rightarrow bb\tau\tau$ analysis covered in Chapter \ref{ch:bbtt_analysis}. Furthermore, a significant number of physical analyses — such as measurements of Higgs boson production, properties under CP symmetry, and searches for new physics in final states with $\tau$ leptons — rely on the adequate identification of $\tau$ decay products and their properties. This broad physics program necessitates continuous development of reconstruction and identification techniques, which for $\tau$ leptons are coordinated within the CMS Tau Physics Object Group (Tau POG). A central component of the study of $\tau$ leptons, which will be emphasized subsequently, involves validating the applied techniques to ensure their correct behavior in data.
+\noindent The precise and accurate reconstruction of $\tau$ leptons is a crucial part of the $HH\rightarrow bb\tau\tau$ analysis covered in Chapter \ref{ch:bbtt_analysis}. Furthermore, a significant number of physical analyses — such as measurements of Higgs boson production \cite{CMS Collaboration, “Observation of the Higgs boson decay to a pair of τ leptons with
+the CMS detector”, Phys. Lett. B 779 (2018) 283,
+doi:10.1016/j.physletb.2018.02.004, arXiv:1708.00373., CMS Collaboration, “Measurements of Higgs boson production in the decay channel with
+a pair of τ leptons in proton–proton collisions at √
+s = 13 TeV”, Eur. Phys. J. C 83
+(2023), no. 7, 562, doi:10.1140/epjc/s10052-023-11452-8, arXiv:2204.12957.} and of its properties under CP symmetry \cite{CMS Collaboration, “Analysis of the CP structure of the Yukawa coupling between the
+Higgs boson and τ leptons in proton-proton collisions at √
+s = 13 TeV”, JHEP 06
+(2022) 012, doi:10.1007/JHEP06(2022)012, arXiv:2110.04836.}, and searches for new physics in final states with $\tau$ leptons \cite{[10] CMS Collaboration, “Searches for additional Higgs bosons and for vector leptoquarks in
+τ τ final states in proton-proton collisions at √
+s = 13 TeV”, JHEP 07 (2023) 073,
+doi:10.1007/JHEP07(2023)073, arXiv:2208.02717.
+[11] CMS Collaboration, “Search for a low mass resonance decaying to τ τ using data collected
+with a dedicated high-rate data stream”, CMS Physics Analysis Summary
+CMS-PAS-EXO-24-012, 2025.
+[12] CMS Collaboration, “Search for the pair production of long-lived supersymmetric
+partners of the tau lepton in proton-proton collisions at sqrts=13 TeV”, CMS Physics
+Analysis Summary CMS-PAS-EXO-24-020, 2025} — rely on the adequate identification of $\tau$ decay products and their properties. This broad physics program necessitates continuous development of reconstruction and identification techniques, which in CMS for $\tau$ leptons are coordinated within the Tau Physics Object Group (Tau POG). A central component of the study of $\tau$ leptons, which will be emphasized subsequently, involves validating the applied techniques to ensure their correct behavior in data.
 
-In CMS, the reconstruction and identification of hadronic $\tau$ leptons constitute to complementary steps. The reconstruction stage, performed by the HPS algorithm (see Section \ref{subsec:Taus}), assembles the visible decay products into a $\tau_h$ candidate and determines its decay mode and kinematic properties. The identification step the classifies this reconstructed candidates as a genuine $\tau$ lepton or as a misidentified jet, electron or muon. Since Run-2, this classification has been performed using the \textsc{DeepTau} algorithm, a convolutional neural network (CNN) that combines information from all individual reconstructed particles near the $\tau_h$ axis with properties of the $\tau_h$ candidate. Recent developments in Run-3 include the updated \textsc{DeepTau v2.5} algorithm, as well as alternative approaches to identify $\tau_h$, such as \textsc{PNet} and \textsc{UParT}, which aim to unify jet flavour tagging and $\tau$ identification within a common framework.
+In CMS, the reconstruction and identification of hadronic $\tau$ leptons constitute two complementary steps. The reconstruction stage, performed by the HPS algorithm (see Section \ref{subsec:Taus}), assembles the visible decay products into a $\tau_h$ candidate and determines its decay mode and kinematic properties. The identification step then classifies this reconstructed candidates as a genuine $\tau$ lepton or as a misidentified jet, electron or muon. Since Run-2, this classification has been performed using the \textsc{DeepTau} algorithm, a convolutional neural network (CNN) that combines information from all individual reconstructed particles near the $\tau_h$ axis with properties of the $\tau_h$ candidate. Recent developments in Run-3 include the updated \textsc{DeepTau v2.5} algorithm, as well as alternative approaches to identify $\tau_h$, such as \textsc{PNet} and \textsc{UParT}, which aim to unify jet flavor tagging and $\tau$ identification within a common framework.
 
 This chapter provides a detailed examination of the identification of hadronic $\tau$ leptons. Section \ref{sec:Tau_MisID} lays the groundwork and emphasizes the challenges associated with distinguishing genuine $\tau_h$ candidates from background objects. Section \ref{sec:DeepTau2.5} details the $\tau_h$ identification algorithm deployed for the early Run-3 data-taking period (\textsc{DeepTau v2.5}), and covers alternative identification strategies currently under study. Finally, in Section \ref{sec:Tau_validation}, the performance of the presented techniques is validated using Run-3 data. 
 
