@@ -567,7 +567,9 @@ It is therefore situated at the midpoint of the chain flow, where events that ha
 
 \subsubsection{Signal regions}
 %
-The four categories defined in this way — ggF boosted, VBF, ggF res1b, and ggF res2b — are evaluated, in principle, for each of the four final states of the tau tau pair — $\tau_\mu\tau_h$, $\tau_e\tau_h$, $\tau_h\tau_h$ and $b\tau_h\tau_h$. However, due to the limited number of events in the boosted and vector boson fusion categories, their four channels have been merged into a single, overarching channel, denoted $X\tau_h$. The resulting scheme, shown in Figure \ref{fig:categories}, therefore consists of ten final categories:
+The four categories defined in this way — ggF boosted, VBF, ggF res1b, and ggF res2b — are evaluated, in principle, for each of the four final states of the tau tau pair — $\tau_\mu\tau_h$, $\tau_e\tau_h$, $\tau_h\tau_h$ and $b\tau_h\tau_h$. However, due to the limited number of events in the boosted and vector boson fusion categories, their four channels have been merged into a single, overarching channel, denoted $X\tau_h$. For each of these categories, the signal region is obtained by finally imposing the two conditions that had been left unapplied throughout the selection process: that the two candidates for $\tau$ have opposite charges, and that the candidate for $\tau_h$ exceeds the \textit{Medium} operating point of the jet discriminator.
+
+The resulting scheme, shown in Figure \ref{fig:categories}, therefore consists of ten final categories:
 %
 \begin{itemize}
     \item $\tau_\mu\tau_h$: res1b and res2b;
@@ -595,41 +597,43 @@ To this end, the conditions that have been deliberately been left loose througho
 \section{Background estimation}
 \label{sec:bbtt_backgrounds}
 %
-Los procesos que pueblan las regiones que se han definido en la sección anterior, junto con los generadores empleados para simularlos, han sido previamente enumerados en la Seccíon \ref{sec:bbtt_samples}. No se ha explicado sin embargo la forma en la que se obtiene el número de sucesos esperado en cada región, que no se reduce a normalizar esas muestras a la luminosidad integrada de los datos, sino que requiere further considerations según el proceso considerado, y del origen del candidato a $\tau_h$. Como ya ha se ha hecho notar, los sucesos en los que ambos $\tau$ leptons son genuinos se toman directamente de la simulación. Sin embargo, las contribuciones principales de Drell--Yan y de producción de pares de quarks top presentan discrepancias conocidas frente a los datos que obligan a corregir su simulación. Por otro lado, la contribución de aquellos sucesos en los que un jet hadrónico ha sido erróneamente identificado como $\tau_h$, y que se denominará simplemente \textit{fakes} en lo sucesivo, no puede describirse de forma fiable con simulación MC, por lo que se estima sirviéndose directamente de los datos. 
+The processes that populate the regions defined in the previous section, along with the generators used to simulate them, were listed in Section \ref{sec:bbtt_samples}. However, the method for obtaining the expected number of events in each region has not yet been explained. This method cannot simply be reduced to simply normalizing these samples by the integrated luminosity of the data, but rather requires further considerations depending on the process and the origin of the $\tau_h$ candidate. As previously noted, events in which both $\tau$ leptons are genuine are taken directly from the simulation. However, the main contributions from Drell–Yan and top quark pair production differ from the data, necessitating corrections to the simulation. Additionally, the contribution from those events in which a hadronic jet has been erroneously identified as $\tau_h$ — which will simply be referred to as \textit{fakes} hereafter — cannot be reliably described using MC simulation, and therefore, it is estimated directly from the data.
 
-Las deficiencias en la simulación que afectan a los fondos dominantes afectan en ambos casos a la descripción del momento transverso. En la producción Drell--Yan, la simulación no reproduce correctamente el momento transverso del bosón $Z$; la corrección correspondiente se obtiene comparando datos y simulación en canales de control de dos leptones ligeros de igual sabor, donde este proceso es prácticamente el único presente. En cambio, en la producción $t\bar{t}$, la corrección al $p_T$ del quark top no se mide sobre los datos, sino que se toma de un cálculo teórico de orden superior al alcanzado por el generador. El resto de procesos, cuya contribución al número total de sucesos en las regiones de señal es reducida, se toman íntegramente de la simulación, tanto en forma como en normalización.
+Shortcomings in the simulation affecting the dominant backgrounds affect the description of the transverse momentum in both cases. In Drell-–Yan production, the simulation does not correctly reproduce the $p_T$ of the $Z$ boson; the corresponding correction is obtained by comparing data and simulation in control channels involving two light leptons of the same flavor, where this process is practically the only one present. In contrast, in $t\bar{t}$ production, the correction to the $p_T$ of the top quark is not measured from the data but is taken from a theoretical calculation of a higher order than that achieved by the simulator. The remaining processes, whose contribution to the total number of events in the signal regions is small, are entirely simulated, in both form and in normalization.
 
-La contribución de \textit{fakes} por su parte no corresponde a un proceso físico concreto, sino que recibe aportaciones de la producción multi-jet QCD, donde el jet mal identificado puede tener origen tanto en un quark como en un gluón; de la producción de pares de quarks top, donde procede de los quarks de la desintegración; y de la producción de bosones $W$ en asociación con jets, donde proviene de la radiación en el estado inicial o final. La decisión de modelar la contribución de \textit{fakes} mediante data-driven methods viene justificada por dos factores que hacen que la MC simulation no sea accurate enough. El primero es puramente estadístico, y responde a la baja probabilidad de que un jet de quark o gluón sea identificado como $\tau_h$, que se sitúa entre $10^{-2}$ y $10^{-3}$. Combinada además con la exigencia de dos jets adicionales que cumplan los criterios de $b$-tagging, implicaría generar un volumen de simulación inasumible para poblar con suficiente estadística las regiones de señal. El segundo es el modelado imperfecto de esa identifcación errónea por parte de la simulación, debido principalmente a su dependencia de efectos de detector. Para hacer frente a ambas limitaciones se adopta una estrategia basada en los datos, en la que la contribución de \textit{fakes} se estima a partir de regiones enriquecidas en jets cuyos sucesos son independientes de los de las regiones de señal, de forma que se transfiera después la medida a estas últimas.
-
+On the other hand, the contribution from \textit{fakes} does not correspond to a specific physical process, but rather comes from QCD multi-jet production, where the misidentified jet can originate from either a quark or a gluon; from top quark pair production, where it comes from the quarks in the decay; and from $W$ boson production in association with jets, where it comes from radiation in the initial or final state. The decision to model the \textit{fakes} contribution using data-driven methods is justified by two factors that render MC simulation inaccurate. The first factor is statistical and stems from the low probability that a quark or gluon jet will be identified as a $\tau_h$, ranging from $10^{-2}$ to $10^{-3}$. Combined with the requirement for two additional jets that satisfy the $b$-tagging criteria, this would entail generating an unmanageable volume of simulations to populate the signal regions with sufficient statistics. The second factor is the imperfect modeling of this misidentification in the simulation, primarily due to its dependence on detector effects. To address both limitations, a data-driven strategy is adopted, in which the contribution of \textit{fakes} is estimated from jet-rich regions whose events are independent of those in the signal regions, so that the estimate can then be transferred to the latter.
 
 \subsection{Drell--Yan background modeling}
 %
-Antes de emplear la predicción de la producción Drell--Yan en el análisis, es necesario corregir la distribución de momento transverso del bosón $Z$, la cual la simulación no reproduce correctamente. Para medir esta discrepancia, se recurre a los canales ricos en producción Drell--Yan, $ee$, $\mu\mu$, reservados a tal fin en la definición de los canales. Sobre estos canales de control se define una ventana de masa invariante en torno al pico del $Z$, entre $70$ y $110$ GeV, y se requiere adicionalmente que el momentro transverso perdido reconstruido con el algoritmo PUPPI sea inferior a $45$ GeV, explotando las propiedades específicas de la contribución Drell--Yan para garantizar una región enriquecida en este proceso. Los requisitos sobre los jets que definen cada una de las topologías descritas en la Sección \ref{sec:bbtt_flow} se mantienen inalterados, ya que se busca reproducir el espacio de fases de las regiones de señal en todo salvo en el par de leptones, afin de aislar la contribución de Drell--Yan.\\
+Before applying the Drell-–Yan production MC prediction to the analysis, it is necessary to correct the $p_T$ distribution of the $Z$ boson, which the simulation does not reproduce correctly. To measure this discrepancy, the Drell–Yan-rich channels, $ee$ and $\mu\mu$, which were reserved for this purpose in the channel definition, are used. For these control channels, an invariant mass window is defined around the $Z$ peak, between $70$ and $110$ GeV, and it is additionally required that the lost transverse momentum (MET???) reconstructed using the PUPPI algorithm be less than $45$ GeV, exploiting the specific properties of the Drell-–Yan contribution to ensure a region enriched in this process. The requirements for the jets that define the topologies described in Section \ref{sec:bbtt_flow} remain unchanged, since the goal is to reproduce the phase space of the signal regions in all but the lepton pair, in order to isolate the Drell-–Yan contribution.\\
 
 % la primera explota el carácter resonante de $Z\to\ell\ell$ frente al continuo en masa invariante que produce $t\bar{t}$, y la segunda la ausencia de neutrinos en la desintegración del $Z$, frente a los dos que acompañan a la desintegración leptónica de los $W$.
 
-En un primer lugar se optó por emplear los factores de corrección derivados en el contexto del análisis $H\to\tau\tau$ y puestos a disposición del conjunto del grupo para cubrir esta discrepancia conocida. Sin embargo, la descripción en el espacio de fases de esta búsqueda resultó ser insuficiente, con lo que en la versión definitiva se opta por una derivación propia, la cual consiste en una correccióni multidimensional obtenida directamente de datos, diseñalada para capturar con mayor fidelidad las dependencias cinemáticas relevantes.
+% Initially, it was decided to use the correction factors derived in the context of the $H\to\tau\tau$ analysis and made available to the entire group to account for this known discrepancy. However, the phase-space description of this search proved insufficient; consequently, the final version employs a derivation of our own, consisting of a multidimensional correction obtained directly from the data and designed to capture the relevant kinematic dependencies with greater accuracy. \textcolor{red}{innecesario este parrafo?}
 
-La estrategia comienza calculando el cociente entre los datos, tras sustraer la contribución simulada de todos los procesos distintos de Drell--Yan, y la simulación de Drell--Yan, en función del momento transverso reconstruido del par de muones\footnote{En la desintegración $Z\to\mu\mu$, los dos muones reproducen el momento transverso del bosón $Z$ con la resolución característica de la reconstrucción de muones, lo que la convierte en una variable preferida frente a la que medir la discrepancia}. El cálculo se realiza por separado en tres regiones definidas por el número de jets centrales del suceso: dos, tres o cuatro o más\footnote{Esta división responde a que el momento transverso del bosón y la multiplicidad de jets no son variables independientes, sino que reflejan la radiación QCD del estado inicial, cuya simulación pierde precisión a medida que aumenta el número de partones emitidos, lo que obliga a derivar correcciones separadas para cada región de número de jets.}. Posteriormente, el cociente resultante se ajusta a una función compuesta por una gaussiana en el régimen de bajo momento transverso y una recta en el alto, enlazadas mediante una función de transición cuyo punto de cruce es asimismo un parámetro libre del ajusto. La Figura \ref{fig:dy_fit} muestra el resultado para la región de exactamente dos jets centrales, junto con las bandas de incertidumbre asociadas a cada uno de los dos regímenes del ajuste, que se tratan como fuentes independientes en el ajuste final y cuya derivación se detalla en la Sección \ref{sec:bbtt_systematics}.
+The strategy begins by calculating the ratio of the data, after subtracting the simulated contribution from all processes other than Drell–-Yan, to the Drell--Yan simulation, as a function of the reconstructed $p_T$ of the muon pair\footnote{In the $Z\to\mu\mu$ decay, the two muons reproduce the $p_T$ of the $Z$ boson with the resolution characteristic of muon reconstruction, making it a preferred variable against which to measure the discrepancy}. This calculation is performed separately in three regions defined by the number of central jets in the event: two, three, or four or more\footnote{This division stems from the fact that the $p_T$ of the boson and the jet multiplicity are not independent variables, but rather reflect the QCD radiation of the initial state, whose simulation loses precision as the number of emitted partons increases, necessitating separate corrections for each jet-number region.}. The resulting ratio is then fitted to a function composed of a Gaussian in the low transverse momentum regime and a straight line in the high regime, linked by a transition function whose crossover point is also a free parameter of the fit. Figure \ref{fig:dy_fit} shows the result for the region with exactly two central jets, along with the uncertainty bands associated with each fitting regime, which are treated as independent sources in the final fit and whose derivation is detailed in Section \ref{sec:bbtt_systematics}.
+
 %La Figura \ref{fig:dy_fit} muestra el resultado para la región de exactamente dos jets centrales, donde las incertidumbres de los parámetros libres se agrupan en dos fuentes independientes asociadas a cada uno de los dos regímenes, y la variación asociada a cada una de ellas se obtiene tomando el punto de transición resultante del ajuste nominal y desplazando el contenido de los intervalos pertenecientes al régimen considerado en $1.5$ veces su incertidumbres estadística, hacia arriba y hacia abajo, y repitiendo el ajuste con los del otro régimen inalterados. 
 %
 \begin{figure}[tbp]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/chapter_VI/DY_reweighting_fit.pdf}
     \caption[Drell--Yan reweighting fit]{%
-        Ajuste del cociente entre los datos, sustraída la contribución de los procesos
-        distintos de Drell--Yan, y la simulación de Drell--Yan, en función del momento
-        transverso reconstruido del par de muones, en la región de control enriquecida en
-        Drell--Yan con exactamente dos jets centrales. El ajuste nominal se muestra como
-        una línea negra, y las envolventes izquierda y derecha corresponden a las
-        incertidumbres de los regímenes gaussiano y lineal respectivamente. Ajustes
-        análogos se realizan para las restantes categorías de número de jets.}
+        Fit of the ratio between the data, minus the contribution from processes
+        other than Drell–-Yan, and the Drell–-Yan simulation, as a function of the
+        reconstructed $p_T$ of the muon pair, in the control region enriched in
+        Drell–-Yan with exactly two central jets. The nominal fit is shown as
+        a black line, and the left and right envelopes correspond to the
+        uncertainties of the Gaussian and linear regimes, respectively. Analogous fits
+        are performed for the remaining jet-number categories.}
     \label{fig:dy_fit}
 \end{figure}
 %
-El peso obtenido con este método no se aplica en función del momento transverso reconstruido, sino del generado, dado que en las regiones de señal el momento de los neutrinos procedentes de las desintegraciones de los $\tau$ no está reconstruido. La equivalencia entre ambos ha sido igualmente verificada previamente en la región de control. Esta corrección resulta suficiente para restituir el acuerdo entre datos y simulación en el momento transverso del par, en el número de jets centrales y en el número de jets etiquetados como $b$ para los sucesos con dos y tres jets centrales, pero no para aquellos con cuatro o más. Se introduce por ello un factor de normalización adicional, medido en cinco intervalos del número de jets centrales $n_\text{jets} = 2, 3, 4, 5, \geq 6$, y tres del número de jets etiquetados, $n_\text{b\,jets} = 0, 1, \geq 2$, cada uno de los cuales constituye una fuente de incertidumbre independiente.\\ 
+The weight obtained using this method is not applied based on the reconstructed $p_T$, but rather on the generated $p_T$, since in the signal regions the momentum of the neutrinos originating from $\tau$ decays is not reconstructed. The equivalence between the two has been verified previously in the control region. This correction restores agreement between the data and simulation in the $p_T$ of the pair, in the number of central jets, and in the number of $b$-tagged jets for events with two and three central jets, but not for those with four or more. An additional normalization factor is therefore introduced, measured over five intervals of the number of central jets $n_\text{jets} = 2, 3, 4, 5, \geq 6$, and three intervals of the number of $b$-tagged jets, $n_\text{b\,jets} = 0, 1, \geq 2$, each of which constitutes an independent source of uncertainty.\\
 
-El factor de corrección final aplicado a la simulación de Drell--Yan es el producto de ambos factores. En la estrategia seguida, la derivación se realiza en el canal $\mu\mu$, de forma que se reserva el canal $ee$ para la validación final, donde se observa un acuerdo satisfactorio en todos los periodos de toma de datos.
+The final correction factor applied to the Drell-–Yan simulation is the product of both factors. In the strategy followed, the derivation is performed on the $\mu\mu$ channel, so that the $ee$ channel is reserved for final validation, where satisfactory agreement is observed across all data collection periods.
+
+
 
 AÑADIR FIGURA ANTES Y DESPUES
 
@@ -643,66 +647,117 @@ A diferencia del caso anterior, no se recurre a regiones de control de los datos
 Se trata por tanto de una corrección de origne teórico, y no de una medida sobre los datos, de la que no se dispone de una estimación independiente de su precisión, por lo que se le asocia una incertidumbre del tamaño de la corrección misma: las variaciones se obtienen aplicando el factor por duplicado y no aplicándolo en abosluto, de modo que el peso nominal queda a medio camino entre ambos. El acuerdo entre datos y la simulación que resulta de todo ello se verifica en una región de control enriquecida en este proceso, definida sobre la categoría res2b, que es donde resulta más abundante por el requisito de etiquetado de los dos quarks $b$, y sustituyendo el par $\tau\tau$ por el estado final $e\mu$, donde las desintegraciones semileptónicas y dileptónicas del par $t\bar{t}$ dominan por completo.
 
 
+\subsection{Jet\texorpdfstring{$\to\tau_h$}{ -> tau h} misidentification: the Fake Factor method}
+\label{subsec:bbtt_ff}
+%
+La contribucíon a los fakes no viene de un único proceso, sino que engloba a todos aquellos donde hay abundancia de hadronic jets en el estado final susceptibles de ser erroneamente identificados como $\tau_h$: producción multi-jet QCD, $t\bar{t}$ y $W+$jets. En el Run 2, sin embargo, el método empleado solo abordaba la primera de ellas, mientras que los candidatos mal identificados procedentes de los otros dos fondos permanecían dentro de la predicción simulada de sus respectivos procesos, y por tanto sujetos a las limitaciones que se han descrito anteriormente. La estimación se hacía mediante el método ABCD, que consiste en medir esta contribución en regiones donde resulta dominante, para transferirla después a la región de señal. Las regiones en las que se mide se construyen inviertiendo, por separado y de forma conjunta, la condición sobre la carga relativa de los dos candidatos a $\tau$, y el criterio de identificación del candidato a $\tau_h$. Bajo este enfoque, la forma de la distribución se infería directamente de una de las nuevas regiones, y su normalización del cociente entre las otras dos. El procedimiento suponía así un único factor de transferencia y una única plantilla para describir un fondo que es en realidad una mezcla de procesos con tasas de identificación errónea distintas\footnote{La validez de este supuesto fue objeto de un estudio específico realizado en el marco de esta tesis, que se recoge en el Apéndice~\ref{app:abcd_validation}.}. 
+
+El método de los \textit{fake factors} adoptado en el Run 3 descansa sobre el mismo principio de medir la tasa de identificación errónea en regiones laterales para transferirla a la región de interés. Sin embargo, el tratamiento basado en datos deja ahora de limitarse a la producción multi-jet QCD y se extiende a los tres procesos principales. En consecuencia, la simulación de $t\bar{t}$ y de $W$+jets se restringe a los sucesos en los que el candidato a $\tau_h$ tiene correspondencia con una partícula generada, y los originados por un jet pasan a estimarse íntegramente a partir de los datos, de modo que esta contribución no se cuenta dos veces. Para cada uno de ellos se define una región donde domina y se mide en ella el cociente entre el número de candidatos que superan el criterio de identificación de la región de señal y el de los que no lo superan. Este cociente es el denominado \textit{fake factor} y permite predecir cuántos sucesos de un jet mal identificado la región de señal. El procedimiento es independiente para cada uno de los tres procesos que contribuyen, cuyas tasas de identificación errónea difieren, y se parametriza en función de la cinemática del candidato en lugar de promediarse sobre ella, como se hacía en el Run 2.
 
 
+El método se articula sobre cuatro regiones, que son la propia región de señal que se quiere inferir, y tres regiones laterales, enriquecidas en cada uno de los procesos. Las laterales se construyen sobre la selección descrita en la Sección \ref{sec:bbtt_flow}, relajando o invirtiendo alguna de las condiciones que allí se dejaron deliberadamente sin aplicar:
+\begin{itemize}
+    \item La región multi-jet QCD exige que los dos candidatos a $\tau$ tengan la misma carga para de eliminar la contribución de cualquier proceso con un par $\tau\tau$ genuino, como la señal, con lo que se alcanza una pureza del $99\%$. Además, como su composición es especialmente sensible a la topología y a los requisitos de etiquetado del candidato $H\to b\bar{b}$ —en multi‑jet los jets etiquetados pueden ser ligeros, charm o pares $b\bar{b}$ de desdoblamiento de gluón, lo que altera de forma notable la mezcla de sabores y, con ella, la tasa de identificación errónea—, se define por separada para cada categoría del análisis.
+    \item La región de $t\bar{t}$ se obtiene inviertiendo la selección elíptica en el plano de las dos masas reconstruidas, mecanismo que sirve para eliminar la señal y por tanto se puede mantener la exigencia de cargas opuestas de la región de señal. Se alcanza una pureza del $95\%$.
+    \item La región de $W$+jets se obtiene con candidatos de la misma carga, imponiendo $p_T^\text{miss} > 60$ GeV y una masa transversa superior a $30$ GeV, enfocado a seleccionar la desintegración semileptónica del bosón $W$, y vetando los sucesos que contengan jets etiquetados en el punto de trabajo laxo. Como estos cortes seleccionan igualmente cualquier suceso con neutrinos, incluidos la señal y los procesos con un par $\tau\tau$ genuino, se exige de nuevo que los candidatos tengan la misma carga. La pureza alcanzada en este caso se reduce al $80\%$, lo que responde a que este proceso carece de una firma exclusiva que la separe de las demás.
+\end{itemize}
+%El método asume que el cociente entre candidatos que superan y no superan el criterio de identificación no depende de esa configuración
 
+%Respecto al 80% Su impacto sobre la estimación queda, no obstante, acotado por tres motivos.
+%En primer lugar, la contribución simulada con $\tau_h$ genuinos se sustrae de los datos antes
+% de calcular el cociente, de modo que solo pueden sesgarlo los \textit{fakes} de otros procesos.
+% En segundo lugar, los del contaminante principal, $t\bar{t}$, proceden como los de $W$+jets
+% mayoritariamente de jets de quark, cuya tasa de identificación errónea es similar. Y por
+% último, $FF_{Wj}$ entra en la estimación final pesado por la fracción de sucesos de $W$+jets
+% en la región plantilla.
+
+Cada una de las cuatro regiones se subdivide a su vez en dos mitades según el segundo candidato del par - $\tau_h$ en todos los casos - supere o no el punto de trabajo \textit{Medium} del discriminante frente a jets. En ambas mitades se sustrae de los datos la contribución que la simulación predice correctamente, los $\tau_h$ genuinos y los leptones ligeros identificados erróneamente como $\tau_h$, de forma que lo que queda son únicamente jets mal identificados. 
+
+Posteriormente, en cada una de las tres regiones laterales se cuenta el número de sucesos de datos de ambas mitades, y se calcula el \textit{fake factor} del proceso correspondiente, $FF_\text{MJ}$, $FF_{t\bar{t}}$ y $FF_{Wj}$, como el cociente entre el número de sucesos que supera el \textit{Medium} WP vs el que número de sucesos que no. Es este factor finalmente el que permite estimar cuantos jets acabarían pasando el criterio de identificación, que no pueden aislarse del resto, a partir de los sucesos que lo fallan, que sí pueden contarse directamente.
+
+Una vez obtenido el fake factor, éste se aplica a la mitad de la región que cumple los mismos criterios de que la región de señal expecto que no supera el punto de trabajo \textit{Medium}, y la cual se denomina región plantilla. Así, multiplicando el número de sucesos de la región plantilla por el \textit{fake factor} se obtiene la predicción de jets mal identificados a la región de señal. Sin embargo, como en la plantilla no es posible distinguir qué proceso produce cada jet, no se puede aplicar un factor distinto a cada uno. En su lugar se estima la fracción de $t\bar{t}$, de $W$+jets y de multi-jet QCD que la componen, las dos primeras a partir de la simulación en función del $p_T$ del candidato, y la tercera se deduce como el resto. Con ellas se construye un único \textit{fake factor} combinado,
+%
+\begin{equation}
+    FF = r_{t\bar{t}} \cdot FF_{t\bar{t}} + r_{Wj} \cdot FF_{Wj}
+         + \left(1 - r_{t\bar{t}} - r_{Wj}\right) \cdot FF_\text{MJ},
+    \label{eq:fake_factor}
+\end{equation}
+% 
+que se evalúa para cada suceso de la plantilla en función de la cinemática de su candidato y se aplica como peso. La distribución resultante constituye la predicción de \textit{fakes} en la región de señal.
+% Los \textit{fake factors} se derivan por separado para cada canal y periodo de toma de datos, en función del $p_T$ del candidato y distinguiendo entre las regiones de barril y de tapas del
+% detector; en el caso de multi-jet QCD, además, para cada categoría del análisis.
+%
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VI/ff_regions.pdf}
+    \caption[Regions used in the Fake Factor method]{%
+        Representación esquemática de las regiones empleadas en la estimación de la
+        contribución de \textit{fakes} a partir de los datos. Cada una se divide en dos mitades según el candidato a $\tau_h$
+        supere (arriba) o no (abajo) el punto de trabajo \textit{Medium} del discriminante
+        frente a jets. En las regiones laterales, el cociente entre ambas mitades define el
+        \textit{fake factor} de cada proceso; la mitad inferior de la región de señal es la
+        región plantilla, sobre la que se aplican.}
+    \label{fig:ff_regions}
+\end{figure}
+
+\textcolor{red}{quad jet trigger 2024 as a exception?}
+
+Finalmente, el cierre del método se comprueba en una región de validación ortogonal a todas las anteriores, definida con candidatos de la misma carga y con los dos jets del candidato $H\to b\bar{b}$ por debajo de los puntos de trabajo laxo y medio del discriminante de etiquetado, respectivamente, lo que proporciona una pureza en \textit{fakes} del $99\%$. La Figura \ref{fig:ff_closure} muestra el resultado para el canal $\tau_h\tau_h$ en 2024, donde se observa que la predicción reproduce los datos, y lo hace consistentenmente en todas las variables examinadas
+%
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VI/ff_closure.pdf}
+    \caption[Closure of the Fake Factor method]{%
+        Distribuciones del $p_T$ (arriba a la izquierda) y la pseudorrapidez (arriba a la
+        derecha) del candidato a $\tau_h$, de la separación angular entre los dos candidatos
+        (abajo a la izquierda) y del ángulo azimutal del momento transverso perdido (abajo a
+        la derecha) en la región de validación, para sucesos del canal $\tau_h\tau_h$ en el
+        periodo de 2024.}
+    \label{fig:ff_closure}
+\end{figure}
+
+Por último, respecto a las incertidumbres asociadas a esta estimación, tanto las derivadas de la estadística de las regiones empleadas como las que se propagan desde la calibración de los objetos que las definen, se describen en la Sección \ref{sec:bbtt_systematics}.
+
+
+AQUI QUITAR UNA FIGURA
 
 
 ESCRIBIR DESDE AQUI
 
 
+%
+
+%
+%
+
+
+% En el periodo de 2024, el \textit{trigger} de aparcamiento basado en cuatro jets selecciona una
+% población de \textit{fakes} de composición apreciablemente distinta, ya que de los cuatro jets
+% que exige en línea solo uno se identifica como $\tau$. Por ello, en el canal $\tau_h\tau_h$ los
+% \textit{fake factors} se derivan de forma independiente para la región seleccionada por ese
+% camino y para el resto del espacio de fases.
+
+
+%
+
+
+Por último, dado que todas estas regiones se definen mediante selecciones sobre $\tau_h$, jets
+y momento transverso perdido, los \textit{fake factors} se derivan de nuevo para las variaciones
+de la escala de energía de los $\tau_h$, de la escala y la resolución de los electrones y de la
+escala y la resolución de los jets, de modo que las incertidumbres de estos objetos se propagan
+de forma coherente a la estimación.
 
 
 
 
 
+%
 
 
 
-\subsection{Jet\texorpdfstring{$\to\tau_h$}{ -> tau h} misidentification: the Fake Factor method}
-\label{subsec:bbtt_ff}
-% CORE SECTION -- leading experimental systematic (25% of Delta mu).
-% - Motivation: jet->tau_h rate is 1e-2 to 1e-3, poorly modelled in MC, and with two
-%   b jets required the necessary MC statistics is prohibitive.
-% - Three enriched CRs: QCD multijet (same charge, ~99% purity), ttbar (opposite
-%   charge + inverted ellipse, ~95%), W+jets (same charge, pTmiss > 60 GeV,
-%   m_T > 30 GeV, loose b-jet veto, ~80%).
-% - Each split into ID / anti-ID by the Medium DeepTauVsJet WP; FF(pT, eta) is the
-%   ID/anti-ID yield ratio after subtracting genuine-tau contributions, derived
-%   per channel -> FF_MJ, FF_tt, FF_Wj.
-% - Template region: same SR selection but the least isolated tau_h fails Medium.
-%   Process fractions r_tt and r_Wj from simulation, QCD fraction from data.
-% - Combined:  FF = r_tt*FF_tt + r_Wj*FF_Wj + (1 - r_tt - r_Wj)*FF_MJ,
-%   applied as an event weight to the template region.
-% - Closure and validation region.
-% -> code: get_ff_regions() l.3319, scripts/compute_FakeFactors.py,
-%    compute_FFProcessRatios.py, compute_rFactors.py
+%
 
-\subsection{From ABCD to Fake Factors: the Run-2 heritage}
-\label{subsec:bbtt_abcd}
-% (2) MY OWN RUN-2 CONTRIBUTION. Keep it compact but do not undersell it.
-% - The ABCD construction: region A = OS + isolated tau_h (signal region),
-%   B = SS + isolated, C = OS + non-isolated (fails Medium, passes VVVLoose),
-%   D = SS + non-isolated. QCD shape taken from C, normalisation from B/D.
-%   -> code: get_qcd_regions() l.3280 keeps exactly these region names
-%      (os_iso / os_inviso / ss_iso / ss_inviso)
-% - The stability studies I carried out: the normalisation was tested by
-%   redefining regions C and D with four alternative DeepTauVsJet working point
-%   pairs (VVVLoose-VVLoose, VVLoose-VLoose, VLoose-Loose, Loose-Medium) and
-%   checking the C/D ratio against a constant fit; the ABCD prediction was
-%   compared with data-minus-background in a sideband defined by inverting the
-%   elliptical mass cut; and the whole method was repeated in shifted regions
-%   A'B'C'D' built on very loose working points, QCD-enriched and signal-poor.
-%   Where the standard C/D disagreed with the constant fit, an extra normalisation
-%   uncertainty was assigned. The arbitrariness of taking the shape from C rather
-%   than from B was also covered by a dedicated uncertainty.
-% - Why it was replaced for Run 3: ABCD gives one shape and one normalisation for
-%   an inclusive "QCD" object, whereas the Fake Factor method resolves the fake
-%   composition process by process and parametrises the transfer in (pT, eta).
-%   Frame the transition as a refinement of the same idea (measure the fakes where
-%   they dominate, transfer to where they do not), not as a repudiation.
-% - DECISION PENDING: whether this stays a subsection here or is folded into
-%   Sec. 6.6.4 as a set of paragraphs. Judge once written.
+
 
 \section{Object-level corrections to simulated events}
 \label{sec:bbtt_corrections}
