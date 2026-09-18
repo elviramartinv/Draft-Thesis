@@ -380,14 +380,14 @@ The criteria defining each of the analysis objects separately have been establis
 Once the candidates have been identified, the analysis proceeds to the definition of the signal regions. Events are first distributed among mutually exclusive categories, defined by the topology in which the event was reconstructed and by the final state of the $\tau\tau$ pair. Within the resolved categories, a requirement on the plane defined by the two reconstructed masses then removes the region where no signal is expected. It is therefore essential to address how the mass of each candidate is reconstructed, as will be done in each of the corresponding sections. These categories represent the regions from which the signal is ultimately extracted and, therefore, the way they are defined has a direct impact on the final results of the analysis. The following sections walk through each of these steps in the same order in which they are applied.
 
 
-\subsection{The \texorpdfstring{$H\to\tau\tau$}{H->tautau} candidate}
+\subsection{\texorpdfstring{$H\to\tau\tau$}{H->tautau}: the channel-defining pair}
 % FINAL STATES ASSIGNMENT AND SELECTION
 %
 After the preselection outline<d in Section \ref{sec:bbtt_objects} has been applied, the channel to which an event belongs is determined by its light lepton content. Events with one muon and no electrons are assigned to the $\tau_\mu\tau_h$ channel, those containing one electron and no muons to the $\tau_e\tau_h$ channel, and those containing neither to the $\tau_h\tau_h$ channel. Events involving two light leptons — namely, $\mu\mu$, $ee$, and $e\mu$ — are kept separately and reserved as control regions, since the signal contribution from the purely leptonic decay of the $\tau\tau$ pair is buried under the two main backgrounds in the analysis: Drell-–Yan dominates in $ee$ and $\mu\mu$, while $e\mu$ is dominated by the dileptonic decay of $t\bar{t}$ pairs, due to the fact that the $Z$ bosons cannot contribute directly, by lepton flavor conservation. Events that do not alignt with the expected configurations are discarded.
 
 Channel assignment therefore relies entirely on the light leptons, which have been previously selected using strict identification and isolation criteria. The $\tau_h$ leptons, on the other hand, are deliberately preselected using the loosest working point available with respect to jets, allowing for the construction of the control regions on which the estimation of the misidentified jet background described in Section \ref{sec:bbtt_backgrounds} is based. It therefore remains to be determined which $\tau_h$ accompanies the light lepton in the channel that the latter defines, since a single event often admits several compatible pairs from which a choice must be made.
 
-The ambiguity is resolvedby  ordering all possible pairs and keeping the first one. The ordering is done leg by leg; in semileptonic channels, the light lepton always occupies the leading position, while in $\tau_h\tau_h$ the two permutations of the candidates are considered. The pairs are initially sorted by the isolation of the leading leg, and if that value is the same, priority is given to the pair with the higher transverse momentum. If they also match in momentum — which indicates that they share the leading candidate, as will be the case for semileptonic channels — the isolation of the second leg is used, and as a last resort, its transverse momentum. In the case of the $\tau_h$ candidates, this isolation is the \textsc{DeepTau} score relative to jets, which is the same variable to which the working point defining the signal region will later be applied. The ordering thus retains the pair least likely to originate from a misidentified jet and which, therefore, is most likely to survive that subsequent tightening of the signal region.
+The ambiguity is resolved by  ordering all possible pairs and keeping the first one. The ordering is done leg by leg; in semileptonic channels, the light lepton always occupies the leading position, while in $\tau_h\tau_h$ the two permutations of the candidates are considered. The pairs are initially sorted by the isolation of the leading leg, and if that value is the same, priority is given to the pair with the higher transverse momentum. If they also match in momentum — which indicates that they share the leading candidate, as will be the case for semileptonic channels — the isolation of the second leg is used, and as a last resort, its transverse momentum. In the case of the $\tau_h$ candidates, this isolation is the \textsc{DeepTau} score relative to jets, which is the same variable to which the working point defining the signal region will later be applied. The ordering thus retains the pair least likely to originate from a misidentified jet and which, therefore, is most likely to survive that subsequent tightening of the signal region.
 
 The boosted channel, $b\tau_h\tau_h$, is treated as an extension of the purely hadronic channel and is considered only for events in which no resolved pair could form. The priority here is always the resolved channel, i.e., if both two $\tau_h$ from the standard algorithm and two candidates from the dedicated reconstruction for boosted topologies are reconstructed in the same event, the event is assigned to the resolved $\tau_h\tau_h$. Otherwise, and provided that the event contains no light leptons, the boosted candidates are paired if their angular separation lies between $0.05$ and $0.8$, a range that requires them to be close enough to be contained within a large-radius jet, but not so close that both are reconstructions of the same object. The jet containing them is then identified. If multiple jets satisfy this condition, the one with the highest transverse momentum is selected, whereas if none exist, the pair is discarded. A \textsc{ParticleNet} discriminant is then evaluated on that associated jet, which quantifies on a scale from zero to one the compatibility of the jet with containing an $H\to\tau\tau$ decay versus multi-jet production. Pairs whose jet does not exceed a minimum value of $0.1$ are discarded, \textcolor{red}{below which the efficiency of the corresponding trigger path is not reliably described by the simulation.}\\
 
@@ -430,7 +430,7 @@ The enhancement resulting from this change in strategy can be seen in Figure \re
 
 %A partir de toda esta información, el entrenamiento de la red se realiza por separado sobre meustras de señal y de los tres fondos que comparten con ella el estado final o la dominan en sección eficaz: Drell--Yan, producción de pares de quarks top y producción asociada de un top con un bosón de Higgs. Para impedir que los dos primeros, mucho más abundantes en simulación, dominen el aprendizaje, la composición de cada lote se equilibra por clases en lugar de aplicar los pesos de los sucesos directamente en la función de coste. 
 
-\subsection{The \texorpdfstring{$H\to bb$}{H->bb} candidate}
+\subsection{The \texorpdfstring{$H\to bb$}{H->bb} candidate: resolved and boosted topologies}
 %
 Once the $\tau\tau$ pair has been identified, the $H\to b\bar{b}$ candidate is sought among the preselected jets that do not overlap with any of the previously selected $\tau$ candidates. In this final state, it is common to find more heavy-flavor jets than the two being sought, originating from radiation in the initial state of the signal itself or from background events such as the $t\bar{t}$ pair. Therefore the objective is to determine which of the jets of the event tagged as originating from a $b$ quark actually come from the decay of the Higgs boson.\\
 
@@ -446,9 +446,9 @@ Accordingly, in order to cover the collimated regime, the large-radius jet conta
 %
 In contrast to the case of the $\tau\tau$ system, the mass of the $H\to b\bar{b}$ candidate is derived entirely from visible observables. In the resolved topology, the reconstructed mass is simply the invariant mass of the system formed by the two selected jets. In the boosted topology, it corresponds to the mass of the large-radius jet. Nevertheless, the peak of the distribution appears slightly below the expected $125$ GeV, since the semileptonic decays of the $B$ hadrons produced in the hadronization of $b$ quarks contain neutrinos that also escape detection, carrying away part of the momentum of the jet. The effect, however, is a residual shift of the peak, not a degradation comparable to that of the $\tau\tau$ system; therefore, it is not corrected.
 
-\subsection{The VBF jet selection}
+\subsection{The VBF jets assignment}
 %
-In the final step of the object selection procedure, the VBF juets must be selected. Once the two Higgs boson candidates have been reconstructed, an examination is conducted to determine whether the jet configuration of the event is consistent with the jets characteristic of vector boson fusion production. The problem is solved using the same approach as the one adopted for the assignment of the $H\to b\bar{b}$ candidate, leaving the decision to the \textsc{VBFjTag} algorithm introduced in Section \ref{sec:VBFjTag}, which is introduced here for the first time and which replicates the architecture and training strategy of \textsc{HH-BTag}.
+In the final step of the object selection procedure, the VBF jets are assigned. Once the two Higgs boson candidates have been reconstructed, an examination is conducted to determine whether the jet configuration of the event is consistent with the jets characteristic of vector boson fusion production. The problem is solved using the same approach as the one adopted for the assignment of the $H\to b\bar{b}$ candidate, leaving the decision to the \textsc{VBFjTag} algorithm introduced in Section \ref{sec:VBFjTag}, which is introduced here for the first time and which replicates the architecture and training strategy of \textsc{HH-BTag}.
 
 The algorithm incorporates input variables specific to this problem, such as the isolation of the jet from the other jets in the event and its centrality, quantities that leverage the characteristic properties of VBF jets. Moreover, the network uses information about which jets have been selected to form the $H\to b\bar{b}$ candidate, which in Section \ref{sec:VBFjTag} proved to be a useful input variable for the model. Therefore, while the score is evaluated over all preselected jets — extending the set to $|\eta| < 4.7$ — the pair is chosen only from among those that have not already been used, where the jets with the highest scores constitute the candidate pair.\\
 
@@ -737,7 +737,22 @@ Finally, the uncertainties associated with this estimate, including those arisin
 
 The prediction of the background in each signal region has been described. On the one hand, processes with genuine $\tau_h$ candidates were taken from the simulation, with the specific corrections for the dominant backgrounds described in this section, while no additional corrections were considered for the remaining processes. On the other hand, the contribution of \textit{fakes} was estimated directly from the data.
 
-However, all simulated components require a final step before they can be compared with the data. The simulation does not accurately reproduce either the data acquisition conditions or the response of the detector to each of the reconstructed objects. To address this, it is necessary to correct for these differences using factors that do not depend on the process under consideration but rather on the objects present in the event and are applied equally to all simulated samples. These corrections are the subject of the next section.
+However, all simulated components require a final step before they can be compared with the data. The simulation does not accurately reproduce either the data acquisition conditions or the response of the detector to each of the reconstructed objects. To address this, it is necessary to correct for these differences using factors that do not depend on the process under consideration but rather on the objects present in the event and are applied equally to all simulated samples. These corrections are the subject of the next section
+
+\section{Object-level corrections to simulated events}
+\label{sec:bbtt_corrections}
+%
+Aunque los algoritmos de reconstrucción utilizados son los mismo en datos y en muestras simuladas, la simulación no es capaz de reproducir con exactitud ni las condiciones en las que se tomaron los datos ni la respuesta del detector a cada objeto, lo que resulta en diferencias que han de corregirse. Así pues, se introducen correction factors o scale factors en los simulated events para mejorar el acuerdo entre data y simulation. En una gran mayoría de los casos, estas correcciones se derivan de forma centralizada en CMS, y son comunes a todos los análisis. Existen, sin embargo, otras que dependen de caminos de trigger, objetos o espacios de fase específicos de esta búsqueda, y que por tanto se derivan y validan dentro del propio análisis. Se describen a continuación todos los correction factors aplicados a los simulated events, excepto los ya descritos en la sección \ref{sec:bbtt_backgrounds}. Las incertidumbres asociadas a todas ellas se describen en la Sección \ref{sec:bbtt_systematics}.
+
+, habitualmente mediante el método de \textit{tag-and-probe} REF?
+
+These scale factors can
+modify the whole yield of particular samples (as the normalization factors obtained
+for Z/γ∗ → ll + jets or t¯t in Section 4.4), weight each event independently according
+to some characteristics of the event, or even only modify particular objects in every
+event.
+In the following, all the correction factors applied to simulated events (except
+the normalization factors described in Section 4.4)) are summarised.
 
 
 ESCRIBIR DESDE AQUI
@@ -747,6 +762,122 @@ ESCRIBIR DESDE AQUI
 
 \section{Object-level corrections to simulated events}
 \label{sec:bbtt_corrections}
+%
+Aunque las muestras simuladas se reconstruyen con los mismos algoritmos que los datos, la
+simulación no reproduce con exactitud ni las condiciones en que estos se tomaron ni la
+respuesta del detector a cada objeto. 
+
+Las diferencias resultantes se corrigen de dos maneras.
+Las que afectan a la eficiencia de una selección, sea del \textit{trigger}, de la
+identificación o del etiquetado, se corrigen mediante factores de escala, definidos como el
+cociente entre la eficiencia medida en datos y la obtenida en simulación, y aplicados como pesos
+a cada suceso simulado. Las que afectan a la medida de la energía o el momento de un objeto se
+corrigen, en cambio, modificando directamente su cuadrimomento. La mayor parte de estas
+correcciones se derivan de forma centralizada en CMS, habitualmente mediante el método de
+\textit{tag-and-probe} sobre desintegraciones del bosón $Z$, y son comunes a todos los análisis;
+otras, que dependen de caminos de \textit{trigger}, objetos o espacios de fases específicos de
+esta búsqueda, se derivan dentro del propio análisis. Las incertidumbres asociadas a todas ellas
+se describen en la Sección \ref{sec:bbtt_systematics}.
+
+\subsection{Pileup}
+%
+Las muestras simuladas se producen antes de conocer el perfil de interacciones adicionales que
+tendrán los datos. Puesto que el pileup influye en la respuesta del detector y en la
+reconstrucción de todos los objetos, cada suceso simulado se pesa según el cociente entre la
+distribución del número de interacciones en los datos y en la simulación, siguiendo el
+procedimiento recomendado para Run 3.
+
+\subsection{Trigger}
+%
+Los caminos de \textit{trigger} se aplican por igual a datos y simulación, pero su eficiencia no
+es idéntica en ambos, y la diferencia se corrige con factores de escala evaluados suceso a
+suceso. Para los caminos de un único leptón y para las patas leptónica y hadrónica de los
+caminos cruzados, estos factores se obtienen de los proporcionados de forma centralizada, en
+función del $p_T$ del objeto y, en el caso de los $\tau_h$, de su modo de desintegración. Su
+combinación, sin embargo, depende de la estrategia de cada análisis: en los canales
+semileptónicos se emplea la disyunción lógica de los caminos de leptón único y cruzados, cuya
+eficiencia se construye a partir de las de cada pata bajo la hipótesis de que estas no están
+correlacionadas. Para los caminos introducidos en Run 3 descritos en la Sección
+\ref{sec:triggers}, que carecen de calibraciones centralizadas, las eficiencias y los factores de
+escala se miden dentro del análisis, tanto para las patas de jets y de etiquetado como para los
+caminos basados en $p_T^\text{miss}$ y en jets de radio grande.
+
+Algunos de estos caminos, además, se activaron en mitad del periodo 2023postBPix, de modo que
+solo registraron una fracción de su luminosidad integrada. Para reproducirlo, los sucesos
+simulados que los superan se pesan por el cociente entre la luminosidad registrada con el camino
+activo y la total del periodo. Es el caso del camino basado en jets de radio grande con
+etiquetado $H\to\tau\tau$ en línea y de todos los caminos de aparcamiento VBF.
+
+\subsection{Muones y electrones}
+%
+Las eficiencias de identificación y aislamiento de los muones se corrigen con factores de escala
+obtenidos centralmente mediante \textit{tag-and-probe} sobre sucesos $Z\to\mu\mu$. Para los
+electrones, los factores análogos, derivados sobre $Z\to ee$, corrigen por separado la
+eficiencia de reconstrucción y la de identificación y aislamiento. Los electrones reciben además
+correcciones de escala y resolución de energía, obtenidas ajustando el pico del $Z$ en datos y
+simulación: la energía se desplaza en los datos, donde en promedio se subestima, y se ensancha
+estocásticamente en la simulación, cuya resolución es optimista.
+
+\subsection{Leptones $\tau$ hadrónicos}
+%
+Las eficiencias de identificación de los $\tau_h$ se corrigen con factores de escala derivados
+centralmente mediante \textit{tag-and-probe} sobre sucesos $Z\to\tau\tau$, que distinguen entre
+$\tau_h$ genuinos y electrones o muones identificados erróneamente como $\tau_h$. Del mismo modo
+se corrige la escala de energía de los $\tau_h$, por separado para cada modo de desintegración.
+
+Los $\tau_h$ reconstruidos con el algoritmo específico para topologías \textit{boosted} carecen,
+en cambio, de calibraciones centralizadas, por lo que sus factores de escala se miden dentro del
+análisis. Para ello se define, en el canal $\tau_\mu\tau_h$, una región enriquecida en pares
+$\tau\tau$ colimados y ortogonal a las regiones de señal, con $p_T$ del par por encima de
+$200$ GeV y un veto sobre jets etiquetados para suprimir $t\bar{t}$. Los factores se obtienen en
+función del $p_T$ del candidato, combinando los dos periodos de 2022 y los dos de 2023 al
+resultar compatibles entre sí, y tratando 2024 por separado; sus valores son próximos a la unidad.
+
+\subsection{Jets y $p_T^\text{miss}$}
+%
+La energía de los jets se calibra con las correcciones de energía estándar de CMS, que tienen en
+cuenta la contribución del pileup, la falta de linealidad de la respuesta del detector y las
+diferencias residuales entre datos y simulación. En los datos de Run 3, además, la resolución en
+energía de los jets resulta sensiblemente peor que en la simulación, lo que se corrige
+empeorando la de los jets simulados: si el jet reconstruido puede asociarse a un jet construido
+con partículas generadas, su cuadrimomento se escala en función de la diferencia de $p_T$ entre
+ambos; si no, se le aplica un ensanchamiento aleatorio. A los jets de baja energía en la región
+$2.5 < |\eta| < 3.0$, excluidos en la preselección, se añade en 2024 una segunda región,
+$2.0 < |\eta| < 2.5$, donde para los jets de los datos con $p_T < 30$ GeV la corrección residual
+se evalúa como si tuvieran $p_T = 30$ GeV. Todas estas correcciones se propagan al cálculo de
+$p_T^\text{miss}$.
+
+\subsection{Identificación de jets de $b$}
+%
+En la selección de jets de $b$ no solo se emplean puntos de trabajo del discriminante, sino
+también su valor continuo, que forma parte de las variables de entrada de las redes descritas en
+el Capítulo \ref{ch:taggers}. La corrección debe reproducir, por tanto, la forma de la
+distribución y no únicamente la eficiencia en un punto de trabajo. En los periodos de 2022 y
+2023, el discriminante de \textsc{ParticleNet} se corrige mediante pesos por suceso que modifican
+su forma, proporcionados centralmente en función del valor del discriminante, del $p_T$ y de la
+pseudorrapidez del jet, y medidos en regiones enriquecidas en jets de sabor pesado y ligero. Como
+estos pesos alteran también el número total de sucesos, que debería conservarse, se mide su
+efecto en una región sin requisito de etiquetado y se compensa con un factor de normalización
+derivado por periodo, canal y proceso en función del número de jets.
+
+Para \textsc{UParT}, en 2024, no se dispone de una corrección continua, y se aplica en su lugar
+una corrección por intervalos definidos por los puntos de trabajo del discriminante. Los
+factores de escala centrales de cada punto de trabajo se combinan con las eficiencias de
+etiquetado medidas en la simulación en el espacio de fases del análisis, en función del $p_T$,
+la pseudorrapidez y el sabor del jet, y por separado para los dos modos de producción de la
+señal, para Drell--Yan, para $t\bar{t}$ y para el resto de procesos, dada su distinta composición
+en sabor.
+
+En los jets de radio grande, el discriminante de \textsc{ParticleNet} empleado para identificar
+el candidato $H\to b\bar{b}$ fusionado se corrige con los factores de escala centrales solo en los
+jets que corresponden a nivel generador a una desintegración $H\to b\bar{b}$ o $Z\to b\bar{b}$.
+En los fondos, el jet seleccionado puede proceder de radiación, del desdoblamiento de un gluón o
+de la desintegración de un quark top, con una estructura interna distinta de la de un
+decaimiento en dos cuerpos, y esas correcciones no son aplicables. Se deriva por ello una
+calibración dedicada, midiendo en datos la eficiencia del requisito de etiquetado para jets de
+tipo Drell--Yan y de tipo $t\bar{t}$ en dos intervalos de $p_T$, tras sustraer el resto de
+fondos, y comparándola con la de la simulación.
+
 % Section of its own, separate from the systematics (as Jaime does): here what is
 % applied, in Sec. 6.10 what is assigned as an uncertainty on it.
 % Pileup reweighting; L1 prefiring; trigger SFs; lepton reconstruction, ID and
