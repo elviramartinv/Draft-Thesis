@@ -651,7 +651,7 @@ The first category examined is the least populated of the four, $b\bar{b}$-boost
 
 On the other hand, the events reconstructed in the resolved topology correspond to the last step in the chain, as shown in Figure \ref{fig:category_flow}. This category encompasses those events that do not fall into either the boosted category or the vector boson fusion category. To further enhance the sensitivity in this region, the events are divided into two categories based on the quality of the b-tagging for the two jets with the highest \textsc{HH-BTag} scores: resolved 2b, where both jets exceed the medium working point of the b-tagging discriminant, and resolved 1b, where only one of them does. This separation takes advantage of the fact that the purity of the two categories is very different, with the \textit{res2b} category being the most sensitive in the analysis while still retaining the statistical information provided by the \textit{res1b} region, which helps constrain the background normalizations in the fit.
 
-For these resolved categories, the high statistics also allows for a further selection in the plane defined by the two reconstructed masses, as shown in Figure \ref{fig:mass_ellipse}. It should be noted that the purpose of this cut has evolved compared to Run 2, where the cut parameters were obtained by minimizing the background acceptance and where it was required to preserve more than $90\%$ of the signal. Since the discrimination between signal and background now rests entirely on the signal extraction neural network, the mass selection no longer aims to improve that ratio, but rather to delimit the complementary region, which is used as a control region to derive the $t\bar{t}$ background fake factors (Section \ref{sec:bbtt_ff}). The cut is defined as an ellipse in the $(m_{H\tau\tau}, m_{Hbb})$ plane, with parameters optimized separately for each channel to take advantage of the different resolutions of the objects involved, and adjusted to preserve $99\%$ of the signal:
+For these resolved categories, the high statistics also allows for a further selection in the plane defined by the two reconstructed masses, as shown in Figure \ref{fig:mass_ellipse}. It should be noted that the purpose of this cut has evolved compared to Run 2, where the cut parameters were obtained by minimizing the background acceptance and where it was required to preserve more than $90\%$ of the signal. Since the discrimination between signal and background now rests entirely on the signal extraction neural network, the mass selection no longer aims to improve that ratio, but rather to delimit the complementary region, which is used as a sideband region to derive the $t\bar{t}$ background fake factors (Section \ref{sec:bbtt_ff}). The cut is defined as an ellipse in the $(m_{H\tau\tau}, m_{Hbb})$ plane, with parameters optimized separately for each channel to take advantage of the different resolutions of the objects involved, and adjusted to preserve $99\%$ of the signal:
 %
 \begin{align}
     \tau_\mu\tau_h &: \left(\frac{m_{H\tau\tau} - 110}{45}\right)^{2} + \left(\frac{m_{Hbb} - 118}{215}\right)^{2} \leq 1, \\
@@ -821,7 +821,7 @@ The corrections described so far address the response of the detector and are co
 
 \subsubsection{Drell--Yan background modeling}
 %
-Before applying the Drell-–Yan production MC prediction to the analysis, it is necessary to correct the $p_T$ distribution of the $Z$ boson, which the simulation does not reproduce correctly. To measure this discrepancy, the Drell–Yan-rich channels, $ee$ and $\mu\mu$, which were reserved for this purpose in the channel definition, are used. For these control channels, an invariant mass window is defined around the $Z$ peak, between $70$ and $110$ GeV, and it is additionally required that the $p_T^\text{miss}$ reconstructed using the PUPPI algorithm be less than $45$ GeV, exploiting the specific properties of the Drell-–Yan contribution to ensure a region enriched in this process. The requirements for the jets that define the topologies described in Section \ref{sec:bbtt_flow} remain unchanged, since the goal is to reproduce the phase space of the signal regions in all but the lepton pair, in order to isolate the Drell-–Yan contribution.\\
+Before applying the Drell-–Yan production MC prediction to the analysis, it is necessary to correct the $p_T$ distribution of the $Z$ boson, which the simulation does not reproduce correctly. To measure this discrepancy, the Drell–-Yan enriched channels, $ee$ and $\mu\mu$, which were reserved for this purpose in the channel definition, are used. Within them, the region in which the correction is derived is defined by an invariant mass window is defined around the $Z$ peak, between $70$ and $110$ GeV, and it is additionally required that the $p_T^\text{miss}$ reconstructed using the PUPPI algorithm be less than $45$ GeV, exploiting the specific properties of the Drell-–Yan contribution to ensure a region enriched in this process. The requirements for the jets that define the topologies described in Section \ref{sec:bbtt_flow} remain unchanged, since the goal is to reproduce the phase space of the signal regions in all but the lepton pair, in order to isolate the Drell-–Yan contribution.\\
 
 % la primera explota el carácter resonante de $Z\to\ell\ell$ frente al continuo en masa invariante que produce $t\bar{t}$, y la segunda la ausencia de neutrinos en la desintegración del $Z$, frente a los dos que acompañan a la desintegración leptónica de los $W$.
 
@@ -839,19 +839,20 @@ A dedicated multidimensional correction is derived withing the analysis itself t
     \centering
     \includegraphics[width=0.8\linewidth]{figures/chapter_VI/DY_reweighting_fit.pdf}
     \caption[Drell--Yan reweighting fit]{%
-        Fit of the ratio between the data, minus the contribution from processes
-        other than Drell–-Yan, and the Drell–-Yan simulation, as a function of the
-        reconstructed $p_T$ of the muon pair, in the control region enriched in
-        Drell–-Yan with exactly two central jets. The nominal fit is shown as
+        Fit of the ratio between the data, minus the contribution from processes other than Drell–-Yan, and the Drell–-Yan simulation, as a function of the reconstructed $p_T$ of the muon pair, in the Drell--Yan enriched derivation region with exactly two central jets. The nominal fit is shown as
         a black line, and the left and right envelopes correspond to the
         uncertainties of the Gaussian and linear regimes, respectively. Analogous fits
         are performed for the remaining jet-number categories.}
     \label{fig:dy_fit}
 \end{figure}
 %
-The weight obtained using this method is not applied based on the reconstructed $p_T$, but rather on the generated $p_T$, since in the signal regions the momentum of the neutrinos originating from $\tau$ decays is not reconstructed. The equivalence between the two has been verified previously in the control region. This correction restores agreement between the data and simulation in the $p_T$ of the pair, in the number of central jets, and in the number of $b$-tagged jets for events with two and three central jets, but not for those with four or more. An additional normalization factor is therefore introduced, measured over five intervals of the number of central jets $n_\text{jets} = 2, 3, 4, 5, \geq 6$, and three intervals of the number of $b$-tagged jets, $n_\text{b\,jets} = 0, 1, \geq 2$, each of which constitutes an independent source of uncertainty.\\
+The weight obtained using this method is not applied based on the reconstructed $p_T$, but rather on the generated $p_T$, since in the signal regions the momentum of the neutrinos originating from $\tau$ decays is not reconstructed. The equivalence between the two has been verified previously in the same dedicated derivation region. This correction restores agreement between the data and simulation in the $p_T$ of the pair, in the number of central jets, and in the number of $b$-tagged jets for events with two and three central jets, but not for those with four or more. An additional normalization factor is therefore introduced, measured over five intervals of the number of central jets $n_\text{jets} = 2, 3, 4, 5, \geq 6$, and three intervals of the number of $b$-tagged jets, $n_\text{b\,jets} = 0, 1, \geq 2$, each of which constitutes an independent source of uncertainty.\\
 
-The final correction factor applied to the Drell-–Yan simulation is the product of both factors. In the strategy followed, the derivation is performed on the $\mu\mu$ channel, so that the $ee$ channel is reserved for final validation, where satisfactory agreement is observed across all data-taking periods. Figure \ref{fig:dy_correction} shows the effect of the correction on two of these distributions.
+The final correction factor applied to the Drell-–Yan simulation is the product of both factors. In the strategy followed, the derivation is performed on the $\mu\mu$ channel, so that the $ee$ channel is reserved for final validation. The final correction factor applied to the Drell-–Yan simulation is the product of both factors. In the strategy followed, the derivation is performed on the $\mu\mu$ channel, so that the $ee$ channel is reserved for final validation, where satisfactory agreement is observed across all data-taking periods. Figure \ref{fig:dy_correction} shows the effect of the correction on two of these distributions, in the region in which it is derived; the agreement that results once the categorization of the analysis is applied is examined in Section \ref{sec:bbtt_controlplots}.
+
+
+%where satisfactory agreement is observed across all data-taking periods. Figure \ref{fig:dy_correction} shows the effect of the correction on two of these distributions.
+
 
 \begin{figure}[tbp]
     \centering
@@ -859,7 +860,7 @@ The final correction factor applied to the Drell-–Yan simulation is the produc
     \includegraphics[width=\linewidth]{figures/chapter_VI/DY_correction_njets.pdf}
     \caption[Effect of the Drell--Yan correction]{%
         Distributions of $p_T$ for the muon pair (top) and the number of jets (bottom) in the
-        Drell–Yan-enriched control region of the $\mu\mu$ channel, before (left) and
+        Drell–Yan enriched derivation region, in the $\mu\mu$ channel, before (left) and
         after (right) applying the correction, for the 2022preEE run.}
     \label{fig:dy_correction}
 \end{figure}
@@ -872,7 +873,11 @@ The other dominant contribution in the signal regions comes from the production 
 
 Unlike in the previous case, control regions to derive the correction factor are not used. Instead, the correction is given by the ratio between the calculation of the differential cross section for top quark pair production as a function of the $p_T$ of the top quark at NNLO in QCD with NLO electroweak corrections and the prediction from the \POWHEG{} generator interfaced with \PYTHIA{}, evaluated at $13$ TeV — the energy at which this calculation is available. Subsequently, a second factor extrapolates this correction to the Run 3 center-of-mass energy. The resulting weight is a function of the $p_T$ of the top quark, which is not reconstructed in the analysis but is taken directly from the generated information. Therefore, the factor is evaluated separately for the quark and the antiquark in the event, and the weight ultimately applied is the geometric mean of the two.
 
-This is a theoretical correction rather than a measurement for which no independent estimate of its accuracy is available. Consequently, it is associated with an uncertainty equal to the magnitude of the correction itself: the variations are obtained by applying the factor twice and without applying it at all, so that the nominal weight falls midway between the two. The agreement between the data and the resulting simulation is verified in a control region enriched in this process, defined over the \textit{res2b} category -- which is where the process is most abundant due to the requirement that both $b$-jets be tagged -- and by replacing the $\tau\tau$ pair with the final state $e\mu$, where the semileptonic and dileptonic decays of the $t\bar{t}$ pair completely dominate.\\\\
+This is a theoretical correction rather than a measurement, and no independent estimate of its accuracy is available. Consequently, it is associated with an uncertainty equal to the magnitude of the correction itself: the variations are obtained by applying the factor twice and without applying it at all, so that the nominal weight falls midway between the two. The agreement between the data and the resulting simulation is verified in a control region enriched in this process, described in Section \ref{sec:bbtt_controlplots}\\\\
+
+%defined over the \textit{res2b} category -- which is where the process is most abundant due to the requirement that both $b$-jets be tagged -- and by replacing the $\tau\tau$ pair with the final state $e\mu$, where the semileptonic and dileptonic decays of the $t\bar{t}$ pair completely dominate.\\\\
+
+
 
 With these corrections, the simulated prediction is complete, both for the signal and for the backgrounds with genuine $\tau_h$ candidates: the dominant ones with the process-specific corrections just described, and the remaining ones as given by the simulation, in both shape and normalization. The only component of the background that is not described in this way is that of events in which a jet is misidentified as a $\tau_h$, whose estimation from data is the subject of the next section.
 
@@ -967,59 +972,114 @@ Finally, the uncertainties associated with this estimate, including those arisin
 
 The prediction of the background in each signal region has been described. While processes with genuine $\tau_h$ candidates are taken from the simulation, corrected as described in Section \ref{sec:bbtt_corrections}, the contribution of \textit{fakes} is estimated directly from the data. The agreement of the complete prediction with the boserved data, before any fit is performed, is examined in the next section.
 
-\section{Distributions after the baseline selection}
+
+\section{Pre-fit distributions}
 \label{sec:bbtt_controlplots}
 
+La Sección \ref{sec:bbtt_flow} ha definido las diez categorías en las que se divide el conjunto de datos de cada periodo, recogidas en la Figura \ref{fig:categories}, y las Secciones \ref{sec:bbtt_corrections} y \ref{sec:bbtt_ff} han completado la predicción del fondo en cada una de ellas. Antes de construir el discriminante final y ajustarlo, es necesario comprobar que la predicción describe los datos observados. Las normalizaciones y las formas son por tanto las que resultan directamente a partir de la simulación corregida y del método de los \textit{fake factors}, y supone por tanto la única comparación en la que un desacuerdo señala directamente un problema en el modelado, y no una limitación del ajuste.
 
+La comparación se presenta en dos pasos, uno primero que muestra el acuerdo en regiones de control dominadas por uno solo de los fondos principales, donde la contribución de la señal es despreciable y el acuerdo puede atribuirse sin ambigüedad al proceso que se quiere validar; y en segundo lugar se examinan las propias categorías del análisis, donde el fondo es una mezcla de todos los procesos y donde interesa comprobar que la predicción completa reproduce los datos.
 
-ESCRIBIR DESDE AQUÍ
+\subsection{Control regions}
+%
+La evaluación del comportamiento de la predicción para la producción Drell--Yan y la de pares de quarks top es relevante en tanto a que son los fondos dominantes sobre los que se han aplicado correcciones específicas sobre su simulación nominal. El resto de los fondos se toman de la simulación con las mismas correcciones comunes a todos los procesos, y su contribución conjunta, agrupada bajo \textit{Others} en las figuras, es reducida. El cierre de la contribución de los jets mal identificados, por otro lado, ha sido establecido ya en la Sección \ref{sec:bbtt_ff}, en una región construida específicamente con ese fin.
+AQUI SE HACE RARO DECIR QUE QCD YA SE HA CONSOLIDAD ANTES, PERO QUE LOS OTROS NO, PORQUE EN REALIDAD DY TAMBIEN SE CONSOLIDA EN UNA REGION DEDICADA, ENTONCES ESTO SI NO SE EXPLICA BIEN PUEDE QUEDAR COMO REPETITIVO E INNECESARIO. ME PARECE IMPORTANTE MARCAR POR QUÉ ES DIFERENTE LO QUE SE HACE AQUÍ DE LO QUE SE HACÍA ANTES.
 
-\begin{figure}[t]
+Las regiones empleadas para ello son las mismas categorías definidas en la Sección \ref{sec:bbtt_flow}, con idéntica cadena de selección y las mismas correcciones aplicadas, evaluadas en los canales de control $ee$, $\mu\mu$ y $e\mu$ reservados en la asignación de canales. Son, por tanto, ortogonales a las regiones de señal únicamente por su contenido leptónico, de forma que comparten con ellas el espacio de fases en todo lo demás, i.e., las correcciones se comprueban en un entorno cinemáticamente próximo a aquel en el que posteriormente se van a aplicar, pero libre de señal\footnote{La contribución de jets mal identificados no aparece en estas regiones, ya que al estar definidas con dos leptones ligeros, no contienen ningún candidato $\tau_h$ cuya identificación pueda invertirse, de modo que el método descrito en la Sección \ref{sec:bbtt_ff} no es aplicable en ellas.}.
+
+La región enriquecida en Drell--Yan corresponde a la categoría res1b en los canales $ee$ y $\mu\mu$. Adicionalmente, dentro del canal se exige un par de carga opuesta con masa invariante entre 70 y 110 GeV afin de aislar la desintegración del bosón Z, y $p_T^\text{miss} < 45$ GeV para suprimir los procesos con neutrinos en el estado final, principamlente $W$+jets. La selección cinemática es la misma que define la región en la que se deriva la corrección del espectro de $p_T$ del bosón Z, descrita en la Sección \ref{sec:bbtt_corrections}. En cambio, se exige un jet etiquetado al menos, como en las categorías del análisis, y se aplican todas las correcciones simultáneamente.
+AL DECIR COMO EN LAS CATEGORIAS DEL ANALISIS PARECE QUE SE DICE COMO EN TODAS LAS CATEGORIAS, Y NO ES ASI, NO?
+
+Para la producción $t\bar{t}$, por otro lado, se emplea la categoría res2b para explotar los dos $b$ jets genuinos producidos por las desintegraciones del par de quarks top aislando el proceso con pureza muy alta. Adicionalmente, se exige un par $e\mu$ de carga opuesta para suprimir además la contribución de Drell--Yan, lo que permite comprobar como describe lo observado la predicción que resulta tras la corrección dedicada.
+
+La Figura \ref{fig:control_regions} muestra la comparación entre los datos y la predicción en ambas regiones, para dos observables que ninguna de las dos correcciones modifica directamente: la separación angular entre los dos leptones en la región enriquecida en Drell--Yan, ajena tanto a la reponderación del espectro de $p_T$ como a la normalización en la multiplicidad de jets, y el $p_T$ del jet de $b$ principal en la región enriquecida en $t\bar{t}$, sobre el que la reponderación de los quarks top actúa de forma indirecta. La predicción reproduce los datos dentro de las incertidumbres en ambos casos.
+
+\begin{figure}[tbp]
     \centering
+    \includegraphics[width=0.49\linewidth]{figures/chapter_VI/cr_dy_dRll.pdf}
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/cr_ttbar_bjet1_pt.pdf}
-    \includegraphics[width=0.49\linewidth]{figures/chapter_VI/cr_ttbar_dRll.pdf}\\
-    \includegraphics[width=0.49\linewidth]{figures/chapter_VI/cr_dy_lep1_pt.pdf}
-    \includegraphics[width=0.49\linewidth]{figures/chapter_VI/cr_dy_njets.pdf}
-    \caption[Data and prediction in the control regions]{%
-        Comparison between data and the background prediction in the two control regions,
-        for the 2022 pre-EE data-taking period. Upper row: $p_T$ of the leading $b$ jet
-        (left) and angular separation between the two leptons (right) in the $t\bar{t}$
-        control region, defined in the resolved 2b category with an $e\mu$ pair. Lower row:
-        $p_T$ of the leading lepton (left) and number of AK4 jets within $|\eta| < 2.5$
-        (right) in the Drell--Yan control region, defined in the resolved 1b category with
-        an $ee$ pair. The hatched band represents the statistical and systematic
-        uncertainty in the prediction. Taken from Ref.~\cite{CMS-AN-25-103}.}
+    \caption[Data MC in control regions]{%
+        Comparación entre los datos y la predicción del fondo en las dos regiones de control definidas sobre la simulación, para el periodo de toma de datos de 2022preEE. La separación angular entre los dos leptones en la región enriquecida en Drell--Yann (izquierda) y el $p_T$ del jet de $b$ principal en la región enriquecida en $t\bar{t}$. La etiqueta \textit{signal region} que aparece en los paneles designa la
+        región de carga opuesta y candidatos aislados, no las regiones de señal del
+        análisis. La banda sombreada representa la incertidumbre estadística y
+        sistemática de la predicción.}
     \label{fig:control_regions}
 \end{figure}
+QUIZAS HABRÍA QUE PASAR LO DE LA REGION DE CARGA OPUESTA Y CANDIDATOS AISLADOS AL TEXTO PRINCIPAL, EN LA INTRODUCCION DE ESTA SECCION, PARA REMARCAR LO DE QUE ESTO ES SOBRE LAS SIGNAL REGIONS...
 
 
-\begin{figure}[t]
+\subsection{Distribuciones en las categorías del análisis}
+
+Validada la simulación corregida de los dos fondos dominantes, y establecido en la Sección \ref{sec:bbtt_ff} el cierre del método de los \textit{fake factors}, la predicción completa se compara con los datos en las propias regiones de señal. Las Figuras \ref{fig:prefit_mHH} y \ref{fig:prefit_ptHH} muestran esta comparación en la categoría res2b, la más sensible del análisis, para los cuatro canales y para el conjunto completo de datos de 2022--2024. Se muestran dos observables del sistema $HH$: su masa invariante reconstruida, $m_{HH}$, que recoge de forma más directa la cinemática de la producción del par, y su $p_T$, que refleja el impulso que motiva la definición de la topología \textit{boosted}.
+
+DIGO QUE ES LA MAS SENSIBLE DEL ANALISIS ANTES DE DEMOSTRARLO
+
+
+\begin{figure}[tbp]
     \centering
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/prefit_mHH_etau.pdf}
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/prefit_mHH_mutau.pdf}\\
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/prefit_mHH_tautau.pdf}
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/prefit_mHH_boosted.pdf}
-    \caption[Pre-fit distributions of $m_{HH}$ in the resolved 2b category]{%
-        Distributions of the reconstructed mass of the $HH$ candidate, $m_{HH}$, in the
-        resolved 2b category, before the fit to the data. The $\tau_e\tau_h$ (upper left),
-        $\tau_\mu\tau_h$ (upper right), $\tau_h\tau_h$ (lower left), and boosted
-        $\tau_h\tau_h$ (lower right) channels are shown for the full 2022--2024 data set.
-        The signal is scaled to the factors indicated in the legend. The hatched band
-        represents the total statistical and systematic uncertainty in the prediction.
-        Taken from Ref.~\cite{CMS-PAS-HIG-25-008}.}
+    \caption[Distribuciones de $m_{HH}$ antes del ajuste en la categoría res2b]{%
+        Distribuciones de la masa reconstruida del candidato $HH$, $m_{HH}$, en la
+        categoría res2b, antes del ajuste a los datos. Se muestran los canales
+        $\tau_e\tau_h$ (arriba a la izquierda), $\tau_\mu\tau_h$ (arriba a la derecha),
+        $\tau_h\tau_h$ (abajo a la izquierda) y $b\tau_h\tau_h$ (abajo a la derecha),
+        para el conjunto completo de datos de 2022--2024. La señal se representa
+        multiplicada por los factores indicados en la leyenda. La banda sombreada
+        representa la incertidumbre estadística y sistemática total de la predicción.
+        Tomada de la Ref.~\cite{CMS-PAS-HIG-25-008}.}
     \label{fig:prefit_mHH}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[tbp]
     \centering
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/prefit_ptHH_tautau.pdf}
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/prefit_ptHH_boosted.pdf}
-    \caption[Pre-fit distributions of $p_T^{HH}$ in the resolved 2b category]{%
-        Distributions of the $p_T$ of the $HH$ candidate in the $\tau_h\tau_h$ (left) and
-        boosted $\tau_h\tau_h$ (right) channels, before the fit to the data, for the full
-        2022--2024 data set. Taken from Ref.~\cite{CMS-PAS-HIG-25-008}.}
+    \caption[Distribuciones de $p_T^{HH}$ antes del ajuste en la categoría res2b]{%
+        Distribuciones del $p_T$ del candidato $HH$ en los canales $\tau_h\tau_h$
+        (izquierda) y $b\tau_h\tau_h$ (derecha), antes del ajuste a los datos, para el
+        conjunto completo de datos de 2022--2024. Tomada de la
+        Ref.~\cite{CMS-PAS-HIG-25-008}.}
     \label{fig:prefit_ptHH}
 \end{figure}
+
+La composicion del fondo cambia de un canal a otro, según lo esperado. Mientras que en los canales $\tau_e\tau_h$ y $\tau_\mu\tau_h$ la predicción está dominada por la producción de pares de quarks top, con menores contribuciones de Drell-Yan y de los jets mal identificados, en el canal $\tau_h\tau_h$ la fracción de \textit{fakes} es considerablemente mayor, y notablemente dominante en el canal $b\tau_h\tau_h$, con un número de sucesos mucho menor. POR QUÉ?. En todos los casos la razón entre los datos y la prediccíon es compatible con la unidad dentro de la banda de incertidumbre EN TAUHTAUH HAY PUNTOS EN LOS QUE NO... POR QUE?, con fluctuaciones mayores en las colas menos pobladas, donde la estadística de los datos es limitada
+
+Constatado el acuerdo, y prestando ahora atención a la escala, de las distribuciones mostradas se puede ver que la señal se hace visible en la figura al multiplicarla por factores de entre $10^2$ y $10^5$, según el panel. Incluso en la categoría más sensible y en el observable que mejor recoge la cinemática del sistema $HH$, la producción de pares de bosones de Higgs contribuye con una fracción del orden de $10^{-4}$ del número total de sucesos, muy por debajo de la incertidumbre estadística de los datos en cualquier intervalo. Consecuentemente, ninguna variable individual permite, por sí sola, aislar la señal.
+ALGO DE ESTO SE DICE EN EL AN?\\
+
+Queda demostrado por tanto el acuerdo entre datos y predicción en las regiones del análisis, de donde se concluye que el fondo está bien modelado allí donde la señal es indistinguible de él. Las disferencias residuales observadas están cubiertas por las incertidumbres sistemáticas que se describen en la Seccion \ref{bbtt_systematics}, y son absorbidas por los parámetros de estorbo en el ajuste final.
+SE ME HACE RARO MOSTRAR PRIMERO LOS PLOTS CON INCERTIDUMBRES SISTEMÁTICAS ANTES DE INTRODUCIRLAS.. COMO LO RESUELVEN OTRAS TESIS? ESTOS PLOTS DE LA SIGNAL REGION DEBERÍAN IR EN OTRO SITIO? TIENE SENTIDO PONERLO DESPUES DE SYSTEMATIC UNCERTAINTIES? OTRAS TESIS COMO LO RESUELVEN? PORQUE TAMBIEN SOLAPA CON LA EXTRACCION DE SEÑAL? O NO?
+
+Puesto que ninguna de las variables discrimina por separado, la extracción de señal exige combinar la información de muchas variables en un único observable que maximice la separación entre las dos hipótesis. La construcción de ese discriminante es el objeto de la sección siguiente.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 % Section of its own, separate from the systematics (as Jaime does): here what is
