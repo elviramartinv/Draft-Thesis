@@ -965,32 +965,104 @@ The closure of the method is tested in a validation region orthogonal to all pre
     \label{fig:ff_closure}
 \end{figure}
 
-\\
-
-Finally, the uncertainties associated with this estimate, including those arising from the statistics of the regions used and those propagated from the calibration of the objects that define them, are described in Section \ref{sec:bbtt_systematics}.\\
-\\
-
-The prediction of the background in each signal region has been described. While processes with genuine $\tau_h$ candidates are taken from the simulation, corrected as described in Section \ref{sec:bbtt_corrections}, the contribution of \textit{fakes} is estimated directly from the data. The agreement of the complete prediction with the boserved data, before any fit is performed, is examined in the next section.
+\\\\
 
 
+The prediction of the background in each signal region has been described. While processes with genuine $\tau_h$ candidates are taken from the simulation, corrected as described in Section \ref{sec:bbtt_corrections}, the contribution of \textit{fakes} is estimated directly from the data. Each of these components carries its own uncertainties, including, for the \textit{fake factor} estimate, those arising from the statistics of the regions used and those propagated from the calibration of the objects that define them. These uncertainties are described in the next section.
+
+
+
+\section{Systematic uncertainties}
+%
+Cada uno de los elementos que componen la predicción descrita en las secciones anteriores lleva asociada una incertidumbre. Las correcciones a nivel de objeto y de proceso de la Sección \ref{sec:bbtt_corrections} se conocen con una precisión limitada; la estimación de los jets mal identificados de la Sección \ref{sec:bbtt_ff} depende de la estadística de las regiones en las que se deriva y de la calibración de los objetos que las definen; y la normalización de cada proceso descansa en una luminosidad integrada y en unas secciones eficaces que tienen sus propias incertidumbres. Esta sección recoge esas fuentes que se incorporan posteriormente al ajuste estadístico como un parámetro de estorbo, que puede modificar solo la normalización del proceso afectado o también la forma de sus distribuciones. El tratamiento de estos parámetros en la función de verosimilitud se describe en la Sección \ref{sec:bbtt_statistics}.
+
+
+
+
+
+\subsection{Uncertainties in the object-level corrections}
+
+Las correcciones a nivel de objeto de la Sección \ref{subsec:bbtt_object_corrections} se aplican por igual a todos los procesos simulados, incluida la señal, de modo que sus incertidumbres afectan a toda la parte de la predicción que procede de la simulación. 
+Para cada fuente se construyen dos distributiones alternativas a la nominal, desplazando la corrección correspondiente una desviación estándar hacia arriba y otra hacia abajo. Según la naturaleza de cada correción, estas distribuciones se obtienen de diferente manera. Así, cuando la corrección es un peso --- los factores de escala de disparo, reconstrucción, identificación, aislamiento y etiquetado ---, basta con rellenar de nuevo los mismos histogramas con el peso desplazado, de forma que se modifica tanto la normalización como la foma de las distribuciones. Cuando la corrección modifica la energía o el momento de los objetos --- las escalas y resoluciones de energía de jets, electrones y $\tau_h$ ---, el propio suceso puede migrar entre categorías y cambiar las variables de entrada del discriminante final, de modo que es necesario repetir toda la cadena de análisis con la corrección desplazada. En estos casos, la variación se propaga también de forma cooherente a $p_T^\text{miss}$. 
+
+
+\paragraph{Pile-up reweighting} A diferencia del perfil de la simulación, que se fija de antemano, la distribución del número de interacciones en los datos se infiere a partir de la luminosidad instantánea de cada cruce de haces y de la sección eficaz inelástica protón-protón. La incertidumbre de la reponderación está dominada por la de esta última, y se evalúa variando su valor en un $4.6\%$, de acuerdo con su medida a $13$ TeV \cite{CMS-inelastic-13TeV}, y recalculando los pesos de la simulación con cada una de las dos distribuciones resultantes. DECIR ALGO DE QUE SE HACE ICUAL EN TODOS LOS AÑOS? O DE COMO SE HACE
+
+\paragraph{Trigger efficiency scale factors} Los factores de escala de disparo llevan una incertidumbre por cada una de las componentes que se miden por separado. Todas ellas se tratan como independientes entre periodos, puesto que cada factor se mide por separado en cada uno. En el caso del camino QuadJet de 2024, a la incertidumbre de la propia medida se añade la falta de cierre del $15\%$ observada en la validación de la factorización. \textcolor{red}{[CONFIRMAR ESTO]}
+
+REESCRIBIR
+
+
+\paragraph{Muons and electrons} Para los muones se consideran las incertidumbres de los factores de escala de identificación y de aislamiento, y para los electrones, las de reconstrucción, separadas en dos intervalos de $p_T$, y las de aislamiento, todas ellas proporcionadas junto con los propios factores. A ellas se suman las incertidumbres en la escala y la resolución de la energía de los electrones, que se propagan variando las correcciones aplicadas a todos los electrones, tanto en los datos como en la simulación.
+
+
+\paragraph{Hadronic \texorpdfstring{$\tau$}{tau} leptons} Los factores de escala de identificación de los $\tau_h$ frente a jets, electrones y muones llevan sus propias incertidumbres. En la discriminación frente a jets, su desglose sigue las recomendaciones disponibles para cada periodo: en 2022 se separa en componentes estadísticas para cada modo de desintegración y en componentes sistemáticas, unas correlacionadas entre periodos y otras no, mientras que en 2023 y 2024 se dispone de una única fuente. Los factores medidos dentro del análisis para los candidatos reconstruidos con el algoritmo de topologías colimadas llevan una incertidumbre independiente. Finalmente, la incertidumbre en la escala de energía de los $\tau_h$ se obtiene combinando medidas a bajo y alto $p_T$ en sucesos $Z\to\tau\tau$ y en sucesos $W\to\tau\nu$ fuera de capa, y se incluye como cuatro fuentes independientes, una por cada modo de desintegración considerado. \textcolor{red}{[PAS vs CÓDIGO: el PAS dice cuatro fuentes, una por modo de desintegración, y así está escrito. En el código el desglose solo existe para 2022; en 2023 y 2024 hay una única fuente (CMS\_scale\_t), y en el modo compound\_syst es única en todos los periodos. Si se sigue el código: ``[...] fuera de capa; en 2022 se incluye como cuatro fuentes independientes, una por cada modo de desintegración, y en 2023 y 2024, como una única fuente.'']}
+
+
+\paragraph{Jets and \texorpdfstring{$p_T^\text{miss}$}{pTmiss}} Las incertidumbres en la escala de energía de los jets se descomponen en varias fuentes asociadas a los distintos pasos de la calibración, algunas correlacionadas entre periodos y otras no, y la corrección de la resolución constituye una fuente adicional, independiente en cada periodo. Ambas se propagan variando las correcciones aplicadas a todos los jets de la simulación y, a través de ellos, a $p_T^\text{miss}$. \textcolor{red}{[CONFIRMAR el modo usado en el ajuste final: 27 fuentes (full\_syst), unas 11 reagrupadas (reduced\_syst) o una total (compound\_syst). Si fue compound\_syst, cambiar ``se descomponen en varias fuentes [...]'' por una única fuente.]}
+
+
+\paragraph{Identification of \texorpdfstring{$b$}{b} jets} Las incertidumbres en el etiquetado de jets de $b$ reflejan la calibración empleada en cada periodo. En 2022 y 2023, los pesos que corrigen la forma del discriminante llevan asociadas las fuentes habituales de este procedimiento: la contaminación de jets ligeros en las regiones enriquecidas en jets pesados, y de jets pesados en las enriquecidas en jets ligeros; las componentes estadísticas de ambas medidas, independientes entre periodos; y las incertidumbres específicas de los jets $c$. En 2024, la calibración por puntos de trabajo de \textsc{UParT} se descompone en un conjunto distinto de fuentes, que incluye su componente estadística, las asociadas al modelado de las muestras con las que se mide y la del etiquetado erróneo de jets ligeros, a las que se añade la incertidumbre estadística de las eficiencias medidas en la simulación dentro del propio análisis. Para el candidato $H\to b\bar{b}$ de la categoría \textit{boosted}, por último, se consideran dos fuentes: la de los factores de escala centrales, aplicados a los jets procedentes de una desintegración $H\to b\bar{b}$ o $Z\to b\bar{b}$, y la de la calibración dedicada de los jets mal identificados.
+
+
+
+
+
+
+\subsection{Uncertainties in the process-specific corrections}
+\textcolor{red}{[POR ESCRIBIR. PAS: para $t\bar{t}$, duplicar el efecto de la corrección o eliminarla (código: CMS\_TopPt\_Rew, con SF$^2$ y 1); para Drell--Yan, variaciones del ajuste y componentes estadísticas de las regiones de derivación (código: CMS\_DY\_syst\_gauss y CMS\_DY\_syst\_linear, correlacionadas entre periodos, y CMS\_DY\_stat\_btag0/1/2, independientes entre periodos).
+
+TEXTO vs CÓDIGO: en §6.5 escribes que la normalización adicional de Drell--Yan se mide en $5\times3$ intervalos de ($n_\text{jets}$, $n_{b\,\text{jets}}$), ``each of which constitutes an independent source of uncertainty''. En el código hay solo tres componentes estadísticas, una por multiplicidad de jets etiquetados (0, 1, $\geq 2$). Corregir §6.5 o confirmar con el equipo.
+
+
+Existe también CMS\_DY\_model, ligada al peso DYnJetsWeight, pero ese peso no se aplica en ningún periodo (solo DYnJetsPtllWeight): no incluir.]}
+
+
+
+\subsection{Uncertainties in the jet$\to\tau_h$ estimate}
+
+\textcolor{red}{[POR ESCRIBIR. PAS: los \textit{fake factors} se reevalúan bajo variaciones de las escalas y resoluciones de $\tau_h$, electrones y jets; su efecto es subdominante frente a la estadística del método salvo para $t\bar{t}$; se adoptan envolventes lineales del 20\% a 20 GeV al 100\% a 200 GeV para $t\bar{t}$, y del 1\% al 5\% en el mismo rango para $W$+jets y multijet; se propagan también las incertidumbres estadísticas de los \textit{fake factors} y de las fracciones de cada proceso; la estadística de la región plantilla se propaga con intervalos de Garwood al 95\% CL y un \textit{fake factor} medio por intervalo de la DNN (remisión a la Sección \ref{sec:bbtt_extraction}). Código: CMS\_FF\_stat y CMS\_FF\_template\_stat, independientes entre periodos, y CMS\_FF\_syst, correlacionada. Pendiente comprobar en el código los valores de las envolventes.]}
+
+
+\subsection{Normalization uncertainties}
+\textcolor{red}{[POR ESCRIBIR. PAS: luminosidad del 1.4, 1.3 y 1.7\% en 2022, 2023 y 2024, parcialmente correlacionada, aplicada solo a los procesos simulados; señal ggHH: escala y esquema de masa del top $^{+6}_{-23}\%$, PDF $\pm1.5\%$, $\alpha_s$ $\pm1.7\%$; señal qqHH: escala $^{+0.05}_{-0.03}\%$, PDF$+\alpha_s$ $\pm2.7\%$; fondos simulados del 0.5 al 6\%; 100\% en la normalización de bbH; $\mathcal{B}(H\to b\bar{b})$ $^{+1.2}_{-1.3}\%$ y $\mathcal{B}(H\to\tau\tau)$ $^{+1.7}_{-1.6}\%$. Pendiente contrastar con get\_norm\_systematics() del código.
+
+PAS INCOMPLETO: el código incluye además incertidumbres de aceptancia a partir de los pesos de PDF y de escala del generador (CMS\_pdfWeight, CMS\_scaleWeight), que afectan también a la forma. El PAS no las menciona. Decidir si esta subsección pasa a llamarse ``Normalization and theoretical uncertainties'' para acogerlas.]}
+
+
+\subsection{Statistical uncertainties of the simulated samples}
+
+\textcolor{red}{[POR ESCRIBIR. PAS y código: tratamiento bin a bin con el método de Barlow--Beeston (autoMCStats), en cada intervalo de las distribuciones finales (remisión a la Sección \ref{sec:bbtt_extraction}). Enlazar con el \textit{rebinning} adaptativo, cuyas condiciones limitan precisamente esta incertidumbre.]}
+
+
+Con las incertidumbres definidas, la predicción queda completa no solo en su valor central, sino también en su precisión. La sección siguiente la compara con los datos observados antes de cualquier ajuste, junto con la banda de incertidumbre que resulta de las fuentes descritas aquí.
+
+\textcolor{red}{[PENDIENTE: las simplificaciones aplicadas a las plantillas de forma en el ajuste (simetrización de JES/JER y de parte del etiquetado de $b$; pile-up de los fondos como incertidumbre de normalización con un mínimo del 2\%) solo están descritas en el AN. Verificarlas en el código antes de incluirlas en la sección estadística, junto con la Figura 102.]}
+
+
+
+REVISAR TODA ESTA SECCION UNA VEZ TENGA LO ANTERIOR ESCRITO
 \section{Pre-fit distributions}
 \label{sec:bbtt_controlplots}
-
-La Sección \ref{sec:bbtt_flow} ha definido las diez categorías en las que se divide el conjunto de datos de cada periodo, recogidas en la Figura \ref{fig:categories}, y las Secciones \ref{sec:bbtt_corrections} y \ref{sec:bbtt_ff} han completado la predicción del fondo en cada una de ellas. Antes de construir el discriminante final y ajustarlo, es necesario comprobar que la predicción describe los datos observados. Las normalizaciones y las formas son por tanto las que resultan directamente a partir de la simulación corregida y del método de los \textit{fake factors}, y supone por tanto la única comparación en la que un desacuerdo señala directamente un problema en el modelado, y no una limitación del ajuste.
+%
+La Sección \ref{sec:bbtt_flow} ha definido las diez categorías en las que se divide el conjunto de datos de cada periodo, recogidas en la Figura \ref{fig:categories}, y las Secciones \ref{sec:bbtt_corrections} y \ref{sec:bbtt_ff} han completado la predicción del fondo en cada una de ellas, con sus incertidumbres asociadas recogidas en la Sección \ref{sec:bbtt_systematics}. Antes de construir el discriminante final y ajustarlo, es necesario comprobar que la predicción describe los datos observados. Las normalizaciones y las formas son por tanto las que resultan directamente a partir de la simulación corregida y del método de los \textit{fake factors}, y supone por tanto la única comparación en la que un desacuerdo señala directamente un problema en el modelado, y no una limitación del ajuste.
 
 La comparación se presenta en dos pasos, uno primero que muestra el acuerdo en regiones de control dominadas por uno solo de los fondos principales, donde la contribución de la señal es despreciable y el acuerdo puede atribuirse sin ambigüedad al proceso que se quiere validar; y en segundo lugar se examinan las propias categorías del análisis, donde el fondo es una mezcla de todos los procesos y donde interesa comprobar que la predicción completa reproduce los datos.
 
 \subsection{Control regions}
 %
-La evaluación del comportamiento de la predicción para la producción Drell--Yan y la de pares de quarks top es relevante en tanto a que son los fondos dominantes sobre los que se han aplicado correcciones específicas sobre su simulación nominal. El resto de los fondos se toman de la simulación con las mismas correcciones comunes a todos los procesos, y su contribución conjunta, agrupada bajo \textit{Others} en las figuras, es reducida. El cierre de la contribución de los jets mal identificados, por otro lado, ha sido establecido ya en la Sección \ref{sec:bbtt_ff}, en una región construida específicamente con ese fin.
-AQUI SE HACE RARO DECIR QUE QCD YA SE HA CONSOLIDAD ANTES, PERO QUE LOS OTROS NO, PORQUE EN REALIDAD DY TAMBIEN SE CONSOLIDA EN UNA REGION DEDICADA, ENTONCES ESTO SI NO SE EXPLICA BIEN PUEDE QUEDAR COMO REPETITIVO E INNECESARIO. ME PARECE IMPORTANTE MARCAR POR QUÉ ES DIFERENTE LO QUE SE HACE AQUÍ DE LO QUE SE HACÍA ANTES.
+Tras haber validado las correcciones derivadas internamente en el análisis en su región de validación, resulta necesario garantizar que la simulación corregida siga describiendo los datos una vez trasladada a las categorías del análisis, con todas las correcciones aplicadas simultáneamente y con la selección completa de las regiones de señal. Es ese el objetivo de la comprobación que se presenta aquí para la produccíon Drell--Yann y la de pares de quarks top, que son los dos fondos dominantes que proceden de la simulación y sobre los que se han aplicado correcciones específicas. El resto de los procesos simulados llevan únicamente las correcciones comunes, y su contribución conjunta, agrupada bajo \textit{Others} en las figuras, es reducida. La contribución de los jets mal identificados, por su parte, no se examina de forma aislada aquí, sino que su comportamiento dentro de las categorías del análisis se observa directamente en las regiones de señal, en la subsección siguiente.
 
-Las regiones empleadas para ello son las mismas categorías definidas en la Sección \ref{sec:bbtt_flow}, con idéntica cadena de selección y las mismas correcciones aplicadas, evaluadas en los canales de control $ee$, $\mu\mu$ y $e\mu$ reservados en la asignación de canales. Son, por tanto, ortogonales a las regiones de señal únicamente por su contenido leptónico, de forma que comparten con ellas el espacio de fases en todo lo demás, i.e., las correcciones se comprueban en un entorno cinemáticamente próximo a aquel en el que posteriormente se van a aplicar, pero libre de señal\footnote{La contribución de jets mal identificados no aparece en estas regiones, ya que al estar definidas con dos leptones ligeros, no contienen ningún candidato $\tau_h$ cuya identificación pueda invertirse, de modo que el método descrito en la Sección \ref{sec:bbtt_ff} no es aplicable en ellas.}.
+COMENTARIO:
+el problema está en que para DY la correccion se deriva y se valida dentro del propio analisis, igual para los fakes mientras que para TTbar no; pero sin embargo la division que se hace es simulado: DY + ttbar; vs fakes; y data/MC comprobacion entre simulado, que en uno de los casos se ha validado el método, pero no entre fakes, que tambien se ha validado el meotodo. CONCLUSION: HAY QUE DEJAR BIEN CLARO ANTES QUE LOS METODOS QUE SE DERIVAN DENTRO DEL ANALISIS VAN ACOMPAÑADOS DE SU PROPIA VALIDACION, MIENTRAS QUE LA COMPROBACION DATA/MC EN LAS REGIONES DE SEÑAL SE DEJA PARA DESPUES.
 
-La región enriquecida en Drell--Yan corresponde a la categoría res1b en los canales $ee$ y $\mu\mu$. Adicionalmente, dentro del canal se exige un par de carga opuesta con masa invariante entre 70 y 110 GeV afin de aislar la desintegración del bosón Z, y $p_T^\text{miss} < 45$ GeV para suprimir los procesos con neutrinos en el estado final, principamlente $W$+jets. La selección cinemática es la misma que define la región en la que se deriva la corrección del espectro de $p_T$ del bosón Z, descrita en la Sección \ref{sec:bbtt_corrections}. En cambio, se exige un jet etiquetado al menos, como en las categorías del análisis, y se aplican todas las correcciones simultáneamente.
-AL DECIR COMO EN LAS CATEGORIAS DEL ANALISIS PARECE QUE SE DICE COMO EN TODAS LAS CATEGORIAS, Y NO ES ASI, NO?
 
-Para la producción $t\bar{t}$, por otro lado, se emplea la categoría res2b para explotar los dos $b$ jets genuinos producidos por las desintegraciones del par de quarks top aislando el proceso con pureza muy alta. Adicionalmente, se exige un par $e\mu$ de carga opuesta para suprimir además la contribución de Drell--Yan, lo que permite comprobar como describe lo observado la predicción que resulta tras la corrección dedicada.
+Las regiones empleadas para ello son las mismas categorías definidas en la Sección \ref{sec:bbtt_flow}, con idéntica cadena de selección y las mismas correcciones aplicadas, evaluadas en los canales de control $ee$, $\mu\mu$ y $e\mu$ reservados en la asignación de canales. La selección incluye también la carga opuesta del par propia de las regiones de señal; el aislamiento de sus dos miembros, en estos canales formados por leptones ligeros, ya está garantizado en la preselcción. Son, por tanto, ortogonales a las regiones de señal únicamente por su contenido leptónico, de forma que comparten con ellas el espacio de fases en todo lo demás, i.e., las correcciones se comprueban en un entorno cinemáticamente próximo a aquel en el que posteriormente se van a aplicar, pero libre de señal\footnote{La contribución de jets mal identificados no aparece en estas regiones, ya que al estar definidas con dos leptones ligeros, no contienen ningún candidato $\tau_h$ cuya identificación pueda invertirse}.\\
+
+La región enriquecida en Drell--Yan corresponde a la categoría res1b en los canales $ee$ y $\mu\mu$. Adicionalmente, dentro del canal se exige un par de carga opuesta con masa invariante entre 70 y 110 GeV afin de aislar la desintegración del bosón Z, y $p_T^\text{miss} < 45$ GeV para suprimir los procesos con neutrinos en el estado final, principamlente $W$+jets. La selección cinemática es la misma que define la región en la que se deriva la corrección del espectro de $p_T$ del bosón Z, descrita en la Sección \ref{sec:bbtt_corrections}. En cambio, se exige un jet etiquetado al menos, como en la categoría res1b del análisis, y se aplican todas las correcciones simultáneamente.\\
+
+
+Para la producción $t\bar{t}$, por otro lado, se emplea la categoría res2b para explotar los dos $b$ jets genuinos producidos por las desintegraciones del par de quarks top aislando el proceso con pureza muy alta. Adicionalmente, se exige un par $e\mu$ de carga opuesta para suprimir además la contribución de Drell--Yan, lo que permite comprobar como describe lo observado la predicción que resulta tras la corrección dedicada.\\
 
 La Figura \ref{fig:control_regions} muestra la comparación entre los datos y la predicción en ambas regiones, para dos observables que ninguna de las dos correcciones modifica directamente: la separación angular entre los dos leptones en la región enriquecida en Drell--Yan, ajena tanto a la reponderación del espectro de $p_T$ como a la normalización en la multiplicidad de jets, y el $p_T$ del jet de $b$ principal en la región enriquecida en $t\bar{t}$, sobre el que la reponderación de los quarks top actúa de forma indirecta. La predicción reproduce los datos dentro de las incertidumbres en ambos casos.
 
@@ -1005,14 +1077,11 @@ La Figura \ref{fig:control_regions} muestra la comparación entre los datos y la
         sistemática de la predicción.}
     \label{fig:control_regions}
 \end{figure}
-QUIZAS HABRÍA QUE PASAR LO DE LA REGION DE CARGA OPUESTA Y CANDIDATOS AISLADOS AL TEXTO PRINCIPAL, EN LA INTRODUCCION DE ESTA SECCION, PARA REMARCAR LO DE QUE ESTO ES SOBRE LAS SIGNAL REGIONS...
 
 
 \subsection{Distribuciones en las categorías del análisis}
 
-Validada la simulación corregida de los dos fondos dominantes, y establecido en la Sección \ref{sec:bbtt_ff} el cierre del método de los \textit{fake factors}, la predicción completa se compara con los datos en las propias regiones de señal. Las Figuras \ref{fig:prefit_mHH} y \ref{fig:prefit_ptHH} muestran esta comparación en la categoría res2b, la más sensible del análisis, para los cuatro canales y para el conjunto completo de datos de 2022--2024. Se muestran dos observables del sistema $HH$: su masa invariante reconstruida, $m_{HH}$, que recoge de forma más directa la cinemática de la producción del par, y su $p_T$, que refleja el impulso que motiva la definición de la topología \textit{boosted}.
-
-DIGO QUE ES LA MAS SENSIBLE DEL ANALISIS ANTES DE DEMOSTRARLO
+Validada la simulación corregida de los dos fondos dominantes, y establecido en la Sección \ref{sec:bbtt_ff} el cierre del método de los \textit{fake factors}, la predicción completa se compara con los datos en las propias regiones de señal. Las Figuras \ref{fig:prefit_mHH} y \ref{fig:prefit_ptHH} muestran esta comparación en la categoría res2b, que, como se mostrará en la Sección \ref{bbtt_results}, es la que más contribuye a la sensibilidad del análisis, para los cuatro canales y para el conjunto completo de datos de 2022--2024. Se muestran dos observables del sistema $HH$: su masa invariante reconstruida, $m_{HH}$, que recoge de forma más directa la cinemática de la producción del par, y su $p_T$, que refleja el impulso que motiva la definición de la topología \textit{boosted}.
 
 
 \begin{figure}[tbp]
@@ -1045,13 +1114,15 @@ DIGO QUE ES LA MAS SENSIBLE DEL ANALISIS ANTES DE DEMOSTRARLO
     \label{fig:prefit_ptHH}
 \end{figure}
 
-La composicion del fondo cambia de un canal a otro, según lo esperado. Mientras que en los canales $\tau_e\tau_h$ y $\tau_\mu\tau_h$ la predicción está dominada por la producción de pares de quarks top, con menores contribuciones de Drell-Yan y de los jets mal identificados, en el canal $\tau_h\tau_h$ la fracción de \textit{fakes} es considerablemente mayor, y notablemente dominante en el canal $b\tau_h\tau_h$, con un número de sucesos mucho menor. POR QUÉ?. En todos los casos la razón entre los datos y la prediccíon es compatible con la unidad dentro de la banda de incertidumbre EN TAUHTAUH HAY PUNTOS EN LOS QUE NO... POR QUE?, con fluctuaciones mayores en las colas menos pobladas, donde la estadística de los datos es limitada
+La composicion del fondo cambia de un canal a otro, según lo esperado. Mientras que en los canales $\tau_e\tau_h$ y $\tau_\mu\tau_h$ la predicción está dominada por la producción de pares de quarks top, con menores contribuciones de Drell-Yan y de los jets mal identificados, en el canal $\tau_h\tau_h$ la fracción de \textit{fakes} es considerablemente mayor, aunque la producción $t\bar{t}$ sigue siendo la contribución principal. La contribución de \textit{fakes} pasa a ser notablemente dominante en el canal $b\tau_h\tau_h$, con un número de sucesos mucho menor, y donde los jet de alto $p_T$ son abundantes en la producción multi-jet. En todos los casos la razón entre los datos y la prediccíon es compatible con la unidad dentro de la banda de incertidumbre, con fluctuaciones estadísticas concentradas en las colas menos pobladas.\\
 
-Constatado el acuerdo, y prestando ahora atención a la escala, de las distribuciones mostradas se puede ver que la señal se hace visible en la figura al multiplicarla por factores de entre $10^2$ y $10^5$, según el panel. Incluso en la categoría más sensible y en el observable que mejor recoge la cinemática del sistema $HH$, la producción de pares de bosones de Higgs contribuye con una fracción del orden de $10^{-4}$ del número total de sucesos, muy por debajo de la incertidumbre estadística de los datos en cualquier intervalo. Consecuentemente, ninguna variable individual permite, por sí sola, aislar la señal.
-ALGO DE ESTO SE DICE EN EL AN?\\
 
-Queda demostrado por tanto el acuerdo entre datos y predicción en las regiones del análisis, de donde se concluye que el fondo está bien modelado allí donde la señal es indistinguible de él. Las disferencias residuales observadas están cubiertas por las incertidumbres sistemáticas que se describen en la Seccion \ref{bbtt_systematics}, y son absorbidas por los parámetros de estorbo en el ajuste final.
-SE ME HACE RARO MOSTRAR PRIMERO LOS PLOTS CON INCERTIDUMBRES SISTEMÁTICAS ANTES DE INTRODUCIRLAS.. COMO LO RESUELVEN OTRAS TESIS? ESTOS PLOTS DE LA SIGNAL REGION DEBERÍAN IR EN OTRO SITIO? TIENE SENTIDO PONERLO DESPUES DE SYSTEMATIC UNCERTAINTIES? OTRAS TESIS COMO LO RESUELVEN? PORQUE TAMBIEN SOLAPA CON LA EXTRACCION DE SEÑAL? O NO?
+Más allá del acuerdo, estas distribuciones ponen de manifiesto que la señal únicamente se hace visible en las figuras al multiplicarla por factores de entre $10^2$ y $10^5$, según el panel. Incluso en la categoría más sensible y en el observable que mejor recoge la cinemática del sistema $HH$, la producción de pares de bosones de Higgs contribuye con una fracción del orden de $10^{-4}$ del número total de sucesos, muy por debajo de la incertidumbre estadística de los datos en cualquier intervalo. Ninguna variable individual permite, por sí sola, aislar la señal.\\
+
+
+Se constata, por tanto, el acuerdo entre los datos y la predicción en las regiones del análisis, lo que indica que el fondo está bien modelado allí donde la señal es indistinguible de él. Las diferencias residuales son compatibles con las incertidumbres descritas en la Sección \ref{sec:bbtt_systematics}, y serán absorbidas por los parámetros de estorbo correspondientes en el ajuste final.
+
+
 
 Puesto que ninguna de las variables discrimina por separado, la extracción de señal exige combinar la información de muchas variables en un único observable que maximice la separación entre las dos hipótesis. La construcción de ese discriminante es el objeto de la sección siguiente.
 
