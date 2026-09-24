@@ -981,13 +981,19 @@ Cada uno de los elementos que componen la predicción descrita en las secciones 
 
 Las subsecciones que siguen recorren estas fuentes agrupadas según la parte de la predicción a la que afectan, y su reparto entre las tres familias se recupera en la Sección \ref{sec:bbtt_results} al examinar su impacto sobre el resultado final. Todas ellas se incorporan al ajuste estadístico como parámetros de estorbo, que pueden modificar solo la normalización del proceso afectado o también la forma de sus distribuciones. El tratamiento de estos parámetros en la función de verosimilitud se describe en la Sección \ref{sec:bbtt_statistics}.
 
-
-
-
-
-
 \subsection{Luminosity and theoretical uncertainties}
 PAS INCOMPLETO: el código incluye además incertidumbres de aceptancia a partir de los pesos de PDF y de escala del generador (CMS\_pdfWeight, CMS\_scaleWeight), que afectan también a la forma. El PAS no las menciona. Decidir si esta subsección pasa a llamarse ``Normalization and theoretical uncertainties'' para acogerlas.]}
+\cite{Karlberg:2024zxx} → \cite{LHCHWG-xsec-13p6TeV}
+\cite{Manzoni:2023qaz} → \cite{bbH-modelling}
+
+
+Como se introdujo en la Sección \ref{sec:???}\textcolor{red}{casi seguro que esa formula va en alguna de los capitulos de introducción....}, el número de sucesos con el que cada proceso simulado entra en la predicción viene dado por el producto de la luminosidad integrada, de la sección eficaz de producción, de las fracciones de desintegración de los bosones de Higgs involucrados y de la aceptancia, entendida como la fracción de sucesos generados que sobrevive a la selección.
+
+El número de sucesos con el que cada proceso simulado entra en la predicción es el producto de la luminosidad integrada, de la sección eficaz de producción, de las fracciones de desintegración de los bosones de Higgs involucrados y de la aceptancia, entendida como la fracción de sucesos generados que sobrevive a la selección. Ninguno de esos cuatro factores procede de una corrección aplicada a la simulación, y de ahí que sus incertidumbres se traten aquí y no en las subsecciones que siguen: los tres primeros escalan el rendimiento del proceso sin alterar la forma de sus distribuciones, mientras que el último depende de la cinemática de los sucesos y sí puede modificarla. Todas ellas afectan únicamente a los procesos tomados de la simulación, pues la estimación de los jets mal identificados de la Sección \ref{sec:bbtt_ff} se normaliza directamente a los datos.
+
+
+Las mismas variaciones de las escalas de renormalización y factorización y del conjunto de PDF que determinan la incertidumbre de las secciones eficaces alteran también la cinemática de los sucesos, y con ella la fracción que supera la selección y el intervalo de la distribución final en el que cae. Este segundo efecto se evalúa por separado a partir de los pesos que el generador proporciona para cada variación: para cada proceso, categoría, canal y periodo se calcula la aceptancia de cada intervalo como el cociente entre el número de sucesos que lo pueblan y la suma inclusiva de pesos generados antes de la categorización, y la variación relativa de ese cociente respecto al valor nominal define la incertidumbre, tomando la envolvente de las variaciones disponibles de cada fuente. Al normalizar por la suma inclusiva de pesos, el efecto sobre la sección eficaz total se cancela, de modo que solo queda el cambio de aceptancia y no hay doble contabilidad con la incertidumbre de normalización. Las dos fuentes se mantienen como parámetros independientes.
+
 
 
 \subsection{Uncertainties in the object-level corrections}
@@ -1030,12 +1036,9 @@ Tagging of the large-radius jet         & 2                                     
 
 \vspace{2mm}
 \footnotesize
-$^{*}$ La distribución del número de interacciones en los datos se infiere a partir de la
-luminosidad instantánea de cada cruce de haces y de la sección eficaz inelástica
-protón-protón. La incertidumbre de la reponderación está dominada por la de esta última, y
-se evalúa variando su valor en un $4.6\%$, de acuerdo con su medida a $13$ TeV
-\cite{CMS-inelastic-13TeV}, y recalculando los pesos de la simulación con cada una de las
-dos distribuciones resultantes.
+$^{*}$ La distribución del número de interacciones en los datos se infiere a partir de la luminosidad instantánea de cada cruce de haces y de la sección eficaz inelástica
+protón-protón. La incertidumbre de la reponderación está dominada por la de esta última, y se evalúa variando su valor en un $4.4\%$, de acuerdo con su medida a $13$ TeV
+\cite{CMS-inelastic-13TeV}, y recalculando los pesos de la simulación con cada una de las dos distribuciones resultantes.
 \end{minipage}
 \caption[Uncertainties in the object-level corrections]{%
     Sources of uncertainty associated with the object-level corrections described in
@@ -1058,7 +1061,6 @@ dos distribuciones resultantes.
 
 %\paragraph{Pile-up reweighting} A diferencia del perfil de la simulación, que se fija de antemano, la distribución del número de interacciones en los datos se infiere a partir de la luminosidad instantánea de cada cruce de haces y de la sección eficaz inelástica protón-protón. La incertidumbre de la reponderación está dominada por la de esta última, y se evalúa variando su valor en un $4.6\%$, de acuerdo con su medida a $13$ TeV \cite{CMS-inelastic-13TeV}, y recalculando los pesos de la simulación con cada una de las dos distribuciones resultantes. 
 
-\paragraph{Calibrations derived within the analysis} Las componentes que no proceden de ninguna recomendación central llevan una incertidumbre evaluada junto con la propia medida. En el caso del camino QuadJet de 2024, a la incertidumbre de la medida se añade la falta de cierre del $15\%$ observada en la validación de la factorización. Los factores de identificación de los candidatos del canal $b\tau_h\tau_h$ llevan igualmente una incertidumbre independiente. Y en el etiquetado de jets de $b$ la llevan las dos componentes derivadas internamente: las eficiencias de etiquetado medidas en la simulación, con las que en 2024 los factores de escala de \textsc{UParT} por puntos de trabajo se traducen en un peso por suceso, y la calibración dedicada de los jets de radio grande mal identificados como candidatos $H\to b\bar{b}$. \textcolor{red}{[CONFIRMAR lo del QuadJet]}
 
 
 %Los pesos se calculan por separado para cada uno de los cinco periodos, pero la variación de la sección eficaz es común a todos ellos, de modo que en el ajuste la incertiumbre asociada se trata como una única fuente, correlacionada entre periodos.
