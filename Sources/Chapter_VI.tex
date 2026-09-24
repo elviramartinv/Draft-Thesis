@@ -977,7 +977,17 @@ The prediction of the background in each signal region has been described. While
 
 \section{Systematic uncertainties}
 %
-Cada uno de los elementos que componen la predicción descrita en las secciones anteriores lleva asociada una incertidumbre. Las correcciones a nivel de objeto y de proceso de la Sección \ref{sec:bbtt_corrections} se conocen con una precisión limitada; la estimación de los jets mal identificados de la Sección \ref{sec:bbtt_ff} depende de la estadística de las regiones en las que se deriva y de la calibración de los objetos que las definen; y la normalización de cada proceso descansa en una luminosidad integrada y en unas secciones eficaces que tienen sus propias incertidumbres. Esta sección recoge esas fuentes que se incorporan posteriormente al ajuste estadístico como un parámetro de estorbo, que puede modificar solo la normalización del proceso afectado o también la forma de sus distribuciones. El tratamiento de estos parámetros en la función de verosimilitud se describe en la Sección \ref{sec:bbtt_statistics}.
+Cada uno de los elementos que componen la predicción descrita en las secciones anteriores lleva asociada una incertidumbre, y las fuentes que de ahí resultan son de tres naturalezas distintas. Las teóricas reflejan el conocimiento limitado de las secciones eficaces y de las fracciones de desintegración con las que se normalizan las muestras simuladas, así como el efecto que esas mismas variaciones tienen sobre la fracción de sucesos que sobrevive a la selección. Las experimentales proceden de la medida de la luminosidad integrada y de la calibración de los objetos reconstruidos: las correcciones a nivel de objeto y de proceso de la Sección \ref{sec:bbtt_corrections} se conocen con una precisión limitada, y a ellas se suman las que afectan a la estimación de los jets mal identificados de la Sección \ref{sec:bbtt_ff}, que depende de la calibración de los objetos con los que se definen sus regiones. Las estadísticas, por último, reflejan el número finito de sucesos disponibles, tanto en las muestras simuladas como en las regiones empleadas para esa estimación.
+
+Las subsecciones que siguen recorren estas fuentes agrupadas según la parte de la predicción a la que afectan, y su reparto entre las tres familias se recupera en la Sección \ref{sec:bbtt_results} al examinar su impacto sobre el resultado final. Todas ellas se incorporan al ajuste estadístico como parámetros de estorbo, que pueden modificar solo la normalización del proceso afectado o también la forma de sus distribuciones. El tratamiento de estos parámetros en la función de verosimilitud se describe en la Sección \ref{sec:bbtt_statistics}.
+
+
+
+
+
+
+\subsection{Luminosity and theoretical uncertainties}
+PAS INCOMPLETO: el código incluye además incertidumbres de aceptancia a partir de los pesos de PDF y de escala del generador (CMS\_pdfWeight, CMS\_scaleWeight), que afectan también a la forma. El PAS no las menciona. Decidir si esta subsección pasa a llamarse ``Normalization and theoretical uncertainties'' para acogerlas.]}
 
 
 \subsection{Uncertainties in the object-level corrections}
@@ -985,33 +995,92 @@ Cada uno de los elementos que componen la predicción descrita en las secciones 
 Las correcciones a nivel de objeto de la Sección \ref{subsec:bbtt_object_corrections} se aplican por igual a todos los procesos simulados, incluida la señal, de modo que sus incertidumbres afectan a toda la parte de la predicción que procede de la simulación. 
 Para cada fuente se construyen dos distributiones alternativas a la nominal, desplazando la corrección correspondiente una desviación estándar hacia arriba y otra hacia abajo. Según la naturaleza de cada correción, estas distribuciones se obtienen de diferente manera. Así, cuando la corrección es un peso --- los factores de escala de disparo, reconstrucción, identificación, aislamiento y etiquetado ---, basta con rellenar de nuevo los mismos histogramas con el peso desplazado, de forma que se modifica tanto la normalización como la foma de las distribuciones. Cuando la corrección modifica la energía o el momento de los objetos --- las escalas y resoluciones de energía de jets, electrones y $\tau_h$ ---, el propio suceso puede migrar entre categorías y cambiar las variables de entrada del discriminante final, de modo que es necesario repetir toda la cadena de análisis con la corrección desplazada. En estos casos, la variación se propaga también de forma cooherente a $p_T^\text{miss}$.\\ 
 
+La mayor parte de estas correcciones se toman de las recomendaciones centrales de CMS, y con ellas las incertidumbres que proporcionan los grupos responsables de cada objeto. 
+Las componentes que no proceden de ninguna recomendación central llevan una incertidumbre evaluada junto con la propia medida. En el caso del camino QuadJet de 2024, a la incertidumbre de la medida se añade la falta de cierre del $15\%$ observada en la validación de la factorización. Los factores de identificación de los candidatos del canal $b\tau_h\tau_h$ llevan igualmente una incertidumbre independiente. Y en el etiquetado de jets de $b$ la llevan las dos componentes derivadas internamente: las eficiencias de etiquetado medidas en la simulación, con las que en 2024 los factores de escala de \textsc{UParT} por puntos de trabajo se traducen en un peso por suceso, y la calibración dedicada de los jets de radio grande mal identificados como candidatos $H\to b\bar{b}$. \textcolor{red}{[CONFIRMAR lo del QuadJet]}
+
+La Tabla \ref{tab:object_systematics} recoge cada una de estas incertidumbres, en el mismo orden en que se han presentado las correcciones, indicando en qué se descompone cada una, de dónde procede y de cuál de las dos maneras anteriores se propaga.
+
+
+
+
+
+\begin{table}[tbp]
+\centering
+\begin{minipage}{\textwidth}
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+Correction & Components & Source & Propagation \\
+\midrule
+Pile-up reweighting$^{*}$               & 1                                        & central            & weight       \\
+Trigger efficiency                      & one per separately measured component     & central, in-analysis & weight     \\
+Muon identification and isolation       & 2                                        & central            & weight       \\
+Electron reconstruction                 & 2, below and above $20$ GeV              & central            & weight       \\
+Electron identification                 & 1                                        & central            & weight       \\
+Electron energy scale and resolution    & 2                                        & central            & energy shift \\
+$\tau_h$ identification                 & against jets, electrons, and muons        & central, in-analysis & weight     \\
+$\tau_h$ energy scale                   & period dependent                          & central            & energy shift \\
+Jet energy scale                        & several, one per calibration step         & central            & energy shift \\
+Jet energy resolution                   & 1                                        & central            & energy shift \\
+$b$ tagging of small-radius jets        & algorithm dependent, per period           & central, in-analysis & weight     \\
+Tagging of the large-radius jet         & 2                                        & central, in-analysis & weight     \\
+\bottomrule
+\end{tabular}
+
+\vspace{2mm}
+\footnotesize
+$^{*}$ La distribución del número de interacciones en los datos se infiere a partir de la
+luminosidad instantánea de cada cruce de haces y de la sección eficaz inelástica
+protón-protón. La incertidumbre de la reponderación está dominada por la de esta última, y
+se evalúa variando su valor en un $4.6\%$, de acuerdo con su medida a $13$ TeV
+\cite{CMS-inelastic-13TeV}, y recalculando los pesos de la simulación con cada una de las
+dos distribuciones resultantes.
+\end{minipage}
+\caption[Uncertainties in the object-level corrections]{%
+    Sources of uncertainty associated with the object-level corrections described in
+    Section \ref{subsec:bbtt_object_corrections}. The \textit{source} column distinguishes
+    the uncertainties provided with the central CMS recommendations from those derived
+    within the analysis, and the \textit{propagation} column indicates how the shifted
+    distributions are built.\textcolor{red}{ARREGLAR PORQUE NO CABE EN LOS MARGENES; REVISAR LA QUE NOTACIÓN DE PROPAGATION SEA CONOCIDA (NO ME SUENA DE LEER LA DISTINCION WEIGHT / ENERGY SHIFT. PONER UN FOOTNOTE NORMAL, NO SOLO DE LA TABLA, ESTOY BASTANTE SEGURA QUE SE PUEDE, AUNQUE HAYA QUE AÑADIR ALGUNA LIBRERIA}}
+\label{tab:object_systematics}
+\end{table}
+
+
+
+%\paragraph{Pile-up reweighting} A diferencia del perfil de la simulación, que se fija de antemano, la distribución del número de interacciones en los datos se infiere a partir de la luminosidad instantánea de cada cruce de haces y de la sección eficaz inelástica protón-protón. La incertidumbre de la reponderación está dominada por la de esta última, y se evalúa variando su valor en un $4.6\%$, de acuerdo con su medida a $13$ TeV \cite{CMS-inelastic-13TeV}, y recalculando los pesos de la simulación con cada una de las dos distribuciones resultantes. 
+
+
 
 % La correlación de cada fuente entre periodos de toma de datos sigue las recomendaciones de los grupos responsables de cada objeto o, en el caso de las calibraciones derivadas en el propio análisis, el modo en que se han medido.\\
 
 
 
-\paragraph{Pile-up reweighting} A diferencia del perfil de la simulación, que se fija de antemano, la distribución del número de interacciones en los datos se infiere a partir de la luminosidad instantánea de cada cruce de haces y de la sección eficaz inelástica protón-protón. La incertidumbre de la reponderación está dominada por la de esta última, y se evalúa variando su valor en un $4.6\%$, de acuerdo con su medida a $13$ TeV \cite{CMS-inelastic-13TeV}, y recalculando los pesos de la simulación con cada una de las dos distribuciones resultantes. 
+%\paragraph{Pile-up reweighting} A diferencia del perfil de la simulación, que se fija de antemano, la distribución del número de interacciones en los datos se infiere a partir de la luminosidad instantánea de cada cruce de haces y de la sección eficaz inelástica protón-protón. La incertidumbre de la reponderación está dominada por la de esta última, y se evalúa variando su valor en un $4.6\%$, de acuerdo con su medida a $13$ TeV \cite{CMS-inelastic-13TeV}, y recalculando los pesos de la simulación con cada una de las dos distribuciones resultantes. 
+
+\paragraph{Calibrations derived within the analysis} Las componentes que no proceden de ninguna recomendación central llevan una incertidumbre evaluada junto con la propia medida. En el caso del camino QuadJet de 2024, a la incertidumbre de la medida se añade la falta de cierre del $15\%$ observada en la validación de la factorización. Los factores de identificación de los candidatos del canal $b\tau_h\tau_h$ llevan igualmente una incertidumbre independiente. Y en el etiquetado de jets de $b$ la llevan las dos componentes derivadas internamente: las eficiencias de etiquetado medidas en la simulación, con las que en 2024 los factores de escala de \textsc{UParT} por puntos de trabajo se traducen en un peso por suceso, y la calibración dedicada de los jets de radio grande mal identificados como candidatos $H\to b\bar{b}$. \textcolor{red}{[CONFIRMAR lo del QuadJet]}
+
 
 %Los pesos se calculan por separado para cada uno de los cinco periodos, pero la variación de la sección eficaz es común a todos ellos, de modo que en el ajuste la incertiumbre asociada se trata como una única fuente, correlacionada entre periodos.
 
 
-\paragraph{Trigger efficiency scale factors} Los factores de escala de disparo llevan una incertidumbre por cada una de las componentes que se miden por separado. 
+%\paragraph{Trigger efficiency scale factors} Los factores de escala de disparo llevan una incertidumbre por cada una de las componentes que se miden por separado. 
 %Todas ellas se tratan como independientes entre periodos, puesto que cada factor se mide por separado en cada uno. 
-En el caso del camino QuadJet de 2024, a la incertidumbre de la propia medida se añade la falta de cierre del $15\%$ observada en la validación de la factorización. \textcolor{red}{[CONFIRMAR ESTO]}
+%En el caso del camino QuadJet de 2024, a la incertidumbre de la propia medida se añade la falta de cierre del $15\%$ observada en la validación de la factorización. \textcolor{red}{[CONFIRMAR ESTO]}
 
 
-\paragraph{Muons and electrons} Las incertidumbres de los factores de escala de muones y electrones se toman de las medidas centrales de los grupos de CMS responsables de cada objeto, proporcionadas junto con los propios factores. Para los muones se consideran las de identificación y de aislamiento, y para los electrones, las de identificación, que incluye el aislamiento, y las de reconstrucción. Estas últimas se proporcionan por separado por debajo y por encima de 20 GeV, ya que se derivan con técnicas distintas, y sus incertidumbres se tratan como independientes. Todas estas incertidumbres se propagan como pesos. En el caso de los electrones se añaden, además, las incertidumbres en la escala y la resolución de su energía, que se propagan desplazando la energía de los electrones simulados y repitiendo la cadena de análisis.
+%\paragraph{Muons and electrons} Las incertidumbres de los factores de escala de muones y electrones se toman de las medidas centrales de los grupos de CMS responsables de cada objeto, proporcionadas junto con los propios factores. Para los muones se consideran las de identificación y de aislamiento, y para los electrones, las de identificación, que incluye el aislamiento, y las de reconstrucción. Estas últimas se proporcionan por separado por debajo y por encima de 20 GeV, ya que se derivan con técnicas distintas, y sus incertidumbres se tratan como independientes. Todas estas incertidumbres se propagan como pesos. En el caso de los electrones se añaden, además, las incertidumbres en la escala y la resolución de su energía, que se propagan desplazando la energía de los electrones simulados y repitiendo la cadena de análisis.
 
 
 
 
-\paragraph{Hadronic \texorpdfstring{$\tau$}{tau} leptons} Tanto los factores de escala de identificación de los $\tau_h$ como la corrección de su escala de energía se toman, junto con sus incertidumbres, de las recomendaciones centrales de CMS. Por un lado, los factores de identificación frente a jets, electrones y muones se propagan como pesos. Por otro, la escala de energía \cite{CMS-TAU-24-001} se propaga desplazando la energía de los $\tau_h$ simulados. La excepción son los candidatos del canal $b\tau_h\tau_h$, cuyos factores de identificación se miden dentro del propio análisis y llevan una incertidumbre independiente.
+%\paragraph{Hadronic \texorpdfstring{$\tau$}{tau} leptons} Tanto los factores de escala de identificación de los $\tau_h$ como la corrección de su escala de energía se toman, junto con sus incertidumbres, de las recomendaciones centrales de CMS. Por un lado, los factores de identificación frente a jets, electrones y muones se propagan como pesos. Por otro, la escala de energía \cite{CMS-TAU-24-001} se propaga desplazando la energía de los $\tau_h$ simulados. La excepción son los candidatos del canal $b\tau_h\tau_h$, cuyos factores de identificación se miden dentro del propio análisis y llevan una incertidumbre independiente.
 
 
-\paragraph{Jets and \texorpdfstring{$p_T^\text{miss}$}{pTmiss}} Las incertidumbres en la escala de energía de los jets y en la corrección de su resolución se toman igualmente de las recomendaciones centrales de CMS. Las primeras se descomponen en varias fuentes asociadas a los distintos pasos de la calibración, y la segunda constituye una fuente adicional. Ambas se propagan desplazando la energía de todos los jets simulados y a través de ellos a $p_T^\text{miss}$. \textcolor{red}{confirmar si es verdad que se descomponen en varias fuentes} 
+%\paragraph{Jets and \texorpdfstring{$p_T^\text{miss}$}{pTmiss}} Las incertidumbres en la escala de energía de los jets y en la corrección de su resolución se toman igualmente de las recomendaciones centrales de CMS. Las primeras se descomponen en varias fuentes asociadas a los distintos pasos de la calibración, y la segunda constituye una fuente adicional. Ambas se propagan desplazando la energía de todos los jets simulados y a través de ellos a $p_T^\text{miss}$. \textcolor{red}{confirmar si es verdad que se descomponen en varias fuentes} 
 
 
-\paragraph{Identification of \texorpdfstring{$b$}{b} jets} Las incertidumbres de los factores de escala del etiquetado de jets de $b$, tanto para los jets de radio pequeño como para el candidato de radio grande de la categoría \textit{boosted}, se toman de las recomendaciones centrales de CMS para el algoritmo y el método de calibración empleados en cada periodo, descritos en la Sección \ref{subsec:bbtt_object_corrections}, y se propagan como pesos. La excepción son las dos componentes de la calibración derivadas dentro del propio análisis, que llevan incertidumbres propias: las eficiencias de etiquetado medidas en la simulación, necesarias en 2024 para aplicar los factores de escala de \textsc{UParT} por puntos de trabajo, y la calibración dedicada de los jets de radio grande mal identificados como candidatos $H\to b\bar{b}$.
+%\paragraph{Identification of \texorpdfstring{$b$}{b} jets} Las incertidumbres de los factores de escala del etiquetado de jets de $b$, tanto para los jets de radio pequeño como para el candidato de radio grande de la categoría \textit{boosted}, se toman de las recomendaciones centrales de CMS para el algoritmo y el método de calibración empleados en cada periodo, descritos en la Sección \ref{subsec:bbtt_object_corrections}, y se propagan como pesos. La excepción son las dos componentes de la calibración derivadas dentro del propio análisis, que llevan incertidumbres propias: las eficiencias de etiquetado medidas en la simulación, necesarias en 2024 para aplicar los factores de escala de \textsc{UParT} por puntos de trabajo, y la calibración dedicada de los jets de radio grande mal identificados como candidatos $H\to b\bar{b}$.
 
 
 
@@ -1036,10 +1105,7 @@ Existe también CMS\_DY\_model, ligada al peso DYnJetsWeight, pero ese peso no s
 \textcolor{red}{[POR ESCRIBIR. PAS: los \textit{fake factors} se reevalúan bajo variaciones de las escalas y resoluciones de $\tau_h$, electrones y jets; su efecto es subdominante frente a la estadística del método salvo para $t\bar{t}$; se adoptan envolventes lineales del 20\% a 20 GeV al 100\% a 200 GeV para $t\bar{t}$, y del 1\% al 5\% en el mismo rango para $W$+jets y multijet; se propagan también las incertidumbres estadísticas de los \textit{fake factors} y de las fracciones de cada proceso; la estadística de la región plantilla se propaga con intervalos de Garwood al 95\% CL y un \textit{fake factor} medio por intervalo de la DNN (remisión a la Sección \ref{sec:bbtt_extraction}). Código: CMS\_FF\_stat y CMS\_FF\_template\_stat, independientes entre periodos, y CMS\_FF\_syst, correlacionada. Pendiente comprobar en el código los valores de las envolventes.]}
 
 
-\subsection{Normalization uncertainties}
-\textcolor{red}{[POR ESCRIBIR. PAS: luminosidad del 1.4, 1.3 y 1.7\% en 2022, 2023 y 2024, parcialmente correlacionada, aplicada solo a los procesos simulados; señal ggHH: escala y esquema de masa del top $^{+6}_{-23}\%$, PDF $\pm1.5\%$, $\alpha_s$ $\pm1.7\%$; señal qqHH: escala $^{+0.05}_{-0.03}\%$, PDF$+\alpha_s$ $\pm2.7\%$; fondos simulados del 0.5 al 6\%; 100\% en la normalización de bbH; $\mathcal{B}(H\to b\bar{b})$ $^{+1.2}_{-1.3}\%$ y $\mathcal{B}(H\to\tau\tau)$ $^{+1.7}_{-1.6}\%$. Pendiente contrastar con get\_norm\_systematics() del código.
 
-PAS INCOMPLETO: el código incluye además incertidumbres de aceptancia a partir de los pesos de PDF y de escala del generador (CMS\_pdfWeight, CMS\_scaleWeight), que afectan también a la forma. El PAS no las menciona. Decidir si esta subsección pasa a llamarse ``Normalization and theoretical uncertainties'' para acogerlas.]}
 
 
 \subsection{Statistical uncertainties of the simulated samples}
@@ -1236,6 +1302,51 @@ Puesto que ninguna de las variables discrimina por separado, la extracción de s
 
 \section{Statistical procedure}
 \label{sec:bbtt_statistics}
+
+
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{lllc}
+\toprule
+Source & Affected processes & Type & Correlation across periods \\
+\midrule
+Integrated luminosity                     & simulated              & normalization & partial \\
+Signal cross section                      & signal                 & normalization & full    \\
+Background cross sections                 & simulated              & normalization & full    \\
+Branching fractions                       & with a Higgs boson     & normalization & full    \\
+$b\bar{b}H$ normalization                 & $b\bar{b}H$            & normalization & full    \\
+\midrule
+Pile-up reweighting                       & simulated              & shape & full    \\
+Trigger efficiency                        & simulated              & shape & none    \\
+Muon and electron identification and isolation & simulated         & shape & full    \\
+Electron energy scale and resolution      & simulated              & shape & full    \\
+$\tau_h$ identification                   & simulated              & shape & mixed   \\
+$\tau_h$ energy scale                     & simulated              & shape & none    \\
+Jet energy scale                          & simulated              & shape & mixed   \\
+Jet energy resolution                     & simulated              & shape & none    \\
+$b$ tagging                               & simulated              & shape & mixed   \\
+Acceptance (QCD scale and PDF)            & simulated              & shape & full    \\
+\midrule
+Drell--Yan correction, fit                & Drell--Yan             & shape & full    \\
+Drell--Yan correction, statistical        & Drell--Yan             & shape & none    \\
+Top quark $p_T$ reweighting               & $t\bar{t}$             & shape & full    \\
+\midrule
+Fake factor envelopes                     & \textit{fakes}         & shape & full    \\
+Fake factor statistics                    & \textit{fakes}         & shape & none    \\
+Template region statistics                & \textit{fakes}         & shape & none    \\
+\midrule
+Size of the simulated samples             & simulated              & shape & none    \\
+\bottomrule
+\end{tabular}
+\caption[Summary of the systematic uncertainties]{%
+    Summary of the sources of systematic uncertainty considered in the analysis, with the
+    processes they affect, whether they modify only the normalization or also the shape of
+    the distributions, and their correlation across data-taking periods.}
+\label{tab:systematics_summary}
+\end{table}
+
+
 % Placed before the results, as in Jaime's thesis, so the results section can be
 % read without interruption.
 
