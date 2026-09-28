@@ -849,7 +849,7 @@ A dedicated multidimensional correction is derived withing the analysis itself t
     \label{fig:dy_fit}
 \end{figure}
 %
-The weight obtained using this method is not applied based on the reconstructed $p_T$, but rather on the generated $p_T$, since in the signal regions the momentum of the neutrinos originating from $\tau$ decays is not reconstructed. The equivalence between the two has been verified previously in the same dedicated derivation region. This correction restores agreement between the data and simulation in the $p_T$ of the pair, in the number of central jets, and in the number of $b$-tagged jets for events with two and three central jets, but not for those with four or more. An additional normalization factor is therefore introduced, measured over five intervals of the number of central jets $n_\text{jets} = 2, 3, 4, 5, \geq 6$, and three intervals of the number of $b$-tagged jets, $n_\text{b\,jets} = 0, 1, \geq 2$, each of which constitutes an independent source of uncertainty.\\
+The weight obtained using this method is not applied based on the reconstructed $p_T$, but rather on the generated $p_T$, since in the signal regions the momentum of the neutrinos originating from $\tau$ decays is not reconstructed. The equivalence between the two has been verified previously in the same dedicated derivation region. This correction restores agreement between the data and simulation in the $p_T$ of the pair, in the number of central jets, and in the number of $b$-tagged jets for events with two and three central jets, but not for those with four or more. An additional normalization factor is therefore introduced, measured over five intervals of the number of central jets $n_\text{jets} = 2, 3, 4, 5, \geq 6$, and three intervals of the number of $b$-tagged jets, $n_\text{b\,jets} = 0, 1, \geq 2$.\\
 
 The final correction factor applied to the Drell-–Yan simulation is the product of both factors. In the strategy followed, the derivation is performed on the $\mu\mu$ channel, so that the $ee$ channel is reserved for final validation. The final correction factor applied to the Drell-–Yan simulation is the product of both factors. In the strategy followed, the derivation is performed on the $\mu\mu$ channel, so that the $ee$ channel is reserved for final validation, where satisfactory agreement is observed across all data-taking periods. Figure \ref{fig:dy_correction} shows the effect of the correction on two of these distributions, in the region in which it is derived; the agreement that results once the categorization of the analysis is applied is examined in Section \ref{sec:bbtt_controlplots}.
 
@@ -876,7 +876,9 @@ The other dominant contribution in the signal regions comes from the production 
 
 Unlike in the previous case, control regions to derive the correction factor are not used. Instead, the correction is given by the ratio between the calculation of the differential cross section for top quark pair production as a function of the $p_T$ of the top quark at NNLO in QCD with NLO electroweak corrections and the prediction from the \POWHEG{} generator interfaced with \PYTHIA{}, evaluated at $13$ TeV — the energy at which this calculation is available. Subsequently, a second factor extrapolates this correction to the Run 3 center-of-mass energy. The resulting weight is a function of the $p_T$ of the top quark, which is not reconstructed in the analysis but is taken directly from the generated information. Therefore, the factor is evaluated separately for the quark and the antiquark in the event, and the weight ultimately applied is the geometric mean of the two.
 
-This is a theoretical correction rather than a measurement, and no independent estimate of its accuracy is available. Consequently, it is associated with an uncertainty equal to the magnitude of the correction itself: the variations are obtained by applying the factor twice and without applying it at all, so that the nominal weight falls midway between the two. The agreement between the data and the resulting simulation is verified in a control region enriched in this process, described in Section \ref{sec:bbtt_controlplots}\\\\
+%This is a theoretical correction rather than a measurement, and no independent estimate of its accuracy is available. Consequently, it is associated with an uncertainty equal to the magnitude of the correction itself: the variations are obtained by applying the factor twice and without applying it at all, so that the nominal weight falls midway between the two. 
+
+The agreement between the data and the resulting simulation is verified in a control region enriched in this process, described in Section \ref{sec:bbtt_controlplots}\\\\
 
 %defined over the \textit{res2b} category -- which is where the process is most abundant due to the requirement that both $b$-jets be tagged -- and by replacing the $\tau\tau$ pair with the final state $e\mu$, where the semileptonic and dileptonic decays of the $t\bar{t}$ pair completely dominate.\\\\
 
@@ -1032,11 +1034,7 @@ Las correcciones a nivel de objeto de la Sección \ref{subsec:bbtt_object_correc
 
 Las componentes que no proceden de ninguna recomendación central llevan una incertidumbre evaluada junto con la propia medida. En el caso del camino QuadJet de 2024, a la incertidumbre de la medida se añade la falta de cierre del $15\%$ observada en la validación de la factorización. Los factores de identificación de los candidatos del canal $b\tau_h\tau_h$ llevan igualmente una incertidumbre independiente. Y en el etiquetado de jets de $b$ la llevan las dos componentes derivadas internamente: las eficiencias de etiquetado medidas en la simulación, con las que en 2024 los factores de escala de \textsc{UParT} por puntos de trabajo se traducen en un peso por suceso, y la calibración dedicada de los jets de radio grande mal identificados como candidatos $H\to b\bar{b}$. \textcolor{red}{[CONFIRMAR lo del QuadJet]}
 
-Para cada una de estas fuentes se construyen dos distribuciones alternativas a la nominal, desplazando la corrección correspondiente una desviación estándar hacia arriba y otra hacia abajo. La manera de obtenerlas depende de la naturaleza de la corrección. Cuando esta es un peso --- los factores de escala de disparo, reconstrucción, identificación, aislamiento y etiquetado ---, basta con volver a rellenar los mismos histogramas con el peso desplazado. Cuando modifica la energía o el momento de los objetos --- las escalas y resoluciones de energía de jets, electrones y $\tau_h$ ---, el propio suceso puede migrar entre categorías y cambiar las variables de entrada del discriminante final, de modo que es necesario repetir toda la cadena de análisis con la corrección desplazada; en estos casos la variación se propaga además de forma coherente a $p_T^\text{miss}$. Ninguna de estas correcciones es igual para todos los sucesos, de modo que las dos maneras modifican tanto la normalización como la forma de las distribuciones. La diferencia entre ellas no está, por tanto, en el tipo de efecto que producen sobre la predicción, sino en el trabajo necesario para construir las distribuciones desplazadas.
-
-
-
-Para cada fuente se construyen dos distributiones alternativas a la nominal, desplazando la corrección correspondiente una desviación estándar hacia arriba y otra hacia abajo. Según la naturaleza de cada correción, estas distribuciones se obtienen de diferente manera. Así, cuando la corrección es un peso --- los factores de escala de disparo, reconstrucción, identificación, aislamiento y etiquetado ---, basta con rellenar de nuevo los mismos histogramas con el peso desplazado, de forma que se modifica tanto la normalización como la foma de las distribuciones. Cuando la corrección modifica la energía o el momento de los objetos --- las escalas y resoluciones de energía de jets, electrones y $\tau_h$ ---, el propio suceso puede migrar entre categorías y cambiar las variables de entrada del discriminante final, de modo que es necesario repetir toda la cadena de análisis con la corrección desplazada. En estos casos, la variación se propaga también de forma cooherente a $p_T^\text{miss}$.\\ 
+Para cada una de estas fuentes se construyen dos distribuciones alternativas a la nominal, desplazando la corrección correspondiente una desviación estándar hacia arriba y otra hacia abajo. La manera de obtenerlas depende de la naturaleza de la corrección. Cuando esta es un peso --- los factores de escala de disparo, reconstrucción, identificación, aislamiento y etiquetado ---, basta con volver a rellenar los mismos histogramas con el peso desplazado. Cuando modifica la energía o el momento de los objetos --- las escalas y resoluciones de energía de jets, electrones y $\tau_h$ ---, el propio suceso puede migrar entre categorías y cambiar las variables de entrada del discriminante final, de modo que es necesario repetir toda la cadena de análisis con la corrección desplazada; en estos casos la variación se propaga además de forma coherente a $p_T^\text{miss}$. Ninguna de estas correcciones es igual para todos los sucesos, de modo que las dos maneras modifican tanto la normalización como la forma de las distribuciones.\\ 
 
 
 
@@ -1061,13 +1059,13 @@ Trigger efficiency                   & one per separately measured component & b
 Muon identification and isolation    & 2                                     & central & event weight  \\
 Electron reconstruction              & 2, below and above $20$ GeV           & central & event weight  \\
 Electron identification              & 1                                     & central & event weight  \\
-Electron energy scale and resolution & 2                                     & central & object energy \\
+Electron energy scale and resolution & 2                                     & central & object energy shift \\
 $\tau_h$ identification              & against jets, electrons, and muons    & both    & event weight  \\
-$\tau_h$ energy scale                & period dependent                      & central & object energy \\
-Jet energy scale                     & several, one per calibration step     & central & object energy \\
-Jet energy resolution                & 1                                     & central & object energy \\
+$\tau_h$ energy scale                & period dependent                      & central & object energy shift \\
+Jet energy scale                     & several, one per calibration step     & central & object energy shift \\
+Jet energy resolution                & 1                                     & central & object energy shift \\
 $b$ tagging of small-radius jets     & algorithm and period dependent        & both    & event weight  \\
-Tagging of the large-radius jet      & 2                                     & both    & object energy \\
+Tagging of the large-radius jet      & 2                                     & both    & object energy shift \\
 \bottomrule
 \end{tabular}
 \caption[Uncertainties in the object-level corrections]{%
@@ -1126,12 +1124,18 @@ REVISAR DESDE AQUI (REESCRIBIR)
 
 
 \subsection{Uncertainties in the process-specific corrections}
-\textcolor{red}{[POR ESCRIBIR. PAS: para $t\bar{t}$, duplicar el efecto de la corrección o eliminarla (código: CMS\_TopPt\_Rew, con SF$^2$ y 1); para Drell--Yan, variaciones del ajuste y componentes estadísticas de las regiones de derivación (código: CMS\_DY\_syst\_gauss y CMS\_DY\_syst\_linear, correlacionadas entre periodos, y CMS\_DY\_stat\_btag0/1/2, independientes entre periodos).
+%
+Las incertidumbres asociadas a las correcciones a los dos fondos dominantes de la Sección \ref{subsec:bbtt_process_corrections} se evalúan dentro del propio análisis, ya que ninguna procede de una recomendación central, y ambas se propagan como pesos.\\
 
-TEXTO vs CÓDIGO: en §6.5 escribes que la normalización adicional de Drell--Yan se mide en $5\times3$ intervalos de ($n_\text{jets}$, $n_{b\,\text{jets}}$), ``each of which constitutes an independent source of uncertainty''. En el código hay solo tres componentes estadísticas, una por multiplicidad de jets etiquetados (0, 1, $\geq 2$). Corregir §6.5 o confirmar con el equipo.
+%Sus incertidumbres se evalúan por tanto dentro del propio análisis, y ambas se propagan como pesos, puesto que ambas correcciones lo son.
+
+La corrección del Drell--Yan es el producto de dos factores, y cada uno aporta sus propias fuentes. Del primero, el ajuste de la razón entre los datos y la simulación en función del $p_T$ del par de muones, procede la incertidumbre de sus parámetros libres. En lugar de tratar cada parámetro por separado, estos se agrupan según el régimen del ajuste al que pertenecen, de modo que resultan dos fuentes independientes entre sí, una asociada al régimen gaussiano y otra al lineal. Para construir cada una de ellas se toma el punto de transición resultante del ajuste nominal, se desplaza el contenido de los intervalos que caen en el régimen considerado en $1.5$ veces su incertidumbre estadística, hacia arriba y hacia abajo, y se repite el ajuste dejando inalterados los intervalos del otro régimen. Las funciones así obtenidas definen las dos variaciones, y son las bandas que muestra la Figura \ref{fig:dy_fit}.
+
+El segundo factor es la normalización adicional, medida en cinco intervalos del número de jets centrales, $n_\text{jets} = 2, 3, 4, 5, \geq 6$, y tres del número de jets etiquetados como procedentes de un quark $b$, $n_{b\,\text{jets}} = 0, 1, \geq 2$. De él procede la incertidumbre estadística de la propia medida, agrupada en tres fuentes independientes, una por cada intervalo de $n_{b\,\text{jets}}$, y dentro de cada una, los cinco intervalos de $n_\text{jets}$ se desplazan de manera conjunta.\\
 
 
-Existe también CMS\_DY\_model, ligada al peso DYnJetsWeight, pero ese peso no se aplica en ningún periodo (solo DYnJetsPtllWeight): no incluir.]}
+La corrección del $p_T$ del quark top, en cambio, no es una medida sino un cálculo, y no se dispone de ninguna estimación independiente de su exactitud. Se le asigna por ello una incertidumbre igual a la magnitud de la propia corrección: la variación hacia arriba se obtiene aplicando el factor dos veces y la variación hacia abajo prescindiendo de él por completo, de manera que el peso nominal queda a medio camino entre ambas. Esta incertidumbre afecta solo a las muestras de producción de pares de quarks top, y no a las de producción individual, que no llevan la corrección.
+
 
 
 
