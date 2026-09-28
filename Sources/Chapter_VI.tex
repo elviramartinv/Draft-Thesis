@@ -981,89 +981,106 @@ Cada uno de los elementos que componen la predicción descrita en las secciones 
 
 Las subsecciones que siguen recorren estas fuentes agrupadas según la parte de la predicción a la que afectan, y su reparto entre las tres familias se recupera en la Sección \ref{sec:bbtt_results} al examinar su impacto sobre el resultado final. Todas ellas se incorporan al ajuste estadístico como parámetros de estorbo, que pueden modificar solo la normalización del proceso afectado o también la forma de sus distribuciones. El tratamiento de estos parámetros en la función de verosimilitud se describe en la Sección \ref{sec:bbtt_statistics}.
 
+
 \subsection{Luminosity and theoretical uncertainties}
 %
-Como se introdujo en la Sección \ref{sec:???}\textcolor{red}{casi seguro que esa formula va en alguna de los capitulos de introducción....} EN CUALQUIER CASO, SI NO PONGO LA FORMULA ANTES, DEBERÍA PONERLA AQUI... REVISAR SI ESTÁ PUESTA EN EL CAPITULO II, el número de sucesos con el que cada proceso simulado entra en la predicción viene dado por el producto de la luminosidad integrada, de la sección eficaz de producción, de las fracciones de desintegración de los bosones de Higgs involucrados y de la aceptancia, entendida como la fracción de sucesos generados que sobrevive a la selección. Los tres primeros escalan el rendimiento del proceso sin alterar la forma de sus distribuciones, mientras que el último depende de la cinemática de los sucesos y sí puede modificarla. AQUI ESTOY INTRODUCIENDO SI ES WEIGHT O ENERGY SHIFT ANTES QUE EN LAS PER OBJECT UNCERTAINTIES.... NO? Estos factores se corresponden por tanto con fuentes de incertidumbre independientes de la corrección aplicada a la simulación, y afectan a todos los procesos tomados de la simulación. 
+Como se introdujo en la Sección \ref{sec:???lumi}, el número de sucesos con el que cada proceso simulado entra en la predicción viene dado por el producto de la luminosidad integrada, de la sección eficaz de producción, de las fracciones de desintegración de los bosones de Higgs involucrados y de la aceptancia, entendida como la fracción de sucesos generados que sobrevive a la selección. Los tres primeros escalan el rendimiento del proceso sin alterar la forma de sus distribuciones, mientras que el último depende de la cinemática de los sucesos y sí puede modificarla. Estos factores se corresponden por tanto con fuentes de incertidumbre independientes de la corrección aplicada a la simulación, y afectan a todos los procesos tomados de la simulación. 
 
 \subsubsection{Integrated luminosity} 
 %
-La luminosidad integrada registrada en cada periodo se conoce con una precisión del 1.4\% en 2022 \cite{CMS-PAS-LUM-22-001}, del 1.3\% en 2023 \cite{CMS-DP-2024-068} y del 1.7\% en 2024 \cite{CMS-DP-2026-003}. Las tres medidas comparten parte de las fuentes sistemáticas de la calibración de la escala absoluta mediante barridos de van der Meer y de su extrapolación a las condiciones de toma de datos, por lo que no son independientes entre sí. Esa correlación parcial se implementa descomponiendo la incertidumbre en tres componentes, una común a los tres años, otra común a 2023 y 2024 y otra exclusiva de 2024, cada una de las cuales entra en el ajuste como un único parámetro compartido por los periodos a los que afecta. ES NECESARIO TANTO DETALLE, QUE HACEN OTRAS TESIS?
-
+La luminosidad integrada de cada año se obtiene a partir de barridos de van der Meer y de la estabilidad de la respuesta de los detectores empleados para monitorizarla, y se conoce con una precisión del 1.4\% en 2022 \cite{CMS-PAS-LUM-22-001}, del 1.3\% en 2023 \cite{CMS-DP-2024-068} y del 1.7\% en 2024 \cite{CMS-DP-2026-003}. Puesto que las tres medidas comparten parte de sus fuentes sistemáticas, sus incertidumbres están parcialmente correlacionadas entre sí. Al ser la luminosidad el factor con el que se normalizan todas las muestras simuladas, esta incertidumbre se aplica a la señal y a todos los fondos tomados de la simulación, pero no a la estimación de los jets mal identificados de la Sección \ref{sec:bbtt_ff}, que se obtiene directamente de los datos.
 
 
 \subsubsection{Cross sections and branching fractions} 
 Las secciones eficaces utilizadas para normalizar las muestras simuladas son cálculos hechos a orden fijo, y cuya incertidumbre se evalúa variando las diferentes entradas del cálculo: las escalas de renormalización y factorización, el conjunto de distribuciones de partones y el valor de $\alpha_s$. 
 
-Para la produccion de pares de bosones de Higgs por fusión de gluones, la variación de las escalas QUE ESCALAS?, combinada con la ambigüedad en el esquema de masa del quark top, asciende a $^{+6}_{-23}\%$ \cite{Grazzini:2018bsd,Baglio:2020wgt}, mientras que la elección del conjunto de distribuciones de partones y el valor de $\alpha_s$ contribuyen conjuntamente un 2.3\%. En la producción por fusión de bosones vectoriales las mismas fuentes dan lugar a variaciones del 0.05\% y del 2.7\%, respectivamente \cite{Dreyer:2018qbw,Dreyer:2020xaj}. Puesto que la variación de las escalas depende del valor que tome $\kappa_\lambda$, es necesario reevaluarla al interpretar el resultado en las diferentes hipótesis.
 
-Para los fondos simulados se emplean las incertidumbres recomendadas para cada proceso, que van del 0.5 al 6\% \cite{LHCHWG-xsec-13p6TeV}, con dos excepciones: el Drell--Yan, cuya normalización no procede de su sección eficaz teórica sino de la corrección derivada de los datos descrita en la Sección \ref{sec:bbtt_corrections}, y la producción de un bosón de Higgs en asociación con un par $b\bar{b}$, cuyo modelado está afectado por una incertidumbre mucho mayor \cite{bbH-modelling}. PERO NO PONGO DE CUANTO, NO?
+Para la producción de pares de bosones de Higgs por fusión de gluones, la variación de las escalas de renormalización y factorización, combinada con la ambigüedad en el esquema de masa del quark top, asciende a $^{+6}_{-23}\%$ \cite{Grazzini:2018bsd,Baglio:2020wgt}, mientras que la elección del conjunto de distribuciones de partones y el valor de $\alpha_s$ contribuyen conjuntamente un 2.3\%. En la producción por fusión de bosones vectoriales las mismas fuentes dan lugar a variaciones del 0.05\% y del 2.7\%, respectivamente \cite{Dreyer:2018qbw,Dreyer:2020xaj}. Puesto que la variación de las escalas depende del valor que tome $\kappa_\lambda$, es necesario reevaluarla al interpretar el resultado en las diferentes hipótesis.
+
+
+Para los fondos simulados se emplean las incertidumbres recomendadas para cada proceso, que van del 0.5 al 6\% \cite{LHCHWG-xsec-13p6TeV}, con dos excepciones: el Drell--Yan, cuya normalización no procede de su sección eficaz teórica sino de la corrección derivada de los datos descrita en la Sección \ref{sec:bbtt_corrections}, y la producción de un bosón de Higgs en asociación con un par $b\bar{b}$, cuyo modelado está afectado por una incertidumbre mucho mayor \cite{bbH-modelling} y a la que se asigna un 100\% sobre la normalización de los procesos que la continene \textcolor{red}{revisar/explicar por qué}
+
 
 Por último, las fracciones de desintegración $H\to b\bar{b}$ y $H\to\tau\tau$ se conocen con una precisión del $^{+1.2}_{-1.3}\%$ y del $^{+1.7}_{-1.6}\%$ \cite{deFlorian:2016spz}, y su incertidumbre se asigna a todos los procesos, señal incluida, en los que interviene al menos un bosón de Higgs.
 
+
 \subsubsection{Acceptance} 
 %
-La fracción de los sucesos que sobrevive a la selección está asimismo modificada por las variaciones que determinan la incertidumbre de las secciones eficaces, puesto que estas variaciones modifican también la cinemática de los sucesos. Este efecto es independiente del anterior y en consecuencia se trata por separado, incluyendo además las variaciones de los parámetros que gobiernan la lluvia de partones SE PUEDE EXPLICAR ESTO UN POCO MEJOR?. Para cada proceso y cada categoría se recalcula la aceptancia bajo cada variación como el cociente entre el número de sucesos seleccionados y el número de sucesos generados, de manera que el cambio de la sección eficaz inclusiva se cancela en el cociente y no se contabiliza dos veces CREO QUE ESTÁ BIEN EXPLICADO EN EL TEXTO PERO YO AHORA MISMO NO LO ENTIENDO, ME LO EXPLICAS CON UN EJEMPLO?. 
+Las variaciones teóricas anteriores consideradas en la generación no solo modifican la seccion eficaz inclusiva de cada proceso. Al alterar la distribución en momento de los partones iniciales y la probabilidad de emitir radiación adicional, cambian también la cinemática de los sucesos, y con ella, la fracción de los que supera la selección. Este efecto en la aceptancia es independiente del cambio de sección eficaz, y por tanto, se evalúa por separado.
 
-Como resultado se tienen tres fuentes adicionales, una por cada tipo de variación QUE TRES TIPOS DE VARIACIONES? CUALES SON LAS QUE MODIFICAN LA DISTRIBUCION DE CADA PROCESO? AQUI SE MENCIONAN DOS NO? NO ENTIENDO LO DEL PARTON SHOWER AQUI, que modifican la distribución de cada proceso intervalo a intervalo y se asignan al Drell--Yan, al $t\bar{t}$, a los procesos de un único bosón de Higgs y a la señal POR QUÉ SOLO A ESTAS?. Las asociadas a las distribuciones de partones resultan ser despreciables y las de las escalas CUANDO SE HA INTRODUCIDO LO DE LAS ESCALAS? se mantienen en torno al 1\%, mientras que las de la lluvia de partones son las mayores de las tres. ESTE PARRAFO HACE REFERENCIA SOLO A LA ACCEPTANCE O A LAS TRES SUBSUBSECTIONS? 
+De esta manera, a las escalas de renormalización y factorización y al conjunto de distribuciones de partones se añade aquí una tercera fuente, la variación de los parámetros que gobiernan la simulación de la lluvia de partones, la cual no aparecía en el apartado anterior porque se aplica sobre sucesos ya generados y no altera su número total, i.e., la sección eficaz total. Sí que modifica, en cambio, el número y la dureza de los jets adicionales y, en consecuencia, la categoría en la que acaba cada suceso.
 
-REVISAR DESDE AQUI (REESCRIBIR) - ENVIAR A EVALUAR LO ANTERIOR
+Para cada proceso y cada categoría se recalcula la aceptancia bajo ccada variación como el cociente entre el número de sucesos seleccionado y el número de sucesos generados. De este modo, el cambio de la sección eficaz inclusiva - ya contabilizado en el apartado anterior - se cancela en el cociente y no se contabiliza dos veces.
 
 
-CON QUÉ PARRAFO ME DECIAS DE CERRAR ESTA SUBSECTION?
+Como resultado se tienen tres fuentes de incertidumbre en la aceptancia, una por cada tipo de variación, que se evalúan en cada intervalo de la distribución que después se ajusta, de manera que pueden modificar su forma y no solo el rendimiento total de la categoría. Se calculan para el Drell--Yan, el $t\bar{t}$, los procesos de un único bosón de Higgs y la señal; para el resto de los fondos simulados, agrupados en una contribución minoritaria, su efecto es despreciable frente a la incertidumbre de su propia normalización. De las tres, la asociada a las distribuciones de partones resulta despreciable, la de las escalas se mantiene en torno al 1\% y la de la lluvia de partones es la mayor.\\
+
+%que modifica la distribución de cada proceso, y que son las escalas de renormalización y factorización y las distribuciones de partones que ya aparecían como fuente de incertidumbre para la sección eficaz inclusiva, con el añadido de los parámetros de la lluvia de partones. Éstas se asignan a los procesos que contribuyen en cada categoría, y se evalúan intervalo a intervalo. Las asociadas a las distribuciones de partones resultan ser despreciables y las de las escalas se mantienen en torno al 1\%, mientras que las de la lluvia de partones son las mayores de las tres.\\
+
+
+
+
+Las incertidumbres de la luminosidad, de las secciones eficaces y de las fracciones de desintegración multiplican por igual a todos los sucesos del proceso al que afectan. Al ajuste se incorporan simplemente declarando el tamaño de la variación permitida, reescalando la distribución nominal. Las de aceptancia, en cambio, afectan de manera distinta a cada intervalo, y de ellas sí se construye una distribución por cada sentido de la variación, que se obtienen reponderando los sucesos simulados con los pesos que el generador proporciona para cada variación, sin repetir la reconstrucción.
+
+
+%sin repetir la reconstrucción, ya que ninguna de las tres altera la energía ni la dirección de los objetos reconstruidos.
 
 
 \subsection{Uncertainties in the object-level corrections}
 
-Las correcciones a nivel de objeto de la Sección \ref{subsec:bbtt_object_corrections} se aplican por igual a todos los procesos simulados, incluida la señal, de modo que sus incertidumbres afectan a toda la parte de la predicción que procede de la simulación. 
+Las correcciones a nivel de objeto de la Sección \ref{subsec:bbtt_object_corrections} se aplican por igual a todos los procesos simulados, incluida la señal, de modo que sus incertidumbres afectan a toda la parte de la predicción que procede de la simulación. La mayor parte de ellas se toman de las recomendaciones centrales de CMS, y con ellas las incertidumbres que proporcionan los grupos responsables de cada objeto.
+
+Las componentes que no proceden de ninguna recomendación central llevan una incertidumbre evaluada junto con la propia medida. En el caso del camino QuadJet de 2024, a la incertidumbre de la medida se añade la falta de cierre del $15\%$ observada en la validación de la factorización. Los factores de identificación de los candidatos del canal $b\tau_h\tau_h$ llevan igualmente una incertidumbre independiente. Y en el etiquetado de jets de $b$ la llevan las dos componentes derivadas internamente: las eficiencias de etiquetado medidas en la simulación, con las que en 2024 los factores de escala de \textsc{UParT} por puntos de trabajo se traducen en un peso por suceso, y la calibración dedicada de los jets de radio grande mal identificados como candidatos $H\to b\bar{b}$. \textcolor{red}{[CONFIRMAR lo del QuadJet]}
+
+Para cada una de estas fuentes se construyen dos distribuciones alternativas a la nominal, desplazando la corrección correspondiente una desviación estándar hacia arriba y otra hacia abajo. La manera de obtenerlas depende de la naturaleza de la corrección. Cuando esta es un peso --- los factores de escala de disparo, reconstrucción, identificación, aislamiento y etiquetado ---, basta con volver a rellenar los mismos histogramas con el peso desplazado. Cuando modifica la energía o el momento de los objetos --- las escalas y resoluciones de energía de jets, electrones y $\tau_h$ ---, el propio suceso puede migrar entre categorías y cambiar las variables de entrada del discriminante final, de modo que es necesario repetir toda la cadena de análisis con la corrección desplazada; en estos casos la variación se propaga además de forma coherente a $p_T^\text{miss}$. Ninguna de estas correcciones es igual para todos los sucesos, de modo que las dos maneras modifican tanto la normalización como la forma de las distribuciones. La diferencia entre ellas no está, por tanto, en el tipo de efecto que producen sobre la predicción, sino en el trabajo necesario para construir las distribuciones desplazadas.
+
+
+
 Para cada fuente se construyen dos distributiones alternativas a la nominal, desplazando la corrección correspondiente una desviación estándar hacia arriba y otra hacia abajo. Según la naturaleza de cada correción, estas distribuciones se obtienen de diferente manera. Así, cuando la corrección es un peso --- los factores de escala de disparo, reconstrucción, identificación, aislamiento y etiquetado ---, basta con rellenar de nuevo los mismos histogramas con el peso desplazado, de forma que se modifica tanto la normalización como la foma de las distribuciones. Cuando la corrección modifica la energía o el momento de los objetos --- las escalas y resoluciones de energía de jets, electrones y $\tau_h$ ---, el propio suceso puede migrar entre categorías y cambiar las variables de entrada del discriminante final, de modo que es necesario repetir toda la cadena de análisis con la corrección desplazada. En estos casos, la variación se propaga también de forma cooherente a $p_T^\text{miss}$.\\ 
 
-La mayor parte de estas correcciones se toman de las recomendaciones centrales de CMS, y con ellas las incertidumbres que proporcionan los grupos responsables de cada objeto. 
-Las componentes que no proceden de ninguna recomendación central llevan una incertidumbre evaluada junto con la propia medida. En el caso del camino QuadJet de 2024, a la incertidumbre de la medida se añade la falta de cierre del $15\%$ observada en la validación de la factorización. Los factores de identificación de los candidatos del canal $b\tau_h\tau_h$ llevan igualmente una incertidumbre independiente. Y en el etiquetado de jets de $b$ la llevan las dos componentes derivadas internamente: las eficiencias de etiquetado medidas en la simulación, con las que en 2024 los factores de escala de \textsc{UParT} por puntos de trabajo se traducen en un peso por suceso, y la calibración dedicada de los jets de radio grande mal identificados como candidatos $H\to b\bar{b}$. \textcolor{red}{[CONFIRMAR lo del QuadJet]}
+
 
 La Tabla \ref{tab:object_systematics} recoge cada una de estas incertidumbres, en el mismo orden en que se han presentado las correcciones, indicando en qué se descompone cada una, de dónde procede y de cuál de las dos maneras anteriores se propaga.
 
-
-
-
-
 \begin{table}[tbp]
 \centering
-\begin{minipage}{\textwidth}
-\centering
 \small
-\begin{tabular}{llll}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lp{4.2cm}ll@{}}
 \toprule
-Correction & Components & Source & Propagation \\
+Correction & Components & Source & Propagated as \\
 \midrule
-Pile-up reweighting$^{*}$               & 1                                        & central            & weight       \\
-Trigger efficiency                      & one per separately measured component     & central, in-analysis & weight     \\
-Muon identification and isolation       & 2                                        & central            & weight       \\
-Electron reconstruction                 & 2, below and above $20$ GeV              & central            & weight       \\
-Electron identification                 & 1                                        & central            & weight       \\
-Electron energy scale and resolution    & 2                                        & central            & energy shift \\
-$\tau_h$ identification                 & against jets, electrons, and muons        & central, in-analysis & weight     \\
-$\tau_h$ energy scale                   & period dependent                          & central            & energy shift \\
-Jet energy scale                        & several, one per calibration step         & central            & energy shift \\
-Jet energy resolution                   & 1                                        & central            & energy shift \\
-$b$ tagging of small-radius jets        & algorithm dependent, per period           & central, in-analysis & weight     \\
-Tagging of the large-radius jet         & 2                                        & central, in-analysis & weight     \\
+Pile-up reweighting\tablefootnote{The pile-up profile in data is inferred from the
+instantaneous luminosity of each bunch crossing and from the inelastic proton-proton
+cross section. The uncertainty in the reweighting is dominated by that of the latter,
+and is evaluated by varying its value by $4.6\%$, in accordance with its measurement
+at $13$ TeV \cite{CMS-inelastic-13TeV}, and recomputing the simulation weights with
+each of the two resulting profiles.}
+                                     & 1                                     & central & event weight  \\
+Trigger efficiency                   & one per separately measured component & both    & event weight  \\
+Muon identification and isolation    & 2                                     & central & event weight  \\
+Electron reconstruction              & 2, below and above $20$ GeV           & central & event weight  \\
+Electron identification              & 1                                     & central & event weight  \\
+Electron energy scale and resolution & 2                                     & central & object energy \\
+$\tau_h$ identification              & against jets, electrons, and muons    & both    & event weight  \\
+$\tau_h$ energy scale                & period dependent                      & central & object energy \\
+Jet energy scale                     & several, one per calibration step     & central & object energy \\
+Jet energy resolution                & 1                                     & central & object energy \\
+$b$ tagging of small-radius jets     & algorithm and period dependent        & both    & event weight  \\
+Tagging of the large-radius jet      & 2                                     & both    & object energy \\
 \bottomrule
 \end{tabular}
-
-\vspace{2mm}
-\footnotesize
-$^{*}$ La distribución del número de interacciones en los datos se infiere a partir de la luminosidad instantánea de cada cruce de haces y de la sección eficaz inelástica
-protón-protón. La incertidumbre de la reponderación está dominada por la de esta última, y se evalúa variando su valor en un $4.4\%$, de acuerdo con su medida a $13$ TeV
-\cite{CMS-inelastic-13TeV}, y recalculando los pesos de la simulación con cada una de las dos distribuciones resultantes.
-\end{minipage}
 \caption[Uncertainties in the object-level corrections]{%
     Sources of uncertainty associated with the object-level corrections described in
-    Section \ref{subsec:bbtt_object_corrections}. The \textit{source} column distinguishes
-    the uncertainties provided with the central CMS recommendations from those derived
-    within the analysis, and the \textit{propagation} column indicates how the shifted
-    distributions are built.\textcolor{red}{ARREGLAR PORQUE NO CABE EN LOS MARGENES; REVISAR LA QUE NOTACIÓN DE PROPAGATION SEA CONOCIDA (NO ME SUENA DE LEER LA DISTINCION WEIGHT / ENERGY SHIFT. PONER UN FOOTNOTE NORMAL, NO SOLO DE LA TABLA, ESTOY BASTANTE SEGURA QUE SE PUEDE, AUNQUE HAYA QUE AÑADIR ALGUNA LIBRERIA}}
+    Section \ref{subsec:bbtt_object_corrections}. The \textit{source} column indicates
+    whether the uncertainty is provided with the central CMS recommendations, derived
+    within the analysis, or both, when a centrally recommended calibration is
+    complemented by a component measured here. The last column indicates whether the
+    shifted distributions are obtained by refilling the histograms with a shifted event
+    weight or by shifting the energy of the objects and repeating the analysis chain.}
 \label{tab:object_systematics}
 \end{table}
+
 
 
 
@@ -1104,7 +1121,7 @@ protón-protón. La incertidumbre de la reponderación está dominada por la de 
 
 
 
-
+REVISAR DESDE AQUI (REESCRIBIR) 
 
 
 
