@@ -982,18 +982,34 @@ Cada uno de los elementos que componen la predicción descrita en las secciones 
 Las subsecciones que siguen recorren estas fuentes agrupadas según la parte de la predicción a la que afectan, y su reparto entre las tres familias se recupera en la Sección \ref{sec:bbtt_results} al examinar su impacto sobre el resultado final. Todas ellas se incorporan al ajuste estadístico como parámetros de estorbo, que pueden modificar solo la normalización del proceso afectado o también la forma de sus distribuciones. El tratamiento de estos parámetros en la función de verosimilitud se describe en la Sección \ref{sec:bbtt_statistics}.
 
 \subsection{Luminosity and theoretical uncertainties}
-PAS INCOMPLETO: el código incluye además incertidumbres de aceptancia a partir de los pesos de PDF y de escala del generador (CMS\_pdfWeight, CMS\_scaleWeight), que afectan también a la forma. El PAS no las menciona. Decidir si esta subsección pasa a llamarse ``Normalization and theoretical uncertainties'' para acogerlas.]}
-\cite{Karlberg:2024zxx} → \cite{LHCHWG-xsec-13p6TeV}
-\cite{Manzoni:2023qaz} → \cite{bbH-modelling}
+%
+Como se introdujo en la Sección \ref{sec:???}\textcolor{red}{casi seguro que esa formula va en alguna de los capitulos de introducción....} EN CUALQUIER CASO, SI NO PONGO LA FORMULA ANTES, DEBERÍA PONERLA AQUI... REVISAR SI ESTÁ PUESTA EN EL CAPITULO II, el número de sucesos con el que cada proceso simulado entra en la predicción viene dado por el producto de la luminosidad integrada, de la sección eficaz de producción, de las fracciones de desintegración de los bosones de Higgs involucrados y de la aceptancia, entendida como la fracción de sucesos generados que sobrevive a la selección. Los tres primeros escalan el rendimiento del proceso sin alterar la forma de sus distribuciones, mientras que el último depende de la cinemática de los sucesos y sí puede modificarla. AQUI ESTOY INTRODUCIENDO SI ES WEIGHT O ENERGY SHIFT ANTES QUE EN LAS PER OBJECT UNCERTAINTIES.... NO? Estos factores se corresponden por tanto con fuentes de incertidumbre independientes de la corrección aplicada a la simulación, y afectan a todos los procesos tomados de la simulación. 
+
+\subsubsection{Integrated luminosity} 
+%
+La luminosidad integrada registrada en cada periodo se conoce con una precisión del 1.4\% en 2022 \cite{CMS-PAS-LUM-22-001}, del 1.3\% en 2023 \cite{CMS-DP-2024-068} y del 1.7\% en 2024 \cite{CMS-DP-2026-003}. Las tres medidas comparten parte de las fuentes sistemáticas de la calibración de la escala absoluta mediante barridos de van der Meer y de su extrapolación a las condiciones de toma de datos, por lo que no son independientes entre sí. Esa correlación parcial se implementa descomponiendo la incertidumbre en tres componentes, una común a los tres años, otra común a 2023 y 2024 y otra exclusiva de 2024, cada una de las cuales entra en el ajuste como un único parámetro compartido por los periodos a los que afecta. ES NECESARIO TANTO DETALLE, QUE HACEN OTRAS TESIS?
 
 
-Como se introdujo en la Sección \ref{sec:???}\textcolor{red}{casi seguro que esa formula va en alguna de los capitulos de introducción....}, el número de sucesos con el que cada proceso simulado entra en la predicción viene dado por el producto de la luminosidad integrada, de la sección eficaz de producción, de las fracciones de desintegración de los bosones de Higgs involucrados y de la aceptancia, entendida como la fracción de sucesos generados que sobrevive a la selección.
 
-El número de sucesos con el que cada proceso simulado entra en la predicción es el producto de la luminosidad integrada, de la sección eficaz de producción, de las fracciones de desintegración de los bosones de Higgs involucrados y de la aceptancia, entendida como la fracción de sucesos generados que sobrevive a la selección. Ninguno de esos cuatro factores procede de una corrección aplicada a la simulación, y de ahí que sus incertidumbres se traten aquí y no en las subsecciones que siguen: los tres primeros escalan el rendimiento del proceso sin alterar la forma de sus distribuciones, mientras que el último depende de la cinemática de los sucesos y sí puede modificarla. Todas ellas afectan únicamente a los procesos tomados de la simulación, pues la estimación de los jets mal identificados de la Sección \ref{sec:bbtt_ff} se normaliza directamente a los datos.
+\subsubsection{Cross sections and branching fractions} 
+Las secciones eficaces utilizadas para normalizar las muestras simuladas son cálculos hechos a orden fijo, y cuya incertidumbre se evalúa variando las diferentes entradas del cálculo: las escalas de renormalización y factorización, el conjunto de distribuciones de partones y el valor de $\alpha_s$. 
+
+Para la produccion de pares de bosones de Higgs por fusión de gluones, la variación de las escalas QUE ESCALAS?, combinada con la ambigüedad en el esquema de masa del quark top, asciende a $^{+6}_{-23}\%$ \cite{Grazzini:2018bsd,Baglio:2020wgt}, mientras que la elección del conjunto de distribuciones de partones y el valor de $\alpha_s$ contribuyen conjuntamente un 2.3\%. En la producción por fusión de bosones vectoriales las mismas fuentes dan lugar a variaciones del 0.05\% y del 2.7\%, respectivamente \cite{Dreyer:2018qbw,Dreyer:2020xaj}. Puesto que la variación de las escalas depende del valor que tome $\kappa_\lambda$, es necesario reevaluarla al interpretar el resultado en las diferentes hipótesis.
+
+Para los fondos simulados se emplean las incertidumbres recomendadas para cada proceso, que van del 0.5 al 6\% \cite{LHCHWG-xsec-13p6TeV}, con dos excepciones: el Drell--Yan, cuya normalización no procede de su sección eficaz teórica sino de la corrección derivada de los datos descrita en la Sección \ref{sec:bbtt_corrections}, y la producción de un bosón de Higgs en asociación con un par $b\bar{b}$, cuyo modelado está afectado por una incertidumbre mucho mayor \cite{bbH-modelling}. PERO NO PONGO DE CUANTO, NO?
+
+Por último, las fracciones de desintegración $H\to b\bar{b}$ y $H\to\tau\tau$ se conocen con una precisión del $^{+1.2}_{-1.3}\%$ y del $^{+1.7}_{-1.6}\%$ \cite{deFlorian:2016spz}, y su incertidumbre se asigna a todos los procesos, señal incluida, en los que interviene al menos un bosón de Higgs.
+
+\subsubsection{Acceptance} 
+%
+La fracción de los sucesos que sobrevive a la selección está asimismo modificada por las variaciones que determinan la incertidumbre de las secciones eficaces, puesto que estas variaciones modifican también la cinemática de los sucesos. Este efecto es independiente del anterior y en consecuencia se trata por separado, incluyendo además las variaciones de los parámetros que gobiernan la lluvia de partones SE PUEDE EXPLICAR ESTO UN POCO MEJOR?. Para cada proceso y cada categoría se recalcula la aceptancia bajo cada variación como el cociente entre el número de sucesos seleccionados y el número de sucesos generados, de manera que el cambio de la sección eficaz inclusiva se cancela en el cociente y no se contabiliza dos veces CREO QUE ESTÁ BIEN EXPLICADO EN EL TEXTO PERO YO AHORA MISMO NO LO ENTIENDO, ME LO EXPLICAS CON UN EJEMPLO?. 
+
+Como resultado se tienen tres fuentes adicionales, una por cada tipo de variación QUE TRES TIPOS DE VARIACIONES? CUALES SON LAS QUE MODIFICAN LA DISTRIBUCION DE CADA PROCESO? AQUI SE MENCIONAN DOS NO? NO ENTIENDO LO DEL PARTON SHOWER AQUI, que modifican la distribución de cada proceso intervalo a intervalo y se asignan al Drell--Yan, al $t\bar{t}$, a los procesos de un único bosón de Higgs y a la señal POR QUÉ SOLO A ESTAS?. Las asociadas a las distribuciones de partones resultan ser despreciables y las de las escalas CUANDO SE HA INTRODUCIDO LO DE LAS ESCALAS? se mantienen en torno al 1\%, mientras que las de la lluvia de partones son las mayores de las tres. ESTE PARRAFO HACE REFERENCIA SOLO A LA ACCEPTANCE O A LAS TRES SUBSUBSECTIONS? 
+
+REVISAR DESDE AQUI (REESCRIBIR) - ENVIAR A EVALUAR LO ANTERIOR
 
 
-Las mismas variaciones de las escalas de renormalización y factorización y del conjunto de PDF que determinan la incertidumbre de las secciones eficaces alteran también la cinemática de los sucesos, y con ella la fracción que supera la selección y el intervalo de la distribución final en el que cae. Este segundo efecto se evalúa por separado a partir de los pesos que el generador proporciona para cada variación: para cada proceso, categoría, canal y periodo se calcula la aceptancia de cada intervalo como el cociente entre el número de sucesos que lo pueblan y la suma inclusiva de pesos generados antes de la categorización, y la variación relativa de ese cociente respecto al valor nominal define la incertidumbre, tomando la envolvente de las variaciones disponibles de cada fuente. Al normalizar por la suma inclusiva de pesos, el efecto sobre la sección eficaz total se cancela, de modo que solo queda el cambio de aceptancia y no hay doble contabilidad con la incertidumbre de normalización. Las dos fuentes se mantienen como parámetros independientes.
-
+CON QUÉ PARRAFO ME DECIAS DE CERRAR ESTA SUBSECTION?
 
 
 \subsection{Uncertainties in the object-level corrections}
@@ -1121,6 +1137,11 @@ Con las incertidumbres definidas, la predicción queda completa no solo en su va
 
 
 
+QUIZAS AL FINAL UNA TABLA CON LAS INCERTIDUMBRES ORDENADAS POR LAS MAS GRANDES? QUE NO ES LO MISMO QUE EL PULL AND IMPACT, PERO ESTA RELACIONADO DE ALGUNA FORMA? ES RELEVANTE PONER UNA TABLA ORDENANDO LAS INCERTIDUMBRES? O UN DIAGRAMA DE QUESITOS O ALGO ASÍ MAS COOL... QUIZAS CUANDO TERMINE LA SECCION, A MODO DE CONCLUSION
+
+\
+
+
 REVISAR TODA ESTA SECCION UNA VEZ TENGA LO ANTERIOR ESCRITO
 \section{Pre-fit distributions}
 \label{sec:bbtt_controlplots}
@@ -1246,9 +1267,10 @@ Puesto que ninguna de las variables discrimina por separado, la extracción de s
 % State that residual discrepancies are covered by the systematics and absorbed
 % by the fit -- do not leave the reader to wonder.
 % -> code: scripts/make_CR_plots_*.sh, Category("FFvalidation_CR")
-
+ANTES DE CONTINUAR, COMO HE IDO CAMBIANDO TANTO EL ESQUEMA NECESITO REVISAR QUE TODO EL FLUJO TENGA SENTIDO Y NO ME HAYA DEJADO NADA VIEJO O SACADO DE CONTEXTO
 \section{Signal extraction}
 \label{sec:bbtt_extraction}
+
 
 \subsection{The DNN discriminants}
 % Two classifiers: one targeting qqHH (used in the VBF category) and one targeting
@@ -1270,39 +1292,11 @@ Puesto que ninguna de las variables discrimina por separado, la extracción de s
 % until all constraints are met.
 % -> code: config/binning_config.py
 
-\section{Systematic uncertainties}
-\label{sec:bbtt_systematics}
-% -> code: add_systematics() l.1898, get_norm_systematics() l.3327
 
-\subsection{Experimental uncertainties}
-% Luminosity (1.4 / 1.3 / 1.7% in 2022/23/24, partially correlated); pileup (4.6%);
-% trigger; lepton ID and isolation; tau_h ID and energy scale (four uncorrelated
-% decay modes); b tagging (heavy/light contamination plus statistical components);
-% JES/JER; electron energy scale and resolution.
 
-\subsection{Theoretical uncertainties}
-% ggHH: combined scale + top-mass scheme +6/-23%, PDF 1.5%, alpha_s 1.7%.
-% qqHH: scale +0.05/-0.03%, PDF+alpha_s 2.7%.
-% B(H->bb) +1.2/-1.3%, B(H->tautau) +1.7/-1.6%. bbH normalisation 100%.
-% Background cross sections 0.5-6%.
 
-\subsection{Uncertainties on the data-driven estimate}
-% FFs re-evaluated under tau_h, electron and jet energy scale variations -- found
-% subdominant except for ttbar. Simplified envelopes: 20% at 20 GeV rising to 100%
-% at 200 GeV for ttbar, 1% to 5% over the same range for W+jets and QCD multijet.
-% Garwood 95% CL intervals for the template-region statistics, propagated to the SR
-% with an average FF per DNN bin.
 
-\subsection{Statistical uncertainties of the simulated samples}
-% Barlow--Beeston bin-by-bin treatment.
-
-\subsection{Impact on the measurement}
-% Table 2 of the PAS: fake factors 25%, b tagging 10%, leptons and triggers 9%,
-% JEC 7%, other experimental 3%; statistical 74% overall with 35% from bin-by-bin;
-% theory 31% (HH), 27% (single-H), 14% (background).
-% The headline conclusion: the measurement is still statistically dominated.
-
-\section{Statistical procedure}
+section{Statistical procedure}
 \label{sec:bbtt_statistics}
 
 
@@ -1465,3 +1459,4 @@ result does not yet include the 2024 data-taking period.}
 % - The impact of the Chapter \ref{ch:taggers} algorithms on this result -- this is
 %   where the thesis closes its own loop.
 % - Outlook: remaining Run-3 luminosity, then HL-LHC.
+SE ME HACE UN CAPITULO MUY LARGO (HAY 14 SECCIONES...) SE PUEDE SEPARAR EN VARIOS CAPITULOS? HACIENDOLO UNA "PARTE". ALGO COMO LO QUE TIENE JAIME? TENDRÍA SENTIDO ESA SEPARACION?
