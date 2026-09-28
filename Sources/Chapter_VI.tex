@@ -1119,8 +1119,6 @@ Tagging of the large-radius jet      & 2                                     & b
 
 
 
-REVISAR DESDE AQUI (REESCRIBIR) 
-
 
 
 \subsection{Uncertainties in the process-specific corrections}
@@ -1157,19 +1155,20 @@ Las dos primeras fuentes se propagan como pesos, puesto que el \textit{fake fact
 
 
 \subsection{Statistical uncertainties of the simulated samples}
-
-\textcolor{red}{[POR ESCRIBIR. PAS y código: tratamiento bin a bin con el método de Barlow--Beeston (autoMCStats), en cada intervalo de las distribuciones finales (remisión a la Sección \ref{sec:bbtt_extraction}). Enlazar con el \textit{rebinning} adaptativo, cuyas condiciones limitan precisamente esta incertidumbre.]}
-
-
-Con las incertidumbres definidas, la predicción queda completa no solo en su valor central, sino también en su precisión. La sección siguiente la compara con los datos observados antes de cualquier ajuste, junto con la banda de incertidumbre que resulta de las fuentes descritas aquí.
-
-\textcolor{red}{[PENDIENTE: las simplificaciones aplicadas a las plantillas de forma en el ajuste (simetrización de JES/JER y de parte del etiquetado de $b$; pile-up de los fondos como incertidumbre de normalización con un mínimo del 2\%) solo están descritas en el AN. Verificarlas en el código antes de incluirlas en la sección estadística, junto con la Figura 102.]}
+%
+Cada proceso tomado de la simulación se construye a partir de un número finito de sucesos generados, de manera que el contenido de cada intervalo de la distribución que se ajusta es una estimación sujeta a fluctuación estadística. Esta incertidumbre requiere por tanto un tratamiento diferente al de las anteriores, donde se deja libre la predicción de cada intervalo dentro de su propia incertidumbre estadística, restringida por un término que da cuenta del número de sucesos simulados que la originaron. Este es el procedimiento de Barlow y Beeston \cite{Barlow:1993dm}, y equivale a añadir al ajuste tantos parámetros como intervalos tiene la distribución. La limitación estadística de la estimación de los jets mal identificados, que no procede de la simulación, se ha descrito ya en la subsección anterior.\\\\
 
 
 
-QUIZAS AL FINAL UNA TABLA CON LAS INCERTIDUMBRES ORDENADAS POR LAS MAS GRANDES? QUE NO ES LO MISMO QUE EL PULL AND IMPACT, PERO ESTA RELACIONADO DE ALGUNA FORMA? ES RELEVANTE PONER UNA TABLA ORDENANDO LAS INCERTIDUMBRES? O UN DIAGRAMA DE QUESITOS O ALGO ASÍ MAS COOL... QUIZAS CUANDO TERMINE LA SECCION, A MODO DE CONCLUSION
 
-\
+
+
+Se han recogido así todas las fuentes de incertidumbre que afectan a la predicción. Cómo se incorporan al ajuste y qué correlación se les asigna entre categorías y periodos de toma de datos son cuestiones que corresponden a la Sección \ref{sec:bbtt_statistics}. Así mismo, el peso de cada una de ellas sobre la medida solo puede responderse una vez hecho el ajuste, y se examina en la Sección \ref{sec:bbtt_results}.
+
+
+Con ellas la predicción queda completa, y solo entonces puede confrontarse con los datos en los términos adecuados. Esa es la comprobación que ocupa la Sección \ref{sec:bbtt_controlplots}, donde la banda que acompaña a la predicción en sus figuras es la combinación de las fuentes que se acaban de describir, de manera que se juzga tanto si las correcciones de la Sección \ref{sec:bbtt_corrections} y la estimación de la Sección \ref{sec:bbtt_ff} reproducen lo observado, como si lo hacen dentro del margen que se les ha atribuido.
+
+
 
 
 REVISAR TODA ESTA SECCION UNA VEZ TENGA LO ANTERIOR ESCRITO
