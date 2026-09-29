@@ -1,14 +1,246 @@
-% =====================================================================
-% Chapter VII is now EMPTY on purpose.
+
+FALTARIA HACER CLARA LA DISTINCION ENTRE LOS DOS CAPITULOS EN SU SITIO CORRESPONDIENTE
+\chapter{Results and combination with the Run-2 data set}
+\label{ch:bbtt_results}
+
+
+
+\section{Statistical procedure}
+\label{sec:bbtt_statistics}
+
+
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{lllc}
+\toprule
+Source & Affected processes & Type & Correlation across periods \\
+\midrule
+Integrated luminosity                     & simulated              & normalization & partial \\
+Signal cross section                      & signal                 & normalization & full    \\
+Background cross sections                 & simulated              & normalization & full    \\
+Branching fractions                       & with a Higgs boson     & normalization & full    \\
+$b\bar{b}H$ normalization                 & $b\bar{b}H$            & normalization & full    \\
+\midrule
+Pile-up reweighting                       & simulated              & shape & full    \\
+Trigger efficiency                        & simulated              & shape & none    \\
+Muon and electron identification and isolation & simulated         & shape & full    \\
+Electron energy scale and resolution      & simulated              & shape & full    \\
+$\tau_h$ identification                   & simulated              & shape & mixed   \\
+$\tau_h$ energy scale                     & simulated              & shape & none    \\
+Jet energy scale                          & simulated              & shape & mixed   \\
+Jet energy resolution                     & simulated              & shape & none    \\
+$b$ tagging                               & simulated              & shape & mixed   \\
+Acceptance (QCD scale and PDF)            & simulated              & shape & full    \\
+\midrule
+Drell--Yan correction, fit                & Drell--Yan             & shape & full    \\
+Drell--Yan correction, statistical        & Drell--Yan             & shape & none    \\
+Top quark $p_T$ reweighting               & $t\bar{t}$             & shape & full    \\
+\midrule
+Fake factor envelopes                     & \textit{fakes}         & shape & full    \\
+Fake factor statistics                    & \textit{fakes}         & shape & none    \\
+Template region statistics                & \textit{fakes}         & shape & none    \\
+\midrule
+Size of the simulated samples             & simulated              & shape & none    \\
+\bottomrule
+\end{tabular}
+\caption[Summary of the systematic uncertainties]{%
+    Summary of the sources of systematic uncertainty considered in the analysis, with the
+    processes they affect, whether they modify only the normalization or also the shape of
+    the distributions, and their correlation across data-taking periods.}
+\label{tab:systematics_summary}
+\end{table}
+
+
+% Placed before the results, as in Jaime's thesis, so the results section can be
+% read without interruption.
+
+\subsection{The likelihood model}
+% Binned maximum-likelihood fit over the 10 SRs x 5 data-taking periods,
+% performed simultaneously. COMBINE / RooFit / RooStats.
+% -> code: LimitsArea/, scripts/NBAtoInferenceDatacardsParser.py
+
+\subsection{Observed and expected limits}
+% Profile likelihood ratio test statistic; asymptotic modified frequentist CLs.
+% Parameters of interest: mu, sigma(HH), or the coupling modifiers.
+
+\subsection{Nuisance parameters}
+% Normalisation vs shape uncertainties; correlation scheme across periods
+% and across processes.
+
+\section{Results}
+\label{sec:bbtt_results}
+
+\subsection{Post-fit distributions}
+% DNN scores in the 10 SRs after the fit; show 2024 as the representative period
+% (largest L_int), noting the others behave similarly.
+
+\subsection{Signal strength and significance}
+% mu = 2.6 +2.1 -1.7 ; observed (expected) significance 1.5 (0.7) sigma.
+% No significant excess over the background-only hypothesis.
+
+\subsection{Upper limits on the HH production cross section}
+% Per category and combined:
+%   inclusive ggHH+qqHH : 6.6 (3.9) x SM   -- resolved 2b drives it
+%   qqHH only           : 81 (85)  x SM    -- VBF category drives it
+% Per-year breakdown (Table 3): 2022 -> 17 (11), 2023 -> 8 (11), 2024 -> 8.3 (4.4).
+% Explain why 2024 dominates: luminosity, new triggers, UParT.
+
+\subsection{Constraints on the Higgs boson couplings}
+%   -4.1 < kappa_lambda < 11.2  (expected -2.2 < kappa_lambda < 9.2)
+%   -0.2 < kappa_2V < 2.3       (expected -0.2 < kappa_2V < 2.4)
+
+\section{Combination with the Run-2 data set}
+\label{sec:bbtt_combination}
+% (3) RUN 2 ENTERS HERE, at datacard level.
+
+\subsection{Combination procedure}
+% Combined with the published Run-2 search in the same final state
+% \cite{CMS-HIG-20-010}: 138/fb at 13 TeV -> 310/fb in total.
+% - Some Run-2 theory uncertainties were updated after publication (an extra
+%   uncertainty on heavy-flavour associated single-H production), so the standalone
+%   Run-2 result differs slightly from the published one -- say this explicitly.
+% - Correlation scheme: theory uncertainties (branching ratios, PDF, alpha_s,
+%   scales, and notably the joint QCD+m_top uncertainty in ggHH) correlated across
+%   Runs; all experimental uncertainties uncorrelated, because detector conditions
+%   and calibrations differ.
+% - The likelihood is the union of all binned shapes from both analyses; the
+%   coupling parametrisation follows the same matrix-inversion method in both.
+
+\subsection{Combined results}
+% mu = 0.9 +1.6 -1.4 ; observed (expected) significance 0.7 (0.8) sigma.
+%   inclusive : 4.0 (3.0) x SM   [Run 2 alone 3.5 (5.3) ; Run 3 alone 6.6 (3.9)]
+%   qqHH only : 62 (70)  x SM
+%   -2.5 < kappa_lambda < 9.4  (expected -1.5 < kappa_lambda < 8.4)
+%   0.02 < kappa_2V < 2.1      (expected -0.1 < kappa_2V < 2.2)
+% 2D exclusion in the kappa_2V - kappa_lambda plane, best fit at (7.1, 0.6).
+% Worth a comment: Run 3 observed is weaker than expected while Run 2 is stronger
+% than expected -- explain how the two combine rather than leaving it unremarked.
+
+\section{Comparison with other HH searches}
+\label{sec:bbtt_comparison}
+% Borrowed from Jaime (his Sec. 5.5), and it earns its place.
+% CMS Run-2 combination 3.4 (2.5); ATLAS 2.9 (2.4); ATLAS+CMS 2.5 (1.7 / 2.8);
+% ATLAS bbtautau with 196/fb -> 5.3 (2.4 / 2.8). Where bbtautau sits among
+% bbgammagamma, bbbb and bbWW.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{llccccl}
+\toprule
+ & Dataset & $\mathcal{L}$ [fb$^{-1}$] & Obs. & Exp. & Exp.$^{\dagger}$ & Source \\
+\midrule
+\multirow{3}{*}{CMS}
+  & Run 2 (2016--2018)         & 138 & 3.5 & 5.3 & 5.30 & \cite{CMS-PAS-HIG-25-008} \\
+  & Run 3 (2022--2024)         & 172 & 6.6 & 3.9 & 4.35 & \cite{CMS-PAS-HIG-25-008} \\
+  & Run 2 + Run 3              & 310 & 4.0 & 3.0 & 4.50 & \cite{CMS-PAS-HIG-25-008} \\
+\midrule
+\multirow{4}{*}{ATLAS}
+  & Run 2, original            & 140 & 5.9 & 3.3 & 3.32 & \cite{ATLAS-HH-bbtautau-Run2} \\
+  & Run 2, reanalysed          & 140 & 5.4 & 2.6 & 2.62 & \cite{ATLAS-HH-bbtautau-Run3} \\
+  & Run 3 (2022--2023)         &  56 & 7.9 & 4.3 & 2.74 & \cite{ATLAS-HH-bbtautau-Run3} \\
+  & Run 2 + Run 3              & 196 & 5.3 & 2.4 & 2.86 & \cite{ATLAS-HH-bbtautau-Run3} \\
+\bottomrule
+\end{tabular}
+\caption[Comparison of CMS and ATLAS upper limits in HH $\to$ bb$\tau\tau$]{%
+Observed and expected 95\% CL upper limits on the inclusive HH production cross
+section relative to the SM prediction, in the bb$\tau\tau$ final state. Expected
+limits are quoted under the background-only ($\mu = 0$) hypothesis. The CMS
+entries are the inclusive ggHH\,$+$\,qqHH limits of Table~3 of
+Ref.~\cite{CMS-PAS-HIG-25-008}; the ATLAS Run~3 entries are those of Table~4 of
+Ref.~\cite{ATLAS-HH-bbtautau-Run3}, where ``reanalysed'' denotes the same Run~2
+dataset processed with the improved Run~3 analysis, to be compared with the
+originally published result of Ref.~\cite{ATLAS-HH-bbtautau-Run2}.
+$^{\dagger}$Expected limit rescaled to a common integrated luminosity of
+138~fb$^{-1}$ as $\mu\sqrt{\mathcal{L}/138~\mathrm{fb}^{-1}}$, i.e.\ assuming
+purely statistical scaling; this column is derived here and is not quoted in the
+references. Note that the two Run~3 datasets are not equivalent, as the ATLAS
+result does not yet include the 2024 data-taking period.}
+\label{tab:hh_bbtautau_limits}
+\end{table}
+
+\section{Summary and outlook}
+\label{sec:bbtt_summary}
+% Each of the reference theses closes its analysis chapter with a summary.
+% - What was measured and with what sensitivity.
+% - What limits it now: statistically dominated (74%), fake factors the leading
+%   experimental systematic (25%).
+% - The impact of the Chapter \ref{ch:taggers} algorithms on this result -- this is
+%   where the thesis closes its own loop.
+% - Outlook: remaining Run-3 luminosity, then HL-LHC.
+SE ME HACE UN CAPITULO MUY LARGO (HAY 14 SECCIONES...) SE PUEDE SEPARAR EN VARIOS CAPITULOS? HACIENDOLO UNA "PARTE". ALGO COMO LO QUE TIENE JAIME? TENDRÍA SENTIDO ESA SEPARACION?
+
+
+\chapter{Results and combination with the Run-2 data set}
+\label{ch:bbtt_results_chapter}
+% Entradilla: recuperar el hilo del capítulo anterior en dos o tres frases.
+% Construida la predicción, comprobada frente a los datos y definido el
+% discriminante, queda someterlo al contraste estadístico y extraer la medida.
+
+
+\section{The statistical model of the search}
+\label{sec:bbtt_statistics}
+% SOLO lo propio de este análisis. El marco general -- verosimilitud, parámetros
+% de estorbo y sus términos de restricción, cociente de verosimilitudes perfilado,
+% CLs -- está en la Sección \ref{sec:stat_framework} del Capítulo III.
 %
-% Its content (results, combination with Run 2, discussion) has been absorbed
-% into Chapter \ref{ch:bbtt_analysis} -- see Sources/Chapter_VI.tex, sections
-% "Results", "Combination with the Run-2 data set", "Comparison with other HH
-% searches" and "Summary and outlook".
+% 1) El ajuste: binado, de máxima verosimilitud, simultáneo sobre las diez
+%    categorías x cinco periodos = cincuenta regiones de señal (Sección \ref{sec:bbtt_flow}).
+%    Observable en cada una: la salida de la DNN de la Sección \ref{sec:bbtt_extraction},
+%    con el binado adaptativo allí descrito.
+% 2) Parámetro de interés: la intensidad de señal. Para las interpretaciones en
+%    kappa_lambda y kappa_2V, el modelo que parametriza la dependencia de la
+%    sección eficaz y de la cinemática (mismo método de inversión de matriz de
+%    la Sección \ref{sec:bbtt_samples}).
+% 3) Los parámetros de estorbo y su correlación: aquí va la Tabla
+%    \ref{tab:systematics_summary}, que ahora está en el Capítulo VI.
+%    Correlación entre periodos, y descorrelación por categoría y canal de
+%    CMS_FF_stat y CMS_FF_template_stat.
+% 4) La estadística de las muestras simuladas: el párrafo de autoMCStats
+%    (umbral de diez sucesos efectivos, un parámetro por intervalo compartido
+%    por encima y uno por proceso por debajo, n_eff = (sum w)^2 / sum w^2).
+% -> code: LimitsArea/, scripts/NBAtoInferenceDatacardsParser.py,
+%    config/run3_base_config.py (alias, syst_runPeriod_tag),
+%    LimitsArea/scripts/SymmetriseAndSmoothShapes.py (renombrado de nuisances)
 %
-% PENDING DECISION: if the merged layout is kept, delete the line
-%     \include{Sources/Chapter_VII}
-% from Thesis.tex (l. 223) and remove this file. If instead the results are split
-% back out into their own chapter, recover the previous outline from git:
-%     git show HEAD:Sources/Chapter_VII.tex
-% =====================================================================
+% MOVER AQUÍ la Tabla tab:systematics_summary desde el Capítulo VI.
+
+
+\section{Results}
+\label{sec:bbtt_results}
+
+\subsection{Post-fit distributions}
+
+\subsection{Signal strength and significance}
+
+\subsection{Impact of the systematic uncertainties}
+\label{subsec:bbtt_impacts}
+% Prometido desde la entradilla de las sistemáticas (Cap. VI, l. 984).
+% - Desglose por familia: Tabla 2 del PAS. Estadística total 74%; fake factors 25%;
+%   etiquetado de b 10%; leptones y disparo 9%; energía de jets 7%; otras 3%;
+%   teóricas HH 31%, single-H 27%, fondos 14%; variaciones intervalo a intervalo 35%.
+%   Decir que se combinan en cuadratura y que por eso no suman 100%.
+% - Pull and impact: ordena parámetros individuales por Delta(mu); complementa
+%   la tabla, que ordena familias enteras.
+% -> code: LimitsArea/scripts/run_syst_breakdown.sh (grupos theoHH, theoH,
+%    theoAcc, theoB y las rgx por objeto)
+
+\subsection{Upper limits on the HH production cross section}
+
+\subsection{Constraints on the Higgs boson couplings}
+
+
+\section{Combination with the Run-2 data set}
+\label{sec:bbtt_combination}
+
+\subsection{Combination procedure}
+
+\subsection{Combined results}
+
+
+\section{Comparison with other HH searches}
+\label{sec:bbtt_comparison}
+
+
+\section{Summary and outlook}
+\label{sec:bbtt_summary}

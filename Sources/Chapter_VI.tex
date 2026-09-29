@@ -978,67 +978,62 @@ The prediction of the background in each signal region has been described. While
 
 
 \section{Systematic uncertainties}
+\label{sec:bbtt_systematics}
 %
-Cada uno de los elementos que componen la predicción descrita en las secciones anteriores lleva asociada una incertidumbre, y las fuentes que de ahí resultan son de tres naturalezas distintas. Las teóricas reflejan el conocimiento limitado de las secciones eficaces y de las fracciones de desintegración con las que se normalizan las muestras simuladas, así como el efecto que esas mismas variaciones tienen sobre la fracción de sucesos que sobrevive a la selección. Las experimentales proceden de la medida de la luminosidad integrada y de la calibración de los objetos reconstruidos: las correcciones a nivel de objeto y de proceso de la Sección \ref{sec:bbtt_corrections} se conocen con una precisión limitada, y a ellas se suman las que afectan a la estimación de los jets mal identificados de la Sección \ref{sec:bbtt_ff}, que depende de la calibración de los objetos con los que se definen sus regiones. Las estadísticas, por último, reflejan el número finito de sucesos disponibles, tanto en las muestras simuladas como en las regiones empleadas para esa estimación.
+Each element that comprises the prediction described in the previous sections is associated with uncertainty, and the resulting sources of uncertainty fall into three distinct categories. Theoretical uncertainties reflect the limited knowledge of the cross sections and branching fractions used to normalize the simulated samples, as well as the effect that these same variations have on the fraction of events that survive selection. Experimental uncertainties stem from the measurement of the integrated luminosity and the calibration of the reconstructed objects: the object- and process-level corrections in Section \ref{sec:bbtt_corrections} are known with limited precision, and these are further compounded by corrections affecting the estimation of misidentified jets in Section \ref{sec:bbtt_ff}, which depends on the calibration of the objects used to define their regions. Finally, the statistics reflect the finite number of available events, both in the simulated samples and in the regions used for that estimation.
 
-Las subsecciones que siguen recorren estas fuentes agrupadas según la parte de la predicción a la que afectan, y su reparto entre las tres familias se recupera en la Sección \ref{sec:bbtt_results} al examinar su impacto sobre el resultado final. Todas ellas se incorporan al ajuste estadístico como parámetros de estorbo, que pueden modificar solo la normalización del proceso afectado o también la forma de sus distribuciones. El tratamiento de estos parámetros en la función de verosimilitud se describe en la Sección \ref{sec:bbtt_statistics}.
-
+The following subsections review these sources, which are grouped according to the part of the prediction they affect, and their distribution among the three families is discussed in Section \ref{sec:bbtt_results} when examining their impact on the final result. All of them are incorporated into the statistical model as nuisance parameters, which can modify either only the normalization of the affected process or also the shape of its distributions. The treatment of these parameters in the likelihood function is described in Section \ref{sec:stat_framework}\textcolor{red}{tengo que escribir esa seccion y ver si la referencio aqui, mi idea es que vaya en el capitulo II}.
 
 \subsection{Luminosity and theoretical uncertainties}
 %
-Como se introdujo en la Sección \ref{sec:???lumi}, el número de sucesos con el que cada proceso simulado entra en la predicción viene dado por el producto de la luminosidad integrada, de la sección eficaz de producción, de las fracciones de desintegración de los bosones de Higgs involucrados y de la aceptancia, entendida como la fracción de sucesos generados que sobrevive a la selección. Los tres primeros escalan el rendimiento del proceso sin alterar la forma de sus distribuciones, mientras que el último depende de la cinemática de los sucesos y sí puede modificarla. Estos factores se corresponden por tanto con fuentes de incertidumbre independientes de la corrección aplicada a la simulación, y afectan a todos los procesos tomados de la simulación. 
+As introduced in Section \ref{sec:???lumi}, the number of events that each simulated process contributes to the prediction is given by the product of the integrated luminosity, the production cross section, the decay branching fractions of the Higgs bosons involved, and the acceptance defined as the fraction of generated events that survive the selection. The first three factors scale the yield of the process without altering the shape of its distributions, while the last factor depends on the kinematics of the events and can modify it. Therefore, these factors correspond to sources of uncertainty independent of the correction applied to the simulation, and they affect all processes derived from the simulation.
 
 \subsubsection{Integrated luminosity} 
 %
-La luminosidad integrada de cada año se obtiene a partir de barridos de van der Meer y de la estabilidad de la respuesta de los detectores empleados para monitorizarla, y se conoce con una precisión del 1.4\% en 2022 \cite{CMS-PAS-LUM-22-001}, del 1.3\% en 2023 \cite{CMS-DP-2024-068} y del 1.7\% en 2024 \cite{CMS-DP-2026-003}. Puesto que las tres medidas comparten parte de sus fuentes sistemáticas, sus incertidumbres están parcialmente correlacionadas entre sí. Al ser la luminosidad el factor con el que se normalizan todas las muestras simuladas, esta incertidumbre se aplica a la señal y a todos los fondos tomados de la simulación, pero no a la estimación de los jets mal identificados de la Sección \ref{sec:bbtt_ff}, que se obtiene directamente de los datos.
-
+The integrated luminosity for each year is derived from van der Meer scans and the stability of the response of the detectors used to monitor it, and is known to an accuracy of 1.4\% in 2022 \cite{CMS-PAS-LUM-22-001}, 1.3\% in 2023 \cite{CMS-DP-2024-068}, and 1.7\% in 2024 \cite{CMS-DP-2026-003}. Since these measurements share some systematic sources of uncertainty, the uncertainties are partially correlated with one another. Because luminosity is the factor by which all simulated samples are normalized, this uncertainty applies to the signal and to all backgrounds taken from the simulation, but not to the estimate of misidentified jets in Section \ref{sec:bbtt_ff}, which is obtained directly from the data.
 
 \subsubsection{Cross sections and branching fractions} 
-Las secciones eficaces utilizadas para normalizar las muestras simuladas son cálculos hechos a orden fijo, y cuya incertidumbre se evalúa variando las diferentes entradas del cálculo: las escalas de renormalización y factorización, el conjunto de distribuciones de partones y el valor de $\alpha_s$. 
+The cross sections used to normalize the simulated samples are fixed-order calculations, and their uncertainty is evaluated by varying the different inputs to the calculation: the renormalization and factorization scales, the set of parton distributions, and the value of $\alpha_s$.\\
 
 
-Para la producción de pares de bosones de Higgs por fusión de gluones, la variación de las escalas de renormalización y factorización, combinada con la ambigüedad en el esquema de masa del quark top, asciende a $^{+6}_{-23}\%$ \cite{Grazzini:2018bsd,Baglio:2020wgt}, mientras que la elección del conjunto de distribuciones de partones y el valor de $\alpha_s$ contribuyen conjuntamente un 2.3\%. En la producción por fusión de bosones vectoriales las mismas fuentes dan lugar a variaciones del 0.05\% y del 2.7\%, respectivamente \cite{Dreyer:2018qbw,Dreyer:2020xaj}. Puesto que la variación de las escalas depende del valor que tome $\kappa_\lambda$, es necesario reevaluarla al interpretar el resultado en las diferentes hipótesis.
+Regarding the production of Higgs boson pairs via gluon fusion, the variation in renormalization and factorization scales, combined with the ambiguity in the top quark mass scheme, amounts to $^{+6}_{-23}\%$ \cite{Grazzini:2018bsd,Baglio:2020wgt}, while the choice of the set of parton distributions and the value of $\alpha_s$ together contribute 2.3\%. In production via vector boson fusion, the same sources result in variations of 0.05\% and 2.7\%, respectively \cite{Dreyer:2018qbw,Dreyer:2020xaj}. Given that the variation in the scales is contingent on the value of $\kappa_\lambda$, it is necessary to reevaluate it when interpreting the result under different assumptions.\\
 
 
-Para los fondos simulados se emplean las incertidumbres recomendadas para cada proceso, que van del 0.5 al 6\% \cite{LHCHWG-xsec-13p6TeV}, con dos excepciones: el Drell--Yan, cuya normalización no procede de su sección eficaz teórica sino de la corrección derivada de los datos descrita en la Sección \ref{sec:bbtt_corrections}, y la producción de un bosón de Higgs en asociación con un par $b\bar{b}$, cuyo modelado está afectado por una incertidumbre mucho mayor \cite{bbH-modelling} y a la que se asigna un 100\% sobre la normalización de los procesos que la continene \textcolor{red}{revisar/explicar por qué}
+For the simulated backgrounds, the recommended uncertainties for each process are used, ranging from 0.5 to 6\% \cite{LHCHWG-xsec-13p6TeV}, with two exceptions: the Drell–Yan process, whose normalization is not derived from its theoretical cross section but from the correction described in Section \ref{sec:bbtt_corrections}; and the production of a Higgs boson in association with a $b\bar{b}$ pair, which is subject to a much larger uncertainty, as its modeling is not well-established. A 100\% uncertainty is assigned on the normalization of the processes containing it. \textcolor{red}{explicar por qué}\\
 
-
-Por último, las fracciones de desintegración $H\to b\bar{b}$ y $H\to\tau\tau$ se conocen con una precisión del $^{+1.2}_{-1.3}\%$ y del $^{+1.7}_{-1.6}\%$ \cite{deFlorian:2016spz}, y su incertidumbre se asigna a todos los procesos, señal incluida, en los que interviene al menos un bosón de Higgs.
+Finally, the $H\to b\bar{b}$ and $H\to\tau\tau$ decay branching fractions are known with a precision of $^{+1.2}_{-1.3}\%$ and $^{+1.7}_ {-1.6}\%$ \cite{deFlorian:2016spz}, and their uncertainty is assigned to all processes.
 
 
 \subsubsection{Acceptance} 
 %
-Las variaciones teóricas anteriores consideradas en la generación no solo modifican la seccion eficaz inclusiva de cada proceso. Al alterar la distribución en momento de los partones iniciales y la probabilidad de emitir radiación adicional, cambian también la cinemática de los sucesos, y con ella, la fracción de los que supera la selección. Este efecto en la aceptancia es independiente del cambio de sección eficaz, y por tanto, se evalúa por separado.
+The theoretical variations considered above in the production process do not merely modify the inclusive cross section of each process. By altering the momentum distribution of the initial partons and the probability of emitting additional radiation, they also change the kinematics of the events and, consequently, the fraction of events that satisfy the selection criteria. This effect on the acceptance is independent of the change in the cross section and is therefore evaluated separately.
 
-De esta manera, a las escalas de renormalización y factorización y al conjunto de distribuciones de partones se añade aquí una tercera fuente, la variación de los parámetros que gobiernan la simulación de la lluvia de partones, la cual no aparecía en el apartado anterior porque se aplica sobre sucesos ya generados y no altera su número total, i.e., la sección eficaz total. Sí que modifica, en cambio, el número y la dureza de los jets adicionales y, en consecuencia, la categoría en la que acaba cada suceso.
+Accordingly, in addition to the renormalization and factorization scales and the set of parton distributions, a third source is introduced here: the variation in the parameters governing the parton shower simulation. This source was not mentioned in the previous section because it is applied to events that have already been generated and does not alter their total number, i.e., the total cross section. However, it does modify the number and hardness of the additional jets, and thereby affects the category into which each event is ultimately classified.
 
-Para cada proceso y cada categoría se recalcula la aceptancia bajo ccada variación como el cociente entre el número de sucesos seleccionado y el número de sucesos generados. De este modo, el cambio de la sección eficaz inclusiva - ya contabilizado en el apartado anterior - se cancela en el cociente y no se contabiliza dos veces.
+For each process and each category, the acceptance under each variation is recalculated as the ratio of the number of selected events to the number of generated events. In this way, the change in the inclusive cross section, which was previously accounted for in the previous section, is canceled out in the ratio and is not counted twice.
 
+As a result, there are three sources of uncertainty in the acceptance — one for each type of variation — which are evaluated at each interval of the distribution that is subsequently adjusted, such that they can modify the shape of the distribution and not just the total yield of the category. These are calculated for the Drell–Yan process, $t\bar{t}$, single Higgs boson processes, and the signal. For the rest of the simulated backgrounds, grouped together as a minor contribution, their effect is negligible compared to the uncertainty in their own normalization. Of the three, the one associated with parton distributions is negligible, the one associated with scales remains around 1\%, and the one associated with the parton shower is the largest.\\ 
 
-Como resultado se tienen tres fuentes de incertidumbre en la aceptancia, una por cada tipo de variación, que se evalúan en cada intervalo de la distribución que después se ajusta, de manera que pueden modificar su forma y no solo el rendimiento total de la categoría. Se calculan para el Drell--Yan, el $t\bar{t}$, los procesos de un único bosón de Higgs y la señal; para el resto de los fondos simulados, agrupados en una contribución minoritaria, su efecto es despreciable frente a la incertidumbre de su propia normalización. De las tres, la asociada a las distribuciones de partones resulta despreciable, la de las escalas se mantiene en torno al 1\% y la de la lluvia de partones es la mayor.\\
 
 %que modifica la distribución de cada proceso, y que son las escalas de renormalización y factorización y las distribuciones de partones que ya aparecían como fuente de incertidumbre para la sección eficaz inclusiva, con el añadido de los parámetros de la lluvia de partones. Éstas se asignan a los procesos que contribuyen en cada categoría, y se evalúan intervalo a intervalo. Las asociadas a las distribuciones de partones resultan ser despreciables y las de las escalas se mantienen en torno al 1\%, mientras que las de la lluvia de partones son las mayores de las tres.\\
 
 
-
-
-Las incertidumbres de la luminosidad, de las secciones eficaces y de las fracciones de desintegración multiplican por igual a todos los sucesos del proceso al que afectan. Al ajuste se incorporan simplemente declarando el tamaño de la variación permitida, reescalando la distribución nominal. Las de aceptancia, en cambio, afectan de manera distinta a cada intervalo, y de ellas sí se construye una distribución por cada sentido de la variación, que se obtienen reponderando los sucesos simulados con los pesos que el generador proporciona para cada variación, sin repetir la reconstrucción.
-
+Uncertainties in luminosity, cross sections, and decay fractions multiply all events in the process they affect by the same factor. They are incorporated into the fit simply by specifying the allowed range of variation and rescaling the nominal distribution. Acceptance limits, on the other hand, affect each interval differently, and a distribution is constructed for each direction of variation by reweighting the simulated events with the weights provided by the generator for each variation, without repeating the reconstruction.
 
 %sin repetir la reconstrucción, ya que ninguna de las tres altera la energía ni la dirección de los objetos reconstruidos.
 
 
 \subsection{Uncertainties in the object-level corrections}
-
-Las correcciones a nivel de objeto de la Sección \ref{subsec:bbtt_object_corrections} se aplican por igual a todos los procesos simulados, incluida la señal, de modo que sus incertidumbres afectan a toda la parte de la predicción que procede de la simulación. La mayor parte de ellas se toman de las recomendaciones centrales de CMS, y con ellas las incertidumbres que proporcionan los grupos responsables de cada objeto.
-
-Las componentes que no proceden de ninguna recomendación central llevan una incertidumbre evaluada junto con la propia medida. En el caso del camino QuadJet de 2024, a la incertidumbre de la medida se añade la falta de cierre del $15\%$ observada en la validación de la factorización. Los factores de identificación de los candidatos del canal $b\tau_h\tau_h$ llevan igualmente una incertidumbre independiente. Y en el etiquetado de jets de $b$ la llevan las dos componentes derivadas internamente: las eficiencias de etiquetado medidas en la simulación, con las que en 2024 los factores de escala de \textsc{UParT} por puntos de trabajo se traducen en un peso por suceso, y la calibración dedicada de los jets de radio grande mal identificados como candidatos $H\to b\bar{b}$. \textcolor{red}{[CONFIRMAR lo del QuadJet]}
-
-Para cada una de estas fuentes se construyen dos distribuciones alternativas a la nominal, desplazando la corrección correspondiente una desviación estándar hacia arriba y otra hacia abajo. La manera de obtenerlas depende de la naturaleza de la corrección. Cuando esta es un peso --- los factores de escala de disparo, reconstrucción, identificación, aislamiento y etiquetado ---, basta con volver a rellenar los mismos histogramas con el peso desplazado. Cuando modifica la energía o el momento de los objetos --- las escalas y resoluciones de energía de jets, electrones y $\tau_h$ ---, el propio suceso puede migrar entre categorías y cambiar las variables de entrada del discriminante final, de modo que es necesario repetir toda la cadena de análisis con la corrección desplazada; en estos casos la variación se propaga además de forma coherente a $p_T^\text{miss}$. Ninguna de estas correcciones es igual para todos los sucesos, de modo que las dos maneras modifican tanto la normalización como la forma de las distribuciones.\\ 
+%
+The object-level corrections in Section \ref{subsec:bbtt_object_corrections} are applied equally to all simulated processes, including the signal, so that their uncertainties affect the entire part of the prediction derived from the simulation. The majority of these corrections are taken from the CMS central recommendations, along with the uncertainties provided by the groups responsible for each object.
 
 
+Components that do not stem from any central recommendation are accompanied by an uncertainty estimated along with the measurement itself. In the case of the 2024 QuadJet path, the $15\%$ lack of closure observed in the factorization validation is added to the measurement uncertainty. The identification factors for the $b\tau_h\tau_h$ channel candidates also carry an independent uncertainty. And in the tagging of $b$-jets, uncertainty is associated with the two components derived internally: the tagging efficiencies measured in the simulation — which, in 2024, translate the \textsc{UParT} scaling factors by working points into a weight per event — and the dedicated calibration of large-radius jets misidentified as $H\to b\bar{b}$ candidates.\textcolor{red}{[CONFIRMAR lo del QuadJet]}\\
 
-La Tabla \ref{tab:object_systematics} recoge cada una de estas incertidumbres, en el mismo orden en que se han presentado las correcciones, indicando en qué se descompone cada una, de dónde procede y de cuál de las dos maneras anteriores se propaga.
+For each of these sources, two alternative distributions are constructed in addition to the nominal one by shifting the corresponding correction by one standard deviation upward and another downward. The method for obtaining them depends on the nature of the correction. When the correction is a weight — such as the scale factors for triggering, reconstruction, identification, isolation, and tagging — it suffices to refill the same histograms with the shifted weight. When it modifies the energy or momentum of the objects — the energy scales and resolutions of jets, electrons, and $\tau_h$ — the event itself may migrate between categories and change the input variables of the final discriminator, so it is necessary to repeat the entire analysis chain with the shifted correction. In these cases, the variation also propagates coherently to $p_T^\text{miss}$. None of these corrections is the same for all events, so both methods modify both the normalization and the shape of the distributions.\\
+
+
+Table \ref{tab:object_systematics} lists each of these uncertainties in the same order in which the corrections were presented, providing a detailed breakdown of each uncertainty, indicating its origin and the method employed to propagate it.
 
 \begin{table}[tbp]
 \centering
@@ -1070,12 +1065,7 @@ Tagging of the large-radius jet      & 2                                     & b
 \end{tabular}
 \caption[Uncertainties in the object-level corrections]{%
     Sources of uncertainty associated with the object-level corrections described in
-    Section \ref{subsec:bbtt_object_corrections}. The \textit{source} column indicates
-    whether the uncertainty is provided with the central CMS recommendations, derived
-    within the analysis, or both, when a centrally recommended calibration is
-    complemented by a component measured here. The last column indicates whether the
-    shifted distributions are obtained by refilling the histograms with a shifted event
-    weight or by shifting the energy of the objects and repeating the analysis chain.}
+    Section \ref{subsec:bbtt_object_corrections}.}
 \label{tab:object_systematics}
 \end{table}
 
@@ -1123,95 +1113,82 @@ Tagging of the large-radius jet      & 2                                     & b
 
 \subsection{Uncertainties in the process-specific corrections}
 %
-Las incertidumbres asociadas a las correcciones a los dos fondos dominantes de la Sección \ref{subsec:bbtt_process_corrections} se evalúan dentro del propio análisis, ya que ninguna procede de una recomendación central, y ambas se propagan como pesos.\\
+The uncertainties associated with the corrections to the two dominant backgrounds in Section \ref{subsec:bbtt_process_corrections} are evaluated within the analysis itself, since neither stems from a central recommendation, and both are propagated as weights.\\
+
 
 %Sus incertidumbres se evalúan por tanto dentro del propio análisis, y ambas se propagan como pesos, puesto que ambas correcciones lo son.
+The Drell–Yan correction is the product of two factors, each of which contributes its own sources of uncertainty. The first factor is the fit of the ratio between the data and the simulation as a function of the $p_T$ of the pair of muons, and gives rise to the uncertainty in its free parameters. Rather than treating each parameter separately, they are grouped according to the fitting regime to which they belong, resulting in two independent sources — one associated with the Gaussian regime and the other with the linear regime. To construct each of these, the transition point resulting from the nominal fit is taken, and the content of the intervals falling within the regime under consideration is shifted by $1.5$ times its statistical uncertainty, both upward and downward. The fit is repeated while leaving the intervals of the other regime unchanged. The functions obtained in this way define the two variations and correspond to the bands shown in Figure \ref{fig:dy_fit}. \textcolor{red}{explicar mejor esto, a mi no me queda muy claro asi..}
 
-La corrección del Drell--Yan es el producto de dos factores, y cada uno aporta sus propias fuentes. Del primero, el ajuste de la razón entre los datos y la simulación en función del $p_T$ del par de muones, procede la incertidumbre de sus parámetros libres. En lugar de tratar cada parámetro por separado, estos se agrupan según el régimen del ajuste al que pertenecen, de modo que resultan dos fuentes independientes entre sí, una asociada al régimen gaussiano y otra al lineal. Para construir cada una de ellas se toma el punto de transición resultante del ajuste nominal, se desplaza el contenido de los intervalos que caen en el régimen considerado en $1.5$ veces su incertidumbre estadística, hacia arriba y hacia abajo, y se repite el ajuste dejando inalterados los intervalos del otro régimen. Las funciones así obtenidas definen las dos variaciones, y son las bandas que muestra la Figura \ref{fig:dy_fit}.
+The second factor is the additional normalization, measured over five intervals of the number of central jets, $n_\text{jets} = 2, 3, 4, 5, \geq 6$, and three intervals of the number of jets tagged as originating from a $b$-quark, $n_{b\,\text{jets}} = 0, 1, \geq 2$. This gives rise to the statistical uncertainty of the measurement itself, grouped into three independent sources — one for each interval of $n_{b\,\text{jets}}$ — and within each source, the five intervals of $n_\text{jets}$ shift collectively.\\
 
-El segundo factor es la normalización adicional, medida en cinco intervalos del número de jets centrales, $n_\text{jets} = 2, 3, 4, 5, \geq 6$, y tres del número de jets etiquetados como procedentes de un quark $b$, $n_{b\,\text{jets}} = 0, 1, \geq 2$. De él procede la incertidumbre estadística de la propia medida, agrupada en tres fuentes independientes, una por cada intervalo de $n_{b\,\text{jets}}$, y dentro de cada una, los cinco intervalos de $n_\text{jets}$ se desplazan de manera conjunta.\\
-
-
-La corrección del $p_T$ del quark top, en cambio, no es una medida sino un cálculo, y no se dispone de ninguna estimación independiente de su exactitud. Se le asigna por ello una incertidumbre igual a la magnitud de la propia corrección: la variación hacia arriba se obtiene aplicando el factor dos veces y la variación hacia abajo prescindiendo de él por completo, de manera que el peso nominal queda a medio camino entre ambas. Esta incertidumbre afecta solo a las muestras de producción de pares de quarks top, y no a las de producción individual, que no llevan la corrección.
-
-
+On the other hand, the correction to the $p_T$ of the top quark is not a measurement but a calculation, and there is no independent estimate of its accuracy. It is therefore assigned an uncertainty equal to the magnitude of the correction itself. The upward variation is obtained by applying the factor twice, and the downward variation by disregarding it entirely, so that the nominal value lies midway between the two. This uncertainty affects only the top quark pair production samples, and not the single-quark production samples, which do not carry the correction.
 
 
 \subsection{Uncertainties in the jet$\to\tau_h$ estimate}
 %
+Since the estimate in Section \ref{sec:bbtt_ff} does originate from the simulation, none of the above uncertainties apply to it. Rather, as previously noted, these uncertainties stem from the calibration of the objects used to define their regions — which is incorporated into the values of the measured factors — and from the finite number of events in the regions on which the method is measured and applied.
 
+The so-called \textit{fake factors} are obtained by counting events in regions bounded by cuts on reconstructed objects, such that a variation in the calibration of those objects shifts the measured value. To quantify this, the factors are derived again by shifting the scales and energy resolutions of the $\tau_h$, electrons, and jets — that is, under the same energy variations listed in Table \ref{tab:object_systematics}. The effect is found to be smaller than the statistical uncertainty of the method itself, except for the $t\bar{t}$ component. Instead of including a source for each of these variations, a simplified envelope is therefore adopted for each process, which grows linearly with the $p_T$ of the candidate: from $20\%$ at $20$ GeV to $100\% $ to $200$ GeV for $t\bar{t}$, and from $1\%$ to $5\%$ in that same range for $W$+jets and for multi-jet QCD. The three shift together and constitute a single source.
 
-La estimación de la Sección \ref{sec:bbtt_ff} no procede de la simulación, de modo que no le corresponde ninguna de las incertidumbres anteriores, sino que proceden, como ya se anticipó, de la calibración de los objetos con los que se definen sus regiones, que entra en el valor de los factores medidos, y del número finito de sucesos de las regiones sobre las que el método se mide y se aplica.
+Additionally, the three \textit{fake factors} and the fractions with which they are combined in Equation \ref{eq:fake_factor} are measured over a finite number of events in the auxiliary regions. The resulting statistical uncertainty propagates by shifting the factors and fractions in a consistent manner, which constitutes a second source.
 
-Los \textit{fake factors} se obtienen contando sucesos en regiones delimitadas por cortes sobre objetos reconstruidos, de manera que una variación en la calibración de esos objetos desplaza el valor que se mide. Para cuantificarlo, los factores se vuelven a derivar desplazando las escalas y las resoluciones de energía de los $\tau_h$, de los electrones y de los jets, es decir, bajo las mismas variaciones de energía recogidas en la Tabla \ref{tab:object_systematics}. El efecto resulta ser menor que el de la incertidumbre estadística del propio método, salvo para la componente de $t\bar{t}$. En lugar de arrastrar una fuente por cada una de esas variaciones, se adopta por ello una envolvente simplificada para cada proceso, que crece linealmente con el $p_T$ del candidato: del $20\%$ a $20$ GeV al $100\%$ a $200$ GeV para $t\bar{t}$, y del $1\%$ al $5\%$ en ese mismo rango para $W$+jets y para multi-jet QCD. Las tres se desplazan de manera conjunta y constituyen una única fuente.
+Finally, the statistics for the template region determine the number of events to be extrapolated. The prediction in each interval of the final distribution is derived as the product of the number of events observed in the template and the average \textit{fake factor} for that interval. These counts are frequently just a few events, or even zero, which is a regime in which the Gaussian approximation does not describe the Poisson distribution and in which an empty interval would be assigned zero uncertainty. Therefore, the Garwood interval \cite{Garwood:1936} at the $95\%$ confidence level is used\footnote{A $95\%$ confidence interval overestimates the statistical uncertainty of the template region by approximately a factor of two. This choice is deliberately conservative, as this is the first application of this method in the search.}, which respects the asymmetry of the distribution and is also defined for zero counts, and is applied to the prediction by multiplying it by that same average factor.\\
 
-Por otro lado, los tres \textit{fake factors} y las fracciones con las que se combinan en la Ecuación \ref{eq:fake_factor} se miden sobre un número finito de sucesos en las regiones auxiliares, por lo que la incertidumbre estadística resultante se propaga desplazando factores y fracciones de manera coherente, lo que da una segunda fuente.
-
-Finalmente, la estadística de la región plantilla fija cuántos sucesos hay que extrapolar. La predicción en cada intervalo de la distribución final es el producto del número de sucesos observados en la plantilla por el \textit{fake factor} medio de ese intervalo, y esos recuentos son con frecuencia de unos pocos sucesos, o incluso nulos, un régimen en el que la aproximación gaussiana no describe la distribución de Poisson y en el que un intervalo vacío recibiría una incertidumbre nula. Se emplea por ello el intervalo de Garwood \cite{Garwood:1936} al $95\%$ de nivel de confianza\footnote{Un intervalo al $95\%$ de nivel de confianza sobreestima la incertidumbre estadística de la región plantilla en aproximadamente un factor dos. La elección es deliberadamente conservadora, al tratarse de la primera aplicación de este método en la búsqueda.}, que respeta la asimetría de la distribución y está definido también para recuentos nulos, y se traslada a la predicción multiplicándolo por ese mismo factor medio.
-
-Las dos primeras fuentes se propagan como pesos, puesto que el \textit{fake factor} se aplica como tal a los sucesos de la región plantilla. La tercera, en cambio, no se construye suceso a suceso, sino directamente sobre la distribución final, intervalo a intervalo.
-
+The first two sources are propagated as weights, since the \textit{fake factor} is applied as such to the events in the template region. The third, on the other hand, is not constructed event by event, but directly on the final distribution, bin by bin.
 
 
 
 \subsection{Statistical uncertainties of the simulated samples}
 %
-Cada proceso tomado de la simulación se construye a partir de un número finito de sucesos generados, de manera que el contenido de cada intervalo de la distribución que se ajusta es una estimación sujeta a fluctuación estadística. Esta incertidumbre requiere por tanto un tratamiento diferente al de las anteriores, donde se deja libre la predicción de cada intervalo dentro de su propia incertidumbre estadística, restringida por un término que da cuenta del número de sucesos simulados que la originaron. Este es el procedimiento de Barlow y Beeston \cite{Barlow:1993dm}, y equivale a añadir al ajuste tantos parámetros como intervalos tiene la distribución. La limitación estadística de la estimación de los jets mal identificados, que no procede de la simulación, se ha descrito ya en la subsección anterior.\\\\
+Each process derived from the simulation is constructed from a finite number of generated events, so the content of each interval in the distribution being fitted is an estimate that is subject to statistical fluctuation. This uncertainty necessitates a different treatment than in previous cases, where the prediction of each interval is left free within its own statistical uncertainty, constrained by a term that accounts for the number of simulated events that generated it. This is the procedure described by Barlow and Beeston \cite{Barlow:1993dm}, and it is equivalent to adding as many parameters to the fit as there are intervals in the distribution. As previously mentioned, the statistical limitation of the estimate for misidentified jets does not arise from the simulation.\\\\
+
+All sources of uncertainty affecting the prediction have been thoroughly addressed. The manner in which they are incorporated into the fit is described in Section \ref{sec:stat_framework}, and the correlation assigned to them across categories and data collection periods is described in Section \ref{sec:bbtt_statistics}. The weight of each source of uncertainty on the estimate can only be determined once the adjustment has been made, and this is examined in Section \ref{sec:bbtt_results}.\\
+
+One these are in place, the prediction is complete, and can be compared with the data under appropriate conditions. This is the verification described in next Section \ref{sec:bbtt_controlplots}, where the band accompanying the prediction in its figures is the combination of the sources just described. This allows for the assessment of both whether the corrections in Section \ref{sec:bbtt_corrections} and the estimate in Section \ref{sec:bbtt_ff} reproduce the observations, and whether they do so within the margin assigned to them.
 
 
-
-
-
-
-Se han recogido así todas las fuentes de incertidumbre que afectan a la predicción. Cómo se incorporan al ajuste y qué correlación se les asigna entre categorías y periodos de toma de datos son cuestiones que corresponden a la Sección \ref{sec:bbtt_statistics}. Así mismo, el peso de cada una de ellas sobre la medida solo puede responderse una vez hecho el ajuste, y se examina en la Sección \ref{sec:bbtt_results}.
-
-
-Con ellas la predicción queda completa, y solo entonces puede confrontarse con los datos en los términos adecuados. Esa es la comprobación que ocupa la Sección \ref{sec:bbtt_controlplots}, donde la banda que acompaña a la predicción en sus figuras es la combinación de las fuentes que se acaban de describir, de manera que se juzga tanto si las correcciones de la Sección \ref{sec:bbtt_corrections} y la estimación de la Sección \ref{sec:bbtt_ff} reproducen lo observado, como si lo hacen dentro del margen que se les ha atribuido.
-
-
-
-
-REVISAR TODA ESTA SECCION UNA VEZ TENGA LO ANTERIOR ESCRITO
 \section{Pre-fit distributions}
 \label{sec:bbtt_controlplots}
 %
-La Sección \ref{sec:bbtt_flow} ha definido las diez categorías en las que se divide el conjunto de datos de cada periodo, recogidas en la Figura \ref{fig:categories}, y las Secciones \ref{sec:bbtt_corrections} y \ref{sec:bbtt_ff} han completado la predicción del fondo en cada una de ellas, con sus incertidumbres asociadas recogidas en la Sección \ref{sec:bbtt_systematics}. Antes de construir el discriminante final y ajustarlo, es necesario comprobar que la predicción describe los datos observados. Las normalizaciones y las formas son por tanto las que resultan directamente a partir de la simulación corregida y del método de los \textit{fake factors}, y supone por tanto la única comparación en la que un desacuerdo señala directamente un problema en el modelado, y no una limitación del ajuste.
+Section \ref{sec:bbtt_flow} defines the ten categories into which the dataset for each period is divided, as shown in Figure \ref{fig:categories}. The corrections and methods derived within the analysis itself have already been validated  in the respective derivation and validation regions. It remains to be verified that the complete prediction — with all corrections applied simultaneously and using the full selection from the analysis — accurately describes the observed data. Its normalizations and shapes are those that result directly from the corrected simulation and from the \textit{fake factors} method, without any adjustment to the data. This is therefore the only comparison in which a discrepancy indicates a problem in the modeling rather than a limitation of the fit.
 
-La comparación se presenta en dos pasos, uno primero que muestra el acuerdo en regiones de control dominadas por uno solo de los fondos principales, donde la contribución de la señal es despreciable y el acuerdo puede atribuirse sin ambigüedad al proceso que se quiere validar; y en segundo lugar se examinan las propias categorías del análisis, donde el fondo es una mezcla de todos los procesos y donde interesa comprobar que la predicción completa reproduce los datos.
+The comparison is presented in two steps. First, it shows the agreement in control regions dominated by only one of the main backgrounds, where the contribution of the signal is negligible and the agreement can be unambiguously attributed to the process being validated. Second, it examines the categories of the analysis themselves, where the background is a mixture of all processes and where the goal is to verify that the complete prediction reproduces the data.
+
+
 
 \subsection{Control regions}
 %
-Tras haber validado las correcciones derivadas internamente en el análisis en su región de validación, resulta necesario garantizar que la simulación corregida siga describiendo los datos una vez trasladada a las categorías del análisis, con todas las correcciones aplicadas simultáneamente y con la selección completa de las regiones de señal. Es ese el objetivo de la comprobación que se presenta aquí para la produccíon Drell--Yann y la de pares de quarks top, que son los dos fondos dominantes que proceden de la simulación y sobre los que se han aplicado correcciones específicas. El resto de los procesos simulados llevan únicamente las correcciones comunes, y su contribución conjunta, agrupada bajo \textit{Others} en las figuras, es reducida. La contribución de los jets mal identificados, por su parte, no se examina de forma aislada aquí, sino que su comportamiento dentro de las categorías del análisis se observa directamente en las regiones de señal, en la subsección siguiente.
+The two regions of focus here are enriched in the two dominant backgrounds, the Drell–Yan production and the top quark pair production, both originating from the simulation and subject to specific corrections. The remaining simulated processes include only the common corrections, and their combined contribution — grouped under \textit{Others} in the figures — is small. The contribution from misidentified jets is not pertinent to this study, and their behavior within the analysis categories is examined directly in the following subsection.
 
-COMENTARIO:
-el problema está en que para DY la correccion se deriva y se valida dentro del propio analisis, igual para los fakes mientras que para TTbar no; pero sin embargo la division que se hace es simulado: DY + ttbar; vs fakes; y data/MC comprobacion entre simulado, que en uno de los casos se ha validado el método, pero no entre fakes, que tambien se ha validado el meotodo. CONCLUSION: HAY QUE DEJAR BIEN CLARO ANTES QUE LOS METODOS QUE SE DERIVAN DENTRO DEL ANALISIS VAN ACOMPAÑADOS DE SU PROPIA VALIDACION, MIENTRAS QUE LA COMPROBACION DATA/MC EN LAS REGIONES DE SEÑAL SE DEJA PARA DESPUES.
-
-
-Las regiones empleadas para ello son las mismas categorías definidas en la Sección \ref{sec:bbtt_flow}, con idéntica cadena de selección y las mismas correcciones aplicadas, evaluadas en los canales de control $ee$, $\mu\mu$ y $e\mu$ reservados en la asignación de canales. La selección incluye también la carga opuesta del par propia de las regiones de señal; el aislamiento de sus dos miembros, en estos canales formados por leptones ligeros, ya está garantizado en la preselcción. Son, por tanto, ortogonales a las regiones de señal únicamente por su contenido leptónico, de forma que comparten con ellas el espacio de fases en todo lo demás, i.e., las correcciones se comprueban en un entorno cinemáticamente próximo a aquel en el que posteriormente se van a aplicar, pero libre de señal\footnote{La contribución de jets mal identificados no aparece en estas regiones, ya que al estar definidas con dos leptones ligeros, no contienen ningún candidato $\tau_h$ cuya identificación pueda invertirse}.\\
-
-La región enriquecida en Drell--Yan corresponde a la categoría res1b en los canales $ee$ y $\mu\mu$. Adicionalmente, dentro del canal se exige un par de carga opuesta con masa invariante entre 70 y 110 GeV afin de aislar la desintegración del bosón Z, y $p_T^\text{miss} < 45$ GeV para suprimir los procesos con neutrinos en el estado final, principamlente $W$+jets. La selección cinemática es la misma que define la región en la que se deriva la corrección del espectro de $p_T$ del bosón Z, descrita en la Sección \ref{sec:bbtt_corrections}. En cambio, se exige un jet etiquetado al menos, como en la categoría res1b del análisis, y se aplican todas las correcciones simultáneamente.\\
+%COMENTARIO:
+%el problema está en que para DY la correccion se deriva y se valida dentro del propio analisis, igual para los fakes mientras que para TTbar no; pero sin embargo la division que se hace es simulado: DY + ttbar; vs fakes; y data/MC comprobacion entre simulado, que en uno de los casos se ha validado el método, pero no entre fakes, que tambien se ha validado el meotodo. CONCLUSION: HAY QUE DEJAR BIEN CLARO ANTES QUE LOS METODOS QUE SE DERIVAN DENTRO DEL ANALISIS VAN ACOMPAÑADOS DE SU PROPIA VALIDACION, MIENTRAS QUE LA COMPROBACION DATA/MC EN LAS REGIONES DE SEÑAL SE DEJA PARA DESPUES.
 
 
-Para la producción $t\bar{t}$, por otro lado, se emplea la categoría res2b para explotar los dos $b$ jets genuinos producidos por las desintegraciones del par de quarks top aislando el proceso con pureza muy alta. Adicionalmente, se exige un par $e\mu$ de carga opuesta para suprimir además la contribución de Drell--Yan, lo que permite comprobar como describe lo observado la predicción que resulta tras la corrección dedicada.\\
+The regions used for this purpose are the same categories defined in Section \ref{sec:bbtt_flow}, with the identical selection chain and the corresponding corrections applied, evaluated in the control channels $ee$, $\mu\mu$, and $e\mu$ reserved in the channel assignment. The selection also includes the opposite charge of the pair characteristic of the signal regions; the isolation of its two components, in these channels consisting of light leptons, is already guaranteed in the preselection. Therefore, they are orthogonal to the signal regions solely due to their lepton content, such that they share the phase space with them in all other respects. In other words, the corrections are verified in an environment kinematically close to the one in which they will subsequently be applied, but free of signal\footnote{The contribution from misidentified jets does not appear in these regions, since, being defined by two light leptons, they contain no $\tau_h$ candidates whose identification could be reversed}.\\
 
-La Figura \ref{fig:control_regions} muestra la comparación entre los datos y la predicción en ambas regiones, para dos observables que ninguna de las dos correcciones modifica directamente: la separación angular entre los dos leptones en la región enriquecida en Drell--Yan, ajena tanto a la reponderación del espectro de $p_T$ como a la normalización en la multiplicidad de jets, y el $p_T$ del jet de $b$ principal en la región enriquecida en $t\bar{t}$, sobre el que la reponderación de los quarks top actúa de forma indirecta. La predicción reproduce los datos dentro de las incertidumbres en ambos casos.
+The Drell--Yan-enriched region corresponds to the res1b category in the $ee$ and $\mu\mu$ channels, with a pair invariant mass between $70$ and $110$ GeV, in order to isolate the $Z$ boson decay, and $p_T^\text{miss} < 45$ GeV to suppress processes with neutrinos in the final state, primarily $W$+jets. This kinematic selection is equivalent to the one used to derive the correction to the $p_T$ spectrum of the $Z$ boson, as outlined in Section \ref{sec:bbtt_corrections}. The distinction is that, in the previous Section, the multiplicity of tagged jets is a binning variable, whereas here it is part of the selection, since at least one jet tagged as in the res1b category is required. Additionally, here all corrections are simultaneously applied.\\
+
+Regarding the $t\bar{t}$ production, the res2b category is used to exploit the two genuine $b$-jets produced by the decays of the top quark pair, isolating the process with very high purity. Moreover, an $e\mu$ pair with opposite charges is required to further suppress the Drell–Yan contribution, which enables the verification that the prediction resulting from the dedicated correction alignts with the observed data.\\
+
+Figure \ref{fig:control_regions} illustrates a comparison between the data and the prediction in both regions, for two observables sensitive to the corrections, yet neither directly modify them: the angular separation between the two leptons in the Drell-–Yan-enriched region; and the $p_T$ of the leading $b$ jet in the $t\bar{t}$-enriched region. The prediction agrees with the data within the uncertainties in both cases.
 
 \begin{figure}[tbp]
     \centering
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/cr_dy_dRll.pdf}
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/cr_ttbar_bjet1_pt.pdf}
     \caption[Data MC in control regions]{%
-        Comparación entre los datos y la predicción del fondo en las dos regiones de control definidas sobre la simulación, para el periodo de toma de datos de 2022preEE. La separación angular entre los dos leptones en la región enriquecida en Drell--Yann (izquierda) y el $p_T$ del jet de $b$ principal en la región enriquecida en $t\bar{t}$. La etiqueta \textit{signal region} que aparece en los paneles designa la
-        región de carga opuesta y candidatos aislados, no las regiones de señal del
-        análisis. La banda sombreada representa la incertidumbre estadística y
-        sistemática de la predicción.}
+        Comparison of the data and the background prediction in the two control regions defined in the simulation, for the 2022preEE data collection period. The angular separation between the two leptons in the Drell–-Yann-enriched region (left) and the $p_T$ of the leading $b$ jet in the $t\bar{t}$-enriched region. The label \textit{signal region} appearing in the panels refers to the
+        opposite-charge region and isolated candidates, not the signal regions of the
+        analysis. The shaded band represents the statistical and
+        systematic uncertainty of the prediction.}
     \label{fig:control_regions}
 \end{figure}
 
 
-\subsection{Distribuciones en las categorías del análisis}
+\subsection{Distributions in the categories of the analysis}
+%
+Once the corrected simulation of the two dominant backgrounds has been validated, and the closure of the \textit{fake factors} method has been established in Section \ref{sec:bbtt_ff}, the complete prediction is compared with the data in the signal regions themselves. Figures \ref{fig:prefit_mHH} and \ref{fig:prefit_ptHH} show this comparison in the res2b category, which, as will be shown in Section \ref{sec:bbtt_results}, contributes most to the sensitivity of the analysis, for the four channels and for the complete dataset from 2022–2024. Two observables of the $HH$ system are presented: its reconstructed invariant mass, $m_{HH}$, which most directly captures the kinematics of the pair production, and its $p_T$, which reflects the momentum that motivates the definition of the \textit{boosted} topology.
 
-Validada la simulación corregida de los dos fondos dominantes, y establecido en la Sección \ref{sec:bbtt_ff} el cierre del método de los \textit{fake factors}, la predicción completa se compara con los datos en las propias regiones de señal. Las Figuras \ref{fig:prefit_mHH} y \ref{fig:prefit_ptHH} muestran esta comparación en la categoría res2b, que, como se mostrará en la Sección \ref{bbtt_results}, es la que más contribuye a la sensibilidad del análisis, para los cuatro canales y para el conjunto completo de datos de 2022--2024. Se muestran dos observables del sistema $HH$: su masa invariante reconstruida, $m_{HH}$, que recoge de forma más directa la cinemática de la producción del par, y su $p_T$, que refleja el impulso que motiva la definición de la topología \textit{boosted}.
 
 
 \begin{figure}[tbp]
@@ -1220,15 +1197,15 @@ Validada la simulación corregida de los dos fondos dominantes, y establecido en
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/prefit_mHH_mutau.pdf}\\
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/prefit_mHH_tautau.pdf}
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/prefit_mHH_boosted.pdf}
-    \caption[Distribuciones de $m_{HH}$ antes del ajuste en la categoría res2b]{%
-        Distribuciones de la masa reconstruida del candidato $HH$, $m_{HH}$, en la
-        categoría res2b, antes del ajuste a los datos. Se muestran los canales
-        $\tau_e\tau_h$ (arriba a la izquierda), $\tau_\mu\tau_h$ (arriba a la derecha),
-        $\tau_h\tau_h$ (abajo a la izquierda) y $b\tau_h\tau_h$ (abajo a la derecha),
-        para el conjunto completo de datos de 2022--2024. La señal se representa
-        multiplicada por los factores indicados en la leyenda. La banda sombreada
-        representa la incertidumbre estadística y sistemática total de la predicción.
-        Tomada de la Ref.~\cite{CMS-PAS-HIG-25-008}.}
+    \caption[Pre-fit distributions of $m_{HH}$ in the res2b category]{%
+        Distributions of the reconstructed mass of the $HH$ candidate, $m_{HH}$, in the
+        res2b category, prior to fitting the data. The channels shown are       
+        $\tau_e\tau_h$ (top left), $\tau_\mu\tau_h$ (top right),
+        $\tau_h\tau_h$ (bottom left), and $b\tau_h\tau_h$ (bottom right),
+        for the complete 2022–2024 dataset. The signal is plotted
+        multiplied by the factors indicated in the legend. The shaded band
+        represents the total statistical and systematic uncertainty of the prediction.
+        Taken from Ref.~\cite{CMS-PAS-HIG-25-008}..}
     \label{fig:prefit_mHH}
 \end{figure}
 
@@ -1236,49 +1213,17 @@ Validada la simulación corregida de los dos fondos dominantes, y establecido en
     \centering
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/prefit_ptHH_tautau.pdf}
     \includegraphics[width=0.49\linewidth]{figures/chapter_VI/prefit_ptHH_boosted.pdf}
-    \caption[Distribuciones de $p_T^{HH}$ antes del ajuste en la categoría res2b]{%
-        Distribuciones del $p_T$ del candidato $HH$ en los canales $\tau_h\tau_h$
-        (izquierda) y $b\tau_h\tau_h$ (derecha), antes del ajuste a los datos, para el
-        conjunto completo de datos de 2022--2024. Tomada de la
+    \caption[Pre-fit distributions of $p_T^{HH}$ before in the res2b category]{%
+        $p_T$ distributions for the $HH$ candidate in the $\tau_h\tau_h$
+        (left) and $b\tau_h\tau_h$ (right) channels, prior to fitting to the data, for the
+        complete dataset from 2022–2024. Taken from
         Ref.~\cite{CMS-PAS-HIG-25-008}.}
     \label{fig:prefit_ptHH}
 \end{figure}
 
-La composicion del fondo cambia de un canal a otro, según lo esperado. Mientras que en los canales $\tau_e\tau_h$ y $\tau_\mu\tau_h$ la predicción está dominada por la producción de pares de quarks top, con menores contribuciones de Drell-Yan y de los jets mal identificados, en el canal $\tau_h\tau_h$ la fracción de \textit{fakes} es considerablemente mayor, aunque la producción $t\bar{t}$ sigue siendo la contribución principal. La contribución de \textit{fakes} pasa a ser notablemente dominante en el canal $b\tau_h\tau_h$, con un número de sucesos mucho menor, y donde los jet de alto $p_T$ son abundantes en la producción multi-jet. En todos los casos la razón entre los datos y la prediccíon es compatible con la unidad dentro de la banda de incertidumbre, con fluctuaciones estadísticas concentradas en las colas menos pobladas.\\
+As expected, the composition of the background varies from one channel to another. While in the $\tau_e\tau_h$ and $\tau_\mu\tau_h$ channels the prediction is dominated by the production of top quark pairs, with smaller contributions from Drell--Yan and misidentified jets, in the $\tau_h\tau_h$ channel the fraction of \textit{fakes} is considerably higher, although $t\bar{t}$ production remains the main contribution. The contribution from \textit{fakes} becomes notably dominant in the $b\tau_h\tau_h$ channel, which has a much smaller number of events and where high $p_T$ jets are abundant in the multi-jet production. In all cases, the ratio between the data and the prediction is consistent with unity within the uncertainty band, with statistical fluctuations concentrated in the less populated tails. Therefore, the background is well modeled where the signal is indistinguishable from it, and the residual differences — consistent with the uncertainties described in Section \ref{sec:bbtt_systematics} — will be accounted for by the corresponding nuisance parameters in the final fit.\\
 
-
-Más allá del acuerdo, estas distribuciones ponen de manifiesto que la señal únicamente se hace visible en las figuras al multiplicarla por factores de entre $10^2$ y $10^5$, según el panel. Incluso en la categoría más sensible y en el observable que mejor recoge la cinemática del sistema $HH$, la producción de pares de bosones de Higgs contribuye con una fracción del orden de $10^{-4}$ del número total de sucesos, muy por debajo de la incertidumbre estadística de los datos en cualquier intervalo. Ninguna variable individual permite, por sí sola, aislar la señal.\\
-
-
-Se constata, por tanto, el acuerdo entre los datos y la predicción en las regiones del análisis, lo que indica que el fondo está bien modelado allí donde la señal es indistinguible de él. Las diferencias residuales son compatibles con las incertidumbres descritas en la Sección \ref{sec:bbtt_systematics}, y serán absorbidas por los parámetros de estorbo correspondientes en el ajuste final.
-
-
-
-Puesto que ninguna de las variables discrimina por separado, la extracción de señal exige combinar la información de muchas variables en un único observable que maximice la separación entre las dos hipótesis. La construcción de ese discriminante es el objeto de la sección siguiente.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Beyond the data-to-prediction agreement, these distributions demonstrate that the signal only becomes visible in the figures when multiplied by factors ranging from $10^2$ to $10^5$, depending on the panel. Even in the most sensitive category and in the observable that best captures the kinematics of the $HH$ system, Higgs boson pair production contributes a fraction on the order of $10^{-4}$ of the total number of events, well below the statistical uncertainty of the data at any interval. No single variable allows the signal to be isolated on its own, and its extraction requires combining information from many of them into a single observable that maximizes the separation between the two hypotheses - only background, and signal???. The construction of this discriminant is the subject of the following section.
 
 
 
@@ -1296,9 +1241,14 @@ Puesto que ninguna de las variables discrimina por separado, la extracción de s
 % State that residual discrepancies are covered by the systematics and absorbed
 % by the fit -- do not leave the reader to wonder.
 % -> code: scripts/make_CR_plots_*.sh, Category("FFvalidation_CR")
-ANTES DE CONTINUAR, COMO HE IDO CAMBIANDO TANTO EL ESQUEMA NECESITO REVISAR QUE TODO EL FLUJO TENGA SENTIDO Y NO ME HAYA DEJADO NADA VIEJO O SACADO DE CONTEXTO
+REVISAR DESDE AQUI
+
 \section{Signal extraction}
 \label{sec:bbtt_extraction}
+%
+La combinación de esa información en un único número es un problema de clasificación: dado un suceso, decidir en qué medida sus propiedades se parecen a las de la señal o a las de los fondos. Una red neuronal entrenada con sucesos simulados de ambas clases resuelve ese problema devolviendo una puntuación continua cuya distribución acumula los sucesos de señal hacia un extremo y los de fondo hacia el otro. Conviene subrayar que esa puntuación no constituye un corte adicional: no se descarta ningún suceso en función de ella, sino que es el observable cuya forma se somete al ajuste. Los intervalos dominados por el fondo no se desaprovechan por tanto, sino que contribuyen a la medida restringiendo la normalización de los procesos que los pueblan, mientras que son los intervalos de puntuación alta, donde se concentra la señal, los que aportan la sensibilidad.
+
+Se emplean dos clasificadores, entrenados por separado para reconocer cada uno de los dos mecanismos de producción. El dirigido a la producción por fusión de bosones vectoriales se aplica en la categoría VBF, y el dirigido a la fusión de gluones en las nueve categorías restantes, de manera que en cada una se utiliza el que está optimizado para la topología que allí se busca. Las subsecciones que siguen describen su arquitectura y las variables que reciben, el procedimiento con el que se entrenan y se validan, y el binado con el que su salida se convierte en la distribución que finalmente se ajusta.
 
 
 \subsection{The DNN discriminants}
@@ -1309,7 +1259,7 @@ ANTES DE CONTINUAR, COMO HE IDO CAMBIANDO TANTO EL ESQUEMA NECESITO REVISAR QUE 
 % of the composite H and HH candidates) and high-level (tagging scores including
 % HH-BTag, rapidity gaps, Fox-Wolfram moments, M_chi).
 
-\subsection{Training and validation}
+\subsection{Training and performance}
 % 5-fold cross-validation; several random initialisations per fold; the final score
 % is the average of the ensemble, which reduces dependence on initialisation.
 % Show ROC / output distributions and the separation achieved.
@@ -1322,170 +1272,6 @@ ANTES DE CONTINUAR, COMO HE IDO CAMBIANDO TANTO EL ESQUEMA NECESITO REVISAR QUE 
 % -> code: config/binning_config.py
 
 
+CONCLUSIONES/CIERRA?
 
 
-
-section{Statistical procedure}
-\label{sec:bbtt_statistics}
-
-
-\begin{table}[tbp]
-\centering
-\small
-\begin{tabular}{lllc}
-\toprule
-Source & Affected processes & Type & Correlation across periods \\
-\midrule
-Integrated luminosity                     & simulated              & normalization & partial \\
-Signal cross section                      & signal                 & normalization & full    \\
-Background cross sections                 & simulated              & normalization & full    \\
-Branching fractions                       & with a Higgs boson     & normalization & full    \\
-$b\bar{b}H$ normalization                 & $b\bar{b}H$            & normalization & full    \\
-\midrule
-Pile-up reweighting                       & simulated              & shape & full    \\
-Trigger efficiency                        & simulated              & shape & none    \\
-Muon and electron identification and isolation & simulated         & shape & full    \\
-Electron energy scale and resolution      & simulated              & shape & full    \\
-$\tau_h$ identification                   & simulated              & shape & mixed   \\
-$\tau_h$ energy scale                     & simulated              & shape & none    \\
-Jet energy scale                          & simulated              & shape & mixed   \\
-Jet energy resolution                     & simulated              & shape & none    \\
-$b$ tagging                               & simulated              & shape & mixed   \\
-Acceptance (QCD scale and PDF)            & simulated              & shape & full    \\
-\midrule
-Drell--Yan correction, fit                & Drell--Yan             & shape & full    \\
-Drell--Yan correction, statistical        & Drell--Yan             & shape & none    \\
-Top quark $p_T$ reweighting               & $t\bar{t}$             & shape & full    \\
-\midrule
-Fake factor envelopes                     & \textit{fakes}         & shape & full    \\
-Fake factor statistics                    & \textit{fakes}         & shape & none    \\
-Template region statistics                & \textit{fakes}         & shape & none    \\
-\midrule
-Size of the simulated samples             & simulated              & shape & none    \\
-\bottomrule
-\end{tabular}
-\caption[Summary of the systematic uncertainties]{%
-    Summary of the sources of systematic uncertainty considered in the analysis, with the
-    processes they affect, whether they modify only the normalization or also the shape of
-    the distributions, and their correlation across data-taking periods.}
-\label{tab:systematics_summary}
-\end{table}
-
-
-% Placed before the results, as in Jaime's thesis, so the results section can be
-% read without interruption.
-
-\subsection{The likelihood model}
-% Binned maximum-likelihood fit over the 10 SRs x 5 data-taking periods,
-% performed simultaneously. COMBINE / RooFit / RooStats.
-% -> code: LimitsArea/, scripts/NBAtoInferenceDatacardsParser.py
-
-\subsection{Observed and expected limits}
-% Profile likelihood ratio test statistic; asymptotic modified frequentist CLs.
-% Parameters of interest: mu, sigma(HH), or the coupling modifiers.
-
-\subsection{Nuisance parameters}
-% Normalisation vs shape uncertainties; correlation scheme across periods
-% and across processes.
-
-\section{Results}
-\label{sec:bbtt_results}
-
-\subsection{Post-fit distributions}
-% DNN scores in the 10 SRs after the fit; show 2024 as the representative period
-% (largest L_int), noting the others behave similarly.
-
-\subsection{Signal strength and significance}
-% mu = 2.6 +2.1 -1.7 ; observed (expected) significance 1.5 (0.7) sigma.
-% No significant excess over the background-only hypothesis.
-
-\subsection{Upper limits on the HH production cross section}
-% Per category and combined:
-%   inclusive ggHH+qqHH : 6.6 (3.9) x SM   -- resolved 2b drives it
-%   qqHH only           : 81 (85)  x SM    -- VBF category drives it
-% Per-year breakdown (Table 3): 2022 -> 17 (11), 2023 -> 8 (11), 2024 -> 8.3 (4.4).
-% Explain why 2024 dominates: luminosity, new triggers, UParT.
-
-\subsection{Constraints on the Higgs boson couplings}
-%   -4.1 < kappa_lambda < 11.2  (expected -2.2 < kappa_lambda < 9.2)
-%   -0.2 < kappa_2V < 2.3       (expected -0.2 < kappa_2V < 2.4)
-
-\section{Combination with the Run-2 data set}
-\label{sec:bbtt_combination}
-% (3) RUN 2 ENTERS HERE, at datacard level.
-
-\subsection{Combination procedure}
-% Combined with the published Run-2 search in the same final state
-% \cite{CMS-HIG-20-010}: 138/fb at 13 TeV -> 310/fb in total.
-% - Some Run-2 theory uncertainties were updated after publication (an extra
-%   uncertainty on heavy-flavour associated single-H production), so the standalone
-%   Run-2 result differs slightly from the published one -- say this explicitly.
-% - Correlation scheme: theory uncertainties (branching ratios, PDF, alpha_s,
-%   scales, and notably the joint QCD+m_top uncertainty in ggHH) correlated across
-%   Runs; all experimental uncertainties uncorrelated, because detector conditions
-%   and calibrations differ.
-% - The likelihood is the union of all binned shapes from both analyses; the
-%   coupling parametrisation follows the same matrix-inversion method in both.
-
-\subsection{Combined results}
-% mu = 0.9 +1.6 -1.4 ; observed (expected) significance 0.7 (0.8) sigma.
-%   inclusive : 4.0 (3.0) x SM   [Run 2 alone 3.5 (5.3) ; Run 3 alone 6.6 (3.9)]
-%   qqHH only : 62 (70)  x SM
-%   -2.5 < kappa_lambda < 9.4  (expected -1.5 < kappa_lambda < 8.4)
-%   0.02 < kappa_2V < 2.1      (expected -0.1 < kappa_2V < 2.2)
-% 2D exclusion in the kappa_2V - kappa_lambda plane, best fit at (7.1, 0.6).
-% Worth a comment: Run 3 observed is weaker than expected while Run 2 is stronger
-% than expected -- explain how the two combine rather than leaving it unremarked.
-
-\section{Comparison with other HH searches}
-\label{sec:bbtt_comparison}
-% Borrowed from Jaime (his Sec. 5.5), and it earns its place.
-% CMS Run-2 combination 3.4 (2.5); ATLAS 2.9 (2.4); ATLAS+CMS 2.5 (1.7 / 2.8);
-% ATLAS bbtautau with 196/fb -> 5.3 (2.4 / 2.8). Where bbtautau sits among
-% bbgammagamma, bbbb and bbWW.
-
-\begin{table}[t]
-\centering
-\begin{tabular}{llccccl}
-\toprule
- & Dataset & $\mathcal{L}$ [fb$^{-1}$] & Obs. & Exp. & Exp.$^{\dagger}$ & Source \\
-\midrule
-\multirow{3}{*}{CMS}
-  & Run 2 (2016--2018)         & 138 & 3.5 & 5.3 & 5.30 & \cite{CMS-PAS-HIG-25-008} \\
-  & Run 3 (2022--2024)         & 172 & 6.6 & 3.9 & 4.35 & \cite{CMS-PAS-HIG-25-008} \\
-  & Run 2 + Run 3              & 310 & 4.0 & 3.0 & 4.50 & \cite{CMS-PAS-HIG-25-008} \\
-\midrule
-\multirow{4}{*}{ATLAS}
-  & Run 2, original            & 140 & 5.9 & 3.3 & 3.32 & \cite{ATLAS-HH-bbtautau-Run2} \\
-  & Run 2, reanalysed          & 140 & 5.4 & 2.6 & 2.62 & \cite{ATLAS-HH-bbtautau-Run3} \\
-  & Run 3 (2022--2023)         &  56 & 7.9 & 4.3 & 2.74 & \cite{ATLAS-HH-bbtautau-Run3} \\
-  & Run 2 + Run 3              & 196 & 5.3 & 2.4 & 2.86 & \cite{ATLAS-HH-bbtautau-Run3} \\
-\bottomrule
-\end{tabular}
-\caption[Comparison of CMS and ATLAS upper limits in HH $\to$ bb$\tau\tau$]{%
-Observed and expected 95\% CL upper limits on the inclusive HH production cross
-section relative to the SM prediction, in the bb$\tau\tau$ final state. Expected
-limits are quoted under the background-only ($\mu = 0$) hypothesis. The CMS
-entries are the inclusive ggHH\,$+$\,qqHH limits of Table~3 of
-Ref.~\cite{CMS-PAS-HIG-25-008}; the ATLAS Run~3 entries are those of Table~4 of
-Ref.~\cite{ATLAS-HH-bbtautau-Run3}, where ``reanalysed'' denotes the same Run~2
-dataset processed with the improved Run~3 analysis, to be compared with the
-originally published result of Ref.~\cite{ATLAS-HH-bbtautau-Run2}.
-$^{\dagger}$Expected limit rescaled to a common integrated luminosity of
-138~fb$^{-1}$ as $\mu\sqrt{\mathcal{L}/138~\mathrm{fb}^{-1}}$, i.e.\ assuming
-purely statistical scaling; this column is derived here and is not quoted in the
-references. Note that the two Run~3 datasets are not equivalent, as the ATLAS
-result does not yet include the 2024 data-taking period.}
-\label{tab:hh_bbtautau_limits}
-\end{table}
-
-\section{Summary and outlook}
-\label{sec:bbtt_summary}
-% Each of the reference theses closes its analysis chapter with a summary.
-% - What was measured and with what sensitivity.
-% - What limits it now: statistically dominated (74%), fake factors the leading
-%   experimental systematic (25%).
-% - The impact of the Chapter \ref{ch:taggers} algorithms on this result -- this is
-%   where the thesis closes its own loop.
-% - Outlook: remaining Run-3 luminosity, then HL-LHC.
-SE ME HACE UN CAPITULO MUY LARGO (HAY 14 SECCIONES...) SE PUEDE SEPARAR EN VARIOS CAPITULOS? HACIENDOLO UNA "PARTE". ALGO COMO LO QUE TIENE JAIME? TENDRÍA SENTIDO ESA SEPARACION?
