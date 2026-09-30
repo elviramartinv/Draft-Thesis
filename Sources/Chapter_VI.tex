@@ -1247,23 +1247,47 @@ Beyond the data-to-prediction agreement, these distributions demonstrate that th
 % State that residual discrepancies are covered by the systematics and absorbed
 % by the fit -- do not leave the reader to wonder.
 % -> code: scripts/make_CR_plots_*.sh, Category("FFvalidation_CR")
-REVISAR DESDE AQUI
 
+TRADUCIR DESDE AQUÍ
 \section{Signal extraction}
 \label{sec:bbtt_extraction}
 %
-La combinación de esa información en un único número es un problema de clasificación: dado un suceso, decidir en qué medida sus propiedades se parecen a las de la señal o a las de los fondos. Una red neuronal entrenada con sucesos simulados de ambas clases resuelve ese problema devolviendo una puntuación continua cuya distribución acumula los sucesos de señal hacia un extremo y los de fondo hacia el otro. Conviene subrayar que esa puntuación no constituye un corte adicional: no se descarta ningún suceso en función de ella, sino que es el observable cuya forma se somete al ajuste. Los intervalos dominados por el fondo no se desaprovechan por tanto, sino que contribuyen a la medida restringiendo la normalización de los procesos que los pueblan, mientras que son los intervalos de puntuación alta, donde se concentra la señal, los que aportan la sensibilidad.
+Combinar la información relevante en un único número es un problema de clasificación en el que dado un suceso hay que decidir en qué medida sus propiedades se parecen a las de la señal o a las de los fondos. El problema se ataca por tanto con una red neuronal entrenada con sucesos simulados de ambas clases capaz de devolver una puntuación continua cuya distribución acumula los sucesos de señal hacia un extremo y los de fondo hacia el contrario. Conviene señalar que esa puntuación no constituye un corte adicional en el análisis, por lo que no se descarta ningún suceso en función de ella, sino que únicamente sirve como el observable cuya forma se somete al ajuste. Esto está bien motivado para que los bins dominados por el fondo no sean desaprovechados, sino que contribuyan a la medida restringiendo la normalización de los procesos que los pueblan, mientras que son los bins de puntuación alta, donde se concentra la señal, los que aportan la sensibilidad al análisis.
 
-Se emplean dos clasificadores, entrenados por separado para reconocer cada uno de los dos mecanismos de producción. El dirigido a la producción por fusión de bosones vectoriales se aplica en la categoría VBF, y el dirigido a la fusión de gluones en las nueve categorías restantes, de manera que en cada una se utiliza el que está optimizado para la topología que allí se busca. Las subsecciones que siguen describen su arquitectura y las variables que reciben, el procedimiento con el que se entrenan y se validan, y el binado con el que su salida se convierte en la distribución que finalmente se ajusta.
+Afin de optimizar la extracción de señal en cada uno de los dos mecanismos de produccíon, se emplean dos clasificadores entrenados por separado para reconocer ggF o VBF production. El dedicado a la producción VBF se aplica exclusivamente a la categoría VBF, mientras que el dirigido a la fusión de gluones actúa en las nueve categorías restantes, de manera que en cada una se utiliza el que está optimizado para la topología que allí se busca.\\
+
+Las subsecciones siguientes describen la arquitectura y las variables que reciben cada uno de los clasificadores, así como el procedimiento con el que se entrenan y se validan, y el binado con el que su salida se convierte en la distribución que finalmente se ajusta.
 
 
+REVISAR DESDE AQUI - Figura 49 de la DNN?
 \subsection{The DNN discriminants}
-% Two classifiers: one targeting qqHH (used in the VBF category) and one targeting
-% ggHH (all other categories). Three blocks:
-%   Lorentz Boost Network -> tau-tau mass regression -> classifying DenseNet.
-% Inputs: low-level (pTmiss and its covariance, four-momenta of all candidates and
-% of the composite H and HH candidates) and high-level (tagging scores including
-% HH-BTag, rapidity gaps, Fox-Wolfram moments, M_chi).
+%
+Cada clasificador se compone de tres redes encadenadas. La primera es una \textit{Lorentz Boost Network} \cite{LBN}, cuyo cometido no es clasificar sino elaborar variables. Recibe los cuadrimomentos de los objetos reconstruidos del suceso y los combina linealmente para formar un conjunto de cuadrimomentos nuevos; construye de la misma manera un segundo conjunto, que interpreta como sistemas de referencia, y aplica a cada elemento del primero la transformación de Lorentz que lo lleva al sistema que le corresponde. De los cuadrimomentos así transformados extrae magnitudes como masas, energías y ángulos, que son las que entrega al resto de la red, y los coeficientes de ambas combinaciones se aprenden durante el entrenamiento. La ventaja del esquema está en que, en lugar de dejar que la red descubra por sí sola qué combinaciones de las componentes $(p_x, p_y, p_z, E)$ son relevantes, se le impone una arquitectura que solo puede construir cantidades con significado cinemático. En esta configuración los cuadrimomentos de cinco objetos dan lugar a diez combinaciones, y la matriz resultante se normaliza antes de pasar al bloque siguiente.
+
+
+Cada uno de los clasificadores está compuesto por tres redes encadenadas. La primera es una \textit{Lorentz Boost Network} \cite{LBN} que recibe los cuadrimomentos de los objetos reconstruidos y a partir de ellos construye un conjunto de cuadrimomentos nuevos, .La función de esta primera red consiste en elaborar las variables para que la red no aprenda desde cero las combinaciones invariantes relevantes, sino que se le proporcione directamente un conjunto de ellas construido de manera que respete la estructura del problema. En esta configuración, os cuadrimomentos de cinco objetos dan lugar a diez partículas compuestas, y la matriz resultante se normaliza antes de pasar al bloque siguiente.
+
+La siguiente red de la arquitectura es la regresión de los momentos de los neutrinos descrita en la Sección \ref{sec:bbtt_flow}, que es la que permite reconstruir la masa del sistema $\tau\tau$. Sus salidas, junto con las de la red anterior, se concatenan y alimentan a la tercera. Esta última es una red densamente conectada \cite{DenseNet} en la que cada capa recibe como entrada las salidas de todas las anteriores, de modo que la capacidad discriminante de las variables intermedias sigue accesible en cualquier punto de la red y no se diluye al avanzar en profundidad. Está formada por 
+
+Cada clasificador se compone de tres redes encadenadas. La primera es una \textit{Lorentz Boost Network} \cite{LBN}, que recibe los cuadrimomentos de los objetos reconstruidos y construye a partir de ellos un conjunto de partículas compuestas, proyectando después los momentos originales sobre sus sistemas de referencia en reposo. Su cometido no es clasificar, sino elaborar variables: en lugar de dejar que la red aprenda desde cero las combinaciones invariantes relevantes, se le proporciona directamente un conjunto de ellas, construido de manera que respete la estructura del problema. En esta configuración, los cuadrimomentos de cinco objetos dan lugar a diez partículas compuestas, y la matriz resultante se normaliza antes de pasar al bloque siguiente.
+
+La segunda red es la regresión de los momentos de los neutrinos descrita en la Sección \ref{sec:bbtt_flow}, que es la que permite reconstruir la masa del sistema $\tau\tau$. Sus salidas, junto con las de la red anterior, se concatenan y alimentan la tercera, una red densamente conectada \cite{DenseNet} en la que cada capa recibe como entrada las salidas de todas las anteriores, de modo que la capacidad discriminante de las variables intermedias sigue accesible en cualquier punto de la red y no se diluye al avanzar en profundidad. Está formada por ocho bloques de ciento veintiocho nodos, y termina en una capa de tres nodos con activación \textit{softmax}.
+
+Esos tres nodos corresponden a las tres clases con las que se entrena: la señal, la producción Drell--Yan y la de pares de quarks top, que son los dos fondos dominantes con candidatos $\tau_h$ genuinos. El clasificador no aprende, por tanto, a separar la señal de un fondo indiferenciado, sino a distinguirla de cada uno de los dos procesos que la acompañan, cuyas cinemáticas son distintas entre sí. De las tres salidas, la que se emplea como observable es la asociada a la señal.
+
+
+Las variables que reciben las redes son de dos tipos. Las de bajo nivel son magnitudes medidas directamente: el momento transverso perdido con su matriz de covarianza y los cuadrimomentos de todos los candidatos del suceso y de los sistemas que estos forman, tanto de los dos candidatos a bosón de Higgs como del par $HH$. Las de alto nivel son cantidades construidas para condensar información que la red difícilmente extraería por sí sola de las anteriores: las puntuaciones de los algoritmos de etiquetado, entre ellas la de \textsc{HH-BTag} presentada en el Capítulo \ref{ch:taggers}, con la que el trabajo desarrollado en la primera parte de esta tesis entra directamente en la extracción de la señal; los huecos en rapidez entre los dos candidatos a jet de $b$ y entre los dos jets característicos de la topología VBF; cuatro momentos de Fox--Wolfram \cite{FoxWolfram}, que caracterizan la distribución angular de la actividad hadrónica del suceso; y la variable
+%
+\begin{equation}
+    M_{\chi} = m_{bb\tau\tau} - \left(m_{bb} - m_H\right) - \left(m_{\tau\tau} - m_H\right),
+    \label{eq:mchi}
+\end{equation}
+%
+que corrige la masa reconstruida del sistema $HH$ restándole las desviaciones de las masas de los dos candidatos respecto del valor nominal del bosón de Higgs, con lo que se compensa en buena medida el efecto de la resolución experimental sobre ambas.
+
+El conjunto de variables de alto nivel no se fijó de antemano, sino que se obtuvo mediante un procedimiento iterativo: se entrena la red, se mide la pérdida de rendimiento que provoca permutar los valores de cada variable por separado, promediada sobre varias repeticiones, y se descartan las menos influyentes antes de volver a entrenar.
+
+
 
 \subsection{Training and performance}
 % 5-fold cross-validation; several random initialisations per fold; the final score
