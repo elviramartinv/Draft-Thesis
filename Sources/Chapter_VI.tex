@@ -1258,8 +1258,8 @@ To optimize signal extraction in each of the two production mechanisms, two sepa
 
 The following subsections describe the architecture and the variables input to each of the classifiers, as well as the procedure used to train and validate them, and the mapping used to convert their output into the distribution that is ultimately fitted.
 
-TRADUCIR DESDE AQUÍ
-\subsection{The DNN discriminants}
+
+\subsection{Architecture and input variables}
 %
 Each classifier consists of three networks: two that generate variables from the inputs, and a third that classifies based on the variables produced by the first two.\\
 
@@ -1269,11 +1269,13 @@ The neutrino momentum regression network described in Section \ref{sec:bbtt_flow
 
 The latter is a densely connected network \cite{DenseNet} in which each layer receives as input the outputs of all preceding layers, so that the discriminative power of the intermediate variables remains accessible at any point in the network and is not diluted as the network becomes deeper. It ends with a layer of three nodes with \textit{softmax} activation, which normalizes the three outputs to sum to one.\\
 
+FALTA DECIR QUE TIENEN MISMA ARQUITECTURA, PERO DIFFERENT INPUTS AND DIFFERENT OUTPUTS; AQUI SOLO DIGO QUE DIFFER IN THE SET OF SAMPLES USED TO TRAIN.... Y LUEGO NO DISTINGO ENTRE LOS INPUTS Y LOS OUTPUTS: EL OUTPUT EN GGF DNN ES GGF, DY AND TTBAR; Y EN VBF ES HH, DY AND TTBAR... ESTO NO QUEDA CLARO EN NINGUN SITIO
 
 While the architecture described is common to both classifiers, they differ in the set of samples used to train each one and in the region in which they are applied. The classifier for gluon fusion is trained using simulated backgrounds and signal samples produced by that mechanism, without imposing any category selection, resulting in a single network covering the nine categories in which it is subsequently used. The classifier for vector boson fusion is trained on the VBF category, and its samples include those from both signal production mechanisms, since both contribute to that category. Both classifiers produce three outputs, associated with the signal, the Drell–Yan production, and the production of top quark pairs. Of the three, the one used as an observable in the fit is the one associated with the signal.\textcolor{red}{[ggF HH entra como señal en el clasificador VBF? pensaba que discriminaba entre ggf y vbf, pero estoy viendo que solo tiene tres nodos]}\\
 
 
 %which are the two dominant backgrounds containing genuine $\tau_h$ candidates
+DISTINGUIR ENTRE LAS VARIABLES DE LA DNN VBF Y DE LA DNN GGF
 
 Two types of variables are fed into the networks. Low-level variables are quantities measured directly, and these include the $p_T^{miss}$ with its covariance matrix and the quadrimoments of all event candidates and the systems they form, including both Higgs boson candidates and the $HH$ pair. High-level variables are quantities constructed to condense information that the network would have difficulty extracting on its own from the low-level variables. These include the scores from tagging algorithms, among them the \textsc{HH-BTag} algorithm presented in Chapter \ref{ch:taggers}, through which the work carried out in the first part of this thesis leads directly to signal extraction; the rapidity gaps between the two $b$-jet candidates and between the two characteristic jets of the VBF topology; four Fox–Wolfram moments \cite{FoxWolfram}, which characterize the angular distribution of the event’s hadronic activity; and the variable
 %
@@ -1364,40 +1366,40 @@ REVISAR DESDE AQUI
 
 \subsection{Training and performance}
 % 
-Definida la arquitectura que determina la información que puede extraer cada clasificador, el siguiente paso es especificar cómo esa información se traduce en los discriminantes que cuantfican la separación entre señales y fondos. ????
+Ha quedado descrita la arquitectura que fija la forma de los dos discriminantes. El siguiente paso consiste en entrenar la red para fijar los coeficientes con los que se combinan las entradas en cada paso. El entrenamiento de una red ya se describió en la Sección \ref{subsec:training} para los algoritmos del Capítulo \ref{ch:taggers}, y aquí se sigue un procedimiento similar, común a las dos redes ?. 
 
-La arquitectura descrita fija qué puede calcular cada clasificador; lo que calcula de hecho lo determina el entrenamiento. Este debe respetar una condición que no es evidente: las plantillas que después se ajustan se construyen con los mismos sucesos simulados con los que la red aprende, de manera que, si un suceso fuese evaluado por una red que ya lo hubiera visto, la separación aparente en la predicción sería mejor que la que se obtiene sobre los datos, y el ajuste partiría de una expectativa optimista.
+EL ENTRENAMIENTO ES EL MISMO PARA LAS DOS REDES? GGF Y VBF DNNS? - REVISAR BIEN ESTO, EN EL AN VIENE EXPLICADO
 
-Para evitarlo se emplea una estrategia de validación cruzada en cinco pliegues \cite{CMS-PAS-HIG-25-008}. El conjunto simulado se divide en cinco subconjuntos, y se entrena una red por cada uno de ellos utilizando los otros cuatro, de modo que cada suceso acaba siendo evaluado por una red que no lo ha visto durante el aprendizaje. Dentro de cada pliegue se entrenan además varias redes partiendo de inicializaciones aleatorias distintas de sus parámetros, y la puntuación final es el promedio de sus predicciones. Con ello se reduce la dependencia del resultado respecto de una inicialización concreta, que en redes de este tamaño no es despreciable.
+El conjunto simulado se reparte en función del número de suceso y se entrena un modelo por cada parte, de manera que cada uscesos acaba evaluado por una red que no lo ha visto. En este caso, el conjunto se divide en cinco subconjuntos, y se entrena una red por cada uno de ellos utilizando los otros cuatro, reservando dentro de cada entrenamiento una carta parte de los sucesos para validación. A ello se le añade un promedio sobre inicializaciones, de forma que cada parte se entrenan varias redes partiendo de valores iniciales distintos para sus parámetros, y la puntuación final se obtiene como la media de sus predicciones, de modo que el resultado deja de depender de una inicialización concreta \cite{CMS-PAS-HIG-25-008}.
 
-El entrenamiento se detiene cuando la función de pérdida deja de mejorar sobre el subconjunto reservado para validación, y no cuando lo hace sobre el de entrenamiento. La comparación entre ambas es a su vez la comprobación de que el modelo no ha memorizado: mientras las dos curvas descienden a la par, la red está aprendiendo estructura del problema; cuando la de entrenamiento sigue bajando y la de validación se estanca o empeora, está aprendiendo las fluctuaciones de los sucesos concretos que ha visto.
+%Los pesos con los que la simulación reproduce la sección eficaz de cada proceso no se emplean directamente durante el entrenamiento, ya que en algunas muestras son negativos y eso desestabiliza la propagación del gradiente. En su lugar, los sucesos de Drell--Yan y de producción de pares de quarks top se muestrean con una frecuencia proporcional a la contribución de cada proceso, de modo que la composición del conjunto de entrenamiento es la correcta sin necesidad de pesar suceso a suceso.
 
-\textcolor{red}{[Párrafo de rendimiento: la separación alcanzada se aprecia en las distribuciones de la salida del discriminante, que se muestran en la Sección \ref{sec:bbtt_results}. Si consigues del autor la curva ROC con su AUC y la matriz de confusión (Figura 52 del AN, para el clasificador VBF) o las curvas de pérdida (Figura 50, para el de ggF), aquí es donde van.]}
+% El entrenamiento se detiene cuando la función de pérdida deja de mejorar sobre el subconjunto reservado para validación, y no cuando lo hace sobre el de entrenamiento. La comparación entre ambas es a su vez la comprobación de que el modelo no ha memorizado: mientras las dos curvas descienden a la par, la red está aprendiendo estructura del problema; cuando la de entrenamiento sigue bajando y la de validación se estanca o empeora, está aprendiendo las fluctuaciones de los sucesos concretos que ha visto. La Figura \ref{fig:dnn_loss} muestra que ambas se estabilizan al mismo tiempo, sin que se abra entre ellas la separación característica del sobreentrenamiento.
 
-Los pesos con los que la simulación reproduce la sección eficaz de cada proceso no se emplean directamente durante el entrenamiento, ya que en algunas muestras son negativos y eso desestabiliza la propagación del gradiente. En su lugar, los sucesos de Drell--Yan y de producción de pares de quarks top se muestrean con una frecuencia proporcional a la contribución de cada proceso, de modo que la composición del conjunto de entrenamiento es la correcta sin necesidad de pesar suceso a suceso.
+El entrenamiento se detiene cuando la función de pérdida deja de mejorar sobre el subconjunto reservado para validación, y vigilando que su evolución sea coherente con el comportamiento de la curva sobre el conjunto de entrenamiento, para comprobar que el modelo está aprendiendo patrones generales y no sencillamente memorizando.
+
+Para evaluar el rendimiento alcanzado por las dos redes se emplean dos métricas complementarias. En primer lugar, se mira la curva de eficiencia de identificación frente a la tasa de falsos positivos de cada una de las tres clases del output contra el resto. La interpretación de esta curva ROC viene dada por el valor que toma el área bajo la curva resultante, de forma que si valdrá uno cuando la separación es perfecta y un medio cuando la puntuación no aporta ninguna información. Por otro lado, la matriz de confusión asigna cada suceso a la clase cuya puntuación es mayor, contando después, para cada proceso, cómo se resparten sus sucesos entre las tres clases. La Figura \ref{fig:dnn_performance} ejemplifica el rendimiento alcanzado por el clasificador de la categoría VBF, evaluado sobre uno de los cinco subconjuntos; los demás dan resultados comparables.
+
 
 % 5-fold cross-validation; several random initialisations per fold; the final score
 % is the average of the ensemble, which reduces dependence on initialisation.
 % Show ROC / output distributions and the separation achieved.
 
-\begin{figure}[tbp]
-    \centering
-    \includegraphics[width=0.7\linewidth]{figures/chapter_VI/dnn_loss_curves.pdf}
-    \caption[Loss curves of the signal-extraction discriminant]{%
-        Categorical cross-entropy loss as a function of the training epoch, evaluated on the
-        training (red) and validation (white) subsets.}
-    \label{fig:dnn_loss}
-\end{figure}
+% \begin{figure}[tbp]
+%     \centering
+%     \includegraphics[width=0.7\linewidth]{figures/chapter_VI/dnn_loss_curves.pdf}
+%     \caption[Loss curves of the signal-extraction discriminant]{%
+%         Categorical cross-entropy loss as a function of the training epoch, evaluated on the
+%         training (red) and validation (white) subsets.}
+%     \label{fig:dnn_loss}
+% \end{figure}
 
 \begin{figure}[tbp]
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_VI/dnn_vbf_performance.pdf}
     \caption[Performance of the signal-extraction discriminant]{%
-        Performance of the discriminant in one of the five folds; the remaining folds give
-        comparable results. Left: identification efficiency as a function of the false
-        positive rate for each of the three classes against the rest, with the corresponding
-        area under the curve. Right: confusion matrix, normalized by rows, giving for each
-        process the fraction of its events assigned to each class.}
+        Performance of the VBF discriminant in one of the five folds; the remaining folds give
+        comparable results. Left: ROC curve.. Right: confusion matrix, normalized by rows.}
     \label{fig:dnn_performance}
 \end{figure}
 
