@@ -136,8 +136,15 @@ Queda finalmente la limitación estadística de la predicción misma, que recibe
 
 Con los parámetros definidos, su correlación fijada y las plantillas preparadas, el modelo estadístico queda completo y el ajuste puede realizarse, de forma que la siguiente pregunta concierte a lo que se extrae de él. 
 
-
+REVISAR DESDE AQUI
 \subsection{Extraction of the results}
+\label{subsec:bbtt_teststat}
+%
+Con el modelo completo, los resultados se extraen del cociente de verosimilitudes perfilado introducido en la Sección \ref{sec:stat_framework}, evaluado en la aproximación asintótica, que evita generar pseudoexperimentos para cada hipótesis sin que las conclusiones se vean afectadas dado el número de sucesos que pueblan las regiones de señal. De él se obtienen tres clases de resultados: la intensidad con la que la señal aparece en los datos junto con la significancia que puede atribuírsele, el límite superior sobre la sección eficaz de producción cuando esa significancia no basta para declarar una observación, y los intervalos de confianza sobre los acoplamientos.
+
+
+El valor de la intensidad de señal es el que maximiza la verosimilitud, y su incertidumbre se obtiene del perfil de esta en torno a ese máximo, dejando que todos los parámetros de estorbo se reajusten en cada punto del recorrido. La significancia mide la compatibilidad de los datos con la hipótesis de ausencia de señal, comparando la verosimilitud del máximo con la que se obtiene al fijar la intensidad en cero.
+
 
 % Placed before the results, as in Jaime's thesis, so the results section can be
 % read without interruption.
