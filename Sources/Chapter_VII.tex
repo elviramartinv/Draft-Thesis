@@ -154,15 +154,20 @@ El límite superior se determina al nivel de confianza del $95\,\%$ mediante el 
 
 Los intervalos de confianza sobre los acoplamientos se obtienen del valor que toma ese mismo estadístico al fijar el acoplamiento en cada punto de un barrido. Por construcción se anula en el valor que mejor ajusta los datos y crece al alejarse de él, de forma que el intervalo queda delimitado por los dos valores en los que ese crecimiento alcanza el umbral correspondiente al nivel de confianza deseado. El mismo criterio, aplicado a un barrido bidimensional, delimita las regiones excluidas en el plano definido por dos acoplamientos.
 
-Todos ellos se obtienen no solo para el conjunto completo de los datos, sino también por separado para cada periodo de toma de datos, para cada canal y para cada grupo de categorías, lo que permite el desglose de la Sección \ref{sec:bbtt_results} y hace visible de dónde proviene la sensibilidad. En esas mismas particiones se verifica además, mediante un contraste de bondad del ajuste, que el modelo describe los datos de forma aceptable, de modo que ningún problema de modelado localizado quede oculto tras el ajuste combinado.
+Todos ellos se obtienen no solo para el conjunto completo de los datos, sino también por separado para cada periodo de toma de datos, para cada canal y para cada grupo de categorías, lo que permite el desglose de la Sección \ref{sec:bbtt_results} y hace visible de dónde proviene la sensibilidad. En esas mismas particiones se verifica además, mediante un contraste de bondad del ajuste, que el modelo describe los datos de forma aceptable, de modo que ningún problema de modelado localizado quede oculto tras el ajuste combinado.\\\\
+
+El modelo así construido se ajusta a los datos en una única operación, de la que se obtienen a la vez el valor de la intensidad de señal y el de todos los parámetros de estorbo. El ajuste no devuelve por tanto solo una medida, sino también una predicción revisada, la que resulta de aplicar a cada proceso los desplazamientos que le han sido asignados, y comparar esa predicción con los datos permite ver si el acuerdo ha exigido apartar los parámetros de sus valores nominales. Es con esa comparación con la que abre la Sección \ref{sec:bbtt_results}, antes de extraer de ese mismo ajuste los resultados que el análisis buscaba.
 
 
-
-REVISAR DESDE AQUI
 \section{Results}
 \label{sec:bbtt_results}
+%
+El número de sucesos de señal producidos en el conjunto de datos analizado es el producto de la luminosidad integrada, de la sección eficaz de producción y de la fracción de desintegración al estado final considerado, $N = \mathcal{L}\,\sigma_{HH}\,\mathcal{B}(HH\to b\bar{b}\tau\tau)$. Con los valores dados en la Sección \ref{sec:bbtt_samples} para las secciones eficaces de los dos modos de producción y una fracción de desintegración del $7.3\,\%$, los $172$ fb$^{-1}$ recogidos durante el Run 3 contienen del orden de cuatrocientos cincuenta sucesos de señal. De ellos, la aceptancia de la selección y las eficiencias de disparo, reconstrucción e identificación dejan solo una pequeña fracción, repartida además entre las cincuenta regiones de señal y acompañada de un fondo varios órdenes de magnitud mayor. \textcolor{red}{cutflow} Esa es la magnitud del exceso cuya extracción recae en el ajuste descrito en la sección anterior, y que constitutye el objeto de los resultados expuestos a continuación.
 
 \subsection{Post-fit distributions}
+%
+Las distribuciones tras el ajuste se obtienen aplicando a cada proceso los valores que el ajuste ha asignado a los parámetros de estorbo, de modo que representan la predicción tal como el modelo la deja una vez confrontada con los datos. La Figura \ref{fig:postfit_2024} las muestra para el periodo de 2024, que es el de mayor luminosidad integrada y se presenta como representativo, ya que los demás exhiben un comportamiento análogo. Las diez regiones de señal aparecen concatenadas a lo largo de un único eje, agrupadas por categoría y, dentro de cada una, por canal, y en todas ellas los intervalos están ordenados según la puntuación del discriminante. Las dos contribuciones de señal se superponen escaladas a la intensidad que mejor ajusta los datos.
+
 % DNN scores in the 10 SRs after the fit; show 2024 as the representative period
 % (largest L_int), noting the others behave similarly.
 
@@ -262,74 +267,3 @@ result does not yet include the 2024 data-taking period.}
 
 
 
-\chapter{Results and combination with the Run-2 data set}
-\label{ch:bbtt_results_chapter}
-% Entradilla: recuperar el hilo del capítulo anterior en dos o tres frases.
-% Construida la predicción, comprobada frente a los datos y definido el
-% discriminante, queda someterlo al contraste estadístico y extraer la medida.
-
-
-% SOLO lo propio de este análisis. El marco general -- verosimilitud, parámetros
-% de estorbo y sus términos de restricción, cociente de verosimilitudes perfilado,
-% CLs -- está en la Sección \ref{sec:stat_framework} del Capítulo III.
-%
-% 1) El ajuste: binado, de máxima verosimilitud, simultáneo sobre las diez
-%    categorías x cinco periodos = cincuenta regiones de señal (Sección \ref{sec:bbtt_flow}).
-%    Observable en cada una: la salida de la DNN de la Sección \ref{sec:bbtt_extraction},
-%    con el binado adaptativo allí descrito.
-% 2) Parámetro de interés: la intensidad de señal. Para las interpretaciones en
-%    kappa_lambda y kappa_2V, el modelo que parametriza la dependencia de la
-%    sección eficaz y de la cinemática (mismo método de inversión de matriz de
-%    la Sección \ref{sec:bbtt_samples}).
-% 3) Los parámetros de estorbo y su correlación: aquí va la Tabla
-%    \ref{tab:systematics_summary}, que ahora está en el Capítulo VI.
-%    Correlación entre periodos, y descorrelación por categoría y canal de
-%    CMS_FF_stat y CMS_FF_template_stat.
-% 4) La estadística de las muestras simuladas: el párrafo de autoMCStats
-%    (umbral de diez sucesos efectivos, un parámetro por intervalo compartido
-%    por encima y uno por proceso por debajo, n_eff = (sum w)^2 / sum w^2).
-% -> code: LimitsArea/, scripts/NBAtoInferenceDatacardsParser.py,
-%    config/run3_base_config.py (alias, syst_runPeriod_tag),
-%    LimitsArea/scripts/SymmetriseAndSmoothShapes.py (renombrado de nuisances)
-%
-% MOVER AQUÍ la Tabla tab:systematics_summary desde el Capítulo VI.
-
-
-\section{Results}
-\label{sec:bbtt_results}
-
-\subsection{Post-fit distributions}
-
-\subsection{Signal strength and significance}
-
-\subsection{Impact of the systematic uncertainties}
-\label{subsec:bbtt_impacts}
-% Prometido desde la entradilla de las sistemáticas (Cap. VI, l. 984).
-% - Desglose por familia: Tabla 2 del PAS. Estadística total 74%; fake factors 25%;
-%   etiquetado de b 10%; leptones y disparo 9%; energía de jets 7%; otras 3%;
-%   teóricas HH 31%, single-H 27%, fondos 14%; variaciones intervalo a intervalo 35%.
-%   Decir que se combinan en cuadratura y que por eso no suman 100%.
-% - Pull and impact: ordena parámetros individuales por Delta(mu); complementa
-%   la tabla, que ordena familias enteras.
-% -> code: LimitsArea/scripts/run_syst_breakdown.sh (grupos theoHH, theoH,
-%    theoAcc, theoB y las rgx por objeto)
-
-\subsection{Upper limits on the HH production cross section}
-
-\subsection{Constraints on the Higgs boson couplings}
-
-
-\section{Combination with the Run-2 data set}
-\label{sec:bbtt_combination}
-
-\subsection{Combination procedure}
-
-\subsection{Combined results}
-
-
-\section{Comparison with other HH searches}
-\label{sec:bbtt_comparison}
-
-
-\section{Summary and outlook}
-\label{sec:bbtt_summary}
