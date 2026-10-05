@@ -17,7 +17,7 @@ REVISAR INGLES DESDE AQUI
 %
 The comparison between the prediction and the data is performed using a binned maximum likelihood fit, carried out simultaneously across the fifty signal regions of the analysis. In each region the observable is the output of its corresponding classifier, using the adaptive binning described in Section \ref{sec:bbtt_extraction}, such that the total likelihood is the product of the contributions from all bins in all regions. The formalism upon which this is built was introduced in Section \ref{sec:stat_framework}, so the following is limited to the decisions specific to this search. The implementation is based on \textsc{Combine} \cite{CMS-combine}, the statistical analysis and combination tool used at CMS.
 
-The fit is determined by three decisions. The first is the measurement itself, i.e., which parameters are left free and how the dependence of the signal on them is modeled, which is the subject of Section \ref{subsec:bbtt_likelihood}. The second decision concerns the incorporation of systematic uncertainties discussed in the previous chapter into the fit. This includes both the scheme by which they are correlated across periods, categories, and channels, as well as how the templates are handled before reaching the fit, and is the matter covered in Section \ref{subsec:bbtt_nuisances}. Finally, Section \ref{subsec:bbtt_teststat} addresses the third aspect, which consists of describing the results obtained from the fit and how their validity is verified before examining the data in the signal region.
+The fit is determined by three decisions. The first is the measurement itself, i.e., which parameters are left free and how the dependence of the signal on them is modeled, which is the subject of Section \ref{subsec:bbtt_likelihood}. The second decision concerns the incorporation of systematic uncertainties discussed in the previous chapter into the fit. This includes both the scheme by which they are correlated across periods, categories, and channels, as well as how the templates are handled before reaching the fit, and is the matter covered in Section \ref{subsec:bbtt_nuisances}. Finally, Section \ref{subsec:bbtt_teststat} addresses the third aspect, which consists of describing how each result is constructed from that statistic.
 
 \subsection{The fit and its parameters of interest}
 \label{subsec:bbtt_likelihood}
@@ -154,7 +154,10 @@ El límite superior se determina al nivel de confianza del $95\,\%$ mediante el 
 
 Los intervalos de confianza sobre los acoplamientos se obtienen del valor que toma ese mismo estadístico al fijar el acoplamiento en cada punto de un barrido. Por construcción se anula en el valor que mejor ajusta los datos y crece al alejarse de él, de forma que el intervalo queda delimitado por los dos valores en los que ese crecimiento alcanza el umbral correspondiente al nivel de confianza deseado. El mismo criterio, aplicado a un barrido bidimensional, delimita las regiones excluidas en el plano definido por dos acoplamientos.
 
-Todos ellos se obtienen no solo para el conjunto completo de los datos, sino también por separado para cada periodo de toma de datos, para cada canal y para cada grupo de categorías, lo que permite el desglose de la Sección \ref{sec:bbtt_results} y hace visible de dónde proviene la sensibilidad. En esas mismas particiones se verifica además, mediante un contraste de bondad del ajuste, que el modelo describe los datos de forma aceptable, de modo que ningún problema de modelado localizado quede oculto tras el ajuste combinado.\\\\
+Todos ellos se obtienen no solo para el conjunto completo de los datos, sino también por separado para cada periodo de toma de datos, para cada canal y para cada grupo de categorías, lo que permite el desglose de la Sección \ref{sec:bbtt_results} y hace visible de dónde proviene la sensibilidad.\textcolor{red}{algo de la bondad del ajuste???}\\\\
+
+
+%En esas mismas particiones se verifica además, mediante un contraste de bondad del ajuste, que el modelo describe los datos de forma aceptable, de modo que ningún problema de modelado localizado quede oculto tras el ajuste combinado.\\\\
 
 El modelo así construido se ajusta a los datos en una única operación, de la que se obtienen a la vez el valor de la intensidad de señal y el de todos los parámetros de estorbo. El ajuste no devuelve por tanto solo una medida, sino también una predicción revisada, la que resulta de aplicar a cada proceso los desplazamientos que le han sido asignados, y comparar esa predicción con los datos permite ver si el acuerdo ha exigido apartar los parámetros de sus valores nominales. Es con esa comparación con la que abre la Sección \ref{sec:bbtt_results}, antes de extraer de ese mismo ajuste los resultados que el análisis buscaba.
 
@@ -168,8 +171,29 @@ El número de sucesos de señal producidos en el conjunto de datos analizado es 
 %
 Las distribuciones tras el ajuste se obtienen aplicando a cada proceso los valores que el ajuste ha asignado a los parámetros de estorbo, de modo que representan la predicción tal como el modelo la deja una vez confrontada con los datos. La Figura \ref{fig:postfit_2024} las muestra para el periodo de 2024, que es el de mayor luminosidad integrada y se presenta como representativo, ya que los demás exhiben un comportamiento análogo. Las diez regiones de señal aparecen concatenadas a lo largo de un único eje, agrupadas por categoría y, dentro de cada una, por canal, y en todas ellas los intervalos están ordenados según la puntuación del discriminante. Las dos contribuciones de señal se superponen escaladas a la intensidad que mejor ajusta los datos.
 
-% DNN scores in the 10 SRs after the fit; show 2024 as the representative period
-% (largest L_int), noting the others behave similarly.
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VII/postfit_dnn_2024.pdf}
+    \caption[Post-fit distributions of the discriminant]{%
+        Distributions of the discriminant score in the ten signal regions of the 2024
+        data-taking period after the maximum-likelihood fit to the data. The signal
+        contributions are scaled to the best-fit signal strength, $\mu = 2.6$.}
+    \label{fig:postfit_2024}
+\end{figure}
+
+La composición del fondo ya fue la anticipada en la Sección \ref{sec:bbtt_controlplots}. La contribución de los jets mal identificados como $\tau_h$ domina en todas las regiones, seguida de la producción de pares de quarks top y de Drell--Yan, mientras que la producción de un único bosón de Higgs y el conjunto de los procesos restantes aportan contribuciones menores. Dentro de cada región el rendimiento decrece de forma pronunciada al avanzar hacia puntuaciones altas, que es el comportamiento que impone el binado adaptativo de la Sección \ref{sec:bbtt_extraction} al repartir la señal de manera uniforme, de modo que los últimos intervalos de cada grupo son a la vez los menos poblados y los más sensibles. La señal, incluso escalada a la intensidad ajustada, se mantiene en todos ellos varios órdenes de magnitud por debajo del fondo.\\
+
+
+A diferencia de la de la Sección \ref{sec:bbtt_controlplots}, hecha antes del ajuste y en la que una discrepancia habría señalado un problema en el modelado, aquí el acuerdo está garantizado en buena medida por construcción, puesto que el ajuste ha dispuesto de los parámetros de estorbo para alcanzarlo. Sin embargo, esa capacidad de absorción no es ilimmitada, ya que los parámetros solo pueden desplazarse dentro de lo que sus restricciones consienten, de manera que una discrepancia mayor que ese margen seguiría siendo visible, lo que justifica examinar los distribución tras el ajuste antes de leer ningún resultado. El carácter simultáneo del ajuste obliga además a comprobar cada región por separado, puesto que un desacuerdo localizado en una región puede quedar compensado por el resto y no manifestarse en ninguno de los números finales. 
+
+La figura confirma que el cociente entre los datos y la predicción es compatible con la unidad a lo largo de todo el eje, con las fluctuaciones mayores concentradas en los intervalos menos poblados, y que ninguna de las diez regiones se desvía del comportamiento esperado. La banda de incertidumbre resulta además sensiblemente más estrecha que la de las distribuciones previas al ajuste, porque los intervalos poblados casi exclusivamente por fondo contienen suficientes sucesos como para que el ajuste determine varios de los parámetros de estorbo con más precisión que la incertidumbre que se les había asignado de partida. Este comportamiento, y en particular si el ajuste ha requerido desplazamientos apreciables de los parámetros respecto de sus valores nominales, se examine en detalle en la Sección  \ref{subsec:bbtt_impacts}.
+
+
+
+
+%El contraste de bondad del ajuste descrito en la Sección \ref{subsec:bbtt_teststat}, realizado también por separado en cada partición de los datos, es la versión cuantitativa de esta misma comprobación.
+
+
 
 \subsection{Signal strength and significance}
 % mu = 2.6 +2.1 -1.7 ; observed (expected) significance 1.5 (0.7) sigma.
