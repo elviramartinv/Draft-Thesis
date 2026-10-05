@@ -218,7 +218,7 @@ La significancia cuantifica la compatibilidad de los datos con la hipótesis de 
     \caption[Likelihood scan in the signal strength]{%
         Profile of the test statistic as a function of the signal strength. The dashed lines
         mark the crossings with the thresholds that define the $68\%$ and $95\%$ confidence
-        intervals, and the vertical line indicates the standard model prediction. \textcolor{red}{regenerar}}
+        intervals, and the vertical line indicates the standard model prediction. \textcolor{red}{rehacer}}
     \label{fig:likelihood_scan_r}
 \end{figure}
 
@@ -234,6 +234,41 @@ Como ya se anticipó al dimensionar el problema al comienzo de la Sección, el r
 
 \subsection{Upper limits on the HH production cross section}
 \label{subsec:bbtt_limits}
+%
+No habiéndose observado la señal, el resultado se formula como una cota superior sobre la sección eficaz de producción, expresada en unidades de la predicción del modelo estándar y determinada al nivel de confianza del $95\,\%$. Se obtiene para las dos medidas definidas en la Sección \ref{subsec:bbtt_likelihood}, la inclusiva en los dos modos de producción y la exclusiva de la fusión de bosones vectoriales, y se calcula tanto para la combinación completa como para cada categoría por separado. La Figura \ref{fig:limits_category} recoge ambos resultados.
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VII/upper_limits_per_category.pdf}
+    \caption[Upper limits on the HH production cross section]{%
+        Observed and expected upper limits at $95\%$ CL on the inclusive ggHH\,$+$\,qqHH
+        production cross section (left) and on the qqHH production cross section (right),
+        normalized to the standard model prediction, shown per analysis category and for
+        their combination. The expected limits are quoted under the background-only
+        hypothesis, with their $68\%$ and $95\%$ intervals. \textcolor{red}{sacarlo yo}}
+    \label{fig:limits_category}
+\end{figure}
+
+Para la producción inclusiva, la combinación de las diez categorías excluye secciones eficaces superiores a $6.6$ veces la predicha por el modelo estándar, frente a un valor esperado de $3.9$, resultando la cota observada menos restrictiva que la esperada en correspondencia con el exceso descrito en la Sección \ref{subsec:bbtt_mu}.
+
+El reparto entre categorías muestra que la sensibilidad procede casi en su totalidad de la categoría res2b, cuyo límite esperado de $4.2$ apenas difiere del $3.9$ de la combinación, mientras que las tres restantes se sitúan entre $15$ y $23$. Es un resultado esperado \textcolor{red}{cuidado con esta palabra} puesto que esa categoría recoge la topología en la que se produce la mayor parte de la señal y aquella en la que las dos selecciones de quarks $b$ dejan el fondo más reducido.\\
+
+% El exceso no se reparte por igual entre las categorías. En VBF y en la categoría \textit{boosted} la cota observada es de hecho más restrictiva que la esperada, y son las dos categorías resueltas, y en particular res2b, las que concentran la desviación al alza.
+
+
+
+Para la producción exclusiva VBF la cota es de $81$ veces la predicción del modelo estándar, con un valor esperado de $85$. Que sea más de un orden de magnitud superior a la inclusiva se explica por la sección eficaz de este modo, casi veinte veces menor, y por el hecho de que una sola de las diez categorías esté dedicada a él. En efecto, el límite esperado de la categoría VBF, $91$, es prácticamente el de la combinación completa, mientras que las categorías resueltas y la \textit{boosted} aportan cotas entre cinco y veinte veces más débiles, lo que constituye la confirmación cuantitativa de lo que motivó definir esa categoría y una medida propia para este modo de producción.\\
+
+
+El desglose por periodo de toma de datos permite además ver de dónde proviene la sensibilidad acumulada. Los límites esperados sobre la producción inclusiva son de $11$ para 2022, $11$ para 2023 y $4.4$ para 2024, frente al $3.9$ de la combinación, valores que se recogen junto a los del conjunto de datos de Run 2 en la Tabla \ref{tab:limits_per_year} de la Sección \ref{sec:bbtt_combination}. El periodo de 2024 proporciona por tanto casi toda la sensibilidad del análisis con menos de dos tercios de la luminosidad integrada, lo que refleja no solo su mayor tamaño sino también las condiciones en que se registró, con los disparadores descritos en la Sección \ref{sec:triggers} y con further mejoras en los algoritmos de identificación del sabor de los jets, cuyo discriminante alimenta a su vez los algoritmos de asignación del Capítulo \ref{ch:taggers}. DECIR QUE LA TABLE SE MUESTRA CON LA COMBINACION?
+
+
+
+
+
+
+
+
 % Per category and combined:
 %   inclusive ggHH+qqHH : 6.6 (3.9) x SM   -- resolved 2b drives it
 %   qqHH only           : 81 (85)  x SM    -- VBF category drives it
