@@ -260,24 +260,34 @@ El reparto entre categorías muestra que la sensibilidad procede casi en su tota
 Para la producción exclusiva VBF la cota es de $81$ veces la predicción del modelo estándar, con un valor esperado de $85$. Que sea más de un orden de magnitud superior a la inclusiva se explica por la sección eficaz de este modo, casi veinte veces menor, y por el hecho de que una sola de las diez categorías esté dedicada a él. En efecto, el límite esperado de la categoría VBF, $91$, es prácticamente el de la combinación completa, mientras que las categorías resueltas y la \textit{boosted} aportan cotas entre cinco y veinte veces más débiles, lo que constituye la confirmación cuantitativa de lo que motivó definir esa categoría y una medida propia para este modo de producción.\\
 
 
-El desglose por periodo de toma de datos permite además ver de dónde proviene la sensibilidad acumulada. Los límites esperados sobre la producción inclusiva son de $11$ para 2022, $11$ para 2023 y $4.4$ para 2024, frente al $3.9$ de la combinación, valores que se recogen junto a los del conjunto de datos de Run 2 en la Tabla \ref{tab:limits_per_year} de la Sección \ref{sec:bbtt_combination}. El periodo de 2024 proporciona por tanto casi toda la sensibilidad del análisis con menos de dos tercios de la luminosidad integrada, lo que refleja no solo su mayor tamaño sino también las condiciones en que se registró, con los disparadores descritos en la Sección \ref{sec:triggers} y con further mejoras en los algoritmos de identificación del sabor de los jets, cuyo discriminante alimenta a su vez los algoritmos de asignación del Capítulo \ref{ch:taggers}. DECIR QUE LA TABLE SE MUESTRA CON LA COMBINACION?
-
-
-
-
-
-
-
-
-% Per category and combined:
-%   inclusive ggHH+qqHH : 6.6 (3.9) x SM   -- resolved 2b drives it
-%   qqHH only           : 81 (85)  x SM    -- VBF category drives it
-% Per-year breakdown (Table 3): 2022 -> 17 (11), 2023 -> 8 (11), 2024 -> 8.3 (4.4).
-% Explain why 2024 dominates: luminosity, new triggers, UParT.
+El desglose por periodo de toma de datos permite además ver de dónde proviene la sensibilidad acumulada. Los límites esperados sobre la producción inclusiva son de $11$ para 2022, $11$ para 2023 y $4.4$ para 2024, frente al $3.9$ de la combinación, valores que se recogen junto a los del conjunto de datos de Run 2 en la Tabla \ref{tab:limits_per_year} de la Sección \ref{sec:bbtt_combination}. El periodo de 2024 proporciona por tanto casi toda la sensibilidad del análisis con menos de dos tercios de la luminosidad integrada, lo que refleja no solo su mayor tamaño sino también las condiciones en que se registró, con los disparadores descritos en la Sección \ref{sec:triggers} y con further mejoras en los algoritmos de identificación del sabor de los jets, cuyo discriminante alimenta a su vez los algoritmos de asignación del Capítulo \ref{ch:taggers}. \textcolor{red}{...?}
 
 \subsection{Constraints on the Higgs boson couplings}
-%   -4.1 < kappa_lambda < 11.2  (expected -2.2 < kappa_lambda < 9.2)
-%   -0.2 < kappa_2V < 2.3       (expected -0.2 < kappa_2V < 2.4)
+%
+La misma medida admite una lectura en términos de los acoplamientos que gobiernan el proceso. Puesto que la parametrización de la Sección \ref{sec:bbtt_samples} proporciona la predicción de la señal en cualquier punto del espacio de acoplamientos, el procedimiento de la Sección \ref{subsec:bbtt_teststat} puede repetirse manteniendo el acoplamiento fijo en cada valor de un barrido, lo que da una cota sobre la sección eficaz en función de dicho acoplamiento. Comparándola con la sección eficaz que la teoría predice para el acoplamiento en ese mismo punto se obtiene la restricción, ya que quedan excluidos aquellos valores para los que la predicción supera la sección eficaz máxima compatible con los datos. La Figura \ref{fig:limits_couplings} muestra ambas curvas para $\kappa_\lambda$ y para $\kappa_{2V}$.
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VII/limits_vs_couplings.pdf}
+    \caption[Upper limits as a function of the coupling modifiers]{%
+        Observed and expected upper limits at $95\%$ CL on the HH production cross section
+        times the bb$\tau\tau$ branching fraction, as a function of $\kappa_\lambda$ for the
+        inclusive production (left) and of $\kappa_{2V}$ for the qqHH production (right).
+        The red line and its band indicate the predicted cross section and its theoretical
+        uncertainty. Coupling modifiers not scanned are fixed to their SM values.}
+    \label{fig:limits_couplings}
+\end{figure}
+
+Así, el acoplamiento trilineal queda acotado entre $-4.1 < \kappa_\lambda < 11.2$, frente a un intervalo esperado de $-2.2 < \kappa_\lambda < 9.2$. La anchura del intervalo se explica por la forma de la curva de predicción, que pasa por un mínimo pronunciado en torno a $\kappa_\lambda \approx 2.4$, donde la interferencia destructiva entre las contribuciones de caja y de triángulo descrita en el Capítulo \ref{ch:theory} es máxima. En esa región la señal predicha queda muy por debajo de lo que el análisis puede excluir, y solo al alejarse lo suficiente del mínimo la sección eficaz crece hasta superar la cota. La curva del límite tampoco es plana, puesto que al variar el acoplamiento cambian la cinemática del sistema $HH$ y, con ella, la aceptancia y la forma de la distribución del discriminante, que es precisamente la razón por la que la parametrización de la señal debía ser diferencial y no limitarse a la sección eficaz total.
+
+
+
+Para el acoplamiento entre dos bosones de Higgs y dos bosones vectoriales el intervalo es $-0.2 < \kappa_{2V} < 2.3$, con un valor esperado de $-0.2 < \kappa_{2V} < 2.4$. Resulta mucho más estrecho en términos relativos porque la sección eficaz de la fusión de bosones vectoriales crece con rapidez al apartarse de la unidad, de modo que basta una desviación moderada para que la predicción supere la cota.\\
+
+% no creo que convenga señalar esto: Conviene no obstante señalar que el intervalo contiene todavía el valor nulo, es decir, que los datos de Run 3 por sí solos no permiten descartar la ausencia del vértice de interacción entre dos bosones de Higgs y dos bosones vectoriales.
+
+La comparación entre lo observado y lo esperado es coherente con lo descrito en las dos subsecciones anteriores. El intervalo en $\kappa_\lambda$ resulta más ancho de lo esperado, como corresponde a una medida inclusiva sobre la que pesa el exceso, mientras que el intervalo en $\kappa_{2V}$ queda prácticamente donde se esperaba, e incluso ligeramente más cerrado, en consonancia con que la categoría VBF — de la que procede esa restricción — sea una de aquellas en las que la cota observada resultó más restrictiva que la esperada.
+
 
 \section{Combination with the Run-2 data set}
 \label{sec:bbtt_combination}
