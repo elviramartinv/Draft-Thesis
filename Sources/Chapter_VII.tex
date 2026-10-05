@@ -12,7 +12,7 @@ For this reason the analysis does not stop at the Run-3 data, but exploits all t
 The present chapter is structured as follows. The construction of the statistical model that meets the aforementioned requirements is the subject of Section \ref{sec:bbtt_statistics}, which builds on the general framework introduced in Section \ref{sec:stat_framework} and is limited to the decisions specific to this study. Section \ref{sec:bbtt_results} first presents the post-fie distributions of the discriminant and then the results derived from it, examining the factors that limit the measurement. Section \ref{sec:bbtt_combination} combines the obtained result with the published measure on the Run 2 dataset at the level of the statistical model and without reprocessing those data. Finally, Section \ref{sec:bbtt_comparison} compares the result with the other searches for the same process, \textcolor{red}{and Section \ref{sec:bbtt_summary} concludes the chapter.}
 
 REVISAR INGLES DESDE AQUI
-\section{Statistical procedure}
+\section{The statistical model of the search}
 \label{sec:bbtt_statistics}
 %
 The comparison between the prediction and the data is performed using a binned maximum likelihood fit, carried out simultaneously across the fifty signal regions of the analysis. In each region the observable is the output of its corresponding classifier, using the adaptive binning described in Section \ref{sec:bbtt_extraction}, such that the total likelihood is the product of the contributions from all bins in all regions. The formalism upon which this is built was introduced in Section \ref{sec:stat_framework}, so the following is limited to the decisions specific to this search. The implementation is based on \textsc{Combine} \cite{CMS-combine}, the statistical analysis and combination tool used at CMS.
@@ -136,32 +136,29 @@ Queda finalmente la limitación estadística de la predicción misma, que recibe
 
 Con los parámetros definidos, su correlación fijada y las plantillas preparadas, el modelo estadístico queda completo y el ajuste puede realizarse, de forma que la siguiente pregunta concierte a lo que se extrae de él. 
 
-REVISAR DESDE AQUI
+
 \subsection{Extraction of the results}
 \label{subsec:bbtt_teststat}
 %
-Con el modelo completo, los resultados se extraen del cociente de verosimilitudes perfilado introducido en la Sección \ref{sec:stat_framework}, evaluado en la aproximación asintótica, que evita generar pseudoexperimentos para cada hipótesis sin que las conclusiones se vean afectadas dado el número de sucesos que pueblan las regiones de señal. De él se obtienen tres clases de resultados: la intensidad con la que la señal aparece en los datos junto con la significancia que puede atribuírsele, el límite superior sobre la sección eficaz de producción cuando esa significancia no basta para declarar una observación, y los intervalos de confianza sobre los acoplamientos.
+Con el modelo completo, los resultados se extraen del cociente de verosimilitudes perfilado introducido en la Sección \ref{sec:stat_framework}, evaluado en la aproximación asintótica \cite{Cowan:2010js}. A partir de ese estadístico se construyen los tres resultados ya anunciados, primero en su versión esperada, que es la que resultaría si los datos coincidieran exactamente con la predicción en ausencia de señal y que no requiere por tanto examinar la región en la que la señal se concentra, y después en su versión observada, una vez abierta esa región. La versión esperada mide la sensibilidad que el análisis alcanza y fue la única cifra de mérito disponible mientras este se construía, de manera que frente a ella se tomaron las decisiones del capítulo anterior, mientras que la observada constituye el resultado de la medida.
 
 
-El valor de la intensidad de señal es el que maximiza la verosimilitud, y su incertidumbre se obtiene del perfil de esta en torno a ese máximo, dejando que todos los parámetros de estorbo se reajusten en cada punto del recorrido. La significancia mide la compatibilidad de los datos con la hipótesis de ausencia de señal, comparando la verosimilitud del máximo con la que se obtiene al fijar la intensidad en cero.
+%A partir del estadístico se construyen tres clases de resultados, ya nombrados anteriormente: la intensidad con la que la señal aparece en los datos junto con la significancia que puede atribuírsele, el límite superior sobre la sección eficaz de producción cuando esa significancia no basta para declarar una observación, y los intervalos de confianza sobre los acoplamientos. 
 
 
-% Placed before the results, as in Jaime's thesis, so the results section can be
-% read without interruption.
+El valor de la intensidad de señal es el que maximiza la verosimilitud, y su incertidumbre se obtiene del perfil de esta a uno y otro lado de ese máximo, dejando que todos los parámetros de estorbo se reajusten a cada valor de la intensidad. La significancia mide la compatibilidad de los datos con la hipótesis de ausencia de señal, comparando la verosimilitud en el máximo con la que se obtiene al fijar la intensidad en cero.
 
-\subsection{The likelihood model}
-% Binned maximum-likelihood fit over the 10 SRs x 5 data-taking periods,
-% performed simultaneously. COMBINE / RooFit / RooStats.
-% -> code: LimitsArea/, scripts/NBAtoInferenceDatacardsParser.py
 
-\subsection{Observed and expected limits}
-% Profile likelihood ratio test statistic; asymptotic modified frequentist CLs.
-% Parameters of interest: mu, sigma(HH), or the coupling modifiers.
+El límite superior se determina al nivel de confianza del $95\,\%$ mediante el criterio frecuentista modificado de la Sección \ref{sec:stat_framework}, y se obtiene tanto para la medida inclusiva como para la exclusiva de la fusión de bosones vectoriales. Repitiendo el mismo procedimiento para una sucesión de valores de un acoplamiento, con este fijado en cada uno de ellos, se obtiene además el límite en función de estos.
 
-\subsection{Nuisance parameters}
-% Normalisation vs shape uncertainties; correlation scheme across periods
-% and across processes.
 
+Los intervalos de confianza sobre los acoplamientos se obtienen del valor que toma ese mismo estadístico al fijar el acoplamiento en cada punto de un barrido. Por construcción se anula en el valor que mejor ajusta los datos y crece al alejarse de él, de forma que el intervalo queda delimitado por los dos valores en los que ese crecimiento alcanza el umbral correspondiente al nivel de confianza deseado. El mismo criterio, aplicado a un barrido bidimensional, delimita las regiones excluidas en el plano definido por dos acoplamientos.
+
+Todos ellos se obtienen no solo para el conjunto completo de los datos, sino también por separado para cada periodo de toma de datos, para cada canal y para cada grupo de categorías, lo que permite el desglose de la Sección \ref{sec:bbtt_results} y hace visible de dónde proviene la sensibilidad. En esas mismas particiones se verifica además, mediante un contraste de bondad del ajuste, que el modelo describe los datos de forma aceptable, de modo que ningún problema de modelado localizado quede oculto tras el ajuste combinado.
+
+
+
+REVISAR DESDE AQUI
 \section{Results}
 \label{sec:bbtt_results}
 
@@ -262,7 +259,7 @@ result does not yet include the 2024 data-taking period.}
 % - The impact of the Chapter \ref{ch:taggers} algorithms on this result -- this is
 %   where the thesis closes its own loop.
 % - Outlook: remaining Run-3 luminosity, then HL-LHC.
-SE ME HACE UN CAPITULO MUY LARGO (HAY 14 SECCIONES...) SE PUEDE SEPARAR EN VARIOS CAPITULOS? HACIENDOLO UNA "PARTE". ALGO COMO LO QUE TIENE JAIME? TENDRÍA SENTIDO ESA SEPARACION?
+
 
 
 \chapter{Results and combination with the Run-2 data set}
@@ -272,8 +269,6 @@ SE ME HACE UN CAPITULO MUY LARGO (HAY 14 SECCIONES...) SE PUEDE SEPARAR EN VARIO
 % discriminante, queda someterlo al contraste estadístico y extraer la medida.
 
 
-\section{The statistical model of the search}
-\label{sec:bbtt_statistics}
 % SOLO lo propio de este análisis. El marco general -- verosimilitud, parámetros
 % de estorbo y sus términos de restricción, cociente de verosimilitudes perfilado,
 % CLs -- está en la Sección \ref{sec:stat_framework} del Capítulo III.
