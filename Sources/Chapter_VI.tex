@@ -1033,6 +1033,7 @@ Components that do not stem from any central recommendation are accompanied by a
 
 For each of these sources, two alternative distributions are constructed in addition to the nominal one by shifting the corresponding correction by one standard deviation upward and another downward. The method for obtaining them depends on the nature of the correction. When the correction is a weight — such as the scale factors for triggering, reconstruction, identification, isolation, and tagging — it suffices to refill the same histograms with the shifted weight. When it modifies the energy or momentum of the objects — the energy scales and resolutions of jets, electrons, and $\tau_h$ — the event itself may migrate between categories and change the input variables of the final discriminator, so it is necessary to repeat the entire analysis chain with the shifted correction. In these cases, the variation also propagates coherently to $p_T^\text{miss}$. None of these corrections is the same for all events, so both methods modify both the normalization and the shape of the distributions.\\
 
+% The pile-up reweighting is the one exception, as the shape information of its variation is removed for the background processes before the fit, in the way described in Section \ref{sec:bbtt_statistics}.
 
 Table \ref{tab:object_systematics} lists each of these uncertainties in the same order in which the corrections were presented, providing a detailed breakdown of each uncertainty, indicating its origin and the method employed to propagate it.
 

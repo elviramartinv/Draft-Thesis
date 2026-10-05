@@ -7,12 +7,69 @@ Accordingly, the statistical model treats each source of systematic uncertainty 
 
 Given the relative signal size and the analyzed 172\,fb$^{-1}$ of data collected during the considered Run 3 periods, it follows that the expected sensitivity of the analysis is not sufficient to observe the production of Higgs boson pairs at the rate predicted by the Standard Model. Therefore, the result is not a direct measurement of the signal, but rather an upper limit on how much signal might have gone undetected, along with the resulting constraint on the couplings that govern the process under study. These results also show how much this margin has narrowed with respect to previous analyses, and to what extent the Run 3 conditions — new triggers and improved identification algorithms such as those of Chapter \ref{ch:taggers} — have done more than merely accumulate data.
 
-For this reason the analysis does not stop at the Run-3 data, but exploits all the data available in this final state. This measurement is combined with the published Run-2 measurement in the same final state, which requires determining which uncertainties are common to both analyses and which are not. It is also worth placing the result in the context of searches for Higgs pair production in other final states, since the $bb\tau\tau$ search is just one of several that target the same process, each with its own balance between the branching fraction and the background to be suppressed. Likewise, a comparison with results from the ATLAS experiment provides a broader picture of where this measurement stands and what actually limits it.
+For this reason the analysis does not stop at the Run-3 data, but exploits all the data available in this final state. This measurement is combined with the published Run-2 measurement in the same final state, which requires determining which uncertainties are common to both analyses and which are not. It is also worth placing the result in the context of searches for Higgs pair production in other final states, since the $bb\tau\tau$ search is just one of several that target the same process, each with its own balance between the branching fraction and the background to be suppressed. Likewise, a comparison with results from the ATLAS experiment provides a broader picture of where this measurement stands and what actually limits it.\\
 
 The present chapter is structured as follows. The construction of the statistical model that meets the aforementioned requirements is the subject of Section \ref{sec:bbtt_statistics}, which builds on the general framework introduced in Section \ref{sec:stat_framework} and is limited to the decisions specific to this study. Section \ref{sec:bbtt_results} first presents the post-fie distributions of the discriminant and then the results derived from it, examining the factors that limit the measurement. Section \ref{sec:bbtt_combination} combines the obtained result with the published measure on the Run 2 dataset at the level of the statistical model and without reprocessing those data. Finally, Section \ref{sec:bbtt_comparison} compares the result with the other searches for the same process, \textcolor{red}{and Section \ref{sec:bbtt_summary} concludes the chapter.}
 
+REVISAR INGLES DESDE AQUI
 \section{Statistical procedure}
 \label{sec:bbtt_statistics}
+%
+The comparison between the prediction and the data is performed using a binned maximum likelihood fit, carried out simultaneously across the fifty signal regions of the analysis. In each region the observable is the output of its corresponding classifier, using the adaptive binning described in Section \ref{sec:bbtt_extraction}, such that the total likelihood is the product of the contributions from all bins in all regions. The formalism upon which this is built was introduced in Section \ref{sec:stat_framework}, so the following is limited to the decisions specific to this search. The implementation is based on \textsc{Combine} \cite{CMS-combine}, the statistical analysis and combination tool used at CMS.
+
+The fit is determined by three decisions. The first is the measurement itself, i.e., which parameters are left free and how the dependence of the signal on them is modeled, which is the subject of Section \ref{subsec:bbtt_likelihood}. The second decision concerns the incorporation of systematic uncertainties discussed in the previous chapter into the fit. This includes both the scheme by which they are correlated across periods, categories, and channels, as well as how the templates are handled before reaching the fit, and is the matter covered in Section \ref{subsec:bbtt_nuisances}. Finally, Section \ref{subsec:bbtt_teststat} addresses the third aspect, which consists of describing the results obtained from the fit and how their validity is verified before examining the data in the signal region.
+
+\subsection{The fit and its parameters of interest}
+\label{subsec:bbtt_likelihood}
+% 
+% de qué está hecha la predicción en cada bin y de dónde viene cada parte
+En cada intervalo de cada región de señal el número de sucesos esperado es la suma de las contribuciones de todos los procesos que pueblan esa región. Como ya se ha visto, de la simulación provienen la señal, en sus dos modos de producción, y los fondos de producción $t\bar{t}$, Drell--Yan, quark top individual y $tW$, $W$+jets, producción de dos y tres bosones vectoriales y producción de un único bosón de Higgs, que en esta búsqueda constituye un fondo irreducible. La contribución de los jets mal identificados como $\tau_h$ se toma en cambio de los datos, mediante el método de la Sección \ref{sec:bbtt_ff}. Esa distinción tiene consecuencias que hay que tener en cuenta en el ajuste, puesto que las calibraciones de los objetos intervienen como parámetros de estorbo propios en los procesos simulados, mientras que su efecto sobre la estimación obtenida de los datos se cuantificó al derivarla y quedó absorbido en las envolventes que esta lleva asociadas.
+
+% qué está fijo y qué es libre
+Cada una de las contribuciones consideradas entra en el ajuste con la normalización y la forma que le asigna la predicción construida en el capítulo anterior, y solo puede apartarse de ellas a través de los parámetros de estorbo asociados a sus incertidumbres. Ninguna se deja libre, de modo que el único parámetro que el ajuste determina sin restricción alguna es el parámetro de interés, el cual se define en función del resultado que se quiera interpretar. En este sentido, se consideran dos alternativas, una para medir la intensidad con la que la señal aparece en los datos - que consitutye el parámetro natural cuando lo que se busca es medir o acotar la tasa de producción - y otra para restringir los parámetros que gobiernan el proceso - donde los propios modificadores de acoplamiento constituyen el parámetro de interés.\\
+
+
+
+%ya que el ajuste no dispone de ningún grado de libertad con el que abosrber un fondo mal modelado más alla de lo que su propia incertidumrbe consiente. 
+
+La intensidad de señal, $\mu$, se define como el factor por el que es necesario multiplicar la sección eficaz predicha por el SM para reproducir la observada. En el ajuste, $\mu$ multiplica el número de sucesos de señal esperado en cada intervalo de cada región de señal, de manera que modifica la altura de la distribución de señal pero no su forma. Su valor es continuo y lo determina el ajuste, siendo $\mu = 1$ y $\mu = 0$ únicamente los dos puntos de referencia que corresponden a la hipótesis del modelo estándar y a la ausencia de señal, respectivamente.
+
+Con ese parámetro se extraen dos medidas, una inclusiva en los dos modos de producción y otra exclusiva de la fusión de bosones vectoriales. El reparto responde a la acusada asimetría entre ambos modos, ya que la sección eficaz de la fusión de gluones es casi veinte veces mayor que la de VBF. Por ello, la medida inclusiva resulta apenas sensible para la contribución VBF, que queda atada al modo dominante y es por tanto necesaria su medida por separado para que los datos puedan restringirla.
+
+La medida inclusiva emplea un único $\mu$ para los dos modos de producción. Al escalar las dos plantillas por el mismo factor, la proporción entre ellas queda fijada a la que predice el modelo estándar, de forma que lo único que el ajuste determina es la escala global de su suma. La medida exclusiva sustituye ese parámetro por otro que multiplica únicamente las plantillas de la fusión de bosones vectoriales. Es la categoría dedicada VBF de la Sección \ref{sec:bbtt_flow} la que le proporciona la sensibilidad necesaria, al aislar una región en la que este modo de producción alcanza una fracción del total muy superior a la que tiene en el resto del análisis.\\
+
+
+En la segunda alternativa, un acoplamiento sustituye a $\mu$ como parámetro de interés y se ajusta directamente a los datos, manteniendo los demás en su valor del SM, de donde se obtienen los intervalos de confianza sobre $\kappa_\lambda$ y $\kappa_{2V}$\footnote{El mismo procedimiento se aplica a $\kappa_t$ y a $\kappa_V$, sobre los que esta búsqueda no mejora las restricciones que proporcionan las medidas de producción de un único bosón de Higgs, por lo que no se reportan aquí.}. Este tratamiento es posible gracias a que la parametrización descrita en la Sección \ref{sec:bbtt_samples} permite expresar la predicción de la señal en cualquier punto del espacio de acoplamientos como una combinación lineal de las muestras simuladas, y lo hace bin a bin y no solo para la sección eficaz total, de modo que cada plantilla de señal es una función analítica conocida de los acoplamientos. A diferencia de $\mu$, un acoplamiento no se limita a escalar la altura de la distribución de señal, sino que una variación de $\kappa_\lambda$ desplaza el espectro de masa invariante del sistema $HH$, modificando la distribución del observable sobre el que se ajusta.
+
+
+La misma parametrización admite el uso recíproco. Los acoplamientos se mantienen fijos en un punto del espacio y el parámetro de interés vuelve a ser $\mu$, lo que proporciona el límite sobre la sección eficaz como función del acoplamiento y, recorriendo una rejilla en dos de ellos, los contornos de exclusión en el plano que definen.\\
+
+
+
+
+
+Definido el parámetro de interés en cada caso, el modelo queda determinado salvo por el resto de sus parámetros, que son los que recogen las incertidumbres, y sobre los que recae enteramente la responsabilidad de cubrir cualquier diferencia residual entre la predicción y los datos. Su tratamiento antes de llegar al ajuste se abordan a continuación.
+
+
+\subsection{The nuisance parameters of the fit}
+\label{subsec:bbtt_nuisances}
+%
+Las fuentes de incertidumbre se incorporan al ajuste como parámetros de estorbo, de forma que cada una lleva asociado un término de restricción que penaliza su alejamiento del valor nominal y actúa sobre la predicción bien modificando únicamente la normalización del proceso afectado, bien deformando además la distribución, según el mecanismo descrito en la Sección \ref{sec:stat_framework}. El tratamiento que recibe cada una de las fuentes detalladas en la Sección \ref{sec:bbtt_systematics} depende de su origen, del que se siguen las tres decisiones que quedan por fijar, a saber, cuáles de ellas comparten parámetro entre regiones, qué modificaciones reciben las plantillas desplazadas antes de entrar al ajuste y cómo se incorpora la limitación estadística de la propia predicción.\\
+
+
+% correlación
+Cada fuente de incertidumbre afecta a la predicción en más de una región de señal, y es por tanto necesario decidir si su efecto en unas y otras va ligado, de forma que el modelo puede emplear un único parámetro que las desplace a todas a la vez, o asignar parámetros independiente. Según esto, una fuente se correlaciona cuando su origen es común a todas las regiones afectadas - es el caso de las predicciones teóricas o las calibraciones derivadas de forma conjunta para todo el conjunto de datos - y se descorrelaciona cuando se mide de manera independiente en cada periodo, o cuando procede de un número finito de sucesos - caso en el que las fluctuaciones de una región no guardan relación alguna con las de otra. 
+
+%Así, una misma fuente que afecta a varias regiones puede entrar al ajuste con un único parámetro de estorbo común a todas ellas, o de forma independiente para cada periodo de toma de datos. PERO ES RARO PORQUE AL PRINCIPIO DEL PARRAFO HABLO DE REGIONES Y AQUI DE PERIODOS
+
+%La escala de energía de los jets es el caso más claro, pues se descompone en una decena de fuentes según el ingrediente de la calibración del que provienen —la sustracción del apilamiento, la respuesta del detector, el equilibrio relativo en pseudorrapidez o la composición de sabor—, y cada una de ellas aporta a su vez una componente común a los cinco periodos y otra propia de cada uno. En el etiquetado de quarks $b$ el desdoblamiento sigue el origen de cada componente, de manera que las que provienen de la calibración central se correlacionan, mientras que se tratan como independientes en cada periodo las que reflejan el número finito de sucesos con el que se midieron los pesos en las regiones enriquecidas en sabores pesado y ligero, así como las de las eficiencias obtenidas de la simulación. La identificación de los $\tau_h$ responde a un desdoblamiento análogo, con una de sus componentes propia de cada periodo y el resto comunes a todos ellos
+
+
+La Tabla \ref{tab:systematics_summary} recoge las diferentes familias que se toman en el ajuste, que agrupan varias componentes independientes con su propio parámetro cada una, junto con la correlación que se les asigna entre los cinco periodos de toma de datos. Puesto que la decisión de correlacionar se toma para cada componente por separado, cabe destacar las entradas de correlación parcial: la escala de energía de los jets se descompone en una decena de fuentes según el paso de la calibración del que provienen, y cada una de ellas aporta a su vez una componente común a los cinco periodos y otra propia de cada uno; en el etiquetado de quarks $b$ el desdoblamiento sigue el origen de cada componente, de manera que las que provienen de la calibracion central se correlacionan, mientras que las que reflejan el número finito de sucesos con el que esa calibración se midió en cada categoría de sabor se tratan como independientes en cada periodo; y de forma análoga para la identificación de los $\tau_h$, con una de sus componentes propia de cada periodo y el resto comunes a todos ellos. Para la incertidumbre en la luminosidad integrada la estructura es diferente, ya que se descompone en tres componentes anidadas, cada una compartida por un subconjunto distinto de años, que recogen qué fuentes sistemáticas tienen en común las medidas de unos y otros.
+
+%La primera es común a 2022, 2023 y 2024, la segunda solo a 2023 y 2024, y la tercera es exclusiva de 2024. Un proceso simulado de 2022 recibe por tanto una única componente, uno de 2023 dos y uno de 2024 las tres, y la incertidumbre total de cada año resulta de su suma en cuadratura.
+
+La única fuente que escapa a ese reparto son las dos componentes estadísticas del método de los \textit{fake factors}, que no solo se descorrelacionan entre periodos, como el resto de las de su clase, sino también entre categorías y entre canales, de modo que cada región de señal contribuye con sus propios parámetros y ninguna fluctuación se propaga de una a otra. Es la consecuencia estricta de su origen, ya que tanto los factores como el recuento de sucesos de las regiones plantilla se determinan de forma independiente en cada región, a costa de multiplicar el número de parámetros asociados a esta única fuente.\\
 
 
 \begin{table}[tbp]
@@ -20,7 +77,7 @@ The present chapter is structured as follows. The construction of the statistica
 \small
 \begin{tabular}{lllc}
 \toprule
-Source & Affected processes & Type & Correlation across periods \\
+Source & Affected processes & Type & Correlation \\
 \midrule
 Integrated luminosity                     & simulated              & normalization & partial \\
 Signal cross section                      & signal                 & normalization & full    \\
@@ -28,15 +85,18 @@ Background cross sections                 & simulated              & normalizati
 Branching fractions                       & with a Higgs boson     & normalization & full    \\
 $b\bar{b}H$ normalization                 & $b\bar{b}H$            & normalization & full    \\
 \midrule
-Pile-up reweighting                       & simulated              & shape & full    \\
+Pile-up reweighting                       & simulated              & normalization\tablefootnote{The shape information of
+the pile-up variation is retained only for the signal processes. For every background
+process the two shifted templates are replaced by the nominal one rescaled by the ratio
+of their integrals, with a floor of $2\%$ on that ratio.} & full \\
 Trigger efficiency                        & simulated              & shape & none    \\
 Muon and electron identification and isolation & simulated         & shape & full    \\
 Electron energy scale and resolution      & simulated              & shape & full    \\
-$\tau_h$ identification                   & simulated              & shape & mixed   \\
+$\tau_h$ identification                   & simulated              & shape & partial   \\
 $\tau_h$ energy scale                     & simulated              & shape & none    \\
-Jet energy scale                          & simulated              & shape & mixed   \\
+Jet energy scale                          & simulated              & shape & partial   \\
 Jet energy resolution                     & simulated              & shape & none    \\
-$b$ tagging                               & simulated              & shape & mixed   \\
+$b$ tagging                               & simulated              & shape & partial   \\
 Acceptance (QCD scale and PDF)            & simulated              & shape & full    \\
 \midrule
 Drell--Yan correction, fit                & Drell--Yan             & shape & full    \\
@@ -53,10 +113,31 @@ Size of the simulated samples             & simulated              & shape & non
 \caption[Summary of the systematic uncertainties]{%
     Summary of the sources of systematic uncertainty considered in the analysis, with the
     processes they affect, whether they modify only the normalization or also the shape of
-    the distributions, and their correlation across data-taking periods.}
+    the distributions, and their correlation across data-taking periods. The two statistical components of the fake factor method are in addition decorrelated between categories and channels.
+}
 \label{tab:systematics_summary}
 \end{table}
 
+% construcción de plantillas
+Una vez fijado el reparto de los parámetros, las dos plantillas desplazadas de cada fuente —construidas en la Sección \ref{sec:bbtt_systematics} desplazando la corrección correspondiente en uno y otro sentido — reciben antes del ajuste algunas correcciones para garantizar que todas las variaciones se comporten de manera coherente bajo interpolación.
+
+Cuando las dos variaciones de una fuente quedan del mismo lado de la plantilla nominal en un intervalo, el signo del parámetro de estorbo pierde su sentido, ya que el contenido se mueve en la misma dirección sea cual sea el sentido del desplazamiento, de modo que se sustituyen por una pareja simétrica construida con la mayor de las dos diferencias. 
+
+Por otro lado, el mismo requisito del binado adaptativo de la Sección \ref{sec:bbtt_extraction} se impone aquí a la estimación de \textit{fakes} obtenida de los datos, de forma que si se anula en un bin se le asigna un contenido mínimo, puesto que un proceso con rendimiento nulo no admite variaciones relativas y deja sus incertidumbres sin tratamiento posible.
+
+La reponderación del apilamiento recibe un tratamiento aparte en el cual sus dos variaciones se sustituyen por la plantilla nominal reescalada por el cociente de integrales correspondiente, corregido de modo que ambas queden a un lado y a otro de la nominal y que ninguna se aparte de ella menos de un $2\,\%$. La sustitución elimina la información de forma, por lo que solo se aplica a los procesos de fondo y la señal queda al margen.\textcolor{red}{por qué se le da este tratamiento? Mirar bien la AN...}\\
+
+
+%El primero corrige los intervalos en los que las dos variaciones de una misma fuente quedan del mismo lado de la plantilla nominal, situación en la que el signo del parámetro de estorbo pierde su sentido, ya que el contenido del bin se mueve en la misma dirección tanto si el parámetro se desplaza hacia arriba como hacia abajo. La variación se sustituye entonces por una simétrica, construida con la mayor de las dos diferencias respecto de la nominal, lo que aquí afecta a la escala y a la resolución de la energía de los jets y a las componentes de contaminación de quarks $c$ del etiquetado de quarks $b$.
+
+
+% estadísitica de la predicción
+Queda finalmente la limitación estadística de la predicción misma, que recibe el tratamiento de Barlow y Beeston anunciado en la Sección \ref{sec:bbtt_systematics} SEGURO QUE SE ANUNCIÓN AHÍ?. Su implementación distingue dos regímenes en función del número efectivo de sucesos del intervalo, definido como $(\sum_i w_i)^2/\sum_i w_i^2$ para dar cuenta de que los sucesos simulados entran con pesos distintos. Cuando ese número supera los diez sucesos, la fluctuación del fondo total se describe con un único parámetro por intervalo, compartido por todos los procesos que lo pueblan. Cuando no la alcanza, el régimen gausiano deja de ser aplicable y se asigna un parámetro independiente a cada proceso, con una restricción de Poisson. La señal queda excluida de este tratamiento... \textcolor{red}{POR QUE SE EXCLUYE LA SEÑAL?}
+
+Con los parámetros definidos, su correlación fijada y las plantillas preparadas, el modelo estadístico queda completo y el ajuste puede realizarse, de forma que la siguiente pregunta concierte a lo que se extrae de él. 
+
+
+\subsection{Extraction of the results}
 
 % Placed before the results, as in Jaime's thesis, so the results section can be
 % read without interruption.
