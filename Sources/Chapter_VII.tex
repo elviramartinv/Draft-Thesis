@@ -183,13 +183,14 @@ The figure confirms that the ratio of the observed data to the prediction is con
 %El contraste de bondad del ajuste descrito en la Sección \ref{subsec:bbtt_teststat}, realizado también por separado en cada partición de los datos, es la versión cuantitativa de esta misma comprobación.
 
 
-REVISAR INGLES DESDE AQUI
+
 \subsection{Signal strength and significance}
 \label{subsec:bbtt_mu}
 %
-The simultaneous fit to the fifty signal regions yields a best estimate of the signal intensity of $\mu = 2.6^{\,+2.1}_{\,-1.7}$, where the uncertainty defines the $68\,\%$ confidence interval. The central value lies above the standard model prediction, $\mu = 1$, at a distance of less than one standard deviation, so the result is consistent with it. Similarly, the result is consistent with the null hypothesis of no signal, $\mu = 0$, at approximately one and a half times the lower uncertainty. Figure \ref{fig:likelihood_scan_r} shows the profile of the likelihood ratio as a function of signal strength, from which both the central value and the interval are obtained.
+The simultaneous fit to the fifty signal regions yields a best estimate of the signal strength of $\mu = 2.6^{\,+2.1}_{\,-1.7}$, where the uncertainty defines the $68\,\%$ confidence interval. The central value lies above the standard model prediction, $\mu = 1$, by less than one standard deviation, so the result is consistent with it. The result is also consistent with the absence of signal, $\mu = 0$, from which it lies about one and a half times the lower uncertainty away. Figure \ref{fig:likelihood_scan_r} shows the profile of the likelihood ratio as a function of the signal strength, from which both the central value and the interval are obtained.
 
-The significance quantifies the degree to which the data are consistent with the background-only hypothesis, and is obtained by comparing the maximum likelihood estimate with that resulting from setting $\mu = 0$, as described in Section \ref{subsec:bbtt_teststat}. Its observed value is $1.5$ standard deviations, while the expected value — calculated assuming that the signal were present with the strenght predicted by the Standard Model — is $0.7$ standard deviations and indicates what the analysis could have hoped to detect. Therefore, no significant excess above the background-only hypothesis is observed, nor is there any evidence of Higgs boson pair production under the SM hypothesis.\\
+The significance quantifies the degree to which the data are consistent with the background-only hypothesis, and is obtained by comparing the likelihood at its maximum with the one obtained when $\mu$ is set to zero, as described in Section \ref{subsec:bbtt_teststat}. Its observed value is $1.5$ standard deviations, while the expected value — calculated assuming the signal to be present with the strength predicted by the SM — is $0.7$ standard deviations and indicates what the analysis could have hoped to detect. Therefore, no significant excess above the background-only hypothesis is observed, nor is there any evidence of Higgs boson pair production under the SM hypothesis.\\
+
 
 
 
@@ -201,13 +202,13 @@ The significance quantifies the degree to which the data are consistent with the
     \centering
     \includegraphics[width=0.6\linewidth]{figures/chapter_VII/likelihood_scan_r_PLACEHOLDER.pdf}
     \caption[Likelihood scan in the signal strength]{%
-        Profile of the test statistic as a function of the signal strength. The dashed lines
+        Profile of the likelihood ratio as a function of the signal strength. The dashed lines
         mark the crossings with the thresholds that define the $68\%$ and $95\%$ confidence
         intervals, and the vertical line indicates the standard model prediction. \textcolor{red}{rehacer}}
     \label{fig:likelihood_scan_r}
 \end{figure}
 
-As already noted when framing the problem at the beginning of this section, the result of the analysis cannot therefore be expressed as a measure of the effective cross-sectional area of production, but rather as an upper limit on it, which is the subject of Section \ref{subsec:bbtt_limits}.
+As already noted when framing the problem at the beginning of this section, the result of the analysis cannot therefore be expressed as a measurement of the production cross section, but rather as an upper limit on it, which is the subject of Section \ref{subsec:bbtt_limits}.
 
 
 %Por otro lado, la cota observada resultará menos restrictiva que la esperada, puesto que un exceso de sucesos sobre lo que predice la hipótesis de solo fondo impide excluir tanta señal como se habría excluido con unos datos que reprodujeran exactamente la predicción.
@@ -216,11 +217,12 @@ As already noted when framing the problem at the beginning of this section, the 
 
 % mu = 2.6 +2.1 -1.7 ; observed (expected) significance 1.5 (0.7) sigma.
 % No significant excess over the background-only hypothesis.
-
+REVISAR INGLES DESDE AQUI
 \subsection{Upper limits on the HH production cross section}
 \label{subsec:bbtt_limits}
 %
-No habiéndose observado la señal, el resultado se formula como una cota superior sobre la sección eficaz de producción, expresada en unidades de la predicción del modelo estándar y determinada al nivel de confianza del $95\,\%$. Se obtiene para las dos medidas definidas en la Sección \ref{subsec:bbtt_likelihood}, la inclusiva en los dos modos de producción y la exclusiva de la fusión de bosones vectoriales, y se calcula tanto para la combinación completa como para cada categoría por separado. La Figura \ref{fig:limits_category} recoge ambos resultados.
+Since no signal was observed, the result is formulated as an upper limit on the production cross section, expressed in units of the SM prediction and determined at the $95\,\%$ confidence level. It is obtained for the two measures defined in Section \ref{subsec:bbtt_likelihood} — the inclusive measure for both production modes and the exclusive measure for vector boson fusion — and is calculated both for the complete combination and for each category separately. Figure \ref{fig:limits_category} presents both results.
+
 
 \begin{figure}[tbp]
     \centering
@@ -234,18 +236,13 @@ No habiéndose observado la señal, el resultado se formula como una cota superi
     \label{fig:limits_category}
 \end{figure}
 
-Para la producción inclusiva, la combinación de las diez categorías excluye secciones eficaces superiores a $6.6$ veces la predicha por el modelo estándar, frente a un valor esperado de $3.9$, resultando la cota observada menos restrictiva que la esperada en correspondencia con el exceso descrito en la Sección \ref{subsec:bbtt_mu}.
-
-El reparto entre categorías muestra que la sensibilidad procede casi en su totalidad de la categoría res2b, cuyo límite esperado de $4.2$ apenas difiere del $3.9$ de la combinación, mientras que las tres restantes se sitúan entre $15$ y $23$. Es un resultado esperado \textcolor{red}{cuidado con esta palabra} puesto que esa categoría recoge la topología en la que se produce la mayor parte de la señal y aquella en la que las dos selecciones de quarks $b$ dejan el fondo más reducido.\\
+For inclusive production, the combination of the ten categories excludes cross sections greater than $6.6$ times that predicted by the standard model, compared to an expected value of $3.9$, resulting in the observed limig being less restrictive than expected, consistent with the excess described in Section \ref{subsec:bbtt_mu}. The breakdown by category shows that the sensitivity comes almost entirely from the res2b category, whose expected limit of $4.2$ differs only slightly from the $3.9$ of the combination, while the remaining three fall between $15$ and $23$. This outcome is in line with expectations, given that this category incorporates the topology where the majority of the signal is generated and the one in which the two selections of $b$ quarks result in the lowest background.
 
 % El exceso no se reparte por igual entre las categorías. En VBF y en la categoría \textit{boosted} la cota observada es de hecho más restrictiva que la esperada, y son las dos categorías resueltas, y en particular res2b, las que concentran la desviación al alza.
 
+For the exclusive VBF production, the observed limit is $81$ times the SM prediction, with an expected value of $85$. The fact that it is more than an order of magnitude stronger than the inclusive limit is explained by the cross section for this mode, which is nearly twenty times smaller, and by the fact that only one of the ten categories is dedicated to it. In fact, the expected limit for the VBF category, $91$, is practically that of the complete combination, while the \textit{resolved} and \textit{boosted} categories yield estimates between five and twenty times weaker, which constitutes quantitative confirmation of what motivated the definition of that category and a measure specific to this production mode.\\
 
-
-Para la producción exclusiva VBF la cota es de $81$ veces la predicción del modelo estándar, con un valor esperado de $85$. Que sea más de un orden de magnitud superior a la inclusiva se explica por la sección eficaz de este modo, casi veinte veces menor, y por el hecho de que una sola de las diez categorías esté dedicada a él. En efecto, el límite esperado de la categoría VBF, $91$, es prácticamente el de la combinación completa, mientras que las categorías resueltas y la \textit{boosted} aportan cotas entre cinco y veinte veces más débiles, lo que constituye la confirmación cuantitativa de lo que motivó definir esa categoría y una medida propia para este modo de producción.\\
-
-
-El desglose por periodo de toma de datos permite además ver de dónde proviene la sensibilidad acumulada. Los límites esperados sobre la producción inclusiva son de $11$ para 2022, $11$ para 2023 y $4.4$ para 2024, frente al $3.9$ de la combinación, valores que se recogen junto a los del conjunto de datos de Run 2 en la Tabla \ref{tab:limits_per_year} de la Sección \ref{sec:bbtt_combination}. El periodo de 2024 proporciona por tanto casi toda la sensibilidad del análisis con menos de dos tercios de la luminosidad integrada, lo que refleja no solo su mayor tamaño sino también las condiciones en que se registró, con los disparadores descritos en la Sección \ref{sec:triggers} y con further mejoras en los algoritmos de identificación del sabor de los jets, cuyo discriminante alimenta a su vez los algoritmos de asignación del Capítulo \ref{ch:taggers}. \textcolor{red}{...?}
+The breakdown by data-taking period also illustrates the source of the cumulative sensitivity. The expected limits on inclusive production are $11$ for 2022, $11$ for 2023, and $4.4$ for 2024, compared to $3.9$ for the combination; these values are listed alongside those from the Run 2 dataset in Table \ref{tab:limits_per_year} in Section \ref{sec:bbtt_combination}. The 2024 period provides nearly all of the sensitivity of the analysis with less than two-thirds of the integrated luminosity, reflecting not only its larger size but also the conditions under which it was recorded, with the triggers described in Section \ref{sec:triggers} and with further improvements in the jet flavor identification algorithms, whose output in turn feeds the tagging algorithms in Chapter \ref{ch:taggers}.\textcolor{red}{...?}
 
 \subsection{Constraints on the Higgs boson couplings}
 %
