@@ -278,9 +278,6 @@ To fully leverage all available data, the next step involves combining both meas
 
 
 
-
-
-
 \section{Combination with the Run 2 dataset}
 \label{sec:bbtt_combination}
 %
@@ -293,18 +290,21 @@ However, as already noted, the strategy followed in Run 3 largely derives from t
 Therefore, the combination must determine which of the nuisance parameters of the two analyses describe the same source of uncertainty and must consequently be identified with one another. Section \ref{subsec:bbtt_comb_procedure} addresses this decision and how the joint likelihood is constructed, and Section \ref{subsec:bbtt_comb_results} presents the results obtained from it, compared in each case with those provided from each dataset separately.
 
 
-\subsection{Combination procedure}
-% Combined with the published Run-2 search in the same final state
-% \cite{CMS-HIG-20-010}: 138/fb at 13 TeV -> 310/fb in total.
-% - Some Run-2 theory uncertainties were updated after publication (an extra
-%   uncertainty on heavy-flavour associated single-H production), so the standalone
-%   Run-2 result differs slightly from the published one -- say this explicitly.
-% - Correlation scheme: theory uncertainties (branching ratios, PDF, alpha_s,
-%   scales, and notably the joint QCD+m_top uncertainty in ggHH) correlated across
-%   Runs; all experimental uncertainties uncorrelated, because detector conditions
-%   and calibrations differ.
-% - The likelihood is the union of all binned shapes from both analyses; the
-%   coupling parametrization follows the same matrix-inversion method in both.
+\subsection{The combined statistical model}
+\label{subsec:bbtt_comb_procedure}
+%
+The combined likelihood is the union of all the binned distributions from the two analyses. In the Run 3 analysis, these are the fifty outputs of the discriminant described in Section \ref{sec:bbtt_extraction}, one per signal region. In Run 2, these are the outputs of its own classifier, evaluated across the eight orthogonal categories defined by that search and broken down by channel and by year. The result is a single fit across all of them in which each region retains its histogram, and what is shared is the set of parameters, such that the fit is performed in a single step across the entire set, using the same parameters of interest defined in Section \ref {subsec:bbtt_likelihood}, which scale the signal from both sets relative to the SM prediction corresponding to the energy of each, $13$ TeV in Run 2 and $13.6$ TeV in Run 3.\\
+
+To ensure consistency in the combination, it is necessary to establish how the uncertainty parameters of one analysis relate to those of the other. The criterion is analogous to that governing the correlations within Run 3, i.e., the origin of the uncertainty. In this case, it is the theoretical uncertainties described in Section \ref{subsec:bbtt_theory_unc} that stem from the same calculations in both searches, so they are described by a single parameter common to both. This group includes those associated with the Higgs boson branching fractions, both in terms of their effect on the normalization and on the shape of the distributions; the choice of the set of parton distributions; the value of $\alpha_s$; the renormalization and factorization scales; and, notably, the one that combines the latter with the ambiguity in the top quark mass scheme regarding the signal produced by gluon fusion, which is the largest of the theoretical uncertainties affecting the signal. In contrast, experimental uncertainties are handled as independent, as is appropriate for datasets with differing detector conditions and calibration procedures.\\
+
+On the other hand, the two datasets were recorded at different energies, which has implications for the combination process, since both the signal and background cross sections differ between $13$ and $13.6$ TeV; therefore, the same value for the couplings does not yield the same prediction in one dataset as in the other. The signal parameterization described in Section \ref{sec:bbtt_samples} is thus constructed separately for each dataset, based on its own simulated samples and the corresponding cross sections, but using the same matrix inversion method and following the recommendations of the LHC Higgs boson working group. In this way, each point in coupling space corresponds to its own energy prediction in each dataset.
+
+Furthermore, this dependence is not limited to the signal but also includes part of the background. The branching fraction and the production rates of a single Higgs boson also depend on the coupling modifiers — though with different functional dependencies — and their variation is likewise included in the model. If this were not done, a scan in $\kappa_\lambda$ would shift the signal while leaving the background stationary, even though it actually moves with it.\\
+
+One final clarification is in order regarding the Run 2 result shown in this combination. Since the publication of that search, some of its theoretical uncertainties have been updated, including through the introduction of an additional uncertainty regarding the production of a single Higgs boson in association with heavy flavors. The \textit{datacards} used here therefore incorporate these updates, so the result presented separately for Run 2 may differ slightly from that published in Ref.~\cite{CMS-HIG-20-010}.
+
+With the likelihood function constructed in this way, the fitting and extraction of the results follow the procedure described in Section \ref{subsec:bbtt_teststat}, with the only difference being the set of regions over which they are performed.
+
 
 \subsection{Combined results}
 % mu = 0.9 +1.6 -1.4 ; observed (expected) significance 0.7 (0.8) sigma.
@@ -318,6 +318,8 @@ Therefore, the combination must determine which of the nuisance parameters of th
 
 \section{Comparison with other HH searches}
 \label{sec:bbtt_comparison}
+\subsection{Other HH final states: the big 3 - early run 3 analysis}
+\subsection{ATLAS?}
 % Borrowed from Jaime (his Sec. 5.5), and it earns its place.
 % CMS Run-2 combination 3.4 (2.5); ATLAS 2.9 (2.4); ATLAS+CMS 2.5 (1.7 / 2.8);
 % ATLAS bbtautau with 196/fb -> 5.3 (2.4 / 2.8). Where bbtautau sits among
