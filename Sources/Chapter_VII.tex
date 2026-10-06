@@ -153,7 +153,7 @@ All of these results are calculated not only for the entire dataset, but also se
 The model constructed in this way is fitted to the data in a single operation, which simultaneously yields the signal strength value and the values of all the nuisance parameters. The fit therefore returns not only a measurement but also a revised prediction — the result of applying the shifts assigned to each process — and comparing that prediction with the data reveals whether the fit required deviating from the nominal parameter values. Section \ref{sec:bbtt_results} begins with this comparison, before extracting from that same fit the results sought by the analysis.
 
 
-\section{Results}
+\section{Results from the Run 3 dataset}
 \label{sec:bbtt_results}
 %
 The number of signal events produced in the analyzed dataset is the product of the integrated luminosity, the production cross section, and the branching fraction to the final state under consideration, $N = \mathcal{L}\,\sigma_{HH}\,\mathcal{B}(HH\to b\bar{b}\tau\tau)$. Using the values given in Section \ref{sec:bbtt_samples} for the cross sections of the two production modes and a branching fraction of $7.3\,\%$, the $172$ fb$^{-1}$ collected during Run 3 contain about 450 signal events. Of these, the acceptance of the selection, together with the trigger, reconstruction, and identification efficiencies, leave only a small fraction, which is spread across the fifty signal regions and accompanied by a background several orders of magnitude larger. \textcolor{red}{cutflow} This is the magnitude of the excess whose extraction is the fit described in the previous section, and which constitutes the subject of the results presented below.
@@ -307,15 +307,96 @@ One final clarification is in order regarding the Run 2 result shown in this com
 With the likelihood function constructed in this way, the fit and the extraction of the results follow the procedure described in Section \ref{subsec:bbtt_teststat}, with the only difference being the set of regions over which they are performed.
 
 
-\subsection{Combined results}
-% mu = 0.9 +1.6 -1.4 ; observed (expected) significance 0.7 (0.8) sigma.
-%   inclusive : 4.0 (3.0) x SM   [Run 2 alone 3.5 (5.3) ; Run 3 alone 6.6 (3.9)]
-%   qqHH only : 62 (70)  x SM
-%   -2.5 < kappa_lambda < 9.4  (expected -1.5 < kappa_lambda < 8.4)
-%   0.02 < kappa_2V < 2.1      (expected -0.1 < kappa_2V < 2.2)
-% 2D exclusion in the kappa_2V - kappa_lambda plane, best fit at (7.1, 0.6).
-% Worth a comment: Run 3 observed is weaker than expected while Run 2 is stronger
-% than expected -- explain how the two combine rather than leaving it unremarked.
+\subsection{The combined measurement}
+\label{subsec:bbtt_comb_results}
+%
+The combined fit yields the same results as those presented for Run 3 in Section \ref{sec:bbtt_results}, now obtained over the $310$ fb$^{-1}$ that the two datasets add up to, and are presented here in that same order. For each, the text highlights the contribution of the combination, in comparison with the value already obtained for Run 3 and with that published for Run 2, which the figures show alongside the combined result.
+
+The signal strength that best fits the combined data is $\mu = 0.9^{\,+1.6}_{\,-1.4}$, so the central value practically matches the SM prediction. The observed significance is $0.7$ standard deviations, compared to an expected value of $0.8$. The contrast with the value obtained in Run 3 is explained by the fact that, while Run 3 observed more events than predicted by the pure background hypothesis, the results from Run 2 fluctuate in the opposite direction, resulting in a value close to unity after combining the data.
+
+Regarding upper limits, the combination excludes cross sections for inclusive production greater than $4.0$ times the SM prediction, with an expected value of $3.0$, and greater than $62$ times the SM prediction for exclusive production via vector boson fusion, with an expected value of $70$. Figure \ref{fig:limits_combined} compares these limits with those provided by each dataset separately, and Table \ref{tab:limits_per_year} lists them broken down by year.
+
+The improvement provided by the combination is evident in the expected limit, which goes from $3.9$ in Run 3 and $5.3$ in Run 2 to $3.0$, surpassing both values separately. The observed limit is $4.0$, above the expected limit, which again reflects the excess in Run 3, although mitigated by the results from Run 2. Figure \ref{fig:limits_combined} also depicts the expected limit under two different hypotheses: the absence of a signal and the presence of a SM-like signal, with the latter being systematically less restrictive.
+
+%
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/chapter_VII/limits_combined_smpoint.pdf}
+    \caption[Upper limits for the two datasets and their combination]{%
+        Expected and observed upper limits at $95\%$ CL on the HH production cross section
+        at the SM point, for the Run 2 dataset, the Run 3 dataset and their
+        combination. The expected limits are given both under the background-only
+        hypothesis and under the SM-like signal hypothesis. Taken from Ref.~\cite{CMS-PAS-HIG-25-008}.}
+    \label{fig:limits_combined}
+\end{figure}
+
+\begin{table}[tbp]
+\centering
+\begin{tabular}{llccc}
+\toprule
+$\sqrt{s}$ [TeV] & Dataset & $\mathcal{L}$ [fb$^{-1}$] & $\sigma(pp\to HH)/\sigma_\text{theo}$ & $\sigma(pp\to qqHH)/\sigma_\text{theo}$ \\
+\midrule
+\multirow{4}{*}{13}
+  & 2016          & 36.3 & 9.0 (11)  & 285 (359) \\
+  & 2017          & 41.5 & 9.7 (12)  & 282 (391) \\
+  & 2018          & 59.7 & 5.7 (8.3) & 243 (228) \\
+  & Run 2         & 138  & 3.5 (5.3) & 126 (154) \\
+\midrule
+\multirow{4}{*}{13.6}
+  & 2022          & 34.7 & 17 (11)   & 527 (374) \\
+  & 2023          & 27.7 & 8 (11)    & 301 (314) \\
+  & 2024          & 110  & 8.3 (4.4) & 87 (94)   \\
+  & Run 3         & 172  & 6.6 (3.9) & 81 (85)   \\
+\midrule
+  & Run 2 + Run 3 & 310  & 4.0 (3.0) & 62 (70)   \\
+\bottomrule
+\end{tabular}
+\caption[Upper limits per data-taking year and their combination]{%
+    Observed upper limits at $95\%$ CL on the inclusive and on the qqHH production cross
+    sections, normalized to the SM prediction, for each data-taking year and
+    for the combinations. The expected limits under the background-only hypothesis are
+    given in parentheses. Taken from Ref.~\cite{CMS-PAS-HIG-25-008}.}
+\label{tab:limits_per_year}
+\end{table}
+
+The observed couplings constraints derived from the combined fit are $-2.5 < \kappa_\lambda < 9.4$, compared to an expected range of $-1.5 < \kappa_\ lambda < 8.4$, and $0.02 < \kappa_{2V} < 2.1$, compared to an expected range of $-0.1 < \kappa_{2V} < 2.2$. Figure \ref{fig:likelihood_scans_comb} shows the likelihood profiles for both couplings for the two datasets and their combination, illustrating how the likelihood well narrows when the two datasets are combined.
+
+The interval in $\kappa_{2V}$ is the most notable result of the set, since it no longer contains the zero value. Thus, the data begin to exclude the absence of an interaction vertex between two Higgs bosons and two vector bosons, albeit by a narrow margin and without the expected interval actually ruling it out.
+%
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VII/likelihood_scans_run2_run3.pdf}
+    \caption[Likelihood scans in the coupling modifiers]{%
+        Observed likelihood scans as a function of $\kappa_\lambda$ (left) and of
+        $\kappa_{2V}$ (right), shown separately for the Run 2 and Run 3 datasets and for
+        their combination. The horizontal lines mark the thresholds corresponding to the
+        $68\%$, $95\%$ and $99\%$ confidence levels. Taken from
+        Ref.~\cite{CMS-PAS-HIG-25-008}. \textcolor{red}{todos estos resultados los quiero sacar yo}}
+    \label{fig:likelihood_scans_comb}
+\end{figure}
+
+The two couplings can also be varied simultaneously, yielding the two-dimensional exclusion region shown in Figure \ref{fig:exclusion_2d}. A point in the plane is considered excluded when the upper limit on the production rate obtained there falls below the theoretical prediction evaluated at that same point. The best fit corresponds to $(\kappa_\lambda, \kappa_{2V}) = (7.1, 0.6)$, and the standard model configuration lies within the allowed region.
+%
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VII/exclusion_2d_k2v_kl.pdf}
+    \caption[Two-dimensional exclusion in the coupling plane]{%
+        Excluded region at $95\%$ CL in the $\kappa_{2V}$ versus $\kappa_\lambda$ plane
+        (left) and the corresponding two-dimensional likelihood scan (right), for the
+        combination of the Run 2 and Run 3 datasets. The remaining coupling modifiers are
+        fixed to their SM values, and the SM configuration is
+        indicated by the red diamond. Taken from Ref.~\cite{CMS-PAS-HIG-25-008}. \textcolor{red}{esto merece la pena añadirlo tambien a los resultados de solo Run 3?}}
+    \label{fig:exclusion_2d}
+\end{figure}
+\\\\
+
+Con la combinación se agota lo que el estado final $bb\tau\tau$ puede decir hasta la fecha en CMS, arrojando el resultado más sensible que el experimento ha obtenido en este canal. 
+
+
+
+Con la combinación se agota lo que el estado final $bb\tau\tau$ puede decir hoy en CMS, y el resultado es el más sensible que el experimento ha obtenido en este canal, aunque la tasa de producción que predice el modelo estándar siga quedando por debajo de lo que estos datos permiten excluir. Lo que un límite de cuatro veces esa predicción no dice por sí solo es ni si el análisis ha alcanzado lo que podía ni cuán cerca se encuentra la búsqueda de producción de pares de bosones de Higgs de su objetivo. Para lo primero, el término de comparación natural es el mismo estado final analizado por el experimento ATLAS, donde la diferencia no puede atribuirse al canal sino a los datos disponibles y a las técnicas empleadas. Para lo segundo hay que mirar a los demás estados finales, cada uno con su propio equilibrio entre la fracción de desintegración que lo alimenta y el fondo que debe combatir, y a las combinaciones que de todos ellos se han hecho. De una y otra comparación se ocupa la Sección \ref{sec:bbtt_comparison}.
+
+
 
 \section{Comparison with other HH searches}
 \label{sec:bbtt_comparison}
@@ -370,6 +451,7 @@ result does not yet include the 2024 data-taking period.}
 % - The impact of the Chapter \ref{ch:taggers} algorithms on this result -- this is
 %   where the thesis closes its own loop.
 % - Outlook: remaining Run-3 luminosity, then HL-LHC.
+- boosted results?
 
 
 
