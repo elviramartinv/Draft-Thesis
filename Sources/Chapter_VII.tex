@@ -532,7 +532,7 @@ scaling.}
 
 
 % Comb with run 2 de 4b, los limites en k2v - kl ? o esa figura sobra?
-Of the two channels, only $4b$ has so far combined its Run 3 data with that of Run 2, and it has done so by reanalyzing the $138$ fb$^{-1}$ from the years 2015 to 2018 in the resolved topology, improving its expected limit by about $25\,\%$ and setting it at $5.9$. The joint fit over the resulting $200$ fb$^{-1}$ excludes production rates greater than $4.7$ times the SM prediction, with an expected value of $2.8$, and constrains $\kappa_\lambda$ to the observed (expected) interval, $[-3.8,\ 10.0]$ $([-2.0,\ 8.7])$, and $\kappa_{2V}$ to $[0.74,\ 1.30]$ $([0.69,\ 1.35])$. Figure \ref{fig:exclusion_2d_4b} displays the two-dimensional exclusion regions it provides, where the left panel displays the signal strengths of the simultaneously determined production modes — unlike in this work, which measures them separately — and the right panel is the counterpart to the coupling plane in Figure \ref{fig:exclusion_2d}.
+Of the two channels, only $4b$ has so far combined its Run 3 data with that of Run 2, and it has done so by reanalyzing the $138$ fb$^{-1}$ from the years 2016 to 2018 in the resolved topology, improving its expected limit by about $25\,\%$ and setting it at $5.9$. The joint fit over the resulting $200$ fb$^{-1}$ excludes production rates greater than $4.7$ times the SM prediction, with an expected value of $2.8$, and constrains $\kappa_\lambda$ to the observed (expected) interval, $[-3.8,\ 10.0]$ $([-2.0,\ 8.7])$, and $\kappa_{2V}$ to $[0.74,\ 1.30]$ $([0.69,\ 1.35])$. Figure \ref{fig:exclusion_2d_4b} displays the two-dimensional exclusion regions it provides, where the left panel displays the signal strengths of the simultaneously determined production modes — unlike in this work, which measures them separately — and the right panel is the counterpart to the coupling plane in Figure \ref{fig:exclusion_2d}.
 %
 \begin{figure}[tbp]
     \centering
@@ -559,8 +559,75 @@ The combination of the three main channels — which established the state of th
 \subsection{Comparison with the ATLAS search in \texorpdfstring{$bb\tau\tau$}{bbtautau}}
 \label{subsec:bbtt_comp_atlas}
 %
-El experimento ATLAS ha publicado una búsqueda en este mismo estado final UN COMIENZO MUY ABRUPTO, NO EMPIECES DICIENDO LO QUE HA HECHO ATLAS, SINO REFERENCIANDO QUE HEMOS AGOTADO CMS Y FUERA DE ÉL SE PUEDE COMPARAR EL RESULTADO CON LA BUSQUEDA RECIENTE DE ATLAS EN EL MISMO ESTADO FINAL, LA CUAL NOS PERMITE PONER NUESTRA ESTRATEGIA EN CONTEXTO DE HASTA DONDE SE PUEDE LLEGAR CON UN CONJUNTO DE DATOS SIMILAR... construida de la misma forma que la descrita en la Sección \ref{sec:bbtt_combination}, A QUE TE REFIERES CON CONSTRUIDA DE LA MISMA FORMA? ajustando en una sola operación los $140$ fb$^{-1}$ de Run 2 y los $56$ fb$^{-1}$ de Run 3 \cite{ATLAS-HH-bbtautau-Run3} PERO AQUI RUN 2 ESTA REPROCESADO. QUE LO PONGAS ASI PARECE QUE ESTA HACIENDO LO MISMO. La semejanza no se limita al conjunto de datos. DEJA DE REINCIDIR EN ESTO, COMPARTEN LOS DATOS DE RUN 2, PERO ELLOS REANALIZANDOLO; Y DE RUN 3 SOLO USAN 22 Y 23, Y NOSOTROS TAMBIEN 24. REPLANTEA MEJOR ESTA PRIMERA PARTE. INTRODUCE AQUI MEJOR QUE VAMOS  APASAR A HABLAR DE LA ESTRATEGIA DE ANALISIS, QUE COMPARTE SEMEJANZAS CON LA NUESTRA, PERO HABRA QUE PONER TAMBIEN LAS DIFERENCIAS EN LA ESTRATEGIA (LA RED TRANSFORMERS CLASIFICADORA POR EJEMPLO ENTRE OTRAS COSAS... ESTO QUIZAS TENGA QUE IR EN UN PARRAFO APARTE, ANTES DE DAR EL ANALISIS DE LAS MEDIDAS) Su estrategia distingue también los canales según el modo de desintegración del par de leptones $\tau$, y define dentro de cada uno tres regiones de señal ortogonales mediante un clasificador multiclase, una dedicada a la topología de fusión de bosones vectoriales y dos que separan el espectro de masa invariante del sistema $HH$ en un intervalo bajo y otro alto. La partición resultante es considerablemente más gruesa que las cincuenta regiones empleadas aquí.
+Agotado lo que el programa de CMS permite comparar, la referencia exterior la proporciona la búsqueda que el experimento ATLAS ha publicado recientemente en este mismo estado final \cite{ATLAS-HH-bbtautau-Run3}. Al mantenerse fijo el canal se situa la estrategia seguida aquí frente a hasta dónde puede llegarse con un conjunto de datos de tamaño parecido, aunque no exactamente igual, lo cual es clave para contextualizar la comparación. ATLAS analiza los $140$ fb$^{-1}$ de Run 2 y $56$ fb$^{-1}$ de Run 3, puesto que no se incluye el periodo 2024\footnote{pequeñas diferencias en luminosidad se deben a lo que graba cada detector por separado de la luminosidad total entregada por LHC?}. Además, en la comparación cabe notar que ATLAS reanaliza por completo los datos de Run 2 con su última estrategia desarrollada, mientras que aquí intervienen con la que tenían en su publicación original, según se describió en la Sección \ref{subsec:bbtt_comb_procedure}.\\
 
+% estrategias
+Ambas búsquedas, ATLAS y CMS, comparten estrategias de análisis: se distingue entre los canales según el modo de desintegración del par de leptones $\tau$, se reconstruyen los dos candidatos a bosón de Higgs a partir de jets etiquetados como provenientes de quarks $b$ y de los productos visibles de los leptones $\tau$, y se extrae la señal a partir de un ajuste simultáneo a la distribución de la salida de un clasificador. 
+
+Sin embargo, son varias las diferencias que separan ambos análisis, tanto en la forma de llegar a las regiones de señal, que ATLAS obtiene en un mismo paso que la extracción de la señal a partir de una única red basada en la arquitectura de transformador introducida en la Sección \ref{subsec:PNet}, como en la granularidad del ajuste resultante, que comprende doce regiones frente a las cincuenta empleadas aquí. Por otro lado, el criterio con que se construyen las regiones se apoya en la separación del espectro de masa invariante del sistema $HH$ en un tramo bajo y otro alto,  y en el tramo bajo el observable que se ajusta está construido sobre una configuración anómala con $\kappa_\lambda = 5$, cuya cinemática más blanda es la que puebla esa región. El reparto del espacio de fases y el discriminante quedan así organizados en torno a la variable de la que depende la sensibilidad a los acoplamientos, mientras que aquí las categorías se definen por la topología y la calidad del etiquetado, y es la red la que debe explotar internamente esa dependencia.
+
+Estas no son, en cualquier caso, las únicas diferencias. ATLAS incorpora al ajuste cuatro regiones de control dedicadas a sus fondos dominantes, reconstruye la masa del sistema $\tau\tau$ mediante un método de verosimilitud en lugar de una red de regresión, aplica a los jets etiquetados correcciones dedicadas que mejoran su resolución en energía, determina las intensidades de señal de los dos modos de producción en un único ajuste con dos parámetros de interés, y valida la estrategia completa midiendo en este mismo estado final las producciones de $ZZ$ y de $ZH$. Cuál de todas ellas pesa en la diferencia de sensibilidad es lo que el desglose de incertidumbres que se presentado más adelante permite acotar.\\
+
+% resultados de ATLAS
+Evaluando los resultados que se obtienen con cada búsqueda la intensidad de señal que mejor describe los datos de ATLAS es $\mu = 2.6^{+1.4}_{-1.1}$, con una significancia observada de $2.6$ desviaciones estándar frente a $1.2$ esperadas. El valor central coincide con el obtenido con los datos del Run 3 en este trabajo, $\mu = 2.6^{+2.1}_{-1.7}$ de la Sección \ref{subsec:bbtt_mu}, mientras que al tomar en cuenta la combinación en la Sección \ref{subsec:bbtt_comb_results} el valor pasa a ser $\mu = 0.9^{+1.6}_{-1.4}$, con $0.7$ observadas frente a $0.8$ esperadas. Los dos resultados son compatibles entre sí y con la predicción del SM dentro de sus incertidumbres. Por otro lado, el límite superior observado por ATLAS es $5.3$ veces la predicción del SM, con un valor esperado de $2.4$. 
+
+
+
+% comparativa a lo largo de los datos
+La Tabla \ref{tab:hh_bbtautau_limits} sitúa estos resultados dentro de la serie completa de búsquedas publicadas en este estado final por uno y otro experimento, desde los conjuntos de Run 2 analizados por separado hasta las dos combinaciones. Entre ellas figura la entrada del conjunto de Run 2 de ATLAS reanalizado con la estrategia desarrollada para este último resultado, que sobre exactamente los mismos datos rebaja el límite esperado de $3.3$ a $2.6$. Es la única comparación de toda la serie en la que la luminosidad no interviene, y mide por tanto lo que la estrategia aporta por sí sola, al margen de cuántos datos se analicen.
+
+Ideas que tienen que ir a continuación:
+- parrafo 1: en la tabla se muestra la exp. escalada, y mencionar como comparan las expected
+- parrafo 2: introducir las figuras de la misma serie graficamente \ref{fig:bbtt_atlas_comparison}, omitir esto : permite ver que la diferencia entre los dos experimentos no es propia de esta última iteración sino que se mantiene desde el comienzo de Run 2.; porque voy a analizar a continuación las incertidumbres que hacen que el analisis de Run 3 sea peor, verdad? así que en vez de poner eso dar algun detalle más sobre la linea discontinua que marca la luminosidad, y explicar mejor en que se diferencia de el plot(b) (que creo que se entiende un poco peor
+
+La Figura \ref{fig:bbtt_atlas_comparison} muestra esa misma serie gráficamente, frente a la luminosidad analizada y frente a la fecha en que cada resultado se hizo público, y permite ver que la diferencia entre los dos experimentos no es propia de esta última iteración sino que se mantiene desde el comienzo de Run 2.
+
+…de modo que la ventaja es de un factor en torno a $1.6$, que la Figura \ref{fig:bbtt_atlas_vs_lumi} hace visible como la distancia entre las dos curvas de escalado puramente estadístico.
+
+
+
+
+    
+    
+    Esa diferencia en el valor esperado es la magnitud que mide la comparación, y conviene cuantificarla con cuidado porque las luminosidades no coinciden. Reescalados a una luminosidad común, los $2.4$ de ATLAS equivalen a $2.9$ y los $3.0$ obtenidos aquí a $4.5$, de modo que la ventaja es de un factor en torno a $1.6$. El mismo factor se obtiene comparando únicamente los datos de Run 3 de uno y otro, lo cual importa porque la parte de Run 2 entra en esta combinación al nivel de las plantillas del ajuste y con la estrategia con la que fue publicada, mientras que ATLAS reanalizó la suya. La Figura \ref{fig:bbtt_atlas_comparison} sitúa todos estos resultados frente a la luminosidad analizada y frente a la fecha de publicación, y muestra que la diferencia no es nueva sino que se mantiene desde el comienzo de Run 2.
+
+    El desglose de incertidumbres de los dos análisis indica de dónde procede. Las dos medidas están dominadas por la estadística de los datos, que contribuye un $74\,\%$ a la incertidumbre sobre la intensidad de señal en este análisis y un $60\,\%$ en el de ATLAS. La diferencia está en el resto. ATLAS cifra en un $3\,\%$ la contribución conjunta de todas sus incertidumbres experimentales, mientras que aquí los factores de falsificación aportan un $25\,\%$, el etiquetado de quarks $b$ un $10\,\%$, las correcciones de leptones y de activación un $9\,\%$ y las de energía de los jets un $7\,\%$. Los dos desgloses no están normalizados de la misma forma y no admiten una resta, pero el contraste entre esa única cifra y esta enumeración localiza el margen de mejora sin ambigüedad.
+
+    Por el lado de la estrategia, el análisis de ATLAS cuantifica sus propias ganancias respecto de su iteración anterior, entre un $15$ y un $20\,\%$ según la región por el clasificador que define sus categorías, en torno a un $10\,\%$ por la nueva versión de su algoritmo de etiquetado de sabor, un $5\,\%$ en el canal totalmente hadrónico por eliminar el veto de electrones y un $15\,\%$ adicional por incorporar los datos de Run 3. Son las mismas direcciones que se han explorado aquí, y en algunos casos las mismas herramientas en versiones distintas, lo que refuerza la lectura de que la diferencia no proviene de una decisión aislada sino del grado de optimización alcanzado en cada paso. Difieren, en cambio, en la reconstrucción de la masa del sistema $\tau\tau$, que ATLAS obtiene con un método de verosimilitud y este análisis con la red de regresión descrita en la Sección \ref{sec:bbtt_reconstruction}.
+
+    La comparación no se traslada, sin embargo, a las restricciones sobre los acoplamientos. El intervalo esperado que ATLAS obtiene para el acoplamiento trilineal, $[-1.7,\ 8.5]$, es prácticamente el mismo que el $[-1.5,\ 8.4]$ de la Sección \ref{subsec:bbtt_comb_results}, y lo mismo ocurre con el acoplamiento entre dos bosones de Higgs y dos bosones vectoriales, $[0.0,\ 2.1]$ frente a $[-0.1,\ 2.2]$. La razón es la ya expuesta al comparar los estados finales de CMS, que la anchura de esos intervalos la fija sobre todo la forma de la predicción y no la sensibilidad alcanzada sobre la tasa de producción. Lo que sí distingue a los dos resultados es que el intervalo observado de ATLAS en el acoplamiento trilineal se parte en dos tramos disjuntos, $[-3.4,\ 1.6]$ y $[5.5,\ 10.1]$, consecuencia de que su exceso es mayor y deja de excluir la región en torno al mínimo de la predicción.
+
+\begin{figure}[tbp]
+    \centering
+
+    \begin{subfigure}{0.52\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_VII/hh_bbtautau_limits_vs_lumi.png}
+        \caption{}
+        \label{fig:bbtt_atlas_vs_lumi}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.46\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_VII/hh_bbtautau_lumi_normalised_vs_time.png}
+        \caption{}
+        \label{fig:bbtt_atlas_vs_time}
+    \end{subfigure}
+
+    \caption[Expected limits in bb$\tau\tau$ from CMS and ATLAS]{%
+        Expected upper limits at $95\%$ CL on the inclusive HH production cross section,
+        relative to the SM prediction, obtained by CMS and by ATLAS in the $bb\tau\tau$
+        final state. In (a) they are shown as a function of the integrated luminosity
+        analyzed, with the dashed lines indicating the $1/\sqrt{\mathcal{L}}$ scaling that
+        passes through each experiment's Run 2 result. In (b) they are rescaled to a
+        common integrated luminosity of $138$~fb$^{-1}$ and shown as a function of the
+        date on which each result was made public. Limits are quoted under the
+        background-only hypothesis throughout. Derived here from the values of
+        Table \ref{tab:hh_bbtautau_limits}.}
+    \label{fig:bbtt_atlas_comparison}
+\end{figure}
+
+DONDE VA LA TABLA?
 
 
 \begin{table}[t]
