@@ -569,7 +569,20 @@ Sin embargo, son varias las diferencias que separan ambos análisis, tanto en la
 Estas no son, en cualquier caso, las únicas diferencias. ATLAS incorpora al ajuste cuatro regiones de control dedicadas a sus fondos dominantes, reconstruye la masa del sistema $\tau\tau$ mediante un método de verosimilitud en lugar de una red de regresión, aplica a los jets etiquetados correcciones dedicadas que mejoran su resolución en energía, determina las intensidades de señal de los dos modos de producción en un único ajuste con dos parámetros de interés, y valida la estrategia completa midiendo en este mismo estado final las producciones de $ZZ$ y de $ZH$. Cuál de todas ellas pesa en la diferencia de sensibilidad es lo que el desglose de incertidumbres que se presentado más adelante permite acotar.\\
 
 % resultados de ATLAS
-Evaluando los resultados que se obtienen con cada búsqueda la intensidad de señal que mejor describe los datos de ATLAS es $\mu = 2.6^{+1.4}_{-1.1}$, con una significancia observada de $2.6$ desviaciones estándar frente a $1.2$ esperadas. El valor central coincide con el obtenido con los datos del Run 3 en este trabajo, $\mu = 2.6^{+2.1}_{-1.7}$ de la Sección \ref{subsec:bbtt_mu}, mientras que al tomar en cuenta la combinación en la Sección \ref{subsec:bbtt_comb_results} el valor pasa a ser $\mu = 0.9^{+1.6}_{-1.4}$, con $0.7$ observadas frente a $0.8$ esperadas. Los dos resultados son compatibles entre sí y con la predicción del SM dentro de sus incertidumbres. Por otro lado, el límite superior observado por ATLAS es $5.3$ veces la predicción del SM, con un valor esperado de $2.4$. 
+Evaluando los resultados que se obtienen con cada búsqueda la intensidad de señal que mejor describe los datos de ATLAS es $\mu = 2.6^{+1.4}_{-1.0}$, con una significancia observada de $2.6$ desviaciones estándar frente a $1.2$ esperadas. El valor central coincide con el obtenido con los datos del Run 3 en este trabajo, $\mu = 2.6^{+2.1}_{-1.7}$ de la Sección \ref{subsec:bbtt_mu}, mientras que al tomar en cuenta la combinación en la Sección \ref{subsec:bbtt_comb_results} el valor pasa a ser $\mu = 0.9^{+1.6}_{-1.4}$, con $0.7$ observadas frente a $0.8$ esperadas. Los dos resultados son compatibles entre sí y con la predicción del SM dentro de sus incertidumbres. Por otro lado, el límite superior observado por ATLAS es $5.3$ veces la predicción del SM, con un valor esperado de $2.4$. bajo la hipótesis de ausencia de señal y de $2.8$ bajo la de una señal como la del modelo estándar. Esta segunda referencia es la pertinente cuando se observa un exceso, porque es la que indica qué límite cabría esperar si la señal estuviera presente, y es también la que acompaña a los resultados de la Sección \ref{subsec:bbtt_limits} en la Figura \ref{fig:limits_combined}. La Figura \ref{fig:atlas_results_summary} recoge ambos conjuntos de valores desglosados por canal y por periodo.
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_VII/atlas_results_summary.pdf}
+    \caption[Signal strengths and upper limits of the ATLAS search]{%
+        Fitted signal strengths (a) and observed and expected upper limits at $95\%$ CL on
+        the signal strength (b), obtained by the ATLAS search in the $bb\tau\tau$ final
+        state for each channel and data-taking period and for their combination. In (b)
+        the expected limits are quoted both under the background-only hypothesis and under
+        the hypothesis of an SM signal. Taken from
+        Ref.~\cite{ATLAS-HH-bbtautau-Run3}.}
+    \label{fig:atlas_results_summary}
+\end{figure}
 
 
 
@@ -579,6 +592,35 @@ La Tabla \ref{tab:hh_bbtautau_limits} sitúa estos resultados dentro de la serie
 Ideas que tienen que ir a continuación:
 - parrafo 1: en la tabla se muestra la exp. escalada, y mencionar como comparan las expected
 - parrafo 2: introducir las figuras de la misma serie graficamente \ref{fig:bbtt_atlas_comparison}, omitir esto : permite ver que la diferencia entre los dos experimentos no es propia de esta última iteración sino que se mantiene desde el comienzo de Run 2.; porque voy a analizar a continuación las incertidumbres que hacen que el analisis de Run 3 sea peor, verdad? así que en vez de poner eso dar algun detalle más sobre la linea discontinua que marca la luminosidad, y explicar mejor en que se diferencia de el plot(b) (que creo que se entiende un poco peor
+
+
+\begin{table}[t]
+\centering
+\begin{tabular}{llccccl}
+\toprule
+ & Dataset & $\mathcal{L}$ [fb$^{-1}$] & Obs. & Exp. & Exp.$^{\dagger}$ & Source \\
+\midrule
+\multirow{3}{*}{CMS}
+  & Run 2 (2016--2018)         & 138 & 3.5 & 5.3 & 5.30 & \cite{CMS-PAS-HIG-25-008} \\
+  & Run 3 (2022--2024)         & 172 & 6.6 & 3.9 & 4.35 & \cite{CMS-PAS-HIG-25-008} \\
+  & Run 2 + Run 3              & 310 & 4.0 & 3.0 & 4.50 & \cite{CMS-PAS-HIG-25-008} \\
+\midrule
+\multirow{4}{*}{ATLAS}
+  & Run 2, original            & 140 & 5.9 & 3.3 & 3.32 & \cite{ATLAS-HH-bbtautau-Run2} \\
+  & Run 2, reanalysed          & 140 & 5.4 & 2.6 & 2.62 & \cite{ATLAS-HH-bbtautau-Run3} \\
+  & Run 3 (2022--2023)         &  56 & 7.9 & 4.3 & 2.74 & \cite{ATLAS-HH-bbtautau-Run3} \\
+  & Run 2 + Run 3              & 196 & 5.3 & 2.4 & 2.86 & \cite{ATLAS-HH-bbtautau-Run3} \\
+\bottomrule
+\end{tabular}
+\caption[Comparison of CMS and ATLAS upper limits in HH $\to$ bb$\tau\tau$]{%
+Observed and expected 95\% CL upper limits on the inclusive HH production cross
+section relative to the SM prediction, in the bb$\tau\tau$ final state. Expected
+limits are quoted under the background-only ($\mu = 0$) hypothesis.
+$^{\dagger}$Expected limit rescaled to a common integrated luminosity of
+138~fb$^{-1}$ assuming purely statistical scaling.}
+\label{tab:hh_bbtautau_limits}
+\end{table}
+
 
 La Figura \ref{fig:bbtt_atlas_comparison} muestra esa misma serie gráficamente, frente a la luminosidad analizada y frente a la fecha en que cada resultado se hizo público, y permite ver que la diferencia entre los dos experimentos no es propia de esta última iteración sino que se mantiene desde el comienzo de Run 2.
 
@@ -630,42 +672,40 @@ La Figura \ref{fig:bbtt_atlas_comparison} muestra esa misma serie gráficamente,
 DONDE VA LA TABLA?
 
 
-\begin{table}[t]
-\centering
-\begin{tabular}{llccccl}
-\toprule
- & Dataset & $\mathcal{L}$ [fb$^{-1}$] & Obs. & Exp. & Exp.$^{\dagger}$ & Source \\
-\midrule
-\multirow{3}{*}{CMS}
-  & Run 2 (2016--2018)         & 138 & 3.5 & 5.3 & 5.30 & \cite{CMS-PAS-HIG-25-008} \\
-  & Run 3 (2022--2024)         & 172 & 6.6 & 3.9 & 4.35 & \cite{CMS-PAS-HIG-25-008} \\
-  & Run 2 + Run 3              & 310 & 4.0 & 3.0 & 4.50 & \cite{CMS-PAS-HIG-25-008} \\
-\midrule
-\multirow{4}{*}{ATLAS}
-  & Run 2, original            & 140 & 5.9 & 3.3 & 3.32 & \cite{ATLAS-HH-bbtautau-Run2} \\
-  & Run 2, reanalysed          & 140 & 5.4 & 2.6 & 2.62 & \cite{ATLAS-HH-bbtautau-Run3} \\
-  & Run 3 (2022--2023)         &  56 & 7.9 & 4.3 & 2.74 & \cite{ATLAS-HH-bbtautau-Run3} \\
-  & Run 2 + Run 3              & 196 & 5.3 & 2.4 & 2.86 & \cite{ATLAS-HH-bbtautau-Run3} \\
-\bottomrule
-\end{tabular}
-\caption[Comparison of CMS and ATLAS upper limits in HH $\to$ bb$\tau\tau$]{%
-Observed and expected 95\% CL upper limits on the inclusive HH production cross
-section relative to the SM prediction, in the bb$\tau\tau$ final state. Expected
-limits are quoted under the background-only ($\mu = 0$) hypothesis. The CMS
-entries are the inclusive ggHH\,$+$\,qqHH limits of Table~3 of
-Ref.~\cite{CMS-PAS-HIG-25-008}; the ATLAS Run~3 entries are those of Table~4 of
-Ref.~\cite{ATLAS-HH-bbtautau-Run3}, where ``reanalysed'' denotes the same Run~2
-dataset processed with the improved Run~3 analysis, to be compared with the
-originally published result of Ref.~\cite{ATLAS-HH-bbtautau-Run2}.
-$^{\dagger}$Expected limit rescaled to a common integrated luminosity of
-138~fb$^{-1}$ as $\mu\sqrt{\mathcal{L}/138~\mathrm{fb}^{-1}}$, i.e.\ assuming
-purely statistical scaling; this column is derived here and is not quoted in the
-references. Note that the two Run~3 datasets are not equivalent, as the ATLAS
-result does not yet include the 2024 data-taking period.}
-\label{tab:hh_bbtautau_limits}
-\end{table}
-
  cierre: la combinación ATLAS+CMS de Run 2 como estado del arte + prospects
+
+
+
+
+Una última comparación resume lo anterior en una sola distribución. Agrupando todos los intervalos de todas las regiones de señal según el cociente entre la señal y el fondo que se espera en cada uno, el eje resultante ordena el conjunto de datos por pureza, y la cola de alta pureza es la que domina la sensibilidad. La Figura \ref{fig:sb_comparison} muestra esa distribución para los dos análisis. El contraste no está en el número total de sucesos, que refleja sobre todo la luminosidad y la aceptancia, sino en cuánto se extiende la cola y cuántos sucesos sobreviven en ella, que es la forma más directa de ver lo que la estrategia consigue separar.
+
+
+\begin{figure}[tbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_VII/atlas_sb_yields.pdf}
+        \caption{}
+        \label{fig:sb_atlas}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_VII/sb_yields_cms.pdf}
+        \caption{}
+        \label{fig:sb_cms}
+    \end{subfigure}
+    \caption[Event yields ordered by signal-to-background ratio]{%
+        Event yields as a function of $\log_{10}(S/B)$, where $S$ and $B$ are the fitted
+        signal and background yields, with the bins of all signal regions grouped
+        according to that value. (a) The ATLAS search over its full dataset, taken from
+        Ref.~\cite{ATLAS-HH-bbtautau-Run3}. (b) This analysis over the Run 3 dataset. The
+        signal is overlaid scaled to the signal strength extracted from the data in each
+        case.}
+    \label{fig:sb_comparison}
+\end{figure}
+
+ 
 
 \section{Summary and outlook}
 \label{sec:bbtt_summary}
