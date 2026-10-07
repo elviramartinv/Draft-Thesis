@@ -414,55 +414,88 @@ The following two comparisons are based on this, using the observed and expected
 
 \subsection{The HH program at CMS in Run 3}
 %
-Los tres estados finales que dominan la sensibilidad a la producción de pares de bosones de Higgs son, por el compromiso descrito en la Sección \ref{subsec:HH_BR}, $4b$, $bb\tau\tau$ y $bb\gamma\gamma$. Los otros dos han presentado medidas con datos de Run 3 contemporáneas a la que aquí se describe, y son las que permiten ver cómo se reparte hoy la sensibilidad entre canales.
+Los tres estados finales que dominan la sensibilidad a la producción de pares de bosones de Higgs son, por el compromiso descrito en la Sección \ref{subsec:HH_BR}, $4b$, $bb\tau\tau$ y $bb\gamma\gamma$. Los otros dos han presentado medidas con datos de Run 3 contemporáneas a la que aquí se describe, y son las que permiten ver cómo se reparte hoy la sensibilidad entre canales.\\
 
-El estado final $4b$ SE PUEDE AÑADIR REFERENCIA? ha sido analizado con los $62$ fb$^{-1}$ recogidos en 2022 y 2023, reconstruyendo cada bosón de Higgs como un par de jets de radio pequeño o como un único jet de radio grande, y tratando ambas topologías -BOOSTED Y RESOLVED?- de forma exclusiva \cite{CMS:2026znu}. La combinación de las dos excluye tasas de producción superiores a $4.4$ veces la predicción del modelo estándar, con un valor esperado de $4.4$. Esa cifra se ha obtenido con poco más de un tercio de la luminosidad analizada en este trabajo, de manera que, reescalada a los $172$ fb$^{-1}$ de Run 3, el canal $4b$ alcanzaría un límite esperado en torno a $2.6$. Es, por tanto, el estado final que más sensibilidad extrae por unidad de luminosidad, lo que confirma que su desventaja frente al fondo multijet se compensa con la fracción de desintegración más alta de las tres y, sobre todo, con los avances en los algoritmos de etiquetado de jets a los que se dedica el Capítulo \ref{ch:taggers}. La Figura \ref{fig:upper_limits_4b} muestra el desglose por topología, donde ninguna de las dos alcanza por separado el valor de la combinación, $5.5$ la resuelta y $8.1$ la \textit{merged}, lo que confirma que cubren regiones complementarias del espacio de fases.  DECIR ALGO DE PRODUCCION GGF Y VBF?
+El estado final $4b$ ha sido analizado con los $62$ fb$^{-1}$ recogidos en 2022 y 2023, reconstruyendo cada bosón de Higgs como un par de jets de radio pequeño o como un único jet de radio grande, y tratando ambas topologías --- \textit{resolved} y \textit{merged} --- de forma exclusiva \cite{CMS:2026znu}. La combinación de las dos excluye tasas de producción superiores a $4.4$ veces la predicción del modelo estándar, con un valor esperado de $4.4$, mientras que por separado sus valores son $5.5$ y $8.1$ respectivamente, por lo que la combinación se beneficia de las regiones complementarias del espacio de fases que cubre cada una. Esa cifra se ha obtenido con poco más de un tercio de la luminosidad analizada en este trabajo, de manera que, reescalada a los $172$ fb$^{-1}$ de los años 2022 al 2024, el canal $4b$ alcanzaría un límite esperado en torno a $2.6$. Es, por tanto, el estado final que más sensibilidad extrae por unidad de luminosidad, lo que confirma que su desventaja frente al fondo multijet se compensa con la fracción de desintegración más alta de las tres y con la mejora en la selección de trigger y jet identification que el Run 3 trae consigo.
+
+El mismo análisis proporciona además una medida exclusiva de la producción por fusión de bosones vectoriales, para la que excluye tasas superiores a $60$ veces la predicción del SM con un valor esperado de $81$. Reescalado a la luminosidad de $172$ fb$^{-1}$, ese valor esperado quedaría en torno a $49$, frente a los $85$ obtenidos aquí. Supone una ventaja considerable y procede de la topología \textit{merged}, que es la que accede al extremo de alto $m_{HH}$ donde esa producción se concentra. \textcolor{red}{seguro?}\\
+
+
+El estado final $bb\gamma\gamma$ ha sido analizado igualmente con los $61.9$ fb$^{-1}$ del mismo periodo mediante un ajuste bidimensional a las masas del par de fotones y del par de jets, que excluye tasas superiores a $11.0$ veces la predicción del SM frente a un valor esperado de $7.3$ \cite{CMS-PAS-HIG-25-007}\footnote{La búsqueda presenta además una estrategia alternativa que no ajusta la masa del par de jets, y que obtiene un límite observado de $7.4$ con un valor esperado de $8.7$.}. Reescalado del mismo modo, su límite esperado quedaría en torno a $4.4$, de manera que su fracción de desintegración, dos órdenes de magnitud menor, queda en buena medida compensada por la resolución con que se reconstruye el par de fotones, que concentra la señal en un pico estrecho sobre un fondo suave.
+
+Dada la baja estadística de este modo de producción, con sección eficaz de $1.874$ fb y una fracción de desintegración del $0.3\,\%$, los $61.9$ fb$^{-1}$ analizados contienen menos de un suceso producido por fusión de bosones vectoriales antes siquiera de aplicar la aceptancia, de modo que esta búsqueda no proporciona ninguna medida exclusiva VBF.\\
+
+
+Los tres canales quedan así dentro de un factor dos entre sí una vez descontada la luminosidad, lo que los acredita como los tres dominantes sin que ninguno predomine sobre los demás. La Figura \ref{fig:upper_limits_4b_bbgg} muestra el desglose por topologías y categorías de los dos canales aquí descritos, que se compara con el de la Figura \ref{fig:limits_category} para el estado final $bb\tau\tau$, y la Tabla \ref{tab:hh_run3_channels} recoge las cifras de los tres.
 
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=\linewidth]{figures/chapter_VII/upper_limits_4b.pdf}
-    \caption[Límites superiores en el estado final 4b]{%
-        Límites superiores observados y esperados al $95\%$ CL sobre la tasa de producción inclusiva (izquierda) y sobre la de fusión de bosones vectoriales (derecha), en unidades de la predicción del modelo estándar, para las topologías resuelta y \textit{merged} del estado final $4b$ y para su combinación. Tomada de la Ref.~\cite{CMS:2026znu}.}
-    \label{fig:upper_limits_4b}
+
+    \begin{subfigure}{0.46\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_VII/upper_limits_4b.pdf}
+        \caption{}
+        \label{fig:upper_limits_4b}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.50\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_VII/upper_limits_bbgg.pdf}
+        \caption{}
+        \label{fig:upper_limits_bbgg}
+    \end{subfigure}
+
+    \caption[Upper limits in the 4b and bb$\gamma\gamma$ final states in Run 3]{%
+        Observed and expected upper limits at $95\%$ CL on the inclusive HH production
+        cross section, relative to the SM prediction, broken down into the topologies or
+        categories that each analysis employs. The $4b$ final state (a) \cite{CMS:2026znu}, and the $bb\gamma\gamma$
+        final state (b) \cite{CMS-PAS-HIG-25-007}. The horizontal
+        axis is logarithmic in (a) and linear in (b), and the two panels correspond to
+        different integrated luminosities.}
+    \label{fig:upper_limits_4b_bbgg}
 \end{figure}
 
 
-El estado final $bb\gamma\gamma$ ha sido analizado igualmente con los $61.9$ fb$^{-1}$ del mismo periodo mediante un ajuste bidimensional a las masas del par de fotones y del par de jets, que excluye tasas superiores a $11.0$ veces la predicción del modelo estándar frente a un valor esperado de $7.3$ \cite{CMS-PAS-HIG-25-007}\footnote{La búsqueda presenta además una estrategia alternativa que no ajusta la masa del par de jets, y que obtiene un límite observado de $7.4$ con un valor esperado de $8.7$. Su límite observado es menor pese a corresponder a una estrategia menos sensible, lo que ilustra la distinción entre ambos valores establecida al comienzo de esta sección.}. Reescalado del mismo modo, su límite esperado quedaría en torno a $4.4$, de manera que su fracción de desintegración, dos órdenes de magnitud menor, queda en buena medida compensada por la resolución con que se reconstruye el par de fotones. La Figura \ref{fig:upper_limits_bbgg} muestra el desglose por categoría, donde la sensibilidad se concentra en la más pura de las resueltas.
 
-\begin{figure}[tbp]
-    \centering
-    \includegraphics[width=0.85\linewidth]{figures/chapter_VII/upper_limits_bbgg.pdf}
-    \caption[Límites superiores en el estado final bb$\gamma\gamma$]{%
-        Límites superiores observados y esperados al $95\%$ CL sobre la sección eficaz de producción, normalizada a la predicción teórica, para cada una de las categorías del estado final $bb\gamma\gamma$ y para su combinación, en la estrategia de ajuste bidimensional. Tomada de la Ref.~\cite{CMS-PAS-HIG-25-007}.}
-    \label{fig:upper_limits_bbgg}
-\end{figure}
+El reparto cambia, sin embargo, cuando la medida se interpreta en términos de acoplamientos. Sobre el acoplamiento trilineal los tres intervalos son de anchura comparable, y el más estrecho en valor esperado es el obtenido en este trabajo, $-2.2 < \kappa_\lambda < 9.2$ frente al $-3.4 < \kappa_\lambda < 10.0$ del canal $4b$. Esto se debe a que la restricción procede de la región de bajo $m_{HH}$, donde la interferencia descrita en la Sección \ref{subsec:HH_BR} es más sensible al valor del acoplamiento y donde el fondo multijet penaliza al estado final $4b$. En el valor observado el orden se invierte, ya que el exceso descrito en la Sección \ref{subsec:bbtt_mu} ensancha el intervalo hasta $-4.1 < \kappa_\lambda < 11.2$, por encima del $-3.3 < \kappa_\lambda < 9.7$ del $4b$. La Figura \ref{fig:constraints_kl_three} recoge las curvas de los tres canales, en las que se reconoce el mínimo pronunciado de la predicción en torno a $\kappa_\lambda \approx 2.4$ que ensancha el intervalo por el lado superior. POR QUÉ AQUI NO SE MENCIONA NADA DE BBGG? MEJOR NO DAR TANTOS DATOS EN LA PROSA SI VOY A DAR LA TABLA, PERO SI DOY DATOS AL MENOS QUE SEA COHERENTE Y MENCIONE LOS TRES DE LA COMPARACION, NO?
 
-Los tres canales se sitúan así dentro de un factor dos entre sí una vez descontada la luminosidad, lo que justifica que se los trate como los tres dominantes y no como uno principal acompañado de otros dos. El reparto cambia, sin embargo, cuando la medida se interpreta en términos de acoplamientos. La Tabla \ref{tab:hh_run3_channels} recoge unos y otros.
+Por otro lado, sobre el acoplamiento entre dos bosones de Higgs y dos bosones vectoriales el intervalo de $4b$ es unas tres veces más estrecho que el obtenido aquí, al manifestarse en el extremo de alto $m_{HH}$, región que el canal $4b$ explota de forma dedicada. El canal $bb\gamma\gamma$ no aparece en la comparación al no proporcionar una medida exclusiva de esa producción.
+
+
+Las Figuras \ref{fig:limits_couplings_4b} y \ref{fig:constraints_kl_bbgg} muestran, para uno y otro canal, las mismas curvas que la Figura \ref{fig:limits_couplings} presentaba para este análisis, y en las tres se reconoce el mínimo pronunciado de la predicción en torno a $\kappa_\lambda \approx 2.4$ que ensancha el intervalo por el lado superior.
+
+
 
 \begin{table}[t]
 \centering
 \begin{tabular}{lcccll}
 \toprule
-Estado final & $\mathcal{L}$ [fb$^{-1}$] & Obs. & Esp. & Esp.$^{\dagger}$ & Fuente \\
+Final state & $\mathcal{L}$ [fb$^{-1}$] & Obs. & Exp. & Exp.$^{\dagger}$ & Source \\
 \midrule
-$bb\tau\tau$     & 172   &  6.6 & 3.9 & 3.9 & \cite{CMS-PAS-HIG-25-008} \\
 $4b$             &  62   &  4.4 & 4.4 & 2.6 & \cite{CMS:2026znu} \\
+$bb\tau\tau$     & 172   &  6.6 & 3.9 & 3.9 & \cite{CMS-PAS-HIG-25-008} \\
 $bb\gamma\gamma$ &  61.9 & 11.0 & 7.3 & 4.4 & \cite{CMS-PAS-HIG-25-007} \\
 \midrule
-\multicolumn{6}{l}{\textit{Intervalos observados al $95\%$ CL sobre los acoplamientos}} \\
-$bb\tau\tau$     & \multicolumn{2}{l}{$-4.1 < \kappa_\lambda < 11.2$} & \multicolumn{3}{l}{$-0.2 < \kappa_{2V} < 2.3$} \\
+\multicolumn{6}{l}{\textit{Observed $95\%$ CL intervals on the coupling modifiers}} \\
 $4b$             & \multicolumn{2}{l}{$-3.3 < \kappa_\lambda < 9.7$}  & \multicolumn{3}{l}{$0.63 < \kappa_{2V} < 1.43$} \\
+$bb\tau\tau$     & \multicolumn{2}{l}{$-4.1 < \kappa_\lambda < 11.2$} & \multicolumn{3}{l}{$-0.2 < \kappa_{2V} < 2.3$} \\
 $bb\gamma\gamma$ & \multicolumn{2}{l}{$-6.1 < \kappa_\lambda < 12.8$} & \multicolumn{3}{l}{---} \\
 \bottomrule
 \end{tabular}
-\caption[Comparación de los canales HH de CMS en Run 3]{%
-Límites superiores observados y esperados al $95\%$ CL sobre la tasa de producción inclusiva de pares de bosones de Higgs, en unidades de la predicción del modelo estándar, e intervalos observados sobre los modificadores de acoplamiento, para los tres estados finales dominantes analizados con datos de Run 3. Los límites esperados corresponden a la hipótesis de ausencia de señal. La búsqueda en $bb\gamma\gamma$ no proporciona un intervalo sobre $\kappa_{2V}$. $^{\dagger}$Límite esperado reescalado a una luminosidad común de $172$~fb$^{-1}$ como $\mu\sqrt{\mathcal{L}/172~\mathrm{fb}^{-1}}$, es decir suponiendo un comportamiento puramente estadístico; esta columna se deriva aquí y no figura en las referencias.}
+\caption[Comparison of the CMS HH final states in Run 3]{%
+Observed and expected upper limits at $95\%$ CL on the inclusive HH production cross
+section, in units of the SM prediction, and observed intervals on the coupling
+modifiers, for the three dominant final states analyzed with Run 3 data. Expected
+limits are quoted under the background-only hypothesis. The $bb\gamma\gamma$ search
+does not provide an interval on $\kappa_{2V}$, and the values quoted for it correspond
+to its two-dimensional fit strategy. $^{\dagger}$Expected limit rescaled to a common
+integrated luminosity of $172$~fb$^{-1}$ as
+$\mu\sqrt{\mathcal{L}/172~\mathrm{fb}^{-1}}$, i.e.\ assuming purely statistical
+scaling; this column is derived here and is not quoted in the references.}
 \label{tab:hh_run3_channels}
 \end{table}
 
-Sobre el acoplamiento trilineal, los tres intervalos son de anchura comparable y el más estrecho es el obtenido en este trabajo, porque la restricción procede de la región de bajo $m_{HH}$, donde la interferencia descrita en la Sección \ref{subsec:HH_BR} es más sensible al valor del acoplamiento y donde el fondo multijet penaliza al estado final $4b$. Las Figuras \ref{fig:limits_couplings_4b} y \ref{fig:constraints_kl_bbgg} muestran, para uno y otro canal, las mismas curvas que la Figura \ref{fig:limits_couplings} presentaba para este análisis, y en las tres se reconoce el mínimo pronunciado de la predicción en torno a $\kappa_\lambda \approx 2.4$ que ensancha el intervalo por el lado superior.
 
-Sobre el acoplamiento entre dos bosones de Higgs y dos bosones vectoriales la situación se invierte, y el intervalo de $4b$ es unas tres veces más estrecho que el obtenido aquí. La razón es que ese acoplamiento se manifiesta en el extremo de alto $m_{HH}$, donde los dos bosones de Higgs se reconstruyen cada uno en un único jet de radio grande, topología que el canal $4b$ explota de forma dedicada. De hecho, el análisis de esa topología con datos de Run 2 ya excluyó la ausencia del vértice con una significancia superior a seis desviaciones estándar \cite{CMS:2026znu}, de modo que lo que el intervalo obtenido aquí añade no es esa exclusión, sino la que corresponde a este estado final por sí solo.
 
 \begin{figure}[tbp]
     \centering
@@ -481,6 +514,10 @@ Sobre el acoplamiento entre dos bosones de Higgs y dos bosones vectoriales la si
 \end{figure}
 
 Ninguno de los tres análisis ha sido combinado todavía con los demás, de manera que la comparación es entre canales individuales. La combinación de todos ellos, que es la que fijó el estado del arte con los datos de Run 2 según se describió en la Sección \ref{subsec:Searches}, está aún por rehacerse con los datos de Run 3.
+
+
+El canal $bb\tau\tau$ es, además, el único de los tres que ha combinado los datos de Run 3 con los de Run 2. La búsqueda en $4b$ reanaliza los $138$ fb$^{-1}$ de Run 2 en su topología resuelta y obtiene un límite esperado de $5.9$, pero lo presenta por separado, y la búsqueda en $bb\gamma\gamma$ no dispone todavía de un resultado que incorpore ambos periodos. El límite esperado de $3.0$ obtenido en la Sección \ref{subsec:bbtt_comb_results} es en consecuencia el más restrictivo publicado hasta la fecha por el experimento en un único estado final. Tampoco se ha rehecho con datos de Run 3 la combinación entre canales que fijó el estado del arte con los de Run 2, descrita en la Sección \ref{subsec:Searches}, de manera que la comparación aquí presentada es entre análisis individuales. 4b INCLUYE REANALISIS DEL RUN 2 AUNQUE NO LO COMBINE. bbgg COMBINACION CON RUN 2 E INCLUSION DE 24 Y 25 ONGOING
+
 
 
 
