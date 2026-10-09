@@ -359,7 +359,13 @@ $\sqrt{s}$ [TeV] & Dataset & $\mathcal{L}$ [fb$^{-1}$] & $\sigma(pp\to HH)/\sigm
 \label{tab:limits_per_year}
 \end{table}
 
-The observed constraints on the couplings derived from the combined fit are $-2.5 < \kappa_\lambda < 9.4$, compared to an expected range of $-1.5 < \kappa_\lambda < 8.4$, and $0.02 < \kappa_{2V} < 2.1$, compared to an expected range of $-0.1 < \kappa_{2V} < 2.2$. Figure \ref{fig:likelihood_scans_comb} shows the likelihood profiles for both couplings for the two datasets and their combination, illustrating how the profile narrows when the two are combined.
+The observed constraints on the couplings derived from the combined fit are $-2.5 < \kappa_\lambda < 9.4$, compared to an expected range of $-1.5 < \kappa_\lambda < 8.4$, and $0.02 < \kappa_{2V} < 2.1$, compared to an expected range of $-0.1 < \kappa_{2V} < 2.2$. Figure \ref{fig:likelihood_scans_comb} shows the likelihood profiles for both couplings for the two datasets and their combination, illustrating how the profile narrows when the two are combined. It is noteworthy that the profile in $\kappa_\lambda$ does not exhibit a single minimum, because the production rate does not monotonically increase with respect to the coupling, and two values located on either side of the interference minimum described in Section \ref{subsec:bbtt_couplings} predict the same signal magnitude. Consequently, the data can only distinguish between these solutions based on the kinematic differences that separate them, although this discriminating power remains insufficient to completely resolve both solutions. This degeneracy is not observed in $\kappa_{2V}$, whose prediction is also not monotonic but increases so rapidly as it deviates from unity that the two solutions remain too close to be distinguished.
+
+
+%y la capacidad de hacerlo es todavía escasa, tanto porque el observable que se ajusta es la salida de un discriminante entrenado para separar la señal del modelo estándar del fondo y no una configuración anómala de otra, como porque el número de sucesos de señal que sobreviven es demasiado pequeño para que una diferencia de forma se imponga sobre la fluctuación estadística. El abultamiento que separa los dos mínimos es la medida de esa discriminación residual, insuficiente todavía para resolverlos.
+
+
+
 
 The interval in $\kappa_{2V}$ is the most notable result, since it no longer contains the zero value for the first time in this final state. Thus, this final state alone begins to disfavor the absence of an interaction vertex between two Higgs bosons and two vector bosons, albeit by a narrow margin and without the expected interval actually ruling it out.
 %
@@ -744,9 +750,87 @@ Optimizar el análisis en estos términos consistiría en llevar la dependencia 
 \subsection{The reach of the complete programme}
 \label{subsec:bbtt_prospects_hllhc}
 % el programa completo
-El horizonte de esta búsqueda lo fija la fase de alta luminosidad del LHC, para la que se prevén $3$ ab$^{-1}$ por experimento a una energía en el centro de masas de $14$ TeV, un conjunto de datos un orden de magnitud mayor que el analizado hasta ahora. Las proyecciones que ATLAS y CMS han presentado para la actualización de la estrategia europea \cite{ATLASCMS:2025HLLHC} extrapolan los análisis publicados con los datos de Run 2 a ese escenario bajo dos hipótesis sobre las incertidumbres sistemáticas, una en la que las teóricas se reducen a la mitad y las experimentales mejoran conforme a lo que cada objeto admite, y otra que añade a lo anterior una mejora del cinco por ciento en las eficiencias de etiquetado de quarks $b$ y de reconstrucción de leptones $\tau$ hadrónicos. El propio documento califica ambas de objetivos conservadores, al observar que la experiencia pasada indica que los avances experimentales y teóricos superan sistemáticamente lo que el solo crecimiento de la luminosidad permitiría anticipar.
+El horizonte de esta búsqueda lo fija la fase de alta luminosidad del LHC, para la que se prevén $3$ ab$^{-1}$ por experimento a una energía en el centro de masas de $14$ TeV. Las proyecciones que ATLAS y CMS han presentado para la actualización de la estrategia europea \cite{ATLASCMS:2025HLLHC} extrapolan los análisis publicados con los datos de Run 2 a ese escenario bajo dos hipótesis sobre las incertidumbres sistemáticas, una en la que las teóricas se reducen a la mitad que la contribución de la estadística de las muestras simuladas pasa a ser despreciable, y que las experimentales mejoran conforme a cada objeto; y otra que añade a lo anterior una mejora del cinco por ciento en las eficiencias de etiquetado de quarks $b$ y de reconstrucción de leptones $\tau$ hadrónicos. El propio documento califica ambas de objetivos conservadores, basado en ejercicios de proyección anteriores que indican que los avances experimentales y teóricos superan sistemáticamente lo que el solo crecimiento de la luminosidad permite anticipar.
+
+Bajo esas hipótesis la combinación de los dos experimentos alcanza una significancia esperada de $7.6$ desviaciones estándar en el escenario más favorable, y supera las cinco ya con $2$ ab$^{-1}$, de manera que la observación de este proceso queda dentro del alcance del programa. El acoplamiento trilineal\footnote{Las proyecciones denotan este modificador como $\kappa_3$, equivalente al $\kappa_\lambda$ empleado en este capítulo.} queda determinado con una incertidumbre de entre el $26$ y el $29\,\%$ según el signo de la desviación, lo que corresponde al intervalo $0.74 < \kappa_3 < 1.29$ al $68\,\%$ de confianza. La Tabla \ref{tab:hllhc_projections} recoge estas cifras y la Figura \ref{fig:hllhc_projections} muestra, en su panel izquierdo, la contribución de cada estado final a esa determinación, donde $bb\tau\tau$ aparece como el más sensible de todos ellos al combinar la mayor sensbilidad al SM con una especial ventaja en la región de baja masa invariante $m_{HH}$, donde se concentra la dependencia con $\kappa_\lambda$, según se discutió en la Sección \ref{subsec:bbtt_comp_cms}. El acoplamiento entre dos bosones de Higgs y dos bosones vectoriales, por su parte, quedaría determinado con una precisión en torno al $13\,\%$ incluso en el más conservador de los dos escenarios.
 
 
-  % cierre de sección y de capítulo
+El panel derecho de esa misma figura examina con qué precisión se determinaría el acoplamiento trilinear si su valor verdadero no fuese el del modelo estándar, y donde se manifiesta la interferencia destructiva entre las dos contribuciones a la producción por fusión de gluones en torno a un valor verdadero de $2.5$, donde la tasa de producción alcanza su mínimo. Pese a ello la combinación de los dos experimentos excluiría el valor del modelo estándar al $95\,\%$ de confianza para valores verdaderos por encima de $1.7$ o por debajo de $0.5$, y la ganancia de precisión basta para que el perfil de verosimilitud presente un único mínimo con independencia del valor verdadero, de modo que la degeneración visible hoy en la Figura \ref{fig:likelihood_scans_comb} quedaría resuelta.
+
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{2}{c}{$2$ ab$^{-1}$ (S2)} & \multicolumn{2}{c}{$3$ ab$^{-1}$ (S2)} & \multicolumn{2}{c}{$3$ ab$^{-1}$ (S3)} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & ATLAS & CMS & ATLAS & CMS & ATLAS & CMS \\
+\midrule
+\midrule
+\multicolumn{7}{l}{Expected significance for HH production} \\
+\midrule
+Combination of channels & 3.7 & 3.5 & 4.3 & 4.2 & 4.5 & 4.5 \\
+ATLAS$+$CMS             & \multicolumn{2}{c}{6.0} & \multicolumn{2}{c}{7.2} & \multicolumn{2}{c}{7.6} \\
+\midrule
+\multicolumn{7}{l}{$68\%$ confidence interval on $\kappa_3$} \\
+\midrule
+Combination of channels & [0.6, 1.5] & [0.4, 1.7] & [0.6, 1.5] & [0.5, 1.6] & [0.6, 1.4] & [0.6, 1.5] \\
+ATLAS$+$CMS             & \multicolumn{2}{c}{$-32\,\%$ / $+37\,\%$} & \multicolumn{2}{c}{$-27\,\%$ / $+31\,\%$} & \multicolumn{2}{c}{$-26\,\%$ / $+29\,\%$} \\
+\bottomrule
+\end{tabular}
+\caption[HL-LHC projections for HH production and the trilinear coupling]{%
+Expected statistical significance for HH production and $68\%$ confidence interval on
+the trilinear coupling modifier at the HL-LHC, assuming a true value equal to the SM
+one, for each experiment and for their combination. Two systematic scenarios are
+considered, labelled S2 and S3 in Ref.~\cite{ATLASCMS:2025HLLHC}, from which these
+values are taken. The last row reports the projected ATLAS$+$CMS percentage
+uncertainty on the coupling modifier.}
+\label{tab:hllhc_projections}
+\end{table}
+
+\begin{figure}[tbp]
+    \centering
+    \begin{subfigure}{0.55\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_VII/CMS-HIG-25-002_Figure_002-a.pdf}
+        \caption{}
+        \label{fig:hllhc_scan}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.41\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_VII/CMS-HIG-25-002_Figure_004-a.pdf}
+        \caption{}
+        \label{fig:hllhc_kappa3}
+    \end{subfigure}
+    \caption[HL-LHC projections for the trilinear coupling]{%
+        Projected ATLAS and CMS sensitivity to the trilinear coupling modifier at the
+        HL-LHC, for $3$~ab$^{-1}$ per experiment at $\sqrt{s} = 14$~TeV. (a) Expected
+        likelihood scans as a function of $\kappa_3$ for the individual decay channels
+        and for their combination, in the more favorable of the two systematic
+        scenarios, assuming a true value equal to the SM one and with the remaining
+        coupling modifiers fixed to their SM values. (b) Expected precision on the
+        determination of $\kappa_3$ as a function of its true value, in the more
+        conservative scenario, with the $68\%$ and $95\%$ confidence intervals in the
+        upper panel and the deviation from the true value in the lower one. Taken from
+        Ref.~\cite{ATLASCMS:2025HLLHC}.}
+    \label{fig:hllhc_projections}
+\end{figure}
+
+Es interesante además leer estas proyecciones junto a las que se presentaron para la actualización anterior de la estrategia, donde se aprecia que la mejora entre unas y otras no procede de un cambio en la luminosidad prevista sino de las técnicas de análisis desarrolladas en el intervalo, y en particular de las arquitecturas empleadas para el etiquetado de jets. El documento anticipa que esa tendencia continuará durante lo que resta del Run 3 y a lo largo de la fase de alta luminosidad, y que la incertidumbre sobre el acoplamiento trilineal se situará en consecuencia bastante por debajo del treinta por ciento aun sin contar las mejoras asociadas a la renovación del detector.
+
+
+Esa expectativa no es ajena al trabajo presentado en este capítulo. Las proyecciones se construyen sobre los análisis publicados con los datos de Run 2, y para $bb\tau\tau$ adoptan la misma sensibilidad en los dos experimentos apoyándose en que la estrategia de activación desplegada por CMS en Run 3 alcanza un rendimiento comparable al del experimento vecino. Esa estrategia es la descrita en la Sección \ref{sec:triggers}, y el resultado obtenido aquí es la primera medida que la emplea, de manera que comprueba sobre datos una de las hipótesis sobre las que la proyección descansa.\\\\
+
+
+REVISA ESTO 
+
+La pregunta con la que se abría este capítulo era cuánta señal admiten los datos una vez que el fondo se deja ajustar dentro de sus incertidumbres. Los $310$ fb$^{-1}$ reunidos admiten hasta cuatro veces la tasa que el modelo estándar predice, de modo que esa predicción queda todavía por debajo de lo que esta búsqueda alcanza a resolver. Es el resultado más sensible que el experimento ha obtenido en este estado final, y sin embargo no es un resultado que se sostenga solo, porque únicamente adquiere significado situado junto a los demás. Junto a los otros estados finales de CMS, que una vez descontada la luminosidad se reparten dentro de un factor dos. Junto a la misma búsqueda realizada por el experimento ATLAS, que con menos datos alcanza hoy mayor sensibilidad. Y junto a la combinación de todos ellos, que con los datos de Run 2 ni siquiera esperaba llegar a la predicción que se quiere contrastar.
+
+Lo que esa comparación deja establecido es que la distancia pendiente no se cierra acumulando datos solamente. Una parte de ella procede de decisiones que pueden revisarse sin recoger una sola colisión más, y cuyo rendimiento la propia serie de resultados en este estado final permite cuantificar. Otra parte llegará con el conjunto completo de Run 3 y con lo que venga después, hasta situar la observación de este proceso dentro del alcance del programa y la determinación del acoplamiento trilineal por debajo del treinta por ciento. El análisis descrito en este capítulo es una iteración de ese recorrido, la primera construida sobre los datos de Run 3, y su valor no se agota en las cifras que entrega, sino que reside también en la cadena de métodos que deja establecida y verificada sobre datos para las iteraciones que han de seguirla.
+
+
+
+
 
 
