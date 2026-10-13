@@ -70,7 +70,7 @@ Total        &      & 172.1 & \\
 
 \subsection{Signal samples}
 %
-Higgs boson pair production via gluon-gluon fusion (ggF) is simulated using the \POWHEG v2.0 generator at NLO in QCD, while the production via vector boson fusion (VBF) is simulated using \MADGRAPH5\_aMC@NLO 2.9.13 at LO. Parton showering and hadronization are simulated with \PYTHIA{}. The samples are normalized to the SM cross sections at $\sqrt{s} = 13.6$ TeV for a Higgs boson mass of $125$ GeV: $34.13$ fb for ggF, and
+Higgs boson pair production via gluon-gluon fusion (ggF) is simulated using the \POWHEG v2.0 generator~\cite{powheg1,powheg2,powheg3} at NLO in QCD with full top quark mass dependence~\cite{Heinrich:2017kxx,Heinrich:2019bkc}, while the production via vector boson fusion (VBF) is simulated using \MGaMC 2.9.13~\cite{Alwall:2014hca} at LO. Parton showering and hadronization are simulated with \PYTHIA{}. The samples are normalized to the SM cross sections at $\sqrt{s} = 13.6$ TeV for a Higgs boson mass of $125$ GeV: $34.13$ fb for ggF, and
 $1.874$ fb for VBF. In both cases, additional samples are generated with anomalous values of the coupling modifiers, which make it possible to cover the dependence of the cross section and of the kinematics of the $HH$ system on these parameters.
 
 Although optimized for the SM search, the analysis is not restricted to the SM hypothesis. The results are also interpreted as constraints on the coupling modifiers $\kappa_\lambda$ and $\kappa_{2V}$, which requires a prediction of the signal at any point of the coupling space. The prediction cannot be obtained by simulating one sample per hypothesis, but rather it can be built from a small set of samples thanks to a structural property of the process. The amplitude of the process is a finite sum of contributions whose coefficients depend on the couplings but whose kinematics do not. As a consequence, the cross section is a polynomial in the couplings with a finite number of terms, and this holds not only for the total rate but also for any differential distribution. The full dependence on the couplings can therefore be determined from a small number of simulated samples, as shown below for each production mode.\\
@@ -176,9 +176,7 @@ The samples used for each process are listed in Table \ref{tab:mc_backgrounds}, 
 % spin correlations of the $\tau$ pair, which distorted the visible spectra of its decay products.
 % Single Higgs boson samples are all normalized to the cross sections recommended by the LHC Higgs
 % Working Group.
-
-
-Parton radiation effects, parton showering, and hadronization are simulated using \PYTHIA, and the detector response is modeled using \GEANT. Additional collisions occurring in the same or nearby bunch crossings are superimposed on the main interaction in all simulated samples, which are then reweighted to reproduce the pile-up profile observed in the data.
+Parton radiation, parton showering, hadronization, and the underlying event are simulated in all samples using \PYTHIA 8~\cite{Bierlich:2022pfr} with the CP5 tune~\cite{CMS:2019csb}, and the response of the CMS detector is modeled using \GEANT~\cite{GEANT4:2002zbu}. Additional collisions occurring in the same or nearby bunch crossings are superimposed on the main interaction in all simulated samples, which are then reweighted to reproduce the pile-up profile observed in the data. The simulated events are processed with the same reconstruction algorithms as the data, described in Section \ref{sec:POR}.
 % DY and W+jets: MG5_aMC@NLO NLO + FxFx. ttbar, single top, single H: POWHEG v2.
 % Diboson: PYTHIA8 LO. Triboson, ttV, ttVV: MG5_aMC@NLO.
 % PYTHIA 8.306 + CP5, NNPDF 3.0/3.1, GEANT4, pileup reweighting.

@@ -47,16 +47,27 @@ El LHC está instalado en el túnel de $26.7$ km de largo construido to host the
 
 La energía máxima que puede alcanzar un haz en un anillo de determinada circunferencia viene limitada por el campo magnético capaz de curvar su trayectoria. De esta forma, para mantener en órbita protones de $7$ TeV, el LHC emplea $1232$ dipolos superconductores capaces de generar un campo de $8.33$ T si se enfrían a $1.9$ K, temperatura que se consigue mediante helio superfluido~\cite{Bruning:2004ej}. Además de curvar la trayectoria, es necesario mantener el haz enfocado, para lo que se emplean $392$ cuadrupolos situados a lo largo de todo el anillo junto con imanes de órdenes multipolares superior que se encargan de corregir las imperfecciones del campo. El anillo se divide en ocho arcos, donde se sitúan los dipolos, y ocho secciones rectas, que albergan los puntos de interacción y los sistemas de aceleración, colimación y extracción del haz.
 
-\label{sec:pp_pheno}
-Aunque los dos haces de $7$ den lugar a colisiones con energía en el centro de masas de $\sqrt{s}=14$ TeV, la energía disponible para producir nuevas partículas realmente depende de la fracción $x$ delmomento del protón que porte cada uno de sus constituyentes, los partones —quarks y gluones. En consecuencia, la energía efectiva de la interacción es $\sqrt{\hat{s}}=\sqrt{x_1x_2\,s}$, que varía de un suceso a otro, de forma que el LHC explora simultáneamente un amplio rango de energías, y la producción de estados finales pesados, como un par de bosones de Higgs, solo es posible en la fracción de colisiones en que los partones portan una fracción de momento suficiente. El teorema de factorización permite separar la sección eficaz hadrónica QUE TIENE QUE VER AQUI LA SECCION EFICAZ? NO ESTAMOS HABLANDO DE ENERGÍAS? en una parte calculable perturbativamente, la sección eficaz partónica $\hat{\sigma}_{ij}$, y una parte no perturbativa, las funciones de distribución partónica (PDFs) $f_i(x,\mu_F)$, que describen la probabilidad de encontrar en el protón un partón $i$ con fracción de momento $x$~\cite{Collins:1989gx}:
+Con dos haces de $7$ TeV, las colisiones tienen lugar a una energía nominal en el centro de masas de $\sqrt{s}=14$ TeV, aunque la energía disponible en cada interacción es solo una fracción de esta, determinada por el momento que portan los partones que intervienen en ella, como se discute en la Sección \ref{sec:pp_pheno}.
+
+
+
+Aunque los dos haces de $7$ den lugar a colisiones con energía en el centro de masas de $\sqrt{s}=14$ TeV, la energía disponible para producir nuevas partículas realmente depende de la fracción $x$ delmomento del protón que porte cada uno de sus constituyentes, los partones —quarks y gluones. En consecuencia, la energía efectiva de la interacción es $\sqrt{\hat{s}}=\sqrt{x_1x_2\,s}$, que varía de un suceso a otro, de forma que el LHC explora simultáneamente un amplio rango de energías, y la producción de estados finales pesados, como un par de bosones de Higgs, solo es posible en la fracción de colisiones en que los partones portan una fracción de momento suficiente. Por tanto, la sección eficaz de un proceso depende en última instancia de la probabilidad de encontrar en el protón partones con la fracción de momento necesaria. El teorema de factorización permite separar la sección eficaz hadrónica en una parte calculable perturbativamente, la sección eficaz partónica $\hat{\sigma}_{ij}$, y una parte no perturbativa, las funciones de distribución partónica (PDFs) $f_i(x,\mu_F)$, que describen la probabilidad de encontrar en el protón un partón $i$ con fracción de momento $x$~\cite{Collins:1989gx}:
 \begin{equation}
     \sigma_{pp\to X} = \sum_{i,j}\int_0^1 dx_1\,dx_2\; f_i(x_1,\mu_F)\,f_j(x_2,\mu_F)\;\hat{\sigma}_{ij\to X}(x_1x_2\,s,\,\mu_R,\,\mu_F).
     \label{eq:factorization}
 \end{equation}
-Las PDFs no pueden calcularse a partir de primeros principios, sino que se extraen de ajustes globales a datos experimentales~\cite{NNPDF:2017mvq}. Por su parte, la escala de factorización $\mu_F$ y la de renormalización $\mu_R$ no son magnitudes físicas, sino consecuencia del truncamiento de la serie perturbativa, de forma que la dependencia del resultado con ellas refleja los órdenes no calculados. La variación de estas escalas, junto con la incertidumbre de las PDFs, constituye la principal fuente de incertidumbre teórica en la predicción de secciones eficaces, como las de producción de pares de bosones de Higgs discutidas en el Capítulo \ref{ch:theory}.
+Las PDFs no pueden calcularse a partir de primeros principios, sino que se extraen de ajustes globales a datos experimentales~\cite{NNPDF:2017mvq}, y su forma se muestra en la Figura \ref{fig:pdfs}. Mientras que los quarks de valencia dominan a valores altos de $x$, a valores bajos es el gluón el que porta la mayor parte del momento, lo que explica que la fusión de gluones sea el principal mecanismo de producción de pares de bosones de Higgs en el LHC. Por su parte, la escala de factorización $\mu_F$ y la de renormalización $\mu_R$ no son magnitudes físicas, sino consecuencia del truncamiento de la serie perturbativa, de forma que la dependencia del resultado con ellas refleja los órdenes no calculados. La variación de estas escalas, junto con la incertidumbre de las PDFs, constituye la principal fuente de incertidumbre teórica en la predicción de secciones eficaces, como las de producción de pares de bosones de Higgs discutidas en el Capítulo \ref{ch:theory}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{figures/chapter_II/nnpdf31_pdfs.pdf}
+    \caption{Parton distribution functions $xf(x,\mu^2)$ of the NNPDF3.1 NNLO set, evaluated at $\mu^2=10$ GeV$^2$ (left) and $\mu^2=10^4$ GeV$^2$ (right). The gluon distribution is scaled down by a factor of 10~\cite{NNPDF:2017mvq}.}
+    \label{fig:pdfs}
+\end{figure}
 
 
-Dos haces de $7$ TeV dan lugar a colisiones con una energía en el centro de masas de $\sqrt{s}=14$ TeV, pero esta no es la energía disponible para producir nuevas partículas. Los protones no son partículas elementales, por lo que la interacción de interés no se produce entre los protones, sino entre sus constituyentes, los partones —quarks y gluones—, cada uno de los cuales porta una fracción $x$ del momento del protón. En consecuencia, la energía efectiva de la interacción es $\sqrt{\hat{s}}=\sqrt{x_1x_2\,s}$, que varía de un suceso a otro, de forma que el LHC explora simultáneamente un amplio rango de energías, y la producción de estados finales pesados, como un par de bosones de Higgs, solo es posible en la fracción de colisiones en que los partones portan una fracción de momento suficiente. El teorema de factorización permite separar la sección eficaz hadrónica en una parte calculable perturbativamente, la sección eficaz partónica $\hat{\sigma}_{ij}$, y una parte no perturbativa, las funciones de distribución partónica (PDFs) $f_i(x,\mu_F)$, que describen la probabilidad de encontrar en el protón un partón $i$ con fracción de momento $x$~\cite{Collins:1989gx}:
+
+
 
 \\
 
@@ -119,79 +130,34 @@ donde $\mathcal{L}_b$ es la luminosidad por paquete y $\sigma_\text{inel}$ la se
     \label{fig:pileup}
 \end{figure}
 
+Por otro lado, la interacción entre los dos partones no es lo único que ocurre en la colisión. Los partones emiten radiación antes y después de la interacción, los partones coloreados del estado final hadronizan formando los jets que se observan en el detector, y los restos de los protones, junto con interacciones partónicas adicionales de baja energía, dan lugar al denominado \textit{underlying event}. EL PARRAFO DEL UNERDLYIN EVENT FUERA DE CONTEXTO?
+
+
+
+En definitiva, la energía de los haces y la luminosidad determinan conjuntamente el alcance del LHC, puesto que la prija fija qué procesos son accesibles y la segunda cuántos sucesos de cada uno de ellos se producen en las interacciones del cruce de paquetes. Sin embargo, los valores de energía y luminosidad aquí presentados corresponden al diseño nominal de la máquina, y en la práctica las condiciones reales de operación han evolucionado a lo largo de los distintos periodos de toma de datos. 
 
 
 
 
 
-CIERRE DE LO QUE ME ABRE CADA PARAMETRO
 
-The LHC is installed in a 26.7 km long tunnel built between 1984 and 1989 to host the
-CERN Large Electron Positron (LEP) collider. The tunnel is located in the region nearby
-Geneva and extends across the French and the Swiss borders. In the LHC, two separate,
-counter-rotating particle beam lines are kept in orbit in two magnetic channels thanks to
-44 Chapter 2. Experimental apparatus
-the field generated by superconduting niobium-titanium coils. The particles are steered
-by a magnetic field of 8.3T generated by a current of about 11 kA in the 1232 dipole
-magnets, each measuring 15 metres of length and 35 tonnes of weight. The stability of
-the beam dynamics is ensured by 392 quadrupoles magnets measuring 5 to 7 metres of
-length, that focus the particles and keep them in a narrow beam. Special quadrupoles
-are installed in front of the collision points to squeeze the beams and increase the proton
-density in the collisions. Superconducting magnets are cooled with superfluid helium-4
-and kept to a working temperature of 1.9K.
 
-The LHC ring is made of eight 2.45km long arcs, where bending dipoles are placed, and
-and eight 545m long straight sections. Because the tunnel is inherited from LEP, the
-LHC design faces some space limitations: in the arcs, for instance, the tunnel has small
-internal diameter of 3.7 m. Therefore, instead of implementing separate rings of magnets
-for each of the beams, the two counter-rotating beamlines need to be hosted within a
-single cryogenic and mechanic assembly; the antiparallel magnetic fields are generated
-by two independent sets of coils, although they are are placed close enough to each other
-that they are coupled both magnetically and mechanically.
-The LHC electromagnets are made of copper-clad niobium-titanium superconductor,
-amounting globally to about 470 tonnes. The beams are kept on their circular path
-through the magnetic field of 1232 dipoles operating at 8.33 T, while 392 quadrupole
-magnets keep the particles focused in narrow beams. Dedicated quadrupoles squeeze
-the beams in proximity of the interaction points and magnets of higher multipole orders
-correct smaller imperfections in the magnetic field. The operating temperature of the
-magnets is 1.9 K (-271.25C); approximately 96 tonnes of superfluid helium-4 are needed
-to keep them cool.
 
-kept travelling in opposite directions before colliding in the designated
-interaction points once they have reached a target energy; although the design center-ofmass
-energy for proton-proton collisions is ps = 14TeV, the target energy of the LHC
-acceleration stage changed over the research phases, as detailed in Sec. 2.1.4: 3.5TeV
-until 2011, 4 TeV in 2012, 6.5 TeV from 2015 on.
-
-Luminosity
 
 
 \subsection{Operation}
-
-The accelerator is a 27 km circular collider built around
-100 m underground composed by two rings where two beams of protons or heavy
-ions circulate in opposite directions inside vacuum pipes. The beams are bended
-using 1232 superconducting dipoles, cooled down with super
-uid helium to 1.9 K,
-which generate an 8.3 T magnetic eld. To focus the beams and avoid spreading,
-392 quadrupole magnets are used
-
-The LHC is the last step of the accelerating chain in which the particles reach
-the operating energies. The CERN accelerator complex is shown in Fig. 2.1. At the
-beginning of the chain, hydrogen atoms are ionized and injected into the LINAC2,
-where they are accelerated to an energy of around 50 MeV. Then, the beam is passed
-through a series of circular synchrotrons, reaching 1.4 GeV after the BOOSTER,
-26 GeV after the PS and 450 GeV after the SPS, before they enter into the LHC
-and reach their target energy. The designed center-of-mass energy (ps) for protonproton
-collisions is 14 TeV, although the target energy has changed over the different
-phases: 7 TeV during 2010 and 8 TeV during 2011 and 2012 (3-year period called
-Run 1), 13 TeV during Run 2 (2015-2018) and 13.6 TeV during Run 3 (which started
-in 2022).
-
-The accelerator complex at CERN is a succession of machines that accelerate particles to increasingly higher energies to uncover the mysteries of the Universe. Each machine or accelerator boosts the energy of a beam of particles, before injecting the beam into the next machine in the sequence. In the Large Hadron Collider (LHC) – dark blue line – particle beams are accelerated up to the record energy of 6.5 TeV per beam. Most of the other smaller accelerators in the chain have their own experimental halls where beams are used for experiments at lower energies.
+\label{subsec:LHC_operation}
+%
+En la práctica, el LHC no ha operado de forma continua en sus condiciones de diseño, sino que su funcionamiento se orgniza en periodos de toma de datos, denominados \textit{Runs}, y separados por long shutdowns (LS) dedicadas al mantenimiento y la mejora tanto de la máquina como de los experimentos. Cada una de estas paradas ha permitido aumentar la energía de las colisiones o la luminosidad de cara al siguiente periodo, con el objetivo de que la evolución escalonada de las condiciones de operación desde la puesta en marcha del LHC. El calendario completo, desde el Run 1 hasta la fase de alta luminosidad, se muestra en la Figura \ref{fig:lhc_schedule}.
+%
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_II/lhc_schedule.png}
+    \caption{Operation schedule of the LHC and the HL-LHC, showing the data-taking periods (Runs) and long shutdowns (LS), together with the center-of-mass energy, the instantaneous luminosity relative to its nominal value, and the integrated luminosity expected at the end of each phase~\cite{HLLHC-plan-2025}.}
+    \label{fig:lhc_schedule}
+\end{figure}
 
 
-Protons are progressively accelerated by Linac4 (purple), PS Booster (pink), PS (magenta), SPS (blue), and ultimately at the LHC (dark grey). The proton beams circulated through the LHC collide in the center of the four particle detectors (yellow dots): ATLAS, ALICE, CMS, and LHCb
 
 
 
@@ -211,8 +177,8 @@ Protons are progressively accelerated by Linac4 (purple), PS Booster (pink), PS 
 \subsection{Data Acquisition and Computing systems}
 %??? añadir esta subsection? o no me hace falta?
 
-
-
+Generadores MC y simulación del detector?
+Cada una de estas colisiones da lugar a un estado final complejo, donde a la interacción dura entre los dos partones se suman la radiación emitida por estos, la hadronización de los partones finales y el underlying event, además de las interacciones de pile-up. Para poder comparar los datos con las predicciones teóricas, todas estas etapas se reproducen mediante generadores de Monte Carlo, desde la colisión hasta la respuesta del detector, de forma que los sucesos simulados se procesan con los mismos algoritmos de reconstrucción que los datos. 
 
 
 
