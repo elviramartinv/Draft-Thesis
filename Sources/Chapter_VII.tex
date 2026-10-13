@@ -39,7 +39,10 @@ The inclusive measurement uses a single $\mu$ for both production modes. By scal
 
 In the second alternative, a coupling modifier replaces $\mu$ as the parameter of interest and is fitted directly to the data, while the other couplings are held at their SM values; this yields confidence intervals for $\kappa_\lambda$ and $\kappa_{2V}$\footnote{The same procedure applies to $\kappa_t$ and $\kappa_V$, for which this search does not improve upon the constraints provided by single-Higgs-boson production measurements. Therefore, they are not reported here.}. This treatment is possible because the parametrization described in Section \ref{sec:bbtt_samples} allows the signal prediction at any point in coupling space to be expressed as a linear combination of the simulated samples, and it does so bin by bin rather than just for the total cross section, so that each signal template is a known analytic function of the couplings. Unlike $\mu$, a coupling does not merely scale the height of the signal distribution. A change in $\kappa_\lambda$ shifts the invariant mass spectrum of the $HH$ system and thereby modifies the distribution of the observable that is fitted.
 
-The same parametrization can also be used the other way around. The couplings are held fixed at a point in coupling space, and the parameter of interest is again $\mu$, which provides the limit on the cross section as a function of the coupling. By scanning over a grid in two of them, the exclusion contours in the plane they define can be determined.\\
+The same parametrization can also be used the other way around. The couplings are held fixed at a point in coupling space, and the parameter of interest is again $\mu$, which provides the limit on the cross section as a function of the coupling. A value of the coupling is excluded when the limit obtained with it falls below the cross section that the theory predicts at that same value, and the uncertainty on the boundary of the resulting interval follows from the bands of the limit itself. By scanning over a grid in two of them, the exclusion contours in the plane they define can be determined.\\
+
+
+
 
 Once the parameter of interest has been defined in each case, the model is fully determined except for its remaining parameters, which carry the uncertainties and on which the burden of covering any residual difference between the prediction and the data falls entirely. Their definition, the scheme by which they are correlated and the treatment their templates receive before entering the fit are addressed in Section \ref{subsec:bbtt_nuisances}.
 
@@ -59,6 +62,7 @@ Each source of uncertainty affects the prediction in more than one signal region
 
 
 Table \ref{tab:systematics_summary} lists the different families included in the fit, each of which groups several independent components with its own parameter, along with the correlation assigned to them across the five data-taking periods. Since the decision to correlate is made separately for each component, it is worth noting the partial correlation entries: the energy scale of the jets is decomposed into different sources depending on the calibration step from which they originate, and each of these sources contributes both a component common to all five periods and a component specific to each period; in the $b$ tagging, the decomposition follows the origin of each component, so that those originating from the central calibration are correlated, while those reflecting the finite number of events with which that calibration was measured in each flavor category are treated as independent in each period; and similarly for the identification of the $\tau_h$, with one of ots components specific to each period and the rest common to all of them. For the uncertainty in the integrated luminosity, the structure is different, since it is decomposed into three nested components, each shared by a distinct subset of years, which capture the systematic sources common to the measurements of each subset.
+
 
 %La primera es común a 2022, 2023 y 2024, la segunda solo a 2023 y 2024, y la tercera es exclusiva de 2024. Un proceso simulado de 2022 recibe por tanto una única componente, uno de 2023 dos y uno de 2024 las tres, y la incertidumbre total de cada año resulta de su suma en cuadratura.
 
@@ -111,6 +115,63 @@ Size of the simulated samples             & simulated              & shape & non
 }
 \label{tab:systematics_summary}
 \end{table}
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{lllc}
+\toprule
+Source & Affected processes & Type & Correlation \\
+\midrule
+\midrule
+\multicolumn{4}{l}{\textit{Theoretical}} \\
+\midrule
+Signal cross section                      & signal                 & normalization & full    \\
+Background cross sections                 & simulated              & normalization & full    \\
+Branching fractions                       & with a Higgs boson     & normalization & full    \\
+$b\bar{b}H$ normalization                 & $b\bar{b}H$            & normalization & full    \\
+Acceptance (QCD scale and PDF)            & simulated              & shape         & full    \\
+\midrule
+\multicolumn{4}{l}{\textit{Experimental}} \\
+\midrule
+Integrated luminosity                     & simulated              & normalization & partial \\
+\addlinespace
+Pile-up reweighting                       & simulated              & normalization\tablefootnote{The shape information of
+the pile-up variation is retained only for the signal processes. For every background
+process the two shifted templates are replaced by the nominal one rescaled by the ratio
+of their integrals, with a floor of $2\%$ on that ratio.} & full \\
+Trigger efficiency                        & simulated              & shape & none    \\
+Muon and electron identification and isolation & simulated         & shape & full    \\
+Electron energy scale and resolution      & simulated              & shape & full    \\
+$\tau_h$ identification                   & simulated              & shape & partial \\
+$\tau_h$ energy scale                     & simulated              & shape & none    \\
+Jet energy scale                          & simulated              & shape & partial \\
+Jet energy resolution                     & simulated              & shape & none    \\
+$b$ tagging                               & simulated              & shape & partial \\
+\addlinespace
+Drell--Yan correction, fit                & Drell--Yan             & shape & full    \\
+Drell--Yan correction, statistical        & Drell--Yan             & shape & none    \\
+Top quark $p_T$ reweighting               & $t\bar{t}$             & shape & full    \\
+\addlinespace
+Fake factor envelopes                     & \textit{fakes}         & shape & full    \\
+Fake factor statistics                    & \textit{fakes}         & shape & none    \\
+Template region statistics                & \textit{fakes}         & shape & none    \\
+\midrule
+\multicolumn{4}{l}{\textit{Statistical}} \\
+\midrule
+Size of the simulated samples             & simulated              & shape & none    \\
+\bottomrule
+\end{tabular}
+\caption[Summary of the systematic uncertainties]{%
+    Summary of the sources of systematic uncertainty considered in the analysis, grouped
+    as theoretical, experimental and statistical, with the processes they affect, whether
+    they modify only the normalization or also the shape of the distributions, and their
+    correlation across data-taking periods. The two statistical components of the fake
+    factor method are in addition decorrelated between categories and channels.
+}
+\label{tab:systematics_summary}
+\end{table}
+
+
 
 % construcción de plantillas
 Once the correlation scheme has been fixed, the two shifted templates for each source — constructed in Section \ref{sec:bbtt_systematics} by shifting the corresponding correction in both directions — undergo some corrections before the fit to ensure that all variations behave consistently under interpolation.
@@ -177,7 +238,8 @@ The composition of the background is the one anticipated in Section \ref{sec:bbt
 
 In contrast to the comparison of Section \ref{sec:bbtt_controlplots}, which was made before the fit and in which a discrepancy would have indicated a problem with the modeling, here the agreement is largely guaranteed by construction, since the fit used the nuisance parameters to achieve it. However, this capacity for absorption is not unlimited, since the parameters can only shift within the limits allowed by their constraints. Therefore, a discrepancy greater than that margin would still be visible, which justifies examining the post-fit distributions before interpreting any results. The simultaneous nature of the fit also requires checking each region separately, since a discrepancy localized in one region may be offset by the rest and not manifest itself in any of the final numbers.
 
-The figure confirms that the ratio of the observed data to the prediction is consistent with unity along the entire axis, with the largest fluctuations concentrated in the least populated bins, and that none of the ten regions deviates from the expected behavior. The uncertainty band is also significantly narrower than that of the pre-fit distributions, because the bins populated almost exclusively by background contain enough events for the fit to determine several of the nuisance parameters with greater precision than the uncertainty initially assigned to them. This behavior — and in particularly whether the fit has required appreciable shifts in the parameters from their nominal values — is examined in detail in Section \ref{subsec:bbtt_impacts}.
+The figure confirms that the ratio of the observed data to the prediction is consistent with unity along the entire axis, with the largest fluctuations concentrated in the least populated bins, and that none of the ten regions deviates from the expected behavior. The uncertainty band is also significantly narrower than that of the pre-fit distributions, because the bins populated almost exclusively by background contain enough events for the fit to determine several of the nuisance parameters with greater precision than the uncertainty initially assigned to them. This behavior is confirmed by the post-fit values of the nuisance parameters themselves, which remain compatible with their nominal ones, so that the agreement seen here does not rest on any single parameter having absorbed a large correction.
+
 
 
 %El contraste de bondad del ajuste descrito en la Sección \ref{subsec:bbtt_teststat}, realizado también por separado en cada partición de los datos, es la versión cuantitativa de esta misma comprobación.
@@ -187,10 +249,46 @@ The figure confirms that the ratio of the observed data to the prediction is con
 \subsection{Signal strength and significance}
 \label{subsec:bbtt_mu}
 %
-The simultaneous fit to the fifty signal regions yields a best estimate of the signal strength of $\mu = 2.6^{\,+2.1}_{\,-1.7}$, where the uncertainty defines the $68\,\%$ confidence interval. The central value lies above the standard model prediction, $\mu = 1$, by less than one standard deviation, so the result is consistent with it. The result is also consistent with the absence of signal, $\mu = 0$, from which it lies about one and a half times the lower uncertainty away. Figure \ref{fig:likelihood_scan_r} shows the profile of the likelihood ratio as a function of the signal strength, from which both the central value and the interval are obtained.
+The simultaneous fit to the fifty signal regions yields a best estimate of the signal strength of $\mu = 2.6^{\,+2.1}_{\,-1.7}$, where the uncertainty defines the $68\,\%$ confidence interval. Table \ref{tab:bbtt_unc_breakdown} breaks down the total uncertainty into the statistical contribution — associated with Poisson fluctuations in the fit — and into various families of systematic uncertainties obtained by grouping the individual sources listed in Table \ref{tab:systematics_summary}. The central value lies above the standard model prediction, $\mu = 1$, by less than one standard deviation, so the result is consistent with it. The result is also consistent with the absence of signal, $\mu = 0$, from which it lies about one and a half times the lower uncertainty away. Figure \ref{fig:likelihood_scan_r} shows the profile of the likelihood ratio as a function of the signal strength, from which both the central value and the interval are obtained.
 
 The significance quantifies the degree to which the data are consistent with the background-only hypothesis, and is obtained by comparing the likelihood at its maximum with the one obtained when $\mu$ is set to zero, as described in Section \ref{subsec:bbtt_teststat}. Its observed value is $1.5$ standard deviations, while the expected value — calculated assuming the signal to be present with the strength predicted by the SM — is $0.7$ standard deviations and indicates what the analysis could have hoped to detect. Therefore, no significant excess above the background-only hypothesis is observed, nor is there any evidence of Higgs boson pair production under the SM hypothesis.\\
 
+
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Source of uncertainty} & \textbf{Relative contribution to $\mu$} \\
+\midrule
+\midrule
+\multicolumn{2}{l}{Experimental} \\
+\midrule
+Fake factors                    & $25\,\%$ \\
+$b$ tagging                     & $10\,\%$ \\
+Lepton corrections and triggers & $9\,\%$  \\
+Jet energy corrections          & $7\,\%$  \\
+Other                           & $3\,\%$  \\
+\midrule
+\multicolumn{2}{l}{Statistical} \\
+\midrule
+Overall                         & $74\,\%$ \\
+Bin-by-bin variations           & $35\,\%$ \\
+\midrule
+\multicolumn{2}{l}{Theoretical} \\
+\midrule
+HH production                   & $31\,\%$ \\
+Single Higgs boson production   & $27\,\%$ \\
+Backgrounds                     & $14\,\%$ \\
+\bottomrule
+\end{tabular}
+\caption[Breakdown of the uncertainty on the signal strength]{%
+Contribution of each family of nuisance parameters to the uncertainty on the signal
+strength, obtained by repeating the fit with that family fixed to its post-fit values
+and taking the quadratic difference with respect to the nominal result. The statistical 
+contribution corresponds to the Poisson term of the data. \textcolor{red}{esto está sacado del PAS, me gustaría correr yo el desglose}}
+\label{tab:bbtt_unc_breakdown}
+\end{table}
 
 
 
@@ -244,8 +342,12 @@ For the exclusive VBF production, the observed limit is $81$ times the SM predic
 The breakdown by data-taking period also illustrates where the accumulated sensitivity comes from. The expected limits on inclusive production are $11$ for 2022, $11$ for 2023, and $4.4$ for 2024, compared to $3.9$ for the combination; these values are listed alongside those from the Run 2 dataset in Table \ref{tab:limits_per_year} of Section \ref{sec:bbtt_combination}. The 2024 period provides nearly all of the sensitivity of the analysis with less than two-thirds of the integrated luminosity, reflecting not only its larger size but also the conditions under which it was recorded, with the triggers described in Section \ref{sec:triggers} and with further improvements in the jet flavor identification algorithms, whose discriminant in turn feeds the jet assignment algorithms of Chapter \ref{ch:taggers}.\textcolor{red}{...?}
 
 \subsection{Constraints on the Higgs boson couplings}
+\label{subsec:bbtt_couplings}
 %
 The same measurement can be interpreted in terms of the couplings that govern the process. Since the parametrization in Section \ref{sec:bbtt_samples} provides a prediction of the signal at any point in coupling space, the procedure in Section \ref{subsec:bbtt_teststat} can be repeated while keeping the coupling fixed at each value in a scan, which yields a limit on the cross section as a function of the coupling. A comparison of this with the cross section predicted by theory for the coupling at that same point yields the constraint, since those values for which the prediction exceeds the maximum cross section consistent with the data are excluded. Figure \ref{fig:limits_couplings} shows both curves for $\kappa_\lambda$ and for $\kappa_{2V}$.
+
+%The uncertainty on the boundaries of the interval follows from the bands of the limit itself and not from the theoretical uncertainty on the prediction, which enters the fit through its own nuisance parameters.
+
 
 \begin{figure}[tbp]
     \centering
@@ -418,6 +520,7 @@ On this basis the two comparisons that follow are built taking from each publica
 
 
 \subsection{The HH program at CMS in Run 3}
+\label{bbtt_comp_cms}
 %
 The three final states that dominate the sensitivity to Higgs boson pair production are, according to the trade-off described in Section \ref{subsec:HH_BR}, $4b$, $bb\tau\tau$, and $bb\gamma\gamma$. Both $4b$ and $bb\gamma\gamma$ have published measurements using Run 3 data, and these measurements show how the sensitivity is currently distributed among the channels.\\
 
@@ -660,7 +763,8 @@ Figure \ref{fig:bbtt_atlas_comparison} presents this same series graphically, in
 
 
 % desglose incertidumbres
-The uncertainty breakdown for both analyses permits the discernment of the source of this difference. Both measurements are dominated by the data statistics, which account for $74\,\%$ of the uncertainty in the signal strength in the CMS analysis and $60\,\%$ in the ATLAS analysis\footnote{The comparison is made between the complete ATLAS dataset — whose Run 2 data have been reanalyzed using the strategy described — and the Run 3 data from this analysis, since the Run 2 data do not reflect the current strategy.}. They also agree on the primary systematic uncertainty, which is the theoretical production cross section via gluon fusion, and on the fact that the statistical precision of the background templates ranks among the next most significant, with a combined contribution from signal and background modeling of $35\,\%$ for ATLAS and \textcolor{red}{???} for CMS. The most notable differences lie in the experimental uncertainty block, to which ATLAS attributes a total of $3\,\%$ of its overall uncertainty, whereas here the faake factors and $b$-quark tagging alone have impacts of $25\,\%$ and $10\,\%$ on the signal strength. \textcolor{red}{Intentar calcular la comparación directa con ese $3\,\%$}. ATLAS quantifies that the sum of all its systematic uncertainties, both experimental and theoretical uncertainties worsens its expected limit by $21\,\%$, while CMS \textcolor{red}{...} However, this falls far short of the $1.6$ factor that separates the two analyses, which therefore cannot be fully explained by the treatment of uncertainties.
+The uncertainty breakdown for both analyses permits the discernment of the source of this difference. Both measurements are dominated by the data statistics, which account for $74\,\%$ of the uncertainty in the signal strength in the CMS analysis and $60\,\%$ in the ATLAS analysis\footnote{The comparison is made between the complete ATLAS dataset — whose Run 2 data have been reanalyzed using the strategy described — and the Run 3 data from this analysis, since the Run 2 data do not reflect the current strategy.}. They also agree on the primary systematic uncertainty, which is the theoretical production cross section via gluon fusion, and on the fact that the statistical precision of the background templates ranks among the next most significant, with a combined contribution from signal and background modeling of $35\,\%$ for ATLAS and \textcolor{red}{???} for CMS. The most notable differences lie in the experimental uncertainty block, to which ATLAS attributes a total of $3\,\%$ of its overall uncertainty, whereas here, as the breakdown of Table \ref{tab:bbtt_unc_breakdown} shows, the fake factors and $b$-quark tagging alone reach $25\,\%$ and $10\,\%$ on the signal strength. \textcolor{red}{Intentar calcular la comparación directa con ese $3\,\%$}. ATLAS quantifies that the sum of all its systematic uncertainties, both experimental and theoretical uncertainties worsens its expected limit by $21\,\%$, while CMS \textcolor{red}{...} However, this falls far short of the $1.6$ factor that separates the two analyses, which therefore cannot be fully explained by the treatment of uncertainties.
+
 
 % cutflow?
 Conversely, the dominance of statistics in both approaches suggests that the discrepancy is not attributable to calibration differences, but rather, it is predominantly influenced by the extent to which each analysis retains and isolates the signal. Starting from slightly different integrated luminosities — $196$ fb$^{-1}$ for ATLAS and $172$ fb$^{-1}$ for CMS, which translates to a number of signal events produced on the order of $480$ for ATLAS and $450$ in Section \ref{sec:bbtt_results} — ATLAS retains approximately $5.3\,\%$ of the events produced in the fully hadronic channel with Run 2 data, which rises to $6.3\,\%$ with Run 3 data, and around $4.6\,\%$ in the semileptonic channel; whereas CMS \textcolor{red}{calcular....???}. The increase demonstrated by ATLAS is attributed to specific analysis decisions: a more efficient working point for $b$-quark tagging, the removal of the electron veto in the hadronic channel, and the trigger paths added in Run 3, in addition to equivalent improvements in the reconstruction of the $H\to b\bar{b}$ candidate mass and in the classifier that defines its categories. The same approaches are being explored at CMS.... \textcolor{red}{completar esto con los numeros etc. la diferencia viene del grado de optimización alcanzado en cada paso...?}
@@ -735,7 +839,7 @@ These are only some of the possible directions, and their benefit does not depen
 % broadening the interpretation / EFT interpretation
 \label{subsec:bbtt_prospects_interpretation}
 % preguntar más a los mismos datos
-The parametrization described in Section \ref{sec:bbtt_samples} makes it possible to predict the signal at any point in the coupling space without having to repeat the analysis, and this is what has made it possible to report the intervals in Section \ref{subsec:bbtt_comb_results}. However, the coupling modifiers rescale the structures already contained in the SM and hence cannot account for interactions not described therein. Therefore, effective descriptions from Chapter \ref{ch:eft_modeling} are used, wich allow for contact terms with no counterpart in the SM parameterization — such as the one coupling two top quarks to two Higgs bosons — and with them a considerably broader parameter space in which to interpret the same measurement. Accordingly, the EFT interpretation can provide limits on the production rate evaluated at sets of reference points, chosen such that each represents a region of the parameter space with characteristic kinematics, thereby allowing the space to be covered without traversing it point by point; confidence intervals and two-dimensional contours on the coefficients of these contact terms and on their correlation with already known couplings; or the translation of both into the parameters of specific models, which the effective description allows to be put in correspondence with its own parameters. The combination of CMS with Run 2 data covers all three \cite{CMS_combination}, and the analysis of the final state $4b$ with Run 3 data already includes the first two \cite{CMS:2026znu}.
+The parametrization described in Section \ref{sec:bbtt_samples} makes it possible to predict the signal at any point in the coupling space without having to repeat the analysis, and this is what has made it possible to report the intervals in Section \ref{subsec:bbtt_comb_results}. However, the coupling modifiers rescale the structures already contained in the SM and hence cannot account for interactions not described therein. Therefore, effective descriptions from Chapter \ref{ch:eft_modeling} are used, wich allow for contact terms with no counterpart in the SM parametrization — such as the one coupling two top quarks to two Higgs bosons — and with them a considerably broader parameter space in which to interpret the same measurement. Accordingly, the EFT interpretation can provide limits on the production rate evaluated at sets of reference points, chosen such that each represents a region of the parameter space with characteristic kinematics, thereby allowing the space to be covered without traversing it point by point; confidence intervals and two-dimensional contours on the coefficients of these contact terms and on their correlation with already known couplings; or the translation of both into the parameters of specific models, which the effective description allows to be put in correspondence with its own parameters. The combination of CMS with Run 2 data covers all three \cite{CMS_combination}, and the analysis of the final state $4b$ with Run 3 data already includes the first two \cite{CMS:2026znu}.
 
 It is therefore natural to extend the interpretation of the measurement presented in this chapter in these same terms, which requires constructing the prediction of the signal entering the fit for each point in the parameter space. Furthermore, since the contact terms not only scale the production rate but also alter the shape that the signal takes on in the discriminant distribution, this prediction must be differential. Constructing it requires an effective description that establishes which terms contribute to the production amplitude. Making the result meaningful requires in addition knowing how its two formulations translate into each other, which is the condition both for comparing interpretations and for putting them in correspondence with specific models, as well as within what range of energies the use of that description remains legitimate — issues addressed in Chapter \ref{ch:eft_modeling}. In this sense, the two parts of this work are complementary, since this chapter provides the measurement and that chapter provides the modeling, without which it is impossible to ask what these data reveal about interactions not included in the standard model.
 
