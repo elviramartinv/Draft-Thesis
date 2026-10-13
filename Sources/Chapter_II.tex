@@ -45,26 +45,36 @@ Estos puntos de intersección están instrumentados con particle detectors insta
 %
 El LHC está instalado en el túnel de $26.7$ km de largo construido to host the LEP collider, por lo que su diseño está en gran parte condicionado por la reutilización de dicho túnel. El diámetro interior del túnel, de apenas $3.7$ m en los arcos, no deja espacio para anillos de imanes separados, por lo que el LHC adopta un diseño \textit{two-in-one}, en el que los dos tubos de vacío por los que circulan los haces en sentidos opuestos, cada uno con sus propias bobinas, se alojan en una misma estructura mecánica y en un mismo criostato.
 
+La energía máxima que puede alcanzar un haz en un anillo de determinada circunferencia viene limitada por el campo magnético capaz de curvar su trayectoria. De esta forma, para mantener en órbita protones de $7$ TeV, el LHC emplea $1232$ dipolos superconductores capaces de generar un campo de $8.33$ T si se enfrían a $1.9$ K, temperatura que se consigue mediante helio superfluido~\cite{Bruning:2004ej}. Además de curvar la trayectoria, es necesario mantener el haz enfocado, para lo que se emplean $392$ cuadrupolos situados a lo largo de todo el anillo junto con imanes de órdenes multipolares superior que se encargan de corregir las imperfecciones del campo. El anillo se divide en ocho arcos, donde se sitúan los dipolos, y ocho secciones rectas, que albergan los puntos de interacción y los sistemas de aceleración, colimación y extracción del haz.
 
-La energía máxima que puede alcanzar un haz en un anillo de determinada circunferencia viene limitada por el campo magnético capaz de curvar su trayectoria. De esta forma, para mantener en órbita protones de $7$ TeV, el LHC emplea $1232$ dipolos superconductores capaces de generar un campo de $8.33$ T si se enfrían a $1.9$ K, temperatura que se consigue mediante helio superfluido~\cite{Bruning:2004ej}. Además de curvar la trayectoria, es necesario mantener el haz enfocado, para lo que se emplean $392$ cuadrupolos situados a lo largo de todo el anillo junto con imanes de órdenes multipolares superior que se encargan de corregir las imperfecciones del campo. El anillo se divide en ocho arcos, donde se sitúan los dipolos, y ocho secciones rectas, que albergan los puntos de interacción y los sistemas de aceleración, colimación y extracción del haz. 
+\label{sec:pp_pheno}
+Aunque los dos haces de $7$ den lugar a colisiones con energía en el centro de masas de $\sqrt{s}=14$ TeV, la energía disponible para producir nuevas partículas realmente depende de la fracción $x$ delmomento del protón que porte cada uno de sus constituyentes, los partones —quarks y gluones. En consecuencia, la energía efectiva de la interacción es $\sqrt{\hat{s}}=\sqrt{x_1x_2\,s}$, que varía de un suceso a otro, de forma que el LHC explora simultáneamente un amplio rango de energías, y la producción de estados finales pesados, como un par de bosones de Higgs, solo es posible en la fracción de colisiones en que los partones portan una fracción de momento suficiente. El teorema de factorización permite separar la sección eficaz hadrónica QUE TIENE QUE VER AQUI LA SECCION EFICAZ? NO ESTAMOS HABLANDO DE ENERGÍAS? en una parte calculable perturbativamente, la sección eficaz partónica $\hat{\sigma}_{ij}$, y una parte no perturbativa, las funciones de distribución partónica (PDFs) $f_i(x,\mu_F)$, que describen la probabilidad de encontrar en el protón un partón $i$ con fracción de momento $x$~\cite{Collins:1989gx}:
+\begin{equation}
+    \sigma_{pp\to X} = \sum_{i,j}\int_0^1 dx_1\,dx_2\; f_i(x_1,\mu_F)\,f_j(x_2,\mu_F)\;\hat{\sigma}_{ij\to X}(x_1x_2\,s,\,\mu_R,\,\mu_F).
+    \label{eq:factorization}
+\end{equation}
+Las PDFs no pueden calcularse a partir de primeros principios, sino que se extraen de ajustes globales a datos experimentales~\cite{NNPDF:2017mvq}. Por su parte, la escala de factorización $\mu_F$ y la de renormalización $\mu_R$ no son magnitudes físicas, sino consecuencia del truncamiento de la serie perturbativa, de forma que la dependencia del resultado con ellas refleja los órdenes no calculados. La variación de estas escalas, junto con la incertidumbre de las PDFs, constituye la principal fuente de incertidumbre teórica en la predicción de secciones eficaces, como las de producción de pares de bosones de Higgs discutidas en el Capítulo \ref{ch:theory}.
+
+
+Dos haces de $7$ TeV dan lugar a colisiones con una energía en el centro de masas de $\sqrt{s}=14$ TeV, pero esta no es la energía disponible para producir nuevas partículas. Los protones no son partículas elementales, por lo que la interacción de interés no se produce entre los protones, sino entre sus constituyentes, los partones —quarks y gluones—, cada uno de los cuales porta una fracción $x$ del momento del protón. En consecuencia, la energía efectiva de la interacción es $\sqrt{\hat{s}}=\sqrt{x_1x_2\,s}$, que varía de un suceso a otro, de forma que el LHC explora simultáneamente un amplio rango de energías, y la producción de estados finales pesados, como un par de bosones de Higgs, solo es posible en la fracción de colisiones en que los partones portan una fracción de momento suficiente. El teorema de factorización permite separar la sección eficaz hadrónica en una parte calculable perturbativamente, la sección eficaz partónica $\hat{\sigma}_{ij}$, y una parte no perturbativa, las funciones de distribución partónica (PDFs) $f_i(x,\mu_F)$, que describen la probabilidad de encontrar en el protón un partón $i$ con fracción de momento $x$~\cite{Collins:1989gx}:
+
+\\
 
 %Los arcos están formados por celdas regulares en las que los dipolos se alternan con los cuadrupolos y los imanes correctores, mientras que las secciones rectas albergan los puntos de interacción y los sistemas de aceleración, colimación y extracción del haz, junto con los cuadrupolos que focalizan los haces antes de cada colisión~\cite{Evans:2008zzb}.
 
-El alcance del LHC viene asimismo determinado por la luminosidad instantánea $\mathcal{L}$, que es el parámetro que relaciona el número de sucesos de un proceso dado que se producen por unidad de tiempo y su sección eficaz $\sigma$:
 % Luminosidad
-La energía, sin embargo, no es el único parámetro que determina el alcance del LHC. El número de sucesos de un proceso dado que se producen por unidad de tiempo es proporcional a su sección eficaz $\sigma$, y la constante de proporcionalidad es la luminosidad instantánea $\mathcal{L}$, una magnitud que depende únicamente de las condiciones de los haces:
+El alcance del LHC viene asimismo determinado por la luminosidad instantánea $\mathcal{L}$, que es el parámetro que relaciona el número de sucesos de un proceso dado que se producen por unidad de tiempo y su sección eficaz $\sigma$:
 \begin{equation}
     \frac{dN}{dt} = \mathcal{L}\,\sigma .
     \label{eq:event_rate}
 \end{equation}
-Donde la $\mathcal{L}$ es una magnitud que depende únicamente de las condiciones de los hces
-Para procesos con secciones eficaces del orden de decenas de fb, como la producción de pares de bosones de Higgs, la luminosidad es por tanto el factor que determina si el proceso puede llegar a observarse. En el LHC, para haces de perfil gaussiano que colisionan con un ángulo de cruce, la luminosidad se expresa como
+Donde la $\mathcal{L}$ es una magnitud que depende únicamente de las condiciones de los haces. En el LHC, para haces de perfil gaussiano que colisionan con un ángulo de cruce, la luminosidad se expresa como
 \begin{equation}
     \mathcal{L} = \frac{\gamma\, f_\text{rev}\, n_b\, N_b^2}{4\pi\, \varepsilon_n\, \beta^*}\, F, \qquad F = \left(1+\left(\frac{\theta_c\,\sigma_z}{2\sigma^*}\right)^2\right)^{-1/2},
     \label{eq:lumi}
 \end{equation}
 donde $\gamma$ es el factor relativista de los protones, $f_\text{rev}$ la frecuencia de revolución, $n_b$ el número de paquetes por haz, $N_b$ el número de protones por paquete, $\varepsilon_n$ la emitancia transversal normalizada y $\beta^*$ el valor de la función beta en el punto de interacción, que caracteriza el grado de focalización del haz. El factor $F$ da cuenta de la reducción geométrica debida al ángulo de cruce $\theta_c$, y depende del tamaño transversal $\sigma^*$ y longitudinal $\sigma_z$ de los paquetes. Los valores nominales de estos parámetros se recogen en la Tabla \ref{tab:lhc_parameters}.
-
+%
 \begin{table}[h!]
     \centering
     \begin{tabular}{l c c}
@@ -88,13 +98,33 @@ donde $\gamma$ es el factor relativista de los protones, $f_\text{rev}$ la frecu
     \label{tab:lhc_parameters}
 \end{table}
 
+La Ecuación \ref{eq:lumi} muestra cuáles son las vías para aumentar la luminosidad. En primer lugar, la dependencia cuadrática con $N_b$ hace del número de protones por paquete el parámetro más efectivo, y este, junto con la emitancia, viene determinado por la cadena de inyección descrita en la Sección \ref{subsec:LHC_complex}. En segundo lugar, $\beta^*$ puede reducirse focalizando los haces justo antes del punto de interacción, función que desempeñan los cuadrupolos situados a ambos lados de cada experimento. Por último, el número de paquetes está limitado por el espaciado de $25$ ns. Sin embargo, con este espaciado los paquetes de ambos haces se encontrarían también en puntos distintos del de interacción, por lo que los haces deben cruzarse con un pequeño ángulo, lo que reduce la luminosidad a través del factor $F$.\\
+
+
+Integrando la Ecuación \ref{eq:event_rate} en el tiempo, el número total de sucesos esperado para un proceso es $N=\sigma\int\mathcal{L}\,dt$. La luminosidad integrada, expresada habitualmente en fb$^{-1}$, es por tanto la magnitud que cuantifica el volumen de datos de un análisis, y su medida precisa es imprescindible para convertir un número de sucesos en una sección eficaz. En CMS, esta medida se realiza mediante detectores dedicados, denominados luminómetros, cuya respuesta se calibra en barridos de van der Meer, en los que los haces se desplazan uno respecto al otro para determinar su solapamiento~\cite{CMS:2021xjt}. La precisión alcanzada en cada uno de los años analizados en esta tesis, del orden del porcentaje, se detalla en la Sección \ref{sec:bbtt_systematics}.
+
+% pileup
+Sin embargo, con una luminosidad elevada no se produce una única interacción protón-protón por cada cruce de paquetes, sino varias simulaténas, de forma que el número medio de interacciones por cruce viene dado por:
+\begin{equation}
+    \mu = \frac{\mathcal{L}_b\,\sigma_\text{inel}}{f_\text{rev}},
+    \label{eq:pileup}
+\end{equation}
+donde $\mathcal{L}_b$ es la luminosidad por paquete y $\sigma_\text{inel}$ la sección eficaz inelástica protón-protón. En condiciones nominales, $\mu$ es del orden de 25. Estas interacciones adicionales, conocidas como \textit{pile-up}, son en su inmensa mayoría procesos de baja transferencia de momento que se superponen a la interacción de interés, y a ellas se suman las procedentes de cruces anteriores y posteriores, cuya señal persiste en la electrónica del detector. Por tanto, el pile-up afecta a la reconstrucción de todos los objetos del suceso, y su mitigación constituye uno de los aspectos centrales de los algoritmos descritos en la Sección \ref{sec:POR}. La distribución de $\mu$ registrada por CMS durante el Run 3 se muestra en la Figura \ref{fig:pileup}.
+
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.75\linewidth]{figures/chapter_II/pileup_run3.pdf}
-    \caption{Distribution of the mean number of interactions per bunch crossing recorded by CMS in proton-proton collisions during each year of Run 3, computed assuming an inelastic cross section of 80 mb. The mean value $\langle\mu\rangle$ of each year is indicated~\cite{CMS-LumiPublicResults}.}
+    \caption{Distribution of the mean number of interactions per bunch crossing recorded by CMS in proton-proton collisions during each year of Run 3, computed assuming an inelastic cross section of 80 mb~\cite{TOTEM:2017asr}. The mean value $\langle\mu\rangle$ of each year is indicated~\cite{CMS-LumiPublicResults}.}
     \label{fig:pileup}
 \end{figure}
+
+
+
+
+
+
+CIERRE DE LO QUE ME ABRE CADA PARAMETRO
 
 The LHC is installed in a 26.7 km long tunnel built between 1984 and 1989 to host the
 CERN Large Electron Positron (LEP) collider. The tunnel is located in the region nearby
