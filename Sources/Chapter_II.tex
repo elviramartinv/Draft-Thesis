@@ -161,18 +161,56 @@ Esta sección describe en primer lugar el sistema de coordenadas empleado en CMS
 \subsection{Coordinate system}
 \label{subsec:CMS_coordinates}
 %
-Para describir las partículas producidas en las colisiones es necesario definir un sistema de referencia común a todos los subdetectores que conforman el experimento. CMS adopta un sistema cartesiano con origen en el punto nominal de interacción, el cual se situa en el centro del detector. 
+Para describir las partículas producidas en las colisiones es necesario definir un sistema de referencia común a todos los subdetectores que conforman el experimento. CMS adopta un sistema con origen en el punto nominal de interacción, el cual se situa en el centro del detector, y donde el eje $x$ apunta radialmente hacia el centro del anillo del LHC, el eje $y$ apunta verticalmente hacia arriba, y el eje $z$ se orienta a lo largo de la dirección del haz, de forma que el sistema resultante es dextrógiro~\cite{CMS:2008xjf}. Sin embargo, dada la simetría cilíndrica del detector en torno al haz, resulta más natural describir las direcciones mediante coordenadas angulares: el ángulo azimutal $\phi$ se mide en el plano $x$-$y$ perpendicular al haz y denominado plano transverso; la distancia radial $r$ se define en ese mismo plano; y el ángulo polar $\theta$ se mide a partir del eje $z$, como se muestra en el panel izquierdo de la Figura \ref{fig:cms_coordinates}.
 
-La descripción de las partículas producidas en las colisiones requiere un sistema de referencia común a todos los subdetectores, y CMS adopta un sistema cartesiano con origen en el punto nominal de interacción, situado en el centro del detector. El eje $x$ apunta radialmente hacia el centro del anillo del LHC, el eje $y$ apunta verticalmente hacia arriba, y el eje $z$ se orienta a lo largo de la dirección del haz, de forma que el sistema resultante es dextrógiro~\cite{CMS:2008xjf}. Dada la simetría cilíndrica del detector en torno al haz, resulta sin embargo más natural describir las direcciones mediante coordenadas angulares: el ángulo azimutal $\phi$ se mide en el plano $x$-$y$ a partir del eje $x$, la distancia radial $r$ se define en ese mismo plano, y el ángulo polar $\theta$ se mide a partir del eje $z$, como se muestra en la Figura \ref{fig:cms_coordinates}.
+
+%
+No obstante, en un colisionador hadrónico los partones que interactúan portan fracciones distintas del momento de sus protones, por lo que el sistema que colisiona se mueve a lo largo del eje $z$ con un momento longitudinal desconocido que varía de un suceso a otro. En consecuencia, conviene emplear variables cuyo comportamiento no dependa de ese movimiento, de forma que se sustituye el ángulo polar por la rapidez
+\begin{equation}
+    y = \frac{1}{2}\ln\frac{E+p_z}{E-p_z},
+    \label{eq:rapidity}
+\end{equation}
+cuyas diferencias entre partículas son invariantes bajo transformaciones de Lorentz a lo largo del eje $z$. Para partículas cuya masa es despreciable frente a su momento, la rapidez coincide con la pseudorrapidez,
+\begin{equation}
+    \eta = -\ln\left[\tan\left(\frac{\theta}{2}\right)\right],
+    \label{eq:eta}
+\end{equation}
+que tiene la ventaja de depender únicamente de la dirección de la partícula y, por tanto, de poder medirse directamente a partir del ángulo polar. La pseudorrapidez toma el valor $\eta=0$ en la dirección perpendicular al haz y crece en valor absoluto a medida que la dirección se aproxima a éste, tal y como se ilustra en el panel derecho de la Figura \ref{fig:cms_coordinates}, de forma que la cobertura de cada subdetector se expresa habitualmente como un intervalo en $|\eta|$. A partir de $\eta$ y $\phi$ se define la distancia angular entre dos objetos,
+\begin{equation}
+    \Delta R = \sqrt{(\Delta\eta)^2+(\Delta\phi)^2},
+    \label{eq:deltaR}
+\end{equation}
+que hereda la invariancia de $\eta$ frente a los movimientos longitudinales y se utiliza para definir las regiones cónicas en torno a un objeto, como las empleadas en el agrupamiento de jets o en el cálculo del aislamiento.
+
+Por otro lado, puesto que los partones que colisionan tienen un momento transverso prácticamente nulo, por conservación del momento la suma vectorial de los momentos de todas las partículas del estado final debe anularse en el plano transverso. Se usa en consecuencia el momento transverso, $p_T=\sqrt{p_x^2+p_y^2}$, para expresar la cinemática de los objetos reconstruidos, de forma que cualquier desequilibrio en ese plano revela la presencia de partículas que escapan sin ser detectadas, como los neutrinos. De ahí se infiere el momento transverso faltante, $\vec{p}_T^{\,\text{miss}}$, cuya reconstrucción se describe en la Sección \ref{sec:MET}.
+
+
+Aunque en la dirección longitudinal no es posible establecer un balance equivalente, puesto que el momento inicial de los partones a lo largo del haz es desconocido, la componente longitudinal del momento de cada objeto reconstruido sí queda determinada, ya que se obtiene a partir de su momento transverso y su pseudorrapidez. En efecto, las componentes cartesianas del momento se relacionan con $p_T$, $\eta$ y $\phi$ mediante
+\begin{equation}
+    p_x = p_T\cos\phi, \qquad p_y = p_T\sin\phi, \qquad p_z = p_T\sinh\eta,
+    \label{eq:momentum_components}
+\end{equation}
+de forma que el conjunto $(p_T,\eta,\phi)$, junto con la masa del objeto cuando esta no es despreciable, describe por completo su cuadrimomento. Esta es la parametrización empleada a lo largo de toda la tesis, en la que los criterios de selección de los objetos se expresan como requisitos sobre su $p_T$ y su $|\eta|$.
+
+
+
+En la dirección longitudinal, en cambio, el momento inicial de los partones es desconocido, por lo que no es posible establecer un balance equivalente. ESTO ES NECESARIO? APROVECHAR PARA ESCRIBIR COMO SE RELACIONA PT CON EL LONGITUDINAL? LAS FORMULAS QUE TIENE JAIME EN 2.7, 2.8 Y 2.9 A partir de estas magnitudes se construyen además otras variables que se utilizan a lo largo de esta tesis. INTRODUCIR UN POCO MEJOR LA MASA TRANSVERSA, NO SIMPLEMENTE METERALA AHI TAL CUALLa masa transversa de un objeto de momento transverso $p_T$ y del momento transverso faltante,
+
+
+\begin{equation}
+    m_T = \sqrt{2\,p_T\,p_T^\text{miss}\left(1-\cos\Delta\phi\right)},
+    \label{eq:mT}
+\end{equation}
+donde $\Delta\phi$ es la diferencia azimutal entre ambos, permite reconstruir la desintegración de un bosón $W$ en un leptón y un neutrino, ya que su distribución presenta un máximo cinemático en la masa del $W$. Por último, la actividad hadrónica del suceso se cuantifica mediante $H_T$, definida como la suma escalar de los $p_T$ de los jets del suceso.
+
+
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_II/cms_coordinates.pdf}
-    \caption{Left: coordinate system adopted by CMS, with the origin at the nominal interaction point, the $x$ axis pointing towards the centre of the LHC ring, the $y$ axis pointing vertically upwards and the $z$ axis along the beam direction. The polar angle $\theta$, the azimuthal angle $\phi$ and the transverse projection $p_T$ of a momentum $\vec{p}$ are indicated. Right: directions corresponding to several values of the pseudorapidity $\eta$ in the $z$-$r$ plane.}
+    \caption{Left: coordinate system, with the origin at the nominal interaction point, the $x$ axis pointing towards the center of the LHC ring, the $y$ axis pointing vertically upwards and the $z$ axis along the beam direction. The polar angle $\theta$, the azimuthal angle $\phi$ and the transverse projection $p_T$ of a momentum $\vec{p}$ are indicated. Right: directions corresponding to several values of the pseudorapidity $\eta$ in the $z$-$r$ plane.}
     \label{fig:cms_coordinates}
 \end{figure}
-
-
 
 \subsection{Detector layout}
 \subsection{Trigger System}
