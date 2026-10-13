@@ -116,11 +116,6 @@ En definitiva, la energía de los haces y la luminosidad determinan conjuntament
 
 
 
-
-
-
-
-
 \subsection{Operation}
 \label{subsec:LHC_operation}
 %
@@ -144,7 +139,7 @@ La segunda parada larga, LS2, entre 2019 y 2021, incluyó la mejora de la cadena
 \end{figure}
 
 
-Con el final del Run 3 comenzó la tercera parada larga, LS3, cuya duración se preveé que se prolongue hasta mediados de 2030 y en la que el LHC se transformará en el High-Luminosity LHC (HL-LHC). Entre otras mejoras, se sustituirán los cuadrupolos de focalización situados junto a ATLAS y CMS por imanes de niobio-estaño, DATO INNECESARIO? capaces de reducir aún más $\beta^*$, y se instalarán cavidades de radiofrecuencia que inclinan los paquetes en el punto de interacción para compensar la pérdida de luminosidad debida al ángulo de cruce POR QUÉ SE PIERDE LUMINOSIDAD CON EL ANGULO DE CRUCE?. Con ello, el HL-LHC operará con una luminosidad nivelada entre $5$ y $7.5$ veces superior a la nominal, con hasta $200$ interacciones por cruce de paquetes, y acumulará entre $3000$ y $4000$ fb$^{-1}$ hasta su final, previsto para 2041. Este volumen de datos, un orden de magnitud superior al disponible actualmente, es el que debería permitir observar la producción de pares de bosones de Higgs, como se discutió en el Capítulo \ref{ch:theory}, y exige a su vez una profunda renovación de los experimentos para afrontar las nuevas condiciones de pile-up y radiación.\\\\
+Con el final del Run 3 comenzó la tercera parada larga, LS3, cuya duración se preveé que se prolongue hasta mediados de 2030 y en la que el LHC se transformará en el High-Luminosity LHC (HL-LHC)~\cite{HLLHC-plan-2025}. Entre otras mejoras, se instalarán junto a ATLAS y CMS cuadrupolos de focalización más potentes, capaces de reducir aún más $\beta^*$, y se instalarán cavidades de radiofrecuencia que inclinan los paquetes en el punto de interacción para compensar la pérdida de luminosidad debida al ángulo de cruce. Con ello, el HL-LHC operará con una luminosidad nivelada entre $5$ y $7.5$ veces superior a la nominal, con hasta $200$ interacciones por cruce de paquetes, y acumulará entre $3000$ y $4000$ fb$^{-1}$ hasta su final, previsto para 2041~\cite{ZurbanoFernandez:2020cco}. Este volumen de datos, un orden de magnitud superior al disponible actualmente, es el que debería permitir observar la producción de pares de bosones de Higgs, como se discutió en el Capítulo \ref{ch:theory}, y exige a su vez una profunda renovación de los experimentos para afrontar las nuevas condiciones de pile-up y radiación.\\\\
 
 
 
@@ -153,26 +148,46 @@ Las colisiones producidas por el LHC se registran en los cuatro puntos de intera
 
 
 
-
-
-
-
 \section{The CMS Experiment}
 \label{sec:CMS}
-\subsection{Coordinate system and proton-proton collision phenomenology}
-%junto o por separado estas dos secciones?
-\subsection{Detector structure (subdetectors)}
-\subsection{CMS Trigger System}
-\subsection{Data Acquisition and Computing systems}
+%
+El experimento CMS está instalado a unos $100$ m de profundidad en el Punto 5 del LHC y es uno de los dos experimentos de propósito general del LHC, y en consecuencia debe ser capaz de identificar y medir con precisión prácticamente todas las partículas producidas en las colisiones afin de dar mayor cobertura a las posibles manifestaciones de la física de interés. Así, los requisitos de diseño de CMS se fijaron a partir de los procesos más exigentes del programa del LHC, en particular la búsqueda del bosón de Higgs en sus distintos canales de desintegración. Estos requisitos se traducen en una identificación de muones y resolución en su momento excelentes, en una reconstrucción eficiente y precisa de las trayectorias de las partículas cargadas, en una resolución en la energía de electrones y fotones del orden del porcentaje, y en una cobertura prácticamente hermética del ángulo sólido, necesaria para inferir la presencia de partículas que no interaccionan con el detector a partir del balance de momento en el plano transverso~\cite{CMS:2008xjf}.
+
+El elemento central es el solenoide superconductor que genera un potente campo magnético de $3.8$ T, y en cuyo interior se alojan tanto el sistema de trazado como los calorímetros - de forma que la energía de las partículas se mide antes de que atraviesen el material del imán - mientras que en el hierro que cierra el flujo magnético en el exterior del solenoide se alberga el sistema de muones. El resultado es un detector notablemente compacto para la intensidad de su campo magnético, con una longitud de $21.6$ m, un diámetro de $14.6$ m y un peso de unas $12500$ t. Desde su puesta en marcha, el detector ha sido mejorado durante las sucesivas paradas largas para adaptarse al aumento de la luminosidad y del pile-up descrito en la Sección \ref{subsec:LHC_operation}, y la configuración con la que se registraron los datos del Run 3 se describe en detalle en la Referencia~\cite{CMS:2023gfb}.
+
+Esta sección describe en primer lugar el sistema de coordenadas empleado en CMS y las variables cinemáticas que se derivan de él, utilizadas a lo largo de toda la tesis, en la Sección \ref{subsec:CMS_coordinates}. A continuación, la Sección \ref{subsec:CMS_detector} presenta los distintos subdetectores, desde el punto de interacción hacia el exterior. Finalmente, la Sección \ref{sec:TRG} describe el sistema de trigger, que desempeña el papel crucial de seleccionar en tiempo real los sucesos que se almacenan, con especial atención a las novedades introducidas durante el Run 3.
+
+
+\subsection{Coordinate system}
+\label{subsec:CMS_coordinates}
+%
+Para describir las partículas producidas en las colisiones es necesario definir un sistema de referencia común a todos los subdetectores que conforman el experimento. CMS adopta un sistema cartesiano con origen en el punto nominal de interacción, el cual se situa en el centro del detector. 
+
+La descripción de las partículas producidas en las colisiones requiere un sistema de referencia común a todos los subdetectores, y CMS adopta un sistema cartesiano con origen en el punto nominal de interacción, situado en el centro del detector. El eje $x$ apunta radialmente hacia el centro del anillo del LHC, el eje $y$ apunta verticalmente hacia arriba, y el eje $z$ se orienta a lo largo de la dirección del haz, de forma que el sistema resultante es dextrógiro~\cite{CMS:2008xjf}. Dada la simetría cilíndrica del detector en torno al haz, resulta sin embargo más natural describir las direcciones mediante coordenadas angulares: el ángulo azimutal $\phi$ se mide en el plano $x$-$y$ a partir del eje $x$, la distancia radial $r$ se define en ese mismo plano, y el ángulo polar $\theta$ se mide a partir del eje $z$, como se muestra en la Figura \ref{fig:cms_coordinates}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_II/cms_coordinates.pdf}
+    \caption{Left: coordinate system adopted by CMS, with the origin at the nominal interaction point, the $x$ axis pointing towards the centre of the LHC ring, the $y$ axis pointing vertically upwards and the $z$ axis along the beam direction. The polar angle $\theta$, the azimuthal angle $\phi$ and the transverse projection $p_T$ of a momentum $\vec{p}$ are indicated. Right: directions corresponding to several values of the pseudorapidity $\eta$ in the $z$-$r$ plane.}
+    \label{fig:cms_coordinates}
+\end{figure}
+
+
+
+\subsection{Detector layout}
+\subsection{Trigger System}
+
 %??? añadir esta subsection? o no me hace falta?
 
-Generadores MC y simulación del detector?
-Cada una de estas colisiones da lugar a un estado final complejo, donde a la interacción dura entre los dos partones se suman la radiación emitida por estos, la hadronización de los partones finales y el underlying event, además de las interacciones de pile-up. Para poder comparar los datos con las predicciones teóricas, todas estas etapas se reproducen mediante generadores de Monte Carlo, desde la colisión hasta la respuesta del detector, de forma que los sucesos simulados se procesan con los mismos algoritmos de reconstrucción que los datos. 
+ 
 
 
 
 \section{CMS physics objects reconstruction}
 \label{sec:POR}
+Generadores MC y simulación del detector?
+Cada una de estas colisiones da lugar a un estado final complejo, donde a la interacción dura entre los dos partones se suman la radiación emitida por estos, la hadronización de los partones finales y el underlying event, además de las interacciones de pile-up. Para poder comparar los datos con las predicciones teóricas, todas estas etapas se reproducen mediante generadores de Monte Carlo, desde la colisión hasta la respuesta del detector, de forma que los sucesos simulados se procesan con los mismos algoritmos de reconstrucción que los datos.
+
 \subsection{The Particle Flow algorithm}
 \subsection{Final state particle reconstruction}
 \label{subsec:Finalstate}
@@ -226,9 +241,3 @@ Hadronically decaying tau leptons are key elements for analysis involving comple
 
 
 
-
-
-
-
-\section{Trigger???}
-\label{sec:TRG}
