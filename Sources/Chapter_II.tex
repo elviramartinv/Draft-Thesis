@@ -41,6 +41,60 @@ Estos puntos de intersección están instrumentados con particle detectors insta
 
 
 \subsection{LHC Design and parameters}
+\label{subsec:LHC_desing}
+%
+El LHC está instalado en el túnel de $26.7$ km de largo construido to host the LEP collider, por lo que su diseño está en gran parte condicionado por la reutilización de dicho túnel. El diámetro interior del túnel, de apenas $3.7$ m en los arcos, no deja espacio para anillos de imanes separados, por lo que el LHC adopta un diseño \textit{two-in-one}, en el que los dos tubos de vacío por los que circulan los haces en sentidos opuestos, cada uno con sus propias bobinas, se alojan en una misma estructura mecánica y en un mismo criostato.
+
+
+La energía máxima que puede alcanzar un haz en un anillo de determinada circunferencia viene limitada por el campo magnético capaz de curvar su trayectoria. De esta forma, para mantener en órbita protones de $7$ TeV, el LHC emplea $1232$ dipolos superconductores capaces de generar un campo de $8.33$ T si se enfrían a $1.9$ K, temperatura que se consigue mediante helio superfluido~\cite{Bruning:2004ej}. Además de curvar la trayectoria, es necesario mantener el haz enfocado, para lo que se emplean $392$ cuadrupolos situados a lo largo de todo el anillo junto con imanes de órdenes multipolares superior que se encargan de corregir las imperfecciones del campo. El anillo se divide en ocho arcos, donde se sitúan los dipolos, y ocho secciones rectas, que albergan los puntos de interacción y los sistemas de aceleración, colimación y extracción del haz. 
+
+%Los arcos están formados por celdas regulares en las que los dipolos se alternan con los cuadrupolos y los imanes correctores, mientras que las secciones rectas albergan los puntos de interacción y los sistemas de aceleración, colimación y extracción del haz, junto con los cuadrupolos que focalizan los haces antes de cada colisión~\cite{Evans:2008zzb}.
+
+El alcance del LHC viene asimismo determinado por la luminosidad instantánea $\mathcal{L}$, que es el parámetro que relaciona el número de sucesos de un proceso dado que se producen por unidad de tiempo y su sección eficaz $\sigma$:
+% Luminosidad
+La energía, sin embargo, no es el único parámetro que determina el alcance del LHC. El número de sucesos de un proceso dado que se producen por unidad de tiempo es proporcional a su sección eficaz $\sigma$, y la constante de proporcionalidad es la luminosidad instantánea $\mathcal{L}$, una magnitud que depende únicamente de las condiciones de los haces:
+\begin{equation}
+    \frac{dN}{dt} = \mathcal{L}\,\sigma .
+    \label{eq:event_rate}
+\end{equation}
+Donde la $\mathcal{L}$ es una magnitud que depende únicamente de las condiciones de los hces
+Para procesos con secciones eficaces del orden de decenas de fb, como la producción de pares de bosones de Higgs, la luminosidad es por tanto el factor que determina si el proceso puede llegar a observarse. En el LHC, para haces de perfil gaussiano que colisionan con un ángulo de cruce, la luminosidad se expresa como
+\begin{equation}
+    \mathcal{L} = \frac{\gamma\, f_\text{rev}\, n_b\, N_b^2}{4\pi\, \varepsilon_n\, \beta^*}\, F, \qquad F = \left(1+\left(\frac{\theta_c\,\sigma_z}{2\sigma^*}\right)^2\right)^{-1/2},
+    \label{eq:lumi}
+\end{equation}
+donde $\gamma$ es el factor relativista de los protones, $f_\text{rev}$ la frecuencia de revolución, $n_b$ el número de paquetes por haz, $N_b$ el número de protones por paquete, $\varepsilon_n$ la emitancia transversal normalizada y $\beta^*$ el valor de la función beta en el punto de interacción, que caracteriza el grado de focalización del haz. El factor $F$ da cuenta de la reducción geométrica debida al ángulo de cruce $\theta_c$, y depende del tamaño transversal $\sigma^*$ y longitudinal $\sigma_z$ de los paquetes. Los valores nominales de estos parámetros se recogen en la Tabla \ref{tab:lhc_parameters}.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{l c c}
+        \hline
+        \textbf{Parameter} & \textbf{Symbol} & \textbf{Nominal value} \\
+        \hline
+        Beam energy & $E$ & 7 TeV \\
+        Revolution frequency & $f_\text{rev}$ & 11.245 kHz \\
+        Number of bunches per beam & $n_b$ & 2808 \\
+        Protons per bunch & $N_b$ & $1.15\times10^{11}$ \\
+        Normalized transverse emittance & $\varepsilon_n$ & 3.75 $\mu$m \\
+        Beta function at the interaction point & $\beta^*$ & 0.55 m \\
+        Transverse beam size at the interaction point & $\sigma^*$ & 16.7 $\mu$m \\
+        Bunch length & $\sigma_z$ & 7.55 cm \\
+        Crossing angle & $\theta_c$ & 285 $\mu$rad \\
+        Geometric reduction factor & $F$ & 0.836 \\
+        Instantaneous luminosity & $\mathcal{L}$ & $10^{34}$ cm$^{-2}$s$^{-1}$ \\
+        \hline
+    \end{tabular}
+    \caption{Nominal LHC parameters for proton-proton collisions~\cite{Bruning:2004ej}.}
+    \label{tab:lhc_parameters}
+\end{table}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/chapter_II/pileup_run3.pdf}
+    \caption{Distribution of the mean number of interactions per bunch crossing recorded by CMS in proton-proton collisions during each year of Run 3, computed assuming an inelastic cross section of 80 mb. The mean value $\langle\mu\rangle$ of each year is indicated~\cite{CMS-LumiPublicResults}.}
+    \label{fig:pileup}
+\end{figure}
 
 The LHC is installed in a 26.7 km long tunnel built between 1984 and 1989 to host the
 CERN Large Electron Positron (LEP) collider. The tunnel is located in the region nearby
