@@ -4,23 +4,39 @@
 
 Today, the heart of CERN lies in the Large Hadron Collider (LHC), the most powerful particle accelerator ever built and the flagship facility of modern high-energy physics. The LHC is designed to collide proton beams at unprecedented energies and luminosities. This enables the study of extremely rare processes and the production of heavy particles that cannot be accessed elsewhere. Its 27-kilometer underground ring houses four interaction points, each equipped with a dedicated experiment tailored to different aspects of the physics program. The Compact Muon Solenoid (CMS), one of two general-purpose detectors, is designed to explore a wide range of phenomena, from precision measurements of SM processes to searches for new BSM physics. 
 
-The CERN complex no solo alberga los grandes experimentos generalistas del LHC, sino también detectores específicos más pequeños que amplían la cobertura científica del laboratorio. En conjunto, esta diversidad experimental refleja la amplitud de áreas que abarca la física de altas energías moderna y demuestra cómo el complejo del CERN ha evolucionado desde sus inicios hasta convertirse en una infraestructura única, capaz de abordar simultáneamente múltiples fronteras del conocimiento fundamental.
+The CERN complex houses not only to the large, general-purpose LHC experiments but also to smaller, specialized detectors that expand the scientific scope of the laboratory. Taken together, this experimental diversity reflects the breadth of areas covered by modern high-energy physics and demonstrates how the CERN complex has evolved since its inception into a unique infrastructure capable of simultaneously addressing multiple frontiers of fundamental knowledge.
 
-The research presented in this thesis is conducted within the CMS Collaboration and is based on the analysis of proton-proton collision data collected during Run III, which corresponds to the years 2022 to 2025. This chapter is devoted to an introduction of the properties and operations of the LHC in Section \ref{sec:LHC} and the structure of the CMS detector in Section \ref{sec:CMS}. The algorithms for the detection and reconstruction of particles produced in collisions are describe in Section \ref{sec:POR}. Finally, the CMS trigger system and the related experimental challenges are detailed in Section \ref{sec:TRG}.
+The research presented in this thesis is conducted within the CMS Collaboration and is based on the analysis of proton-proton collision data collected during Run III, which corresponds to the years 2022 to 2026. \textcolor{red}{This chapter is devoted to an introduction of the properties and operations of the LHC in Section \ref{sec:LHC} and the structure of the CMS detector in Section \ref{sec:CMS}. The algorithms for the detection and reconstruction of particles produced in collisions are describe in Section \ref{sec:POR}. Finally, the CMS trigger system and the related experimental challenges are detailed in Section \ref{sec:TRG}.}
 
 %\section{pp collisions phenomenology ???}
 \section{The Large Hadron Collider}
 \label{sec:LHC}
-\noindent The initial proposal for the LHC collider was made in 1984, but it was not officially approved until 1994. Another 15 years passed before its first data-taking in 2009. The LHC ambicious project is designed to perform high-energy proton-proton (pp) collisions at a center-of-mass energy of 14 TeV and to deliver an instantaneous luminosity of $\mathcal{L}=10^{34}$ cm\textsuperscript{-2} s\textsuperscript{-1}. Originally intended as a discovery machinery, the LHC soon became a multipurpose collider capable of probing an extremely vast scientific program ranging from investigating rare processes to precisely measuring SM properties. Since the discovery of the Higgs boson in 2012, which confirmed the validity of the EWSB, the LHC has continued to operate —currently in its third operational run— and is expected to continue with upgraded luminosity specifications until the early 2040s.
+%
+La propuesta inicial del LHC se presentó en 1984, pero el proyecto no fue aprobado oficialmente por el CERN hasta diciembre de 1994, y su construcción se llevó a cabo en el túnel de 26.7 km que había albergado previamente al LEP. Tras la puesta en marcha en 2008, las primeras colisiones protón-protón tuvieron lugar a finales de 2009, y el programa de física comenzó en 2010. El LHC está diseñado para producir colisiones protón-protón a una energía en el centro de masas de $\sqrt{s}=14$ TeV y con una luminosidad instantánea de $\mathcal{L}=10^{34}$ cm$^{-2}$s$^{-1}$\cite{Evans:2008zzb}, y opera además con haces de iones pesados, cuyo programa no se trata en esta tesis. Concebido originalmente como una máquina de descubrimiento, cuyo objetivo principal era la búsqueda del bosón de Higgs, el LHC se ha consolidado como un colisionador de propósito general, capaz de abarcar un programa científico muy amplio, que va desde la búsqueda de procesos raros y de nueva física BSM hasta la medida de precisión de las propiedades del SM. El descubrimiento del bosón de Higgs en 2012 por las colaboraciones ATLAS y CMS confirmó el mecanismo de EWSB\cite{ATLAS:2012yve,CMS:2012qbp}, y desde entonces el LHC ha completado tres periodos de toma de datos, el último de ellos concluido en 2026, y continuará operando en su fase de alta luminosidad hasta principios de la década de 2040. 
+
+Esta sección describe en primer lugar la cadena de aceleradores que suministra los haces de protones al LHC, en la Sección \ref{subsec:LHC_complex}. A continuación, la Sección \ref{subsec:LHC_design} presenta el diseño de la máquina y sus parámetros principales, con especial atención a la luminosidad, y resume la fenomenología de las colisiones protón-protón en las que se basa el análisis de esta tesis. Finalmente, la Sección \ref{subsec:LHC_operation} recorre la historia de operación del LHC, desde el Run 1 hasta el Run 3, y las perspectivas de la fase HL-LHC.
+
 
 
 \subsection{Accelerator complex}
-\noindent 
-El accelerator complex at CERN consta de una sucesión de maquinas que boostea las particulas de manera secuencial hasta llegar a altas energías. La cadena de aceleración de protones la conforman diferentes etapas, de forma que cada acelerador incrementa la energía del beam de partículas antes de injectar el beam en la siguiente maquina de la secuencia, hasta llegar la pieza fina, el LHC. El esquema del complejo está representado en la figura \ref{fig:cern_complex}. La cadena de inyección comienza con una botella de gas de hidrógeno, en donde los electrones son stripped de los átomos de hidrógeno, lo que constituye la fuente de protones. The beams circulating in the accelerator complex are not continuous, but rather made of proton bunches, formed using the electric field generated in the Radio Frequency Quadrupoles (RFQ). Los proton bunches se producen inicialmente a una ener´gía de 750 keV, y posteriormente se inyectan en el Linear Accelerator (LINAC4), donde alcanzan energías de 160 MeV. Después, el beam es pasado a través de una serie de sincrotrones circulares, aumentando la energía hasta 1.4 GeV en el BOOSTER, 26 GeV after the PS, y 450 GeV tras el Super Proton Synchrotron (SPS). Tras el SPS, los proton bunches are ready para enviarse al anillo principal y la última pieza de la cadena, el LHC, donde el particle beam alcanza su target energy. El haz se separa en dos haces paralelos que se desvían hacia los dos tubos de vacío del LHC, circulando en sentidos opuestos, con lo que se tiene el beam dividido en counter-rotating parallel beam pipes. Una vez circulando, los protones se aceleran progresivamente, corresponding to about 485 keV por vuelta, y son shaped into the final proton bunches configuration thanks to radio-frequency cavities operated at 400MHz. Once
-the proton reach the nominal energy and the beam dynamics is stabilized, protons are
-brought to collide in four points along the LHC ring.
+\label{subsec:LHC_complex}
+%
+Para acelerar protones desde el reposo hasta energías del orden del TeV es necesaria una sucesión de máquinas que perimta inyectar el haz progresivamente a energías cada vez mayores, ya que cada acelerador solo puede operar dentro de un rango limitado de energías. Así, el LHC constituye la última etapa del complejo de aceleradores del CERN, en su mayoría heredados de programas experimentales anteriores, que incrementan de forma secuencial la energía de las partículas antes de inyectarlas en la siguiente máquina de la cadena. Además de alimentar al LHC, varios de estos aceleradores suministran haces a sus propias instalaciones experimentales, que desarrollan un programa de física a energías más bajas de forma paralela. El esquema del complejo está representado en la figura \ref{fig:cern_complex}.\cite{Benedikt:2004wm,Vretenar:2020quc} 
 
-Los cuatro puntos del LHC donde intersectan los beams están instrumentados con particle detectors installed in underground caverns. "A Toroidal LHC ApparatuS" (ATLAS) and the "Compact Muon Solenoid" (CMS) experiments están situados en los dos diametrically opposite puntos del anillo, y reciben la mayor luminosidad instantánea de colisión. Son los dos general purpose experiments del LHC, diseñados para cubrir un programa de física muy amplio y en gran medida similar. The "LHC beauty" (LHCb) se centra en el estudio de CP-violation y de matter-antimatter asymmetry by studying b quarks physics. "A Large Ion Collider Experiment" (ALICE) is focused mostly on heavy ion collision and quark-gluon plasmas. 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{figures/chapter_II/cern_complex.png}
+    \caption{Schematic representation of the CERN accelerator complex.\cite{CERN-complex-2022}}
+    \label{fig:cern_complex}
+\end{figure}
+
+La cadena comienza con una fuente de gas de hidrógeno, en la que se producen iones de hidrógeno negativos (H$^-$), formados por un protón y dos electrones. Los iones se extraen de la fuente con una energía de $45$ keV y se inyectan en el Linear accelerator (LINAC4), donde un cuadrupolo de radiofrecuencia (RFQ) agrupa los iones en paquetes de partículas y los acelera hasta 3 MeV, tras lo cual una serie de estructuras aceleradoras de radiofrecuencia elevan su energía hasta 160 MeV. A continuación, el haz se inyecta en el Proton Synchrotron Booster (PSB), un sincrotrón formado por cuatro anillos superpuestos, donde una lámina de carbono arranca los dos electrones de cada ion, de forma que a partir de este punto el haz está compuesto únicamente por protones. El PSB acelera los protones hasta 2 GeV antes de transferirlos a la siguiente etapa de la cadena.
+
+Los protones se transfieren después al Proton Synchrotron (PS) donde alcanzan una energía de 26 GeV y donde se define la estructura temporal final del haz: mediante sucesivas divisiones de los paquetes de partículas, se forman trenes de paquetes (\textit{bunches}) separados por 25 ns, que es el espaciado con el que operará posteriormente el LHC. La última etapa previa al LHC es el Super Proton Synchrotron (SPS) que acumula varios trenes procedentes del PS y los acelera hasta 450 GeV, la energía de inyección del LHC.
+
+Desde el SPS, los trenes se transfieren al LHC a través de dos líneas de transferencia independientes, cada una de las cuales llena uno de los dos anillos, de forma que los haces circulan en sentidos opuestos en tubos de vacío separados. Una vez se ha completado el número de paquetes previsto para cada haz, comienza la fase de aceleración gracias a cavidades superconductoras de radiofrecuencia que operan a $400$ MHz. Estas cavidades aportan a los protones del orden de $0.5$ MeV por vuelta y, al mismo tiempo, mantienen los paquetes confinados longitudinalmente. Así, a lo largo de unos veinte minuso, los haces alcanzan su energía final, que durante el Run 3 ha sido de $6.8$ TeV por haz, y una vez estabilizados se hacen colisionar en los cuatro puntos de interacción del anillo.
+
+Estos puntos de intersección están instrumentados con particle detectors installed in underground caverns. "A Toroidal LHC ApparatuS" (ATLAS) and the "Compact Muon Solenoid" (CMS) experiments están situados en los dos diametrically opposite puntos del anillo, y reciben la mayor luminosidad instantánea de colisión. Son los dos general purpose experiments del LHC, diseñados para cubrir un programa de física muy amplio y en gran medida similar. The "LHC beauty" (LHCb) se centra en el estudio de CP-violation y de matter-antimatter asymmetry by studying b quarks physics. "A Large Ion Collider Experiment" (ALICE) is focused mostly on heavy ion collision and quark-gluon plasmas. 
 
 
 
@@ -93,16 +109,15 @@ The accelerator complex at CERN is a succession of machines that accelerate part
 
 Protons are progressively accelerated by Linac4 (purple), PS Booster (pink), PS (magenta), SPS (blue), and ultimately at the LHC (dark grey). The proton beams circulated through the LHC collide in the center of the four particle detectors (yellow dots): ATLAS, ALICE, CMS, and LHCb
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/chapter_II/cern_complex.png}
-    \caption{Schematic representation of the CERN accelerator complex. \ref{}}
-    \label{fig:cern_complex}
-\end{figure}
+
 
 - Schema CERN: accelerator complex (experiments)
 - design parameters: luminosity
 - operation and plan
+
+
+
+
 \section{The CMS Experiment}
 \label{sec:CMS}
 \subsection{Coordinate system and proton-proton collision phenomenology}
@@ -111,6 +126,12 @@ Protons are progressively accelerated by Linac4 (purple), PS Booster (pink), PS 
 \subsection{CMS Trigger System}
 \subsection{Data Acquisition and Computing systems}
 %??? añadir esta subsection? o no me hace falta?
+
+
+
+
+
+
 \section{CMS physics objects reconstruction}
 \label{sec:POR}
 \subsection{The Particle Flow algorithm}
@@ -159,7 +180,7 @@ Although the origins of this identification method date back to Run 2, the \text
 
 For example, for a given jet rejection level, the efficiency for genuine tau h candidates is increased by 10–30%.
 
-A further advancement in Run 3 pertains to boosted topologies. When $\tau$ leptons are produced by highly boosted resonances, their decay products become collimated within a narrow cone, often forming a single jet, similar to the behavior observed for AK8 jets. While no dedicated reconstruction existed in Run 2, an extension of the HPS algorithm has been developed for Run 3 to target high-momentum candidates by exploiting the jet substructure of the $\tau_h$ candidates. The algorithm reverses the final step in the clustering sequence that forms the large-radius jet to identify two sub-jets that are compatible with the expected topology of boosted $\tau$ decay. Specific requirements are in place to suppress misidentification with quark-gluon jets, electrons or muons. This approach has been shown to outperform the standard HPD for highly boosted $\tau$ leptons while maintaining optimal misidentification rates. The selected boosted $\tau$ candidates are then passed to the HPS algorithm for standard $\tau$ reconstruction.
+A further advancement in Run 3 pertains to boosted topologies. When $\tau$ leptons are produced by highly boosted resonances, their decay products become collimated within a narrow cone, often forming a single jet, similar to the behavior observed for AK8 jets. While no dedicated reconstruction existed in Run 2, an extension of the HPS algorithm has been developed for Run 3 to target high-momentum candidates by exploiting the jet substructure of the $\tau_h$ candidates. The algorithm reverses the final step in the clustering sequence that forms the large-radius jet to identify two sub-jets that are compatible with the expected topology of boosted $\tau$ decay. Specific requirements are in place to suppress misidentification with quark-gluon jets, electrons or muons. This approach has been shown to outperform the standard HPS for highly boosted $\tau$ leptons while maintaining optimal misidentification rates. The selected boosted $\tau$ candidates are then passed to the HPS algorithm for standard $\tau$ reconstruction.
 
 
 Hadronically decaying tau leptons are key elements for analysis involving complex final states, such as the $HH\rightarrow bb\tau\tau$ analysis, where robust $\tau$ reconstruction plays a central role. Accurate and reliable reconstruction and identification of $\tau$ leptons are essential, as the performance of the algorithms described in this section directly impacts the sensitivity to such signatures. Therefore, their validation becomes a crucial component of this work, which will focus on a detailed assessment of the identification algorithms used in Run-3 and its performance across the 2022-2026 data-taking periods in Chapter \ref{ch:Tau}.
