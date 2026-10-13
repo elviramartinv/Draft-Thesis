@@ -34,9 +34,9 @@ La cadena comienza con una fuente de gas de hidrógeno, en la que se producen io
 
 Los protones se transfieren después al Proton Synchrotron (PS) donde alcanzan una energía de 26 GeV y donde se define la estructura temporal final del haz: mediante sucesivas divisiones de los paquetes de partículas, se forman trenes de paquetes (\textit{bunches}) separados por 25 ns, que es el espaciado con el que operará posteriormente el LHC. La última etapa previa al LHC es el Super Proton Synchrotron (SPS) que acumula varios trenes procedentes del PS y los acelera hasta 450 GeV, la energía de inyección del LHC.
 
-Desde el SPS, los trenes se transfieren al LHC a través de dos líneas de transferencia independientes, cada una de las cuales llena uno de los dos anillos, de forma que los haces circulan en sentidos opuestos en tubos de vacío separados. Una vez se ha completado el número de paquetes previsto para cada haz, comienza la fase de aceleración gracias a cavidades superconductoras de radiofrecuencia que operan a $400$ MHz. Estas cavidades aportan a los protones del orden de $0.5$ MeV por vuelta y, al mismo tiempo, mantienen los paquetes confinados longitudinalmente. Así, a lo largo de unos veinte minuso, los haces alcanzan su energía final, que durante el Run 3 ha sido de $6.8$ TeV por haz, y una vez estabilizados se hacen colisionar en los cuatro puntos de interacción del anillo.
+Desde el SPS, los trenes se transfieren al LHC a través de dos líneas de transferencia independientes, cada una de las cuales llena uno de los dos anillos, de forma que los haces circulan en sentidos opuestos en tubos de vacío separados. Una vez se ha completado el número de paquetes previsto para cada haz, comienza la fase de aceleración gracias a cavidades superconductoras de radiofrecuencia que operan a $400$ MHz. Estas cavidades aportan a los protones del orden de $0.5$ MeV por vuelta y, al mismo tiempo, mantienen los paquetes confinados longitudinalmente. Así, a lo largo de unos veinte minuso, los haces alcanzan su energía final, que durante el Run 3 ha sido de $6.8$ TeV por haz, y una vez estabilizados se hacen colisionar en los cuatro puntos de interacción equipados con los detectores.
 
-Estos puntos de intersección están instrumentados con particle detectors installed in underground caverns. "A Toroidal LHC ApparatuS" (ATLAS) and the "Compact Muon Solenoid" (CMS) experiments están situados en los dos diametrically opposite puntos del anillo, y reciben la mayor luminosidad instantánea de colisión. Son los dos general purpose experiments del LHC, diseñados para cubrir un programa de física muy amplio y en gran medida similar. The "LHC beauty" (LHCb) se centra en el estudio de CP-violation y de matter-antimatter asymmetry by studying b quarks physics. "A Large Ion Collider Experiment" (ALICE) is focused mostly on heavy ion collision and quark-gluon plasmas. 
+
 
 
 
@@ -47,29 +47,7 @@ El LHC está instalado en el túnel de $26.7$ km de largo construido to host the
 
 La energía máxima que puede alcanzar un haz en un anillo de determinada circunferencia viene limitada por el campo magnético capaz de curvar su trayectoria. De esta forma, para mantener en órbita protones de $7$ TeV, el LHC emplea $1232$ dipolos superconductores capaces de generar un campo de $8.33$ T si se enfrían a $1.9$ K, temperatura que se consigue mediante helio superfluido~\cite{Bruning:2004ej}. Además de curvar la trayectoria, es necesario mantener el haz enfocado, para lo que se emplean $392$ cuadrupolos situados a lo largo de todo el anillo junto con imanes de órdenes multipolares superior que se encargan de corregir las imperfecciones del campo. El anillo se divide en ocho arcos, donde se sitúan los dipolos, y ocho secciones rectas, que albergan los puntos de interacción y los sistemas de aceleración, colimación y extracción del haz.
 
-Con dos haces de $7$ TeV, las colisiones tienen lugar a una energía nominal en el centro de masas de $\sqrt{s}=14$ TeV, aunque la energía disponible en cada interacción es solo una fracción de esta, determinada por el momento que portan los partones que intervienen en ella, como se discute en la Sección \ref{sec:pp_pheno}.
-
-
-
-Aunque los dos haces de $7$ den lugar a colisiones con energía en el centro de masas de $\sqrt{s}=14$ TeV, la energía disponible para producir nuevas partículas realmente depende de la fracción $x$ delmomento del protón que porte cada uno de sus constituyentes, los partones —quarks y gluones. En consecuencia, la energía efectiva de la interacción es $\sqrt{\hat{s}}=\sqrt{x_1x_2\,s}$, que varía de un suceso a otro, de forma que el LHC explora simultáneamente un amplio rango de energías, y la producción de estados finales pesados, como un par de bosones de Higgs, solo es posible en la fracción de colisiones en que los partones portan una fracción de momento suficiente. Por tanto, la sección eficaz de un proceso depende en última instancia de la probabilidad de encontrar en el protón partones con la fracción de momento necesaria. El teorema de factorización permite separar la sección eficaz hadrónica en una parte calculable perturbativamente, la sección eficaz partónica $\hat{\sigma}_{ij}$, y una parte no perturbativa, las funciones de distribución partónica (PDFs) $f_i(x,\mu_F)$, que describen la probabilidad de encontrar en el protón un partón $i$ con fracción de momento $x$~\cite{Collins:1989gx}:
-\begin{equation}
-    \sigma_{pp\to X} = \sum_{i,j}\int_0^1 dx_1\,dx_2\; f_i(x_1,\mu_F)\,f_j(x_2,\mu_F)\;\hat{\sigma}_{ij\to X}(x_1x_2\,s,\,\mu_R,\,\mu_F).
-    \label{eq:factorization}
-\end{equation}
-Las PDFs no pueden calcularse a partir de primeros principios, sino que se extraen de ajustes globales a datos experimentales~\cite{NNPDF:2017mvq}, y su forma se muestra en la Figura \ref{fig:pdfs}. Mientras que los quarks de valencia dominan a valores altos de $x$, a valores bajos es el gluón el que porta la mayor parte del momento, lo que explica que la fusión de gluones sea el principal mecanismo de producción de pares de bosones de Higgs en el LHC. Por su parte, la escala de factorización $\mu_F$ y la de renormalización $\mu_R$ no son magnitudes físicas, sino consecuencia del truncamiento de la serie perturbativa, de forma que la dependencia del resultado con ellas refleja los órdenes no calculados. La variación de estas escalas, junto con la incertidumbre de las PDFs, constituye la principal fuente de incertidumbre teórica en la predicción de secciones eficaces, como las de producción de pares de bosones de Higgs discutidas en el Capítulo \ref{ch:theory}.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.9\linewidth]{figures/chapter_II/nnpdf31_pdfs.pdf}
-    \caption{Parton distribution functions $xf(x,\mu^2)$ of the NNPDF3.1 NNLO set, evaluated at $\mu^2=10$ GeV$^2$ (left) and $\mu^2=10^4$ GeV$^2$ (right). The gluon distribution is scaled down by a factor of 10~\cite{NNPDF:2017mvq}.}
-    \label{fig:pdfs}
-\end{figure}
-
-
-
-
-
-\\
+Con dos haces de $7$ TeV, las colisiones tienen lugar a una energía nominal en el centro de masas de $\sqrt{s}=14$ TeV, aunque la energía disponible en cada interacción es solo una fracción de esta, determinada por el momento que portan los partones que intervienen en ella, como se discute en la Sección \ref{sec:pp_pheno}.\\
 
 %Los arcos están formados por celdas regulares en las que los dipolos se alternan con los cuadrupolos y los imanes correctores, mientras que las secciones rectas albergan los puntos de interacción y los sistemas de aceleración, colimación y extracción del haz, junto con los cuadrupolos que focalizan los haces antes de cada colisión~\cite{Evans:2008zzb}.
 
@@ -79,64 +57,62 @@ El alcance del LHC viene asimismo determinado por la luminosidad instantánea $\
     \frac{dN}{dt} = \mathcal{L}\,\sigma .
     \label{eq:event_rate}
 \end{equation}
-Donde la $\mathcal{L}$ es una magnitud que depende únicamente de las condiciones de los haces. En el LHC, para haces de perfil gaussiano que colisionan con un ángulo de cruce, la luminosidad se expresa como
+Donde la $\mathcal{L}$ es una magnitud que depende únicamente de las condiciones de los haces. En el LHC, para haces de perfil gaussiano que colisionan con un ángulo de cruce, la luminosidad se expresa como~\cite{Bruning:2004ej}:
 \begin{equation}
     \mathcal{L} = \frac{\gamma\, f_\text{rev}\, n_b\, N_b^2}{4\pi\, \varepsilon_n\, \beta^*}\, F, \qquad F = \left(1+\left(\frac{\theta_c\,\sigma_z}{2\sigma^*}\right)^2\right)^{-1/2},
     \label{eq:lumi}
 \end{equation}
-donde $\gamma$ es el factor relativista de los protones, $f_\text{rev}$ la frecuencia de revolución, $n_b$ el número de paquetes por haz, $N_b$ el número de protones por paquete, $\varepsilon_n$ la emitancia transversal normalizada y $\beta^*$ el valor de la función beta en el punto de interacción, que caracteriza el grado de focalización del haz. El factor $F$ da cuenta de la reducción geométrica debida al ángulo de cruce $\theta_c$, y depende del tamaño transversal $\sigma^*$ y longitudinal $\sigma_z$ de los paquetes. Los valores nominales de estos parámetros se recogen en la Tabla \ref{tab:lhc_parameters}.
+donde $\gamma$ es el factor relativista de los protones, $f_\text{rev}$ la frecuencia de revolución, $n_b$ el número de paquetes por haz, $N_b$ el número de protones por paquete, $\varepsilon_n$ la emitancia transversal normalizada y $\beta^*$ el valor de la función beta en el punto de interacción, que caracteriza el grado de focalización del haz. El factor $F$ da cuenta de la reducción geométrica debida al ángulo de cruce $\theta_c$, y depende del tamaño transversal $\sigma^*$ y longitudinal $\sigma_z$ de los paquetes. 
 %
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{l c c}
-        \hline
-        \textbf{Parameter} & \textbf{Symbol} & \textbf{Nominal value} \\
-        \hline
-        Beam energy & $E$ & 7 TeV \\
-        Revolution frequency & $f_\text{rev}$ & 11.245 kHz \\
-        Number of bunches per beam & $n_b$ & 2808 \\
-        Protons per bunch & $N_b$ & $1.15\times10^{11}$ \\
-        Normalized transverse emittance & $\varepsilon_n$ & 3.75 $\mu$m \\
-        Beta function at the interaction point & $\beta^*$ & 0.55 m \\
-        Transverse beam size at the interaction point & $\sigma^*$ & 16.7 $\mu$m \\
-        Bunch length & $\sigma_z$ & 7.55 cm \\
-        Crossing angle & $\theta_c$ & 285 $\mu$rad \\
-        Geometric reduction factor & $F$ & 0.836 \\
-        Instantaneous luminosity & $\mathcal{L}$ & $10^{34}$ cm$^{-2}$s$^{-1}$ \\
-        \hline
-    \end{tabular}
-    \caption{Nominal LHC parameters for proton-proton collisions~\cite{Bruning:2004ej}.}
-    \label{tab:lhc_parameters}
-\end{table}
+% \begin{table}[h!]
+%     \centering
+%     \begin{tabular}{l c c}
+%         \hline
+%         \textbf{Parameter} & \textbf{Symbol} & \textbf{Nominal value} \\
+%         \hline
+%         Beam energy & $E$ & 7 TeV \\
+%         Revolution frequency & $f_\text{rev}$ & 11.245 kHz \\
+%         Number of bunches per beam & $n_b$ & 2808 \\
+%         Protons per bunch & $N_b$ & $1.15\times10^{11}$ \\
+%         Normalized transverse emittance & $\varepsilon_n$ & 3.75 $\mu$m \\
+%         Beta function at the interaction point & $\beta^*$ & 0.55 m \\
+%         Transverse beam size at the interaction point & $\sigma^*$ & 16.7 $\mu$m \\
+%         Bunch length & $\sigma_z$ & 7.55 cm \\
+%         Crossing angle & $\theta_c$ & 285 $\mu$rad \\
+%         Geometric reduction factor & $F$ & 0.836 \\
+%         Instantaneous luminosity & $\mathcal{L}$ & $10^{34}$ cm$^{-2}$s$^{-1}$ \\
+%         \hline
+%     \end{tabular}
+%     \caption{Nominal LHC parameters for proton-proton collisions~\cite{Bruning:2004ej}.}
+%     \label{tab:lhc_parameters}
+% \end{table}
 
 La Ecuación \ref{eq:lumi} muestra cuáles son las vías para aumentar la luminosidad. En primer lugar, la dependencia cuadrática con $N_b$ hace del número de protones por paquete el parámetro más efectivo, y este, junto con la emitancia, viene determinado por la cadena de inyección descrita en la Sección \ref{subsec:LHC_complex}. En segundo lugar, $\beta^*$ puede reducirse focalizando los haces justo antes del punto de interacción, función que desempeñan los cuadrupolos situados a ambos lados de cada experimento. Por último, el número de paquetes está limitado por el espaciado de $25$ ns. Sin embargo, con este espaciado los paquetes de ambos haces se encontrarían también en puntos distintos del de interacción, por lo que los haces deben cruzarse con un pequeño ángulo, lo que reduce la luminosidad a través del factor $F$.\\
 
 
-Integrando la Ecuación \ref{eq:event_rate} en el tiempo, el número total de sucesos esperado para un proceso es $N=\sigma\int\mathcal{L}\,dt$. La luminosidad integrada, expresada habitualmente en fb$^{-1}$, es por tanto la magnitud que cuantifica el volumen de datos de un análisis, y su medida precisa es imprescindible para convertir un número de sucesos en una sección eficaz. En CMS, esta medida se realiza mediante detectores dedicados, denominados luminómetros, cuya respuesta se calibra en barridos de van der Meer, en los que los haces se desplazan uno respecto al otro para determinar su solapamiento~\cite{CMS:2021xjt}. La precisión alcanzada en cada uno de los años analizados en esta tesis, del orden del porcentaje, se detalla en la Sección \ref{sec:bbtt_systematics}.
+Integrando la Ecuación \ref{eq:event_rate} en el tiempo, el número total de sucesos esperado para un proceso es $N=\sigma\int\mathcal{L}\,dt$. La luminosidad integrada, expresada habitualmente en fb$^{-1}$, es por tanto la magnitud que cuantifica el volumen de datos de un análisis, y su medida precisa es imprescindible para convertir un número de sucesos en una sección eficaz. En CMS, esta medida se realiza mediante detectores dedicados, denominados luminómetros, cuya respuesta se calibra en barridos de van der Meer, en los que los haces se desplazan uno respecto al otro para determinar su solapamiento~\cite{CMS:2021xjt}. La precisión alcanzada en cada uno de los años analizados en esta tesis, del orden del porcentaje, se detalla en la Sección \ref{sec:bbtt_systematics}.\\
 
 % pileup
 Sin embargo, con una luminosidad elevada no se produce una única interacción protón-protón por cada cruce de paquetes, sino varias simulaténas, de forma que el número medio de interacciones por cruce viene dado por:
 \begin{equation}
-    \mu = \frac{\mathcal{L}_b\,\sigma_\text{inel}}{f_\text{rev}},
+    \langle PU\rangle = \frac{\mathcal{L}_b\,\sigma_\text{inel}}{f_\text{rev}},
     \label{eq:pileup}
 \end{equation}
-donde $\mathcal{L}_b$ es la luminosidad por paquete y $\sigma_\text{inel}$ la sección eficaz inelástica protón-protón. En condiciones nominales, $\mu$ es del orden de 25. Estas interacciones adicionales, conocidas como \textit{pile-up}, son en su inmensa mayoría procesos de baja transferencia de momento que se superponen a la interacción de interés, y a ellas se suman las procedentes de cruces anteriores y posteriores, cuya señal persiste en la electrónica del detector. Por tanto, el pile-up afecta a la reconstrucción de todos los objetos del suceso, y su mitigación constituye uno de los aspectos centrales de los algoritmos descritos en la Sección \ref{sec:POR}. La distribución de $\mu$ registrada por CMS durante el Run 3 se muestra en la Figura \ref{fig:pileup}.
+donde $\mathcal{L}_b$ es la luminosidad por paquete y $\sigma_\text{inel}$ la sección eficaz inelástica protón-protón. En condiciones nominales, $\langle PU\rangle$ es del orden de 25. Estas interacciones adicionales, conocidas como \textit{pile-up}, son en su inmensa mayoría procesos de baja transferencia de momento que se superponen a la interacción de interés\footnote{A diferencia del underlying event, que procede de la propia colisión en la que tiene lugar la interacción dura, el pile-up corresponde a colisiones protón-protón independientes que coinciden en el mismo cruce de paquetes.}, y a ellas se suman las procedentes de cruces anteriores y posteriores, cuya señal persiste en la electrónica del detector. Por tanto, el pile-up afecta a la reconstrucción de todos los objetos del suceso, y su mitigación constituye uno de los aspectos centrales de los algoritmos descritos en la Sección \ref{sec:POR}. La distribución de $\mu$ registrada por CMS durante el Run 3 se muestra en la Figura \ref{fig:pileup}.
+
 
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.75\linewidth]{figures/chapter_II/pileup_run3.pdf}
-    \caption{Distribution of the mean number of interactions per bunch crossing recorded by CMS in proton-proton collisions during each year of Run 3, computed assuming an inelastic cross section of 80 mb~\cite{TOTEM:2017asr}. The mean value $\langle\mu\rangle$ of each year is indicated~\cite{CMS-LumiPublicResults}.}
+    \caption{Distribution of the mean number of interactions per bunch crossing, $\langle PU\rangle$ (denoted $\langle\mu\rangle$ in the legend), recorded by CMS in proton-proton collisions during each year of Run 3, computed assuming an inelastic cross section of 80 mb~\cite{TOTEM:2017asr}. The mean value $\langle\mu\rangle$ of each year is indicated~\cite{CMS-LumiPublicResults}.}
     \label{fig:pileup}
 \end{figure}
 
-Por otro lado, la interacción entre los dos partones no es lo único que ocurre en la colisión. Los partones emiten radiación antes y después de la interacción, los partones coloreados del estado final hadronizan formando los jets que se observan en el detector, y los restos de los protones, junto con interacciones partónicas adicionales de baja energía, dan lugar al denominado \textit{underlying event}. EL PARRAFO DEL UNERDLYIN EVENT FUERA DE CONTEXTO?
-
+\\
 
 
 En definitiva, la energía de los haces y la luminosidad determinan conjuntamente el alcance del LHC, puesto que la prija fija qué procesos son accesibles y la segunda cuántos sucesos de cada uno de ellos se producen en las interacciones del cruce de paquetes. Sin embargo, los valores de energía y luminosidad aquí presentados corresponden al diseño nominal de la máquina, y en la práctica las condiciones reales de operación han evolucionado a lo largo de los distintos periodos de toma de datos. 
-
-
 
 
 
@@ -156,14 +132,27 @@ En la práctica, el LHC no ha operado de forma continua en sus condiciones de di
     \caption{Operation schedule of the LHC and the HL-LHC, showing the data-taking periods (Runs) and long shutdowns (LS), together with the center-of-mass energy, the instantaneous luminosity relative to its nominal value, and the integrated luminosity expected at the end of each phase~\cite{HLLHC-plan-2025}.}
     \label{fig:lhc_schedule}
 \end{figure}
+%
+Durante el Run 1, entre 2010 y 2012, el LHC operó a una energía inferior a la de diseño, de $3.5$ TeV por haz en 2010 y 2011 y de $4$ TeV en 2012, como consecuencia del incidente ocurrido en 2008 en las conexiones eléctricas entre imanes superconductores, que obligó a limitar la corriente que circulaba por ellos. Con haces de paquetes separados por $50$ ns, CMS recibió en este periodo alrededor de $6$ fb$^{-1}$ a $7$ TeV y $23$ fb$^{-1}$ a $8$ TeV, datos con los que se produjo el descubrimiento del bosón de Higgs. La primera parada larga, LS1, entre 2013 y 2014, se dedicó principalmente a la consolidación de dichas conexiones, lo que permitió aumentar la energía en el Run 2, entre 2015 y 2018, hasta $\sqrt{s}=13$ TeV, y reducir el espaciado entre paquetes a los $25$ ns de diseño. A lo largo del Run 2, la luminosidad instantánea superó el valor nominal hasta alcanzar el doble de este, y CMS recibió un total de unos $164$ fb$^{-1}$, de los cuales $138$ fb$^{-1}$ se certificaron como aptos para el análisis físico.
+
+La segunda parada larga, LS2, entre 2019 y 2021, incluyó la mejora de la cadena de inyección resultando la descrita en la Sección \ref{subsec:LHC_complex}, así como la mejora de los propios experimentos. Gracias a ella, el Run 3, que comenzó en 2022 con una energía de $\sqrt{s}=13.6$ TeV, dispuso de haces con un mayor número de protones por paquete, capaces de producir una luminosidad instantánea superior a la que los experimentos pueden registrar sin que el \textit{pile-up} degrade la reconstrucción de los sucesos. Por este motivo, durante el Run 3 la luminosidad se ha nivelado para limitar el pile-up a los valores mostrados en la Figura \ref{fig:pileup} y prologando la vida útil del ?. La luminosidad integrada recibida por CMS en cada año se muestra en la Figura \ref{fig:lumi_per_year}, donde se ve que para el Run 3, que concluyó en julio de 2026, ha proporcionado en total unos $355$ fb$^{-1}$, más del doble que el Run 1 y el Run 2 juntos. El análisis presentado en esta tesis utiliza los datos de 2022, 2023 y 2024, que corresponden a una luminosidad integrada certificada de $172$ fb$^{-1}$.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/chapter_II/int_lumi_per_year.pdf}
+    \caption{Cumulative integrated luminosity delivered to CMS as a function of the day of the year, for each year of proton-proton data taking from 2010 to 2026. The center-of-mass energy and the total luminosity delivered in each year are indicated in the legend~\cite{CMS-LumiPublicResults}.}
+    \label{fig:lumi_per_year}
+\end{figure}
+
+
+Con el final del Run 3 comenzó la tercera parada larga, LS3, cuya duración se preveé que se prolongue hasta mediados de 2030 y en la que el LHC se transformará en el High-Luminosity LHC (HL-LHC). Entre otras mejoras, se sustituirán los cuadrupolos de focalización situados junto a ATLAS y CMS por imanes de niobio-estaño, DATO INNECESARIO? capaces de reducir aún más $\beta^*$, y se instalarán cavidades de radiofrecuencia que inclinan los paquetes en el punto de interacción para compensar la pérdida de luminosidad debida al ángulo de cruce POR QUÉ SE PIERDE LUMINOSIDAD CON EL ANGULO DE CRUCE?. Con ello, el HL-LHC operará con una luminosidad nivelada entre $5$ y $7.5$ veces superior a la nominal, con hasta $200$ interacciones por cruce de paquetes, y acumulará entre $3000$ y $4000$ fb$^{-1}$ hasta su final, previsto para 2041. Este volumen de datos, un orden de magnitud superior al disponible actualmente, es el que debería permitir observar la producción de pares de bosones de Higgs, como se discutió en el Capítulo \ref{ch:theory}, y exige a su vez una profunda renovación de los experimentos para afrontar las nuevas condiciones de pile-up y radiación.\\\\
+
+
+
+Las colisiones producidas por el LHC se registran en los cuatro puntos de interacción del anillo, donde se sitúan los experimentos. "A Toroidal LHC ApparatuS" (ATLAS) and the "Compact Muon Solenoid" (CMS) experiments están ubicados en dos puntos diametralmente opuestos, y reciben la mayor luminosidad instantánea de colisión. Son los dos experimentos de propósito general, diseñados para cubrir un programa de física amplio y en gran medida común, lo que permite que sus resultados se contrasten y combinen.  The "LHC beauty" (LHCb) se centra en el estudio de CP-violation y de matter-antimatter asymmetry by studying $b$-quarks physics. "A Large Ion Collider Experiment" (ALICE) is focused mostly on heavy ion collision and quark-gluon plasmas. Los datos analizados en esta tesis fueron registrados por el experimento CMS, cuyo diseño y funcionamiento se describen en la siguiente sección. 
 
 
 
 
-
-- Schema CERN: accelerator complex (experiments)
-- design parameters: luminosity
-- operation and plan
 
 
 
