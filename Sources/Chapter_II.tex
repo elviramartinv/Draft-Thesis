@@ -182,37 +182,28 @@ que tiene la ventaja de depender únicamente de la dirección de la partícula y
 \end{equation}
 que hereda la invariancia de $\eta$ frente a los movimientos longitudinales y se utiliza para definir las regiones cónicas en torno a un objeto, como las empleadas en el agrupamiento de jets o en el cálculo del aislamiento.
 
-Por otro lado, puesto que los partones que colisionan tienen un momento transverso prácticamente nulo, por conservación del momento la suma vectorial de los momentos de todas las partículas del estado final debe anularse en el plano transverso. Se usa en consecuencia el momento transverso, $p_T=\sqrt{p_x^2+p_y^2}$, para expresar la cinemática de los objetos reconstruidos, de forma que cualquier desequilibrio en ese plano revela la presencia de partículas que escapan sin ser detectadas, como los neutrinos. De ahí se infiere el momento transverso faltante, $\vec{p}_T^{\,\text{miss}}$, cuya reconstrucción se describe en la Sección \ref{sec:MET}.
+Por otro lado, puesto que los partones que colisionan tienen un momento transverso prácticamente nulo, por conservación del momento la suma vectorial de los momentos de todas las partículas del estado final debe anularse en el plano transverso. Se usa en consecuencia el momento transverso, $p_T=\sqrt{p_x^2+p_y^2}$, para expresar la cinemática de los objetos reconstruidos, de forma que cualquier desequilibrio en ese plano revela la presencia de partículas que escapan sin ser detectadas, como los neutrinos. De ahí se infiere el momento transverso faltante, $\vec{p}_T^{\,\text{miss}}$, cuya reconstrucción se describe en la Sección \ref{sec:MET}. Este balance no se encuentra en la dirección longitudinal, puesto que el momento inicial de los partones a lo largo del haz es desconocido, de forma que el conjunto $(p_T,\eta,\phi)$ es el elegido para describir por completo el cuadrimomento del objeto, y es la parametrización empleada a lo largo de toda la tesis.\\
 
-
-Aunque en la dirección longitudinal no es posible establecer un balance equivalente, puesto que el momento inicial de los partones a lo largo del haz es desconocido, la componente longitudinal del momento de cada objeto reconstruido sí queda determinada, ya que se obtiene a partir de su momento transverso y su pseudorrapidez. En efecto, las componentes cartesianas del momento se relacionan con $p_T$, $\eta$ y $\phi$ mediante
-\begin{equation}
-    p_x = p_T\cos\phi, \qquad p_y = p_T\sin\phi, \qquad p_z = p_T\sinh\eta,
-    \label{eq:momentum_components}
-\end{equation}
-de forma que el conjunto $(p_T,\eta,\phi)$, junto con la masa del objeto cuando esta no es despreciable, describe por completo su cuadrimomento. Esta es la parametrización empleada a lo largo de toda la tesis, en la que los criterios de selección de los objetos se expresan como requisitos sobre su $p_T$ y su $|\eta|$.
-
-
-
-En la dirección longitudinal, en cambio, el momento inicial de los partones es desconocido, por lo que no es posible establecer un balance equivalente. ESTO ES NECESARIO? APROVECHAR PARA ESCRIBIR COMO SE RELACIONA PT CON EL LONGITUDINAL? LAS FORMULAS QUE TIENE JAIME EN 2.7, 2.8 Y 2.9 A partir de estas magnitudes se construyen además otras variables que se utilizan a lo largo de esta tesis. INTRODUCIR UN POCO MEJOR LA MASA TRANSVERSA, NO SIMPLEMENTE METERALA AHI TAL CUALLa masa transversa de un objeto de momento transverso $p_T$ y del momento transverso faltante,
-
-
+Dado que el balance de momento solo puede establecerse en el plano transverso, las variables con las que se caracteriza un suceso se construyen habitualmente a partir de magnitudes definidas en él, de forma que no dependan del movimiento longitudinal desconocido del sistema que colisiona. Esto resulta especialmente útil cuando una partícula se desintegra en un estado final que incluye neutrinos - como en la desintegración de un bosón $W$ en un leptón y un neutrino - donde se recurre a la masa construida únicamente a partir de magnitudes del plano transverso, que dado que las masas del leptón y del neutrino son despreciables frente a su momento, se expresa como
 \begin{equation}
     m_T = \sqrt{2\,p_T\,p_T^\text{miss}\left(1-\cos\Delta\phi\right)},
     \label{eq:mT}
 \end{equation}
-donde $\Delta\phi$ es la diferencia azimutal entre ambos, permite reconstruir la desintegración de un bosón $W$ en un leptón y un neutrino, ya que su distribución presenta un máximo cinemático en la masa del $W$. Por último, la actividad hadrónica del suceso se cuantifica mediante $H_T$, definida como la suma escalar de los $p_T$ de los jets del suceso.
-
-
+donde $p_T$ es el momento transverso del objeto visible y $\Delta\phi$ su diferencia azimutal con $\vec{p}_T^{\,\text{miss}}$, y de cuya distribución se puede identificar este tipo de sucesos, como se hace en los Capítulos \ref{ch:Tau} y \ref{ch:bbtt_analysis}. Por último, la actividad hadrónica del suceso se cuantifica mediante $H_T$, definida como la suma escalar de los $p_T$ de los jets del suceso.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_II/cms_coordinates.pdf}
-    \caption{Left: coordinate system, with the origin at the nominal interaction point, the $x$ axis pointing towards the center of the LHC ring, the $y$ axis pointing vertically upwards and the $z$ axis along the beam direction. The polar angle $\theta$, the azimuthal angle $\phi$ and the transverse projection $p_T$ of a momentum $\vec{p}$ are indicated. Right: directions corresponding to several values of the pseudorapidity $\eta$ in the $z$-$r$ plane.}
+    \caption{Left: coordinate system, with the origin at the nominal interaction point, the $x$ axis pointing toward the center of the LHC ring, the $y$ axis pointing vertically upwards and the $z$ axis along the beam direction. The polar angle $\theta$, the azimuthal angle $\phi$ and the transverse projection $p_T$ of a momentum $\vec{p}$ are indicated. Right: directions corresponding to several values of the pseudorapidity $\eta$ in the $z$-$r$ plane.}
     \label{fig:cms_coordinates}
 \end{figure}
 
 \subsection{Detector layout}
+%
+Las partículas producidas en las colisiones interaccionan con la materia de formas muy distintas según su naturaleza, por lo que ningún tipo de detector es capaz por sí solo de identificarlas y medirlas todas. Por este motivo, CMS se estructura en capas concéntricas en torno al punto de interacción, cada una de ellas especializada en un tipo de interacción, de forma que la identidad de cada partícula se deduce de la combinación de las señales que deja a su paso por las distintas capas. Desde el interior hacia el exterior, el detector consta del sistema de trazado, el calorímetro electromagnético y el calorímetro hadrónico, situados dentro del solenoide, y del sistema de muones, integrado en el hierro de retorno del campo magnético. Cada uno de estos subsistemas se divide a su vez en una sección central cilíndrica, denominada \textit{barrel}, cerrada en ambos extremos por dos secciones planas, denominadas \textit{endcaps}, mientras que los calorímetros situados a ambos lados del detector, más allá de los endcaps, extienden la cobertura hasta $|\eta|=5.2$~\cite{CMS:2008xjf,CMS:2023gfb}. La disposición de todos ellos se muestra en las Figuras \ref{fig:cms_schematic} y \ref{fig:cms_quadrant}.
+
+
+
 \subsection{Trigger System}
 
 %??? añadir esta subsection? o no me hace falta?
