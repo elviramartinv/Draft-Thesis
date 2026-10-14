@@ -9,62 +9,62 @@ The CERN complex houses not only to the large, general-purpose LHC experiments b
 The research presented in this thesis is conducted within the CMS Collaboration and is based on the analysis of proton-proton collision data collected during Run III, which corresponds to the years 2022 to 2026. \textcolor{red}{This chapter is devoted to an introduction of the properties and operations of the LHC in Section \ref{sec:LHC} and the structure of the CMS detector in Section \ref{sec:CMS}. The algorithms for the detection and reconstruction of particles produced in collisions are describe in Section \ref{sec:POR}. Finally, .}
 
 
-CORREGIR INGLES DESDE AQUÍ
-
 \section{The Large Hadron Collider}
 \label{sec:LHC}
 %
-The initial proposal for the LHC was submitted in 1984, but the project was not officially approved by CERN until December 1994, and its construction took place in the $26.7$-km tunnel that had previously housed the LEP. Following its commissioning in 2008, the first proton-proton (pp) collisions occurred in late 2009, and the physics program began in 2010. The LHC is designed to produce pp collisions at a center-of-mass energy of $\sqrt{s}=14$ TeV and with an instantaneous luminosity of $\mathcal{L}=10^{34}$ cm$^{-2}$s$^{-1}$\cite{Evans:2008zzb}, and it also operates with heavy-ion beams, whose program is not covered in this thesis. Originally conceived as a discovery machine, with the search for the Higgs boson as its primary goal, the LHC has established itself as a general-purpose collider, capable of covering a very broad scientific program, ranging from the search for rare processes and new BSM physics to the precise measurement of SM properties. The discovery of the Higgs boson in 2012 by the ATLAS and CMS collaborations confirmed the EWSB mechanism\cite{ATLAS:2012yve,CMS:2012qbp}, and since then, the LHC has completed three data-taking periods, the last of which concluded in 2026, and will continue to operate in its high-luminosity phase until the early 2040s.
+The initial proposal for the LHC was submitted in 1984, but the project was not officially approved by CERN until December 1994, and its construction took place in the $26.7$-km tunnel that had previously housed the LEP collider. Following its commissioning in 2008, the first proton-proton (pp) collisions occurred in late 2009, and the physics program began in 2010. The LHC is designed to produce pp collisions at a center-of-mass energy of $\sqrt{s}=14$ TeV and with an instantaneous luminosity of $\mathcal{L}=10^{34}$ cm$^{-2}$s$^{-1}$~\cite{Evans:2008zzb}, and it also operates with heavy-ion beams, whose program is not covered in this thesis. Originally conceived as a discovery machine, with the search for the Higgs boson as its primary goal, the LHC has established itself as a multipurpose collider, capable of supporting a very broad scientific program, ranging from the search for rare processes and BSM physics to precision measurements of SM properties. The discovery of the Higgs boson in 2012 by the ATLAS and CMS collaborations confirmed the Brout-Englert-Higgs mechanism of EWSB~\cite{ATLAS:2012yve,CMS:2012qbp}, and, to date, the LHC has completed three data-taking periods, the last of which concluded in 2026, and will continue to operate in its high-luminosity phase until the early 2040s.
 
-This section first describes the accelerator chain that supplies proton beams to the LHC, in Section \ref{subsec:LHC_complex}. Next, Section \ref{subsec:LHC_design} presents its design and main parameters. Finally, Section \ref{subsec:LHC_operation} traces the operational history of the LHC, from Run 1 through Run 3, and briefly discusses the prospects for the HL-LHC phase.
+This section first describes the accelerator chain that supplies proton beams to the LHC, in Section \ref{subsec:LHC_complex}. Next, Section \ref{subsec:LHC_design} presents the design of the machine and main parameters. Finally, Section \ref{subsec:LHC_operation} traces the operational history of the LHC, from Run 1 through Run 3, and briefly discusses the prospects for the HL-LHC phase.
 
 
 \subsection{Accelerator complex}
 \label{subsec:LHC_complex}
 %
-To accelerate protons from rest to energies on the order of TeV, a series of machines is required to progressively inject the beam at increasingly higher energies, since each accelerator can only operate within a limited energy range. The LHC constitutes the final stage of the CERN accelerator complex — most of which were inherited from previous experimental programs — which sequentially increases the energy of the particles before injecting them into the next machine in the chain. In addition to feeding the LHC, several of these accelerators supply beams to their own experimental facilities, which carry out a physics program at lower energies in parallel. The layout of the complex is shown in Figure \ref{fig:cern_complex}.\cite{Benedikt:2004wm,Vretenar:2020quc}
+To accelerate protons from rest to energies on the order of TeV, a series of machines is required to progressively inject the beam at increasingly higher energies, since each accelerator can only operate within a limited energy range~\cite{Benedikt:2004wm,Vretenar:2020quc}. The LHC is the last stage of a chain of accelerators, most of them inherited from earlier experimental programs, in which each machine increases the energy of the beam before injecting it into the next one. In addition to feeding the LHC, several of these accelerators supply beams to their own experimental facilities, which carry out a physics program at lower energies in parallel. The layout of the complex is shown in Figure \ref{fig:cern_complex}.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{figures/chapter_II/cern_complex.png}
-    \caption{Schematic representation of the CERN accelerator complex.\cite{CERN-complex-2022}}
+    \caption{Schematic representation of the CERN accelerator complex~\cite{CERN-complex-2022}.}
     \label{fig:cern_complex}
 \end{figure}
 
-The chain commences with a hydrogen gas source, where negative hydrogen ions (H$^-$) — consisting of one proton and two electrons — are produced. The ions are extracted from the source with an energy of $45$ keV and injected into the linear accelerator (LINAC4), where a radiofrequency quadrupole (RFQ) groups the ions into particle bunches and accelerates them to $3$ MeV. A series of radiofrequency accelerating structures then raises their energy to $160$ MeV. The beam is subsequently injected into the Proton Synchrotron Booster (PSB), a synchrotron consisting of four superimposed rings, where a carbon foil strips the two electrons from each ion, resulting in a beam consisting solely of protons. The PSB accelerates the protons to 2 GeV before transferring them to the next stage in the chain.
+The chain begins with an H$^-$ ion source fed with hydrogen gas. The ions are extracted from the source with an energy of $45$ keV and injected into the linear accelerator (Linac4), where a radiofrequency quadrupole (RFQ) bunches the beam and accelerates it to $3$ MeV. A series of radiofrequency accelerating structures then raises their energy to $160$ MeV. The beam is subsequently injected into the Proton Synchrotron Booster (PSB), a synchrotron consisting of four vertically stacked rings, where a carbon foil strips the two electrons from each ion, resulting in a beam containing only protons. The PSB accelerates the protons to $2$ GeV before transferring them to the next stage in the chain.
 
-The protons are then transferred to the Proton Synchrotron (PS), where they reach an energy of $26$ GeV and where the final temporal structure of the beam is defined: trains of bunches are formed through successive divisions of the particle bunches, separated by $25$ ns, the spacing at which the LHC will thereafter operate. The final stage prior to the LHC is the Super Proton Synchrotron (SPS), which accumulates several trains of bunches from the PS and accelerates them to an injection energy of $450$ GeV.
-
-From the SPS, the trains are transferred to the LHC via two independent transfer lines, each of which fills one of the two rings PENSABA QUE HABÍAMOS DICHO QUE NO HABÍAMOS INTRODUCIDO LOS DOS ANILLOS, NO?, so that the beams circulate in opposite directions in separate vacuum tubes. Once the planned number of packets for each beam has been reached, the acceleration phase begins using superconducting radiofrequency cavities operating at $400$ MHz. These cavities impart energy to the protons on the order of $0.5$ MeV per lap and, at the same time, maintain the longitudinal confinement of the packets. In this manner, over the course of about twenty minutes, the beams reach their final energy — which during Run 3 was $6.8$ TeV per beam — and, once stabilized, are made to collide at the four interaction points equipped with detectors.
+The protons are then transferred to the Proton Synchrotron (PS), where they reach an energy of $26$ GeV and where where successive bunch splittings produce trains of bunches spaced by $25$ ns, the bunch spacing with which the LHC operates. The final stage prior to the LHC is the Super Proton Synchrotron (SPS), which accumulates several trains of bunches from the PS and accelerates them to an injection energy of $450$ GeV.
 
 
+From the SPS, the trains are transferred to the LHC via two independent transfer lines, so that the beams circulate in opposite directions in separate beam pipes. Once the planned number of bunches for each beam has been reached, the acceleration phase begins using superconducting radiofrequency cavities operating at $400$ MHz. These cavities provide the protons with about $0.5$ MeV per turn and, at the same time, keep the bunches longitudinally focused. In this manner, over the course of about twenty minutes, the beams reach their final energy — which during Run 3 was $6.8$ TeV per beam — and, once stabilized, are brought into collision at the four interaction points equipped with detectors.
 
-REVISAR INGLES HASTA AQUÍ
+
+
+REVISAR INGLES DESDE AQUÍ
 
 
 \subsection{LHC Design and parameters}
 \label{subsec:LHC_desing}
 %
-El LHC está instalado en el túnel de $26.7$ km de largo construido to host the LEP collider, por lo que su diseño está en gran parte condicionado por la reutilización de dicho túnel. El diámetro interior del túnel, de apenas $3.7$ m en los arcos, no deja espacio para anillos de imanes separados, por lo que el LHC adopta un diseño \textit{two-in-one}, en el que los dos tubos de vacío por los que circulan los haces en sentidos opuestos, cada uno con sus propias bobinas, se alojan en una misma estructura mecánica y en un mismo criostato.
+The LHC is housed in the $26.7$ km-long tunnel that was originally built to accommodate the LEP collider. Given the interior diameter of the tunnel — just $3.7$ m at the arches — the LHC employs a \textit{two-in-one} design, in which the two vacuum tubes through which the beams travel in opposite direction are housed within a single mechanical structure and a single cryostat~\cite{Evans:2008zzb}.
 
-La energía máxima que puede alcanzar un haz en un anillo de determinada circunferencia viene limitada por el campo magnético capaz de curvar su trayectoria. De esta forma, para mantener en órbita protones de $7$ TeV, el LHC emplea $1232$ dipolos superconductores capaces de generar un campo de $8.33$ T si se enfrían a $1.9$ K, temperatura que se consigue mediante helio superfluido~\cite{Bruning:2004ej}. Además de curvar la trayectoria, es necesario mantener el haz enfocado, para lo que se emplean $392$ cuadrupolos situados a lo largo de todo el anillo junto con imanes de órdenes multipolares superior que se encargan de corregir las imperfecciones del campo. El anillo se divide en ocho arcos, donde se sitúan los dipolos, y ocho secciones rectas, que albergan los puntos de interacción y los sistemas de aceleración, colimación y extracción del haz.
+The maximum energy that a beam can reach in a ring of a given circumference is limited by the magnetic field capable of bending its trajectory. Therefore, to keep $7$ TeV protons in orbit, the LHC uses $1232$ superconducting dipoles capable of generating a field of $8.33$ T PERO NO ES DE 3.8 T? when cooled to $1.9$ K, a temperature achieved using superfluid helium~\cite{Bruning:2004ej}. In addition to curving the trajectory, it is necessary to keep the beam focused; for this purpose, $392$ quadrupole magnets are located along the entire ring, complemented by higher-order multipole magnets that correct imperfections in the field. The ring is divided into eight arcs, where the dipoles are located, and eight straight sections, which contain the interaction points and the beam acceleration, collimation, and extraction systems.
 
-Con dos haces de $7$ TeV, las colisiones tienen lugar a una energía nominal en el centro de masas de $\sqrt{s}=14$ TeV, aunque la energía disponible en cada interacción es solo una fracción de esta, determinada por el momento que portan los partones que intervienen en ella, como se discute en la Sección \ref{sec:pp_pheno}.\\
+With two $7$ TeV beams, collisions occur at a center-of-mass energy of $\sqrt{s}=14$ TeV, although the energy available in each interaction is only a fraction of this, determined by the momentum carried by the partons involved in the interaction, as discussed in Section \ref{sec:pp_pheno}.\\
+
 
 %Los arcos están formados por celdas regulares en las que los dipolos se alternan con los cuadrupolos y los imanes correctores, mientras que las secciones rectas albergan los puntos de interacción y los sistemas de aceleración, colimación y extracción del haz, junto con los cuadrupolos que focalizan los haces antes de cada colisión~\cite{Evans:2008zzb}.
 
 % Luminosidad
-El alcance del LHC viene asimismo determinado por la luminosidad instantánea $\mathcal{L}$, que es el parámetro que relaciona el número de sucesos de un proceso dado que se producen por unidad de tiempo y su sección eficaz $\sigma$:
+The range of the LHC is also determined by the instantaneous luminosity $\mathcal{L}$, which is the parameter that relates the number of events of a given process occurring per unit time to its cross section $\sigma$:
 \begin{equation}
     \frac{dN}{dt} = \mathcal{L}\,\sigma .
     \label{eq:event_rate}
 \end{equation}
-Donde la $\mathcal{L}$ es una magnitud que depende únicamente de las condiciones de los haces. En el LHC, para haces de perfil gaussiano que colisionan con un ángulo de cruce, la luminosidad se expresa como~\cite{Bruning:2004ej}:
+where $\mathcal{L}$ is a quantity that depends solely on the beam conditions. At the LHC, for Gaussian-profile beams colliding at a crossing angle A QUE CROSSING ANGLE?, the luminosity is expressed as~\cite{Bruning:2004ej}:
 \begin{equation}
     \mathcal{L} = \frac{\gamma\, f_\text{rev}\, n_b\, N_b^2}{4\pi\, \varepsilon_n\, \beta^*}\, F, \qquad F = \left(1+\left(\frac{\theta_c\,\sigma_z}{2\sigma^*}\right)^2\right)^{-1/2},
     \label{eq:lumi}
 \end{equation}
-donde $\gamma$ es el factor relativista de los protones, $f_\text{rev}$ la frecuencia de revolución, $n_b$ el número de paquetes por haz, $N_b$ el número de protones por paquete, $\varepsilon_n$ la emitancia transversal normalizada y $\beta^*$ el valor de la función beta en el punto de interacción, que caracteriza el grado de focalización del haz. El factor $F$ da cuenta de la reducción geométrica debida al ángulo de cruce $\theta_c$, y depende del tamaño transversal $\sigma^*$ y longitudinal $\sigma_z$ de los paquetes. 
+where $\gamma$ is the relativistic factor of the protons, $f_\text{rev}$ is the revolution frequency, $n_b$ is the number of bunches per beam, $N_b$ is the number of protons per bunch, $\varepsilon_n$ is the normalized transverse emittance, and $\beta^*$ is the value of the beta function at the point of interaction, which characterizes the degree of beam focusing. The factor $F$ accounts for the geometric reduction due to the crossing angle $\theta_c$, and depends on the transverse $\sigma^*$ and longitudinal $\sigma_z$ sizes of the bunches.
 %
 % \begin{table}[h!]
 %     \centering
@@ -89,21 +89,18 @@ donde $\gamma$ es el factor relativista de los protones, $f_\text{rev}$ la frecu
 %     \label{tab:lhc_parameters}
 % \end{table}
 
-La Ecuación \ref{eq:lumi} muestra cuáles son las vías para aumentar la luminosidad. En primer lugar, la dependencia cuadrática con $N_b$ hace del número de protones por paquete el parámetro más efectivo, y este, junto con la emitancia, viene determinado por la cadena de inyección descrita en la Sección \ref{subsec:LHC_complex}. En segundo lugar, $\beta^*$ puede reducirse focalizando los haces justo antes del punto de interacción, función que desempeñan los cuadrupolos situados a ambos lados de cada experimento. Por último, el número de paquetes está limitado por el espaciado de $25$ ns. Sin embargo, con este espaciado los paquetes de ambos haces se encontrarían también en puntos distintos del de interacción, por lo que los haces deben cruzarse con un pequeño ángulo, lo que reduce la luminosidad a través del factor $F$.\\
+Equation \ref{eq:lumi} shows the ways to increase the luminosity. First, the quadratic dependence on $N_b$ makes the number of protons per bunch the most effective parameter, and this, together with the emittance, is determined by the injection chain described in Section \ref{subsec:LHC_complex}. Second, $\beta^*$ can be reduced by focusing the beams just before the interaction point throught the quadrupole magnets located on either side of each experiment. Finally, the number of bunches is limited by the $25$ ns spacing. However, with this spacing, the bunches from both beams would also be at points other than the interaction point and therefore the beams must cross at a small angle, which reduces the luminosity by a factor of $F$.\\
 
-
-Integrando la Ecuación \ref{eq:event_rate} en el tiempo, el número total de sucesos esperado para un proceso es $N=\sigma\int\mathcal{L}\,dt$. La luminosidad integrada, expresada habitualmente en fb$^{-1}$, es por tanto la magnitud que cuantifica el volumen de datos de un análisis, y su medida precisa es imprescindible para convertir un número de sucesos en una sección eficaz. En CMS, esta medida se realiza mediante detectores dedicados, denominados luminómetros, cuya respuesta se calibra en barridos de van der Meer, en los que los haces se desplazan uno respecto al otro para determinar su solapamiento~\cite{CMS:2021xjt}. La precisión alcanzada en cada uno de los años analizados en esta tesis, del orden del porcentaje, se detalla en la Sección \ref{sec:bbtt_systematics}.\\
+By integrating Equation \ref{eq:event_rate} over time, the total expected number of events for a process is $N=\sigma\int\mathcal{L}\,dt$. The integrated luminosity, typically expressed in fb$^{-1}$, is therefore the parameter that quantifies the data volume of an analysis, and its precise measurement is essential for converting a number of events into a cross section. In CMS, this measurement is performed using dedicated detectors, called luminometers, whose response is calibrated in Van der Meer scans, in which the beams are shifted relative to one another to determine their overlap~\cite{CMS:2021xjt}. The precision achieved in each of the years analyzed in this thesis, on the order of a percentage, is detailed in Section \ref{sec:bbtt_systematics}.\\
 
 % pileup
-Sin embargo, con una luminosidad elevada no se produce una única interacción protón-protón por cada cruce de paquetes, sino varias simulaténas, de forma que el número medio de interacciones por cruce viene dado por:
+However, at high luminosity, there is not just a single proton-proton interaction per beam crossing, but rather several simultaneous interactions, so that the average number of interactions per crossing is given by:
 \begin{equation}
     \langle PU\rangle = \frac{\mathcal{L}_b\,\sigma_\text{inel}}{f_\text{rev}},
     \label{eq:pileup}
 \end{equation}
-donde $\mathcal{L}_b$ es la luminosidad por paquete y $\sigma_\text{inel}$ la sección eficaz inelástica protón-protón. En condiciones nominales, $\langle PU\rangle$ es del orden de 25. Estas interacciones adicionales, conocidas como \textit{pile-up}, son en su inmensa mayoría procesos de baja transferencia de momento que se superponen a la interacción de interés\footnote{A diferencia del underlying event, que procede de la propia colisión en la que tiene lugar la interacción dura, el pile-up corresponde a colisiones protón-protón independientes que coinciden en el mismo cruce de paquetes.}, y a ellas se suman las procedentes de cruces anteriores y posteriores, cuya señal persiste en la electrónica del detector. Por tanto, el pile-up afecta a la reconstrucción de todos los objetos del suceso, y su mitigación constituye uno de los aspectos centrales de los algoritmos descritos en la Sección \ref{sec:POR}. La distribución de $\mu$ registrada por CMS durante el Run 3 se muestra en la Figura \ref{fig:pileup}.
-
-
-
+where $\mathcal{L}_b$ is the luminosity per bunch and $\sigma_\text{inel}$ is the proton-proton inelastic cross section. Under nominal conditions, $\langle PU\rangle$ is on the order of $25$. These additional interactions, known as \textit{pile-up}, are overwhelmingly low-momentum-transfer processes that overlap with the interaction of interest\footnote{Unlike the underlying event, which originates from the collision itself in which the hard interaction takes place, pile-up corresponds to independent pp collisions that coincide at the same beam crossing.}, and to these are added those from previous and subsequent beam crossings, whose signal persists in the detector electronics. Hence, pile-up affects the reconstruction of all objects in the event, and its mitigation is one of the central aspects of the algorithms described in Section \ref{sec:POR}. The $\langle PU\rangle$ distribution recorded by CMS during Run 3 is shown in Figure \ref{fig:pileup}.\\
+%
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.75\linewidth]{figures/chapter_II/pileup_run3.pdf}
@@ -113,9 +110,10 @@ donde $\mathcal{L}_b$ es la luminosidad por paquete y $\sigma_\text{inel}$ la se
 
 \\
 
+In summary, the beam energy and luminosity together determine the reach of the LHC, since the former determines which processes are accessible and the latter dictates the number of events for each process during beam-beam interactions. However, the energy and luminosity values presented here correspond to the nominal design of the machine, whereas in practice, actual operating conditions have evolved over the various data-taking periods.
 
-En definitiva, la energía de los haces y la luminosidad determinan conjuntamente el alcance del LHC, puesto que la prija fija qué procesos son accesibles y la segunda cuántos sucesos de cada uno de ellos se producen en las interacciones del cruce de paquetes. Sin embargo, los valores de energía y luminosidad aquí presentados corresponden al diseño nominal de la máquina, y en la práctica las condiciones reales de operación han evolucionado a lo largo de los distintos periodos de toma de datos. 
 
+REVISAR INGLES HASTA AQUI
 
 
 \subsection{Operation}
