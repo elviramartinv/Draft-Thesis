@@ -254,20 +254,41 @@ Among the advancements made during Run 3, graphics processing units (GPUs) were 
 \end{figure}
 
 
-To conclude, the CMS detector consists of a series of subdetectors arranged in concentric layers around the interaction point, each specialized in a specific type of interaction, with the goal of recording virtually all the particles produced in the collisions. Since it is not possible to store the information from every collision, the detector is complemented by a trigger system that decides in real time which events are kept, through a sequence of decisions designed to preserve those of physics interest without exceeding the available capacity for recording and processing. However, the fast reconstruction performed in the HLT serves only to take this decision, and what is stored for each selected event is the raw detector output, that is, the set of signals left by the particles as they traverse the various subdetectors — a track in the tracker, an energy deposit in the calorimeters, or hits in the muon chambers. It is the combination of all these signals that allows the nature of the particle to be determined. To interpret the complete event, it is therefore necessary to combine the information from the entire detector, with the most precise calibrations available, and translate it into the physics objects that make up the final state — electrons, muons, hadronic $\tau$ leptons, jets, and missing transverse momentum — a task carried out by the reconstruction algorithms described in the following section.
+To conclude, the CMS detector consists of a series of subdetectors arranged in concentric layers around the interaction point, each specialized in a specific type of interaction, with the goal of recording virtually all the particles produced in the collisions. Since it is not possible to store the information from every collision, the detector is complemented by a trigger system that decides in real time which events are kept, through a sequence of decisions designed to preserve those of physics interest without exceeding the available capacity for recording and processing. However, the fast reconstruction performed in the HLT serves only to take this decision, and what is stored for each selected event is the raw detector output, i.e., the set of signals left by the particles as they traverse the various subdetectors, and is the combination of all these signals that allows the nature of the particle to be determined. To interpret the complete event, it is therefore necessary to combine the information from the entire detector, with the most precise calibrations available, and translate it into the physics objects that make up the final state — electrons, muons, hadronic $\tau$ leptons, jets, and missing transverse momentum — a task carried out by the reconstruction algorithms described in the following section.
+
+
+
+
+
+\section{Physics object reconstruction}
+\label{sec:POR}
+%
+Cada tipo de partícula deja en CMS una firma característica de acuerdo a cómo interacciona con las sucesivas capas del detector. Los muones atraviesan todo el detector perdiendo una fracción muy pequeña de su energía, dejando plasmada su trayectoria tanto en el tracker como en las muon chambers, curvada en sentidos opuestos dentro y fuera del solenoide. Los electrones pasan igualmente por el tracker dejando ahí su trayectoria, pero son absorbidos antes de salir del detector en el calorímetro electromagnético. Para el caso de los fotones, en cambio, al ser neutros no interactuan con el tracker, pero son igualmente absorbidos en el ECAL. Por otro lado, los hadrones cargados dejan también una trayectoria y depositan su energía principalmente en el calorímetro hadrónico, donde son absorbidos, mientras que los hadronies neutros solo se manifiestan a través de este último depósito. Por último, los neutrinos atraviesan todo el material sin interaccionar, por lo que su presencia solo puede inverirse a partir del desequilibrio de momento en el plano transverso, como ya se ha explicado. La identidad de cada partícula queda así codificada en la combinación de subdetectores en los que deja señal, como puede verse representado gráficamente en la Figura \ref{fig:cms_slice}. 
+%
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_II/cms_slice.pdf}
+    \caption{Sketch of the interactions of the different types of particles in a transverse slice of the CMS detector~\cite{CMS:2017yfk}.}
+    \label{fig:cms_slice}
+\end{figure}
+
+El algoritmo de reconstrucción empleado por CMS, \textit{Particle Flow} (PF), explota estas firmas para identificar y reconstruir individualmente cada una de las partículas del estado final — muones, electrones, fotones y hadrones cargados y neutros — combinando de forma óptima la información de todas las capas~\cite{CMS:2017yfk}. La ventaja de esta reconstrucción por capas es que cada partícula se mide con el subdetector más preciso para ella, y que las señales de las distintas partículas se pueden separar, lo que resulta especialmente relevante en los jets. En jet típico, alrededor del $65\%$ de su energía es transportada por hadrones cargados, cuyo momento se mide en el sistema de trazado con una resolución muy superior a la del HCAL; en torno al $25\%$ corresponde a fotones, que son medidos con gran precisión en el ECAL; el $10\%$ restante lo transportan los hadrones neutros, y es únicamente esta parte la que depende de la medida del HCAL, cuya resolución es sensiblmente peor. El intenso campo magnético, que separa los depósitos de energía de las partículas cargadas de los de las neutras, junto con la fina granularidad del sistema de trazado y del calorímetro electromagnético, permite aprovechar esta complementariedad, explotando los puntos fuertes de las diferentes capas. A las partículas reconstruidas de esta forma se les denomina candidatos PF, y a partir de ellas se construyen posteriormente los objetos de más alto nivel, como los jets, los leptones $\tau$ hadrónicos o el momento transverso faltante.
+
+
+Para formar los candidatos PF, el algorimo opera sobre elementos que se reconstruyen previamente, de forma independiente a partir de la información de cada subdetector. Las trayectorias de las partículas cargadas en el tracker, los \textit{clusters} de energía en los calorímetros y las trayectorias en el sistema de muones, cuya reconstrucción se describe en la Sección \ref{subsec:Muons}. De todos ellos, la reconstrucción de las trayectorias en el tracker es la más exigente, dado el elevado número de partículas cargadas que lo atraviesan en cada bunch crossing, y se realiza mediante un proceso iterativo en el que cada iteración busca trayectorias con criterios progresivamente menos restrictivos. 
+
+
+Para establecer el punto de origen de la interacción principal y distinguirlo de las de pile-up se recurre precisamente a las trayectorias reconstruidas, agrupandolas según su posición a lo largo del eje del haz y ajustando la posición de cada grupo para obtener los vértices de interacción~\cite{CMS:2014pgm}. De entre ellos, se toma como vértice primaro el correspondiente a la interacción más energética del suceso, evaluada únicamente a partir de la información del sistema de trazado~\cite{CMS-TDR-15-02}. El resto de vértices se atribuyen a interacciones de pile-up, y la asociación de cada partícula cargada a uno u otro vértice constituye la base de las técnicas de mitigación del pile-up descritas en la Sección \ref{subsec:Jets}.
+
+Una vez reconstruidos todos estos elementos se conectan mediante un algoritmo de enlace en función de su compatibilidad espacial, por ejemplo, asociando a cada trayectoria los \textit{clusters} de los calorímetros alcanzados por su extrapolación, o la trayectoria reconstruida en el sistema de muones con la del sistema de trazado. Los elementos así conectados forman bloques, y dentro de cada uno las partículas se asignan en orden según cuál presenta una identificación más clara. Así, en primer lugar se identifican los muones, seguidos de los electrones, junto con los fotones de radiación de freando que estos emiten, y de los fotones aislados. Las trayectorias restantes se identifican como hadrones cargados, cuya energía se determina comparando su momento con la energía de los \textit{clusters} asociados, y cuando la energía depositada en los calorímetros supera significativamente a la esperada a partir de las trayectorias, el exceso se interpreta como un fotón, si se encuentra en el calorímetro electromagnético, o como un hadrón neutro, si se encuentra en el hadrónico~\cite{CMS:2017yfk}.
+
+
+Los mismos algoritmos de reconstrucción se aplican a los sucesos simulados, en los que la respuesta del detector a las partículas generadas se modela mediante \textsc{Geant4}~\cite{GEANT4:2002zbu} y a los que se superponen interacciones adicionales para reproducir las condiciones de pile-up, de forma que datos y simulación se procesan de manera idéntica. A continuación se describe la reconstrucción de cada uno de los objetos que intervienen en el estado final del análisis presentado en esta tesis.
 
 
 
 ESCRIBIR DESDE AQUI
 
-\section{Physics object reconstruction}
-\label{sec:POR}
-Generadores MC y simulación del detector?
-Cada una de estas colisiones da lugar a un estado final complejo, donde a la interacción dura entre los dos partones se suman la radiación emitida por estos, la hadronización de los partones finales y el underlying event, además de las interacciones de pile-up. Para poder comparar los datos con las predicciones teóricas, todas estas etapas se reproducen mediante generadores de Monte Carlo, desde la colisión hasta la respuesta del detector, de forma que los sucesos simulados se procesan con los mismos algoritmos de reconstrucción que los datos.
-
-\subsection{The Particle Flow algorithm} ESTO NO COMO SUBSECTION SINO COMO ENTRADA
-\subsection{Final state particle reconstruction}
-\label{subsec:Finalstate}
 \subsection{Muon}
 %... ver como me cuadra mas
 \subsubsection{Muon}
