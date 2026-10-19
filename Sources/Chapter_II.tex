@@ -425,25 +425,4 @@ In addition to these fluctuations, which are inherent to the resolution with whi
 In summary, the PF algorithm enables the description of each event as a list of individual particles from which the objects comprising its final state are constructed: muons and electrons, identified and required to be isolated in order to select those originating from the interaction of interest; jets, whose origin can be determined using flavor identification algorithms; hadronic $\tau$ leptons, reconstructed with the HPS algorithm and identified with the dedicated algorithms studied in Chapter \ref{ch:Tau}; and the missing transverse momentum, which accounts for particles that escape undetected. Since the same algorithms are applied to both the data and the simulated events, these objects constitute the common language in which both observations and predictions are expressed. Based on them, each analysis selects the events compatible with the process being investigated and constructs the distributions against which to compare the two, as described for the analysis in this thesis in Chapter \ref{ch:bbtt_analysis}. However, this comparison cannot be made directly, since both the data — subject to statistical fluctuations — and the prediction — affected by systematic uncertainties in the simulation and reconstruction — are known only with limited precision. Consequently, deriving physics conclusions from such a comparison necessitates a statistical framework that takes both sources of uncertainty into account, as described in the following section.
 
 
-\section{Statistical framework}                         
-\label{sec:stat_framework}
-
-Parte del analysis workflow de CMS (para justificar un poco qué hace esto aquí)
-  Entradilla (1 párrafo): comparar datos y predicción en un marco frecuentista;
-                          implementación en Combine.
-
-  \subsection{The likelihood function}
-    1. Likelihood binned: Poisson por bin, λ_i = μ s_i(θ) + b_i(θ); la incertidumbre
-       estadística de los datos es el propio término de Poisson.
-    2. Nuisance parameters y sus términos de constraint; el POI sin constraint; el fit
-       mide las nuisances, por lo que pueden quedar constreñidas por debajo de su
-       incertidumbre inicial.
-    3. Cómo actúan: log-normal en normalización (siempre positiva) e interpolación
-       entre templates nominal/up/down en forma.
-
-  \subsection{Statistical inference}
-    4. Profile likelihood ratio: definición; mejor ajuste e intervalos por los umbrales
-       de −2 ln λ (1D y 2D, Wilks); significancia con μ = 0.
-    5. Límites superiores: estadístico para límites y criterio CLs al 95%.
-    6. Aproximación asintótica, dataset de Asimov para los resultados esperados y
-       bandas de ±1σ y ±2σ.
+FIN DEL CAPITULO

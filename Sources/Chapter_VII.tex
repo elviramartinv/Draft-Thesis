@@ -9,14 +9,18 @@ Given the relative signal size and the analyzed 172\,fb$^{-1}$ of data collected
 
 For this reason the analysis does not stop at the Run-3 data, but exploits all the data available in this final state. This measurement is combined with the published Run-2 measurement in the same final state, which requires determining which uncertainties are common to both analyses and which are not. It is also worth placing the result in the context of searches for Higgs pair production in other final states, since the $bb\tau\tau$ search is just one of several that target the same process, each with its own balance between the branching fraction and the background to be suppressed. Likewise, a comparison with results from the ATLAS experiment provides a broader picture of where this measurement stands and what actually limits it.\\
 
-The present chapter is structured as follows. The construction of the statistical model that meets the aforementioned requirements is the subject of Section \ref{sec:bbtt_statistics}, which builds on the general framework introduced in Section \ref{sec:stat_framework} and is limited to the decisions specific to this study. Section \ref{sec:bbtt_results} first presents the post-fie distributions of the discriminant and then the results derived from it, examining the factors that limit the measurement. Section \ref{sec:bbtt_combination} combines the obtained result with the published measure on the Run 2 dataset at the level of the statistical model and without reprocessing those data. Finally, Section \ref{sec:bbtt_comparison} compares the result with the other searches for the same process, \textcolor{red}{and Section \ref{sec:bbtt_prospects} concludes the chapter by.....}
+The present chapter is structured as follows. The construction of the statistical model that meets the aforementioned requirements is the subject of Section \ref{sec:bbtt_statistics}, which introduces the statistical formalism on which the measurement rests together with the decisions specific to this study. Section \ref{sec:bbtt_results} first presents the post-fie distributions of the discriminant and then the results derived from it, examining the factors that limit the measurement. Section \ref{sec:bbtt_combination} combines the obtained result with the published measure on the Run 2 dataset at the level of the statistical model and without reprocessing those data. Finally, Section \ref{sec:bbtt_comparison} compares the result with the other searches for the same process, \textcolor{red}{and Section \ref{sec:bbtt_prospects} concludes the chapter by.....}
+
+
 
 \section{The statistical model of the search}
 \label{sec:bbtt_statistics}
 %
-The comparison between the prediction and the data is performed using a binned maximum likelihood fit, carried out simultaneously across the fifty signal regions of the analysis. In each region the observable is the output of the classifier assigned to it, using the adaptive binning described in Section \ref{sec:bbtt_extraction}, so that the total likelihood is the product of the contributions from all bins in all regions. The formalism upon which this is built was introduced in Section \ref{sec:stat_framework}, so the following is limited to the decisions specific to this search. The implementation is based on \textsc{Combine} \cite{CMS-combine}, the statistical analysis and combination tool used at CMS.
+The comparison between the prediction and the data is performed using a binned maximum likelihood fit, carried out simultaneously across the fifty signal regions of the analysis. In each region the observable is the output of the classifier assigned to it, using the adaptive binning described in Section \ref{sec:bbtt_extraction}, so that the total likelihood is the product of the contributions from all bins in all regions. The statistical treatment follows the frequentist approach common to all CMS analyses, developed jointly with the ATLAS Collaboration for the Higgs boson searches~\cite{ATLAS:2011tau}, and its implementation is based on \textsc{Combine}~\cite{CMS-combine}, the statistical analysis and combination tool used at CMS. The formalism on which it rests is introduced in the following subsections together with its application to this search.
 
-The fit is determined by three decisions. The first is the measurement itself, i.e., which parameters are left free and how the dependence of the signal on them is modeled, which is the subject of Section \ref{subsec:bbtt_likelihood}. The second concerns how the systematic uncertainties discussed in the previous chapter enter the fit. This includes the scheme by which they are correlated across periods, categories, and channels, as well as how the templates are handled before reaching the fit, and is covered in Section \ref{subsec:bbtt_nuisances}. Finally, Section \ref{subsec:bbtt_teststat} addresses the third aspect, which consists of describing how each result is constructed from the fit.
+
+The fit is determined by three decisions,  each of which is addressed in one of the subsections below. The first is the measurement itself, i.e., how the likelihood is constructed, which parameters are left free and how the dependence of the signal on them is modeled, which is the subject of Section \ref{subsec:bbtt_likelihood}. The second concerns how the systematic uncertainties discussed in the previous chapter enter the fit. This includes the way in which each nuisance parameter modifies the prediction and the scheme by which they are correlated across periods, categories, and channels, as well as how the templates are handled before reaching the fit, and is covered in Section \ref{subsec:bbtt_nuisances}. Finally, Section \ref{subsec:bbtt_teststat} addresses the third aspect, which consists of describing the test statistic from which each result is constructed and how both the observed and the expected results are obtained from it.
+
 
 \subsection{The fit and its parameters of interest}
 \label{subsec:bbtt_likelihood}
@@ -24,32 +28,46 @@ The fit is determined by three decisions. The first is the measurement itself, i
 % de qué está hecha la predicción en cada bin y de dónde viene cada parte
 In each bin of each signal region, the expected number of events is the sum of the contributions from all the processes that populate that region. As previously noted, the simulation provides the signal in its two production modes and the backgrounds from $t\bar{t}$, Drell--Yan, single top quark and $tW$, $W$+jets, diboson and triboson production, and single Higgs boson production, which in this search constitutes an irreducible background. The contribution from jets misidentified as $\tau_h$ is extracted from the data using the method described in Section \ref{sec:bbtt_ff}. This distinction has consequences that must be considered in the fit, since the object calibrations enter as nuisance parameters of their own for the simulated processes, whereas their effect on the estimate obtained from the data was quantified during its derivation and was absorbed into the associated envelopes.
 
+
+Since the events that populate each bin are produced independently of one another, the number observed in each of them, $n_i$, follows a Poisson distribution whose mean is the expected number of events, written as the sum of a signal contribution $s_i$, scaled by the parameter of interest $\mu$, and a background contribution $b_i$. Both depend on the set of nuisance parameters $\boldsymbol{\theta}$ that encode the uncertainties of the prediction. Moreover, the number of events observed in different bins are statistically independent, so that the probability of observing all of them simultaneously, which defines the likelihood function, is the product of the Poisson probabilities of all bins $i$ of all signal regions, written as
+\begin{equation}
+    L(\mu,\boldsymbol{\theta}) = \prod_{i} \frac{\left(\mu\, s_i(\boldsymbol{\theta}) + b_i(\boldsymbol{\theta})\right)^{n_i}}{n_i!}\, e^{-\left(\mu\, s_i(\boldsymbol{\theta}) + b_i(\boldsymbol{\theta})\right)} \;\prod_{k} p(\tilde{\theta}_k\,|\,\theta_k),
+    \label{eq:likelihood}
+\end{equation}
+where the second product contains a constraint term for each nuisance parameter $\theta_k$, which carries the external information available on it, $\tilde{\theta}_k$, and whose form is described in Section \ref{subsec:bbtt_nuisances}~\cite{CMS-combine}. The statistical uncertainty of the data therefore requires no parameter of its own, since the Poisson probabilities of the first product already describe how the observed number of events fluctuates around its expected value. The fit consists in finding the values of $\mu$ and $\boldsymbol{\theta}$ that maximize this function, which in practice is done by minimizing $-2\ln L$ — which turns the product into a sum that is numerically more manageable and whose variations around the minimum, as discussed in Section \ref{subsec:bbtt_teststat}, can be directly interpreted in terms of confidence intervals.
+
+
 % qué está fijo y qué es libre
-Each contribution enters the fit with the normalization and shape assigned to it by the prediction built in the previous chapter, and can only deviate from them through the nuisance parameters associated with their uncertainties. None is left free, so the only parameter that the fit determines without any constraint is the parameter of interest, which is defined based on the result to be interpreted. In this regard, two alternatives are considered: one for measuring the strength with which the signal appears in the data — which constitutes the natural parameter when the goal is to measure or set a limit on the production rate — and another for constraining the parameters that govern the process — where the coupling modifiers themselves constitute the parameter of interest.\\
+Each contribution enters the fit with the normalization and shape assigned to it by the prediction built in the previous chapter, and can only deviate from them through the nuisance parameters associated with their uncertainties. None is left free, so the only parameter that the fit determines without any constraint term in Equation \ref{eq:likelihood} is the parameter of interest, which is defined based on the result to be interpreted. In this regard, two alternatives are considered: one for measuring the strength with which the signal appears in the data — which constitutes the natural parameter when the goal is to measure or set a limit on the production rate — and another for constraining the parameters that govern the process — where the coupling modifiers themselves constitute the parameter of interest.\\
 
 
 %ya que el ajuste no dispone de ningún grado de libertad con el que abosrber un fondo mal modelado más alla de lo que su propia incertidumrbe consiente. 
 
 The signal strength, $\mu$, is defined as the factor by which the cross section predicted by the SM must be multiplied to reproduce the observed cross section. In the fit, $\mu$ multiplies the expected number of signal events in each bin of each signal region, thereby modifying the height of the signal distribution but not its shape. Its value is continuous and is determined by the fit, with $\mu = 1$ and $\mu = 0$ merely marking the SM hypothesis and the absence of signal, respectively.
 
-
 This parameter is used to derive two measurements, one that is inclusive of both production modes and another that is exclusive to vector boson fusion. This split reflects the marked asymmetry between the two modes, as the cross section for gluon fusion is nearly twenty times larger than that for VBF. Consequently, the inclusive measurement is barely sensitive to the VBF contribution, which is tied to the dominant mode and, therefore, it must be measured separately so that the data can constrain it.
 
 The inclusive measurement uses a single $\mu$ for both production modes. By scaling both templates by the same factor, the ratio between them is fixed at the value predicted by the SM, so that the only thing the fit determines is the overall scale of their sum. The exclusive measurement replaces that parameter with another that multiplies only the templates for vector boson fusion. It is the dedicated VBF category of Section \ref{sec:bbtt_flow} that provides the necessary sensitivity by isolating a region where this production mode accounts for a much larger fraction of the total than it does in the rest of the analysis.\\
 
-In the second alternative, a coupling modifier replaces $\mu$ as the parameter of interest and is fitted directly to the data, while the other couplings are held at their SM values; this yields confidence intervals for $\kappa_\lambda$ and $\kappa_{2V}$\footnote{The same procedure applies to $\kappa_t$ and $\kappa_V$, for which this search does not improve upon the constraints provided by single-Higgs-boson production measurements. Therefore, they are not reported here.}. This treatment is possible because the parametrization described in Section \ref{sec:bbtt_samples} allows the signal prediction at any point in coupling space to be expressed as a linear combination of the simulated samples, and it does so bin by bin rather than just for the total cross section, so that each signal template is a known analytic function of the couplings. Unlike $\mu$, a coupling does not merely scale the height of the signal distribution. A change in $\kappa_\lambda$ shifts the invariant mass spectrum of the $HH$ system and thereby modifies the distribution of the observable that is fitted.
+
+In the second alternative, a coupling modifier replaces $\mu$ as the parameter of interest and is fitted directly to the data, while the other couplings are held at their SM values; this yields confidence intervals for $\kappa_\lambda$ and $\kappa_{2V}$\footnote{The same procedure applies to $\kappa_t$ and $\kappa_V$, for which this search does not improve upon the constraints provided by single-Higgs-boson production measurements. Therefore, they are not reported here.}. This treatment is possible because the parametrization described in Section \ref{sec:bbtt_samples} allows the signal prediction at any point in coupling space to be expressed as a linear combination of the simulated samples, and it does so bin by bin rather than just for the total cross section, so that each signal template is a known analytic function of the couplings $s_i(\boldsymbol{\kappa},\boldsymbol{\theta})$, which replaces the term $\mu\,s_i(\boldsymbol{\theta})$ of Equation \ref{eq:likelihood}. Unlike $\mu$, a coupling does not merely scale the height of the signal distribution. A change in $\kappa_\lambda$ shifts the invariant mass spectrum of the $HH$ system and thereby modifies the distribution of the observable that is fitted.
+
+
 
 The same parametrization can also be used the other way around. The couplings are held fixed at a point in coupling space, and the parameter of interest is again $\mu$, which provides the limit on the cross section as a function of the coupling. A value of the coupling is excluded when the limit obtained with it falls below the cross section that the theory predicts at that same value, and the uncertainty on the boundary of the resulting interval follows from the bands of the limit itself. By scanning over a grid in two of them, the exclusion contours in the plane they define can be determined.\\
 
 
-
-
-Once the parameter of interest has been defined in each case, the model is fully determined except for its remaining parameters, which carry the uncertainties and on which the burden of covering any residual difference between the prediction and the data falls entirely. Their definition, the scheme by which they are correlated and the treatment their templates receive before entering the fit are addressed in Section \ref{subsec:bbtt_nuisances}.
+Once the parameter of interest has been defined in each case, the model is fully determined except for its remaining parameters, which carry the uncertainties and on which the burden of covering any residual difference between the prediction and the data falls entirely. The way in which they act on the prediction, the scheme by which they are correlated and the treatment their templates receive before entering the fit are addressed in Section \ref{subsec:bbtt_nuisances}.
 
 \subsection{The nuisance parameters of the fit}
 \label{subsec:bbtt_nuisances}
-%
-The sources of uncertainty are incorporated into the fit as nuisance parameters, each of which carries a constraint term that penalizes its deviation from the nominal value and acts on the prediction either by modifying only the normalization of the affected process or by additionally changing its shape, according to the mechanism described in Section \ref{sec:stat_framework}. The treatment of each of the sources detailed in Section \ref{sec:bbtt_systematics} depends on its origin, which determines the three decisions that remain to be made, that is, which of them share parameters across regions; what modifications the shifted templates undergo before entering the fit; and how the limited statistical precision of the prediction itself is incorporated.\\
+% constraints
+Each source of uncertainty is represented in the likelihood of Equation \ref{eq:likelihood} by a nuisance parameter $\theta_k$, defined so that $\theta_k = 0$ reproduces the nominal prediction and $\theta_k = \pm1$ corresponds to a shift of the source by one standard deviation. The external knowledge available on each source enters through its constraint term, a Gaussian distribution of unit width centered at the nominal value, $p(\tilde{\theta}_k\,|\,\theta_k) \propto e^{-(\theta_k-\tilde{\theta}_k)^2/2}$ with $\tilde{\theta}_k = 0$, which penalizes any deviation from it~\cite{CMS-combine}. However, a nuisance parameter does not represent a fixed uncertainty, but rather a quantity whose value is determined simultaneously by the external information that constrains it and by the fit data themselves. Therefore, when the data are more sensitive to a given source, they can be determined with greater precision than external calibration from which its uncertainty was derived — as typically occurs in bins dominated by background, where the number of events is large. In that case, the actual uncertainty of the parameter is reduced after the fit, and the nuisance parameter is said to be constrained. 
+
+% como actúa cada nuisance
+The way in which a nuisance parameter acts on the prediction depends on whether its source modifies only the normalization of the affected process or also its shape, as indicated in the \textit{Type} column of Table \ref{tab:systematics_summary}. In the first case, the expected yield of the process is multiplied by a factor $(1+\delta_k)^{\theta_k}$, where $\delta_k$ is the relative uncertainty of the source. This corresponds to a log-normal distribution of the yield, which, unlike a Gaussian one, never allows it to become negative, regardless of the size of the uncertainty; when the upward and downward variations differ, two different values of $\delta_k$ are used on each side of the nominal value. In the second case, the two shifted templates constructed in Section \ref{sec:bbtt_systematics} provide the content of each bin at $\theta_k = \pm1$, and the content at any intermediate value is obtained bin by bin by interpolating between these two templates and the nominal one, using a smooth polynomial for $|\theta_k| < 1$ that preserves the continuity of the prediction and of its first derivatives, and a linear extrapolation beyond~\cite{CMS-combine}.
+
+The treatment of each of the sources detailed in Section \ref{sec:bbtt_systematics} depends on its origin, which determines the three decisions that remain to be made, that is, which of them share parameters across regions; what modifications the shifted templates undergo before entering the fit; and how the limited statistical precision of the prediction itself is incorporated.\\
 
 
 % correlación
@@ -69,52 +87,6 @@ Table \ref{tab:systematics_summary} lists the different families included in the
 The only sources that falls outside this scheme are the two statistical components of the \textit{fake factors} method, which are not only uncorrelated across periods, but also across categories and across channels, such that each signal region contributes its own parameters and no fluctuations propagate from one to another. This is a direct consequence of their origin, since both the factors and the event counts of the template regions are determined independently in each region, at the cost of multiplying the number of parameters associated with this single source.\\
 
 
-
-\begin{table}[tbp]
-\centering
-\small
-\begin{tabular}{lllc}
-\toprule
-Source & Affected processes & Type & Correlation \\
-\midrule
-Integrated luminosity                     & simulated              & normalization & partial \\
-Signal cross section                      & signal                 & normalization & full    \\
-Background cross sections                 & simulated              & normalization & full    \\
-Branching fractions                       & with a Higgs boson     & normalization & full    \\
-$b\bar{b}H$ normalization                 & $b\bar{b}H$            & normalization & full    \\
-\midrule
-Pile-up reweighting                       & simulated              & normalization\tablefootnote{The shape information of
-the pile-up variation is retained only for the signal processes. For every background
-process the two shifted templates are replaced by the nominal one rescaled by the ratio
-of their integrals, with a floor of $2\%$ on that ratio.} & full \\
-Trigger efficiency                        & simulated              & shape & none    \\
-Muon and electron identification and isolation & simulated         & shape & full    \\
-Electron energy scale and resolution      & simulated              & shape & full    \\
-$\tau_h$ identification                   & simulated              & shape & partial   \\
-$\tau_h$ energy scale                     & simulated              & shape & none    \\
-Jet energy scale                          & simulated              & shape & partial   \\
-Jet energy resolution                     & simulated              & shape & none    \\
-$b$ tagging                               & simulated              & shape & partial   \\
-Acceptance (QCD scale and PDF)            & simulated              & shape & full    \\
-\midrule
-Drell--Yan correction, fit                & Drell--Yan             & shape & full    \\
-Drell--Yan correction, statistical        & Drell--Yan             & shape & none    \\
-Top quark $p_T$ reweighting               & $t\bar{t}$             & shape & full    \\
-\midrule
-Fake factor envelopes                     & \textit{fakes}         & shape & full    \\
-Fake factor statistics                    & \textit{fakes}         & shape & none    \\
-Template region statistics                & \textit{fakes}         & shape & none    \\
-\midrule
-Size of the simulated samples             & simulated              & shape & none    \\
-\bottomrule
-\end{tabular}
-\caption[Summary of the systematic uncertainties]{%
-    Summary of the sources of systematic uncertainty considered in the analysis, with the
-    processes they affect, whether they modify only the normalization or also the shape of
-    the distributions, and their correlation across data-taking periods. The two statistical components of the fake factor method are in addition decorrelated between categories and channels.
-}
-\label{tab:systematics_summary}
-\end{table}
 \begin{table}[tbp]
 \centering
 \small
@@ -176,7 +148,7 @@ Size of the simulated samples             & simulated              & shape & non
 % construcción de plantillas
 Once the correlation scheme has been fixed, the two shifted templates for each source — constructed in Section \ref{sec:bbtt_systematics} by shifting the corresponding correction in both directions — undergo some corrections before the fit to ensure that all variations behave consistently under interpolation.
 
-When the two variations of a source fall on the same side of the nominal template in a bin, the sign of the nuisance parameter becomes meaningless, since the content moves in the same direction regardless of the sign of the shift; thus, they are replaced by a symmetric pair constructed from the larger of the two differences. On the other hand, the same requirement for adaptive binning as in Section \ref{sec:bbtt_extraction} applies here to the estimate of \textit{fakes} obtained from the data. If a bin is empty, it is assigned a minimum value, since a process with zero yield does not allow for relative variations and leaves its uncertainties without a possible treatment. The pile-up reweighting receives a separate treatment, in which its two variations are replaced by the nominal template rescaled by the corresponding ratio of integrals, corrected so that they lie on opposite sides of the nominal value and neither deviates from it by less than $2\,\%$. This substitution eliminates shape information, so it applies only to background processes, i.e., the signal is excluded.\textcolor{red}{por qué se hace esto?...}\\
+When the two variations of a source fall on the same side of the nominal template in a bin, the sign of the nuisance parameter becomes meaningless, since the content moves in the same direction regardless of the sign of the shift; thus, they are replaced by a symmetric pair constructed from the larger of the two differences. On the other hand, the same requirement for adaptive binning as in Section \ref{sec:bbtt_extraction} applies here to the estimate of \textit{fakes} obtained from the data. If a bin is empty, it is assigned a minimum value, since a process with zero yield does not allow for relative variations and leaves its uncertainties without a possible treatment. The pile-up reweighting receives a separate treatment, in which its two variations are replaced by the nominal template rescaled by the corresponding ratio of integrals, corrected so that they lie on opposite sides of the nominal value and neither deviates from it by less than $2\,\%$. This substitution eliminates shape information, so it applies only to background processes, i.e., the signal is excluded.\textcolor{red}{por qué lo hacemos?...}\\
 
 
 
@@ -194,20 +166,47 @@ With the parameters defined, their correlation established, and the templates pr
 \subsection{Extraction of the results}
 \label{subsec:bbtt_teststat}
 %
-With the model complete, the results are extracted from the profile likelihood ratio introduced in Section \ref{sec:stat_framework}, evaluated in the asymptotic approximation \cite{Cowan:2010js}. From this statistic the three results already announced are constructed, each of them twice. First in its expected version, obtained in the same signal regions but replacing the observed data by an artificial dataset that reproduces the background so that no observed data enter and the result measures only the sensitivity of the analysis. And then in its observed version, once the signal region has been unblinded. The expected version was the only figure of merit available while the analysis was being built, so the decisions of the previous chapter were taken against it, whereas the observed one constitutes the result of the measurement.
+With the model complete, all the results are extracted from a single test statistic, constructed from the ratio between the maximum value of the likelihood when the parameter of interest is fixed at a given value and its absolute maximum,
+\begin{equation}
+    q(\mu) = -2\ln\frac{L(\mu,\hat{\hat{\boldsymbol{\theta}}}_\mu)}{L(\hat{\mu},\hat{\boldsymbol{\theta}})},
+    \label{eq:test_statistic}
+\end{equation}
+where $\hat{\mu}$ and $\hat{\boldsymbol{\theta}}$ are the values that maximize the likelihood, and $\hat{\hat{\boldsymbol{\theta}}}_\mu$ are those of the nuisance parameters that maximize it when $\mu$ is held fixed. This procedure, known as \textit{profiling}, readjusts the nuisance parameters at each value of the parameter of interest so that they describe the data as well as possible, and thus propagates the uncertainties they represent to the result. By construction, $q(\mu)$ vanishes at the best-fit value and grows as $\mu$ moves away from it, providing a measure of the incompatibility between the data and the hypothesis that the parameter of interest takes that value; the same definition applies when the parameter of interest is a coupling modifier. The practical importance of this statistic is that, when the number of events is sufficiently large, its distribution approaches a $\chi^2$ distribution with as many degrees of freedom as parameters of interest, regardless of the values of the nuisance parameters~\cite{Wilks:1938dza,Cowan:2010js}. This asymptotic approximation, used for all the results of this search, allows them to be computed analytically without generating pseudo-experiments.
+
+Consequently, the signal strength is the value $\hat{\mu}$ that maximizes the likelihood, and its $68\,\%$ confidence interval is bounded by the two values at which $q(\mu)$ reaches unity, a threshold that rises to $3.84$ for the $95\,\%$ confidence level. Confidence intervals for the couplings are derived in the same way from the values that the statistic takes along a scan, while in a two-dimensional scan the thresholds become $2.30$ and $5.99$ and delimit the excluded regions in the plane spanned by the two couplings. 
+
+The width of the interval on $\mu$ reflects all the uncertainties of the model at once, and the contribution of each of them is obtained by removing it. To this end, the scan is repeated with the nuisance parameters of a given group fixed at their best-fit values, so that they can no longer move and the interval becomes narrower. Since independent contributions add in quadrature, the uncertainty attributable to that group is the quadratic difference between the width of the full interval and that of the reduced one. When all the nuisance parameters are fixed, the only remaining source of variation is the Poisson fluctuation of the data, so that the width of the resulting interval corresponds to the statistical uncertainty.
+
+Finally, the significance quantifies the compatibility of the data with the background-only hypothesis and follows from the same statistic evaluated at $\mu = 0$, $q_0 = q(0)$, which compares how well the data are described without signal with how well they are described by the best fit. A large value of $q_0$ therefore indicates that the data require a signal contribution, whereas $q_0$ is set to zero when $\hat{\mu} < 0$, since a deficit of events cannot count as evidence for a signal. In the asymptotic regime, the significance in standard deviations is then simply $Z = \sqrt{q_0}$.\\
+
+Upper limits require a modified version of the statistic, since only a signal strength larger than the one favored by the data should count as evidence against a given hypothesis:
+\begin{equation}
+    \tilde{q}(\mu) =
+    \begin{cases}
+        -2\ln\dfrac{L(\mu,\hat{\hat{\boldsymbol{\theta}}}_\mu)}{L(\hat{\mu},\hat{\boldsymbol{\theta}})} & 0 \leq \hat{\mu} \leq \mu, \\[2ex]
+        -2\ln\dfrac{L(\mu,\hat{\hat{\boldsymbol{\theta}}}_\mu)}{L(0,\hat{\hat{\boldsymbol{\theta}}}_0)} & \hat{\mu} < 0, \\[2ex]
+        0 & \hat{\mu} > \mu.
+    \end{cases}
+    \label{eq:test_statistic_limits}
+\end{equation}
+From the observed value of this statistic, two probabilities are computed: $p_\mu$, the probability of obtaining a value at least as large under the hypothesis of a signal of strength $\mu$ on top of the background, and $1-p_b$, the same probability under the background-only hypothesis. The upper limit is then determined at the $95\,\%$ confidence level using the modified frequentist criterion~\cite{Junk:1999kv,Read:2002hq,ATLAS:2011tau}, which excludes those values of $\mu$ for which
+\begin{equation}
+    \text{CL}_s(\mu) = \frac{p_\mu}{1-p_b} < 0.05 .
+    \label{eq:cls}
+\end{equation}
+Normalizing $p_\mu$ by $1-p_b$ prevents the exclusion of signals to which the analysis is not sensitive, which would occur when using $p_\mu$ alone in the presence of a downward fluctuation of the background, at the cost of a conservative result. The limit is computed for both the inclusive and VBF-exclusive measurements and, by repeating the same procedure for a sequence of coupling values, with the coupling fixed at each value, the limit as a function of that coupling is also obtained.\\
+
+Each of these results is obtained twice, first in its expected version and then in its observed version. The expected version describes the outcome that the analysis would obtain under a given hypothesis in the absence of statistical fluctuations, and thus measures its sensitivity before examining the data in the signal regions. It is derived from an Asimov dataset, built by replacing the content of each bin with its prediction under that hypothesis, such that the fit reproduces exactly the parameter values used to construct it. In the asymptotic approximation, this dataset provides the median expected result together with the $68\,\%$ and $95\,\%$ confidence bands of their distribution~\cite{Cowan:2010js}. Expected limits are computed assuming the background-only hypothesis $\mu = 0$ — which indicate that could be excluded in the absence of signal —, whereas expected significance and confidence intervals are evaluated assuming the SM signal hypothesis, $\mu = 1$ — which indicate how significant the signal would be and how precisely it would be measured if the SM prediction holds.
+
+
+The expected version was the only figure of merit available while the analysis was being built, since the data in the signal regions remained hidden until all the decisions of the previous chapter had been taken, so as to prevent any of them from being influenced by the observed fluctuations. Once the analysis was finalized, the signal regions were unblinded and the same quantities were computed using the observed data, which constitutes the result of the measurement. The comparison between the two, together with the expected bands, indicates whether the data deviate from the hypothesis under which the expected result was obtained.
+
 
 %A partir del estadístico se construyen tres clases de resultados, ya nombrados anteriormente: la intensidad con la que la señal aparece en los datos junto con la significancia que puede atribuírsele, el límite superior sobre la sección eficaz de producción cuando esa significancia no basta para declarar una observación, y los intervalos de confianza sobre los acoplamientos. 
 
-% signal strength
-The signal strength is the value that maximizes the likelihood, and its uncertainty is obtained from the likelihood profile on either side of that maximum, allowing all nuisance parameters to be readjusted at each value of the signal strength. The significance quantifies the compatibility of the data with the background-only hypothesis, by comparing the likelihood at the maximum with that obtained when the signal strength is set to zero.
 
-% upper limits
-The upper limit is determined at the $95\,\%$ confidence level using the modified frequentist criterion described in Section \ref{sec:stat_framework}, and is computed for both the inclusive and VBF-exclusive measurements. By repeating the same procedure for a sequence of coupling values, with the coupling fixed at each value, the limit as a function of that caoupling is also obtained.
 
-% couplings
-Confidence intervals for the couplings are derived from the value that this same statistic takes when the coupling is set at each point in a scan. By construction, it is zero at the value that best fits the data and increases as the value moves away from it, so that the interval is bounded by the two values at which this increase reaches the threshold corresponding to the desired confidence level. The same criterion, applied to a two-dimensional scan, delimits the excluded regions in the plane spanned by two couplings.
-
-All of these results are calculated not only for the entire dataset, but also separately for each data-taking period, for each channel, and for each category group, which allows the breakdown shown in Section \ref{sec:bbtt_results} and reveals the source of the sensitivity.\textcolor{red}{algo de la bondad del ajuste??? no, no?}\\\\
+All of these results are calculated not only for the entire dataset, but also separately for each data-taking period, for each channel, and for each category group, which allows the breakdown shown in Section \ref{sec:bbtt_results} and reveals the source of the sensitivity.\\\\
 
 
 %En esas mismas particiones se verifica además, mediante un contraste de bondad del ajuste, que el modelo describe los datos de forma aceptable, de modo que ningún problema de modelado localizado quede oculto tras el ajuste combinado.\\\\
