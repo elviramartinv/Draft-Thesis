@@ -35,7 +35,7 @@
 % while keeping hyphenation rules correct. Should you add another one
 % in the list, please ensure that `english` is the last one. The last
 % language is used to control standard hyphenation.
-\usepackage[ngerman,french,english]{babel}
+\usepackage[spanish,english]{babel}
 
 \RequirePackage[autostyle=true]{csquotes} % Context-sensitive quotation marks
 \RequirePackage{makeidx}  % For creating indices
