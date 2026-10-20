@@ -66,7 +66,7 @@ The required criterion is provided by chiral counting, equivalent to an expansio
 \label{eq:chiral_dim}
 \end{equation}
 %
-where $A_\mu$ denotes a generic gauge field, $\varphi$ the Goldstone bosons, $h$ the physical Higgs boson, and $g$ and $y$ any of the SM gauge couplings and Yukawa couplings respectively. Derivatives, fermion bilinears and weak couplings therefore carry chiral dimension one, while gauge and scalar fields — the Higgs boson among them — carry chiral dimension zero. Operators are thus classified according to the loop order at which they can first be generated, and the Lagrangian takes the form of a series
+where $A_\mu$ denotes a generic gauge field, $\varphi$ the Goldstone bosons, $h$ the physical Higgs boson — written in lowercase, as is customary in HEFT, and denoted $H$ in Chapter \ref{ch:theory} —, and $g$ and $y$ any of the SM gauge couplings and Yukawa couplings respectively. Derivatives, fermion bilinears and weak couplings therefore carry chiral dimension one, while gauge and scalar fields — the Higgs boson among them — carry chiral dimension zero. Operators are thus classified according to the loop order at which they can first be generated, and the Lagrangian takes the form of a series
 %
 \begin{equation}
     \mathcal{L}_{d_\chi} = \mathcal{L}_{(d_\chi=2)}
@@ -124,14 +124,14 @@ The formalism built on this counting is known in the literature as the non-linea
 Therefore, this LO Lagrangian represents the most general effective description of EWSB with a light scalar singlet and non-linearly realized gauge symmetry, and provides the starting point for constructing the phenomenological Lagrangian used in HH production. When projected onto the interactions relevant for gluon-fusion Higgs pair production, this formal structure is reduced to a set of independent effective couplings. These parameters capture all possible LO deviations in the top–Higgs sector and in the effective Higgs–gluon interactions, and correspond precisely to the HEFT-based parametrization used in experimental and phenomenological studies of Higgs pair production. It should be noted that the Higgs–gluon contact terms are absent from $\mathcal{L}_2$ and first arise at one loop, i.e. in $\mathcal{L}_4$; since $gg\to HH$ is itself loop-induced, both contribute at the same order. Thus, restricted to the terms relevant for $gg\to HH$ production, $\mathcal{L}_2+\mathcal{L}_4$ reduces to the following effective Lagrangian:%
 \begin{equation}
     \mathcal{L}_{\text{HEFT}}^{\HH}
-    =-m_\PQt\left(c_\PQt\frac{h}{v}+c_{2}\frac{h^2}{v^2}\right)\PAQt\PQt-c_{hhh}\frac{m_h^2}{2v}h^3+\frac{\alpha_s}{8\pi}\left(c_{\Pg}\frac{h}{v}+c_{2\Pg}\frac{h^2}{v^2}\right)G^a_{\mu\nu}G^{a,\mu\nu}.
+    =-m_\PQt\left(c_\PQt\frac{h}{v}+c_{2}\frac{h^2}{v^2}\right)\PAQt\PQt-c_{hhh}\frac{m_h^2}{2v}h^3+\frac{\alpha_s}{8\pi}\left(c_{\Pg}\frac{h}{v}+c_{2\Pg}\frac{h^2}{v^2}\right)G^a_{\mu\nu}G^{a,\mu\nu},
     \label{eq:heftL}
 \end{equation}
 %
 where the first three couplings $c_\PQt$, $c_{2}$ and $c_{hhh}$ originate from $\mathcal{L}_2$, and correspond to the coupling between Higgs boson and top quarks, two Higgs boson and top quarks, and the effective Higgs self-coupling; while the Higgs-gluon couplings $c_{\Pg}$ and $c_{2\Pg}$ come from $\mathcal{L}_4$ and correspond to the coupling between Higgs boson and gluons and two Higgs bosons and gluons; a loop factor has been extracted explicitly from the definition of the latter two. A point in HEFT parameter space is thus fixed by:
 %
 \begin{equation}
-    \mathbf{c}^{\text{HEFT}} = \{c_{hhh},\,c_\PQt,\,c_2,\,c_\Pg,\,c_{2\Pg}\}\;,
+    \mathbf{c}^{\text{HEFT}} = \{c_{hhh},\,c_\PQt,\,c_2,\,c_\Pg,\,c_{2\Pg}\}\;.
     \label{eq:HEFT_param}
 \end{equation}
 %
@@ -363,7 +363,7 @@ Formally, let $\mathbf{c}$ be the target point and $\mathbf{c}_{\text{ref}}$ be 
     \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c})
     = \frac{\mathrm{Poly}\left(\mathbf{c},\,\mathbf{A}^{j}\right)}
            {\mathrm{Poly}\left(\mathbf{c}_{\text{ref}},\,\mathbf{A}^{j}\right)}\;
-      \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c}_{\text{ref}})\;,
+      \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c}_{\text{ref}})\;.
 \label{eq:elr_master}
 \end{equation}
 %
@@ -511,7 +511,7 @@ However, while ELR eliminates the need to simulate a sample for each point in th
 The following modeling method, called the Matrix Inversion Method, is based on the same physical model as in the previous Section \ref{subsec:physical_model}, but exploits it in a direction opposite to that of event-level reweighting. While ELR sought to determine the coefficients of the parameterization $A_i$, the matrix method seeks to eliminate dependence on them. To develop this method, it is useful to rewrite Equation \ref{eq:poly_differential} by explicitly separating the monomial vector $\vec{f}(\mathbf{c}) = (f_1(\mathbf{c}),\ dots,f_{N_A}(\mathbf{c}))^\top$ and the coefficient vector $\vec{a} = (A_1,\dots,A_{N_A})^\top$. In this way, the known analytical function of the EFT parameters is contained in $\vec{f}(\mathbf{c})$, while the information to be determined is contained in the vector $\vec{a}$. Accordingly, the prediction of the cross section can be written as:
 %
 \begin{equation}
-    \sigma_{\ggHH}(\mathbf{c}) = \vec{f}^{\;\top}(\mathbf{c})\cdot\vec{a}\;,
+    \sigma_{\ggHH}(\mathbf{c}) = \vec{f}^{\;\top}(\mathbf{c})\cdot\vec{a}\;.
 \label{eq:master_model}
 \end{equation}
 %
@@ -547,7 +547,7 @@ Since the matrix $F$ is constructed exclusively from the couplings of the basis 
 \begin{equation}
     \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c})
     = \sum_{k=1}^{N_A} w_k(\mathbf{c})\;
-      \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c}_k)\;.
+      \frac{d}{d\xi_j}\,\sigma_{\ggHH}(\mathbf{c}_k)\;,
 \label{eq:matrix_differential}
 \end{equation}
 %
@@ -574,11 +574,11 @@ A poorly chosen basis can lead to flawed method performance due to various poten
 
 The consequences of a deficient basis can be roughly quantified. Assuming statistically independent basis points, the error propagation in Equation \ref{eq:matrix_differential} is
 %
-$$
+\begin{equation*}
     \left[\Delta\left(\frac{d\sigma_{\ggHH}(\mathbf{c})}{d\xi_j}\right)\right]^{2}
     = \sum_{k=1}^{N_A} w_k^{2}(\mathbf{c})\,
       \left[\Delta\left(\frac{d\sigma_{\ggHH}(\mathbf{c}_k)}{d\xi_j}\right)\right]^{2}\;,
-$$
+\end{equation*}
 %
 so that the quantity $\sum_k w_k^{2}(\mathbf{c})$ acts as an amplification factor for the statistical uncertainties of the samples that make up the basis. Since the weights are functions of the objective point, this factor can grow without limit. Consequently, in a poorly conditioned basis, a small cross section may end up being modeled as the difference between two much larger quantities, which can lead to disproportionate uncertainties precisely in regions that may prove to be decisive for the sensitivity of the analysis.
 
@@ -637,7 +637,7 @@ Therefore, once the method for generating signal shapes has been established, th
 \begin{itemize}
     \item The \textbf{Wasserstein distance} or earth movers distance~\cite{ramdas2015wassersteinsampletestingrelated,2020SciPy-NMeth} $d_W(H_{t},H_{m})$ quantifies the "cost" of transforming one distribution into the other. It is a measure commonly used in machine learning problems because it always has a well-defined gradient, and is stable with respect to small variations. It also offers a specific advantage for comparing kinematic histograms: it is not a bin-to-bin measure, but a genuine distance, i.e., a global shift in the spectrum of $m_{HH}$ toward slightly lower masses does not result in the dramatic differences that bin-to-bin comparison would reveal in the regions of steepest gradient, while the effect through the experimental lens of resolution and signal acceptance is actually small. Being a transport distance, it carries the units of the observable, and the finite size of the templates leaves a residual distance that decreases as the inverse square root of the number of events.\footnote{For the template sizes used here this residual amounts to a \textcolor{red}{few GeV}, comparable to the distances found where the method performs best.} Its absolute value is therefore interpretable only at fixed statistics, and all comparisons that follow use a common template size.
     \item A \textbf{statistics error} by comparing the per bin error $\delta_i^{m}$ of $H_{m}$ with the corresponding bin content $b_i^{m}$ and $\delta_i^{m}$ with the per bin error $\delta_i^{t}$ of $H_{t}$:\\ $f_{stat}(H_{t},H_{m})=1/N_\text{bins}\cdot\sum_{i=0}^{i=N_\text{bins}}(0.5\cdot\delta_i^\text{m}/b_i^{m} +0.5\cdot\delta_i^{m}/\delta_i^{t})$
-    \item The number of \textbf{negative bins} $N_{\rm neg}$ in $H_m$, which is counted directly and used to penalize basis choices that lead to negative bins in the resulting signal template that make no physical sense.
+    \item The number of \textbf{negative bins} $N_{\text{neg}}$ in $H_m$, which is counted directly and used to penalize basis choices that lead to negative bins in the resulting signal template that make no physical sense.
 \end{itemize}
 %
 
@@ -646,16 +646,17 @@ Ideally, when the modeling works properly, $d_W(H_{t},H_{m})$ should be small, o
 Given these ingredients, the objective function is defined as:
 \begin{equation}
 \label{eq:scorefunc}
-    s(H_{t},H_{m})=\frac{1}{1+a\cdot d_W(H_{t},H_{m}) + b\cdot f_{stat}(H_{t},H_{m}) + c\cdot N_{neg}}
+    s(H_{t},H_{m})=\frac{1}{1+a\cdot d_W(H_{t},H_{m}) + b\cdot f_{\text{stat}}(H_{t},H_{m}) + c\cdot N_{\text{neg}}}\;,
 \end{equation}
-With parameters $a,\,b,\,c$ determining the weight of each respective objective, and where the default values $a=0.6,\,b=0.3$, and $c=2$ have been adopted because they yielded the best results after testing different configurations. When constructed in this manner, the score is bounded between $0$ and $1$, and decreases continuously toward zero as any of the three failure modes occurs. The upper bound, however, is not attained even in the ideal case of perfect agreement in shape and absence of negative bins, since reaching it would require the three terms of the denominator to vanish simultaneously, and neither of the first two does. The second term of $f_{stat}(H_{t},H_{m})$ compares the uncertainty of the modeled template with that of the target, so that the absence of statistical dilution corresponds to $\delta_i^{m}=\delta_i^{t}$, and the metric therefore settles at $f_{stat}(H_{t},H_{m})\simeq0.5$ instead of vanishing; likewise, $d_W(H_{t},H_{m})$ retains a residual value set by the finite size of the templates being compared, as discussed below. The score of an ideal basis is therefore of the order of a few tenths, and the absolute value it takes is not meaningful in itself: it depends on the weights $a,\,b,\,c$, on the binning and on the composition of the test set, and it is only to be read as a relative measure between competing bases.\medskip
+%
+with parameters $a,\,b,\,c$ determining the weight of each respective objective, and where the default values $a=0.6,\,b=0.3$, and $c=2$ have been adopted because they yielded the best results after testing different configurations. When constructed in this manner, the score is bounded between $0$ and $1$, and decreases continuously toward zero as any of the three failure modes occurs. The upper bound, however, is not attained even in the ideal case of perfect agreement in shape and absence of negative bins, since reaching it would require the three terms of the denominator to vanish simultaneously, and neither of the first two does. The second term of $f_{stat}(H_{t},H_{m})$ compares the uncertainty of the modeled template with that of the target, so that the absence of statistical dilution corresponds to $\delta_i^{m}=\delta_i^{t}$, and the metric therefore settles at $f_{stat}(H_{t},H_{m})\simeq0.5$ instead of vanishing; likewise, $d_W(H_{t},H_{m})$ retains a residual value set by the finite size of the templates being compared, as discussed below. The score of an ideal basis is therefore of the order of a few tenths, and the absolute value it takes is not meaningful in itself: it depends on the weights $a,\,b,\,c$, on the binning and on the composition of the test set, and it is only to be read as a relative measure between competing bases.\medskip
 
 \subsubsection{Basis parameterization}
 %
 After defining the objective function, the next problem to be addressed is formulating the basis search as a hyperparameter optimization problem. The aim is to optimize the basis:
 %
 \begin{equation}
- B=\left[ \begin{bmatrix}  c_1^{1},  & c_1^{2},  & \cdots & c_1^{nc}, \end{bmatrix},\, \begin{bmatrix}  c_2^{1},  & c_2^{2},  & \cdots & c_2^{nc},  \end{bmatrix},\, ...\, \begin{bmatrix}  c_{nb}^{1},  & c_{nb}^{2},  & \cdots & c_{nb}^{nc},  \end{bmatrix}\right]
+ B=\left[ \begin{bmatrix}  c_1^{1},  & c_1^{2},  & \cdots & c_1^{nc}, \end{bmatrix},\, \begin{bmatrix}  c_2^{1},  & c_2^{2},  & \cdots & c_2^{nc},  \end{bmatrix},\, ...\, \begin{bmatrix}  c_{nb}^{1},  & c_{nb}^{2},  & \cdots & c_{nb}^{nc},  \end{bmatrix}\right]\;,
  \label{eq:basicbasis}
 \end{equation}
 %

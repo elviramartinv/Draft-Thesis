@@ -51,7 +51,7 @@ With two $7$ TeV beams, collisions occur at a center-of-mass energy of $\sqrt{s}
 % Luminosidad
 The reach of the LHC is also determined by the instantaneous luminosity $\mathcal{L}$, which is the parameter that relates the number of events of a given process occurring per unit time to its cross section $\sigma$:
 \begin{equation}
-    \frac{dN}{dt} = \mathcal{L}\,\sigma 
+    \frac{dN}{dt} = \mathcal{L}\,\sigma,
     \label{eq:event_rate}
 \end{equation}
 where $\mathcal{L}$ is a quantity that depends solely on the beam conditions. At the LHC, for Gaussian-profile beams colliding at a crossing angle $\theta_c$, the luminosity is expressed as~\cite{Bruning:2004ej}:
@@ -426,12 +426,12 @@ Finally, when the $\tau\tau$ pair originates from a Higgs boson with high $p_T$,
 %
 As outlined in Section \ref{subsec:CMS_coordinates}, neutrinos pass through the detector without interacting, and therefore their presence can only be inferred from the momentum imbalance in the transverse plane. Since the PF algorithm provides a complete description of all particles reconstructed in the event, the missing transverse momentum is defined as the negative vector sum of the transverse momenta of all PF candidates,
 \begin{equation}
-    \vec{p}_T^{\,\text{miss}} = -\sum_{i} \vec{p}_{T,i}\,
+    \vec{p}_T^{\,\text{miss}} = -\sum_{i} \vec{p}_{T,i},
     \label{eq:met}
 \end{equation}
 whose modulus is denoted by $p_T^\text{miss}$~\cite{CMS:2019ctu}. Since it depends on all the particles involved in the event, its measurement is sensitive to any error in the reconstruction of each of them, and its resolution is dominated by that of the hadronic activity, as the momenta of the leptons and photons are measured with much greater precision than those of the jets. For the same reason, the corrections that most affect $\vec{p}_T^{\,\text{miss}}$ are those applied to the energy of the jets, which are propagated to $\vec{p}_T^{\,\text{miss}}$ by substituting the corrected momentum of each jet for the uncorrected one in the sum~\cite{CMS:2019ctu},
 \begin{equation}
-    \vec{p}_T^{\,\text{miss,corr}} = \vec{p}_T^{\,\text{miss}} - \sum_{\text{jets}} \left(\vec{p}_{T,j}^{\,\text{corr}} - \vec{p}_{T,j}\right),
+    \vec{p}_T^{\,\text{miss,corr}} = \vec{p}_T^{\,\text{miss}} - \sum_{\text{jets}} \left(\vec{p}_{T,j}^{\,\text{corr}} - \vec{p}_{T,j}\right).
     \label{eq:met_corr}
 \end{equation}
 
