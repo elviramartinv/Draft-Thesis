@@ -33,11 +33,13 @@ This formulation results in a continuous, multidimensional parameter space, whic
 % matrix inversion
 In response to this challenge, experimentalists have explored various methods. Among them, the so-called "matrix inversion method" has been the focus of extensive study by both ATLAS and CMS, as it has been employed in several analysis \cite{ATLAS:2024pov,CMS_combination}. This method elegantly simplifies the problem by allowing the signal to be modeled for a wide variety of parameter combinations by simulating only a small number of signal samples that can be linearly combined to reconstruct the signal at any point in EFT space. However, this approach presents inherent challenges, especially in high-dimensional cases such as those attempted to be addressed. Therefore, although the method is not newly developed, its systematic application to high-dimensional spaces and its coherent integration into broad EFT frameworks remains an open task and requires optimized development to correctly describe higher-dimensional spaces.
 
-The aim of this chapter is to further refine the method to expand the coverage beyond what was shown in previous ATLAS and CMS results \cite{ATLAS:2025tkn,CMS_combination}, which constitutes the main original contribution of this thesis to the BSM interpretation of HH searches. The chapter is organized as follows: the first section presents a detailed discussion of the two effective descriptions used in the HH context: the Higgs EFT (HEFT) and the Standar Model EFT (SMEFT). The second section introduces the development of signal modeling techniques to address the computational demands of scanning the entire parameter space imposed by the EFTs formulation, thereby enabling the BSM interpretation of the experimental results. \textcolor{red}{La tercera/ultima sección, recoge la teoría recabada hasta el momento y se dedica al desarrollo y aplicación real de las modeling techniques, así como el manejo que se hace de los problemas que estas técnicas llevan consigo inherentemente. Finalmente, se muestra una validación en realistic analysis, tales como bbtt, 4b ... }
+The aim of this chapter is to extend the matrix inversion method beyond the coverage of previous ATLAS and CMS results \cite{ATLAS:2025tkn,CMS_combination}, which constitutes the main original contribution of this thesis to the BSM interpretation of HH searches. Section \ref{subsec:EFTs} presents the effective description adopted for $gg\to HH$ production, the Higgs EFT (HEFT), together with the dimensionality of the parameter space it defines. Section \ref{sec:Modeling} introduces the signal modeling techniques to address the computational demands of scanning the entire parameter space imposed by the EFT formulation, thereby enabling the BSM interpretation of the experimental results. Finally, Section \ref{sec:full_model} turns the choice of basis of the matrix inversion method into an optimization problem, constructs an optimized basis for the full HEFT space, and validates it both at generator level and through the complete selection of realistic analyses.
+
+% \textcolor{red}{La tercera/ultima sección, recoge la teoría recabada hasta el momento y se dedica al desarrollo y aplicación real de las modeling techniques, así como el manejo que se hace de los problemas que estas técnicas llevan consigo inherentemente. Finalmente, se muestra una validación en realistic analysis, tales como bbtt, 4b ... }
 
 
 
-\section{EFT frameworks for \texorpdfstring{$gg\to HH$}{gg → HH} production}
+\section{Higgs EFT for \texorpdfstring{$gg\to HH$}{gg → HH} production}
 \label{subsec:EFTs}
 % On the other hand, any known UV model (residing at scales well beyond
 % the electroweak scale) can be mapped to such an effective Lagrangian, rendering a formulation of
@@ -45,16 +47,14 @@ The aim of this chapter is to further refine the method to expand the coverage b
 % and theory.
 When studying new physics that has not yet been covered, rather than dealing with the vast amount of possible extensions to the SM, the idea behind the EFT approach is to assume that a specifc structure of any BSM physics can be integrated into the SM, resulting in effective couplings that are accessible at currently tested energies. In this manner, a substantial theory space can be subject to experimental constraints by establishing limits on the effective couplings that embody the low-energy effects of new physics as observed in collider data.
 
-There is no single way to formulate an EFT description. In the context of this thesis, the central issue in formulating the EFT is the nature of the observed scalar and its role in EWSB. According to the SM, the physical Higgs boson and the three Goldsonte bosons — absorbed by th $W$ and $Z$ bosons — form a single $SU(2)_L$ doublet, as seen in equation \ref{eq:????}. However, the SM theory assumes the Higgs to be the fourth component of the doublet, whereas the only experimentally established facts are the existence of the three Goldstone bosons and a light neutral scalar with mass $m_H \simeq 125$~GeV and couplings compatible with the SM. The determination of whether this scalar is indeed the fourth component of the same doublet, or if it is instead a light, SM-like electroweak single, remains a hypothesis rather than a measurement. From these two possibilities arise the two internally consistent, gauge-invariant effective descriptions most commonly used in HH searches: HEFT, which adopts the more agnostic hypothesis where the physical Higgs boson is treated as an electroweak singlet; and SMEFT, which maintains the Higgs doublet structure, leading to a more restrictive hypothesis.
+Effective descriptions of Higgs boson pair production differ in the assumption they make about the nature of the observed scalar, as discussed in Section \ref{subsec:BSM_production}. The Standard Model EFT (SMEFT) retains the Higgs boson as part of an $SU(2)_L$ doublet, so that its couplings are correlated by the structure of the doublet, whereas the Higgs EFT (HEFT) treats it as an electroweak singlet and leaves those couplings independent. This chapter adopts HEFT, since it provides the most general description of $gg\to HH$ production at leading order: the five effective couplings $\kappa_{\lambda}$, $\kappa_t$, $c_2$, $c_g$ and $c_{2g}$ of Figure \ref{fig:BSM_diagrams} are free parameters, and the leading dimension-six operators of SMEFT map, at the level of the Lagrangian, onto a restricted region of the same space in which some of them are correlated — for instance, $c_{2g}$ is then fixed by $c_g$ \cite{Heinrich:2022huh}. A signal model valid over the HEFT space therefore covers the widest range of scenarios with the smallest set of assumptions, while its extension to the complete SMEFT description is discussed in Section \ref{subsec:summary_outlook}.\textcolor{red}{NO SE SI MOTIVAR TANTO QUE NO HAGO SMEFT, O SIMPLEMENTE DEJARLO FUERA DEL MAPA (EN PARTE PORQUE NO HA DADO TIEMPO A METER SU IMPLEMENTACION, AUNQUE HEFT PARECE MAS IMPORTANTE YA QUE LO HICIMOS PRIMERO) Y DECIR A POSTERIORI QUE EL TRATAMIENTO SE PUEDE EXTENDER A SMEFT}
 
-The EFT formalism for Higgs boson pair production has already been briefly introduced in Section \ref{subsec:BSM_production}, along with the set of five effective couplings $\kappa_{\lambda}$, $\kappa_t$, $c_2$, $c_g$ and $c_{2g}$ that govern HH production via gluon fusion at leading order (see Fig~\ref{fig:BSM_diagrams}), and whose contribution can significantly alter the total cross section and the kinematic characteristics of HH events. Therefore, while HEFT treats these parameters as free, in SMEFT they are correlated by the structure of the doublet. The following section aims to provide a detailed description of the two EFTs used, specifying the higher-dimensional operators that supplement the SM Lagrangian in each of the formalisms and the characteristics that emerge from them.
+The generality of this framework and the expanding coverage of BSM scenarios, as experimental HH analysis evolves, introduce a high dimensionality in the associated parameter space to be addressed. In this context, the cross section and kinematic distributions exhibit non-trivial variations due to interference between topologies. Therefore, covering the full space by predicting the signal at an arbitrary point in such space, as required for a statistical interpretation, cannot be accomplished through direct simulation. This motivates the development of modeling techniques, which will be discussed in the remainder of this chapter.
 
-The generality of these EFT frameworks and the expanding coverage of BSM scenarios, as experimental HH analysis evolves, introduce a high dimensionality in the associated parameter space to be addressed. In this context, the cross section and kinematic distributions exhibit non-trivial variations due to interference between topologies. Therefore, covering the full space by predicting the signal at an arbitrary point in such space, as required for a statistical interpretation, cannot be accomplished through direct simulation. This motivates the development of modeling techniques, which will be discussed in the remainder of this chapter.
+The rest of this section is organized as follows. Section \ref{subsec:HEFT} presents the non-linear chiral expansion on which HEFT rests, the resulting effective Lagrangian for $gg\to HH$ production, and its extension to next-to-leading order in QCD. Section \ref{subsec:EFT_validity} addresses the range of validity of the description, an issue of particular importance in HH searches, which derive much of their sensitivity from the high-$m_{HH}$ tail. Section \ref{subsec:multidimensionality} closes by quantifying the dimensionality of the resulting parameter space and motivating the need for a dedicated signal modeling strategy. The presentation follows the conventions of Refs.~\cite{Alasfar:2023xpc,Buchalla:2018yce}.
 
-\textcolor{red}{Las dos primeras secciones \ref{subsec:HEFT} and \ref{subsec:SMEFT} por tanto presentan los HEFT and SMEFT Lagrangians relevantes para la producción $gg\to HH$.
-\textit{The rest of this section is organized as follows. Sections \ref{subsec:HEFT} and \ref{subsec:SMEFT} present the HEFT and SMEFT Lagrangians relevant for \ggHH production and the corresponding parameter spaces, haciendo hincapie en la alta dimensionalidad que ambos formalismos introducen al problema. Section \ref{subsec:HEFT_SMEFT} discusses the relation between the two descriptions and the physical scenarios that motivate each of them, and Section \ref{subsec:EFT_validity} addresses the range of validity of the effective expansions, an issue of particular importance in HH searches, which derive much of their sensitivity from the high-$m_{HH}$ tail. Section \ref{subsec:multidimensionality} closes by quantifying the dimensionality of the resulting parameter spaces and motivating the need for a dedicated signal modeling strategy. The presentation follows closely the conventions of Refs.~\cite{Alasfar:2023xpc,Buchalla:2018yce,Heinrich:2023rsd}.}}
 
-\subsection{Higgs EFT}
+\subsection{The non-linear chiral expansion}
 \label{subsec:HEFT}
 % https://arxiv.org/pdf/1212.3305
 %\paragraph{A Higgs boson outside the doublet}
@@ -164,200 +164,27 @@ Section \ref{subsec:physical_model}.
 %In particular, since the expansion is not tied to a heavy scale $\Lambda$, it remains applicable to non-decoupling new physics, in which the heavy states acquire a substantial part of their mass from EWSB itself and therefore do not decouple as their masses grow — a class of scenarios that lies outside the reach of the linear description to which we turn next.
 
 
-\subsection{Standard Model EFT}
-\label{subsec:SMEFT}
-%
-The SMEFT approach postis that the physical Higgs boson is retained as the fourth component of the $SU(2)_L$ doublet $\phi$, with the same quantum numbers as in the SM, and that the electroweak symmetry is realized linearly exactly as in Section \ref{subsec:BEH}. The Goldstone bosons and the physical scalar are therefore not independent objects but components of a single field, and every operator built from the field $\phi$ will necessarily affect them together. In this regard, SMEFT makes a stronger assumption than HEFT, which holds as long as the new physics is decoupled, i.e., when the heavy states of new physics obtain their mass from a mechanism unrelated to the EWSB, and therefore their effects disappear as their masses increase. In this sense, SMEFT adopts a more constrained description of BSM effects in the Higgs sector, valid only for a subset of UV theories in which the low-energy limit can be obtained by decoupling the heavy physics and thus preserving the linear structure of the SM.
-
-In this scheme, the effective expansion is organized according to the canonical dimensions of the operators, as introduced in \textcolor{red}{Equation \ref{eq:eft_lagrangian}}, where each additional dimension is suppressed by a further power of the new physics scale $\Lambda$, so that at LO corrections:
-%
-\begin{equation}
-    \mathcal{L}_{\text{SMEFT}} = \mathcal{L}_{\text{SM}}
-    + \sum_i \frac{C_i^{(6)}}{\Lambda^2}\,\mathcal{O}_i^{\dim 6}
-    + \mathcal{O}\!\left(\frac{1}{\Lambda^{3}}\right)\;,
-\label{eq:smeft_expansion}
-\end{equation}
-%
-with $\mathcal{O}_i$ operators of canonical dimension larger than four built out of the SM fields, and $C_i$ the corresponding Wilson coefficients~\cite{Heinrich:2022huh}. Dimension-five operators violate lepton number and are irrelevant for Higgs phenomenology, so the leading corrections to Higgs observables arise at dimension six. A complete and non-redundant set of dimension-six operators is provided by the Warsaw basis~\cite{Grzadkowski:2010es}, of which only a small subset contributes to $gg\to HH$ production.
-
-In contrast to the chiral expansion of Equation \ref{eq:heft_expansion}, where the Higgs field carries zero chiral dimension and could appear in arbitrary powers at given order, in this formulation, the Higgs field — as a component of the doublet — always appears through the fixed combination $\phi^\dagger\phi$, meaning that a single operator generates the vertices involving one and two Higgs bosons at once. Therefore, while HEFT treats the couplings as independent parameters, in SMEFT they are related, which makes the description much more restrictive but at the same time more predictive, since it connects HH production to single-Higgs and electroweak precision observables within a single set of parameters.
-
-
-%https://inspirehep.net/literature/2726635 = https://arxiv.org/pdf/2311.15004
-% file:///C:/Users/elvi-/Downloads/JHEP08(2022)079.pdf
-
-% https://iopscience.iop.org/article/10.1088/1742-6596/2438/1/012153 =  https://arxiv.org/pdf/2212.00711
-
-\subsubsection{The dimension-six Lagrangian for \texorpdfstring{\ggHH}{gg → HH}}
-%https://arxiv.org/pdf/2407.04747 : PHENOMENOLOGICAL RESULTS - echarle un ojo
-In contrast to the non-linear case, where the complete LO Lagrangian can be expressed explicitly in Equation \ref{eq:heft_L2}, the full set of dimension-six operators is far too extensive to work with directly: in the full generality of the flavor sector it contains 2499 real parameters, a large subset of which could in principle contribute to $gg\to HH$~\cite{Heinrich:2023rsd}. In order to obtain a manageable subset, it is imposed a flavor symmetry $U(2)_q\times U(2)_u\times U(3)_d$ in the quark sector, which forbids chirality-flipping bilinears involving light quarks and sets all fermion masses and Yukawa couplings to zero with the exception of the top quark. This reflects the prominent role expected of the top quark in many BSM scenarios. Therefore, the number of relevant operators are considerably reduced by excluding those that generate only electroweak loops, as their impact is significantly smaller in this channel.
-
-Even within this reduced set, not all operators contribute at the same order. While SMEFT is organized by canonical dimension, the perturbative structure introduces an additional hierarchy linked to loop suppression factors. Thus, operators can be classified into two categories: those that can already be generated at tree level in the matching to the UV theory, and those that are necessarily loop-generated and therefore carry an implicit factor $L=(16\pi^2)^{-1}$. In this expansion, contributions without loop suppression are termed as \textit{leading}, while those that include additional $L=(16\pi^2)^{-1}$  factors are classified as \textit{subleading}~\cite{Heinrich:2023rsd}.
-
-The dimension-six SMEFT Lagrangian is typically given in the so-called Warsaw basis~\cite{Grzadkowski:2010es}, so that the leading contribution to $gg\to HH$ consists of five operators~\cite{Heinrich:2022huh}:
-%
-\begin{equation}
-\begin{split}
-    \mathcal{L}_{\text{SMEFT}}^{\HH,\,\text{lead}} =\;&
-      \frac{c_{\PH\Box}}{\Lambda^2}(\phi^\dagger\phi)\Box(\phi^\dagger\phi)
-    + \frac{c_{\PH D}}{\Lambda^2}(\phi^\dagger D_\mu\phi)^*(\phi^\dagger D^\mu\phi)
-    + \frac{c_\PH}{\Lambda^2}(\phi^\dagger\phi)^3 \\
-    &+ \frac{c_{\PQt\PH}}{\Lambda^2}\left(\phi^\dagger\phi\,\bar{Q}_L\tilde{\phi}\PQt_R
-      + \text{h.c.}\right)
-    + \frac{c_{\PH G}}{\Lambda^2}\phi^\dagger\phi\, G^a_{\mu\nu}G^{\mu\nu,a}\;,
-\end{split}
-\label{eq:smeft_lead}
-\end{equation}
-%
-where $\tilde{\phi}=i\sigma_2\phi^*$ is the charge conjugate of the Higgs doublet. Here, the first three coefficients modify the Higgs kinetic term and the scalar potential, and hence the trilinear self-coupling; $c_{\PQt\PH}$ modifies the top Yukawa interaction; and $c_{\PH G}$ generates a contact interaction between the Higgs doublet and two gluons.
-
-While the five operators in Eq.~\ref{eq:smeft_lead} capture the leading SMEFT effects in weakly coupled UV completions where loop-generated structures are suppressed, in strongly coupled scenarios it is possible to relax this assumption to allow for additional contributions. Therefore, loop-generated operators can make sizeable contributions in more general BSM scenarios, such as those with strong dynamics or heavy fermionic partners. This is particularly the case for the chromomagnetic dipole and the four-top interactions, which appear at the next order in the loop hierarchy and can be equally relevant in gluon fusion di-Higgs production in the aforementioned scenarios, populating a well-defined subset of the Warsaw basis. Therefore, their inclusion provide a more comprehensive and robust parameterization of the SMEFT effets relevant for Higgs pair production. Furthermore, these operators mix with the leading terms under RGE evolution, so their impact can be amplified at low scales if they are present in the UV. To account for these possibilities, and following ~\cite{Heinrich:2023rsd}, these contributions enter at subleading order according to the previous classification:
-%
-\begin{equation}
-\begin{split}
-    \Delta\mathcal{L}_{\text{SMEFT}}^{\HH,\,\text{sublead}} =\;&
-      \frac{c_{\PQt G}}{\Lambda^2}\left(\bar{Q}_L\sigma^{\mu\nu}T^a G^a_{\mu\nu}
-      \tilde{\phi}\PQt_R + \text{h.c.}\right) \\
-    &+ \frac{c_{Q\PQt}^{(1)}}{\Lambda^2}\bar{Q}_L\gamma^\mu Q_L
-      \bar{\PQt}_R\gamma_\mu\PQt_R
-     + \frac{c_{Q\PQt}^{(8)}}{\Lambda^2}\bar{Q}_L\gamma^\mu T^a Q_L
-      \bar{\PQt}_R\gamma_\mu T^a\PQt_R \\
-    &+ \frac{c_{QQ}^{(1)}}{\Lambda^2}\bar{Q}_L\gamma^\mu Q_L\bar{Q}_L\gamma_\mu Q_L
-     + \frac{c_{QQ}^{(8)}}{\Lambda^2}\bar{Q}_L\gamma^\mu T^a Q_L
-      \bar{Q}_L\gamma_\mu T^a Q_L \\
-    &+ \frac{c_{\PQt\PQt}}{\Lambda^2}\bar{\PQt}_R\gamma^\mu\PQt_R
-      \bar{\PQt}_R\gamma_\mu\PQt_R\;,
-\end{split}
-\label{eq:smeft_sublead}
-\end{equation}
-%
-where $\sigma^{\mu\nu}=\tfrac{i}{2}[\gamma^\mu,\gamma^\nu]$ and the Warsaw operator $\mathcal{O}^{(3)3333}_{qq}$ has been traded for $\mathcal{O}^{(8)}_{QQ}$, the two being related by a linear redefinition of their Wilson coefficients~\cite{Heinrich:2023rsd}. Equations \ref{eq:smeft_lead} and \ref{eq:smeft_sublead} together constitute the eleven-operator description adopted in this thesis work. It should be stressed that the leading/subleading classification rests on the assumption of a renormalizable and weakly coupled UV sector, is not invariant under field redefinitions and is therefore basis dependent, and that the subleading set retained here does not constitute a complete subleading order in a systematic power counting~\cite{Heinrich:2023rsd}.
-
-
-\subsubsection{The effective parameter space}
-So far, in the formulation presented via Equations \ref{eq:smeft_lead} and \ref{eq:smeft_sublead}, eleven operators appear that provide a complete description of the SMEFT contributions relevant to Higgs pair production. However, it should be noted that not all Wilson coefficients remain independent once the theory is expressed in terms of physical fields. The transition from the gauge basis to the mass basis following the EWSB introduces non-trivial relations among operators, resulting in some of the presented coefficients being combinable into effective parameters that control the physical interactions probed in $gg\to HH$.
-
-Accordingly, after EWSB, the field redefinition required to restore the Higgs kinetic term to its canonical form combines the two kinetic coefficients into the single parameter $c_{\PH kin}=c_{\PH\Box}-\tfrac{1}{4}c_{\PH D}$. Similarly, a simplification can be carried out with respect to the four-fermion sector, taking into account that the contributions of $c_{QQ}^{(1)}$ and $c_{\PQt\PQt}$ to the amplitude factorize in the same way and can only be probed through the combination $c_{QQ\PQt\PQt}=c_{QQ}^{(1)}+c_{\PQt\PQt}$, as shown in~\cite{Heinrich:2023rsd}. Therefore, after eliminating redundancies associated with field redefinitions and EWSB, the former relations are obtained, reducing the number of independent parameters relevant for $gg\to HH$ from eleven to nine. In this way, the physical observables are exclusively determined by a specific subset of the original Wilson coefficients, those that genuinely control the physical deformations of the amplitude. Consequently, a given point in the SMEFT parameter space is fixed by
-%
-\begin{equation}
-    \mathbf{c}^{\text{SMEFT}} = \{c_\PH,\,c_{\PH kin},\,c_{\PQt\PH},\,c_{\PH G},\,
-    c_{\PQt G},\,c_{Q\PQt}^{(1)},\,c_{Q\PQt}^{(8)},\,c_{QQ\PQt\PQt},\,c_{QQ}^{(8)}\}\;,
-\label{eq:smeft_params}
-\end{equation}
-%
-with the SM recovered when all of them vanish.
-
-\subsubsection{Truncation of the EFT expansion}
-%
-After identifying the nine independent SMEFT effective parameters, the next logical step is to determine the order of the EFT expansion at which the contributions should be considered. Unlike HEFT, where the choice to be made concerned the loop order retained in the chiral expansion, in the SMEFT case the corresponding scheme choice concerns the order in $1/\Lambda$ at which the series is truncated. Hence, given that the amplitude in SMEFT is a series in $1/\Lambda^2$, the squared matrix element contains both a linear term in the dimension-six coefficients — arising from the interference with the SM — and a quadratic term. The latter is formally of the same order in $1/\Lambda$ as the interference between the SM and dimension-eight operators, which is not included, and retaining it is a scheme choice rather than a consistent order in the expansion. However, this is the standard choice in di-Higgs studies, since the linear interference is often suppressed and the quadratic terms dominate the sensitivity over much of the parameter space. This coice is known as the \textit{quadratic} truncation, where only the SM, linear and quadratic contributions for the leading operators are retained, while the subleading ones enter only linearly. The impact of this choice, and the conditions under which the truncated series remains a valid description, are discussed in Section \ref{subsec:EFT_validity}.
-
-
-
-
-\vspace{10pt}
-% cierre
-
-
-\noindent In summary, it has been demonstrated that SMEFT provides a description of HH that is considerably more constrained than HEFT and therefore more powerful where its assumptions hold. Its effect is described by the set of nine Wilson coefficients of Equation \ref{eq:smeft_params}, which parameterize the low-energy imprint of any decoupling extension of the SM and can be matched onto specific UV-complete models, allowing results expressed as bounds on them to be reinterpreted far beyond the process from which they were extracted. Nevertheless, due to the loss of generality that comes with imposing the doublet structure, this formalism excludes the non-decoupling scenarios that motivated HEFT in the first place. The two frameworks are therefore complementary rather than alternative, and the relation between them — together with the conditions under which one reduces to the other — is the subject of the following section.
-
-
-
-\subsection{Translating between HEFT and SMEFT}
-\label{subsec:HEFT_SMEFT}
-%
-The two descriptions presented above are not independent alternatives, but rather complementary. In this sense, the differences in their respective approaches are reflected in the distinct ways each description encodes correlations among Higgs interactions. Therefore, while both frameworks aim to parameterize deviations from the SM, the choice between them determines which type of UV scenario can be consistently captured and, consequently, the physical significance of experimental results expressed in terms of those parameters. It is thus essential to understand not only the applicability of each formalism separately — which will be covered in the Section \ref{subsec:EFT_validity} — but also the relationship between the two and the extent to which that relationship can be trusted. This is why it is particularly informative to translate between the two descriptions.
-
-The qualitative statement of these relationships is based on the fact that HEFT makes no assumptions about how the observed scalar is embedded in the EWSB sector; therefore, any SMEFT Lagrangian can be rewritten in terms of the HEFT formalism. In this manner, SMEFT can be regarded as a subset of HEFT that emulates the SM structure. The most direct way to make this connection explicit is to construct the dictionary between the two sets of parameters, yielding a set of concrete relations between couplings that shows exactly which direction in HEFT space are accessible to the linear realization and which lie outside its reach.
-
-To obtain the translation, the Higgs doublet in Eq. \ref{eq:smeft_lead} is expanded around its vacuum expectation value, and applying the field redefinition
-%
-\begin{equation}
-    h \;\rightarrow\; h + v^2\frac{c_{\PH kin}}{\Lambda^2}
-    \left(h + \frac{h^2}{v} + \frac{h^3}{3v^2}\right)\;,
-\label{eq:higgs_redef}
-\end{equation}
-%
-which eliminates the modification that $c_{\PH\Box}$ and $c_{\PH D}$ induce in the field normalization, the Higgs term is restored to its canonical form $(\partial_\mu h)^2/2$ up to $\mathcal{O}(\Lambda^{-4})$, with $c_{\PH kin}=c_{\PH\Box}-\tfrac{1}{4}c_{\PH D}$ as defined in Section~\ref{subsec:SMEFT}. Comparing the coefficients of the corresponding terms in the two Lagrangian then yields the leading-order dictionary collected in Table \ref{tab:heft_smeft}.
-%
-\begin{table}
-    \centering
-    \begin{tabular}{cl}
-        \toprule
-        HEFT & SMEFT (Warsaw basis) \\
-        \midrule
-        $c_{hhh}$  & $1 - 2\dfrac{v^2}{\Lambda^2}\dfrac{v^2}{m_\PH^2}\,c_\PH
-                      + 3\dfrac{v^2}{\Lambda^2}\,c_{\PH kin}$ \\[8pt]
-        $c_\PQt$   & $1 + \dfrac{v^2}{\Lambda^2}\,c_{\PH kin}
-                      - \dfrac{v^2}{\Lambda^2}\dfrac{v}{\sqrt{2}\,m_\PQt}\,c_{\PQt\PH}$ \\[8pt]
-        $c_2$      & $-\dfrac{v^2}{\Lambda^2}\dfrac{3v}{2\sqrt{2}\,m_\PQt}\,c_{\PQt\PH}
-                      + \dfrac{v^2}{\Lambda^2}\,c_{\PH kin}$ \\[8pt]
-        $c_\Pg$    & $\dfrac{v^2}{\Lambda^2}\dfrac{8\pi}{\alpha_s}\,c_{\PH G}$ \\[8pt]
-        $c_{2\Pg}$ & $\dfrac{v^2}{\Lambda^2}\dfrac{4\pi}{\alpha_s}\,c_{\PH G}$ \\
-        \bottomrule
-    \end{tabular}
-    \caption{Translation at Lagrangian level between the five HEFT couplings of Equation
-    \ref{eq:heftL} and the leading dimension-six Wilson coefficients of Equation
-    \ref{eq:smeft_lead}.}
-    \label{tab:heft_smeft}
-\end{table}
-%
-The dictionary in Table \ref{tab:heft_smeft} covers only four of the nine coefficients relevant in SMEFT as included in Eq \ref{eq:smeft_params}: the remaining five coefficients — the chromomagnetic dipole and the four combinations of the four-top operators — have no equivalent in the HEFT parameterization truncated to five couplings. Furthermore, the $gg\to HH$ process is not equally sensitive to these five additional directions.  The cross section is considerably affected by $c_{\PQt G}$ and, above all, by
-$c_{Q\PQt}^{(1)}$ and $c_{Q\PQt}^{(8)}$, whereas $c_{QQ\PQt\PQt}$ and $c_{QQ}^{(8)}$ contribute only marginally, to the extent that Higgs pair production is not a suitable process for constraining them~\cite{Heinrich:2023rsd}.
-
-Several conclusions can be drawn from Table \ref{tab:heft_smeft}. The first notable point is that the five HEFT couplings are expressed in terms of only four SMEFT coefficients — $c_\PH$, $c_{\PH kin}$, $c_{\PQt\PH}$, and $c_{\PH G}$ — such that the linear realization necessarily imposes one exact relation among them. That relation is immediately apparent in the last two rows, where both gluonic couplings are derived from the single coefficient $c_{\PH G}$, establishing their relationship as follows:
-%
-\begin{equation}
-    c_{2\Pg} = \frac{1}{2}\,c_\Pg\;.
-\label{eq:smeft_gluon_relation}
-\end{equation}
-%
-so that in HEFT these two parameters are completely independent, whereas in SMEFT, at leading order, their ratio is fixed, so the image of the SMEFT parameter space is four-dimensional at LO. The second feature that can be gleaned from the correlations shown in the Table is that a variation in a single Wilson coefficient does not correspond to a variation in a single HEFT coupling, but rather to a displacement along a fixed direction involving several of them at once. This has practical implications for phenomenological fits, since a bound on an individual Wilson coefficient constrains a combination of anomalous couplings rather than any one of them in isolation.
-
-This can be seen in the diagram of Fig. \ref{fig:smeft_vertices}, which shows a clear visual representation of the correspondence between the five $gg\to HH$ interaction vertices in Fig. \ref{fig:BSM_diagrams} and each leading Wilson coefficient. Therefore, the figure illustrates the structure more directly: the two coefficients acting in the top sector $c_{\PQt\PH}$ and $c_{\PH kin}$, both contribute to the $\PQt\PAQt\PH$ and $\PQt\PAQt\PH\PH$ vertices at once, so that the contact interaction — which in HEFT is independently parameterized by $c_2$ — cannot be varied without simultaneously changing the Yukawa coupling; the trilinear vertex receives contributions from
-$c_\PH$ and from $c_{\PH kin}$, which is therefore the only coefficient spanning three columns; and the final row reveals that $c_{\PH G}$ affects only the two gluonic vertices, which is the source of the relation depicted in Eq. \ref{eq:smeft_gluon_relation}.  Read column by column instead, it becomes apparent that no column is reached by a coefficient of its own. Every vertex shares its parametrization with at least one other, which is precisely what distinguishes the linear description from the non-linear one.
-%
-\begin{figure}
-    \centering
-    \input{figures/chapter_VIII/diagrams/ggHH_smeft_vertices}
-    \caption{Dependence of the \ggHH interaction vertices on the leading dimension-six
-    Wilson coefficients. Each column corresponds to one of the vertices appearing in the
-    leading-order topologies of Figure \ref{fig:BSM_diagrams}, identified by the same
-    shape and color and headed by the HEFT coupling that governs it; each row indicates
-    which vertices a given Wilson coefficient contributes to.}
-    \label{fig:smeft_vertices}
-\end{figure}
-%
-It is crucial to note that a translation performed at the Lagrange level must be applied with particular care, as the two counting schemes are based on different assumptions. Therefore, while the HEFT coefficients do not exhibit explicit dependence on the $\Lambda$ scale, the validity of the SMEFT expansion is contingent upon the scale being sufficiently high compared to the relevant energies of the process. As a result, a point in the HEFT parameter space that satisfies all current experimental constraints may correspond to values of the Wilson coefficients for which the SMEFT expansion is no longer valid. In this sense, Table \ref{tab:heft_smeft} should be interpreted as a dictionary mapping between parameterizations and not as a license to move freely between them. The scope of applicability of each of these parameterizations will be discussed in more detail in the followin section \ref{subsec:EFT_validity}.
-
-At this stage, the selection of a framework becomes phenomenologically relevant insofar as HEFT and SMEFT describe genuinely different physical hypotheses. Higgs boson pair production is one of the few processes with the actual ability to distinguish between these two, since the couplings involving two Higgs bosons — $c_2$ and $c_{2\Pg}$ — do not contribute to the single-Higgs observables at leading order. In HEFT, however, they remain independent parameters, so Higgs pair production is the only process that can test them directly. Conversely, in SMEFT, these parameters are determined by the coefficients that also fix the $\PH\PQt\PAQt$ and $\PH\Pg\Pg$ vertices, which are strongly constrained by single-Higgs data; therefore, any constraints obtained from other processes are automatically propagated to them. Consequently, the same measured distribution corresponds to different regions of parameter space and supports different physical conclusions, depending on which description is adopted. This reveals the complementarity of both descriptions, which capture different physical hypotheses and must be evaluated in parallel when interpreting results from double-Higgs production.
 
 \subsection{Range of validity of the effective descriptions}
 \label{subsec:EFT_validity}
 %
-Once the translation between the two frameworks has been established, and given that the same HH distribution leads to different interpretations in each framework, it is necessary to establish the domain of applicability for each EFT within which the translation between parameterizations is meaningful. An effective description is only predictive within the energy range for which its expansion converges, and that range is defined differently for each of the frameworks introduced.
+An effective description is only predictive within the range of energies and couplings for which its expansion converges. In HEFT, the expansion parameter is the loop factor $f^2/\Lambda^2\simeq1/16\pi^2$ of Equation \ref{eq:heft_expansion}, so that there is no physical scale against which to compare the energies of the process; its validity rests instead on the assumption that deviations in the Higgs couplings constitute the dominant effect of new physics in the electroweak sector. While this assumption is unproven, it is well supported by the current experimental situation, since the couplings of the Higgs boson are still known with a precision far below that achieved in the electroweak gauge sector (see Section \ref{subsec:H_phenomenology}), so that sizeable deviations in the Higgs sector alone cannot be ruled out. The description is nevertheless bounded by unitarity, which restricts the maximum size of the effective couplings and delimits the energy range in which the theory can be used consistently.
 
-In SMEFT, the validity of the description is determined by the physical scale that governs the effective expansion. Thus, the series in $1/\Lambda$ is meaningful only as long as
-%
-\begin{equation}
-    \frac{c_i\,E^2}{\Lambda^2} \ll 1\;,
-\label{eq:eft_validity}
-\end{equation}
-where $E$ is the characteristic energy of the process.
+In Higgs boson pair production this limitation is particularly delicate. The energy scale of the process is the invariant mass of the Higgs boson pair, and the high-$m_{HH}$ tail — to which the contact interactions $c_2$ and $c_{2g}$ contribute significantly — is precisely where non-resonant searches derive much of their sensitivity to anomalous couplings, so that the most informative kinematic region is also the one in which the effective description is most exposed. Moreover, the $gg\to HH$ process is dominated by delicate cancellations between the box and triangle topologies, such that small differences in the values of the couplings can have relatively large effects, particularly in differential distributions.
 
-In HEFT, on the other hand, the expansion parameter is the loop factor $f^2/\Lambda^2\simeq1/16\pi^2$ from Equation \ref{eq:heft_expansion}, so there is no physical scale against which to compare the energies of the process; rather, its validity depends on the deviations in the Higgs couplings constituting the dominant effect of new physics in the electroweak regime. While this is an unproven assumption, it is well-supported by the current experimental situation, since the couplings of the Higgs boson are still known with a precision far below that achieved in the electroweak gauge sector (see Section \ref{subsec:H_phenomenology}) and, therefore, sizeable deviations in the Higgs sector alone cannot be ruled out. Additionally, both prescriptions are bounded by unitarity constraints, which restrict the maximum size of the effective couplings and delimit the energy range in which the theory can be used consistently.
+Should an interpretation require it, the energy range can be restricted by discarding the events above a threshold in $m_{HH}$, a procedure known as \textit{clipping} and commonly applied in SMEFT interpretations, at the cost of reduced sensitivity. Beyond this optional restriction, HEFT introduces no further operational choices: unlike SMEFT, in which the scale $\Lambda$ and the order at which the expansion is truncated must also be fixed, the physical model is fully specified once the perturbative order of the calculation is established. \textcolor{red}{NO PROCEDE HABLAR DE SMEFT, NI USARLO PARA COMPARAR, YA QUE NO SE HA DICHO NADA, NO? HABLAR DE SMEFT AQUI HACE PREGUNTARTE QUÉ PASA CON SMEFT} The next challenge relates to the complexity of the parameter space that must be explored even under these well-defined assumptions, the consequences of which are examined below. 
 
-From this perspective, in HEFT the initial hypothesis does not translate into any parameters that need to be set, whereas in SMEFT, taking validity into account leads to operational decisions. In this context, the Higgs boson pair production process is particularly delicate. First, the relevant scale of the process is the invariant mass of the Higgs pair, so the criterion in equation \ref{eq:eft_validity} reads as $c_i\,\mHH^2/\Lambda^2\ll1$; that is, the validity criterion is evaluated in the regime of high values of $m_{HH}$. However, the high-$\mHH$ tail is precisely where non-resonant searches derive much of their sensitivity to anomalous couplings; thus, keeping the theory within its domain of applicability conflicts directly with the need to explore the most informative kinematic region. On the other hand, as discussed throughout this chapter, the $gg\to HH$ process is dominated by delicate cancellations between the box and triangle topologies, such that small differences in the treatment of the Wilson coefficients can have relatively large effects, particularly in differential distributions.
 
-As shown in Equation \ref{eq:eft_validity}, SMEFT predictions are directly linked to the scale parameter $\Lambda$ and not solely on the Wilson coefficients. This means that, for a specific value of $c_i$, the shape of the distribution $m_{HH}$ varies with $\Lambda$, and the SM shape is always recovered in the limit of large $\Lambda$, since the deformation of the SM parameter space becomes arbitrarily small. Consequently, the interpretability of results regarding the sensitivity of an analysis to a given set of Wilson coefficients requires specifying the assumed value of $\Lambda$. This fragility of the SMEFT prediction is further accentuated when considering the truncation of the series, discussed in Section \ref{subsec:SMEFT}. Thus, if the EFT is within its domain of validity, the different truncation options should produce consistent results; otherwise, negative cross sections may arise in large regions of parameter space beyond the reach of the expansion. This serve to underscore the cautionary note made in Section \ref{subsec:HEFT_SMEFT} regarding the dictionary in Table \ref{tab:heft_smeft}. Given the substantial differences between the two formalisms, a point in the HEFT parameter space may be consistent with all the constraints and, even so, result in values of the Wilson coefficients for which Equation \ref{eq:eft_validity} fails.
 
-The aforementioned considerations directly impact experimental practice. The usual experimental response to Equation \ref{eq:eft_validity} is to restrict the region of phase space considered in the interpretation, by clipping events above a certain threshold for $m_{HH}$. This procedure, commonly referred to as \textit{clipping}, ensures that the region used satisfies the validity criterion for the assumed $\Lambda$, but at the cost of reduced sensitivity.
+% The aforementioned considerations directly impact experimental practice. The usual experimental response to Equation \ref{eq:eft_validity} is to restrict the region of phase space considered in the interpretation, by clipping events above a certain threshold for $m_{HH}$. This procedure, commonly referred to as \textit{clipping}, ensures that the region used satisfies the validity criterion for the assumed $\Lambda$, but at the cost of reduced sensitivity.
 
-The discussion above on the validity of effective descriptions in the production of Higgs boson pairs is conclude as follows: once the framework, the truncation scheme, the scale $\Lambda$, ant the clipping threshold are fixed, the physical model is fully specified. The next challenge relates to the complexity of the parameter space that must be explored even under these well-defined assumptions, since effective theories give rise to highly multidimensional structures, the consequences of which are examined below.
+% The discussion above on the validity of effective descriptions in the production of Higgs boson pairs is conclude as follows: once the framework, the truncation scheme, the scale $\Lambda$, ant the clipping threshold are fixed, the physical model is fully specified. The next challenge relates to the complexity of the parameter space that must be explored even under these well-defined assumptions, since effective theories give rise to highly multidimensional structures, the consequences of which are examined below.
 
 \subsection{Multidimensionality problem}
 \label{subsec:multidimensionality}
 %
-The preceding sections have established the framework necessary to characterize the effects of new physics on the $gg\to HH$ production using two effective descriptions, each derived from a different hypothesis regarding the nature of the observed scalar. The application of these formalisms in the interpretation of experimental results in BSM searches is of considerable value, as they provide a parameterization of the deviations from the SM that does not presuppose any specific model. Therefore, any comprehensive UV model can be projected onto a point in the parameter spaces defined for each of the formalisms: five independent couplings in HEFT, Equation \ref{eq:HEFT_param}; and nine Wilson coefficients for SMEFT, Equation \ref{eq:smeft_params}. As a result, the limits expressed in terms of couplings or Wilson coefficients can be reinterpreted in terms of any extension of the Standard Model, making them essential tools for interpreting experimental searches.
+The preceding sections have established the framework necessary to characterize the effects of new physics on $gg\to HH$ production. Its application to the interpretation of experimental results is of considerable value, as it provides a parameterization of the deviations from the SM that does not presuppose any specific model. Therefore, any UV completion can be projected onto a point of the five-dimensional space of independent couplings of Equation \ref{eq:HEFT_param}, so that limits expressed in terms of these couplings can be reinterpreted in terms of any extension of the Standard Model, making them essential tools for interpreting experimental searches.
+
 
 However, this generality poses certain difficulties at the experimental level, since the formalisms described do not offer a finite set of direct hypotheses to test, but rather provide a continuum of predictions for which limits must be established. This, of course, has experimental implications that must be considered.
 
@@ -373,7 +200,8 @@ This final point is of the utmost importance when proposing solutions to address
 \section{HH signal modeling techniques}
 \label{sec:Modeling}
 %
-As previously outlined, the two effective descriptions introduced in Section \ref{subsec:EFTs} do not provide a finite list of hypotheses to be tested, but rather a continuum of them: a five-dimensional space of independent couplings in HEFT, Equation \ref{eq:HEFT_param}, and a nine-dimensional space of Wilson coefficients in SMEFT, Equation \ref{eq:smeft_params}, on top of which the truncation scheme, the reference scale $\Lambda$ and the clipping threshold discussed in Section \ref{subsec:EFT_validity} must still be fixed. It has been demonstrated that the experimental interpretation of $gg\to HH$ searches in terms of EFT frameworks is highly influenced by the dimensionality of the parameter space.
+As previously outlined, the HEFT description introduced in Section \ref{subsec:EFTs} does not provide a finite list of hypotheses to be tested, but rather a continuum of them: a five-dimensional space of independent couplings, Equation \ref{eq:HEFT_param}. It is this dimensionality, discussed in Section \ref{subsec:multidimensionality}, that conditions the experimental interpretation of $gg\to HH$ searches.
+
 
 This places effective descriptions in a challenging position from an experimental standpoint: to derive limits, the likelihood fit requires knowing the expected signal yield in every analysis category and every bin of the final discriminant as a continuous function of the EFT parameters to be constrained. This cannot be obtained by simulating each point independently: each sample must be generated, passed through the full detector simulation, reconstructed, and processed through the entire analysis chain up to the evaluation of the multivariate discriminants. Repeating this for a scan whose density grows exponentially with the dimension of the parameter space is not feasible.
 
@@ -382,11 +210,10 @@ This places effective descriptions in a challenging position from an experimenta
 
 Furthermore, the interference structure of the $gg\to HH$ process causes the signal shape, selection efficiency, and the response of the discriminants to change qualitatively across the EFT space. As a result, what must be provided at each point in EFT space is not a rate, but a complete differential prediction. This precludes approximations based on simple rescaling, so the problem of multidimensionality becomes a modeling problem: how to provide a reliable differential prediction throughout the EFT space without resorting to exhaustive scans.
 
+Despite these difficulties, the effective description has a structural property that makes the problem tractable. In the HEFT Lagrangian of Equation \ref{eq:heftL}, the parameters of the theory — the five effective couplings — appear as constant coefficients multiplying a fixed set of local operators. Each Feynman diagram contributing to $gg\to HH$ is therefore associated with a definite monomial in those parameters, multiplied by a form factor that depends only on the kinematics of the process and on SM quantities such as $m_\PQt$, $\alpha_s$, and the collision energy. The amplitude is thus a linear combination of a finite set of parameter-independent form factors, and its square — hence the cross section — a polynomial in the parameters with a finite number of terms, each of them the product of a known monomial and a coefficient that carries all the dynamics but none of the parameter dependence. This is not an approximation but an identity: the parametrization can be shown to be exact at leading order~\cite{Carvalho:2016rys}, with the number of independent terms growing with the perturbative order~\cite{Buchalla:2018yce}. It is, in fact, the structure already encountered at the level of the total rate in Equation \ref{eq:RHH}, where the fifteen leading-order combinations $A_1,\dots,A_{15}$ appear. Crucially, the separation between the parameter-dependent and the parameter-independent parts takes place at the level of the matrix element, and therefore holds in every region of phase space independently: the same finite set of combinations describes any differential distribution, provided its coefficients are determined bin by bin. This analytical parametrization of the differential cross section is the common basis on which the modeling techniques used in HH searches are built.
 
 
-Despite these difficulties, the effective frameworks share a structural property that makes the problem tractable. The HEFT and SMEFT Lagrangians, presented in equations \ref{eq:heftL}, \ref{eq:smeft_lead}, and \ref{eq:smeft_sublead}, the parameters of the theory — the HEFT couplings and the SMEFT Wilson coefficients — appear as constant coefficients multiplying a fixed set of local operators. Each Feynman diagram contributing to $gg\to HH$ is therefore associated with a definite monomial in those parameters, multiplied by a form factor that depends only on the kinematics of the process and on SM quantities such as $m_\PQt$, $\alpha_s$, and the collision energy. The amplitude is thus a linear combination of a finite
-set of parameter-independent form factors, and its square — hence the cross section — a polynomial in the parameters with a finite number of terms, each of them the product of a known monomial and a coefficient that carries all the dynamics but none of the parameter dependence. This is not an approximation but an identity: the parametrization can be shown to be exact at leading order~\cite{Carvalho:2016rys}, with the number of independent terms growing with the perturbative order~\cite{Buchalla:2018yce}. It is, in fact, the structure already encountered at the level of the total rate in Equation \ref{eq:RHH}, where the
-fifteen leading-order combinations $A_1,\dots,A_{15}$ appear. Crucially, the separation between the parameter-dependent and the parameter-independent parts takes place at the level of the matrix element, and therefore holds in every region of phase space independently: the same finite set of combinations describes any differential distribution, provided its coefficients are determined bin by bin. This analytical parametrization of the differential cross section is the common basis on which the modeling techniques used in HH searches are built.
+
 
 The modeling techniques based on this analytical parametrization of the cross section differ in the stage along the analysis chain at which the factorization is exploited. The most direct use is to determine the coefficients once and for all, by fitting the parametrization to a set of simulated samples, and then to employ the resulting polynomial to assign a weight to every event of a single reference sample: the ratio between the polynomial evaluated at the target point and the same polynomial evaluated at the reference point, in the bin where the event falls. This technique, known as \textit{event-level reweighting} (ELR), allows one sample to reproduce the prediction at any point of the parameter space, and the reweighted sample can then be used to build any observable of interest, and not only those used to derive the parametrization. Its cost, however, is that of a full pass over the event sample for every point evaluated, since the weights are assigned event by event. Taking it a step further, the \textit{matrix inversion method} exploits the factorization one stage further down the analysis chain: since the cross section at any point is a linear combination of a finite number of terms, the prediction can be expressed as a linear combination $\sigma(\mathbf{c}) = \sum_i w_i(\mathbf{c})\,\sigma_i$ over a reduced set of basis points, whose weights are obtained by inverting the matrix that relates them. The combination is performed directly over the final distributions rather than over individual events, so that the analysis chain is traversed only once per basis point and the cost of scanning no longer depends on the number of points evaluated.
 
@@ -447,10 +274,7 @@ The number of independent terms is therefore determined by combinatorics: $n$ st
 However, as outlined in Section \ref{subsec:HEFT}, the $gg\to HH$ process involves significant QCD corrections, necessitating their consideration. When extending the calculation to NLO, virtual and real-emission corrections give rise to topologies that introduce new amplitude structures in Equation \ref{eq:amplitude_decomposition}, with prefactors $\kappa_{\PQt}c_{\Pg}$ and $c_{\Pg}^{2}$,
 which do not exist independently at the LO. Since at this order only the interference between the LO and NLO amplitudes is retained, the additional terms introduce eight new independent combinations, all of which involve the Higgs-gluon coupling, thereby increasing the total number of terms from fifteen to $N_A = 23$. Although the functional form of Equation \ref{eq:poly_general} is preserved, it is important to note that these NLO corrections modify the values of the coefficients $A_i$ associated with the monomials $f_i$, since, as indicated in Section \ref{subsec:HEFT}, the $K$-factors are not uniform either in parameter space or along the $m_{HH}$ spectrum, which has direct consequences for modeling techniques.\\
 
-% Recuento SMEFT
-The same reasoning can be applied to SMEFT, since the Wilson coefficients linearly multiply the six-dimensional operators in the Lagrangian, so that the amplitude is once again linear in them and Equation \ref{eq:poly_general} retains its form. In the case of the SMEFT framework, the square of the modulus now takes the usual form of a constant term $A_0$, corresponding to the SM prediction, a set of linear terms arising from the interference between the SM and the six-dimensional operators, and a set of quadratic terms in the latter. According from the nine parameters in Equation \ref{eq:smeft_params}, a general quadratic form would require $1+9+9\cdot 10/2=55$ coefficients. However, the number of independent terms in SMEFT is also contingent upon the adopted truncation scheme, as elaborated in Sections \ref{subsec:SMEFT} and \ref{subsec:EFT_validity}. The quadratic truncation used in this work retains the linear and quadratic contributions of the four leading operators but discards the term $|\mathcal{M}^{\text{sublead}}_{\dim 6}|^{2}$, thereby ensuring that the five subleading coefficients appear only linearly. The resulting count is therefore $N_A = 40$ coefficients, $A_0,\dots,A_{39}$.
 
-It is noteworthy that, while in HEFT the physical model is fully determined once the perturbative order is established, in SMEFT the selection of truncation scheme is what shapes the model. Therefore, different truncations yield different polynomials, and consequently, different signal models that are not easily comparable. This reinforces the observation made in Section \ref{subsec:EFT_validity},which states that any result expressed in terms of Wilson coefficients must be accompanied by a specification of the scheme under which it was obtained.\\
 
 % Generalización diferencial
 So far, the discussion has been presented in terms of the total cross section. Throughout the preceding discussion, however, it has been emphasized that the factorization of Equation \ref{eq:poly_general} holds at the differential. Consequently, the same functional form and the same set of monomials describe any differential distribution, with the sole difference being that the coefficients are no longer global numbers but instead depend on the region of phase space under consideration, which in practice corresponds to a bin of the chosen observable:
@@ -525,49 +349,8 @@ c_2\, c_\Pg^2 \\
 \end{split}
 \end{equation}
 %
-where, as indicated, the first fifteen combinations come from the dominant-order topologies in Figure \ref{fig:BSM_diagrams} and the remaining eight come from the NLO corrections in QCD. Similarly, the SMEFT parameterization in terms of the nine parameters of Equation \ref{eq:smeft_params} can be written as follows:
-%
-\begin{equation}\label{eq:smeft_diff}
-\renewcommand{\arraystretch}{1.4}
-\begin{split}
-\frac{d}{d\xi_j}\sigma_{\ggHH}(\mathbf{c}^{\text{SMEFT}}) &= A^j_0
-+ \underbrace{
-\underbrace{
-\begin{pmatrix} A^j_1 \\ A^j_2 \\ A^j_3 \\ A^j_4 \end{pmatrix}^{\!\!\top}
-\begin{pmatrix} c_{\PH} \\ c_{\PH\mathrm{kin}} \\ c_{\PQt\PH} \\ c_{\PH G} \end{pmatrix}
-}_{\text{linear}}
-+ \underbrace{
-\begin{pmatrix} c_{\PH} & c_{\PH\mathrm{kin}} & c_{\PQt\PH} & c_{\PH G} \end{pmatrix}
-\begin{pmatrix}
-A^j_5 & A^j_6 & A^j_7 & A^j_8 \\
-0     & A^j_9 & A^j_{10} & A^j_{11} \\
-0     & 0     & A^j_{12} & A^j_{13} \\
-0     & 0     & 0        & A^j_{14}
-\end{pmatrix}
-\begin{pmatrix} c_{\PH} \\ c_{\PH\mathrm{kin}} \\ c_{\PQt\PH} \\ c_{\PH G} \end{pmatrix}
-}_{\text{quadratic}}
-}_{\text{leading operators only}} \\[14pt]
-&+ \underbrace{
-\underbrace{
-\begin{pmatrix} A^j_{15} \\ A^j_{16} \\ A^j_{17} \\ A^j_{18} \\ A^j_{19} \end{pmatrix}^{\!\!\top}
-\begin{pmatrix} c_{\PQt G} \\ c_{Q\PQt}^{(1)} \\ c_{Q\PQt}^{(8)} \\ c_{QQ\PQt\PQt} \\ c_{QQ}^{(8)} \end{pmatrix}
-}_{\text{linear}}
-+ \underbrace{
-\begin{pmatrix} c_{\PH} & c_{\PH\mathrm{kin}} & c_{\PQt\PH} & c_{\PH G} \end{pmatrix}
-\begin{pmatrix}
-A^j_{20} & A^j_{21} & A^j_{22} & A^j_{23} & A^j_{24} \\
-A^j_{25} & A^j_{26} & A^j_{27} & A^j_{28} & A^j_{29} \\
-A^j_{30} & A^j_{31} & A^j_{32} & A^j_{33} & A^j_{34} \\
-A^j_{35} & A^j_{36} & A^j_{37} & A^j_{38} & A^j_{39}
-\end{pmatrix}
-\begin{pmatrix} c_{\PQt G} \\ c_{Q\PQt}^{(1)} \\ c_{Q\PQt}^{(8)} \\ c_{QQ\PQt\PQt} \\ c_{QQ}^{(8)} \end{pmatrix}
-}_{\text{quadratic}}
-}_{\text{contributions from subleading operators}}\\
-&=\mathrm{Poly}(\mathbf{c}^{\text{SMEFT}},\, \mathbf{A}^j)\;,
-\end{split}
-\end{equation}
-%
-where the triangular structure of the quadratic block of leading operators simply reflects the fact that the products $c_i c_j$ and $c_j c_i$ contribute to the same coefficient, while the second block, corresponding to the contributions of subleading operators and of dimension $4\times5$, captures the interactions between leading and subleading operators. The fifteen products between two subleading coefficients are absent, consistent with the adopted truncation.\\
+where, as indicated, the first fifteen combinations come from the leading-order topologies in Figure \ref{fig:BSM_diagrams} and the remaining eight from the NLO corrections in QCD.
+
 
 This directly applies to experimental searches, where what is needed is the distribution of the final observable — typically the output of a multivariate discriminator — following event reconstruction and selection. Since neither the detector response, nor the reconstruction, nor the selection criteria depend on the EFT parameters, the factorization survives the entire analysis chain and can be exploited directly on reconstructed quantities relevant to the analysis.
 
@@ -592,7 +375,7 @@ Formally, let $\mathbf{c}$ be the target point and $\mathbf{c}_{\text{ref}}$ be 
 \label{eq:elr_master}
 \end{equation}
 %
-Thus, once the coefficients $A_i$ are known, any point in the HEFT or SMEFT parameter space can be determined. The factor relating the two predictions will therefore depend solely on the parameters of the reference point and the target point and on the region $j$ under consideration, and is defined as:
+Thus, once the coefficients $A_i$ are known, any point in the HEFT parameter space can be determined. The factor relating the two predictions will therefore depend solely on the parameters of the reference point and the target point and on the region $j$ under consideration, and is defined as:
 %
 \begin{equation}
     w_j(\mathbf{c})
@@ -648,7 +431,7 @@ The solution to this problem involves using a \textit{multi-reference} strategy,
 
 \subsubsection{Validation at generator and analysis level}
 %
-The validation of the method can be carried out on two levels. The first operates at the generator level, prior to any selection of analysis, and serves to verify that the polynomials reproduce the distributions consistently throughout the parameter space. The validation of the ELR-predicted spectra for $m_{HH}$ and $p_T^H$ in the most recent formulation of the method \cite{HHReweighting}, compared to MC simulated distributions, is shown in Figure \ref{fig:elr_gen}, which presents the results in the HEFT framework; the behavior in SMEFT is entirely analogous. Figure \ref{fig:elr_gen_mhh} shows $m_{HH}$ at an arbitrary point in HEFT space, while the transverse momentum of the Higgs boson $p_T^H$ is presented in Figure \ref{fig:elr_gen_pth} at a different point. The $p_T^H$ is shown here as a quantity of particular interest because it lies outside the set $\xi$ used in the extraction of coefficients. In both cases, it can be seen that the quantities are well described by the method, and the distributions depicted underscores the findings discussed throughout the analysis: while one-dimensional is the preferred approach in the $m_{HH}$ spectrum, the 3D parametrization outperforms the 1D approach for $p_T^H$, and the multi-reference strategy consistently generates further enhancements.
+The validation of the method can be carried out on two levels. The first operates at the generator level, prior to any selection of analysis, and serves to verify that the polynomials reproduce the distributions consistently throughout the parameter space. The validation of the ELR-predicted spectra for $m_{HH}$ and $p_T^H$ in the most recent formulation of the method \cite{HHReweighting}, compared to MC simulated distributions, is shown in Figure \ref{fig:elr_gen}, which presents the results in the HEFT framework. Figure \ref{fig:elr_gen_mhh} shows $m_{HH}$ at an arbitrary point in HEFT space, while the transverse momentum of the Higgs boson $p_T^H$ is presented in Figure \ref{fig:elr_gen_pth} at a different point. The $p_T^H$ is shown here as a quantity of particular interest because it lies outside the set $\xi$ used in the extraction of coefficients. In both cases, it can be seen that the quantities are well described by the method, and the distributions depicted underscores the findings discussed throughout the analysis: while one-dimensional is the preferred approach in the $m_{HH}$ spectrum, the 3D parametrization outperforms the 1D approach for $p_T^H$, and the multi-reference strategy consistently generates further enhancements.
 \begin{figure}[h!]
   \centering
   \begin{subfigure}[t]{0.49\linewidth}
@@ -719,7 +502,7 @@ At a second stage, the method is applied to a realistic phase space, using infor
   \label{fig:elr_4b_merged}
 \end{figure}
 
-Overall, the discussion throughout this section has demonstrated that the ELR modeling method provides a differential prediction whose dependence on the EFT parameters is exact and can be evaluated at any point in EFT space, whether in five-dimensional HEFT or nine-dimensional SMEFT. The results presented indicate that this tool therefore allows for reliable predictions based on a limited simulation budget and with the advantage of constructing any observable a posteriori, including the reconstructed quantities on which experimental searches rely. Furthermore, the procedure does not merely provide a central prediction but also the uncertainty associated with the modeling itself, allowing it to be incorporated into the statistical fitting. Although the method has been extensively used in numerous analyses, its most recent formulations have considerably expanded its scope by considering its extension to NLO QCD, three-dimensional parameterization, the multi-reference strategy, and coverage of the invariant high-mass tail, as well as its generalization to the SMEFT formalism with subleading operators. All these improvements have transformed a procedure originally restricted to LO and the $m_{HH}$ distribution into a description that can be used in the regions and formalisms required by current searches.
+Overall, the discussion throughout this section has demonstrated that the ELR modeling method provides a differential prediction whose dependence on the EFT parameters is exact and can be evaluated at any point of the five-dimensional HEFT space. The results presented indicate that this tool therefore allows for reliable predictions based on a limited simulation budget and with the advantage of constructing any observable a posteriori, including the reconstructed quantities on which experimental searches rely. Furthermore, the procedure does not merely provide a central prediction but also the uncertainty associated with the modeling itself, allowing it to be incorporated into the statistical fitting. Although the method has been extensively used in numerous analyses, its most recent formulations have considerably expanded its scope by considering its extension to NLO QCD, three-dimensional parameterization, the multi-reference strategy, and coverage of the invariant high-mass tail. All these improvements have transformed a procedure originally restricted to LO and the $m_{HH}$ distribution into a description that can be used in the regions and formalisms required by current searches.
 
 However, while ELR eliminates the need to simulate a sample for each point in the parameter space, it does not eliminate the cost of processing the resulting prediction: obtaining the final distribution at a given point requires iterating through the reference samples, evaluating the weight event by event, and reconstructing the histogram throughout the entire analysis chain. Moreover, this process must be repeated for each point in the scan and for each systematic variation. In a dense scan — especially within likelihood fit, where the signal must be evaluated continuously across the parameters — the cost can become prohibitive in certain searches. This consideration enables the use of ELR as a tool capable of establishing a natural reference against which to evaluate the convergence of any other modeling procedure, such as the matrix inversion method described below. Furthermore, the availability of an analytical and differential description plays a decisive role in this work, as it allows for the generation of $m_{HH}$ templates at arbitrary points without the need to simulate or process any events, and thus to evaluate the quality of a prediction at a negligible computational cost. This feature is essential for addressing the central problem of this chapter, which is the development and extension of the matrix inversion method. The ELR thus serves as the foundation upon which the optimization developed in Section \ref{sec:full_model} is built, once this modeling method is introduced in the following section.
 
@@ -789,7 +572,8 @@ Because of this, ATLAS and CMS have used this method extensively to interpret th
 
 To date, the EFT interpretations using this modeling strategy have been carried out in parameter spaces of reduced dimensionality, where the number of basis points required to solve the system is minimal. One example is the case of one-dimensional scanning in $\kappa_{\lambda}$, where, by fixing the remaining couplings to their SM values, the amplitude of Equation \ref{eq:amplitude_decomposition} reduces to the box and triangle structures; thus, $N_A=3$ independent predictions are sufficient to determine the model. The same number of basis points is required when exploring the plane $(\kappa_{\lambda},\kt)$, which consists of the same amplitude structures. Adding the contact vertex $c_2$, however, introduces a third structure, bringing the the total to six. It is within this three-dimensional restriction of HEFT space that the most recent experimental interpretations are situated. In these cases of low problem dimensionality, the required number of predictions is typically on par with the number of BSM scenarios generated by a standard analysis. The basis selection is then made heuristically: the kinematically most disparate scenarios are selected by direct inspection of their $m_{HH}$ spectra, and the choice is validated a posteriori by comparing the method’s prediction with independently simulated data points — an approach that has worked reasonably well thanks to the low dimensionality of the cases.
 
-However, extending the coverage to the full HEFT space of five couplings, or to that of nine Wilson coefficients in SMEFT, causes the number of basis points to increase to the twenty-three required by the NLO parameterization of Equation \ref{eq:heft_diff} and the forty required by Equation \ref{eq:smeft_diff}, respectively. The choice of basis, therefore, is no longer subject to inspection, meaning that the quality of the prediction is contingent on the appropriate handling of the basis selection.\\
+However, extending the coverage to the full HEFT space of five couplings increases the number of basis points to the twenty-three required by the NLO parameterization of Equation \ref{eq:heft_diff}. The choice of basis, therefore, is no longer subject to inspection, meaning that the quality of the prediction is contingent on the appropriate handling of the basis selection.
+
 
 \subsubsection{Basis choice}
 % Caveats: elección de la base
@@ -810,23 +594,23 @@ On the other hand, an insufficiently independent basis can introduce a bias in t
 
 It should also be noted that none of these properties are a global characteristic of the basis; rather, they are local to the point being predicted. For instance, the same basis may perform flawlessly in the SM environment and catastrophically in a given BSM direction, or it may correctly reproduce the overall performance while failing in the least populated bins of the distribution. It follows that validation limited to the inclusive cross section or to a handful of reference scenarios can be completely misleading, and the only way to obtain a meaningful evaluation is to perform it differentially across the entire domain to be covered.
 
-Furthermore, each basis point requires a separate full simulation, which represents a considerable cost in the case of twenty-three or forty complete productions. After careful consideration, it has been determined that the choice of basis in a five- or nine-dimensional space cannot be addressed using the heuristic procedure applied to lower-dimensional spaces. This is due to the fact that there is no clear intuition that allows for the anticipation of the constraints on a set of twenty-three or forty points, and a systematic exploration of alternatives would require an unmanageable volume of simulations.\\
+Furthermore, each basis point requires a separate full simulation, which represents a considerable cost in the case of twenty-three complete productions. After careful consideration, it has been determined that the choice of basis in a five- or nine-dimensional space cannot be addressed using the heuristic procedure applied to lower-dimensional spaces. This is due to the fact that there is no clear intuition that allows for the anticipation of the constraints on a set of twenty-three points, and a systematic exploration of alternatives would require an unmanageable volume of simulations.\\
 
 \subsubsection{Basis optimization: the role of event-level reweighting}
 % ELR como tool para abordar el problema de forma sistematica
 Therefore, extending the method to high-dimensional systems — such as the case of complete EFT descriptions — requires a systematic approach to the problem of basis selection. It is necessary to define a search strategy capable of exploring the entire coupling domain under consideration, as well as to establish a performance metric that objectively quantifies the quality of a basis in that space. The objective is therefore to identify a favorable configuration in a search space whose dimensionality is comparable to that of problems typically addressed using machine learning techniques.
 
-However, evaluating the objective function to converge in a space of this dimensionality requires on the order of $10^5$ to $10^6$ evaluations of the objective function, which is unfeasible if one needs to simulate and process each sample of the test basis points and each objective sample. As previously mentioned, the ELR is a key factor in this matter. As outlined in Section \ref{subsec:ELR}, the ELR provides an analytical and differential description of the cross section, valid for any point in HEFT or SMEFT space, enabling the generation of templates for distributions of interest, such as $m_{HH}$, without the need for simulating or processing a single event, and at a negligible cost. Additionally, generating "toys" from the analytical distribution allows for reproducing the effect of a finite simulation statistic, thereby characterizing the error amplification previously discussed, so that the evaluation is not limited to shape agreement but incorporates the statistical precision that the basis would have in actual use. This provides a continuous test set across the entire coupling space, enabling precise measurement of the performance of any basis. Furthermore, it eliminates the need to simulate each basis point separately: the basis coordinates become completely free and optimizable.\\
+However, evaluating the objective function to converge in a space of this dimensionality requires on the order of $10^5$ to $10^6$ evaluations of the objective function, which is unfeasible if one needs to simulate and process each sample of the test basis points and each objective sample. As previously mentioned, the ELR is a key factor in this matter. As outlined in Section \ref{subsec:ELR}, the ELR provides an analytical and differential description of the cross section, valid for any point in the HEFT space, enabling the generation of templates for distributions of interest, such as $m_{HH}$, without the need for simulating or processing a single event, and at a negligible cost. Additionally, generating "toys" from the analytical distribution allows for reproducing the effect of a finite simulation statistics, thereby characterizing the error amplification previously discussed, so that the evaluation is not limited to shape agreement but incorporates the statistical precision that the basis would have in actual use. This provides a continuous test set across the entire coupling space, enabling precise measurement of the performance of any basis. Furthermore, it eliminates the need to simulate each basis point separately: the basis coordinates become completely free and optimizable.\\
 
-With these elements in place the search for the basis can be approached systematically within the framework of hyperparameter optimization, analogous to that of a machine learning problem, relying on a parameterization of the basis as a vector of hyperparameters, a bounded objective function that aggregates the discussed quality criteria — shape agreement with the true prediction, statistical accuracy of the resulting combination, and the absence of bins with negative content — and a global search algorithm. Under this approach, the choice that was traditionally guided by inspection becomes a reproducible procedure applicable to complete EFT models. The construction of a complete HEFT and SMEFT model for the $gg\to HH$ production constitutes the main contribution of this chapter and is the objective of Section \ref{sec:full_model}, where validity of the method will also be examined for the optimized bases.
+With these elements in place the search for the basis can be approached systematically within the framework of hyperparameter optimization, analogous to that of a machine learning problem, relying on a parameterization of the basis as a vector of hyperparameters, a bounded objective function that aggregates the discussed quality criteria — shape agreement with the true prediction, statistical accuracy of the resulting combination, and the absence of bins with negative content — and a global search algorithm. Under this approach, the choice that was traditionally guided by inspection becomes a reproducible procedure applicable to complete EFT models. The construction of a complete HEFT model for $gg\to HH$ production constitutes the main contribution of this chapter and is the objective of Section \ref{sec:full_model}, where validity of the method will also be examined for the optimized bases.
 
 \section{A full EFT model for \texorpdfstring{$gg\to HH$}{gg → HH} production}
 \label{sec:full_model}
 %%%%%% CONEXION CON LO ANTERIOR + lo que se pretende abordar en esta sección
-The preceding section has established the two key elements on which the rest of the chapter is based. On the one hand, Section \ref{subsec:ELR} has developed event level reweighting method, demonstrating its validity and accuracy in describing the different BSM morphologies of the $gg\to HH$ signal, while maintaining a negligible computational cost. Conversely, Section \ref{subsec:matrix_inversion} has presented the matrix inversion method as the preferred option for direct integration into the likelihood fitting and for producing continuous exclusion contours in high-dimensional EFT spaces, with the caveat that its entire reliability depends on a single choice: that of the points comprising the basis. The objective of this section is to delve deeper into the extension of this latter method — relying precisely on the reliability and low computational cost of the predictions provided by the ELR formula — to deliver a complete signal model for the $gg\to HH$ production in the full descriptions of HEFT and SMEFT, rather than in a low-dimensional restriction of these frameworks. This constitutes the main original contribution of this thesis to the BSM interpretation of Higgs pair searches, and extends the coverage of the matrix inversion method beyond the ATLAS and CMS results published to date \cite{ATLAS:2025tkn,CMS_combination}. The result is a pair of optimized bases — one per formalism — transferable to any $HH$ analysis, along with a quantitative characterization of the modeling error they introduce at every point in the domain for which they were designed.
+The preceding section has established the two key elements on which the rest of the chapter is based. On the one hand, Section \ref{subsec:ELR} has developed event level reweighting method, demonstrating its validity and accuracy in describing the different BSM morphologies of the $gg\to HH$ signal, while maintaining a negligible computational cost. Conversely, Section \ref{subsec:matrix_inversion} has presented the matrix inversion method as the preferred option for direct integration into the likelihood fitting and for producing continuous exclusion contours in high-dimensional EFT spaces, with the caveat that its entire reliability depends on a single choice: that of the points comprising the basis. The objective of this section is to delve deeper into the extension of this latter method — relying precisely on the reliability and low computational cost of the predictions provided by the ELR formula — to deliver a complete signal model for the $gg\to HH$ production in the full HEFT description, rather than in a low-dimensional restriction of it. This constitutes the main original contribution of this thesis to the BSM interpretation of Higgs pair searches, and extends the coverage of the matrix inversion method beyond the ATLAS and CMS results published to date \cite{ATLAS:2025tkn,CMS_combination}. The result is an optimized basis, transferable to any $HH$ analysis, along with a quantitative characterization of the modeling error it introduces at every point in the domain for which it was designed.
 
 %% Planteamiento del problema
-As outlined in the discussion that concludes Section \ref{subsec:matrix_inversion}, the choice of basis is reformulated as a hyperparameter optimization problem, in which the coordinates of the basis points become the parameters to be optimized and the search for an optimal basis becomes the minimization of an objective function over them. Converging in a search space of this size requires on the order of $10^5$ or more evaluations of that function, which is only feasible thanks to the ELR: by providing an analytical and differential description of the cross section that is valid at any point in HEFT or SMEFT space, each evaluation can be carried out without simulating or processing a single event. Both that function and the templates it acts upon must in turn be defined on a concrete observable, and the choice made here is the invariant mass of the Higgs pair, $m_{HH}$, which concentrates the relevant kinematic information about the EFT parameters. It is also the variable in terms of which the validity of the effective expansion is formulated via Equation \ref{eq:eft_validity} and in which the clipping rule of Section \ref{subsec:EFT_validity} operates, such that a model built on $m_{HH}$ templates can be restricted to a fiducial region without the need for reoptimization. Since the weights $w_k(\mathbf{c})$ in Equation \ref{eq:matrix_differential} do not depend on the bin index, a basis optimized over the $m_{HH}$ spectrum would furthermore remain valid when the linear combination is applied to the final discriminant of a search; verifying that this is indeed the case under realistic conditions — and not only at generator level — is an essential part of the exercise.
+As outlined in the discussion that concludes Section \ref{subsec:matrix_inversion}, the choice of basis is reformulated as a hyperparameter optimization problem, in which the coordinates of the basis points become the parameters to be optimized and the search for an optimal basis becomes the minimization of an objective function over them. Converging in a search space of this size requires on the order of $10^5$ or more evaluations of that function, which is only feasible thanks to the ELR: by providing an analytical and differential description of the cross section that is valid at any point in the HEFT space, each evaluation can be carried out without simulating or processing a single event. Both that function and the templates it acts upon must in turn be defined on a concrete observable, and the choice made here is the invariant mass of the Higgs pair, $m_{HH}$, which concentrates the relevant kinematic information about the EFT parameters. It is also the variable that sets the energy scale of the process and on which the clipping procedure of Section \ref{subsec:EFT_validity} operates, so that a model built on $m_{HH}$ templates can be restricted to a fiducial region without the need for reoptimization. Since the weights $w_k(\mathbf{c})$ in Equation \ref{eq:matrix_differential} do not depend on the bin index, a basis optimized over the $m_{HH}$ spectrum would furthermore remain valid when the linear combination is applied to the final discriminant of a search; verifying that this is indeed the case under realistic conditions — and not only at generator level — is an essential part of the exercise.
 
 % Organización de la sección
 The rest of the Chapter is organized accordingly. Section \ref{subsec:finding_basis} specifies the setup for addressing the problem and details the search strategy, leading to the optimized bases for the complete EFT spaces. Section \ref{subsec:closure} subjects these bases to a closure and validation exercise, comparing the prediction of the linear combination with independently simulated samples. \textcolor{red}{Finally, Section \ref{subsec:realistic} evaluates their performance in a realistic analysis, applying them to the $HH\to bb\bar{b}\bar{b}$ search and $HH\to b\bar{b}\tau\tau$ search developed in Chapters \ref{ch:VI} and \ref{ch:VII}, and quantifying their impact on the final distributions.}
@@ -835,11 +619,11 @@ The rest of the Chapter is organized accordingly. Section \ref{subsec:finding_ba
 \label{subsec:finding_basis}
 As has been established, the only remaining ingredient needed to reliably apply the matrix inversion method in complete EFT spaces is the basis, i.e., the set of BSM scenarios from which any other point in the parameter space is modeled. The requirements that must be met have already been stated: they must adequately cover the parameter space and capture the relevant features of the signal, remain sufficiently far from degeneracy, and not compromise the statistical accuracy of the resulting prediction; and the consequences of failing to meet them were discussed in detail in Section \ref{subsec:matrix_inversion}. The remaining task is to translate these requirements into an operational procedure, which will be the focus of this section.
 
-A procedure of this nature requires four elements. First, a controlled environment is necessary to generate signal shapes virtually instantaneously, which is essential for iterative strategies and that additionally allows for the reproduction of the finite sample size effect that would be observed in real applications. Second, a quantifiable criterion that measures how faithfully a given basis reproduces the prediction at an arbitrary point in the coupling space and that simultaneously penalizes any degradation in statistical precision, so that it can be evaluated repeatedly throughout the optimization. Third, a parameterization of the basis itself that reduces the search to a manageable dimension and eliminates trivial degeneracies that the minimizer would otherwise explore without gaining any information in return. And finally, a global search algorithm capable of traversing the resulting landscape. The remainder of this section develops these four elements in that same order, leading to optimized bases for the full HEFT space and for its SMEFT analog.\\
+A procedure of this nature requires four elements. First, a controlled environment is necessary to generate signal shapes virtually instantaneously, which is essential for iterative strategies and that additionally allows for the reproduction of the finite sample size effect that would be observed in real applications. Second, a quantifiable criterion that measures how faithfully a given basis reproduces the prediction at an arbitrary point in the coupling space and that simultaneously penalizes any degradation in statistical precision, so that it can be evaluated repeatedly throughout the optimization. Third, a parameterization of the basis itself that reduces the search to a manageable dimension and eliminates trivial degeneracies that the minimizer would otherwise explore without gaining any information in return. And finally, a global search algorithm capable of traversing the resulting landscape. The remainder of this section develops these four elements in that same order, leading to an optimized basis for the full HEFT space.\\
 
 \subsubsection{Toy based evaluation}
 \label{subsec:toy_evaluation}
-First, the question arises of how to methodically assess the performance of a given basis so that iterative optimization can be carried out. To avhieve this objective, it is essential to have a rapid mechanism capable of generating signal forms. This mechanism is the parameterization of the cross section in Equations \ref{eq:heft_diff} and \ref{eq:smeft_diff}, evaluated using the coefficients $A_i$ obtained through event level reweighting of Section \ref{subsec:ELR} \cite{HHReweighting}, which provides the differential cross section of $gg\to HH$ in $m_{HH}$ at any point in the HEFT or SMEFT spaces without the need to simulate or process a single event. This distribution is taken as the reference truth.
+First, the question arises of how to methodically assess the performance of a given basis so that iterative optimization can be carried out. To achieve this objective, it is essential to have a rapid mechanism capable of generating signal forms. This mechanism is the parameterization of the cross section in Equation \ref{eq:heft_diff}, evaluated using the coefficients $A_i$ obtained through event level reweighting of Section \ref{subsec:ELR} \cite{HHReweighting}, which provides the differential cross section of $gg\to HH$ in $m_{HH}$ at any point in the HEFT space without the need to simulate or process a single event. This distribution is taken as the reference truth.
 
 This description, however, produces a perfect signal shape, which would skew the evaluation, since in real-world applications, predictions are derived from simulated samples with finite statistics, and it is precisely this limitation that the linear combination amplifies. Therefore, to reproduce the finite statistics available in a real-world scenario, the analytical distribution is used as a probability density function from which simulations are run, and it is the resulting histograms — rather than the exact curve — that are fed into the matrix inversion method. The number of toys thrown is not arbitrary, but chosen to match the size of the LHE samples against which the method is validated later in this Chapter, so that the toy environment reproduces the statistical precision the method would actually encounter and both exercises can be read on a common scale. Figure \ref{fig:statvar} illustrates the procedure in the HEFT case: to showcase the dependence of the distribution on the number of thrown toys, the top two panels and the bottom-left one show that, for a small number of toys, the distribution is markedly noisy and the statistical uncertainty is large, whereas as the number of toys increases, the distribution converges toward the underlying exact analytical prediction. The remaining panel shows this prediction for the SM and for some representative BSM scenarios, where couplings not explicitly indicated are set to their SM values, and demonstrates the diversity of morphologies that the basis must be capable of reproducing.
 %
@@ -883,11 +667,11 @@ After defining the objective function, the next problem to be addressed is formu
  \label{eq:basicbasis}
 \end{equation}
 %
-for a problem with $n_c$ couplings — five in HEFT and nine in SMEFT — and $n_b$ basis points, such that it maximizes $s(H_t,H_m)$ over a wide range of test cases.
+for a problem with $n_c$ couplings and $n_b$ basis points — five and twenty-three, respectively, in HEFT —, such that it maximizes $s(H_t,H_m)$ over a wide range of test cases.
 
-In general, this involves $n_b\times n_c$ hyperparameters, that that is, $115$ in HEFT and $360$ in SMEFT, and also suffers from severe degeneracy: there are $n_b!$ equivalent bases that differ only in the order of their points, which the minimizer must explore without gaining any information in return.
+In general, this involves $n_b\times n_c = 115$ hyperparameters, and also suffers from severe degeneracy: there are $n_b!$ equivalent bases that differ only in the order of their points, which the minimizer must explore without gaining any information in return.
 
-Therefore, to reduce the number of hyperparameters and resolve the degeneracy problem, a minimal form for the basis is postulated, inspired by the structure of the coefficients $A_i$ themselves. This formulation associates each basis point with one coefficient from Equations \ref{eq:heft_diff} and \ref{eq:smeft_diff}, activating only the couplings involved in the associated monomial and setting the remaining ones to zero. Thus, in HEFT, the point associated with $A_1$, whose monomial is $\kappa_t^4$, takes the form $[0,A_1,0,0,0]$ in the parameterization $[\kappa_\lambda,\kappa_t,c_2,c_g,c_{2g}]$; equivalently, for $A_2$, with monomial $\kappa_\lambda \kappa_t^3$, the associated form would be $[A_{2a},A_{2b},0,0,0]$; and so on up to $A_{23}$. The full basis parametrization for HEFT is depicted in Table \ref{tab:basis_para_heft}, and the same rule applies to SMEFT, as shown in Table \ref{tab:basis_para_smeft}.
+Therefore, to reduce the number of hyperparameters and resolve the degeneracy problem, a minimal form for the basis is postulated, inspired by the structure of the coefficients $A_i$ themselves. This formulation associates each basis point with one coefficient of Equation \ref{eq:heft_diff}, activating only the couplings involved in the associated monomial and setting the remaining ones to zero. Thus, the point associated with $A_1$, whose monomial is $\kappa_t^4$, takes the form $[0,A_1,0,0,0]$ in the parameterization $[\kappa_\lambda,\kappa_t,c_2,c_g,c_{2g}]$; equivalently, for $A_2$, with monomial $\kappa_\lambda \kappa_t^3$, the associated form would be $[A_{2a},A_{2b},0,0,0]$; and so on up to $A_{23}$. The full basis parametrization for HEFT is depicted in Table \ref{tab:basis_para_heft}.
 \begin{table}
     \centering
     \begin{tabular}{@{}llccccc@{\hspace{2.5em}}llccccc@{}}
@@ -929,162 +713,29 @@ Therefore, to reduce the number of hyperparameters and resolve the degeneracy pr
 
 
 
+In this manner, each basis point corresponds exactly to one $A_i$ coefficient, which results in a reduction of the number of hyperparameters from $115$ to $53$, while providing the basis with a natural ordering that eliminates factorial degeneracy and considerably simplifies the task of the minimizer.\\
+
+Furthermore, it is necessary to establish the ranges within which these hyperparameters are varied. These are listed in Table \ref{tab:ranges}, and their selection is based on the behavior of the $HH$ cross section in two-dimensional scans for each pair of HEFT couplings. The criterion adopted is to consider scenarios up to cross sections of the order of $100$ times that of the SM, on the premise that any point exceeding that value would be excluded by the $HH$ signal itself in any analysis with reasonable sensitivity, rendering the modeling of it impractical. The result is a domain that encompasses the diversity of morphologies that current searches need to interpret without forcing the optimizer to accommodate regions that have already been experimentally ruled out.
+%
 \begin{table}
     \centering
-    \small
-    \setlength{\tabcolsep}{4pt}
-    \begin{tabular}{@{}ll ccccccccc@{}}
+    \begin{tabular}{cc}
         \toprule
-        & $f_i$ & $c_\PH$ & $c_{\PH\mathrm{kin}}$ & $c_{\PQt\PH}$ & $c_{\PH G}$
-        & $c_{\PQt G}$ & $c^{(1)}_{Q\PQt}$ & $c^{(8)}_{Q\PQt}$ & $c_{QQ\PQt\PQt}$ & $c^{(8)}_{QQ}$ \\
+        HEFT coupling & Range \\
         \midrule
-        $A_{0}$  & $1$                              & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        \midrule
-        $A_{1}$  & $c_\PH$                          & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        $A_{2}$  & $c_{\PH\mathrm{kin}}$            & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        $A_{3}$  & $c_{\PQt\PH}$                    & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 \\
-        $A_{4}$  & $c_{\PH G}$                      & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 \\
-        $A_{5}$  & $c_\PH^2$                        & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        $A_{6}$  & $c_\PH c_{\PH\mathrm{kin}}$      & $\bullet$ & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        $A_{7}$  & $c_\PH c_{\PQt\PH}$              & $\bullet$ & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 \\
-        $A_{8}$  & $c_\PH c_{\PH G}$                & $\bullet$ & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 \\
-        $A_{9}$  & $c_{\PH\mathrm{kin}}^2$          & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        $A_{10}$ & $c_{\PH\mathrm{kin}} c_{\PQt\PH}$& 0 & $\bullet$ & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 \\
-        $A_{11}$ & $c_{\PH\mathrm{kin}} c_{\PH G}$  & 0 & $\bullet$ & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 \\
-        $A_{12}$ & $c_{\PQt\PH}^2$                  & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 \\
-        $A_{13}$ & $c_{\PQt\PH} c_{\PH G}$          & 0 & 0 & $\bullet$ & $\bullet$ & 0 & 0 & 0 & 0 & 0 \\
-        $A_{14}$ & $c_{\PH G}^2$                    & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 \\
-        \midrule
-        $A_{15}$ & $c_{\PQt G}$                     & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 \\
-        $A_{16}$ & $c^{(1)}_{Q\PQt}$                & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 \\
-        $A_{17}$ & $c^{(8)}_{Q\PQt}$                & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 \\
-        $A_{18}$ & $c_{QQ\PQt\PQt}$                 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 \\
-        $A_{19}$ & $c^{(8)}_{QQ}$                   & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ \\
-        \midrule
-        $A_{20}$ & $c_\PH c_{\PQt G}$               & $\bullet$ & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 \\
-        $A_{21}$ & $c_\PH c^{(1)}_{Q\PQt}$          & $\bullet$ & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 \\
-        $A_{22}$ & $c_\PH c^{(8)}_{Q\PQt}$          & $\bullet$ & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 \\
-        $A_{23}$ & $c_\PH c_{QQ\PQt\PQt}$           & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 \\
-        $A_{24}$ & $c_\PH c^{(8)}_{QQ}$             & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ \\
-        $A_{25}$ & $c_{\PH\mathrm{kin}} c_{\PQt G}$ & 0 & $\bullet$ & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 \\
-        $A_{26}$ & $c_{\PH\mathrm{kin}} c^{(1)}_{Q\PQt}$ & 0 & $\bullet$ & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 \\
-        $A_{27}$ & $c_{\PH\mathrm{kin}} c^{(8)}_{Q\PQt}$ & 0 & $\bullet$ & 0 & 0 & 0 & 0 & $\bullet$ & 0 & 0 \\
-        $A_{28}$ & $c_{\PH\mathrm{kin}} c_{QQ\PQt\PQt}$  & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & $\bullet$ & 0 \\
-        $A_{29}$ & $c_{\PH\mathrm{kin}} c^{(8)}_{QQ}$    & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & 0 & $\bullet$ \\
-        $A_{30}$ & $c_{\PQt\PH} c_{\PQt G}$         & 0 & 0 & $\bullet$ & 0 & $\bullet$ & 0 & 0 & 0 & 0 \\
-        $A_{31}$ & $c_{\PQt\PH} c^{(1)}_{Q\PQt}$    & 0 & 0 & $\bullet$ & 0 & 0 & $\bullet$ & 0 & 0 & 0 \\
-        $A_{32}$ & $c_{\PQt\PH} c^{(8)}_{Q\PQt}$    & 0 & 0 & $\bullet$ & 0 & 0 & 0 & $\bullet$ & 0 & 0 \\
-        $A_{33}$ & $c_{\PQt\PH} c_{QQ\PQt\PQt}$     & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & $\bullet$ & 0 \\
-        $A_{34}$ & $c_{\PQt\PH} c^{(8)}_{QQ}$       & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & 0 & $\bullet$ \\
-        $A_{35}$ & $c_{\PH G} c_{\PQt G}$           & 0 & 0 & 0 & $\bullet$ & $\bullet$ & 0 & 0 & 0 & 0 \\
-        $A_{36}$ & $c_{\PH G} c^{(1)}_{Q\PQt}$      & 0 & 0 & 0 & $\bullet$ & 0 & $\bullet$ & 0 & 0 & 0 \\
-        $A_{37}$ & $c_{\PH G} c^{(8)}_{Q\PQt}$      & 0 & 0 & 0 & $\bullet$ & 0 & 0 & $\bullet$ & 0 & 0 \\
-        $A_{38}$ & $c_{\PH G} c_{QQ\PQt\PQt}$       & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & $\bullet$ & 0 \\
-        $A_{39}$ & $c_{\PH G} c^{(8)}_{QQ}$         & 0 & 0 & 0 & $\bullet$ & 0 & 0 & 0 & 0 & $\bullet$ \\
+        $\kappa_{\lambda}$ & $[-15,\,15]$ \\
+        $\kappa_{t}$       & $[0.5,\,2.5]$ \\
+        $c_2$              & $[-3,\,3]$ \\
+        $c_{\Pg}$          & $[-3,\,3]$ \\
+        $c_{2\Pg}$         & $[-5,\,5]$ \\
         \bottomrule
     \end{tabular}
-    \caption{Basis parameterization for the quadratically truncated SMEFT model. Each of
-    the $N_A=40$ basis points is associated with one coefficient $A_i$ of Equation~\ref{eq:smeft_diff}; a bullet denotes a Wilson coefficient left free at that point and entering the optimization as a hyperparameter, while a zero denotes one switched off by construction. The horizontal rules separate the SM point, the leading operators entering linearly and quadratically, the subleading operators entering linearly, and the mixed leading-subleading terms.}
-    \label{tab:basis_para_smeft}
-\end{table}
-
-
-% \begin{multline}\Bigl[ \begin{bmatrix} 0, & A_1, & 0, & 0, & 0 \end{bmatrix},\,\\ %kt^4
-%  \begin{bmatrix} A_{2a}, & A_{2b}, & 0, & 0, & 0 \end{bmatrix},\,\\ % kt^3 kl
-%  \begin{bmatrix} A_{3a}, & A_{3b}, & 0, & 0, & 0 \end{bmatrix},\,\\ %kt^2 kl^2
-%  \begin{bmatrix} 0, & A_{4a}, & A_{4b}, & 0, & 0 \end{bmatrix},\,\\ %kt^2 c2
-%  \begin{bmatrix} A_{5a}, & A_{5b}, & A_{5c}, & 0, & 0 \end{bmatrix},\,\\ %kt kl c2
-%  \begin{bmatrix} 0, & 0, & A_{6}, & 0, & 0 \end{bmatrix},\,\\ %c2^2
-%  \begin{bmatrix} 0, & 0, & 0, & 0, & A_7 \end{bmatrix},\,\\ %c2g^2
-%  \begin{bmatrix} 0, & A_{8a}, & 0, & 0, & A_{8b} \end{bmatrix},\,\\ %kt^2c2g
-%  \begin{bmatrix} A_{9a}, & 0, & 0, & A_{9b}, & A_{9c} \end{bmatrix},\,\\ %cg c2g kl
-%  \begin{bmatrix} A_{10a}, & A_{10b}, & 0, & 0, & A_{10c} \end{bmatrix},\,\\ %kt c2g kl
-%  \begin{bmatrix} A_{11a}, & A_{11b}, & 0, & A_{11c}, & 0 \end{bmatrix},\,\\ %kt^2 cg kl
-%  \begin{bmatrix} A_{12a}, & 0, & 0, & A_{12b}, & 0 \end{bmatrix},\,\\ %cg^2 kl^2
-%  \begin{bmatrix} A_{13a}, & A_{13b}, & 0, & A_{13c}, & 0 \end{bmatrix},\,\\ %kt cg kl^2
-%  \begin{bmatrix} 0, & 0, & A_{14a}, & 0, & A_{14b} \end{bmatrix},\,\\ %c2 c2g
-%  \begin{bmatrix} A_{15a}, & 0, & A_{15b}, & A_{15c}, & 0 \end{bmatrix},\,\\ %c2 cg kl
-%  \begin{bmatrix} 0, & 0, & 0, & A_{16a}, & A_{16b} \end{bmatrix},\,\\ %cg^2 c2g
-%  \begin{bmatrix} 0, & A_{17a}, & 0, & A_{17b}, & A_{17c} \end{bmatrix},\,\\ %kt cg c2g
-%  \begin{bmatrix} 0, & A_{18a}, & 0, & A_{18b}, & 0 \end{bmatrix},\,\\ %kt^2 cg^2
-%  \begin{bmatrix} 0, & A_{19a}, & 0, & A_{19b}, & 0 \end{bmatrix},\,\\ %kt^3 cg
-%  \begin{bmatrix} A_{20a}, & 0, & 0, & A_{20b}, & 0 \end{bmatrix},\,\\ %cg^3 kl
-%  \begin{bmatrix}  A_{21a}, &  A_{21b}, & 0, & A_{21c}, & 0 \end{bmatrix},\,\\ %kt cg^2 kl
-%  \begin{bmatrix} 0, & 0, & A_{22a}, & A_{22b}, & 0 \end{bmatrix},\,\\ %c2 cg^2
-%  \begin{bmatrix} 0, & A_{23a}, & A_{23b}, & A_{23c}, & 0 \end{bmatrix} \Bigl] %kt c2 cg
-% \end{multline}
-% with each basis point in the form of $\begin{bmatrix} \kappa_{\lambda}, & \kt, & c_2, & c_g, & c_2g \end{bmatrix}$.
-
-% And its equivalent for SMEFT:
-% \begin{multline}\Bigl[ \begin{bmatrix} 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\,
-%  \begin{bmatrix} A_{1}, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_H
-%  \begin{bmatrix} 0, & A_{2}, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{K,kin}
-%  \begin{bmatrix} 0, & 0, & A_{3}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ % c_{tH}
-%  \begin{bmatrix} 0, & 0, & 0, & A_{4}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{HG}
-%  \begin{bmatrix} 0, &  0, & 0, &  0, & A_{5}, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{tG}
-%  \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & A_{6}, & 0, & 0, & 0  \end{bmatrix},\,  %c_{Qt}
-%  \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & 0, & A_{7}, & 0, & 0  \end{bmatrix},\, \\% c_{Qt8}
-%  \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & 0, & 0, & A_{8}, & 0  \end{bmatrix},\,  %c_{QQtt}
-%  \begin{bmatrix} 0, &  0, &  0, &  0, & 0, & 0, & 0, & 0, & A_{9}  \end{bmatrix},\, \\ % c_{QQ8}
-%  \begin{bmatrix} A_{10}, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, %c_H^2
-%  \begin{bmatrix} A_{11a}, & A_{11b}, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{H}c_{Hkin}
-%  \begin{bmatrix} A_{12a}, & 0, & A_{12b}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{H}c_{tH}
-%  \begin{bmatrix} A_{13a}, & 0, & 0, & A_{13b}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{H}c_{HG}
-%  \begin{bmatrix} 0, & A_{14}, & 0, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{H,kin}^2
-%  \begin{bmatrix} 0, &  A_{15a}, & A_{15b}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{Hkin}c_{uH}
-%  \begin{bmatrix} 0, &  A_{16a}, & 0, & A_{16b}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\,  %c_{Hkin}c_{HG}
-%  \begin{bmatrix} 0, & 0, & A_{17}, & 0, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{tH}^2
-% \begin{bmatrix} 0, & 0, &  A_{18a}, & A_{18b}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\,  %c_{tH}c_{HG}
-%  \begin{bmatrix} 0, & 0, & 0, & A_{19}, & 0, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\ % c_{Hg}^2
-%  \begin{bmatrix} A_{20a}, & 0, & 0, & 0, & A_{20b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{H}c_{tG}
-%  \begin{bmatrix} A_{21a}, & 0, & 0, & 0, & 0, & A_{21b}, & 0, & 0, & 0  \end{bmatrix},\, \\ %c_{H}c_{Qt}
-%  \begin{bmatrix} A_{22a}, & 0, & 0, & 0, & 0, & 0, & A_{22b}, & 0, & 0  \end{bmatrix},\, % c_{H}c_{Qt8}
-%  \begin{bmatrix} A_{23a}, & 0, & 0, & 0, & 0, & 0, & 0, & A_{23b}, & 0  \end{bmatrix},\, \\ %c_{H}c_{QQtt}
-%  \begin{bmatrix} A_{24a}, & 0, & 0, & 0, & 0, & 0, & 0, & 0, & A_{24b}  \end{bmatrix},\, % c_{H}c_{QQ8}
-%  \begin{bmatrix} 0, &  A_{25a}, & 0, & 0, & A_{25b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{Hkin}c_{tG}
-%  \begin{bmatrix} 0, &  A_{26a}, & 0, & 0, & 0, & A_{26b}, & 0, & 0, & 0  \end{bmatrix},\,  %c_{Hkin}c_{Qt}
-%  \begin{bmatrix} 0, &  A_{27a}, & 0, & 0, & 0, & 0, & A_{27b}, & 0, & 0  \end{bmatrix},\, \\% c_{Hkin}c_{Qt8}
-%  \begin{bmatrix} 0, &  A_{28a}, & 0, & 0, & 0, & 0, & 0, & A_{28b}, & 0  \end{bmatrix},\,  %c_{Hkin}c_{QQtt}
-%  \begin{bmatrix} 0, &  A_{29a}, & 0, & 0, & 0, & 0, & 0, & 0, & A_{29b}  \end{bmatrix},\, \\% c_{Hkin}c_{QQ8}
-%  \begin{bmatrix} 0, &  0, &  A_{30a}, & 0, & A_{30b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, % c_{tH}c_{tG}
-%  \begin{bmatrix} 0, &  0, &  A_{31a}, & 0, & 0, & A_{31b}, & 0, & 0, & 0  \end{bmatrix},\, \\  %c_{tH}c_{Qt}
-%  \begin{bmatrix} 0, &  0, &  A_{32a}, & 0, & 0, & 0, & A_{32b}, & 0, & 0  \end{bmatrix},\, % c_{tH}c_{Qt8}
-%  \begin{bmatrix} 0, &  0, &  A_{33a}, & 0, & 0, & 0, & 0, & A_{33b}, & 0  \end{bmatrix},\, \\ %c_{tH}c_{QQtt}
-%  \begin{bmatrix} 0, &  0, &  A_{34a}, & 0, & 0, & 0, & 0, & 0, & A_{34b}  \end{bmatrix},\, % c_{tH}c_{QQ8}
-%  \begin{bmatrix} 0, &  0, & 0, &  A_{35a}, & A_{35b}, & 0, & 0, & 0, & 0  \end{bmatrix},\, \\% c_{HG}c_{tG}
-%  \begin{bmatrix} 0, &  0, &  0, &  A_{36a}, & 0, & A_{36b}, & 0, & 0, & 0  \end{bmatrix},\,  %c_{HG}c_{Qt}
-%  \begin{bmatrix} 0, &  0, &  0, &  A_{37a}, & 0, & 0, & A_{37b}, & 0, & 0  \end{bmatrix},\, \\% c_{HG}c_{Qt8}
-%  \begin{bmatrix} 0, &  0, &  0, &  A_{38a}, & 0, & 0, & 0, & A_{38b}, & 0  \end{bmatrix},\,  %c_{HG}c_{QQtt}
-%  \begin{bmatrix} 0, &  0, &  0, &  A_{39a}, & 0, & 0, & 0, & 0, & A_{39b}  \end{bmatrix},\, % c_{HG}c_{QQ8}
-% \Bigl]
-% \end{multline}
-% with each basis point parametrized as $\begin{bmatrix} c_\PH, &  c_{\PH,kin}, &  c_{\PQt\PH}, & c_{\PH G}, & c_{\PQt G}, & c_{Q\PQt}^{(1)}, & c_{Q \PQt}^{(8)}, & c_{QQ\PQt\PQt}, & c_{QQ}^{(8)} \end{bmatrix}$
-
-In this manner, each basis point corresponds exactly to one $A_i$ coefficient, which results in a reduction of the number of hyperparameters from $115$ to $53$ in HEFT and from $360$ to $65$ in SMEFT, while providing the basis with a natural ordering that eliminates factorial degeneracy and considerably simplifies the task of the minimizer.\\
-
-Furthermore, it is necessary to establish the ranges within which these hyperparameters are varied. These are listed in Table \ref{tab:ranges}, and their selection is based on the behavior of the $HH$ cross section in two-dimensional scans for each pair of HEFT or SMEFT couplings. The criterion adopted is to consider scenarios up to cross sections of the order of $100$ times that of the SM, on the premise that any point exceeding that value would be excluded by the $HH$ signal itself in any analysis with reasonable sensitivity, rendering the modeling of it impractical. The result is a domain that encompasses the diversity of morphologies that current searches need to interpret without forcing the optimizer to accommodate regions that have already been experimentally ruled out.
-%
-\begin{table}[
-]
-    \centering
-    \begin{tabular}{c|c|c|c}
-     HEFT parameter    & Range & SMEFT Paramer & Range  \\
-     \hline
-     \klambda & $[-15,\,15]$ & $c_\PH$ & $[-30,\,30]$ \\
-    \kt & $[0.5,\,2.5]$ &   $c_{\PH,kin}$ & $[-50,\,50]$ \\
-     $c_2$ & $[-3,\,3]$ & $c_{\PQt\PH}$ & $[-30,\,30]$ \\
-    $c_g$ & $[-3,\,3]$ &  $c_{\PH G}$&  $[-0.1,0.1]$\\
-    $c_{2g}$& $[-5,\,5]$ &  $c_{\PQt G}$ & $[-0.5,\,0.5]$ \\
-    & &  $c_{Q \PQt}^{(1)}$& $[-5,\,5]$ \\
-       & &$c_{Q\PQt}^{(8)}$& $[-5,\,5]$ \\
-     & &$c_{QQ\PQt\PQt}$& $[-5,\,5]$ \\
-     & & $c_{QQ}^{(8)}$& $[-5,\,5]$ \\
-    \end{tabular}
-    \caption{\textcolor{red}{Revisar rangos}Parameter ranges used in the HEFT and SMEFT optimizations.}
+    \caption{\textcolor{red}{Revisar rangos}Coupling ranges within which the basis points are varied in the optimization.}
     \label{tab:ranges}
 \end{table}
 
-Therefore, with the basis parameterization and the coupling ranges fixed, the optimization problem is completely specified. The search space is a bounded hyper-rectangle of $53$ dimensions in HEFT and $65$ in SMEFT, and the quantity to be maximized over it is the score of Equation \ref{eq:scorefunc}, evaluated on the toy templates described above. El siguiente paso es, por tanto, determinar la forma más adecuada de explorar el problema, y la naturaleza de la función objetivo restringe considerablemente esa elección. La Ecuación \ref{eq:scorefunc} no proporciona un gradiente analítico, y las configuraciones próximas a la degeneración discutidas en la Sección \ref{subsec:matrix_inversion} introducen caídas abruptas de la puntuación que dotan al paisaje de múltiples óptimos locales. Los métodos locales y basados en derivadas quedan así descartados, y se requiere un algoritmo de búsqueda global sin derivadas que muestree el espacio de forma amplia y converja en un número de evaluaciones compatible con el coste por evaluación establecido anteriormente. The algorithm adopted, and the configuration under which it is run, are described next.
+Therefore, with the basis parameterization and the coupling ranges fixed, the optimization problem is completely specified. The search space is a bounded hyper-rectangle of $53$ dimensions, and the quantity to be maximized over it is the score of Equation \ref{eq:scorefunc}, evaluated on the toy templates described above. The next step is therefore to determine the most suitable way of exploring this space, and the nature of the objective function considerably restricts that choice. Equation \ref{eq:scorefunc} provides no analytical gradient, and the configurations close to degeneracy discussed in Section \ref{subsec:matrix_inversion} introduce abrupt drops in the score that give the landscape multiple local optima. Local and gradient-based methods are thus ruled out, and a global, derivative-free search algorithm is required, one that samples the space broadly and converges within a number of evaluations compatible with the cost per evaluation established above. The algorithm adopted, and the configuration under which it is run, are described next.
+
 
 \subsubsection{Algorithmic optimization}
 %
@@ -1092,23 +743,25 @@ Once the optimization formulation has been properly defined, the most appropriat
 
 Bayesian optimization~\cite{BayesPaper1,BayesBook,Tani:2022izz} (BO) was also investigated as a potential solution to the problem; however, the PSO was found to be the more reliable choice as BOs surrogate function never seemed to really learn the underlying score landscape.
 
-Finally, the configuration adopted for PSO uses XXX particles in HEFT and XXXX in SMEFT case, with the number of informants set to X. Here, the performance of each basis is evaluated by summing the scores from the toy-based test points in both 2D scan planes, with the parameter ranges listed in Table \ref{tab:ranges}, and a set of XXXX random points scattered throughout the EFT parameter space.\\
+Finally, the configuration adopted for PSO uses \textcolor{red}{XXX} particles, with the number of informants set to X. Here, the performance of each basis is evaluated by summing the scores from the toy-based test points in both 2D scan planes, with the parameter ranges listed in Table \ref{tab:ranges}, and a set of XXXX random points scattered throughout the EFT parameter space.\\
 
 The convergence performance achieved by the PSO in both cases is shown in Figure ~\ref{fig:convergence}, which displays the best personal score attained by each particle up to a given iteration, along with its median and mean across the swarm, such that as the iterations progress, the PSO particles find progressively better solutions. It is noteworthy that, toward the end, the median of the distributions lies above its mean, indicating a distribution skewed toward low scores, with most of the swarm concentrated near the optimum and a residual tail of particles that continue to explore far from it — a behavior typical of a healthy swarm. The color gradient, from purple to yellow, represents the progression of the optimization from early to late iterations. Different configurations of the score parameters $a,\,b,\,c$ of the objective function were tested and were found to yield similarly strong basis sets. It should be emphasized, however, that the absolute value of the score is not meaningful in itself, since it depends on the weights $a,\,b,\,c$ used, on the binning, and on the composition of the test set, and it is only useful as a relative measure.
 %
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\linewidth]{figures/chapter_VIII/convergence_score_HEFT.png}\\
     \includegraphics[width=0.75\linewidth]{figures/chapter_VIII/convergence_score_HEFT.png}
-    \caption{Evolution of the personal best score of each particle over the course of the optimization for the HEFT case (top) and the SMEFT case (bottom). Each point corresponds to one particle at one iteration; the points are drawn with a low opacity, so that darker regions indicate a higher density of particles and the diffuse edges correspond to isolated ones. The solid and dashed lines are, respectively, the mean and the median of the personal bests across the swarm at each iteration.. Note this does not display the actual score per iteration of the particles but their personal best i.e the noise of exploration is excluded from this figure. \color{red}TODO: Replace with SMEFT plot!\color{black} }
+    \caption{Evolution of the personal best score of each particle over the course of the optimization. Each point corresponds to one particle at one iteration; the points are drawn with a low opacity, so that darker regions indicate a higher density of particles and the diffuse edges correspond to isolated ones. The solid and dashed lines are, respectively, the mean and the median of the personal bests across the swarm at each iteration. Since only the personal best of each particle is shown, the noise of the exploration is excluded from the figure.}
     \label{fig:convergence}
 \end{figure}
 %
-In summary, the optimization procedure was carried out independently for the two EFT formulations, and it was found that in both cases the swarm converges to a stable configuration well before the iteration budget is exhausted. The result is a single best-performing basis per framework, and the goal is to determine whether it improves upon the choice made by the heuristic criteria—which were sufficient in low-dimensional scans, and whether the resulting set of points spans the kinematic diversity required by the matrix method to interpolate reliably. Both aspects, along with the bases themselves, are presented below.\\
+
+
+In summary, the swarm converges to a stable configuration well before the iteration budget is exhausted. The result is a single best-performing basis, and the questions that remain are whether it improves upon the choice made by the heuristic criteria — which were sufficient in low-dimensional scans — and whether the resulting set of points spans the kinematic diversity required by the matrix method to interpolate reliably. Both aspects, along with the basis itself, are presented below.
+
 
 \subsubsection{Optimized basis}
 %
-The algorithm optimization yields the best-performing basis sets for the two configurations, which are shown in Table \ref{tab:bestheft} for HEFT and in Table \ref{tab:bestsmeft} for SMEFT. To simplify the notation, each point of a basis is hereafter referred to as a benchmark and denoted by $\mathrm{BM}_i$, in analogy with the nomenclature already used for the representative scenarios in Refs. \cite{Carvalho:2015ttv,Carvalho:2016rys}. As previously mentioned, by construction, each benchmark is associated with exactly one coefficient $A_i$ of Equations \ref{eq:heft_diff} and \ref{eq:smeft_diff}, and the couplings not activated at a given benchmark are exactly zero. Note, however, that the benchmarks are labeled sequentially, and their numbering does not follow that of the coefficients $A_i$; the correspondence between the two, which is one-to-one by construction of the parameterization of Table \ref{tab:basis_para_heft}, is given in the second column. The labeling is pure bookkeeping and has no impact on the model.
+The algorithm optimization yields the best-performing basis, shown in Table \ref{tab:bestheft}. To simplify the notation, each point of the basis is hereafter referred to as a benchmark and denoted by $\mathrm{BM}_i$, in analogy with the nomenclature already used for the representative scenarios in Refs. \cite{Carvalho:2015ttv,Carvalho:2016rys}. As previously mentioned, by construction, each benchmark is associated with exactly one coefficient $A_i$ of Equation \ref{eq:heft_diff}, and the couplings not activated at a given benchmark are exactly zero. Note, however, that the benchmarks are labeled sequentially, and their numbering does not follow that of the coefficients $A_i$; the correspondence between the two, which is one-to-one by construction of the parameterization of Table \ref{tab:basis_para_heft}, is given in the second column. The labeling is pure bookkeeping and has no impact on the model.
 %
 \begin{table}
     \centering
@@ -1147,71 +800,16 @@ The algorithm optimization yields the best-performing basis sets for the two con
 \end{table}
 
 
-\begin{table}
-    \centering
-    \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
-      Nr.  & $c_\PH$ &  $c_{\PH,kin}$ &  $c_{\PQt\PH}$ & $c_{\PH G}$ & $c_{\PQt G}$ & $c_{Q\PQt}^{(1)}$ & $c_{Q \PQt}^{(8)}$ & $c_{QQ\PQt\PQt}$ & $c_{QQ}^{(8)}$   \\
-      \hline
-      $A_0$: & 0 & 0 & 0 & 0 & 0  & 0  & 0  & 0  & 0 \\
-      $A_1$: & 1 & 0 & 0 & 0 & 0  & 0  & 0  & 0  & 0 \\
-      $A_2$: & 0 & 1 & 0 & 0 & 0  & 0  & 0  & 0  & 0 \\
-      $A_3$: & 0 & 0 & 1 & 0 & 0  & 0  & 0  & 0  & 0 \\
-      $A_4$: & 0 & 0 & 1 & 0 & 0  & 0  & 0  & 0  & 0 \\
-      $A_5$: & 1 & 0 & 0 & 0 & 0  & 0  & 0  & 0  & 0 \\
-      $A_6$: & 0 & 1 & 0 & 0 & 0  & 0  & 0  & 0  & 0 \\
-      $A_7$: & 0 & 0 & 1 & 0 & 0  & 0  & 0  & 0  & 0 \\
-      $A_8$: & 0 & 0 & 0 & 1 & 0  & 0  & 0  & 0  & 0 \\
-      $A_9$: & 1 & 1 & 0 & 0 & 0  & 0  & 0  & 0  & 0 \\
-      $A_{10}$: & 1 & 0 & 1 & 0 & 0  & 0  & 0  & 0  & 0 \\
-      $A_{11}$: & 1 & 0 & 0 & 1 & 0  & 0  & 0  & 0  & 0 \\
-      $A_{12}$: & 1 & 0 & 0 & 0 & 1  & 0  & 0  & 0  & 0 \\
-      $A_{13}$: & 1 & 0 & 0 & 0 & 0  & 1  & 0  & 0  & 0 \\
-      $A_{14}$: & 1 & 0 & 0 & 0 & 0  & 0  & 1  & 0  & 0 \\
-      $A_{15}$: & 1 & 0 & 0 & 0 & 0  & 0  & 0  & 1  & 0 \\
-      $A_{16}$: & 1 & 0 & 0 & 0 & 0  & 0  & 0  & 0  & 1 \\
-      $A_{17}$: & 0 & 1 & 1 & 0 & 0  & 0  & 0  & 0  & 0 \\
-      $A_{18}$: & 0 & 1 & 0 & 1 & 0  & 0  & 0  & 0  & 0 \\
-      $A_{19}$: & 0 & 1 & 0 & 0 & 1  & 0  & 0  & 0  & 0 \\
-      $A_{20}$: & 0 & 1 & 0 & 0 & 0  & 1  & 0  & 0  & 0 \\
-      $A_{21}$: & 0 & 1 & 0 & 0 & 0  & 0  & 1  & 0  & 0 \\
-      $A_{22}$: & 0 & 1 & 0 & 0 & 0  & 0  & 0  & 1  & 0 \\
-      $A_{23}$: & 0 & 1 & 0 & 0 & 0  & 0  & 0  & 0  & 1 \\
-      $A_{24}$: & 0 & 0 & 1 & 1 & 0  & 0  & 0  & 0  & 0 \\
-      $A_{25}$: & 0 & 0 & 1 & 0 & 1  & 0  & 0  & 0  & 0 \\
-      $A_{26}$: & 0 & 0 & 1 & 0 & 0  & 1  & 0  & 0  & 0 \\
-      $A_{27}$: & 0 & 0 & 1 & 0 & 0  & 0  & 1  & 0  & 0 \\
-      $A_{28}$: & 0 & 0 & 1 & 0 & 0  & 0  & 0  & 1  & 0 \\
-      $A_{29}$: & 0 & 0 & 1 & 0 & 0  & 0  & 0  & 0  & 1 \\
-      $A_{30}$: & 0 & 0 & 0 & 1 & 1  & 0  & 0  & 0  & 0 \\
-      $A_{31}$: & 0 & 0 & 0 & 1 & 0  & 1  & 0  & 0  & 0 \\
-      $A_{32}$: & 0 & 0 & 0 & 1 & 0  & 0  & 1  & 0  & 0 \\
-      $A_{33}$: & 0 & 0 & 0 & 1 & 0  & 0  & 0  & 1  & 0 \\
-      $A_{34}$: & 0 & 0 & 0 & 1 & 0  & 0  & 0  & 0  & 1 \\
-      $A_{35}$: & 0 & 0 & 0 & 0 & 1  & 0  & 0  & 0  & 0 \\
-      $A_{36}$: & 0 & 0 & 0 & 0 & 0  & 1  & 0  & 0  & 0 \\
-      $A_{37}$: & 0 & 0 & 0 & 0 & 0  & 0  & 1  & 0  & 0 \\
-      $A_{38}$: & 0 & 0 & 0 & 0 & 0  & 0  & 0  & 1  & 0 \\
-      $A_{39}$: & 0 & 0 & 0 & 0 & 0  & 0  & 0  & 0  & 1 \\
-    \end{tabular}
-    \caption{\textcolor{red}{UPDATE}}
-    \label{tab:bestsmeft}
-\end{table}
 %
 \\
-Several properties can be observed in the resulting basis sets. First, a considerable fraction of the benchmarks lie very close to the domain boundaries shown in Table \ref{tab:ranges}. This is expected behavior rather than a pathology, stemming from the fact that $F$ is better conditioned when the monomial vectors are as different from one another as possible. Therefore, the optimizer tends to choose extreme configurations to achieve this maximum separation. This also clarifies that the optimized bases are restricted to the domain in which they were sought, and that expanding the domain would require repeating the procedure rather than extrapolating the present result. Secondly, none of the benchmarks correspond to a scenario that an analysis would test on its own. Instead, they are deliberately spread across configurations whose individual cross sections differ by orders of magnitude, which is precisely what allows the linear combination to reach any intermediate point.
+Several properties can be observed in the resulting basis. First, a considerable fraction of the benchmarks lie very close to the domain boundaries shown in Table \ref{tab:ranges}. This is expected behavior rather than a pathology, stemming from the fact that $F$ is better conditioned when the monomial vectors are as different from one another as possible. Therefore, the optimizer tends to choose extreme configurations to achieve this maximum separation. This also clarifies that the optimized basis is restricted to the domain in which it was sought, and that expanding the domain would require repeating the procedure rather than extrapolating the present result. Secondly, none of the benchmarks correspond to a scenario that an analysis would test on its own. Instead, they are deliberately spread across configurations whose individual cross sections differ by orders of magnitude, which is precisely what allows the linear combination to reach any intermediate point.
 
-In relation to this last feature, the kinematic coverage of the basis sets is illustrated in Figure \ref{fig:basisoverview}, where the range of the different $m_{HH}$ shapes spanned by the two optimized basis sets can be seen. For visualization purposes, only a few representative benchmarks are shown explicitly, while the range of kinematics across all benchmarks is shaded. It becomes evident that the two sets encompass a broad spectrum of kinematic scenarios, extending well beyond the SM shape in both directions: from the threshold-enhanced configurations that cluster near the $m_{HH}$ turn-on—characteristic of large values of the trilinear coupling, to the hard spectra that remain populated out to the TeV region, driven by contact interactions. This spread is not an incidental feature but the very property required by the matrix inversion method, since the prediction at an arbitrary point is constructed as a linear combination of these shapes: a basis whose members were kinematically similar would be unable to reach the extremes of the parameter space except through the large, alternating weights that Section \ref{subsec:matrix_inversion} identified as the source of error amplification.\\
+In relation to this last feature, the kinematic coverage of the basis is illustrated in Figure \ref{fig:basisoverview}, where the range of the different $m_{HH}$ shapes spanned by the optimized basis can be seen. For visualization purposes, only a few representative benchmarks are shown explicitly, while the range of kinematics across all benchmarks is shaded. It becomes evident that the basis encompasses a broad spectrum of kinematic scenarios, extending well beyond the SM shape in both directions: from the threshold-enhanced configurations that cluster near the $m_{HH}$ turn-on—characteristic of large values of the trilinear coupling, to the hard spectra that remain populated out to the TeV region, driven by contact interactions. This spread is not an incidental feature but the very property required by the matrix inversion method, since the prediction at an arbitrary point is constructed as a linear combination of these shapes: a basis whose members were kinematically similar would be unable to reach the extremes of the parameter space except through the large, alternating weights that Section \ref{subsec:matrix_inversion} identified as the source of error amplification.\\
 %
 \begin{figure}
     \centering
-    \includegraphics[width=0.48\linewidth]{figures/chapter_VIII/basis_envelope_heft.pdf}\hfill
-    \includegraphics[width=0.48\linewidth]{figures/chapter_VIII/basis_envelope_smeft.pdf}
-    \caption{The $m_{HH}$ shapes spanned by the basis sets found for HEFT
-    (Table~\ref{tab:bestheft}, left) and SMEFT (Table~\ref{tab:bestsmeft}, right),
-    normalized to the SM yield for $200\,\text{fb}^{-1}$ at $13.6$~TeV. The grey band is
-    the envelope of the basis points, i.e.\ the bin-by-bin range they cover; the coloured
-    lines are four representative basis points, labelled by the couplings switched on at
-    each of them; the thick black line is the SM. \textcolor{red}{update}}
+    \includegraphics[width=0.7\linewidth]{figures/chapter_VIII/basis_envelope_heft.pdf}
+    \caption{The $m_{HH}$ shapes spanned by the HEFT basis of Table~\ref{tab:bestheft}, normalized to the SM yield for $200\,\text{fb}^{-1}$ at $13.6$~TeV. The gray band is the envelope of the basis points, i.e.\ the bin-by-bin range they cover; the colored lines are four representative basis points, labeled by the couplings switched on at each of them; the thick black line is the SM. \textcolor{red}{update}}
     \label{fig:basisoverview}
 \end{figure}
 
@@ -1245,12 +843,11 @@ Hence, the objective function and the basis both stem from the same parameteriza
 Under these conditions, the closure does not evaluate the correctness of the method, as it is correct by construction; instead, it determines the extent to which a specific basis deviates from that exact equality due to finite statistics. The metrics $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$ quantify the effects inherent to the choice of bases. It is important to note that while optimization required reducing them to a single number that would allow the ranking of the bases, the diagnosis requires a different approach, as the two metrics correspond to distinct modes of failure. Therefore, they are examined separately here to measure, respectively, the agreement in form and the degradation in precision relative to that of the input templates. Subjecting a non-optimized basis to the same closure test enables direct isolation of the contribution of optimization and verification that the score from Equation \ref{eq:scorefunc} translates into an effective improvement in modeling.
 
 This comparison between a non-optimized basis obtained using the heuristic inspection criteria of Section \ref{subsec:matrix_inversion} and the optimized basis of Table \ref{tab:bestheft} is illustrated in Figures \ref{fig:comparePSO_SM_like}, \ref{fig:comparePSO_BSM_like_1}, and \ref{fig:comparePSO_BSM_like_2}. The comparison is performed on two-dimensional planes of HEFT space ordered by increasing complexity, defined as the number of diagrams and interference terms involved in the description of the process.
-\textcolor{red}{SMEFT when ready}
 
 Accordingly, the simplest case is the $\kappa_\lambda$–$\kappa_t$ plane, as illustrated in Figure \ref{fig:comparePSO_SM_like}. In this scenario only the couplings present in the SM are modified, and the kinematic variations are the smoothest in the entire space due to their fewer diagrams. Despite the simplicity of the process, the non-optimized basis exhibits a distinctive structure: the highest values of
 $d_W(H_{t},H_{m})$ and $f_{stat}(H_{t},H_{m})$ mark the minima of the cross section, indicating cancellations between diagrams. Conversely, the optimized basis causes these structures to become uniform until they are no longer present.
 
-The introduction of BSM effects complicates the modeling due to the increase in diagrams and interference terms.. In Figure \ref{fig:comparePSO_BSM_like_1}, where the parameter $c_2$ is varied with $\kappa_\lambda$, the non-optimized basis reaches significantly higher values than in the previous SM-like case, and these values follow the same pattern: the degradation continues to be concentrated in the cancellation directions, and optimization once again smooths it out. The most challenging scenario is shown in Figure \ref{fig:comparePSO_BSM_like_2}, which depicts a pure BSM case by focusing on the $c_2$–$c_g$ plane. Here, $c_{2g}$ remains coupled to $c_g$ via the correlation imposed by the SMEFT description \cite{Carvalho:2017vnu}, which maximizes the number of contributing diagrams and the complexity of the model. In this scenario, extreme deviations are observed in the non-optimized basis, which the optimized basis effectively resolves.
+The introduction of BSM effects complicates the modeling due to the increase in diagrams and interference terms. In Figure \ref{fig:comparePSO_BSM_like_1}, where the parameter $c_2$ is varied with $\kappa_\lambda$, the non-optimized basis reaches significantly higher values than in the previous SM-like case, and these values follow the same pattern: the degradation continues to be concentrated in the cancellation directions, and optimization once again smooths it out. The most challenging scenario is shown in Figure \ref{fig:comparePSO_BSM_like_2}, which depicts a pure BSM case by focusing on the $c_2$–$c_g$ plane. Here, $c_{2g}$ remains coupled to $c_g$ through the relation that the linear realization of the symmetry imposes at leading order, \textcolor{red}{Y ESTO DONDE SE HA DICHO?} which maximizes the number of contributing diagrams and the complexity of the model. In this scenario, extreme deviations are observed in the non-optimized basis, which the optimized basis effectively resolves.
 %
 \begin{figure}
     \centering
@@ -1323,7 +920,7 @@ The performance of the method is now evaluated on this LHE dataset using the sam
     $H_{t}$ of the LHE test samples and the shape $H_{m}$ obtained from the matrix
     inversion method with the basis of Table~\ref{tab:bestheft}, evaluated over the 4000
     LHE test points. Each histogram is normalized to the number of test points and the
-    horizontal axis is logarithmic in both panels.\textcolor{red}{Añadir SMEFT, quitar toys}}
+    horizontal axis is logarithmic in both panels.\textcolor{red}{quitar toys}}
     \label{fig:performance}
 \end{figure}
 %
@@ -1581,7 +1178,7 @@ This chapter has addressed the problem of providing a reliable description of th
 
 To this end, two such techniques have been examined in detail. Event-level reweighting provides a description whose dependence on the couplings is exact and differential, and which can be evaluated at any point in the chosen EFT formalism once the coefficients associated with the couplings of the theory are known. However, the computational cost of obtaining a prediction requires iterating through the reference samples event by event and reconstructing the histogram throughout the entire analysis chain, for each point in a scan and for each systematic variation. This method is not intended for widespread use in real-world analyses. Rather, in this work it is employed as a tool to develop the second method examined: the matrix inversion method, whose advantage lies precisely in eliminating this computational cost by reducing the prediction to a linear combination of a fixed set of templates with analytically known coefficients. However, it should be noted that the quality of the description is entirely determined by the choice of the basis, which in high-dimensional spaces does not allow for intuitive selection but instead requires systematic approaches such as the one discussed here.
 
-The central contribution of this chapter is therefore to exploit ELR as a tool specifically designed to address the basis selection problem in the matrix inversion method. Thus, by using event-level reweighting as a mechanism capable of generating a template at arbitrary points in the coupling space without simulating or processing a single event, the choice of basis becomes a well-formulated optimization problem, in which candidate basis can be evaluated on a massive way. To stablish a solid foundation, it is essential to define what constitutes a good basis, which has been done based on the pair of metrics introduced in Section \ref{subsec:objective} — the Wasserstein distance, which is sensitive to the fidelity of the predicted shape, and the relative statistical error, which is sensitive to the amplification of uncertainty induced by the linear combination. The toy based evaluation has been established as a framework for evaluating both metrics extensively over the entire domain, resulting in the bases shown in Tables \ref{tab:bestheft} and \textcolor{red}{tablaSMEFT}, which correspond to the 5D HEFT and 9D SMEFT formulations introduced in the chapter.
+The central contribution of this chapter is therefore to exploit ELR as a tool specifically designed to address the basis selection problem in the matrix inversion method. Thus, by using event-level reweighting as a mechanism capable of generating a template at arbitrary points in the coupling space without simulating or processing a single event, the choice of basis becomes a well-formulated optimization problem, in which candidate basis can be evaluated on a massive way. To stablish a solid foundation, it is essential to define what constitutes a good basis, which has been done based on the pair of metrics introduced in Section \ref{subsec:objective} — the Wasserstein distance, which is sensitive to the fidelity of the predicted shape, and the relative statistical error, which is sensitive to the amplification of uncertainty induced by the linear combination. The toy based evaluation has been established as a framework for evaluating both metrics extensively over the entire domain, resulting in the basis shown in Table \ref{tab:bestheft} for the five-dimensional HEFT description introduced in the chapter.
 
 The validation process has also confirmed that the basis construction holds up where it should; to this end, three levels of study have been proposed. The closure has demonstrated that the optimization converges adequately and that it provides the optimized basis with uniform performance across the parameter space, in contrast to the degradation exhibited by a non-optimized basis. The extension to LHE events has demonstrated that this same accuracy holds up when the simplified description is extended to a full matrix element calculation, and has served as the motivation for the systematic uncertainty derived from $d_W(H_{t},H_{m})$ in Section \ref{subsec:uncertainties}. Finally, validation in a realistic analysis served as the ultimate test of the method, demonstrating that the agreement holds up to the trigger, the reconstruction, and a selection that acts differently at each point in the coupling space. Taken together, these results support the use of the method and the basis obtained with the ML approach presented here as a signal model for an EFT interpretation over a coverage of the parameter space considerably broader than that explored to date.\\
 
@@ -1593,5 +1190,8 @@ Taking a different perspective, it is also worth mentioning that all the element
 %Variantes en esta línea están siendo exploradas en el contexto de la extensión del método matricial a otros procesos multi-Higgs \cite{XXX}, y nada garantiza que la base obtenida en este trabajo represente un óptimo global y no una solución que ha demostrado ser suficiente para los requisitos establecidos.\\
 
 %Modeling Multi-Higgs signal in SM-like couplings and HEFT using the matrix method: beyond gluon-fusion production -- https://indico.cern.ch/event/1677272/contributions/7210716/attachments/3323485/5951006/Matrix_Method_MultiH_HEFT_HH_meeting_August_3_2026_v1.pdf
+
+Another natural extension concerns the effective description itself. This work has been restricted to HEFT, but the same construction applies to SMEFT, in which the Higgs boson is retained as part of an $SU(2)_L$ doublet \cite{Grzadkowski:2010es}. The leading dimension-six operators of SMEFT map onto a restricted region of the HEFT space, so that, if the expansion is not truncated, the leading SMEFT scenarios are already contained in the space covered by the basis obtained here; the complete SMEFT description, however, does not reduce to it. On the one hand, it includes operators without a counterpart among the five HEFT couplings — the chromomagnetic dipole and the four-top interactions, which enter at subleading order in the loop expansion \cite{Heinrich:2023rsd}. On the other hand, the polynomial that describes the cross section depends on the order at which the expansion in $1/\Lambda$ is truncated, so that any signal model must be accompanied by the truncation scheme and the scale $\Lambda$ under which it is derived. With the nine Wilson coefficients relevant to $gg\to HH$ and a quadratic truncation that keeps the subleading operators linear, the cross section contains $40$ independent terms instead of the $23$ of NLO HEFT, so that the basis would comprise forty points and a choice by inspection would be even less viable. Since event-level reweighting has already been formulated for this description \cite{HHReweighting}, the optimization procedure developed in this chapter can be applied without modification, and constitutes the natural next step towards an interpretation in both effective descriptions. \textcolor{red}{ESTOY DANDO DEMASIADOS DATOS DE SMEFT, QUE NO SE SI TENDRAN UNA PARTE PREVIA EN EL CAPITULO I. ADEMÁS, CREO QUE PARA EL PAPERO DE HHREWEIGHTING TODAVIA NO ESTÁ LA FORMAULCION SMEFT}
+
 
 Finally, the formulation developed here is not tied to the $gg\to HH$ process, but rather rests solely on the polynomial structure of the cross section in terms of effective couplings, a property shared by any multi-Higgs production mechanism. The same construction is therefore applicable to vector boson fusion, to the production associated with a pair of top quarks, and to the triple production of Higgs bosons, where the increased complexity of the parameter space involved makes the need for a modeling technique even more pressing. Similarly, this technique is not restricted to a single analysis, but rather constitutes a natural component for combinations and for the interpretations that the increase in statistical power in the coming years will make possible, which makes studies such as the one presented here absolutely essential for drawing future conclusions.
