@@ -115,13 +115,14 @@
 %   headsep         gap between the header rule and the first text line
 %   footskip        baseline distance to the (currently empty) footer
 %
-% Resulting text block: 155mm wide, 237mm tall.
+% Resulting text block: 155mm wide, 247mm tall (top and bottom reduced from
+% 28/32mm to 25/25mm to shorten the thesis; the footer is empty anyway).
 
 \usepackage[a4paper,
             inner         = 30mm,
             outer         = 25mm,
-            top           = 28mm,
-            bottom        = 32mm,
+            top           = 25mm,
+            bottom        = 25mm,
             bindingoffset = 0mm,
             headsep       = 8mm,
             footskip      = 12mm]{geometry}
@@ -196,15 +197,19 @@
 % Fonts
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Text font: Cochineal (a Crimson-based book face), about 10% narrower than
+% Latin Modern at the same 11pt, with the matching newtxmath for math. Sans
+% and typewriter stay Latin Modern. Same fonts with pdfLaTeX and LuaLaTeX.
 \ifxetexorluatex
-  \usepackage{unicode-math}
-  \setmainfont{Latin Modern Roman}
+  \usepackage{cochineal}
+  \usepackage[cochineal]{newtxmath}
   \setsansfont{Latin Modern Sans}
-  \setmathfont{Latin Modern Math}
   \setmonofont[Scale=MatchLowercase]{Latin Modern Mono}
 \else
-  \usepackage{lmodern}
   \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+  \usepackage{cochineal}
+  \usepackage[cochineal]{newtxmath}
 \fi
 
 % Line spacing. The class sets \onehalfspacing (16.4pt between lines at
