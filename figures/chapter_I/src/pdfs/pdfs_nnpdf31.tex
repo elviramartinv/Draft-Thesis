@@ -1,0 +1,64 @@
+% Parton distribution functions of the proton (NNPDF3.1 NNLO, alpha_s = 0.118) at
+% Q^2 = 10 GeV^2 and Q^2 = 10^4 GeV^2, with the 68% replica band.
+% Data in data/ are produced by pdf_tables.py from the LHAPDF set NNPDF31_nnlo_as_0118.
+% Compile with pdflatex; the output is included as figures/chapter_I/pdfs_nnpdf31.pdf.
+\documentclass[11pt,border=3pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{cochineal}
+\usepackage[cochineal]{newtxmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.17}
+
+% Okabe-Ito palette (colour-blind safe)
+\definecolor{cuv}{HTML}{0072B2}
+\definecolor{cdv}{HTML}{56B4E9}
+\definecolor{cub}{HTML}{D55E00}
+\definecolor{cdb}{HTML}{E69F00}
+\definecolor{cs}{HTML}{009E73}
+\definecolor{cc}{HTML}{CC79A7}
+\definecolor{cg}{HTML}{000000}
+
+\newcommand{\pdfcurve}[3]{% #1 tag, #2 combination, #3 colour
+  \addplot[draw=none, fill=#3, fill opacity=0.30, forget plot] table[x=x, y=y] {data/#1_#2_band.dat};
+  \addplot[#3, line width=0.9pt] table[x=x, y=central] {data/#1_#2.dat};
+}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{groupplot}[
+    group style={group size=2 by 1, horizontal sep=1.5cm},
+    width=7.6cm, height=6.6cm,
+    xmode=log, xmin=1e-3, xmax=1,
+    xlabel={$x$},
+    ymin=0,
+    tick label style={font=\footnotesize},
+    label style={font=\small},
+    every axis title/.style={at={(0.04,0.95)}, anchor=north west, font=\small, align=left},
+    legend style={font=\footnotesize, draw=none, fill=none, at={(0.97,0.97)}, anchor=north east,
+                  row sep=-1pt},
+    legend cell align=left,
+  ]
+  \nextgroupplot[ylabel={$x f(x,Q^2)$}, ymax=0.85,
+                 title={NNPDF3.1 NNLO\\[-1pt]$Q^2=10$ GeV$^2$}]
+    \pdfcurve{Q3p16228}{uv}{cuv}
+    \pdfcurve{Q3p16228}{dv}{cdv}
+    \pdfcurve{Q3p16228}{ubar}{cub}
+    \pdfcurve{Q3p16228}{dbar}{cdb}
+    \pdfcurve{Q3p16228}{s}{cs}
+    \pdfcurve{Q3p16228}{c}{cc}
+    \pdfcurve{Q3p16228}{g}{cg}
+    % legend shown in the right panel only
+  \nextgroupplot[ymax=3.2,
+                 title={NNPDF3.1 NNLO\\[-1pt]$Q^2=10^4$ GeV$^2$}]
+    \pdfcurve{Q100}{uv}{cuv}
+    \pdfcurve{Q100}{dv}{cdv}
+    \pdfcurve{Q100}{ubar}{cub}
+    \pdfcurve{Q100}{dbar}{cdb}
+    \pdfcurve{Q100}{s}{cs}
+    \pdfcurve{Q100}{c}{cc}
+    \pdfcurve{Q100}{g}{cg}
+    \legend{$u_v$, $d_v$, $\bar{u}$, $\bar{d}$, $s$, $c$, $g/10$}
+\end{groupplot}
+\end{tikzpicture}
+\end{document}
