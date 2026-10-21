@@ -69,31 +69,31 @@ To endow the $W^{\pm}$ and $Z$ bosons with mass, the $SU(2)_L \times U(1)_Y$ sym
 %
 \subsubsection{Strong interaction}
 %
-The strong interaction is described by QCD, a gauge theory based on the non-abelian group $SU(3)_C$, where the subscript $C$ refers to color, the charge conserved by the symmetry. Since only quarks carry color, only the quark fields transform non-trivially under this group, and the construction of the theory starts from the Lagrangian density of a free fermion field, the Dirac Lagrangian,
+The strong interaction is described by QCD, a gauge theory based on the non-abelian group $SU(3)_C$, where the subscript $C$ refers to color, the conserved charge associated with the symmetry. Since only quarks carry color, only the quark fields transform non-trivially under this group, and the construction of the theory starts from the Lagrangian density of a free fermion field, the Dirac Lagrangian,
 \begin{equation}
     \mathcal{L}_{\text{Dirac}} = \bar{\psi}(x)\,(i\slashed{\partial} - m)\,\psi(x),
     \label{eq:dirac_lagrangian}
 \end{equation}
 %
-where $\psi(x)$ is the quark spinor field at the spacetime point $x$, $m$ is the quark mass, and $\slashed{\partial} = \gamma^\mu \partial_\mu$ denotes the contraction of the Dirac matrices $\gamma^\mu$ with the spacetime derivatives. This Lagrangian is invariant under global $SU(3)_C$ transformations, but not under local ones, in which the quark field transforms as
+where $\psi(x)$ is the quark spinor field at the spacetime coordinates $x$, $m$ is the quark mass, and $\slashed{\partial} = \gamma^\mu \partial_\mu$ denotes the contraction of the Dirac matrices $\gamma^\mu$ with the spacetime derivatives. This Lagrangian is invariant under global $SU(3)_C$ transformations, but loses its invariance under local $SU(3)$, in which the quark field transforms as
 \begin{equation}
-    \psi(x) \rightarrow \exp\!\left(i g_s\, \theta^a(x)\, \frac{\lambda_a}{2}\right) \psi(x),
+    \psi(x) \rightarrow e^{\left(i g_s \theta^a(x) \frac{\lambda_a}{2}\right)} \psi(x),
     \label{lagrangian_transformation}
 \end{equation}
 %
-with $\lambda_a$ the eight Gell-Mann matrices that generate the group, $\theta^a(x)$ arbitrary real functions of the spacetime point, and $g_s$ the strong coupling constant. Because the transformation depends on $x$, the derivative of the transformed field acquires an additional term, and invariance can only be restored by replacing $\partial_\mu$ with the covariant derivative
+with $\lambda_a$ being the eight Gell-Mann matrices that generate the group, $\theta^a(x)$ arbitrary real functions of the spacetime point, and $g_s$ the strong coupling constant. To restore local gauge invariance, understood as the preservation of the invariance of the Lagrangian density \eqref{eq:dirac_lagrangian} under the transformation \eqref{lagrangian_transformation}, the derivative $\partial_\mu$ is redefined as covariant derivative
 \begin{equation}
     D_\mu = \partial_\mu + i g_s\, \frac{\lambda_a}{2}\, G^a_\mu,
     \label{covariant_derivative}
 \end{equation}
 %
-which introduces eight vector fields $G^a_\mu$, the gluon fields, whose transformation compensates that additional term so that $D_\mu\psi$ transforms as $\psi$ itself. Since it is precisely this dependence on $x$ that distinguishes local from global transformations, it is omitted hereafter. In order to propagate, the gluons in turn require a kinetic term, which is built from the gluon field-strength tensor
+where the new gauge vector fields $G^a_\mu$ correspond to the eight gluon fields, the gauge bosons mediators for the strong interaction. Incorporating the vector fields ensures that the covariant derivative transforms equivalently as the quark fields and, consequently, the Lagrangian density is promoted to be invariant under local gauge transformations. In order to propagate, the gluons in turn require a kinetic term, which is built from the gluon field-strength tensor
 \begin{equation}
     G^a_{\mu\nu} = \partial_\mu G^a_\nu - \partial_\nu G^a_\mu - g_s f^{abc}\, G^b_\mu G^c_\nu,
     \label{gluon_field}
 \end{equation}
 %
-where $f^{abc}$ are the structure constants of $SU(3)_C$. Combining these ingredients, the QCD Lagrangian reads
+where $f^{abc}$ symbols denote the structure constants of $SU(3)_C$. Combining these ingredients, the QCD Lagrangian reads
 \begin{equation}
     \mathcal{L}_{\text{QCD}} = \bar{\psi}\,(i\slashed{\partial} - m)\,\psi - g_s\, \bar{\psi}\gamma^\mu \frac{\lambda_a}{2}\psi\, G^a_\mu - \frac{1}{4}\, G^a_{\mu\nu} G_a^{\mu\nu}.
     \label{QCD_Lagrangian}
