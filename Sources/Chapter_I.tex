@@ -797,13 +797,51 @@ The start of Run III ($\sqrt{s} = 13.6$) signifies a new phase in the search for
 \section{Phenomenology of proton-proton collisions}   
 \label{sec:pp_pheno}
 % 
-
-
-
 Tanto los resultados revisados en la sección anterior como la mejora de sensibilidad que se espera del Run III y del HL-LHC descansan en una predicción precisa de la señal y de los fondos. Obtener esa predicción exige, sin embargo, algo más que los mecanismos de producción descritos en la Sección \ref{subsec:SM_production}, ya que el LHC no hace colisionar partículas elementales, sino los protones que las contienen. Aunque la interacción de interés tiene lugar entre sus constituyentes — los quarks y gluones descritos en la Sección \ref{subsec:particle_content}, denominados genéricamente partones —, la forma en que éstos se reparten dentro del protón no puede calcularse a partir de primeros principios, y cada uno porta solo una fracción de la energía de la colisión. Además, la interacción dura no se produce de forma aislada, ya que los partones radian antes y después de ella, los quarks y gluones del estado final hadronizan, y los restos de los protones también interaccionan entre sí, de modo que el estado final registrado en el detector contiene mucho más que los productos de la desintegración del par de bosones de Higgs. Por tanto, describir una colisión protón-protón requiere separar las partes del proceso que pueden calcularse en teoría de perturbaciones de aquellas que deben extraerse de los datos o modelarse fenomenológicamente, una separación que formaliza el teorema de factorización~\cite{Collins:1989gx}.
 
 
 Esta sección recorre dicha descripción en el mismo orden en que se construye la predicción. En primer lugar, la Sección \ref{subsec:pp_factorization} presenta la factorización de la sección eficaz hadrónica en una sección eficaz partónica, calculada a un orden dado en teoría de perturbaciones, y en las funciones de distribución partónica (PDFs) de los protones, junto con las incertidumbres teóricas que se derivan de la elección de las escalas de renormalización y factorización y del conocimiento limitado de las propias PDFs. A continuación, la Sección \ref{subsec:pp_event} describe los procesos que completan el suceso más allá de la interacción dura: la radiación de estado inicial y final, la hadronización y el \textit{underlying event}. Por último, la Sección \ref{subsec:pp_simulation} resume la cadena de simulación Monte Carlo que reproduce todos estos pasos, desde los generadores de elemento de matriz hasta la cascada partónica, su ajuste a los datos y la simulación de la respuesta del detector con \textsc{Geant4}. Estos elementos constituyen la base de las muestras simuladas con las que se modelan la señal y los fondos en el Capítulo \ref{ch:bbtt_analysis}, y sus incertidumbres reaparecen allí como incertidumbres teóricas de la búsqueda.
+
+\subsection{Factorization and parton distribution functions}
+\label{subsec:pp_factorization}
+%
+Dado que la interacción dura tiene lugar entre los partones que componen el protón, la energía disponible en cada interacción no es fija. Cada partón porta una fracción $x$ del momento del protón al que pertenece, de modo que la energía en el centro de masas de la interacción partónica, $\sqrt{\hat{s}}=\sqrt{x_1x_2\,s}$, es inferior a la energía nominal de la colisión, $\sqrt{s}$, y distinta en cada suceso. La probabilidad de encontrar en el protón un partón de tipo $i$ con una fracción de momento $x$ viene dada por su función de distribución partónica (PDF), $f_i(x)$, que determina, por tanto, con qué frecuencia se alcanza la energía necesaria para producir un estado final dado.
+
+El teorema de factorización~\cite{Collins:1989gx} permite escribir la sección eficaz de un proceso $pp\to X$ como la suma, sobre todos los pares de partones $i,j$ que pueden iniciarlo, de la sección eficaz partónica ponderada por las PDFs de ambos:
+\begin{equation}
+    \sigma_{pp\to X} = \sum_{i,j}\int_0^1 dx_1\,dx_2\; f_i(x_1,\mu_F)\,f_j(x_2,\mu_F)\;\hat{\sigma}_{ij\to X}(x_1x_2\,s,\,\mu_R,\,\mu_F),
+    \label{eq:factorization}
+\end{equation}
+donde $f_i(x,\mu_F)$ son las PDFs y $\hat{\sigma}_{ij\to X}$ es la sección eficaz de la interacción entre los dos partones. Esta separación es posible gracias al comportamiento de la interacción fuerte descrito en la Seccíon \ref{subsec:particle_content}. En la interacción dura, que involucra energías elevadas, $\alpha_s$ es pequeña, y $\hat{\sigma}_{ij\to X}$ puede calcularse a partir de los diagramas de Feynman del proceso como una serie en potencias de $\alpha_s$, cuyo primer término define la predicción a orden dominante (LO, del inglés \textit{leading order}) y cuyos términos sucesivos —NLO, NNLO— incorporan la emisión de partones adicionales y las correcciones de bucle. A las energías propias de la estructura del protón, en cambio, $\alpha_s$ es grande y esta serie deja de ser aplicable, de modo que las PDFs no pueden calcularse de esta forma. Las escalas $\mu_F$ y $\mu_R$ de la Ecuación \ref{eq:factorization} fijan, respectivamente, la frontera entre ambos regímenes y la energía a la que se evalúa $\alpha_s$.
+
+Las PDFs son universales, y pueden extraerse por tanto de ajustes globales a medidas de otros procesos — dispersión profundamente inelástica, producción Drell--Yan, de jets o de pares $t\bar{t}$ — y emplearse después en cualquier predicción~\cite{NNPDF:2017mvq}. Su dependencia con la escala, en cambio, sí puede calcularse~\cite{Gribov:1972ri,Dokshitzer:1977sg,Altarelli:1977zs}. La Figura \ref{fig:pdfs} muestra las PDFs del conjunto NNPDF3.1 a dos escalas de energía, $Q^2=10$ y $10^4$ GeV$^2$, la segunda del orden de las que intervienen en la producción de bosones de Higgs. Los quarks de valencia dominan a valores altos de $x$, mientras que a valores bajos dominan los gluones, tanto más cuanto mayor es la escala. Puesto que producir un par de bosones de Higgs a $\sqrt{s}=13.6$ TeV requiere $\sqrt{\hat{s}}\geq2m_H\approx250$ GeV, es decir, fracciones de momento típicas del orden de $x\sim10^{-2}$, el proceso tiene lugar precisamente en la región dominada por los gluones, lo que contribuye a explicar el predominio de la fusión de gluones descrito en la Sección \ref{subsec:SM_production}. 
+
+%..., el proceso tiene lugar precisamente en la región dominada por los gluones, lo que, junto con la intensidad del acoplamiento del bosón de Higgs al quark top, explica el predominio de la fusión de gluones descrito en la Sección \ref{subsec:SM_production}.
+
+
+%QUE MÁS EXPLICA EL PREDOMINIO DE GGF?: acoplamiento al quark top, yukawa del top es de orden de 1, el mayor del SM; vbf puramente electrodebil necesita dos quarks emitiendo W o Z, con acoplamientos mas debiles; ggF es proceso 2 a 2 (ggHH), VBF es 2 a 4 (qqtoqqHH), reduce su seccion eficaz
+%
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{figures/chapter_I/pdfs_nnpdf31.pdf}
+    \caption{Parton distribution functions $xf(x,Q^2)$ of the proton from the NNPDF3.1 NNLO set ($\alpha_s(m_Z)=0.118$) at $Q^2=10$ GeV$^2$ (left) and $Q^2=10^4$ GeV$^2$ (right), for the valence quarks $u_v=u-\bar{u}$ and $d_v=d-\bar{d}$, the sea antiquarks $\bar{u}$ and $\bar{d}$, the strange and charm quarks (averaged over quark and antiquark) and the gluon, scaled by a factor $1/10$. The bands show the standard deviation over the $100$ replicas of the set~\cite{NNPDF:2017mvq}. \textcolor{red}{revisar plots}}
+    \label{fig:pdfs}
+\end{figure}
+
+Al truncar la serie de la seccíon eficaz partónica en un orden dado, la predicción depende ligeramente de los valores elegidos para $\mu_R$ y $\mu_F$, que se fijan a una escala característica del proceso. Por ello, la incertidumbre debida a los órdenes no calculados se estima variando ambas escalas en un factor dos~\cite{deFlorian:2016spz}, y a ella se suman la incertidumbre de las propias PDFs — la banda de la Figura \ref{fig:pdfs} — y la del valor de $\alpha_s$. Estas son las incertidumbres de escala y de PDF$+\alpha_s$ que acompañan a las secciones eficaces de la Sección \ref{subsec:SM_production}, y las mismas variaciones, aplicadas a las muestras simuladas, constituyen las incertidumbres teóricas de la búsqueda descritas en la Sección \ref{sec:bbtt_systematics}.
+
+\subsection{Parton showers, hadronization and underlying event}
+\label{subsec:pp_event}
+%
+La Ecuación \ref{eq:factorization} predice con qué frecuencia se produce el estado final de la interacción dura, pero no describe el suceso completo que se registra en el detector, representado de forma esquemática en la Figura \ref{fig:pp_event}. Del mismo modo que una carga eléctrica acelerada emite fotones, los quarks y gluones que participan en la interacción emiten gluones, tanto antes de ella —radiación de estado inicial (ISR)— como después —radiación de estado final (FSR)—, y éstos pueden a su vez radiar o desdoblarse en pares quark-antiquark. El cálculo a orden fijo de la Sección \ref{subsec:pp_factorization} incluye, como mucho, una o dos de estas emisiones, por lo que el resto se describe mediante una cascada partónica (\textit{parton shower}), que genera las emisiones sucesivas de forma probabilística, cada una a una escala de energía menor que la anterior, desde la escala de la interacción dura hasta energías del orden de $1$ GeV, donde $\alpha_s$ se hace grande y la descripción perturbativa deja de ser válida~\cite{Buckley:2011ms}. Esta radiación da lugar a los jets adicionales que acompañan a la interacción dura y hace que el sistema producido adquiera un $p_T$ no nulo.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/chapter_I/pp_event_sketch.pdf}
+    \caption{Schematic representation of a proton-proton collision producing a pair of Higgs bosons decaying to $b\bar{b}\tau\tau$. The partons from each proton initiate the hard process (orange) and radiate gluons before and after it (blue). The colored partons in the final state hadronize into color-neutral hadrons (green), whereas the $\tau$ leptons, which carry no color, do not. A secondary interaction between other partons of the same protons and the proton remnants make up the underlying event (pink).}
+    \label{fig:pp_event}
+\end{figure
+
 
 
   - Partones, √ŝ, factorización, σ̂ perturbativa (LO/NLO), PDFs, escalas → incertidumbres teóricas
