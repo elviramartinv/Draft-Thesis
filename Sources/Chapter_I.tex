@@ -386,27 +386,27 @@ Introducing Equations \ref{phi_parametrization} and \ref{phi_conjugated}, the Yu
     \label{eq:yukawa_masses}
 \end{equation}
 %
-where the sum runs over all the fermions except the neutrinos. The fermion mass terms $m_f$ appear explicitly, each proportional to the Yukawa coupling of the fermion and to the VEV, together with an interaction with the Higgs boson whose strength is in turn proportional to the fermion mass, shown in Figure \ref{fig:higgs_yukawa}.. Since the SM contains no right-handed neutrinos, neutrinos do not acquire mass through this mechanism.\bigskip
-\begin{figure}[htbp]
-    \centering
-    \vspace{10pt}
-    \begin{fmffile}{higgsff}
-    \begin{fmfgraph*}(55,45)
-        \fmfleft{i}
-        \fmfright{o1,o2}
-        \fmf{dashes}{i,v}
-        \fmf{fermion}{o1,v}
-        \fmf{fermion}{v,o2}
-        \fmfdot{v}
-        \fmflabel{$H$}{i}
-        \fmflabel{$\bar{f}$}{o1}
-        \fmflabel{$f$}{o2}
-    \end{fmfgraph*}
-    \end{fmffile}\\[12pt]
-    {\small $g_{Hff} \propto m_f/v$}
-    \caption{Yukawa interaction vertex between the SM Higgs boson and a fermion-antifermion pair, with a coupling proportional to the fermion mass. Dashed and solid lines represent the Higgs boson and the fermions, respectively.}
-    \label{fig:higgs_yukawa}
-\end{figure}
+where the sum runs over all the fermions except the neutrinos. The fermion mass terms $m_f$ appear explicitly, each proportional to the Yukawa coupling of the fermion and to the VEV, together with an interaction with the Higgs boson whose strength is in turn proportional to the fermion mass. Since the SM contains no right-handed neutrinos, neutrinos do not acquire mass through this mechanism.\bigskip
+% \begin{figure}[htbp]
+%     \centering
+%     \vspace{10pt}
+%     \begin{fmffile}{higgsff}
+%     \begin{fmfgraph*}(55,45)
+%         \fmfleft{i}
+%         \fmfright{o1,o2}
+%         \fmf{dashes}{i,v}
+%         \fmf{fermion}{o1,v}
+%         \fmf{fermion}{v,o2}
+%         \fmfdot{v}
+%         \fmflabel{$H$}{i}
+%         \fmflabel{$\bar{f}$}{o1}
+%         \fmflabel{$f$}{o2}
+%     \end{fmfgraph*}
+%     \end{fmffile}\\[12pt]
+%     {\small $g_{Hff} \propto m_f/v$}
+%     \caption{Yukawa interaction vertex between the SM Higgs boson and a fermion-antifermion pair, with a coupling proportional to the fermion mass. Dashed and solid lines represent the Higgs boson and the fermions, respectively.}
+%     \label{fig:higgs_yukawa}
+% \end{figure}
 
 \noindent In essence, the BEH mechanism resolves the inconsistency of the electroweak theory by introducing a scalar field with a non-zero VEV. Following the symmetry breaking, three of the four degrees of freedom of the scalar doublet are absorbed by the $W^{\pm}$ and $Z$ bosons as their longitudinal polarizations, providing them with mass, while the fourth gives rise to the Higgs boson. The fermions, in turn, acquire their masses through the Yukawa interactions with the same scalar field, which extend the BEH mechanism to the matter sector. These interactions are governed by the gauge and Yukawa couplings, together with the VEV, which constitute free parameters of the theory and establish, after EWSB, the masses of all the SM particles. As a result, the coupling of the Higgs boson to each particle is proportional to its mass — linearly for fermions and quadratically for vector bosons —, so that the Higgs boson decays preferentially into the heaviest particles that are kinematically accessible, as detailed in the following section.
 
@@ -415,9 +415,12 @@ where the sum runs over all the fermions except the neutrinos. The fermion mass 
 \subsection{Phenomenology of the Higgs boson}
 \label{subsec:H_phenomenology}
 %
-Despite the theoretical robustness of the proposed BEH mechanism in 1964, experimental confirmation did not occur until July 4, 2012, when the CMS and ATLAS collaborations at the LHC claimed the discovery of a new particle compatible with the Higgs boson predicted by the SM {\color{red} [ref]}. The discovery was accomplished independently by the two experiments utilizing data collected during LHC Run I at center-of-mass energies of $\sqrt{s}=7$ and $\sqrt{s}=8$ TeV. The experimental observation of the Higgs boson led to the confirmation of the BEH mechanism as a part of the SM, and the measurement of its mass, with a value of approximately $m_H=125$ GeV, allowed the final free parameter of the theory to be determined.
+Despite the theoretical robustness of the BEH mechanism, proposed in 1964, its experimental confirmation took almost five decades. At the Large Electron-Positron collider (LEP), which operated at CERN between 1989 and 2000 in the tunnel that now hosts the LHC, direct searches excluded a SM Higgs boson lighter than $114.4$ GeV~\cite{LEPWorkingGroupforHiggsbosonsearches:2003ing}. At the same time, the precision measurements of electroweak observables performed at LEP and at the SLC collider at SLAC, sensitive to the Higgs boson through quantum corrections, favored a light Higgs boson~\cite{ALEPH:2005ab}. The search continued at the Tevatron, the proton-antiproton collider at Fermilab that operated at $\sqrt{s}=1.96$ TeV until 2011, where the CDF and D0 experiments excluded further mass ranges and observed an excess of events compatible with a Higgs boson decaying into a $b\bar{b}$ pair at masses between $115$ and $140$ GeV~\cite{CDF:2013kiv}. Finally, on July 4, 2012, the ATLAS and CMS collaborations at the LHC claimed the discovery of a new particle compatible with the Higgs boson predicted by the SM~\cite{ATLAS:2012yve,CMS:2012qbp,CMS:2013btf}, observed independently by both experiments with the data collected during Run 1 at $\sqrt{s}=7$ and $8$ TeV, mainly in the $H\to\gamma\gamma$ and $H\to ZZ\to 4\ell$ channels. The discovery confirmed the BEH mechanism as part of the SM, and the measurement of the mass of the new particle fixed the last free parameter of the theory. Its current value, $m_H = 125.13 \pm 0.11$ GeV~\cite{ParticleDataGroup:2026mpi}, is known with a precision of about one per mille.
 
-In the wake of the recent discovery, the scientific community is now directing its efforts toward characterizing the new particle, with the aim of furthering the exploration of the EWSB. A thorough investigation is necessary to make precise measurements of the Higgs properties: measurements of the Higgs couplings via exclusive production modes and decay channels, its spin-parity, and its differential production cross section must be performed and contrasted with the predictions of the SM. The following paragraphs provide an overview of the results of more than a dozen years of research at the LHC on the characterization of the Higgs boson phenomenology.
+Since then, the characterization of the new particle has become one of the central goals of the LHC physics program, with the aim of testing whether it behaves as predicted by the SM and of further exploring the EWSB. During Run 2, between 2015 and 2018, the increase of the center-of-mass energy to $\sqrt{s}=13$ TeV and the collection of about $140$ fb$^{-1}$ per experiment allowed all the main production modes — gluon-gluon fusion, vector boson fusion, and associated production with a vector boson or with a top quark pair — to be observed, together with the decays into pairs of photons, $Z$ and $W$ bosons, $\tau$ leptons and $b$ quarks~\cite{CMS:2022dwd,ATLAS:2022vkf}. In particular, the observations of $t\bar{t}H$ production~\cite{CMS:2018uxb,ATLAS:2018mme} and of the $H\to\tau\tau$~\cite{CMS-HIG-16-043} and $H\to b\bar{b}$~\cite{CMS:2018nsn,ATLAS:2018kot} decays established the Yukawa interactions of the Higgs boson with third-generation fermions, while the first evidence for its decay into a muon pair~\cite{CMS:2020xwi} extended this test to the second generation.
+
+All these measurements are compatible with the SM predictions, but, unlike the mass, they remain limited in precision, with uncertainties of order $10\%$ for the best-measured couplings and considerably larger for the rarer processes~\cite{CMS:2022dwd,ATLAS:2022vkf}. Run 3, which started in 2022 at $\sqrt{s}=13.6$ TeV, continues this program with a larger dataset. The following paragraphs summarize the phenomenology of the Higgs boson and the status of its characterization after fourteen years of measurements at the LHC.
+
 
 
 % \noindent \textbf{Proton-proton collisions}
@@ -433,45 +436,255 @@ In the wake of the recent discovery, the scientific community is now directing i
 % The factorization scale $\mu_F$ and the renormalization scale $\mu_R$ are not physical quantities, but a consequence of truncating the perturbative series, so the dependence of the prediction on them reflects the missing higher orders. The variation of these scales, together with the uncertainty of the PDFs, constitutes the main source of theoretical uncertainty in the predicted cross sections. Finally, the hard interaction is not the only process taking place in the collision: the partons radiate before and after it, the colored partons in the final state hadronize into the jets observed in the detector, and the proton remnants, together with additional low-energy parton interactions, give rise to the so-called \textit{underlying event}.
 
 
-\noindent \textbf{Production modes}
-
-\noindent The various mechanisms of Higgs production can be depicted using Feynman diagrams. In these visual representations, the left side of the diagram corresponds to the initial state, and the right side corresponds to the final state. Fields are symbolized by different style lines: solid for fermions, wavy for gauge bosons, dashed for scalars and spring-like for gluons. The points where the lines meet are called vertices and represent interaction terms in the Lagrangian. Thus, the probability of a process is determined by the coupling associated with each vertex and quantified by the cross section. Figure \ref{fig:H_feynman} presents the Feynman diagrams for the Higgs boson production mechanisms
-
-
+\subsubsection{Production modes}
+%
+The various mechanisms of Higgs boson production can be depicted using Feynman diagrams, in which the left side corresponds to the initial state and the right side to the final state. Each field is represented by a different line style: solid for fermions, wavy for electroweak gauge bosons, dashed for scalars and curly for gluons. The points where the lines meet, called vertices, represent the interaction terms of the Lagrangian. Thus, the probability of a process is determined by the coupling associated with each vertex and quantified by the cross section. Figure \ref{fig:H_feynman} presents the leading-order diagrams of the main Higgs boson production modes.
+%
 \begin{figure}[htbp]
     \centering
-
-    \begin{subfigure}{0.25\textwidth}
+    \vspace{10pt}
+    \begin{fmffile}{higgsprod}
+    \begin{minipage}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_I/feynman/ggf.png}
-    \end{subfigure}
-    \begin{subfigure}{0.25\textwidth}
+        \begin{fmfgraph*}(100,70)
+            \fmfleft{i1,i2}
+            \fmfright{o}
+            \fmf{gluon}{i1,v1}
+            \fmf{gluon}{i2,v2}
+            \fmf{fermion}{v1,v3}
+            \fmf{fermion,label=$t,,b$,label.side=right}{v3,v2}
+            \fmf{fermion}{v2,v1}
+            \fmf{dashes}{v3,o}
+            \fmfforce{(0.32w,0.85h)}{v2}
+            \fmfforce{(0.32w,0.15h)}{v1}
+            \fmfforce{(0.68w,0.5h)}{v3}
+            \fmflabel{$g$}{i1}
+            \fmflabel{$g$}{i2}
+            \fmflabel{$H$}{o}
+        \end{fmfgraph*}\\[10pt]
+        {\small (a)}
+    \end{minipage}
+    \begin{minipage}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_I/feynman/VBF.png}
-    \end{subfigure}
-    \begin{subfigure}{0.25\textwidth}
+        \begin{fmfgraph*}(100,70)
+            \fmfleft{i1,i2}
+            \fmfright{o1,oh,o2}
+            \fmf{fermion}{i1,w1,o1}
+            \fmf{fermion}{i2,w2,o2}
+            \fmf{photon,label=$V$,label.side=right}{w2,v}
+            \fmf{photon,label=$V$,label.side=right}{v,w1}
+            \fmf{dashes}{v,oh}
+            \fmfforce{(0.45w,0.85h)}{w2}
+            \fmfforce{(0.45w,0.15h)}{w1}
+            \fmfforce{(0.45w,0.5h)}{v}
+            \fmflabel{$q'$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$q'$}{o1}
+            \fmflabel{$q$}{o2}
+            \fmflabel{$H$}{oh}
+        \end{fmfgraph*}\\[10pt]
+        {\small (b)}
+    \end{minipage}
+    \begin{minipage}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_I/feynman/VH.png}
-    \end{subfigure}
-    \begin{subfigure}{0.25\textwidth}
+        \begin{fmfgraph*}(100,70)
+            \fmfleft{i1,i2}
+            \fmfright{o1,o2}
+            \fmf{fermion}{i1,v1,i2}
+            \fmf{photon,label=$V$}{v1,v2}
+            \fmf{photon}{v2,o1}
+            \fmf{dashes}{v2,o2}
+            \fmflabel{$\bar{q}'$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$V$}{o1}
+            \fmflabel{$H$}{o2}
+        \end{fmfgraph*}\\[10pt]
+        {\small (c)}
+    \end{minipage}\\[16pt]
+    \begin{minipage}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_I/feynman/ttH.png}
-    \end{subfigure}
-    \begin{subfigure}{0.25\textwidth}
+        \begin{fmfgraph*}(100,70)
+            \fmfleft{i1,i2}
+            \fmfright{o1,oh,o2}
+            \fmf{gluon}{i1,v1}
+            \fmf{gluon}{i2,v2}
+            \fmf{fermion}{o1,v1}
+            \fmf{fermion}{v1,vh}
+            \fmf{fermion,label=$t,,b$,label.side=right}{vh,v2}
+            \fmf{fermion}{v2,o2}
+            \fmf{dashes}{vh,oh}
+            \fmfforce{(0.45w,0.85h)}{v2}
+            \fmfforce{(0.45w,0.5h)}{vh}
+            \fmfforce{(0.45w,0.15h)}{v1}
+            \fmflabel{$g$}{i1}
+            \fmflabel{$g$}{i2}
+            \fmflabel{$\bar{t},\bar{b}$}{o1}
+            \fmflabel{$t,b$}{o2}
+            \fmflabel{$H$}{oh}
+        \end{fmfgraph*}\\[10pt]
+        {\small (d)}
+    \end{minipage}
+    \begin{minipage}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_I/feynman/tH.png}
-    \end{subfigure}
-
-    \caption{Leading-order Feynman diagrams describing the main Higgs boson production modes at the LHC: gluon-gluon fusion (a), vector boson fusion (b), associated production with gauge boson (c) associated production with pair of top/bottom quarks (d) associated production with single top quark (e)}
-
+        \begin{fmfgraph*}(100,70)
+            \fmfleft{i1,i2}
+            \fmfright{o1,oh,o2}
+            \fmf{fermion}{i2,w2,o2}
+            \fmf{photon,label=$W$,label.side=right}{w2,w1}
+            \fmf{fermion}{i1,w1}
+            \fmf{fermion,label=$t$,label.side=right}{w1,vt}
+            \fmf{fermion}{vt,o1}
+            \fmf{dashes}{vt,oh}
+            \fmfforce{(0.35w,0.85h)}{w2}
+            \fmfforce{(0.35w,0.15h)}{w1}
+            \fmfforce{(0.68w,0.15h)}{vt}
+            \fmfforce{(1.0w,0.55h)}{oh}
+            \fmfforce{(1.0w,0.0h)}{o1}
+            \fmflabel{$b$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$t$}{o1}
+            \fmflabel{$q'$}{o2}
+            \fmflabel{$H$}{oh}
+        \end{fmfgraph*}\\[10pt]
+        {\small (e)}
+    \end{minipage}
+    \begin{minipage}[b]{0.32\linewidth}
+        \centering
+        \begin{fmfgraph*}(100,70)
+            \fmfleft{i1,i2}
+            \fmfright{o1,oh,o2}
+            \fmf{fermion}{i1,w1,o1}
+            \fmf{fermion}{i2,w2,o2}
+            \fmf{photon,label=$W$,label.side=right}{w2,v}
+            \fmf{photon,label=$W$,label.side=right}{v,w1}
+            \fmf{dashes}{v,oh}
+            \fmfforce{(0.45w,0.85h)}{w2}
+            \fmfforce{(0.45w,0.15h)}{w1}
+            \fmfforce{(0.45w,0.5h)}{v}
+            \fmflabel{$b$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$t$}{o1}
+            \fmflabel{$q'$}{o2}
+            \fmflabel{$H$}{oh}
+        \end{fmfgraph*}\\[10pt]
+        {\small (f)}
+    \end{minipage}
+    \end{fmffile}
+    \caption{Leading-order Feynman diagrams of the main Higgs boson production modes at the LHC: gluon-gluon fusion (a), vector boson fusion (b), associated production with a vector boson (c), associated production with a pair of top or bottom quarks (d), and associated production with a single top quark, with the Higgs boson radiated from the top quark (e) or from the $W$ boson (f). The loop in (a) is dominated by the top quark, with a smaller contribution from the bottom quark.}
     \label{fig:H_feynman}
 \end{figure}
 
-Figure \ref{fig:H_xsec} illustrates the cross sections of the main production modes for a Higgs boson with a mass of 125 GeV as a function of the collision center-of-mass energy in a proton collider. Several mechanisms contribute to the production of the Higgs boson. The dominant mechanism at the LHC ($\sqrt{s} = 13$ TeV) is gluon-gluon fusion (ggF), which proceeds through a heavy quark loop and has a cross section of about 49 pb. This is followed by vector boson fusion (VBF) production, which has a cross section of 3.8 pb, about 10 times smaller. In the VBF mechanism, two vector bosons interact to produce a Higgs boson, which in the final state appears alongside two high-momentum quarks, very close to the direction of the incident particles — the experimental signature that characterizes the process. The next mechanism is associated production with a single vector boson ($VH, V=W^{\pm},Z$), with a cross section of 2.3 pb. The study of the rare VH and VBF production mechanisms allows for a deeper dive into the Higgs boson's coupling to vector bosons. Lastly, there is associated production with heavy quarks: top pair ($t\overline{t}H$), bottom pair ($b\overline{b}H$, or single top ($tH$), which benefits from the Higgs boson's enhanced coupling with the heaviest fermions. The cross sections for these latter processes are around one order of magnitude smaller than the previous mechanisms. The $t\overline{t}H$ mechanism is of particular interest because it enables the direct determination of the top Yukawa coupling, $y_t$, as opposed to the indirect determination from ggF.
+Figure \ref{fig:H_xsec} illustrates the cross sections of the main production modes as a function of the center-of-mass energy of the proton-proton collisions. At the energy of Run 3, $\sqrt{s} = 13.6$ TeV, and for $m_H = 125.09$ GeV, the dominant mechanism is gluon-gluon fusion (ggF), which proceeds through a loop of heavy quarks, dominated by the top quark, and has a cross section of $51.7^{+4.7\%}_{-7.4\%}$ pb, computed at N$^3$LO in QCD and NLO in the electroweak interaction~\cite{Anastasiou:2016cez,Mistlberger:2018etf,Dulat:2018rbf}. It is followed by vector boson fusion (VBF), about an order of magnitude smaller, with $4.11 \pm 2.4\%$ pb at the same accuracy~\cite{Dreyer:2016oyx,Ciccolini:2007jr}. In the VBF mechanism, two vector bosons radiated by the incoming quarks fuse into a Higgs boson, which in the final state appears alongside two high-momentum jets close to the direction of the beams — the experimental signature that characterizes the process. The next mechanism is associated production with a vector boson ($VH$, $V = W^\pm, Z$), with $1.46^{+1.9\%}_{-2.0\%}$ pb for $WH$ and $0.95^{+3.4\%}_{-3.1\%}$ pb for $ZH$, computed at NNLO in QCD and NLO in the electroweak interaction~\cite{Brein:2003wg,Brein:2012ne,Denner:2011id}. Together with VBF, these modes provide direct access to the couplings of the Higgs boson to the vector bosons. Lastly, associated production with heavy quarks benefits from the large couplings of the Higgs boson to the heaviest fermions, with cross sections of $0.592^{+3.3\%}_{-3.7\%}$ pb for $t\bar{t}H$, at NNLO+NNLL in QCD and NLO in the electroweak interaction~\cite{Catani:2022mfv,Frederix:2018nkq}, $0.57 \pm 9.3\%$ pb for $b\bar{b}H$~\cite{Bonvini:2016fgf}, and $0.106$ pb for single top quark production ($tH$), dominated by the $t$-channel, at NLO in QCD~\cite{Demartin:2015uha}. Among them, $t\bar{t}H$ is of particular interest because it enables a direct determination of the top quark Yukawa coupling, $y_t$, as opposed to the indirect one from the loop of ggF~\cite{LHCHWG:2026R5}. 
 
-\noindent \textbf{Decay modes}
+%The quoted uncertainties combine the theoretical uncertainties, dominated by the missing higher orders, with those from the PDFs and $\alpha_s$, evaluated with the PDF4LHC21 set~\cite{PDF4LHCWorkingGroup:2022cjn}, and the sum of all the modes amounts to $59.4$ pb, about $8\%$ more than at $\sqrt{s} = 13$ TeV~\cite{LHCHWG:2026R5}.
 
-\noindent The observed mass value of the Higgs boson is a genuine natural phenomenon: it lies at the intersection of all significant decay modes, preventing any single mode from dominating and enabling an exceptionally rich range of experimental channels. Thus, at a mass of 125 GeV, the Higgs boson decays into a variety of SM particles. The probability of its decay into each final state is described by the branching fractions, or branching ratios (BR), which are shown as a function of Higgs boson mass in the Figure \ref{fig:H_br}. The SM Higgs boson couples to vector bosons ($V$) with a strength proportional to the square of their mass, $m_V^2$, and to fermions ($f$) with a strength proportional to their mass, $m_f$, as summarized in Table \ref{tab:higgs_couplings}, so that its couplings are enhanced for heavy particles. As presented in Figure \ref{fig:H_br}, the decay probabilities indicate that for a Higgs boson with a mass of 125 GeV, the most probable decay modes are $H\rightarrow bb$ and $H\rightarrow WW$, followed by $H\rightarrow gg$ and $H\rightarrow \tau\tau$, which involve vector bosons and third-generation fermions. Higgs decays into massless particles do not occur directly; rather, they require quantum loop-induced processes, which are in fact a key tool for investigating physics at energies higher than those directly reachable.
+% Figure \ref{fig:H_xsec} shows the cross sections of the main production modes as a function of the center-of-mass energy, as computed by the LHC Higgs Working Group for its most recent report~\cite{LHCHWG:2026R5}, which supersedes the predictions of the Yellow Report 4~\cite{deFlorian:2016spz}.
+
+
+
+
+
+\subsubsection{Decay modes}
+%
+At a mass of about $125$ GeV, the Higgs boson can decay into a wide variety of SM particles, which gives access to an exceptionally rich range of experimental channels. The probability of each decay is given by its branching ratio (BR), shown as a function of the Higgs boson mass in Figure \ref{fig:H_br}, and the corresponding leading-order diagrams are shown in Figure \ref{fig:H_decays}. Since the Higgs boson couples to vector bosons with a strength proportional to the square of their mass and to fermions with a strength proportional to their mass, as derived in Section \ref{subsec:BEH}, EN EL YUKAWA NO QUEDABA EXPLICITAMENTE QUE EL COUPLING IBA CON LA MASA, LA SEGUNDA PARTE DE LA EC 1.26 PODRIA ESCRIBIRSE LA DEPENDENCIA AL REVES, NO? it decays preferentially into the heaviest particles that are kinematically accessible. The most probable decays are therefore $H\to b\bar{b}$, with a BR of $58\%$, and $H\to WW^*$, with $22\%$, followed by $H\to gg$ and $H\to\tau\tau$, with $8\%$ and $6\%$, respectively~\cite{deFlorian:2016spz}. Decays into massless particles, such as gluons and photons, do not occur directly, but proceed through loops of massive particles, which are in fact a key tool for investigating physics at energies higher than those directly reachable.
+%
+\begin{figure}[htbp]
+    \centering
+    \vspace{10pt}
+    \begin{fmffile}{higgsdecay}
+    \begin{minipage}[b]{0.24\linewidth}
+        \centering
+        \begin{fmfgraph*}(75,60)
+            \fmfleft{i}
+            \fmfright{o1,o2}
+            \fmf{dashes}{i,v}
+            \fmf{photon}{v,o1}
+            \fmf{photon}{v,o2}
+            \fmflabel{$H$}{i}
+            \fmflabel{$V$}{o1}
+            \fmflabel{$V$}{o2}
+        \end{fmfgraph*}\\[10pt]
+        {\small (a)}
+    \end{minipage}
+    \begin{minipage}[b]{0.24\linewidth}
+        \centering
+        \begin{fmfgraph*}(75,60)
+            \fmfleft{i}
+            \fmfright{o1,o2}
+            \fmf{dashes}{i,v}
+            \fmf{fermion}{o1,v}
+            \fmf{fermion}{v,o2}
+            \fmflabel{$H$}{i}
+            \fmflabel{$\bar{f}$}{o1}
+            \fmflabel{$f$}{o2}
+        \end{fmfgraph*}\\[10pt]
+        {\small (b)}
+    \end{minipage}
+    \begin{minipage}[b]{0.24\linewidth}
+        \centering
+        \begin{fmfgraph*}(75,60)
+            \fmfleft{i}
+            \fmfright{o1,o2}
+            \fmf{dashes}{i,v}
+            \fmf{photon}{v,w1}
+            \fmf{photon,label=$W$,label.side=right}{w2,v}
+            \fmf{photon}{w1,w2}
+            \fmf{photon}{w1,o1}
+            \fmf{photon}{w2,o2}
+            \fmfforce{(0.35w,0.5h)}{v}
+            \fmfforce{(0.7w,0.85h)}{w2}
+            \fmfforce{(0.7w,0.15h)}{w1}
+            \fmflabel{$H$}{i}
+            \fmflabel{$\gamma$}{o1}
+            \fmflabel{$\gamma,Z$}{o2}
+        \end{fmfgraph*}\\[10pt]
+        {\small (c)}
+    \end{minipage}
+    \begin{minipage}[b]{0.24\linewidth}
+        \centering
+        \begin{fmfgraph*}(75,60)
+            \fmfleft{i}
+            \fmfright{o1,o2}
+            \fmf{dashes}{i,v}
+            \fmf{fermion}{v,w1}
+            \fmf{fermion,label=$t,,b$,label.side=right}{w2,v}
+            \fmf{fermion}{w1,w2}
+            \fmf{photon}{w1,o1}
+            \fmf{photon}{w2,o2}
+            \fmfforce{(0.35w,0.5h)}{v}
+            \fmfforce{(0.7w,0.85h)}{w2}
+            \fmfforce{(0.7w,0.15h)}{w1}
+            \fmflabel{$H$}{i}
+            \fmflabel{$\gamma$}{o1}
+            \fmflabel{$\gamma,Z$}{o2}
+        \end{fmfgraph*}\\[10pt]
+        {\small (d)}
+    \end{minipage}
+    \end{fmffile}
+    \caption{Leading-order Feynman diagrams of the main Higgs boson decay modes: decays into pairs of vector bosons (a) and fermions (b), and loop-induced decays into $\gamma\gamma$ or $Z\gamma$ through $W$ boson (c) and top or bottom quark (d) loops. The decay into a gluon pair proceeds through a quark loop analogous to that of gluon-gluon fusion.}
+    \label{fig:H_decays}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_I/Plot_Escan_H125_new_sqrt.png}
+        \caption{}
+        \label{fig:H_xsec}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_I/SMHiggsBR.YR4-square.png}
+        \caption{}
+        \label{fig:H_br}
+    \end{subfigure}
+    \caption{Production cross section of the SM Higgs boson in proton-proton collisions for its main production modes as a function of the center-of-mass energy, for $m_H = 125$ GeV (a), and branching ratios of its main decay modes as a function of its mass (b)~\cite{deFlorian:2016spz,LHCHWG}.}
+    \label{fig:higgs_xsec_br}
+\end{figure}
+
+
 
 \begin{figure}[htbp]
     \centering
@@ -496,7 +709,10 @@ Figure \ref{fig:H_xsec} illustrates the cross sections of the main production mo
 
 
 
-\noindent \textbf{Experimental status}
+\subsubsection{Experimental status}
+%
+After the discovery, the analysis of the angular distributions in the $H\to ZZ\to 4\ell$ channel established the spin and parity of the new particle as $J^P = 0^+$, excluding the alternative hypotheses at the $99.9\%$ confidence level~\cite{CMS:2014nkk,ATLAS:2015zhl}. Its couplings to the other SM particles are measured within the $\kappa$-framework~\cite{LHCHiggsCrossSectionWorkingGroup:2013rie}, in which each coupling of the Higgs boson is rescaled by a multiplicative factor with respect to its SM value, $\kappa_i = g_i/g_i^{\text{SM}}$, so that the SM corresponds to $\kappa_i = 1$. The rate of each combination of production mode $i$ and decay mode $f$ is then expressed as $\sigma_i \cdot \mathrm{BR}_f = \sigma_i^{\text{SM}}\,\mathrm{BR}_f^{\text{SM}}\,\kappa_i^2\kappa_f^2/\kappa_H^2$, where $\kappa_H^2$ accounts for the modification of the total width of the Higgs boson. The latest measurements of the CMS Collaboration within this framework are summarized in Figure \ref{fig:H_coupling}, which confirms that the couplings to the $W$ and $Z$ bosons scale quadratically with their masses and those to the fermions linearly, from the third generation down to the muon, the only second-generation fermion for which the coupling has been measured. These couplings are determined with uncertainties of order $10\%$ for the vector bosons and third-generation fermions, and considerably larger for the muon~\cite{CMS:2022dwd}.
+
 
 \noindent The Run I discovery of the Higgs boson was performed inclusively for all production modes, and led by the combination of high-resolution $H\rightarrow ZZ \rightarrow 4l$ and $H\rightarrow\gamma\gamma$ channels, which allowed for a precise determination of $m_H$. After the discovery claim, the analysis of the angular distributions in the $H\rightarrow ZZ \rightarrow 4l$ decay channel confirmed the spin $J$ and parity $P$ of the newly discovered particle, $J^P=0^+$, ruling out all alternative hypothesis at 99.9\% confidence level. Combining various decay channels also allowed for precise measurements of decay rates and coupling strengths, all consistent with SM predictions. Continued research into Higgs boson properties has advanced thanks to the LHC's exceptional performance, the robustness of the experiments, and the development of advanced experimental techniques. The latest findings on Higgs boson couplings, as measured by the CMS collaboration, are summarized in Figure \ref{fig:H_coupling}. Thus far, all observations confirm that the couplings with the $W$ and $Z$ gauge bosons scale quadratically with their masses and that the couplings with third-generation charged fermions and muons depend linearly on their masses.
 
