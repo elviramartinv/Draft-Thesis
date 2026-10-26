@@ -382,11 +382,15 @@ where $y_{\psi}$ and $y_{\psi'}$ are the Yukawa couplings and h.c. denotes the h
 %
 Introducing Equations \ref{phi_parametrization} and \ref{phi_conjugated}, the Yukawa Lagrangian can be written more conveniently as
 \begin{equation}
-    \mathcal{L}_{\text{Yukawa}} = -\sum_f m_f \left( \bar{\psi}_{f,L}\, \psi_{f,R} + \bar{\psi}_{f,R}\, \psi_{f,L} \right)\left( 1 + \frac{H}{v} \right), \qquad m_f = \frac{y_f\, v}{\sqrt{2}},
+    \mathcal{L}_{\text{Yukawa}} =
+    \underbrace{-\sum_f m_f\, \bar{\psi}_f \psi_f}_{\text{fermion masses}}
+    \;\underbrace{-\sum_f \frac{m_f}{v}\, H\, \bar{\psi}_f \psi_f}_{Hf\bar{f}\text{ interactions}},
+    \qquad m_f = \frac{y_f\, v}{\sqrt{2}},
     \label{eq:yukawa_masses}
 \end{equation}
 %
-where the sum runs over all the fermions except the neutrinos. The fermion mass terms $m_f$ appear explicitly, each proportional to the Yukawa coupling of the fermion and to the VEV, together with an interaction with the Higgs boson whose strength is in turn proportional to the fermion mass. Since the SM contains no right-handed neutrinos, neutrinos do not acquire mass through this mechanism.\bigskip
+where the sum runs over all the fermions except the neutrinos, and $\bar{\psi}_f\psi_f = \bar{\psi}_{f,L}\psi_{f,R} + \bar{\psi}_{f,R}\psi_{f,L}$ couples the two chiralities. The first term contains the fermion masses, each proportional to the Yukawa coupling of the fermion and to the VEV, while the second describes the interaction of the fermions with the Higgs boson, with a coupling $g_{Hff} = m_f/v = y_f/\sqrt{2}$ proportional to the fermion mass. Since the SM contains no right-handed neutrinos, neutrinos do not acquire mass through this mechanism.\bigskip
+% %
 % \begin{figure}[htbp]
 %     \centering
 %     \vspace{10pt}
@@ -586,7 +590,7 @@ Figure \ref{fig:H_xsec} illustrates the cross sections of the main production mo
 
 \subsubsection{Decay modes}
 %
-At a mass of about $125$ GeV, the Higgs boson can decay into a wide variety of SM particles, which gives access to an exceptionally rich range of experimental channels. The probability of each decay is given by its branching ratio (BR), shown as a function of the Higgs boson mass in Figure \ref{fig:H_br}, and the corresponding leading-order diagrams are shown in Figure \ref{fig:H_decays}. Since the Higgs boson couples to vector bosons with a strength proportional to the square of their mass and to fermions with a strength proportional to their mass, as derived in Section \ref{subsec:BEH}, EN EL YUKAWA NO QUEDABA EXPLICITAMENTE QUE EL COUPLING IBA CON LA MASA, LA SEGUNDA PARTE DE LA EC 1.26 PODRIA ESCRIBIRSE LA DEPENDENCIA AL REVES, NO? it decays preferentially into the heaviest particles that are kinematically accessible. The most probable decays are therefore $H\to b\bar{b}$, with a BR of $58\%$, and $H\to WW^*$, with $22\%$, followed by $H\to gg$ and $H\to\tau\tau$, with $8\%$ and $6\%$, respectively~\cite{deFlorian:2016spz}. Decays into massless particles, such as gluons and photons, do not occur directly, but proceed through loops of massive particles, which are in fact a key tool for investigating physics at energies higher than those directly reachable.
+At a mass of about $125$ GeV, the Higgs boson can decay into a wide variety of SM particles, which gives access to an exceptionally rich range of experimental channels. The probability of each decay is given by its branching ratio (BR), shown as a function of the Higgs boson mass in Figure \ref{fig:H_br}, and the corresponding leading-order diagrams are shown in Figure \ref{fig:H_decays}. Since the Higgs boson couples to vector bosons with a strength proportional to the square of their mass, $\lambda_V = 2m_V^2/v$, and to fermions with a strength proportional to their mass, $g_{Hff} = m_f/v$, as derived in Section \ref{subsec:BEH}, it decays preferentially into the heaviest particles that are kinematically accessible. The most probable decays are therefore $H\to b\bar{b}$, with a BR of $58\%$, and $H\to WW^*$, with $22\%$, followed by $H\to gg$ and $H\to\tau\tau$, with $8\%$ and $6\%$, respectively~\cite{deFlorian:2016spz}. Decays into massless particles, such as gluons and photons, do not occur directly, but proceed through loops of massive particles, which are in fact a key tool for investigating physics at energies higher than those directly reachable.
 %
 \begin{figure}[htbp]
     \centering
@@ -681,29 +685,6 @@ At a mass of about $125$ GeV, the Higgs boson can decay into a wide variety of S
         \label{fig:H_br}
     \end{subfigure}
     \caption{Production cross section of the SM Higgs boson in proton-proton collisions for its main production modes as a function of the center-of-mass energy, for $m_H = 125$ GeV (a), and branching ratios of its main decay modes as a function of its mass (b)~\cite{deFlorian:2016spz,LHCHWG}.}
-    \label{fig:higgs_xsec_br}
-\end{figure}
-
-
-
-\begin{figure}[htbp]
-    \centering
-
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_I/H_production.png}
-        \caption{}
-        \label{fig:H_xsec}
-    \end{subfigure}
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_I/H_BR.png}
-        \caption{}
-        \label{fig:H_br}
-    \end{subfigure}
-
-    \caption{The SM Higgs boson production cross section via different mechanisms at proton-proton colliders as a function of the center-of-mass energy, for a Higgs boson mass of 125 GeV (a). Decay branching ratios (BR) of the Higgs boson into the other SM particles as a function of the Higgs boson mass (b). \cite{deFlorian:2016spz,LHCHWG}}
-
     \label{fig:higgs_xsec_br}
 \end{figure}
 
