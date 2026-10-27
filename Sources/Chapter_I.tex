@@ -983,9 +983,9 @@ In Higgs boson pair production in association with a top quark pair, the two Hig
     \centering
     \vspace{10pt}
     \begin{fmffile}{higgspairtth}
-    \begin{subfigure}[b]{0.32\linewidth}
-        \centering
-        \begin{fmfgraph*}(110,80)
+    \begin{minipage}[b]{0.28\linewidth}
+        \centering\small
+        \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
             \fmfright{o1,h1,h2,o2}
             \fmf{gluon}{i1,v1}
@@ -994,7 +994,7 @@ In Higgs boson pair production in association with a top quark pair, the two Hig
             \fmf{fermion}{v1,vt}
             \fmf{fermion}{vt,v2}
             \fmf{fermion}{v2,o2}
-            \fmf{dashes,label=$H^*$,label.side=left}{vt,vh}
+            \fmf{dashes}{vt,vh}
             \fmf{dashes}{vh,h1}
             \fmf{dashes}{vh,h2}
             \fmfforce{(0.35w,0.85h)}{v2}
@@ -1009,18 +1009,17 @@ In Higgs boson pair production in association with a top quark pair, the two Hig
             \fmflabel{$t$}{o2}
             \fmflabel{$H$}{h1}
             \fmflabel{$H$}{h2}
-        \end{fmfgraph*}\\[4pt]
-        \caption{}
-        \label{fig:HH_ttHH_c2}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.32\linewidth}
-        \centering
-        \begin{fmfgraph*}(110,80)
+        \end{fmfgraph*}
+    \end{minipage}
+    \hspace{0.01\linewidth}
+    \begin{minipage}[b]{0.28\linewidth}
+        \centering\small
+        \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
             \fmfright{o1,h1,h2,o2}
             \fmf{fermion}{i2,vq}
             \fmf{fermion}{vq,i1}
-            \fmf{gluon,label=$g$,label.side=right,label.dist=10}{vq,vg}
+            \fmf{gluon}{vq,vg}
             \fmf{fermion}{vg,a2}
             \fmf{fermion}{a2,o2}
             \fmf{fermion}{o1,a1}
@@ -1043,22 +1042,21 @@ In Higgs boson pair production in association with a top quark pair, the two Hig
             \fmflabel{$t$}{o2}
             \fmflabel{$H$}{h1}
             \fmflabel{$H$}{h2}
-        \end{fmfgraph*}\\[4pt]
-        \caption{}
-        \label{fig:HH_ttHH_kt}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.32\linewidth}
-        \centering
-        \begin{fmfgraph*}(110,80)
+        \end{fmfgraph*}
+    \end{minipage}
+    \hspace{0.01\linewidth}
+    \begin{minipage}[b]{0.28\linewidth}
+        \centering\small
+        \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
             \fmfright{o1,h1,h2,o2}
             \fmf{fermion}{i2,vq}
             \fmf{fermion}{vq,i1}
-            \fmf{gluon,label=$g$,label.side=right,label.dist=10}{vq,vg}
+            \fmf{gluon}{vq,vg}
             \fmf{fermion}{vg,a2}
             \fmf{fermion}{a2,o2}
             \fmf{fermion}{o1,vg}
-            \fmf{dashes,label=$H^*$,label.side=left}{a2,vh}
+            \fmf{dashes}{a2,vh}
             \fmf{dashes}{vh,h1}
             \fmf{dashes}{vh,h2}
             \fmfforce{(0.25w,0.5h)}{vq}
@@ -1077,14 +1075,14 @@ In Higgs boson pair production in association with a top quark pair, the two Hig
             \fmflabel{$t$}{o2}
             \fmflabel{$H$}{h1}
             \fmflabel{$H$}{h2}
-        \end{fmfgraph*}\\[4pt]
-        \caption{}
-        \label{fig:HH_ttHH_kt_kl}
-    \end{subfigure}
+        \end{fmfgraph*}
+    \end{minipage}
     \end{fmffile}
-    \caption{Leading-order Feynman diagrams of Higgs boson pair production in association with a top quark pair.}
+    \vspace{8pt}
+    \caption{LO Feynman diagrams of Higgs boson pair production in association with a top quark pair.}
     \label{fig:HH_ttHH_diagrams}
 \end{figure}
+
 
 \subsubsection{Vector boson associated production: $qq'\rightarrow VHH$}
 % 
@@ -1093,109 +1091,119 @@ In vector boson associated production, a quark-antiquark pair annihilates into a
 \begin{figure}[htbp]
     \centering
     \vspace{10pt}
-    \begin{fmffile}{higgspairvhh}
-    \begin{subfigure}[b]{0.32\linewidth}
-        \centering
-        \begin{fmfgraph*}(110,80)
+    \begin{fmffile}{higgspairtth}
+    \begin{minipage}[b]{0.28\linewidth}
+        \centering\small
+        \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
-            \fmfright{h1,h2,ov}
-            \fmf{fermion}{i2,vq}
-            \fmf{fermion}{vq,i1}
-            \fmf{photon,label=$V$,label.side=right}{vq,vv}
-            \fmf{photon}{vv,ov}
-            \fmf{dashes,label=$H^*$,label.side=right}{vv,vh}
+            \fmfright{o1,h1,h2,o2}
+            \fmf{gluon}{i1,v1}
+            \fmf{gluon}{i2,v2}
+            \fmf{fermion}{o1,v1}
+            \fmf{fermion}{v1,vt}
+            \fmf{fermion}{vt,v2}
+            \fmf{fermion}{v2,o2}
+            \fmf{dashes}{vt,vh}
             \fmf{dashes}{vh,h1}
             \fmf{dashes}{vh,h2}
-            \fmfforce{(0.0w,0.9h)}{i2}
-            \fmfforce{(0.0w,0.1h)}{i1}
-            \fmfforce{(0.22w,0.5h)}{vq}
-            \fmfforce{(0.52w,0.5h)}{vv}
-            \fmfforce{(0.76w,0.3h)}{vh}
-            \fmfforce{(1.0w,0.9h)}{ov}
-            \fmfforce{(1.0w,0.5h)}{h2}
-            \fmfforce{(1.0w,0.08h)}{h1}
-            \fmflabel{$\bar{q}'$}{i1}
-            \fmflabel{$q$}{i2}
-            \fmflabel{$V$}{ov}
+            \fmfforce{(0.35w,0.85h)}{v2}
+            \fmfforce{(0.35w,0.15h)}{v1}
+            \fmfforce{(0.35w,0.5h)}{vt}
+            \fmfforce{(0.68w,0.5h)}{vh}
+            \fmfforce{(1.0w,0.68h)}{h2}
+            \fmfforce{(1.0w,0.32h)}{h1}
+            \fmflabel{$g$}{i1}
+            \fmflabel{$g$}{i2}
+            \fmflabel{$\bar{t}$}{o1}
+            \fmflabel{$t$}{o2}
             \fmflabel{$H$}{h1}
             \fmflabel{$H$}{h2}
-        \end{fmfgraph*}\\[4pt]
-        \caption{}
-        \label{fig:HH_VHH_kv_kl}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.32\linewidth}
-        \centering
-        \begin{fmfgraph*}(110,80)
+        \end{fmfgraph*}
+    \end{minipage}
+    \hspace{0.01\linewidth}
+    \begin{minipage}[b]{0.28\linewidth}
+        \centering\small
+        \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
-            \fmfright{h1,h2,ov}
+            \fmfright{o1,h1,h2,o2}
             \fmf{fermion}{i2,vq}
             \fmf{fermion}{vq,i1}
-            \fmf{photon,label=$V$,label.side=right}{vq,vv}
-            \fmf{photon}{vv,va}
-            \fmf{photon}{va,ov}
-            \fmf{dashes}{va,h2}
-            \fmf{dashes}{vv,h1}
+            \fmf{gluon}{vq,vg}
+            \fmf{fermion}{vg,a2}
+            \fmf{fermion}{a2,o2}
+            \fmf{fermion}{o1,a1}
+            \fmf{fermion}{a1,vg}
+            \fmf{dashes}{a2,h2}
+            \fmf{dashes}{a1,h1}
+            \fmfforce{(0.25w,0.5h)}{vq}
             \fmfforce{(0.0w,0.9h)}{i2}
             \fmfforce{(0.0w,0.1h)}{i1}
-            \fmfforce{(0.22w,0.5h)}{vq}
-            \fmfforce{(0.52w,0.5h)}{vv}
-            \fmfforce{(0.76w,0.7h)}{va}
-            \fmfforce{(1.0w,0.9h)}{ov}
-            \fmfforce{(1.0w,0.5h)}{h2}
-            \fmfforce{(1.0w,0.1h)}{h1}
-            \fmflabel{$\bar{q}'$}{i1}
+            \fmfforce{(0.5w,0.5h)}{vg}
+            \fmfforce{(0.75w,0.8h)}{a2}
+            \fmfforce{(0.75w,0.2h)}{a1}
+            \fmfforce{(1.0w,1.0h)}{o2}
+            \fmfforce{(1.0w,0.0h)}{o1}
+            \fmfforce{(1.0w,0.62h)}{h2}
+            \fmfforce{(1.0w,0.38h)}{h1}
+            \fmflabel{$\bar{q}$}{i1}
             \fmflabel{$q$}{i2}
-            \fmflabel{$V$}{ov}
+            \fmflabel{$\bar{t}$}{o1}
+            \fmflabel{$t$}{o2}
             \fmflabel{$H$}{h1}
             \fmflabel{$H$}{h2}
-        \end{fmfgraph*}\\[4pt]
-        \caption{}
-        \label{fig:HH_VHH_kv_kv}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.32\linewidth}
-        \centering
-        \begin{fmfgraph*}(110,80)
+        \end{fmfgraph*}
+    \end{minipage}
+    \hspace{0.01\linewidth}
+    \begin{minipage}[b]{0.28\linewidth}
+        \centering\small
+        \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
-            \fmfright{h1,h2,ov}
+            \fmfright{o1,h1,h2,o2}
             \fmf{fermion}{i2,vq}
             \fmf{fermion}{vq,i1}
-            \fmf{photon,label=$V$,label.side=right}{vq,vv}
-            \fmf{photon}{vv,ov}
-            \fmf{dashes}{vv,h2}
-            \fmf{dashes}{vv,h1}
+            \fmf{gluon}{vq,vg}
+            \fmf{fermion}{vg,a2}
+            \fmf{fermion}{a2,o2}
+            \fmf{fermion}{o1,vg}
+            \fmf{dashes}{a2,vh}
+            \fmf{dashes}{vh,h1}
+            \fmf{dashes}{vh,h2}
+            \fmfforce{(0.25w,0.5h)}{vq}
             \fmfforce{(0.0w,0.9h)}{i2}
             \fmfforce{(0.0w,0.1h)}{i1}
-            \fmfforce{(0.22w,0.5h)}{vq}
-            \fmfforce{(0.58w,0.5h)}{vv}
-            \fmfforce{(1.0w,0.9h)}{ov}
-            \fmfforce{(1.0w,0.5h)}{h2}
-            \fmfforce{(1.0w,0.1h)}{h1}
-            \fmflabel{$\bar{q}'$}{i1}
+            \fmfforce{(0.5w,0.5h)}{vg}
+            \fmfforce{(0.72w,0.78h)}{a2}
+            \fmfforce{(0.84w,0.5h)}{vh}
+            \fmfforce{(1.0w,1.0h)}{o2}
+            \fmfforce{(1.0w,0.0h)}{o1}
+            \fmfforce{(1.0w,0.62h)}{h2}
+            \fmfforce{(1.0w,0.38h)}{h1}
+            \fmflabel{$\bar{q}$}{i1}
             \fmflabel{$q$}{i2}
-            \fmflabel{$V$}{ov}
+            \fmflabel{$\bar{t}$}{o1}
+            \fmflabel{$t$}{o2}
             \fmflabel{$H$}{h1}
             \fmflabel{$H$}{h2}
-        \end{fmfgraph*}\\[4pt]
-        \caption{}
-        \label{fig:HH_VHH_k2v}
-    \end{subfigure}
+        \end{fmfgraph*}
+    \end{minipage}
     \end{fmffile}
-    \caption{Leading-order Feynman diagrams of Higgs boson pair production in association with a vector boson.}
-    \label{fig:HH_VHH_diagrams}
+    \vspace{8pt}
+    \caption{LO Feynman diagrams of Higgs boson pair production in association with a top quark pair.}
+    \label{fig:HH_ttHH_diagrams}
 \end{figure}
 
 
 \subsubsection{Single top quark associated production: $qq'\rightarrow tjHH$}
 %
-In single top quark associated production ($tHH$), the Higgs boson pair is produced together with a single top quark through the $t$-channel or $s$-channel exchange of a $W$ boson, as illustrated by the diagrams of Figure \ref{fig:HH_tHH_diagrams}. Since the Higgs bosons can be emitted both from the top quark and from the $W$ boson, it is the only HH production mode that involves at LO the top quark Yukawa coupling $y_t$ together with the couplings to vector bosons $\lambda_V$ and $\lambda_{2V}$, in addition to the trilinear self-coupling. However, its cross section, computed at NLO in QCD, ranges from $0.029$ to $0.037$ fb for $\sqrt{s}$ between $13$ and $14$ TeV~\cite{Frederix:2014hta,LHCHWG:HHlegacy}, which makes it hardly accessible at the LHC.
+In single top quark associated production ($tHH$), the Higgs boson pair is produced together with a single top quark through the $t$-channel or $s$-channel exchange of a $W$ boson, as illustrated by the diagrams of Figure \ref{fig:HH_tHH_diagrams}. Since the Higgs bosons can be emitted both from the top quark and from the $W$ boson, it is the only HH production mode that involves at LO the top quark Yukawa coupling $y_t$ together with the couplings to vector bosons $\lambda_V$ and $\lambda_{2V}$, in addition to the trilinear self-coupling. However, its cross section, computed at NLO in QCD, ranges from $0.029$ to $0.037$ fb for $\sqrt{s}$ between $13$ and $14$ TeV~\cite{Frederix:2014hta,LHCHWG:HHlegacy}, which makes it hardly accessible at the LHC.\bigskip
 %
 \begin{figure}[htbp]
     \centering
     \vspace{10pt}
     \begin{fmffile}{higgspairthh}
-    \begin{subfigure}[b]{0.32\linewidth}
-        \centering
-        \begin{fmfgraph*}(110,80)
+    \begin{minipage}[b]{0.28\linewidth}
+        \centering\small
+        \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
             \fmfright{o1,h1,h2,o2}
             \fmf{fermion}{i2,w2,o2}
@@ -1203,7 +1211,7 @@ In single top quark associated production ($tHH$), the Higgs boson pair is produ
             \fmf{fermion}{w1,a}
             \fmf{fermion}{a,o1}
             \fmf{photon,label=$W$,label.side=right}{w2,w1}
-            \fmf{dashes,label=$H^*$,label.side=left}{a,vh}
+            \fmf{dashes}{a,vh}
             \fmf{dashes}{vh,h1}
             \fmf{dashes}{vh,h2}
             \fmfforce{(0.3w,0.85h)}{w2}
@@ -1219,13 +1227,12 @@ In single top quark associated production ($tHH$), the Higgs boson pair is produ
             \fmflabel{$q'$}{o2}
             \fmflabel{$H$}{h1}
             \fmflabel{$H$}{h2}
-        \end{fmfgraph*}\\[4pt]
-        \caption{}
-        \label{fig:HH_tHH_t_kl}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.32\linewidth}
-        \centering
-        \begin{fmfgraph*}(110,80)
+        \end{fmfgraph*}
+    \end{minipage}
+    \hspace{0.01\linewidth}
+    \begin{minipage}[b]{0.28\linewidth}
+        \centering\small
+        \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
             \fmfright{o1,h1,h2,o2}
             \fmf{fermion}{i2,w2,o2}
@@ -1245,13 +1252,12 @@ In single top quark associated production ($tHH$), the Higgs boson pair is produ
             \fmflabel{$q'$}{o2}
             \fmflabel{$H$}{h1}
             \fmflabel{$H$}{h2}
-        \end{fmfgraph*}\\[4pt]
-        \caption{}
-        \label{fig:HH_tHH_t_k2v}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.32\linewidth}
-        \centering
-        \begin{fmfgraph*}(110,80)
+        \end{fmfgraph*}
+    \end{minipage}
+    \hspace{0.01\linewidth}
+    \begin{minipage}[b]{0.28\linewidth}
+        \centering\small
+        \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
             \fmfright{o1,h2,o2}
             \fmfbottom{hb}
@@ -1280,27 +1286,23 @@ In single top quark associated production ($tHH$), the Higgs boson pair is produ
             \fmflabel{$t$}{o2}
             \fmflabel{$H$}{h2}
             \fmflabel{$H$}{hb}
-        \end{fmfgraph*}\\[4pt]
-        \caption{}
-        \label{fig:HH_tHH_s_kv_kt}
-    \end{subfigure}
+        \end{fmfgraph*}
+    \end{minipage}
     \end{fmffile}
-    \caption{Representative leading-order Feynman diagrams of Higgs boson pair production in association with a single top quark.}
+    \vspace{8pt}
+    \caption{Representative LO Feynman diagrams of Higgs boson pair production in association with a single top quark.}
     \label{fig:HH_tHH_diagrams}
 \end{figure}
 
 
-\vspace{5pt}
-\noindent As detailed below and shown in Figure \ref{fig:HH_xsec}, SM HH production at the LHC is a very rare process, with a production rate $\mathcal{O}(10^3)$ times smaller than single Higgs production. Consequently, HH experimental searches — and those covered in this thesis — have primarly focused on the dominant mechanisms, ggF and VBF. Since the gluon fusion is the leading production mode, ggF searches provide the highest sensitivy to the trilinear self-coupling $\lambda_{HHH}$; on the other hand, VBF HH production provides additional handles for measuring $\lambda_{HHH}$ and allows for exploration of the VVHH interaction.
-
-It has been underscored that the total cross-section of each production mode stems from the interference of its corresponding diagrams. Thus, small SM HH cross-sections result from processes such as destructive interference between the triangle and box diagrams of the ggF mechanism (see Figure \ref{fig:ggf_contributions}). This phenomenon can be interpreted as meaning that the total HH cross-section depends heavily on the value of the Higgs self-coupling, and small deviations from the SM $\lambda_{HHH}$ value can significantly alter the interference, leading to large enhancements in the HH cross-section. Therefore, the focus shifts from the initial conception of HH production as a test of the SM to its interpretation as a probe of BSM physics, as discussed in more detail in the following section.
+\noindent  As discussed, SM HH production at the LHC is a very rare process. Consequently, HH experimental searches — and those covered in this thesis — have primary focused on the dominant mechanisms, with gluon fusion providing the highest sensitivity to $\lambda_{HHH}$ and VBF production offering a complementary handle on it, together with access to the $HHVV$ interaction. In both cases, the small SM cross section results from the destructive interference between the contributing diagrams, and is therefore the outcome of a delicate cancellation. Deviations of the couplings from their SM values, or the presence of new interactions, can disrupt this cancellation and enhance the production rate by large factors, while also modifying the kinematics of the process, in particular the $m_{HH}$ distribution. Accordingly, HH production is not only a test of the SM, but also a sensitive probe of BSM physics, as discussed in Section \ref{subsec:BSM_production}.
 
 \subsection{BSM Di-Higgs production: Towards Effective Field Theories}
 \label{subsec:BSM_production}
 %
-The limitations of the SM discussed in Section \ref{subsec:SM_limitations} motivate the search for new physics, and Higgs boson pair production is a particularly suited probe for it. Owing to its direct connection with the scalar potential, any new physics that modifies the scalar sector is expected to leave an imprint on this process, either through new particles that couple to the Higgs boson or through modified interactions among the particles involved in its production. Testing the SM only requires predicting the HH cross section and comparing it with the data, whereas exploring alternative theories demands in addition understanding how the cross section and the kinematics of the process vary outside the SM. Accordingly, the two complementary approaches illustrated in Figure \ref{fig:BSM_approaches} — direct searches for new states and indirect searches for deviations from the SM predictions — translate into two classes of signatures, each with its own interpretation framework: resonant production, naturally interpreted within the specific models that predict the new state, and non-resonant production — the one that also occurs in the SM —, interpreted in a model-independent way through coupling modifiers and effective field theories.
+The limitations of the SM discussed in Section \ref{subsec:SM_limitations} motivate the search for new physics, and Higgs boson pair production is a particularly suited probe for it. Owing to its direct connection with the scalar potential, any new physics that modifies the scalar sector is expected to leave an imprint on this process, either through new particles that couple to the Higgs boson or through modified interactions among the particles involved in its production. Testing the SM only requires predicting the HH cross section and comparing it with the data, whereas exploring alternative theories demands in addition understanding how the cross section and the kinematics of the process vary outside the SM. Accordingly, the two complementary approaches illustrated in Figure \ref{fig:BSM_approaches} — direct searches for new states and indirect searches for deviations from the SM predictions — translate into two classes of signatures, each with its own interpretation framework: resonant production, naturally interpreted within the specific models that predict the new state, and non-resonant production — the one that also occurs in the SM —, interpreted in a model-independent way through coupling modifiers and effective field theories.\medskip
 
-In the resonant scenario, BSM physics operates at energies accessible to the collider experiments: a new particle $X$ with a mass $m_X > 2m_H$ is produced directly and decays into a pair of Higgs bosons, as illustrated in Figure \ref{fig:HH_resonant}, so that the signal appears as a localized excess in the invariant mass spectrum of the pair on top of the non-resonant SM production. Such states arise naturally in many extensions of the SM, including extensions of the scalar sector — the singlet model \cite{Robens:2015gla}, the two-Higgs-doublet model \cite{Branco:2011iw} or the minimal supersymmetric SM \cite{Djouadi:2005gj} —, which predict additional spin-0 bosons, and models with warped extra dimensions \cite{Randall:1999ee}, which predict spin-0 radions \cite{Goldberger:1999un} and spin-2 Kaluza–Klein gravitons \cite{Agashe:2007zd}. Despite their different theoretical motivations, these models predict CP-even spin-0 or spin-2 states whose intrinsic width is typically negligible compared to the detector resolution, leading to similar experimental signatures. This common signature allows the models to be probed simultaneously in a model-independent way, by scanning a broad range of mass hypotheses from the kinematic threshold up to several TeV. The search for such resonances in the $bb\tau\tau$ final state with the Run 2 dataset, which covers masses between $250$ and $3000$ GeV \cite{CMS-PAS-B2G-24-011}, relies on the jet assignment algorithm described in Chapter \ref{ch:taggers}, whose adaptation to that search was part of this thesis. Resonant production is otherwise not covered further in this work.
+In the resonant scenario, BSM physics operates at energies accessible to the collider experiments: a new particle $X$ with a mass $m_X > 2m_H$ is produced directly and decays into a pair of Higgs bosons, as illustrated in Figure \ref{fig:HH_resonant}, so that the signal appears as a localized excess in the invariant mass spectrum of the pair on top of the non-resonant SM production. Such states arise naturally in many extensions of the SM, including extensions of the scalar sector — the singlet model \cite{Robens:2015gla}, the two-Higgs-doublet model \cite{Branco:2011iw} or the minimal supersymmetric SM \cite{Djouadi:2005gj} —, which predict additional spin-0 bosons, and models with warped extra dimensions \cite{Randall:1999ee}, which predict spin-0 radions \cite{Goldberger:1999un} and spin-2 Kaluza–Klein gravitons \cite{Agashe:2007zd}. Despite their different theoretical motivations, these models predict CP-even spin-0 or spin-2 states whose intrinsic width is typically negligible compared to the detector resolution, leading to similar experimental signatures. This common signature allows the models to be probed simultaneously in a model-independent way, by scanning a broad range of mass hypotheses from the kinematic threshold up to several TeV. The search for such resonances in the $bb\tau\tau$ final state with the Run 2 dataset, which covers masses between $250$ and $3000$ GeV \cite{CMS-PAS-B2G-24-011}, relies on the jet assignment algorithm described in Chapter \ref{ch:taggers}, whose adaptation to that search was part of this thesis. Resonant production is otherwise not covered further in this work.\medskip
 %
 \begin{figure}
     \centering
@@ -1325,8 +1327,7 @@ In the resonant scenario, BSM physics operates at energies accessible to the col
     \label{fig:HH_resonant}
 \end{figure}
 
-
-In the non-resonant scenario, which is the focus of this thesis, the new physics lies at an energy scale beyond the direct reach of the LHC, and its effects appear instead at lower energies as modifications of the interactions involved in Higgs boson pair production. These modifications alter both the production rate and the kinematic properties of the pair, so that the experimental signature is not a localized excess but a deformation of the distributions predicted by the SM. Their description is addressed here in three steps of increasing generality. First, the couplings of the SM are rescaled by coupling modifiers, the parametrization in which the results of this thesis are expressed. Second, effective field theories are introduced as the systematic framework that generalizes this approach. Finally, the effective couplings that this framework yields for gluon fusion production are presented, which constitute the basis of the signal modeling developed in Chapter \ref{ch:eft_modeling}.
+In the non-resonant scenario, which is the focus of this thesis, the new physics lies at an energy scale beyond the direct reach of the LHC, and its effects appear instead at lower energies as modifications of the interactions involved in Higgs boson pair production, either rescaling the vertices of the SM diagrams of Figures \ref{fig:HH_ggF_diagrams} and \ref{fig:HH_VBF_diagrams} or introducing new contact interactions, such as those shown in Figure \ref{fig:BSM_diagrams} for gluon fusion. These modifications alter both the production rate and the kinematic properties of the pair, so that the experimental signature is not a localized excess but a deformation of the distributions predicted by the SM. Their description is addressed here in three steps of increasing generality. First, the couplings of the SM are rescaled by coupling modifiers, the parametrization in which the results of this thesis are expressed. Second, effective field theories are introduced as the systematic framework that generalizes this approach. Finally, the effective couplings that this framework yields for gluon fusion production are presented, which constitute the basis of the signal modeling developed in Chapter \ref{ch:eft_modeling}.
 
 
 
@@ -1341,14 +1342,17 @@ In the SM, the value of the trilinear self-coupling $\lambda_{HHH}$ is entirely 
 \end{equation}
 which extends to the trilinear self-coupling the $\kappa$-framework introduced in Section \ref{subsec:H_phenomenology}, the same in which the couplings of Figure \ref{fig:H_coupling} are measured. Expressing the results in terms of $\kappa_\lambda$ allows double and single Higgs boson production — the latter sensitive to $\lambda_{HHH}$ through electroweak loop corrections — to be interpreted consistently and combined. The modifiers of the top quark Yukawa coupling, $\kappa_t = y_t/y_t^{SM}$, and of the couplings to vector bosons, $\kappa_V$ and $\kappa_{2V}$, are defined analogously.
 
+The quartic self-coupling $\lambda_{HHHH}$, which in the SM is also fixed by $m_H$ and $v$ and equal to $\lambda_{HHH}$, as shown in Equation \ref{higgs_pot}, can be parametrized analogously through $\kappa_4 = \lambda_{HHHH}/\lambda_{HHHH}^{SM}$. However, it only enters Higgs boson pair production through loop corrections, and the process that probes it directly, triple Higgs boson production, has an SM cross section more than two orders of magnitude smaller than that of HH production~\cite{deFlorian:2019app}. With the data collected so far, both self-couplings can therefore only be constrained through upper limits on the corresponding production rates. While HH searches already restrict $\kappa_\lambda$ to an interval of a few units around the SM value, as discussed in Section \ref{subsec:Searches}, the searches for triple Higgs boson production performed with Run 2 data~\cite{ATLAS:2024xcs,CMS:2026xkc} only constrain $\kappa_4$ to values of the order of $10^2$.\medskip
+
+
 % This coupling rescaling approach is usually referred to as the $\kappa$-framework. The framework is also sensitive to single Higgs measurements affected by deviations from $\lambda_{HHH}$ SM value, due to loop corrections influencing several of these processes. Expressing the experimental results in terms of the coupling modifier allows for the consistent interpretation of both single and double Higgs production, opening the possibility of establishing combined constraints on the value of the trilinear Higgs boson self-coupling.
 
-Modifications in the value of $\lambda_{HHH}$ predicted by the SM have a profound impact on the HH total cross section, as illustrated in Figure \ref{fig:HH_xsec_vs_kl} for all HH production mechanisms covered in \ref{subsec:SM_production}.
-
+Modifications in the value of $\lambda_{HHH}$ predicted by the SM have a profound impact on the HH total cross section, as illustrated in Figure \ref{fig:HH_xsec_vs_kl} for all HH production mechanisms covered in Section \ref{subsec:SM_production}.
+%
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/chapter_I/HH_xsec_vs_kl.png}
-    \caption{Total cross sections at NLO precision for the six largest HH production modes at proton-proton colliders as a function of the variation from the $\lambda_{HHH}$ SM prediction. The thickness of the lines corresponds to the scale and PDF uncertainties added linearly {\color{red}[ref]} }
+    \includegraphics[width=0.65\linewidth]{figures/chapter_I/HH_xsec_vs_kl.png}
+    \caption{Total cross sections at LO (dashed lines) and NLO (solid lines) in QCD of the six largest HH production modes in proton-proton collisions at $\sqrt{s} = 14$ TeV, as a function of the trilinear self-coupling normalized to its SM value. The gluon fusion cross section is computed with the same approximation as in Figure \ref{fig:HH_xsec}, and the bands correspond to the scale and PDF uncertainties added linearly~\cite{Frederix:2014hta}.}
     \label{fig:HH_xsec_vs_kl}
 \end{figure}
 
@@ -1358,7 +1362,7 @@ The interference between the diagrams that contribute to HH production results i
     \label{eq:kl_kt_ggf}
 \end{equation}
 %
-which shows a minimum at $\kappa_{\lambda}/\kappa_t = 2.45$.
+which shows a minimum at $\kappa_{\lambda}/\kappa_t = 2.45$.\medskip
 
 A similar approach can be followed for VBF production, whose cross section depends on $\kappa_{\lambda}$ and on the modifiers of the couplings to vector bosons, $\kappa_V=\lambda_V/\lambda_V^{SM}$ and $\kappa_{2V}=\lambda_{2V}/\lambda_{2V}^{SM}$, and can be expressed as
 %
@@ -1374,21 +1378,26 @@ A similar approach can be followed for VBF production, whose cross section depen
 \end{aligned}
 \end{equation}
 %
-where, in fact, the sensitivity to the quartic coupling $\kappa_{2V}$ is much greater than that to modifications of the trilinear self-coupling, as shown in Figure \ref{fig:VBF_modifications}. The image illustrates the VBF HH production cross section, in units of the SM value, as a function of the deviations $\delta_{\kappa_{2V}} = \kappa_{2V} - 1$ and $\delta_{\kappa_{\lambda}} = \kappa_{\lambda} -1$. As shown, it follows that variations in $\kappa_{2V}$ of about $0.5$ correspond to an enhancement of the cross section by a factor $\sim40$, highlighting the high sensitivity to the quartic coupling. Furthermore, the $\kappa_{2V}$ coupling is particularly relevant for providing information on the deep structure of the Higgs sector and the nautre of EWSB since, in many BSM models, the standard relation $\kappa_{2V}=\kappa_{V}^2$ no longer holds.
-
+where, in fact, the sensitivity to the quartic coupling $\kappa_{2V}$ is much greater than that to modifications of the trilinear self-coupling, as shown in Figure \ref{fig:VBF_modifications}. The image illustrates the VBF HH production cross section, in units of the SM value, as a function of the deviations $\delta_{\kappa_{2V}} = \kappa_{2V} - 1$ and $\delta_{\kappa_{\lambda}} = \kappa_{\lambda} -1$.
+A deviation of $0.5$ in $\kappa_{2V}$ enhances the cross section by a factor of about $10$ to $20$, whereas the same deviation in $\kappa_\lambda$ changes it by only about $30\%$, which highlights the much higher sensitivity to $\kappa_{2V}$. Furthermore, the $\kappa_{2V}$ coupling is particularly relevant for providing information on the deep structure of the Higgs sector and the nature of EWSB since, in many BSM models, the standard relation $\kappa_{2V}=\kappa_{V}^2$ no longer holds.\medskip
+%
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\linewidth]{figures/chapter_I/VBF_modifications.png}
-    \caption{VBF HH cross section, in units of the SM value, as a function of $\delta_{\kappa_{2V}}$ (thick blue) and $\delta_{\kappa_{\lambda}}$ (thin red), after cuts reproducing realistic acceptance of LHC detectors (solid) and specific VBF analysis cuts (dashed)~\cite{Bishara:2016kjn}.}
+    \includegraphics[width=0.6\linewidth]{figures/chapter_I/VBF_modifications.pdf}
+    \caption{VBF HH cross section at $\sqrt{s} = 14$ TeV, in units of the SM value, as a function of $\delta_{\kappa_{2V}}$ (thick blue lines) and $\delta_{\kappa_\lambda}$ (thin red lines), after acceptance cuts (solid lines) and after the full set of analysis cuts (dashed lines)~\cite{Bishara:2016kjn}.}
     \label{fig:VBF_modifications}
 \end{figure}
 
-Variations in the coupling strength values also modify the kinematics of the HH pair. Figure \ref{fig:mHH_kl} exemplifies this concept by displaying the distribution of the invariant mass of the HH system, $m_{HH}$, for several representative values of the coupling strength $\kappa_{\lambda}$, with the other couplings set to their SM values. The shape for the SM case (green line) is the result of the interference of the two triangle and box diagrams: while the triangle contribution plays an essential role in populating the low $m_{HH}$ region (black line, $\kappa_{\lambda}=20$), the box diagram dominates the high $m_{HH}$ tale (red line, $\kappa_{\lambda}=0$). As $\lambda_{HHH}$ varies, interference effects significantly alter the $m_{HH}$ distribution shape. Large values of $\kappa_{\lambda}$ show a smoother spectrum, whereas near the point of maximum interference, $\kappa_{\lambda}=2.45$, the blue curve exhibits a characteristic double-peak structure. Similar effects can be observed when varying the other coupling modifiers. This behavior has significant implications for experimental searches, which become sensitive to anomalous couplings through both the total HH production rate and the shape of the kinematic distributions. Therefore, even without observing the HH process, experimental measurements of double Higgs production are extremely important for constraining the Higgs self-coupling modifier and ruling out several BSM scenarios, given the implications of the various anomalous couplings.
 
+Variations in the coupling strength values also modify the kinematics of the HH pair. Figure \ref{fig:mHH_kl} exemplifies this concept by displaying the distribution of the invariant mass of the HH system, $m_{HH}$, for several representative values of $\kappa_{\lambda}$, with the other couplings set to their SM values. The SM shape is the result of the interference between the triangle and box diagrams. The triangle contribution populates the low $m_{HH}$ region and dominates for large values of $\kappa_\lambda$, such as $\kappa_\lambda = 20$, which therefore show a smoother spectrum, while the box diagram dominates the high $m_{HH}$ tail and is the only contribution for $\kappa_\lambda = 0$. Near the point of maximum interference, $\kappa_{\lambda}=2.45$, the distribution exhibits a characteristic double-peak structure. …
+
+
+Variations in the coupling strength values also modify the kinematics of the HH pair. Figure \ref{fig:mHH_kl} displays the distribution of the invariant mass of the HH system, $m_{HH}$, for several representative values of the coupling strength $\kappa_{\lambda}$, with the other couplings set to their SM values. The shape for the SM case is the result of the interference of the two triangle and box diagrams: while the triangle contribution plays an essential role in populating the low $m_{HH}$ region, the box diagram dominates the high $m_{HH}$ tail. As $\lambda_{HHH}$ varies, interference effects significantly alter the $m_{HH}$ distribution shape. Large values of $\kappa_{\lambda}$ show a smoother spectrum, whereas near the point of maximum interference, $\kappa_{\lambda}=2.45$, the curve exhibits a characteristic double-peak structure. Similar effects can be observed when varying the other coupling modifiers. This behavior has significant implications for experimental searches, which become sensitive to anomalous couplings through both the total HH production rate and the shape of the kinematic distributions. Therefore, even without observing the HH process, experimental measurements of double Higgs production are extremely important for constraining the Higgs self-coupling modifier and ruling out several BSM scenarios, given the implications of the various anomalous couplings.
+%
 \begin{figure}
     \centering
     \includegraphics[width=0.6\linewidth]{figures/chapter_I/mHH_shapes_kl.png}
-    \caption{Comparison of the mass of the HH system $m_{HH}$ distributions for different values of $\kappa_{\lambda}$. All other coupling set to SM value. {\color{red}[ref]} {\color{red}[añadir mis plots?]}.}
+    \caption{Comparison of the mass of the HH system $m_{HH}$ distributions for different values of $\kappa_{\lambda}$. All other coupling set to SM value. {\color{red}[SACARLO YO - AQUI K-LAMBDA Y YA VERE SI EN EL 7 ALGUN OTRO]}.}
     \label{fig:mHH_kl}
 \end{figure}
 
@@ -1507,7 +1516,7 @@ The results obtained by the CMS combination using the complete Run II dataset ar
     \label{fig:comb_upper_limits}
 \end{figure}
 
-Measuring the upper limit of the HH cross section permits probing of the Higgs self-coupling $\lambda_{HHH}$. Figure \ref{fig:comb_trilinear} presents the interpretation of the Run II CMS combination results in terms of the Higgs trilinear coupling, expressed in terms of the coupling modifier, $\kappa_{\lambda}$, with the remaining couplings fixed to the values predicted by the SM. Including channels with diverse kinematic coverage greatly improves the sensitivity to coupling modifiers. The combined CMS result constraints $\kappa_{\lambda}$ to a narrow interval around the SM value, ranging from [-1.35, 6.37] at 95\% CL. Specific searches for VBF production simultaneously reveal limits on the modifier $\kappa_{2V}$, constraining it to the range [0.64, 1.40] and excluding the absence of the quartic coupling VVHH with a significance of more than five standard deviations for any value of $\kappa_{\lambda}$. The combined Run II results represent the state of the art in searching for HH production, and will serve as the experimental benchmark for Run III analyses.
+Measuring the upper limit of the HH cross section permits probing of the Higgs self-coupling $\lambda_{HHH}$. Figure \ref{fig:comb_trilinear} presents the interpretation of the Run II CMS combination results in terms of the Higgs trilinear coupling, expressed in terms of the coupling modifier, $\kappa_{\lambda}$, with the remaining couplings fixed to the values predicted by the SM. Including channels with diverse kinematic coverage greatly improves the sensitivity to coupling modifiers. The combined CMS result constraints $\kappa_{\lambda}$ to a narrow interval around the SM value, ranging from [-1.35, 6.37] at 95\% CL. Specific searches for VBF production simultaneously reveal limits on the modifier $\kappa_{2V}$, constraining it to the range [0.64, 1.40] and excluding the absence of the quartic coupling $VVHH$ with a significance of more than five standard deviations for any value of $\kappa_{\lambda}$. The combined Run II results represent the state of the art in searching for HH production, and will serve as the experimental benchmark for Run III analyses.
 
 \begin{figure}
     \centering
