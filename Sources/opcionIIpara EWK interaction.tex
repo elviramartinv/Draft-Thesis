@@ -1,0 +1,58 @@
+The electroweak (EWK) theory provides a unified description of the electromagnetic and weak interactions, obtained by imposing local gauge invariance under the group $SU(2)_L \times U(1)_Y$. The weak interaction couples universally to all fermions, connects different quark flavors through the Cabibbo-Kobayashi-Maskawa (CKM) mixing matrix, and is the only interaction observed to violate charge (C), parity (P), and combined charge-parity (CP) symmetries. The violation of parity~\cite{Lee:1956qn,Wu:1957my} manifests itself in the fact that the weak interaction acts differently on fermions depending on their \textit{chirality}, defined through the matrix $\gamma^5 = i\gamma^0\gamma^1\gamma^2\gamma^3$ built from the Dirac matrices of Equation \ref{eq:dirac_lagrangian}. Any fermion field can be decomposed into a left-handed and a right-handed component, obtained with the projection operators $P_L = (1-\gamma^5)/2$ and $P_R = (1+\gamma^5)/2$, and only the left-handed components of the fermions, or the right-handed components of the antifermions, transform under $SU(2)_L$, as indicated by its subscript $L$. In the limit of a massless particle, chirality coincides with helicity, the projection of the spin onto the direction of motion.
+
+Accordingly, the fermion fields of each generation are arranged into a left-handed doublet, which transforms under $SU(2)_L$, and right-handed singlets, which do not — two for quarks, and only one for leptons, since the SM contains no right-handed neutrino —,
+\begin{equation}
+    \Psi_L \equiv P_L\begin{pmatrix}\psi \\ \psi'\end{pmatrix}=\begin{pmatrix}\psi_L \\ \psi'_L\end{pmatrix}, \qquad
+    \psi_R \equiv P_R\,\psi, \qquad
+    \psi'_R \equiv P_R\,\psi',
+    \label{fermionic_fields}
+\end{equation}
+%
+where $\psi$ and $\psi'$ denote the two members of a doublet, either the neutrino and the charged lepton or the up- and down-type quarks. The charge associated with $SU(2)_L$ is the weak isospin $T_3$, which takes the values $T_3=+1/2$ for the upper and $T_3=-1/2$ for the lower component of the doublets, and $T_3=0$ for the right-handed singlets. As in QCD, local invariance requires one gauge field for each generator of the group, so that three fields $W^i_\mu$, with $i=1,2,3$, are introduced, whose field-strength tensors $W^i_{\mu\nu}$ contain, like those of the gluons, a quadratic term that gives rise to cubic and quartic self-interactions. However, the neutral field $W^3_\mu$ couples only to left-handed fermions and therefore cannot be identified with the photon, which couples equally to both chiralities. The electromagnetic interaction is therefore incorporated into the same symmetry by introducing an additional abelian group, $U(1)_Y$, whose charge is the weak hypercharge $Y$, carried by both chiralities and related to the electric charge through the Gell-Mann-Nishijima relation, $Q = T_3 + Y/2$. Local invariance under the full group then requires the covariant derivative
+\begin{equation}
+    D_\mu = \partial_\mu + i g\, T_i\, W^i_\mu + i g'\, \frac{Y}{2}\, B_\mu,
+    \label{eq:ew_covariant_derivative}
+\end{equation}
+%
+where $g$ is the weak coupling constant, $T_i = \sigma_i/2$, with $\sigma_i$ the Pauli matrices, are the generators of $SU(2)_L$, which vanish for the right-handed singlets, and $B_\mu$ is the gauge field of $U(1)_Y$, with coupling constant $g'$ and the abelian field-strength tensor $B_{\mu\nu} = \partial_\mu B_\nu - \partial_\nu B_\mu$. The EWK Lagrangian finally reads
+\begin{equation}
+    \mathcal{L}_{\text{EWK}} =
+    \underbrace{\bar{\Psi}_L\, i \slashed{D}\, \Psi_L}_{\substack{\text{left-handed}\\ \text{doublets}}}
+    + \underbrace{\bar{\psi}_R\, i \slashed{D}\, \psi_R + \bar{\psi}'_R\, i \slashed{D}\, \psi'_R}_{\substack{\text{right-handed}\\ \text{singlets}}}
+    \underbrace{{}- \frac{1}{4}\, W^i_{\mu\nu} W_i^{\mu\nu} - \frac{1}{4}\, B_{\mu\nu} B^{\mu\nu}}_{\substack{\text{gauge}\\ \text{kinetic terms}}}.
+    \label{EW_Lagrangian}
+\end{equation}
+%
+The fermion terms contain, through the covariant derivative, both the free propagation of the fermions and their interactions with the gauge fields. These fields, however, do not correspond directly to the observed bosons, which arise as combinations of them. The first two $SU(2)_L$ fields combine into the charged fields $W^\pm_\mu = (W^1_\mu \mp i\,W^2_\mu)/\sqrt{2}$, associated with the $W^\pm$ bosons, while the two neutral fields, $W^3_\mu$ and $B_\mu$, mix into the fields of the $Z$ boson and the photon through a rotation by the Weinberg angle $\theta_W$, a free parameter of the SM,
+\begin{equation}
+    \begin{pmatrix} A_\mu \\ Z_\mu \end{pmatrix} = \begin{pmatrix} \cos\theta_W & \sin\theta_W \\ -\sin\theta_W & \cos\theta_W \end{pmatrix} \begin{pmatrix} B_\mu \\ W^3_\mu \end{pmatrix}, \qquad \tan\theta_W = \frac{g'}{g}.
+    \label{eq:weinberg_mixing}
+\end{equation}
+%
+Written in terms of these fields, the EWK Lagrangian describes two types of interactions between fermions and gauge bosons. The charged currents, mediated by the $W^\pm$ bosons, act only on the left-handed components and change the flavor of the fermion within the doublet. The neutral currents are mediated by the photon, which couples to the electric charge with a strength $e = g\sin\theta_W = g'\cos\theta_W$, identified as the unit of electric charge, and by the $Z$ boson, which couples to both chiralities, but with different strengths. The gauge kinetic terms, in turn, give rise to the self-interactions of the $W^\pm$ bosons with the photon and the $Z$ boson, such as the $WW\gamma$ and $WWZ$ vertices, while photons do not interact with each other.\medskip
+
+
+
+l 191: es in the case of the gluones and the phogon -> as in the case of the gluons
+which was allowed in QCD and QED --> which was allowed in QCD
+
+
+
+STRONG INTERACTIN: l73 to 110
+
+The strong interaction is described by QCD, a gauge theory based on the non-abelian group $SU(3)_C$, where the subscript $C$ refers to color, the conserved charge associated with the symmetry. Its construction starts from the Lagrangian density of a free fermion field, the Dirac Lagrangian,
+\begin{equation}
+    \mathcal{L}_{\text{Dirac}} = \bar{\psi}(x)\,(i\slashed{\partial} - m)\,\psi(x),
+    \label{eq:dirac_lagrangian}
+\end{equation}
+%
+where $\psi(x)$ is the quark spinor field at the spacetime coordinates $x$, $m$ is the quark mass, and $\slashed{\partial} = \gamma^\mu \partial_\mu$ denotes the contraction of the Dirac matrices $\gamma^\mu$ with the spacetime derivatives. This Lagrangian is invariant under global $SU(3)_C$ transformations of the quark field, but not under local ones, whose parameters vary from one spacetime point to another. Local gauge invariance is restored by replacing $\partial_\mu$ with the covariant derivative $D_\mu = \partial_\mu + i g_s\, (\lambda_a/2)\, G^a_\mu$, where $\lambda_a$ are the eight Gell-Mann matrices that generate the group and $g_s$ is the strong coupling constant. This introduces one vector field $G^a_\mu$ for each generator, the eight gluon fields, and the QCD Lagrangian reads
+\begin{equation}
+    \mathcal{L}_{\text{QCD}} =
+    \underbrace{\bar{\psi}\,(i\slashed{\partial} - m)\,\psi}_{\substack{\text{free quark}\\ \text{propagation}}}
+    \underbrace{{}-g_s\, \bar{\psi}\gamma^\mu \frac{\lambda_a}{2}\psi\, G^a_\mu}_{\substack{\text{quark-gluon}\\ \text{interaction}}}
+    \underbrace{{}-\frac{1}{4}\, G^a_{\mu\nu} G_a^{\mu\nu}}_{\substack{\text{gluon kinetic}\\ \text{term}}}.
+    \label{QCD_Lagrangian}
+\end{equation}
+%
+The first term is the Dirac Lagrangian of Equation \ref{eq:dirac_lagrangian}, while the second, which arises from the covariant derivative, describes the interaction between quarks and gluons, with a strength usually expressed through $\alpha_s = g_s^2/4\pi$. The third is the kinetic term of the gluons, built from the field-strength tensor $G^a_{\mu\nu} = \partial_\mu G^a_\nu - \partial_\nu G^a_\mu - g_s f^{abc}\, G^b_\mu G^c_\nu$, where $f^{abc}$ are the structure constants of $SU(3)_C$. Its last term, a direct consequence of the non-abelian nature of the group, gives rise to cubic and quartic gluon self-interactions. In contrast, a gluon mass term, of the form $m_g^2\, G^a_\mu G_a^\mu$, would break local gauge invariance, so that gluons are necessarily massless.
