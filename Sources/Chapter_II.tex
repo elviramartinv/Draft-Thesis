@@ -95,16 +95,17 @@ However, at high luminosity, there is not just a single proton-proton interactio
     \langle PU\rangle = \frac{\mathcal{L}_b\,\sigma_\text{inel}}{f_\text{rev}},
     \label{eq:pileup}
 \end{equation}
-where $\mathcal{L}_b$ is the luminosity per bunch and $\sigma_\text{inel}$ is the proton-proton inelastic cross section. Under nominal conditions, $\langle PU\rangle$ is on the order of $25$. These additional interactions, known as \textit{pile-up}, are overwhelmingly low-momentum-transfer processes that overlap with the interaction of interest\footnote{Unlike the underlying event, which originates from the collision itself in which the hard interaction takes place, pile-up corresponds to independent pp collisions that coincide at the same bunch crossing.}, and to these are added those from previous and subsequent bunch crossings, whose signal persists in the detector electronics. Hence, pile-up affects the reconstruction of all objects in the event, and its mitigation is one of the central aspects of the algorithms described in Section \ref{sec:POR}. The $\langle PU\rangle$ distribution recorded by CMS during Run 3 is shown in Figure \ref{fig:pileup}.\\
+where $\mathcal{L}_b$ is the luminosity per bunch and $\sigma_\text{inel}$ is the proton-proton inelastic cross section. Under nominal conditions, $\langle PU\rangle$ is on the order of $25$. These additional interactions, known as \textit{pile-up}, are overwhelmingly low-momentum-transfer processes that overlap with the interaction of interest\footnote{Unlike the underlying event, which originates from the collision itself in which the hard interaction takes place, pile-up corresponds to independent pp collisions that coincide at the same bunch crossing.}, and to these are added those from previous and subsequent bunch crossings, whose signal persists in the detector electronics. Hence, pile-up affects the reconstruction of all objects in the event, and its mitigation is one of the central aspects of the algorithms described in Section \ref{sec:POR}. The $\langle PU\rangle$ distribution recorded by CMS in each year of data taking is shown in Figure \ref{fig:pileup}, with mean values that have grown from about $10$ in 2011 to about $60$ in Run 3.\\
 %
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.75\linewidth]{figures/chapter_II/pileup_run3.pdf}
-    \caption{Distribution of the mean number of interactions per bunch crossing, $\langle PU\rangle$ (denoted $\langle\mu\rangle$ in the legend), recorded by CMS in proton-proton collisions during each year of Run 3, computed assuming an inelastic cross section of 80 mb~\cite{TOTEM:2017asr}. The mean value of each year is indicated~\cite{CMS-LumiPublicResults}.\textcolor{red}{cambiar por cumulative y el plot de todos los años, no solo Run 3}}
+    \includegraphics[width=0.75\linewidth]{figures/chapter_II/pileup_allYears.pdf}
+    \caption{Distribution of the mean number of interactions per bunch crossing, $\langle PU\rangle$ (denoted $\langle\mu\rangle$ in the legend), in the proton-proton collisions recorded by CMS and certified for physics analysis in each year from 2011 to 2026. The mean value of each year is indicated in the legend, computed assuming inelastic proton-proton cross sections of $71.5$, $73.0$ and $80.0$ mb at $\sqrt{s}=7$, $8$ and $13$–$13.6$ TeV, respectively~\cite{CMS-LumiPublicResults}.}
     \label{fig:pileup}
 \end{figure}
 
-In summary, the beam energy and luminosity together determine the reach of the LHC, since the former determines which processes are accessible and the latter determines how many events of each process are produced. However, the energy and luminosity values presented here correspond to the nominal design of the machine, whereas in practice, actual operating conditions have evolved over the various data-taking periods.
+
+The beam energy and luminosity together determine the reach of the LHC: since the former determines which processes are accessible and the latter determines how many events of each process are produced. However, the energy and luminosity values presented here correspond to the nominal design of the machine, whereas in practice, actual operating conditions have evolved over the various data-taking periods.
 
 \subsection{Operation}
 \label{subsec:LHC_operation}
@@ -149,7 +150,7 @@ This section first describes the coordinate system used in CMS and the kinematic
 \subsection{Coordinate system}
 \label{subsec:CMS_coordinates}
 %
-To describe the particles produced in collisions, it is necessary to define a reference frame common to all the subdetectors that make up the experiment. CMS adopts a reference frame with its origin at the nominal interaction point, which is located at the center of the detector, and in which the $x$ axis points radially toward the center of the LHC ring, the $y$ axis points vertically upward, and the $z$ axis is aligned along the beam direction, so that the resulting system is right-handed~\cite{CMS:2008xjf}. However, given the cylindrical symmetry of the detector around the beam, it is more natural to describe the directions using angular coordinates: the azimuthal angle $\phi$ is measured from the $x$ axis in the $x$-$y$ plane perpendicular to the beam, known as the transverse plane; the radial distance $r$ is defined in that same plane; and the polar angle $\theta$ is measured from the $z$ axis, as shown in the left panel of Figure \ref{fig:cms_coordinates}.
+To describe the particles produced in collisions, it is necessary to define a reference frame common to all the subdetectors that make up the experiment. CMS adopts a reference frame with its origin at the nominal interaction point, which is located at the center of the detector, and in which the $x$ axis points radially toward the center of the LHC ring, the $y$ axis points vertically upward, and the $z$ axis is aligned along the beam direction, so that the resulting system is right-handed~\cite{CMS:2008xjf}. However, given the cylindrical symmetry of the detector around the beam, it is more natural to describe the directions using angular coordinates: the azimuthal angle $\phi$ is measured from the $x$ axis in the $x$-$y$ plane perpendicular to the beam, known as the transverse plane; the radial distance $r$ is defined in that same plane; and the polar angle $\theta$ is measured from the $z$ axis, as shown in Figure \ref{fig:cms_coordinates_axes}.
 
 
 %
@@ -163,12 +164,32 @@ whose differences between particles are invariant under Lorentz transformations 
     \eta = -\ln\left[\tan\left(\frac{\theta}{2}\right)\right],
     \label{eq:eta}
 \end{equation}
-which has the advantage of depending solely on the direction of the particle and, therefore, of being measurable directly from the polar angle. Pseudorapidity takes the value $\eta=0$ in the direction perpendicular to the beam and increases in absolute value as the direction approaches the beam, as illustrated in the right panel of Figure \ref{fig:cms_coordinates}, so that the coverage of each subdetector is typically expressed as an interval in $|\eta|$. The angular distance between two objects is defined in terms of $\eta$ and $\phi$,
+which has the advantage of depending solely on the direction of the particle and, therefore, of being measurable directly from the polar angle. Pseudorapidity takes the value $\eta=0$ in the direction perpendicular to the beam and increases in absolute value as the direction approaches the beam, as illustrated in Figure \ref{fig:cms_coordinates_eta}, so that the coverage of each subdetector is typically expressed as an interval in $|\eta|$. The angular distance between two objects is defined in terms of $\eta$ and $\phi$,
 \begin{equation}
     \Delta R = \sqrt{(\Delta\eta)^2+(\Delta\phi)^2},
     \label{eq:deltaR}
 \end{equation}
 which inherits the invariance of $\eta$ under longitudinal boosts and is used to define conical regions around an object, such as those used in jet clustering or in the definition of isolation variables.\medskip
+%
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.57\linewidth}
+        \centering
+        \includegraphics[width=\linewidth,page=1]{figures/chapter_II/cms_coordinates_tikz.pdf}
+        \caption{}
+        \label{fig:cms_coordinates_axes}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.40\linewidth}
+        \centering
+        \includegraphics[width=\linewidth,page=2]{figures/chapter_II/cms_coordinates_tikz.pdf}
+        \caption{}
+        \label{fig:cms_coordinates_eta}
+    \end{subfigure}
+    \caption{(a) Coordinate system of CMS, with the origin at the nominal interaction point (IP), the $x$ axis pointing toward the center of the LHC ring, the $y$ axis pointing vertically upward and the $z$ axis along the beam direction. The polar angle $\theta$, the azimuthal angle $\phi$, the momentum $\vec{p}$ of a particle and its transverse projection $\vec{p}_T$ are indicated, together with the regions of positive and negative pseudorapidity. (b) Directions corresponding to several values of the pseudorapidity $\eta$ and of the polar angle $\theta$ in the $y$-$z$ plane. Adapted from Refs.~\cite{Neutelings:axis3d_cms,Neutelings:axis2d_pseudorapidity}.}
+    \label{fig:cms_coordinates}
+\end{figure}
+
 
 Furthermore, since the colliding partons have virtually zero transverse momentum, by the conservation of momentum the vector sum of the momenta of all particles in the final state must be zero in the transverse plane. Consequently, the transverse momentum, $p_T=\sqrt{p_x^2+p_y^2}$, is used to describe the kinematics of the reconstructed objects, and any imbalance in the transverse plane reveals the presence of particles that escape detection, such as neutrinos. From this, the missing transverse momentum, $\vec{p}_T^{\,\text{miss}}$, is inferred, and its reconstruction is described in Section \ref{subsec:MET}. No equivalent balance can be exploited in the longitudinal direction, since the initial momentum of the partons along the beam is unknown. The longitudinal momentum of each object is nevertheless recovered from $p_T$ and $\eta$, so that the set $(p_T,\eta,\phi)$, together with the mass of the object, fully describes its four-momentum and constitutes the parametrization used throughout this thesis.
 
@@ -179,12 +200,7 @@ Given that momentum balance can only be established in the transverse plane, the
 \end{equation}
 where $p_T$ is the transverse momentum of the visible object and $\Delta\phi$ is its azimuthal difference from $\vec{p}_T^{\,\text{miss}}$, and from whose distribution this type of event can be identified, as is done in Chapters \ref{ch:Tau} and \ref{ch:bbtt_analysis}. Finally, the hadronic activity of the event is quantified by $H_T$, defined as the scalar sum of the $p_T$ values of the jets in the event.
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=\linewidth]{figures/chapter_II/cms_coordinates.pdf}
-    \caption{Left: coordinate system, with the origin at the nominal interaction point, the $x$ axis pointing toward the center of the LHC ring, the $y$ axis pointing vertically upward and the $z$ axis along the beam direction. The polar angle $\theta$, the azimuthal angle $\phi$ and the transverse projection $p_T$ of a momentum $\vec{p}$ are indicated. Right: directions corresponding to several values of the pseudorapidity $\eta$ in the $z$-$r$ plane.\textcolor{red}{generarlo con tikz}}
-    \label{fig:cms_coordinates}
-\end{figure}
+
 
 
 
