@@ -1,100 +1,100 @@
 [0] Config.pm:328> INFO - This is Biber 2.21 running in TOOL mode
 [0] Config.pm:331> INFO - Logfile is 'Thesis.bib.blg'
-[293] biber-MSWIN64:342> INFO - === 
-[351] Biber.pm:4674> INFO - Looking for bibtex file 'Thesis.bib'
-[486] bibtex.pm:1713> INFO - LaTeX decoding ...
-[1156] bibtex.pm:1519> INFO - Found BibTeX data source 'Thesis.bib'
-[3059] Biber.pm:1709> INFO - Datamodel validation starting
-[3142] Biber.pm:1759> INFO - Datamodel validation complete
-[3244] UCollate.pm:68> INFO - Overriding locale 'en_US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[3245] UCollate.pm:68> INFO - Overriding locale 'en_US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[3245] Biber.pm:4307> INFO - Sorting list 'tool/global//global/global/global' of type 'entry' with template 'tool' and locale 'en_US'
-[3245] Biber.pm:4313> INFO - No sort tailoring available for locale 'en_US'
-[3560] bibtex.pm:440> INFO - Writing 'C:/Users/elvi-/AppData/Local/Temp/claude/c--Users-elvi--Draft-Thesis/0af23011-47fb-4bb6-819e-581255c58b1d/scratchpad/dl_refs/out.bib' with encoding 'UTF-8'
-[3567] bibtex.pm:481> INFO - Output to C:/Users/elvi-/AppData/Local/Temp/claude/c--Users-elvi--Draft-Thesis/0af23011-47fb-4bb6-819e-581255c58b1d/scratchpad/dl_refs/out.bib
-[3568] Biber.pm:132> WARN - Datamodel: article entry 'CMS-TAU-20-001' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3568] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2020uim' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3568] Biber.pm:132> WARN - Datamodel: article entry 'Dokshitzer:1997in' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3568] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-15-013' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3568] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-20-010' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3568] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2018bbtt' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-16-043' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'ParticleDataGroup:2024cfk' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026znu' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026znu' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2025tkn' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2025tkn' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'Dreyer:2016oyx' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2015myp' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2019ctu' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'PDF4LHCWorkingGroup:2022cjn' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'PDF4LHCWorkingGroup:2022cjn' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'CMS-TAU-16-003' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'GEANT4:2002zbu' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3569] Biber.pm:132> WARN - Datamodel: article entry 'Grober:2026ece' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'Catani:2022mfv' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2012yve' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2015sxd' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-19-010' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'CMS_combination' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'CMS_combination' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2022HHcomb' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'NNPDF:2017mvq' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2024ish' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: inproceedings entry 'Wobisch:1998wt' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'Frederix:2012ps' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'DiMicco:2019ngk' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'Dulat:2018rbf' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026zzzh' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3570] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026zzzh' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2019csb' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2012qbp' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2024pov' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2024pov' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'CMS-TAU-14-001' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2014pgm' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'CMS-TAU-24-001' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2024xcs' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'Mistlberger:2018etf' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'TOTEM:2017asr' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2017yfk' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS-HH-bbtautau-Run3' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2016ngn' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'Demartin:2015uha' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'Frederix:2018nkq' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3571] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2023gfb' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'Bonvini:2016fgf' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'Denner:2011id' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2015fjg' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2015fjg' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'Brein:2003wg' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2008xjf' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'Ciccolini:2007jr' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'Anastasiou:2016cez' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2021xjt' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2021xjt' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2020ebo' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'ATLASCMS:2025HLLHC' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2025hhd' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3572] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-20-006' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2020cmk' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026xkc' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2018rym' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-19-018' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-21-001' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
-[3573] Biber.pm:132> WARN - Datamodel: online entry 'LHCHWG' (Thesis.bib): Missing mandatory field - one of 'date, year' must be defined
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'Carvalho:2016rys' (Thesis.bib): Missing mandatory field 'journaltitle'
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2024VBFbbbb' (Thesis.bib): Missing mandatory field 'journaltitle'
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'ATLASCMS:2025HLLHC' (Thesis.bib): Missing mandatory field 'journaltitle'
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2025tkn' (Thesis.bib): Missing mandatory field 'author'
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2025tkn' (Thesis.bib): Missing mandatory field 'journaltitle'
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'Cadamuro:2025car' (Thesis.bib): Missing mandatory field 'journaltitle'
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026znu' (Thesis.bib): Missing mandatory field 'journaltitle'
-[3573] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS-HH-bbtautau-Run3' (Thesis.bib): Missing mandatory field 'journaltitle'
-[3574] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026zzzh' (Thesis.bib): Missing mandatory field 'journaltitle'
-[3574] Biber.pm:132> WARN - Datamodel: online entry 'CERN-complex-2022' (Thesis.bib): Invalid field 'number' for entrytype 'online'
-[3574] Biber.pm:132> WARN - Datamodel: online entry 'CMS-LumiPublicResults' (Thesis.bib): Missing mandatory field - one of 'date, year' must be defined
-[3574] Biber.pm:132> WARN - Datamodel: online entry 'Sakuma:2019cutaway' (Thesis.bib): Invalid field 'number' for entrytype 'online'
-[3574] Biber.pm:132> WARN - Datamodel: online entry 'Sakuma:2019cutaway' (Thesis.bib): Missing mandatory field - one of 'url, doi, eprint' must be defined
-[3574] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026xkc' (Thesis.bib): Missing mandatory field 'journaltitle'
-[3574] Biber.pm:134> INFO - WARNINGS: 85
+[130] biber-MSWIN64:342> INFO - === 
+[186] Biber.pm:4674> INFO - Looking for bibtex file 'Thesis.bib'
+[341] bibtex.pm:1713> INFO - LaTeX decoding ...
+[913] bibtex.pm:1519> INFO - Found BibTeX data source 'Thesis.bib'
+[2360] Biber.pm:1709> INFO - Datamodel validation starting
+[2406] Biber.pm:1759> INFO - Datamodel validation complete
+[2446] UCollate.pm:68> INFO - Overriding locale 'en_US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[2446] UCollate.pm:68> INFO - Overriding locale 'en_US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[2446] Biber.pm:4307> INFO - Sorting list 'tool/global//global/global/global' of type 'entry' with template 'tool' and locale 'en_US'
+[2446] Biber.pm:4313> INFO - No sort tailoring available for locale 'en_US'
+[2656] bibtex.pm:440> INFO - Writing 'C:/Users/elvi-/AppData/Local/Temp/claude/c--Users-elvi--Draft-Thesis/0af23011-47fb-4bb6-819e-581255c58b1d/scratchpad/dl_refs/out.bib' with encoding 'UTF-8'
+[2660] bibtex.pm:481> INFO - Output to C:/Users/elvi-/AppData/Local/Temp/claude/c--Users-elvi--Draft-Thesis/0af23011-47fb-4bb6-819e-581255c58b1d/scratchpad/dl_refs/out.bib
+[2661] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2015fjg' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2661] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2015fjg' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2661] Biber.pm:132> WARN - Datamodel: inproceedings entry 'Wobisch:1998wt' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2661] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026zzzh' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2661] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026zzzh' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2661] Biber.pm:132> WARN - Datamodel: article entry 'CMS_combination' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2661] Biber.pm:132> WARN - Datamodel: article entry 'CMS_combination' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-21-001' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2019ctu' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2022HHcomb' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2024ish' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2016ngn' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'Catani:2022mfv' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2021xjt' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2021xjt' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2024xcs' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS-HH-bbtautau-Run3' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026xkc' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'Anastasiou:2016cez' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2014pgm' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'Dokshitzer:1997in' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'Dulat:2018rbf' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2008xjf' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2023gfb' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2662] Biber.pm:132> WARN - Datamodel: article entry 'DiMicco:2019ngk' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-15-013' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-19-010' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'Denner:2011id' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'Mistlberger:2018etf' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'Bonvini:2016fgf' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2019csb' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-16-043' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026znu' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026znu' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2018bbtt' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'ATLASCMS:2025HLLHC' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'CMS-TAU-14-001' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2663] Biber.pm:132> WARN - Datamodel: article entry 'CMS-TAU-16-003' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'Frederix:2018nkq' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2024pov' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2024pov' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'Dreyer:2016oyx' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'CMS-TAU-24-001' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'Grober:2026ece' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2015myp' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2012qbp' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2025tkn' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2025tkn' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2015sxd' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'PDF4LHCWorkingGroup:2022cjn' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'PDF4LHCWorkingGroup:2022cjn' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'Frederix:2012ps' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'Ciccolini:2007jr' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'CMS-TAU-20-001' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'Demartin:2015uha' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2012yve' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2664] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2020uim' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'NNPDF:2017mvq' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2020ebo' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2025hhd' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-19-018' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2020cmk' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'GEANT4:2002zbu' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-20-010' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'TOTEM:2017asr' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'Brein:2003wg' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'CMS-HIG-20-006' (Thesis.bib): Field 'reportnumber' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2017yfk' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2018rym' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'ParticleDataGroup:2024cfk' (Thesis.bib): Field 'collaboration' invalid in data model - ignoring
+[2665] Biber.pm:132> WARN - Datamodel: online entry 'LHCHWG' (Thesis.bib): Missing mandatory field - one of 'date, year' must be defined
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'Carvalho:2016rys' (Thesis.bib): Missing mandatory field 'journaltitle'
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2024VBFbbbb' (Thesis.bib): Missing mandatory field 'journaltitle'
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'ATLASCMS:2025HLLHC' (Thesis.bib): Missing mandatory field 'journaltitle'
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2025tkn' (Thesis.bib): Missing mandatory field 'author'
+[2665] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS:2025tkn' (Thesis.bib): Missing mandatory field 'journaltitle'
+[2666] Biber.pm:132> WARN - Datamodel: article entry 'Cadamuro:2025car' (Thesis.bib): Missing mandatory field 'journaltitle'
+[2666] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026znu' (Thesis.bib): Missing mandatory field 'journaltitle'
+[2666] Biber.pm:132> WARN - Datamodel: article entry 'ATLAS-HH-bbtautau-Run3' (Thesis.bib): Missing mandatory field 'journaltitle'
+[2666] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026zzzh' (Thesis.bib): Missing mandatory field 'journaltitle'
+[2666] Biber.pm:132> WARN - Datamodel: online entry 'CERN-complex-2022' (Thesis.bib): Invalid field 'number' for entrytype 'online'
+[2666] Biber.pm:132> WARN - Datamodel: online entry 'CMS-LumiPublicResults' (Thesis.bib): Missing mandatory field - one of 'date, year' must be defined
+[2666] Biber.pm:132> WARN - Datamodel: online entry 'Sakuma:2019cutaway' (Thesis.bib): Invalid field 'number' for entrytype 'online'
+[2666] Biber.pm:132> WARN - Datamodel: online entry 'Sakuma:2019cutaway' (Thesis.bib): Missing mandatory field - one of 'url, doi, eprint' must be defined
+[2666] Biber.pm:132> WARN - Datamodel: article entry 'CMS:2026xkc' (Thesis.bib): Missing mandatory field 'journaltitle'
+[2666] Biber.pm:134> INFO - WARNINGS: 85
