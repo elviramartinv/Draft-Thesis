@@ -1493,8 +1493,8 @@ Since each Higgs boson decays independently, the BR of each HH final state is th
 %
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/chapter_I/HH_BR.png}
-    \caption{Branching ratio in \% for the main combinations of decay products from the HH pair for a Higgs boson mass of 125 GeV. Values extracted from {\color{red}[ref] Hacer mi propio plot}}
+    \includegraphics[width=0.8\linewidth]{figures/chapter_I/HH_BR.pdf}
+    \caption{Branching ratios, in \%, of the main final states of a Higgs boson pair for $m_H = 125$ GeV, computed from the SM branching ratios of the Higgs boson~\cite{deFlorian:2016spz}.}
     \label{fig:HH_BR}
 \end{figure}
 
@@ -1512,29 +1512,69 @@ Other final states, such as $bbWW$, $bbZZ$ or those with several leptons, have a
 \subsection{Experimental status of double Higgs searches}
 \label{subsec:Searches}
 %
-The most widely used analysis historically at the LHC have been highlighted. However, the current scope is much broader, and the analysis landscape of the experimental collaborations is increasingly encompassing more final states. Thus, efforts are focused on covering the full range of main channels accessible at LHC, which is gradually becoming possible due to increased statistics, and substantial object reconstruction and analysis techniques improvements. Since searches across various decay channels complement each other — in both the SM and BSM scenarios —, the maximum sensitivity of HH measurements is achieved by combining the main decay channels.
+The search for Higgs boson pair production started with the Run 1 dataset, of about $20$ fb$^{-1}$ per experiment at $\sqrt{s}=8$ TeV, whose analyses established the fundamental methodology and set upper limits of about $70$ times the SM prediction~\cite{ATLAS:2015sxd,CMS-HIG-15-013}. During Run 2, each experiment collected between $126$ and $140$ fb$^{-1}$ at $\sqrt{s}=13$ TeV, and this increase in luminosity, combined with significant advances in object reconstruction and analysis techniques, enabled a remarkable expansion of the experimental scope. Searches were performed in most of the final states described in Section \ref{subsec:HH_BR}, reaching sensitivities more than an order of magnitude better than those of Run 1, which opened access to regions of the trilinear self-coupling parameter space that were previously inaccessible and allowed the results to be reinterpreted in terms of EFTs. Since these final states complement each other, both in the SM and in BSM scenarios, the highest sensitivity is obtained by combining them, and the combinations of channels constitute the reference result of each data-taking period.
 
-The full set of proton-proton collisions at $\sqrt{s}=8$ TeV (Run I) and $\sqrt{s}=13$ TeV (Run II) has been analyzed for numerous HH final states. The Run I analyses established the fundamental methodology and provided the initial combined limits on HH production after collecting an integrated luminosity of $\sim$36 fb\textsuperscript{-1}. During Run II, the CMS experiment accumulated an integrated luminosity of approximately 138 fb\textsuperscript{-1}. This quantitative breakthrough, combined with significant advancements in detector and analysis strategies, enabled a remarkable expansion of the experimental scope. Searches were conduced in most main channels, and the combined Run II results achieved sensitivities far superior to those of Run I. This allowed exploration of regions of the trilinear self-coupling parameter space that were previously innaccessible, as well as reinterpretations in terms of EFT.
 
-The results obtained by the CMS combination using the complete Run II dataset are shown in Figure \ref{fig:comb_upper_limits}, expressed in terms of upper limits on the HH cross section scaled to the SM value, which is defined as the signal strength $\mu_{HH}=\sigma_{HH}/\sigma^{SM}_{HH}$. In this formulation, the limits are obtained under the null hypothesis, which corresponds to the absence of a signal, i.e., $\mu_{HH}=0$. The statistical procedure used to construct these limits is described in detail in Section \ref{sec:bbtt_statistics}. The combination yields an observed (expected) upper limit of 3.5 (2.5) times the SM expectation at 95\% confidence level (CL), where the sensitivity is driven by the three main channels listed above. This improvement substantially surpasses the limits obtained in Run I, confirming progress achieved thanks not only to increased luminosity, but also to the optimization of reconstruction strategies and the use of advanced machine learning–based discrimination techniques. The ATLAS collaboration obtained similar results, with an observed (expected) upper limit of 2.9 (2.4) times the SM value at 95\% CL.
+\subsubsection{The Run 2 legacy}
+%
+Both ATLAS and CMS collaborations combined their searches in the main final states with the complete Run 2 dataset. The ATLAS combination excludes HH production rates greater than $2.9$ times the SM prediction at $95\%$ confidence level (CL), with an expected limit of $2.4$, and constrains the coupling modifiers to $-1.2 < \kappa_\lambda < 7.2$ and $0.6 < \kappa_{2V} < 1.5$~\cite{ATLAS:2024ish}. The CMS combination yields an observed (expected) upper limit of $3.5$ ($2.5$) times the SM prediction and the intervals $-1.35 < \kappa_\lambda < 6.37$ and $0.64 < \kappa_{2V} < 1.40$, and excludes the absence of the $HHVV$ interaction, $\kappa_{2V}=0$, with a significance greater than five standard deviations for any value of $\kappa_\lambda$~\cite{CMS_combination}. In both cases, each interval is obtained with the remaining couplings fixed to their SM values, the sensitivity is driven by the $4b$, $bb\tau\tau$ and $bb\gamma\gamma$ final states, and the statistical procedure used to derive the results is the one described in Section \ref{sec:bbtt_statistics}.
 
-\begin{figure}
+
+The two experiments have subsequently combined their results, which constitutes the most sensitive search for HH production to date~\cite{ATLASCMS:2026HH}. As shown in Figure \ref{fig:comb_upper_limits}, the combination excludes production rates greater than $2.5$ times the SM prediction, with an expected limit of $1.7$, and measures a signal strength of $\mu_{HH} = 0.8^{+0.9}_{-0.7}$, which corresponds to an observed (expected) significance of $1.1$ ($1.3$) standard deviations. Since the predicted HH production rate and kinematics depend on the couplings involved, as discussed in Section \ref{subsec:BSM_production}, the same measurement also constrains the coupling modifiers, shown in Figure \ref{fig:comb_trilinear}. Combining final states with different kinematic coverage, together with the data of both experiments, considerably improves this sensitivity, so that the combination restricts the trilinear coupling to $-0.71 < \kappa_\lambda < 6.1$, an interval narrower than that of either experiment alone. In turn, the searches targeting VBF production constrain $\kappa_{2V}$ to $0.73 < \kappa_{2V} < 1.3$. These combined results establish the state of the art at the end of Run 2, and the benchmark against which the Run 3 analyses, including the one presented in this thesis, are measured.
+%
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{figures/chapter_I/comb_XS_limit_2025.pdf}
-    \caption{Observed an expected 95\% CL upper limit on the inclusive signal strength $\mu_{HH}=\sigma_{HH}/\sigma^{SM}_{HH}$, obtained by CMS Collaboration for each channel an their combination. The inner (green) and outer (yellow) bands indicate the 68\% and 95\% CL intervals, respectively, under the background-only hypothesis~\cite{CMS_combination}.}
+    \includegraphics[width=0.6\linewidth]{figures/chapter_I/HH_comb_ATLASCMS_mu.pdf}
+    \caption{Observed and expected $95\%$ CL upper limits on the HH signal strength obtained by ATLAS, CMS and their combination with the complete Run 2 dataset. The expected limits are shown both in the absence of HH production and assuming the SM signal. The results of the individual experiments are recomputed with a common signal normalization, which slightly modifies some values with respect to the original publications~\cite{ATLASCMS:2026HH}.}
     \label{fig:comb_upper_limits}
 \end{figure}
-
-Measuring the upper limit of the HH cross section permits probing of the Higgs self-coupling $\lambda_{HHH}$. Figure \ref{fig:comb_trilinear} presents the interpretation of the Run II CMS combination results in terms of the Higgs trilinear coupling, expressed in terms of the coupling modifier, $\kappa_{\lambda}$, with the remaining couplings fixed to the values predicted by the SM. Including channels with diverse kinematic coverage greatly improves the sensitivity to coupling modifiers. The combined CMS result constraints $\kappa_{\lambda}$ to a narrow interval around the SM value, ranging from [-1.35, 6.37] at 95\% CL. Specific searches for VBF production simultaneously reveal limits on the modifier $\kappa_{2V}$, constraining it to the range [0.64, 1.40] and excluding the absence of the quartic coupling $VVHH$ with a significance of more than five standard deviations for any value of $\kappa_{\lambda}$. The combined Run II results represent the state of the art in searching for HH production, and will serve as the experimental benchmark for Run III analyses.
-
-\begin{figure}
+%
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\linewidth]{figures/chapter_I/comb_coupling_range_2025.pdf}
-    \caption{The 95\% CL upper limits on the HH cross section as functions of $\kappa_{\lambda}$ (left) and $\kappa_{2V}$ (right). All other couplings are set to their SM value. The inner (green) band and the outer (yellow) band indicate the 68\% and 95\% CL intervals, respectively, under the background-only hypothesis. The hatched areas are excluded at the 95\% CL.~\cite{CMS_combination}}
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_I/HH_comb_ATLASCMS_kl.pdf}
+        \caption{}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_I/HH_comb_ATLASCMS_k2v.pdf}
+        \caption{}
+    \end{subfigure}
+    \caption{Negative log-likelihood as a function of $\kappa_\lambda$ (a) and $\kappa_{2V}$ (b) obtained by ATLAS, CMS and their combination with the complete Run 2 dataset, with all other couplings fixed to their SM values. For the individual experiments only the expected curves are shown~\cite{ATLASCMS:2026HH}.}
     \label{fig:comb_trilinear}
 \end{figure}
 
-The start of Run III ($\sqrt{s} = 13.6$) signifies a new phase in the search for Higgs boson pairs. The early part of Run III (2022-2024) is already delivering new and exciting results, and the full set (2022-2026) is on the way. With an expected luminosity of around 300 fb\textsuperscript{-1}, and improved analysis strategies, this ongoing data-taking period promises to significantly improve sensitivity and substantially strengthen current limits. Looking forward, the goal is to arrive at the High-Luminosity LHC (HL-LHC) phase with consolidated strategies and a deep understanding of background modeling. so that the enormous expected statistics ($\sim 3$ ab$^{-1}$) will allow the observation of Higgs pair production and the measurement of the trilinear coupling with a precision close to 30\%~\cite{ATLASCMS:2025HLLHC}. In this sense, Run III also represents a huge opportunity to lay the groundwork for high-precision searches planed for the High-Luminosity LHC (HL-LHC).
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.5\linewidth]{figures/chapter_I/comb_XS_limit_2025.pdf}
+%     \caption{Observed an expected 95\% CL upper limit on the inclusive signal strength $\mu_{HH}=\sigma_{HH}/\sigma^{SM}_{HH}$, obtained by CMS Collaboration for each channel an their combination. The inner (green) and outer (yellow) bands indicate the 68\% and 95\% CL intervals, respectively, under the background-only hypothesis~\cite{CMS_combination}.}
+%     \label{fig:comb_upper_limits}
+% \end{figure}
+
+
+%
+Beyond the coupling modifiers, the Run 2 results have been interpreted within the EFT frameworks introduced in Section \ref{subsubsec:EFT_frameworks}. Within HEFT, the CMS combination sets upper limits on the HH cross section at a set of benchmark points, each representative of a characteristic $m_{HH}$ distribution, constrains the contact couplings with no counterpart in the SM, such as $c_2$, and translates these constraints into the parameters of UV-complete models with an extended scalar sector~\cite{CMS_combination}. The ATLAS combination provides the most stringent HEFT constraints to date~\cite{ATLAS:2024ish}, and the ATLAS search in the $bb\gamma\gamma$ final state with $308$ fb$^{-1}$ has been interpreted in both HEFT and SMEFT, constraining individual couplings and pairs of them~\cite{ATLAS:2025tkn}. All these interpretations require predicting the signal at arbitrary points of a multidimensional parameter space from a limited set of simulated samples, which is the problem addressed in Chapter \ref{ch:eft_modeling}.
+
+\subsubsection{First results with Run 3 data}
+%
+Run 3, which started in 2022 at $\sqrt{s}=13.6$ TeV, signifies a new phase in the search for HH, and has already provided the first results with the new dataset, although a combination of channels has yet to be performed. ATLAS has analyzed the $bb\gamma\gamma$ final state with $308$ fb$^{-1}$, combining the Run 2 dataset with $168$ fb$^{-1}$ of Run 3 data, and measures $\mu_{HH} = 0.9^{+1.4}_{-1.1}$, which translates into an upper limit of $3.8$ times the SM prediction and the interval $-1.7 < \kappa_\lambda < 6.6$~\cite{ATLAS:2025hhd}. In the $bb\tau\tau$ final state, with $196$ fb$^{-1}$, ATLAS measures $\mu_{HH} = 2.6^{+1.4}_{-1.0}$, an excess over the background-only hypothesis with an observed (expected) significance of $2.6$ ($1.2$) standard deviations, compatible with the SM prediction within $1.65$ standard deviations~\cite{ATLAS-HH-bbtautau-Run3}. In CMS, the $4b$ final state with $62$ fb$^{-1}$ at $\sqrt{s}=13.6$ TeV sets an observed (expected) upper limit of $4.4$ ($4.4$) times the SM prediction, and its combination with a reanalysis of the Run 2 data reaches $4.7$ ($2.8$)~\cite{CMS:2026znu}, while the $bb\gamma\gamma$ final state, analyzed with a partial Run 3 dataset of $61.9$ fb$^{-1}$, yields $11.0$ ($7.3$)~\cite{CMS-PAS-HIG-25-007}. The search in the $bb\tau\tau$ final state presented in this thesis, performed with the $172$ fb$^{-1}$ collected by CMS between 2022 and 2024, completes the three main final states of CMS in Run 3, and its results are placed in the context of these searches in Chapter \ref{ch:bbtt_results}.
+
+\subsubsection{Prospects for the HL-LHC}
+%
+The HL-LHC is expected to collect $3$ ab$^{-1}$ per experiment at $\sqrt{s}=14$ TeV. The projections of ATLAS and CMS, which extrapolate the Run 2 analyses to this scenario, foresee the observation of HH production, with an expected significance of up to $7.6$ standard deviations for their combination, and a determination of $\kappa_\lambda$ with an uncertainty of about $30\%$~\cite{ATLASCMS:2025HLLHC}, as discussed in more detail in Section \ref{subsec:bbtt_prospects_hllhc}. As shown in Figure \ref{fig:HH_HLLHC}, these expectations have improved substantially with respect to the projections prepared for the previous update of the European Strategy, in which the combination reached about $4$ standard deviations with the same dataset. This improvement is driven by the progress in analysis techniques, detector calibration and jet flavor tagging, and has made $bb\tau\tau$ the most sensitive final state. Run 3 therefore represents the opportunity to consolidate the analysis strategies and the understanding of the backgrounds on which these measurements will rely.
+%
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\linewidth]{figures/chapter_I/HH_HLLHC_significance.pdf}
+    \caption{Expected statistical significance for SM HH production at the HL-LHC, with $3$ ab$^{-1}$ per experiment at $\sqrt{s}=14$ TeV, in the $4b$, $bb\gamma\gamma$ and $bb\tau\tau$ final states and their ATLAS and CMS combination, for the projections prepared for the 2020 and 2026 updates of the European Strategy for Particle Physics~\cite{ATLASCMS:2025HLLHC}.}
+    \label{fig:HH_HLLHC}
+\end{figure}
+
+Beyond the HL-LHC, the determination of the Higgs self-coupling is one of the main goals of the future colliders considered in the 2026 update of the European Strategy for Particle Physics~\cite{deBlas:2025gyz}. Higgs factories operating at low energies, such as the FCC-ee, can only access the self-coupling through its loop effects on single Higgs boson production, reaching a precision of about $20\%$ when combined with the HL-LHC data. In contrast, high-energy machines such as the FCC-hh or a muon collider at $10$ TeV would measure HH production directly and determine the self-coupling with a precision of a few percent, while the FCC-hh would also constrain the quartic self-coupling through triple Higgs boson production at the level of about ten times its SM value.
+
+
 
 
 \section{Phenomenology of proton-proton collisions}   
@@ -1599,7 +1639,7 @@ Finally, the generated particles are propagated through a detailed model of the 
 
 Since each simulated event preserves the complete history of its generation, the parton or decay from which each particle originates is known — key information for measuring efficiencies, defining which events are signal, and training identification algorithms such as those of Chapter \ref{ch:taggers}. However, none of the stages of the simulation is perfect, and the remaining differences with respect to data must be corrected and covered by uncertainties, as is done in this search in Sections \ref{sec:bbtt_corrections} and \ref{sec:bbtt_systematics}.\bigskip
 
-This chapter has presented the theoretical framework in which this thesis is set: the SM and the BEH mechanism, which predicts the self-interaction of the Higgs boson; Higgs boson pair production, the most direct way to measure it and a probe of physics beyond the SM; the current status of its search at the LHC; and the elements used to build predictions for proton-proton collisions. All of this also determines the experimental requirements of the search. On the one hand, with a cross section of about $34$ fb at $\sqrt{s}=13.6$ TeV, approximately one Higgs boson pair is produced for every $10^{12}$ inelastic collisions, so the highest attainable energy and luminosity are required. On the other hand, the $bb\tau\tau$ final state requires identifying jets originating from $b$ quarks, reconstructing $\tau$ leptons in their various decay modes, and inferring the accompanying neutrinos from $p_T^\text{miss}$, all in an environment with dozens of simultaneous collisions. The following chapter describes the LHC and the CMS detector, which respectively provide and record these collisions, as well as the algorithms used to reconstruct the objects of this final state.
+\noindent This chapter has presented the theoretical framework in which this thesis is set: the SM and the BEH mechanism, which predicts the self-interaction of the Higgs boson; Higgs boson pair production, the most direct way to measure it and a probe of physics beyond the SM; the current status of its search at the LHC; and the elements used to build predictions for proton-proton collisions. All of this also determines the experimental requirements of the search. On the one hand, with a cross section of about $34$ fb at $\sqrt{s}=13.6$ TeV, approximately one Higgs boson pair is produced for every $10^{12}$ inelastic collisions, so the highest attainable energy and luminosity are required. On the other hand, the $bb\tau\tau$ final state requires identifying jets originating from $b$ quarks, reconstructing $\tau$ leptons in their various decay modes, and inferring the accompanying neutrinos from $p_T^\text{miss}$, all in an environment with dozens of simultaneous collisions. The following chapter describes the LHC and the CMS detector, which respectively provide and record these collisions, as well as the algorithms used to reconstruct the objects of this final state.
 
 
 
