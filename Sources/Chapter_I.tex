@@ -503,8 +503,8 @@ The various mechanisms of Higgs boson production can be depicted using Feynman d
             \fmf{photon,label=$V$}{v1,v2}
             \fmf{photon}{v2,o1}
             \fmf{dashes}{v2,o2}
-            \fmflabel{$\bar{q}'$}{i1}
-            \fmflabel{$q$}{i2}
+            \fmflabel{$q$}{i1}
+            \fmflabel{$\bar{q}'$}{i2}
             \fmflabel{$V$}{o1}
             \fmflabel{$H$}{o2}
         \end{fmfgraph*}\\[10pt]
@@ -759,7 +759,7 @@ In indirect searches, the results can be interpreted using effective Lagrangians
 \section{Higgs boson pair production}
 \label{sec:HH_production}
 %
-Higgs boson pair production (HH) represents one of the primary goals of the LHC program in the coming decades precisely because it provides direct access to the Higgs sector. The HH production rate depends directly on the trilinear self-coupling, $\lambda_{HHH}$, which, according to Equation \eqref{higgs_pot}, determines the structure of the Higgs potential. Therefore, the study of HH production is directly linked to the $\lambda_{HHH}$ parameter.
+Higgs boson pair production (HH) represents one of the primary goals of the LHC program in the coming decades precisely because it provides direct access to the Higgs sector. The HH production rate depends directly on the trilinear self-coupling, $\lambda_{HHH}$, which, according to Equation \ref{higgs_pot}, determines the structure of the Higgs potential. Therefore, the study of HH production is directly linked to the $\lambda_{HHH}$ parameter.
 
 However, the trilinear self-coupling is not the only interaction that contributes to Higgs boson pair production. In addition to the Higgs self-coupling, which is often considered the primary driver of HH searches, HH production provides a means of testing other SM parameters. Depending on the production mode, the process involves the top quark Yukawa coupling $y_t$, defined in Equation \ref{eq:yukawa_masses}, and the trilinear and quartic couplings to vector bosons, $\lambda_V$ and $\lambda_{2V}$, whose vertices are shown in Figure \ref{fig:higgs_VV}, in addition to the $HHH$ vertex of Figure \ref{fig:higgs_self}. The production mechanisms of an on-shell Higgs boson pair, as detailed in this section, are characterized by different interactions from which the contribution of the trilinear coupling must be disentangled from other effects. Furthermore, since new physics could modify any of these couplings, a deviation in the rate or the kinematics of HH production cannot be attributed to $\lambda_{HHH}$ alone. The couplings are therefore allowed to vary independently, each of them rescaled by its own modifier within the $\kappa$-framework, as discussed in Section \ref{subsubsec:coupling_modifiers}.
 
@@ -781,29 +781,72 @@ In proton-proton collisions, HH production occurs via different mechanisms depen
 
 \subsubsection{Gluon fusion $gg\rightarrow HH$}
 %
-Gluon-gluon fusion is the dominant HH production mode at LHC. Gluons — massless particles — do not interact directly with the Higgs boson; instead, third-generation heavy quarks mediate the interaction through loops. The dominant contribution to the loop comes from the top quark in $99$\% of cases, followed by the $b$ quark in the remaining $1$\%. Figure \ref{fig:HH_ggF_diagrams} shows the first-order Feynman diagrams involved in the process: in the triangle diagram (\ref{fig:HH_triangle}), an off-shell H boson splits into two Higgs bosons, and in the box diagram (\ref{fig:HH_box}), the two Higgs bosons are radiated from the heavy quarks. Therefore, the triangle contribution depends linearly on the Higgs self-coupling parameter $\lambda_{HHH}$ and the Yukawa coupling $y_t$, while the box diagram only depends quadratically on $y_t$.
-
+Gluon-gluon fusion is the dominant HH production mode at the LHC. Gluons — massless particles — do not interact directly with the Higgs boson, and the interaction is instead mediated by a loop of heavy quarks. The loop is dominated by the top quark, owing to its large Yukawa coupling, while the contribution of the $b$ quark is of the order of $1\%$. Figure \ref{fig:HH_ggF_diagrams} shows the LO Feynman diagrams of the process. In the triangle diagram of Figure \ref{fig:HH_triangle}, an off-shell Higgs boson splits into two Higgs bosons, while in the box diagram of Figure \ref{fig:HH_box}, the two Higgs bosons are radiated from the heavy quark loop. Therefore, the amplitude of the triangle diagram is proportional to the product of the trilinear self-coupling $\lambda_{HHH}$ and the top quark Yukawa coupling $y_t$, while that of the box diagram is proportional to $y_t^2$.
+%
 \begin{figure}[t]
     \centering
-
-    \begin{subfigure}[b]{0.4\textwidth}
+    \vspace{10pt}
+    \begin{fmffile}{higgspairggf}
+    \begin{subfigure}[b]{0.42\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/ggf_triangle.png}
+        \begin{fmfgraph*}(130,70)
+            \fmfleft{i1,i2}
+            \fmfright{o1,o2}
+            \fmf{gluon}{i1,v1}
+            \fmf{gluon}{i2,v2}
+            \fmf{fermion}{v1,v3}
+            \fmf{fermion,label=$t,,b$,label.side=right}{v3,v2}
+            \fmf{fermion}{v2,v1}
+            \fmf{dashes,label=$H^*$}{v3,v4}
+            \fmf{dashes}{v4,o1}
+            \fmf{dashes}{v4,o2}
+            \fmfforce{(0.25w,0.85h)}{v2}
+            \fmfforce{(0.25w,0.15h)}{v1}
+            \fmfforce{(0.52w,0.5h)}{v3}
+            \fmfforce{(0.78w,0.5h)}{v4}
+            \fmfforce{(1.0w,0.1h)}{o1}
+            \fmfforce{(1.0w,0.9h)}{o2}
+            \fmflabel{$g$}{i1}
+            \fmflabel{$g$}{i2}
+            \fmflabel{$H$}{o1}
+            \fmflabel{$H$}{o2}
+        \end{fmfgraph*}\\[4pt]
         \caption{}
         \label{fig:HH_triangle}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.4\textwidth}
+    \hspace{0.03\linewidth}
+    \begin{subfigure}[b]{0.42\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/ggf_box.png}
+        \begin{fmfgraph*}(130,70)
+            \fmfleft{i1,i2}
+            \fmfright{o1,o2}
+            \fmf{gluon}{i1,v1}
+            \fmf{gluon}{i2,v2}
+            \fmf{fermion}{v1,v3}
+            \fmf{fermion}{v3,v4}
+            \fmf{fermion}{v4,v2}
+            \fmf{fermion,label=$t,,b$,label.side=left}{v2,v1}
+            \fmf{dashes}{v3,o1}
+            \fmf{dashes}{v4,o2}
+            \fmfforce{(0.3w,0.85h)}{v2}
+            \fmfforce{(0.3w,0.15h)}{v1}
+            \fmfforce{(0.7w,0.15h)}{v3}
+            \fmfforce{(0.7w,0.85h)}{v4}
+            \fmfforce{(1.0w,0.15h)}{o1}
+            \fmfforce{(1.0w,0.85h)}{o2}
+            \fmflabel{$g$}{i1}
+            \fmflabel{$g$}{i2}
+            \fmflabel{$H$}{o1}
+            \fmflabel{$H$}{o2}
+        \end{fmfgraph*}\\[4pt]
         \caption{}
         \label{fig:HH_box}
     \end{subfigure}
-
-    \caption{Diagrams contributing to the Higgs boson pairs production via gluon-gluon fusion, with interfering triangle (a) and box (b) diagrams.}
+    \end{fmffile}
+    \caption{Leading-order Feynman diagrams of Higgs boson pair production via gluon-gluon fusion, with the interfering triangle (a) and box (b) diagrams.}
     \label{fig:HH_ggF_diagrams}
 \end{figure}
-REVISAR
+
 Although the two diagrams have similar amplitudes, they interfere destructively, resulting in an extremely small total cross section of approximately $34$ fb. Figure \ref{fig:ggf_contributions} shows this phenomenon, depicting the differential cross section corresponding to the triangle and box diagrams, as well as the destructive interference that occurs between them. Since the process proceeds through a loop, its higher-order corrections are particularly difficult to compute with the full dependence on the top quark mass. The most precise prediction therefore combines an NNLO calculation in QCD, in which this dependence is included wherever it is known, with higher-order QCD corrections computed in the limit of an infinitely heavy top quark and with the NLO corrections from the electroweak interaction~\cite{H:2026ksi}. For $m_H = 125$ GeV and $\sqrt{s} = 13.6$ TeV, the resulting cross section is
 \begin{equation}
     \sigma_{\text{ggF}} = 33.62^{+2.1\%}_{-4.9\%}\,(\text{scale})\;{}^{+5\%}_{-16\%}\,(m_t)\;\pm 2.4\%\,(\text{PDF} + \alpha_s)\ \text{fb},
@@ -811,130 +854,441 @@ Although the two diagrams have similar amplitudes, they interfere destructively,
 where the scale and PDF uncertainties, described in Section \ref{sec:pp_pheno}, are complemented by the uncertainty associated with the renormalization scheme of the top quark mass in the loop, which dominates the total.
 
 
-Although the two diagrams have similar amplitudes, they interact via destructive interference, resulting in an extremely small total cross section of approximately 31 fb. Figure \ref{fig:ggf_contributions} shows this phenomenon, depicting the differential cross section corresponding to the triangle and box diagrams, as well as the destructive interference that occurs between them. At NNLO precision {\color{red}[ref]} and with a Higgs boson mass of 125 GeV and a center-of-mass energy of 13 TeV, the final cross section is
-\begin{equation}
-    \sigma_{\text{ggF}} = 31.05^{+2.2\%}_{-5.0\%}\,(\text{scale})\;{}^{+4.0\%}_{-18.0\%}\,(m_t)\;\pm 2.1\%\,(\text{PDF} + \alpha_s)\ \text{fb}.
-\end{equation}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/chapter_I/ggF_contributions.png}
-    \caption{Differential cross section as a function of the invariant mass of the Higgs pair for the different contributions to the gluon fusion production diagrams and their interference. \cite{DiMicco:2019ngk}}
+    \includegraphics[width=0.6\linewidth]{figures/chapter_I/ggF_contributions.png}
+    \caption{Differential cross section as a function of the invariant mass of the Higgs pair for the different contributions to the gluon fusion production diagrams and their interference~\cite{DiMicco:2019ngk}.}
     \label{fig:ggf_contributions}
 \end{figure}
 
 
-\noindent \textbf{Vector boson fusion: $qq'\rightarrow jjHH$}
-
-\noindent The vector boson fusion mechanism is the subdominant production mode at the LHC energy ranges. The two Higgs bosons are radiated from a virtual W or Z boson, or from the splitting of a single Higgs boson. The LO Feynman diagrams that contribute to this process are shown in Figure \ref{fig:HH_VBF_diagrams}. The diagrams reveal the linear (\ref{fig:HH_vbf_kl_kv}) and quadratic (\ref{fig:HH_vbf_kv}) dependence on the Higgs coupling to one vector boson $\lambda_{V}$, where \ref{fig:HH_vbf_kl_kv} also involves the trilinear self-coupling $\lambda_{HHH}$. Conversely, \ref{fig:HH_vbf_k2v} contribution evidences the linear dependence on the coupling between two vector bosons and two Higgs bosons, $\lambda_{2V}$.
-
-\begin{figure}[t]
+\subsubsection{Vector boson fusion: $qq'\rightarrow jjHH$}
+%
+The vector boson fusion mechanism is the subdominant production mode at the LHC. The two Higgs bosons are radiated from a virtual $W$ or $Z$ boson, or originate from the splitting of a single Higgs boson. The LO Feynman diagrams that contribute to this process are shown in Figure \ref{fig:HH_VBF_diagrams}. The diagram of Figure \ref{fig:HH_vbf_kl_kv} depends linearly on the coupling of the Higgs boson to a pair of vector bosons, $\lambda_V$, and on the trilinear self-coupling $\lambda_{HHH}$, while that of Figure \ref{fig:HH_vbf_kv} depends quadratically on $\lambda_V$. Finally, the diagram of Figure \ref{fig:HH_vbf_k2v} depends linearly on the coupling between two vector bosons and two Higgs bosons, $\lambda_{2V}$.
+%
+\begin{figure}[htbp]
     \centering
-
-    \begin{subfigure}[b]{0.3\textwidth}
+    \vspace{10pt}
+    \begin{fmffile}{higgspairvbf}
+    \begin{subfigure}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/vbf_kl_kv.png}
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{o1,h1,h2,o2}
+            \fmf{fermion}{i1,w1,o1}
+            \fmf{fermion}{i2,w2,o2}
+            \fmf{photon,label=$V$,label.side=right}{w2,v}
+            \fmf{photon,label=$V$,label.side=right}{v,w1}
+            \fmf{dashes,label=$H^*$,label.side=left}{v,vh}
+            \fmf{dashes}{vh,h1}
+            \fmf{dashes}{vh,h2}
+            \fmfforce{(0.35w,0.85h)}{w2}
+            \fmfforce{(0.35w,0.15h)}{w1}
+            \fmfforce{(0.35w,0.5h)}{v}
+            \fmfforce{(0.68w,0.5h)}{vh}
+            \fmfforce{(1.0w,0.68h)}{h2}
+            \fmfforce{(1.0w,0.32h)}{h1}
+            \fmflabel{$q'$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$q'$}{o1}
+            \fmflabel{$q$}{o2}
+            \fmflabel{$H$}{h1}
+            \fmflabel{$H$}{h2}
+        \end{fmfgraph*}\\[4pt]
         \caption{}
         \label{fig:HH_vbf_kl_kv}
     \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/vbf_kv.png}
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{o1,h1,h2,o2}
+            \fmf{fermion}{i1,w1,o1}
+            \fmf{fermion}{i2,w2,o2}
+            \fmf{photon,label=$V$,label.side=right}{w2,va}
+            \fmf{photon}{va,vb}
+            \fmf{photon,label=$V$,label.side=right}{vb,w1}
+            \fmf{dashes}{va,h2}
+            \fmf{dashes}{vb,h1}
+            \fmfforce{(0.35w,0.85h)}{w2}
+            \fmfforce{(0.35w,0.15h)}{w1}
+            \fmfforce{(0.55w,0.65h)}{va}
+            \fmfforce{(0.55w,0.35h)}{vb}
+            \fmfforce{(1.0w,0.65h)}{h2}
+            \fmfforce{(1.0w,0.35h)}{h1}
+            \fmflabel{$q'$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$q'$}{o1}
+            \fmflabel{$q$}{o2}
+            \fmflabel{$H$}{h1}
+            \fmflabel{$H$}{h2}
+        \end{fmfgraph*}\\[4pt]
         \caption{}
         \label{fig:HH_vbf_kv}
     \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/vbf_k2v.png}
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{o1,h1,h2,o2}
+            \fmf{fermion}{i1,w1,o1}
+            \fmf{fermion}{i2,w2,o2}
+            \fmf{photon,label=$V$,label.side=left}{w2,v}
+            \fmf{photon,label=$V$,label.side=left}{v,w1}
+            \fmf{dashes}{v,h1}
+            \fmf{dashes}{v,h2}
+            \fmfforce{(0.48w,0.85h)}{w2}
+            \fmfforce{(0.48w,0.15h)}{w1}
+            \fmfforce{(0.6w,0.5h)}{v}
+            \fmfforce{(1.0w,0.68h)}{h2}
+            \fmfforce{(1.0w,0.32h)}{h1}
+            \fmflabel{$q'$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$q'$}{o1}
+            \fmflabel{$q$}{o2}
+            \fmflabel{$H$}{h1}
+            \fmflabel{$H$}{h2}
+        \end{fmfgraph*}\\[4pt]
         \caption{}
         \label{fig:HH_vbf_k2v}
     \end{subfigure}
-
-    \caption{Diagrams contributing to the Higgs boson pairs production via vector boson fusion}
+    \end{fmffile}
+    \caption{Leading-order Feynman diagrams of Higgs boson pair production via vector boson fusion, whose amplitudes are proportional to $\lambda_V\,\lambda_{HHH}$ (a), $\lambda_V^2$ (b) and $\lambda_{2V}$ (c).}
     \label{fig:HH_VBF_diagrams}
 \end{figure}
 
-The final state of this production mode is characterized by the presence of two additional high-energy quarks that appear in close proximity to the initial direction of the colliding particles, forming the distinctive VBF signature. The VBF total cross section predicted in the SM is around $\sim 1.7$ fb. Similar to ggF production, the total HH VBF cross-section results from the interference of contributing Feynman diagrams. Thus, the differential cross-section of the VBF production diagrams results in significant cancellations, as represented in Figure \ref{fig:VBF_contributions}. At NNNLO precision {\color{red}[ref]}, it is computed for a Higgs boson mass of 125 GeV and a center-of-mass energy of 13 TeV
+The final state of this production mode is characterized by two additional jets, originating from the outgoing quarks, which are emitted close to the beam direction with a large invariant mass and a large separation in pseudorapidity. This distinctive signature allows the VBF signal to be identified despite a cross section about $18$ times smaller than that of gluon fusion. For $m_H = 125$ GeV and $\sqrt{s} = 13.6$ TeV, the cross section computed at N$^3$LO in QCD and NLO in the electroweak interaction~\cite{Grober:2026ece,Dreyer:2018qbw,Dreyer:2020xaj} is
 \begin{equation}
-    \sigma_{\text{VBF}} = 1.739^{+0.03\%}_{-0.04\%}\,(\text{scale})\;\pm 2.1\%\,(\text{PDF} + \alpha_s)\ \text{fb}.
+    \sigma_{\text{VBF}} = 1.874^{+0.05\%}_{-0.03\%}\,(\text{scale})\;\pm 2.7\%\,(\text{PDF})\ \text{fb}.
 \end{equation}
+%
+As in gluon fusion, the contributing diagrams interfere destructively. In this case, however, the cancellation has a deeper origin, since the amplitudes of the diagrams of Figures \ref{fig:HH_vbf_kv} and \ref{fig:HH_vbf_k2v} grow with the invariant mass of the Higgs boson pair, and this growth only cancels for the relation between $\lambda_V$ and $\lambda_{2V}$ predicted by the SM~\cite{Bishara:2016kjn}. Any deviation from this relation is therefore enhanced at high $m_{HH}$, which makes VBF production particularly sensitive to $\lambda_{2V}$, a coupling that does not enter gluon fusion, as discussed in Section \ref{subsec:BSM_production}.
 
-\begin{figure}
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{figures/chapter_I/VBF_contributions.png}
+%     \caption{Differential cross section as a function of the invariant mass of the Higgs pair for the different contributions to the vector boson fusion production diagrams and their interference. {\color{red}[ref]}}
+%     \label{fig:VBF_contributions}
+% \end{figure}
+
+
+
+\subsubsection{Top quark pair associated production: $qq'/gg\rightarrow t\bar{t}HH$}
+%
+In Higgs boson pair production in association with a top quark pair, the two Higgs bosons are either radiated from the top quarks or produced through the trilinear self-coupling. For $m_H = 125$ GeV and $\sqrt{s} = 13.6$ TeV, its cross section computed at NLO in QCD is $0.86^{+4.2\%}_{-14.0\%}\,(\text{scale}) \pm 3.3\%\,(\text{PDF}+\alpha_s)$ fb~\cite{Frederix:2014hta,LHCHWG:HHlegacy}. Figure \ref{fig:HH_ttHH_diagrams} presents the LO Feynman diagrams of the process, which depend on the trilinear self-coupling $\lambda_{HHH}$ and on the top quark Yukawa coupling $y_t$.
+%
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\linewidth]{figures/chapter_I/VBF_contributions.png}
-    \caption{Differential cross section as a function of the invariant mass of the Higgs pair for the different contributions to the vector boson fusion production diagrams and their interference. {\color{red}[ref]}}
-    \label{fig:VBF_contributions}
-\end{figure}
-
-Although its cross-section is one order of magnitude smaller than gluon fusion cross-section, the clean VBF signature advantageously allows for the detection of the VBF signal: the two jets typical of the final state, with high invariant mass and large separation in pseudorapidity, can be used to identify the signal. Furthermore, VBF production uniquely allows access to $\lambda_{2V}$, through the contribution from the Fig. \ref{fig:HH_vbf_k2v} diagram, which is inaccessible via ggF.
-
-\noindent \textbf{Top quark pair associated production: $qq'/gg\rightarrow t\bar{t}HH$}
-
-\noindent In the double top quark associated HH production, the two Higgs bosons are either radiated from the top quarks or produced via Higgs boson self-coupling. This production mechanism results in a total cross-section of approximately $\sim 0.8$ fb. Figure \ref{fig:HH_ttHH_diagrams} presents the LO Feynman diagrams contributing to the $t\bar{t}HH$ process, and illustrates the dependence of the production mode on the trilinear coupling $\lambda_{HHH}$, and on the Yukawa coupling, $y_t$.
-
-\begin{figure}[t]
-    \centering
-
-    \begin{subfigure}[b]{0.3\textwidth}
+    \vspace{10pt}
+    \begin{fmffile}{higgspairtth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/ttHH_c2.png}
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{o1,h1,h2,o2}
+            \fmf{gluon}{i1,v1}
+            \fmf{gluon}{i2,v2}
+            \fmf{fermion}{o1,v1}
+            \fmf{fermion}{v1,vt}
+            \fmf{fermion}{vt,v2}
+            \fmf{fermion}{v2,o2}
+            \fmf{dashes,label=$H^*$,label.side=left}{vt,vh}
+            \fmf{dashes}{vh,h1}
+            \fmf{dashes}{vh,h2}
+            \fmfforce{(0.35w,0.85h)}{v2}
+            \fmfforce{(0.35w,0.15h)}{v1}
+            \fmfforce{(0.35w,0.5h)}{vt}
+            \fmfforce{(0.68w,0.5h)}{vh}
+            \fmfforce{(1.0w,0.68h)}{h2}
+            \fmfforce{(1.0w,0.32h)}{h1}
+            \fmflabel{$g$}{i1}
+            \fmflabel{$g$}{i2}
+            \fmflabel{$\bar{t}$}{o1}
+            \fmflabel{$t$}{o2}
+            \fmflabel{$H$}{h1}
+            \fmflabel{$H$}{h2}
+        \end{fmfgraph*}\\[4pt]
         \caption{}
         \label{fig:HH_ttHH_c2}
     \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/ttHH_kt.png}
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{o1,h1,h2,o2}
+            \fmf{fermion}{i2,vq}
+            \fmf{fermion}{vq,i1}
+            \fmf{gluon,label=$g$,label.side=right,label.dist=10}{vq,vg}
+            \fmf{fermion}{vg,a2}
+            \fmf{fermion}{a2,o2}
+            \fmf{fermion}{o1,a1}
+            \fmf{fermion}{a1,vg}
+            \fmf{dashes}{a2,h2}
+            \fmf{dashes}{a1,h1}
+            \fmfforce{(0.25w,0.5h)}{vq}
+            \fmfforce{(0.0w,0.9h)}{i2}
+            \fmfforce{(0.0w,0.1h)}{i1}
+            \fmfforce{(0.5w,0.5h)}{vg}
+            \fmfforce{(0.75w,0.8h)}{a2}
+            \fmfforce{(0.75w,0.2h)}{a1}
+            \fmfforce{(1.0w,1.0h)}{o2}
+            \fmfforce{(1.0w,0.0h)}{o1}
+            \fmfforce{(1.0w,0.62h)}{h2}
+            \fmfforce{(1.0w,0.38h)}{h1}
+            \fmflabel{$\bar{q}$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$\bar{t}$}{o1}
+            \fmflabel{$t$}{o2}
+            \fmflabel{$H$}{h1}
+            \fmflabel{$H$}{h2}
+        \end{fmfgraph*}\\[4pt]
         \caption{}
         \label{fig:HH_ttHH_kt}
     \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/ttHH_kt_kl.png}
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{o1,h1,h2,o2}
+            \fmf{fermion}{i2,vq}
+            \fmf{fermion}{vq,i1}
+            \fmf{gluon,label=$g$,label.side=right,label.dist=10}{vq,vg}
+            \fmf{fermion}{vg,a2}
+            \fmf{fermion}{a2,o2}
+            \fmf{fermion}{o1,vg}
+            \fmf{dashes,label=$H^*$,label.side=left}{a2,vh}
+            \fmf{dashes}{vh,h1}
+            \fmf{dashes}{vh,h2}
+            \fmfforce{(0.25w,0.5h)}{vq}
+            \fmfforce{(0.0w,0.9h)}{i2}
+            \fmfforce{(0.0w,0.1h)}{i1}
+            \fmfforce{(0.5w,0.5h)}{vg}
+            \fmfforce{(0.72w,0.78h)}{a2}
+            \fmfforce{(0.84w,0.5h)}{vh}
+            \fmfforce{(1.0w,1.0h)}{o2}
+            \fmfforce{(1.0w,0.0h)}{o1}
+            \fmfforce{(1.0w,0.62h)}{h2}
+            \fmfforce{(1.0w,0.38h)}{h1}
+            \fmflabel{$\bar{q}$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$\bar{t}$}{o1}
+            \fmflabel{$t$}{o2}
+            \fmflabel{$H$}{h1}
+            \fmflabel{$H$}{h2}
+        \end{fmfgraph*}\\[4pt]
         \caption{}
         \label{fig:HH_ttHH_kt_kl}
     \end{subfigure}
-
-    \caption{Diagrams describing the Higgs boson pairs production via top quark pair associated production ($t\bar{t}HH$)}
+    \end{fmffile}
+    \caption{Leading-order Feynman diagrams of Higgs boson pair production in association with a top quark pair.}
     \label{fig:HH_ttHH_diagrams}
 \end{figure}
 
-\noindent \textbf{Vector boson associated production: $qq'\rightarrow VHH$}
-
-\noindent Vector boson associated production originates from the radiation of two Higgs bosons from a massive vector boson $W$ or $Z$. Its predicted cross-section lies around $\sim 0.9$ fb at LHC energy ranges. Like the VBF production mechanism, it provides access to trilinear self-coupling, and to Higgs couplings to one ($\lambda_V$) and two $\lambda_2V$ vector bosons. Figure \ref{fig:HH_VHH_diagrams} presents the Feynman diagrams describing the process at LO.
-
-\begin{figure}[t]
+\subsubsection{Vector boson associated production: $qq'\rightarrow VHH$}
+% 
+In vector boson associated production, a quark-antiquark pair annihilates into an off-shell $W$ or $Z$ boson, which produces the Higgs boson pair together with an on-shell vector boson. As shown by the LO Feynman diagrams of Figure \ref{fig:HH_VHH_diagrams}, the process involves the same couplings as VBF production, namely the trilinear self-coupling $\lambda_{HHH}$ and the couplings $\lambda_V$ and $\lambda_{2V}$ of the Higgs boson to vector bosons. For $m_H = 125$ GeV and $\sqrt{s} = 13.6$ TeV, the cross sections computed at NNLO in QCD are $0.358^{+0.36\%}_{-0.40\%}$ fb for $W^+HH$, $0.187^{+1.3\%}_{-1.4\%}$ fb for $W^-HH$ and $0.396^{+3.4\%}_{-2.7\%}$ fb for $ZHH$, where the uncertainties correspond to the scale variations, while the PDF uncertainties range between $1.9$ and $2.5\%$~\cite{Grober:2026ece,Baglio:2012np}. The larger scale uncertainty of $ZHH$ arises from gluon-initiated contributions, in which the $Z$ boson and the Higgs bosons couple to the gluons through a loop of heavy quarks. In total, VHH production amounts to about $0.94$ fb.
+%
+\begin{figure}[htbp]
     \centering
-
-    \begin{subfigure}[b]{0.3\textwidth}
+    \vspace{10pt}
+    \begin{fmffile}{higgspairvhh}
+    \begin{subfigure}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/VHH_kv_kl.png}
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{h1,h2,ov}
+            \fmf{fermion}{i2,vq}
+            \fmf{fermion}{vq,i1}
+            \fmf{photon,label=$V$,label.side=right}{vq,vv}
+            \fmf{photon}{vv,ov}
+            \fmf{dashes,label=$H^*$,label.side=right}{vv,vh}
+            \fmf{dashes}{vh,h1}
+            \fmf{dashes}{vh,h2}
+            \fmfforce{(0.0w,0.9h)}{i2}
+            \fmfforce{(0.0w,0.1h)}{i1}
+            \fmfforce{(0.22w,0.5h)}{vq}
+            \fmfforce{(0.52w,0.5h)}{vv}
+            \fmfforce{(0.76w,0.3h)}{vh}
+            \fmfforce{(1.0w,0.9h)}{ov}
+            \fmfforce{(1.0w,0.5h)}{h2}
+            \fmfforce{(1.0w,0.08h)}{h1}
+            \fmflabel{$\bar{q}'$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$V$}{ov}
+            \fmflabel{$H$}{h1}
+            \fmflabel{$H$}{h2}
+        \end{fmfgraph*}\\[4pt]
         \caption{}
+        \label{fig:HH_VHH_kv_kl}
     \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/VHH_kv_kv.png}
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{h1,h2,ov}
+            \fmf{fermion}{i2,vq}
+            \fmf{fermion}{vq,i1}
+            \fmf{photon,label=$V$,label.side=right}{vq,vv}
+            \fmf{photon}{vv,va}
+            \fmf{photon}{va,ov}
+            \fmf{dashes}{va,h2}
+            \fmf{dashes}{vv,h1}
+            \fmfforce{(0.0w,0.9h)}{i2}
+            \fmfforce{(0.0w,0.1h)}{i1}
+            \fmfforce{(0.22w,0.5h)}{vq}
+            \fmfforce{(0.52w,0.5h)}{vv}
+            \fmfforce{(0.76w,0.7h)}{va}
+            \fmfforce{(1.0w,0.9h)}{ov}
+            \fmfforce{(1.0w,0.5h)}{h2}
+            \fmfforce{(1.0w,0.1h)}{h1}
+            \fmflabel{$\bar{q}'$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$V$}{ov}
+            \fmflabel{$H$}{h1}
+            \fmflabel{$H$}{h2}
+        \end{fmfgraph*}\\[4pt]
         \caption{}
+        \label{fig:HH_VHH_kv_kv}
     \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \centering
-        \includegraphics[width=\textwidth]{figures/chapter_I/HH_feynman/VHH_k2v.png}
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{h1,h2,ov}
+            \fmf{fermion}{i2,vq}
+            \fmf{fermion}{vq,i1}
+            \fmf{photon,label=$V$,label.side=right}{vq,vv}
+            \fmf{photon}{vv,ov}
+            \fmf{dashes}{vv,h2}
+            \fmf{dashes}{vv,h1}
+            \fmfforce{(0.0w,0.9h)}{i2}
+            \fmfforce{(0.0w,0.1h)}{i1}
+            \fmfforce{(0.22w,0.5h)}{vq}
+            \fmfforce{(0.58w,0.5h)}{vv}
+            \fmfforce{(1.0w,0.9h)}{ov}
+            \fmfforce{(1.0w,0.5h)}{h2}
+            \fmfforce{(1.0w,0.1h)}{h1}
+            \fmflabel{$\bar{q}'$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$V$}{ov}
+            \fmflabel{$H$}{h1}
+            \fmflabel{$H$}{h2}
+        \end{fmfgraph*}\\[4pt]
         \caption{}
+        \label{fig:HH_VHH_k2v}
     \end{subfigure}
-
-    \caption{Diagrams describing the Higgs boson pairs production via vector boson associated production (VHH)}
+    \end{fmffile}
+    \caption{Leading-order Feynman diagrams of Higgs boson pair production in association with a vector boson.}
     \label{fig:HH_VHH_diagrams}
 \end{figure}
 
-\noindent \textbf{Single top quark associated production: $qq'\rightarrow tjHH$}
 
-\noindent In the single top quark associated production process (tHH), the two Higgs bosons can be produced through the \textit{t-} or \textit{s-}channel, as illustrated in the diagrams in Figure \ref{fig:HH_tHH_diagrams}. It is the sole process that is sensitive to both HH couplings to vector bosons, $\lambda_{V}$ and $\lambda_{2V}$, and to top quarks $y_t$, but the cross-section is so small for a Higgs boson mass of 125 GeV at $\sqrt{s}=13$ TeV ($\sigma_{tHH}\sim 0.03$ fb) that it is hardly detectable at the LHC.
-
-\begin{figure}
+\subsubsection{Single top quark associated production: $qq'\rightarrow tjHH$}
+%
+In single top quark associated production ($tHH$), the Higgs boson pair is produced together with a single top quark through the $t$-channel or $s$-channel exchange of a $W$ boson, as illustrated by the diagrams of Figure \ref{fig:HH_tHH_diagrams}. Since the Higgs bosons can be emitted both from the top quark and from the $W$ boson, it is the only HH production mode that involves at LO the top quark Yukawa coupling $y_t$ together with the couplings to vector bosons $\lambda_V$ and $\lambda_{2V}$, in addition to the trilinear self-coupling. However, its cross section, computed at NLO in QCD, ranges from $0.029$ to $0.037$ fb for $\sqrt{s}$ between $13$ and $14$ TeV~\cite{Frederix:2014hta,LHCHWG:HHlegacy}, which makes it hardly accessible at the LHC.
+%
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\linewidth]{figures/chapter_I/HH_feynman/tHH.png}
-    \caption{Diagrams describing the Higgs boson pairs production via single top quark associated production (tHH)}
+    \vspace{10pt}
+    \begin{fmffile}{higgspairthh}
+    \begin{subfigure}[b]{0.32\linewidth}
+        \centering
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{o1,h1,h2,o2}
+            \fmf{fermion}{i2,w2,o2}
+            \fmf{fermion}{i1,w1}
+            \fmf{fermion}{w1,a}
+            \fmf{fermion}{a,o1}
+            \fmf{photon,label=$W$,label.side=right}{w2,w1}
+            \fmf{dashes,label=$H^*$,label.side=left}{a,vh}
+            \fmf{dashes}{vh,h1}
+            \fmf{dashes}{vh,h2}
+            \fmfforce{(0.3w,0.85h)}{w2}
+            \fmfforce{(0.3w,0.15h)}{w1}
+            \fmfforce{(0.58w,0.1h)}{a}
+            \fmfforce{(0.74w,0.45h)}{vh}
+            \fmfforce{(1.0w,0.0h)}{o1}
+            \fmfforce{(1.0w,0.32h)}{h1}
+            \fmfforce{(1.0w,0.62h)}{h2}
+            \fmflabel{$b$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$t$}{o1}
+            \fmflabel{$q'$}{o2}
+            \fmflabel{$H$}{h1}
+            \fmflabel{$H$}{h2}
+        \end{fmfgraph*}\\[4pt]
+        \caption{}
+        \label{fig:HH_tHH_t_kl}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.32\linewidth}
+        \centering
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{o1,h1,h2,o2}
+            \fmf{fermion}{i2,w2,o2}
+            \fmf{fermion}{i1,w1,o1}
+            \fmf{photon,label=$W$,label.side=right}{w2,v}
+            \fmf{photon,label=$W$,label.side=right}{v,w1}
+            \fmf{dashes}{v,h1}
+            \fmf{dashes}{v,h2}
+            \fmfforce{(0.35w,0.85h)}{w2}
+            \fmfforce{(0.35w,0.15h)}{w1}
+            \fmfforce{(0.35w,0.5h)}{v}
+            \fmfforce{(1.0w,0.68h)}{h2}
+            \fmfforce{(1.0w,0.32h)}{h1}
+            \fmflabel{$b$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$t$}{o1}
+            \fmflabel{$q'$}{o2}
+            \fmflabel{$H$}{h1}
+            \fmflabel{$H$}{h2}
+        \end{fmfgraph*}\\[4pt]
+        \caption{}
+        \label{fig:HH_tHH_t_k2v}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.32\linewidth}
+        \centering
+        \begin{fmfgraph*}(110,80)
+            \fmfleft{i1,i2}
+            \fmfright{o1,h2,o2}
+            \fmfbottom{hb}
+            \fmf{fermion}{i2,vq}
+            \fmf{fermion}{vq,i1}
+            \fmf{photon,label=$W$,label.side=left}{vq,vw}
+            \fmf{photon}{vw,vt}
+            \fmf{fermion}{vt,a}
+            \fmf{fermion}{a,o2}
+            \fmf{fermion}{o1,vt}
+            \fmf{dashes}{a,h2}
+            \fmf{dashes}{vw,hb}
+            \fmfforce{(0.0w,0.9h)}{i2}
+            \fmfforce{(0.0w,0.1h)}{i1}
+            \fmfforce{(0.18w,0.5h)}{vq}
+            \fmfforce{(0.42w,0.5h)}{vw}
+            \fmfforce{(0.62w,0.5h)}{vt}
+            \fmfforce{(0.8w,0.75h)}{a}
+            \fmfforce{(1.0w,1.0h)}{o2}
+            \fmfforce{(1.0w,0.0h)}{o1}
+            \fmfforce{(1.0w,0.6h)}{h2}
+            \fmfforce{(0.7w,0.0h)}{hb}
+            \fmflabel{$\bar{q}'$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$\bar{b}$}{o1}
+            \fmflabel{$t$}{o2}
+            \fmflabel{$H$}{h2}
+            \fmflabel{$H$}{hb}
+        \end{fmfgraph*}\\[4pt]
+        \caption{}
+        \label{fig:HH_tHH_s_kv_kt}
+    \end{subfigure}
+    \end{fmffile}
+    \caption{Representative leading-order Feynman diagrams of Higgs boson pair production in association with a single top quark.}
     \label{fig:HH_tHH_diagrams}
 \end{figure}
+
 
 \vspace{5pt}
 \noindent As detailed below and shown in Figure \ref{fig:HH_xsec}, SM HH production at the LHC is a very rare process, with a production rate $\mathcal{O}(10^3)$ times smaller than single Higgs production. Consequently, HH experimental searches — and those covered in this thesis — have primarly focused on the dominant mechanisms, ggF and VBF. Since the gluon fusion is the leading production mode, ggF searches provide the highest sensitivy to the trilinear self-coupling $\lambda_{HHH}$; on the other hand, VBF HH production provides additional handles for measuring $\lambda_{HHH}$ and allows for exploration of the VVHH interaction.
