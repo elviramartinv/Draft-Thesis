@@ -447,7 +447,7 @@ The validation of the method can be carried out on two levels. The first operate
   \label{fig:elr_gen}
 \end{figure}
 %
-At a second stage, the method is applied to a realistic phase space, using information from the signal region published by the CMS $\HH\to b\bar{b}b\bar{b}$ search in Run 3 \cite{CMS:2026znu}, which provides all of the experimental selections applied to generator-level events for two of the four $\kappa_\lambda$ scenarios used in the analysis and for the two topologies explored in the search: resolved and boosted. Figures \ref{fig:elr_4b_resolved} and \ref{fig:elr_4b_merged} show the agreement obtained in both regimes, which holds even in the boosted regime despite the fact that it accounts for only a tiny fraction of the total cross section. The effectiveness of the method in regions that account for less than one-thousandth of the cross section constitutes the most rigorous test among those presented, and validates the argument in Section \ref{subsec:physical_model} regarding the survival of the factorization throughout the entire chain of analysis.
+At a second stage, the method is applied to a realistic phase space, using information from the signal region published by the CMS $\HH\to 4b$ search in Run 3 \cite{CMS:2026znu}, which provides all of the experimental selections applied to generator-level events for two of the four $\kappa_\lambda$ scenarios used in the analysis and for the two topologies explored in the search: resolved and boosted. Figures \ref{fig:elr_4b_resolved} and \ref{fig:elr_4b_merged} show the agreement obtained in both regimes, which holds even in the boosted regime despite the fact that it accounts for only a tiny fraction of the total cross section. The effectiveness of the method in regions that account for less than one-thousandth of the cross section constitutes the most rigorous test among those presented, and validates the argument in Section \ref{subsec:physical_model} regarding the survival of the factorization throughout the entire chain of analysis.
 %
 \begin{figure}[h!]
   \centering
@@ -465,7 +465,7 @@ At a second stage, the method is applied to a realistic phase space, using infor
     \label{fig:elr_4b_resolved_kl2p45}
   \end{subfigure}
   \caption{$p_T^{HH}$ after applying the full set of
-  signal region selections of the resolved category of the $\HH\to b\bar{b}b\bar{b}$
+  signal region selections of the resolved category of the $\HH\to 4b$
   search \cite{CMS:2026znu}. In both panels the prediction obtained with the three-dimensional
   multi-reference ELR is compared to the direct simulation of the corresponding point.}
   \label{fig:elr_4b_resolved}
@@ -487,7 +487,7 @@ At a second stage, the method is applied to a realistic phase space, using infor
     \label{fig:elr_4b_merged_kl2p45}
   \end{subfigure}
   \caption{$p_T^H$ after applying the full set of
-  signal region selections of the boosted category of the $\HH\to b\bar{b}b\bar{b}$
+  signal region selections of the boosted category of the $\HH\to 4b$
   search \cite{CMS:2026znu}, for the same scenarios as in Figure \ref{fig:elr_4b_resolved}.
   This category accesses a minuscule fraction of the total cross section, which makes it the
   most demanding test of the method.}
@@ -605,7 +605,7 @@ The preceding section has established the two key elements on which the rest of 
 As outlined in the discussion that concludes Section \ref{subsec:matrix_inversion}, the choice of basis is reformulated as a hyperparameter optimization problem, in which the coordinates of the basis points become the parameters to be optimized and the search for an optimal basis becomes the minimization of an objective function over them. Converging in a search space of this size requires on the order of $10^5$ or more evaluations of that function, which is only feasible thanks to the ELR: by providing an analytical and differential description of the cross section that is valid at any point in the HEFT space, each evaluation can be carried out without simulating or processing a single event. Both that function and the templates it acts upon must in turn be defined on a concrete observable, and the choice made here is the invariant mass of the Higgs pair, $m_{HH}$, which concentrates the relevant kinematic information about the EFT parameters. It is also the variable that sets the energy scale of the process and on which the clipping procedure of Section \ref{subsec:EFT_validity} operates, so that a model built on $m_{HH}$ templates can be restricted to a fiducial region without the need for reoptimization. Since the weights $w_k(\mathbf{c})$ in Equation \ref{eq:matrix_differential} do not depend on the bin index, a basis optimized over the $m_{HH}$ spectrum would furthermore remain valid when the linear combination is applied to the final discriminant of a search; verifying that this is indeed the case under realistic conditions — and not only at generator level — is an essential part of the exercise.
 
 % Organización de la sección
-The rest of the Chapter is organized accordingly. Section \ref{subsec:finding_basis} specifies the setup for addressing the problem and details the search strategy, leading to the optimized bases for the complete EFT spaces. Section \ref{subsec:closure} subjects these bases to a closure and validation exercise, comparing the prediction of the linear combination with independently simulated samples. \textcolor{red}{Finally, Section \ref{subsec:realistic} evaluates their performance in a realistic analysis, applying them to the $HH\to bb\bar{b}\bar{b}$ search and $HH\to b\bar{b}\tau\tau$ search developed in Chapters \ref{ch:VI} and \ref{ch:VII}, and quantifying their impact on the final distributions.}
+The rest of the Chapter is organized accordingly. Section \ref{subsec:finding_basis} specifies the setup for addressing the problem and details the search strategy, leading to the optimized bases for the complete EFT spaces. Section \ref{subsec:closure} subjects these bases to a closure and validation exercise, comparing the prediction of the linear combination with independently simulated samples. \textcolor{red}{Finally, Section \ref{subsec:realistic} evaluates their performance in a realistic analysis, applying them to the $HH\to 4b$ search and $HH\to bb\tau\tau$ search developed in Chapters \ref{ch:VI} and \ref{ch:VII}, and quantifying their impact on the final distributions.}
 
 \subsection{Finding a good basis}
 \label{subsec:finding_basis}
@@ -1014,7 +1014,7 @@ On the other hand, as explained, the fully boosted regime is more challenging, w
     \includegraphics[width=0.46\linewidth]{figures/chapter_VII/4b_pthh_res_kl5.png}
     \caption{Differential cross section as a function of the transverse momentum of the
     Higgs boson pair, $p_T^{HH}$, in the resolved category of the
-    $\HH\to b\bar{b}b\bar{b}$ search \cite{CMS:2026znu}, for $\kappa_\lambda=0$ (top left),
+    $\HH\to 4b$ search \cite{CMS:2026znu}, for $\kappa_\lambda=0$ (top left),
     $1$ (top right), $2.45$ (bottom left) and $5$ (bottom right), with all remaining
     couplings set to their SM values. Each panel compares the direct simulation of the point
     (blue), the prediction of the multi-reference ELR (orange) and the one obtained with the
@@ -1038,7 +1038,7 @@ On the other hand, as explained, the fully boosted regime is more challenging, w
     \includegraphics[width=0.46\linewidth]{figures/chapter_VII/4b_pthh_boo_kl2p45.png}\hfill
     \includegraphics[width=0.46\linewidth]{figures/chapter_VII/4b_pthh_boo_kl5.png}
     \caption{Differential cross section as a function of $p_T^{HH}$ in the boosted category
-    of the $\HH\to b\bar{b}b\bar{b}$ search \cite{CMS:2026znu}, for the same four values of
+    of the $\HH\to 4b$ search \cite{CMS:2026znu}, for the same four values of
     $\kappa_\lambda$ and with the same arrangement of panels, predictions, uncertainty bands
     and metrics as in Figure~\ref{fig:pthh_4b_res}.}
     \label{fig:pthh_4b_boo}
@@ -1058,7 +1058,7 @@ where $r$ ranges over the resolved and boosted regimes, while $\vec{c}$ denotes 
 This is illustrated in Figure \ref{fig:klambda_scans_4b}, which shows the resulting scan for both the product $A\times\epsilon$ in Figure \ref{fig:kl_scan_acceff} and for $\sigma_\text{sel}$ in Figure \ref{fig:kl_scan_xsecsel} for the two regimes of the analysis, with the boosted signal scaled by a factor of ten to facilitate visualization. In each panel, five predictions are overlaid: 
 \begin{itemize}
     \item the matrix method applied to the 23 templates from the basis in Table~\ref{tab:bestheft}, obtained from the four samples using multi-reference ELR
-    \item the $\HH\to b\bar{b}b\bar{b}$ MC simulated samples
+    \item the $\HH\to 4b$ MC simulated samples
     \item the ELR prediction evaluated directly at those same four points
     \item two variants of the matrix method in which the basis is given by the simulated samples rather than by the reweighted templates:
     \begin{itemize}
@@ -1086,7 +1086,7 @@ These last two reproduce the procedure by which low-dimensional EFT interpretati
   \end{subfigure}
   \caption{Dependence on $\kappa_\lambda$ of the two quantities entering
   Equation~\ref{eq:sigmasel}, for the resolved (blue) and boosted (orange, scaled by a factor
-  of ten) signal regions of the $\HH\to b\bar{b}b\bar{b}$ search \cite{CMS:2026znu}. In both
+  of ten) signal regions of the $\HH\to 4b$ search \cite{CMS:2026znu}. In both
   panels, the solid line is the prediction of the matrix inversion method applied to the 23
   basis templates of Table~\ref{tab:bestheft}; the squares are the simulated samples
   themselves, with their MC statistical uncertainties, and the diamonds the ELR prediction
@@ -1126,7 +1126,7 @@ These figures therefore aim to demonstrate the regions of space accessible to ea
     \includegraphics[width=0.33\linewidth]{figures/chapter_VII/2d_kl_kt_boo_eff.pdf}\hfill
     \includegraphics[width=0.33\linewidth]{figures/chapter_VII/2d_kl_kt_boo_diff.pdf}\hfill
     \includegraphics[width=0.33\linewidth]{figures/chapter_VII/2d_kl_kt_boo_dw.pdf}
-    \caption{The $\kappa_\lambda$--$\kappa_t$ plane of the CMS $\HH\to b\bar{b}b\bar{b}$ analysis \cite{CMS:2026znu}, for the resolved (top row) and boosted (bottom row) signal regions. From left to right: $A\times\epsilon$ as obtained by the matrix method; the relative difference between ELR and the matrix method; and the Wasserstein distance between the two selected \mHH spectra, $d_W(\text{ELR},\text{MM})$. The black (white) curves are isolines of $\sigma_{ggHH}$.}
+    \caption{The $\kappa_\lambda$--$\kappa_t$ plane of the CMS $\HH\to 4b$ analysis \cite{CMS:2026znu}, for the resolved (top row) and boosted (bottom row) signal regions. From left to right: $A\times\epsilon$ as obtained by the matrix method; the relative difference between ELR and the matrix method; and the Wasserstein distance between the two selected \mHH spectra, $d_W(\text{ELR},\text{MM})$. The black (white) curves are isolines of $\sigma_{ggHH}$.}
     \label{fig:scan2d_kl_kt}
 \end{figure}
 %
@@ -1138,7 +1138,7 @@ These figures therefore aim to demonstrate the regions of space accessible to ea
     \includegraphics[width=0.33\linewidth]{figures/chapter_VII/2d_kl_c2_boo_eff.pdf}\hfill
     \includegraphics[width=0.33\linewidth]{figures/chapter_VII/2d_kl_c2_boo_diff.pdf}\hfill
     \includegraphics[width=0.33\linewidth]{figures/chapter_VII/2d_kl_c2_boo_dw.pdf}
-    \caption{The $\kappa_\lambda$--$c_2$ plane of the $\HH\to b\bar{b}b\bar{b}$ search
+    \caption{The $\kappa_\lambda$--$c_2$ plane of the $\HH\to 4b$ search
     \cite{CMS:2026znu}, with the same arrangement of panels, color scales and isolines as in
     Figure~\ref{fig:scan2d_kl_kt}.}
     \label{fig:scan2d_kl_c2}
