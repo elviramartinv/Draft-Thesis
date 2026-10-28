@@ -1,226 +1,166 @@
 \chapter{The \texorpdfstring{$\tau_h$}{τh} identification algorithms and their performance}
 \label{ch:Tau}
+%
+The precise and accurate reconstruction of $\tau$ leptons is a crucial part of the $HH\rightarrow bb\tau\tau$ analysis covered in Chapter \ref{ch:bbtt_analysis}. Furthermore, a significant number of physics analyses — such as measurements of Higgs boson production~\cite{CMS-HIG-16-043,CMS-HIG-19-010} and of the \CP structure of its Yukawa coupling to $\tau$ leptons~\cite{CMS-HIG-20-006}, and searches for new physics in final states with $\tau$ leptons~\cite{CMS-HIG-21-001,CMS-PAS-EXO-24-012,CMS-PAS-EXO-24-020} — rely on the adequate identification of $\tau$ decay products and their properties. This broad physics program necessitates continuous development of reconstruction and identification techniques, which in CMS for $\tau$ leptons are coordinated within the Tau Physics Object Group (Tau POG). A central component of the study of $\tau$ leptons, which will be emphasized subsequently, involves validating the applied techniques to ensure their correct behavior in data.
 
-\noindent The precise and accurate reconstruction of $\tau$ leptons is a crucial part of the $HH\rightarrow bb\tau\tau$ analysis covered in Chapter \ref{ch:bbtt_analysis}. Furthermore, a significant number of physical analyses — such as measurements of Higgs boson production~\cite{CMS-HIG-16-043,CMS-HIG-19-010} and of the \CP structure of its Yukawa coupling to $\tau$ leptons~\cite{CMS-HIG-20-006}, and searches for new physics in final states with $\tau$ leptons ~\cite{CMS-HIG-21-001,CMS-PAS-EXO-24-012,CMS-PAS-EXO-24-020} — rely on the adequate identification of $\tau$ decay products and their properties. This broad physics program necessitates continuous development of reconstruction and identification techniques, which in CMS for $\tau$ leptons are coordinated within the Tau Physics Object Group (Tau POG). A central component of the study of $\tau$ leptons, which will be emphasized subsequently, involves validating the applied techniques to ensure their correct behavior in data.
+In CMS, the reconstruction and identification of hadronic $\tau$ leptons constitute two complementary steps. The reconstruction stage, performed by the HPS algorithm~\cite{CMS-TAU-14-001} (see Section \ref{subsec:Taus}), assembles the visible decay products into a $\tau_h$ candidate and determines its decay mode and kinematic properties. The identification step then classifies these reconstructed candidates as a genuine $\tau$ lepton or as a misidentified jet, electron or muon.
 
-In CMS, the reconstruction and identification of hadronic $\tau$ leptons constitute two complementary steps. The reconstruction stage, performed by the HPS algorithm~\cite{CMS-TAU-14-001} (see Section \ref{subsec:Taus}), assembles the visible decay products into a $\tau_h$ candidate and determines its decay mode and kinematic properties. The identification step then classifies this reconstructed candidates as a genuine $\tau$ lepton or as a misidentified jet, electron or muon. Since Run-2, this classification has been performed using the \textsc{DeepTau} algorithm~\cite{CMS-TAU-20-001}, a convolutional neural network (CNN) that combines information from all individual reconstructed particles near the $\tau_h$ axis with properties of the $\tau_h$ candidate. Recent developments in Run-3 include the updated \textsc{DeepTau v2.5} algorithm, as well as alternative approaches to identify $\tau_h$, such as \textsc{PNet} and \textsc{UParT}, which aim to unify jet flavor tagging and $\tau$ identification within a common framework.
-
-This chapter provides a detailed examination of the identification of hadronic $\tau$ leptons. Section \ref{sec:Tau_MisID} lays the groundwork and emphasizes the challenges associated with distinguishing genuine $\tau_h$ candidates from background objects. Section \ref{sec:DeepTau2.5} details the $\tau_h$ identification algorithm deployed for the early Run-3 data-taking period (\textsc{DeepTau v2.5}), and covers alternative identification strategies currently under study. Finally, in Section \ref{sec:Tau_validation}, the performance of the presented techniques is validated using Run-3 data. 
+This chapter provides a detailed examination of the identification of hadronic $\tau$ leptons. Section \ref{sec:Tau_MisID} lays the groundwork and emphasizes the challenges associated with distinguishing genuine $\tau_h$ candidates from background objects, Section \ref{sec:DeepTau2.5} summarizes the identification algorithms and compares their performance, and Section \ref{sec:Tau_validation} presents their validation with the data recorded by CMS from 2022 to 2026. This validation is the contribution of this thesis to the Tau POG, and its results with the 2024 and 2025 data have been published in Ref.~\cite{CMS-DP-2025-074}.
 
 
 \section{Challenges in \texorpdfstring{$\tau_h$}{τh} identification}
 \label{sec:Tau_MisID}
 %
-As described in Section \ref{subsec:Taus}, the HPS algorithm is configured to prioritize the reconstruction efficiency of genuine $\tau_h$, which reaches values of around $90\%$~\cite{CMS-TAU-16-003}. Therefore, it inevitably suffers from contamination by other processes, meaning that a fraction of reconstructed $\tau_h$ candidates originates from objects that mimic the topology of hadronic $\tau$ decay. The dominant source of misidentification arises from jets, since the HPS algorithm is seeded by PF jets that can reproduce the charged-track multiplicity and electromagnetic signature characteristic of $\tau$ decays. In essence, a highly collimated quark or gluon jet can resemble a $\tau$ decay, as illustrated in Figure \ref{fig:tau_jet_sim}. Light leptons can also be misidentified as $\tau$ leptons: muons can produce a similar signature to that of a one-prong $\tau$ decay in cases where they deposit significant energy in the calorimeters; while electrons can occasionally produce electromagnetic showers that reach the HCAL, mimicking the signature of a charged pion, and emit photons via bremsstrahlung radiation, which can be reconstructed by the HPS algorithm as strips. An example of these signatures is shown in Figure \ref{fig:ele_fake_tau}.
-
+As described in Section \ref{subsec:Taus}, the HPS algorithm is configured to prioritize the reconstruction efficiency of genuine $\tau_h$, which exceeds $80\%$ for $p_T > 30$ GeV and approaches $90\%$ above $100$ GeV~\cite{CMS-TAU-20-001}. Therefore, it inevitably suffers from contamination by other processes, meaning that a fraction of reconstructed $\tau_h$ candidates originates from objects that mimic the topology of hadronic $\tau$ decay. The dominant source of misidentification arises from jets, since the HPS algorithm is seeded by PF jets that can reproduce the charged-track multiplicity and electromagnetic signature characteristic of $\tau$ decays, i.e., a highly collimated quark or gluon jet can resemble a $\tau$ decay, as illustrated in Figure \ref{fig:tau_fakes}. Light leptons can also be misidentified as $\tau$ leptons. A muon can mimic a one-prong decay when it deposits a significant fraction of its energy in the calorimeters, while an electron can be taken as the charged hadron of the decay, with the photons it radiates through bremsstrahlung clustered into a strip, which reproduces the signature of a h$^{\pm}\pi^0$ decay. These signatures are also illustrated in Figure \ref{fig:tau_fakes}.
+%
+% \begin{figure}[h!]
+% \centering
+% \begin{subfigure}[t]{0.48\linewidth}
+%   \includegraphics[width=1\linewidth]{figures//chapter_III/tau_jet_sim.png}
+%     \caption{Simulation of a $\tau_h$ decay into h$^{\pm}$h$^{\mp}$h$^{\pm}\pi^0$ (left) and of a collimated jet resembling a $\tau_h$ (right) in the CMS detector.}
+%     \label{fig:tau_jet_sim}  
+% \end{subfigure}
+% \hfill
+% \begin{subfigure}[t]{0.48\linewidth}
+%     \centering
+%     \includegraphics[width=1\linewidth]{figures//chapter_III/electron_faking_tau.png}
+%     \caption{Schematic representation of the signatures identified by the HPS algorithm for an electron faking a $\tau_h$ (left) and a genuine $\tau_h$ (right). \textcolor{red}{hacer más grande esta figura}}
+%     \label{fig:ele_fake_tau}
+% \end{subfigure}
+% \caption{Examples of objects misidentified as $\tau_h$ candidates by the HPS algorithm}
+% \label{fig:tau_fakes}
+% \end{figure}
 \begin{figure}[h!]
-\centering
-\begin{subfigure}[t]{0.48\linewidth}
-  \includegraphics[width=1\linewidth]{figures//chapter_III/tau_jet_sim.png}
-    \caption{Simulation of a $\tau_h$ decay into h$^{\pm}$h$^{\mp}$h$^{\pm}\pi^0$ (left) and of a collimated jet resembling a $\tau_h$ (right) in the CMS detector.}
-    \label{fig:tau_jet_sim}  
-\end{subfigure}
-\hfill
-\begin{subfigure}[t]{0.48\linewidth}
     \centering
-    \includegraphics[width=1\linewidth]{figures//chapter_III/electron_faking_tau.png}
-    \caption{Schematic representation of the signatures identified by the HPS algorithm for an electron faking a $\tau_h$ (left) and a genuine $\tau_h$ (right). \textcolor{red}{hacer más grande esta figura}}
-    \label{fig:ele_fake_tau}
-\end{subfigure}
-\caption{Examples of objects misidentified as $\tau_h$ candidates by the HPS algorithm}
-\label{fig:tau_fakes}
+    \includegraphics[width=\linewidth]{figures/chapter_III/tau_fakes_tikz.pdf}
+    \caption{Signatures of genuine $\tau_h$ decays and of the objects that the HPS algorithm can reconstruct in the same decay mode, indicated above each pair. From left to right, a one-prong decay and a muon that deposits part of its energy in the calorimeters, a one-prong decay with a neutral pion and an electron whose bremsstrahlung photons are clustered into a strip and whose shower reaches the HCAL, and a three-prong decay and a quark or gluon jet, which usually contains more particles spread over a wider angle. Adapted from Ref.~\cite{Neutelings:tau_decay}.}
+    \label{fig:tau_fakes}
 \end{figure}
 
+The reconstruction of genuine $\tau_h$ has its own limitations. Depending on the decay mode, between $11\%$ (h$^{\pm}$) and $25\%$ (h$^{\pm}\pi^0$) of the generated $\tau_h$ are not reconstructed in any of the HPS decay modes, mainly because the tracks of charged hadrons are reconstructed with an efficiency of about $90\%$~\cite{CMS-TAU-20-001}. Part of the three-prong decays in which one track is lost are recovered as two-prong candidates, but their charge is correctly assigned in only about $70\%$ of the cases, compared with $99\%$ for the other decay modes~\cite{CMS-TAU-20-001}, which is why they are not among the four decay modes used in analyses (Figure \ref{fig:tau_DMs}). These candidates, lost or misreconstructed by HPS, are one of the motivations for the identification algorithms that do not depend on it, presented in Section \ref{subsec:PNet}.
 
-
-The performance of the HPS algorithm is also affected by intrinsic limitations in the reconstruction of the $\tau_h$ decay itself. Even for genuine $\tau$ leptons, the algorithm does not always correctly assign the decay mode, resulting in misreconstruction rates of around 11\% for one-prong decays and up to 25\% for one-prong + $\pi^0$ topologies~\cite{CMS-TAU-16-003}. Furthermore, the accuracy of the charge assignment depends on the completeness of the reconstructed final state: in the absence of missing charged hadrons, the charge is correctly determined in about 99\% of cases, while this value decreases to around 70\% for decay modes with missing charged hadrons. 
-
-
-
-These effects reflect the challenges associated with the complex topology of hadronic $\tau$ decays, and highlight the need for a dedicated identification stage to improve the purity of reconstructed $\tau_h$ candidates. To this end, various methods have been implemented in CMS over the years, ranging from cut-based isolation sum discriminators and Boosted Decision Tree discriminator~\cite{CMS-TAU-14-001,CMS-TAU-16-003} to more sophisticated deep learning-based algorithms, such as the aforementioned \textsc{DeepTau}~\cite{CMS-TAU-20-001}, as well as alternative tagging algorithms, like ParticleNet \textsc{PNet} \textcolor{red}{ref} and Unified Particle Transformer \textsc{UPartT} \textcolor{red}{ref}. The following section provides a detailed overview of the various ML-based identification algorithms deployed in the CMS experiment.
-
+These effects reflect the challenges associated with the complex topology of hadronic $\tau$ decays, and highlight the need for a dedicated identification step to improve the purity of reconstructed $\tau_h$ candidates. To this end, various methods have been implemented in CMS over the years, ranging from cut-based isolation sum discriminators and Boosted Decision Tree discriminator~\cite{CMS-TAU-14-001,CMS-TAU-16-003} to more sophisticated deep learning-based algorithms, described in the following section.
 
 
 \section{The \texorpdfstring{$\tau_h$}{τh} identification algorithms}
 \label{sec:DeepTau2.5}
+%
+Given the aforementioned reconstruction limitations, a dedicated identification approach is needed. The challenge of discriminating between the reconstructed $\tau_h$ candidates, given the large number of correlated observables involved in this type of task, has led to the adoption of advanced deep learning techniques capable of fully exploiting the available information and ensure robust performance across different data-taking conditions. 
 
-\noindent Although the HPS algorithm provides an efficient reconstruction of hadronic $\tau$ candidates, it has been established that it faces intrinsic limitations, such as significant contamination from non-$\tau$ objects and misreconstruction of decay modes. Therefore, a dedicated identification approach is imperative to enhance the purity of the selected $\tau_h$ candidates. The challenge of discriminating between these candidates, given the large number of correlated observables involved in this type of task, has led to the adoption of advanced deep learning techniques capable of fully exploiting the available information and ensure robust performance across different data-taking conditions. The continuous development at CMS has therefore resulted in increasingly sophisticated identification algorithms that significantly surpass the initial approaches adopted during the first two LHC runs.
+The \textsc{DeepTau} neural network-based algorithm was deployed at the end of Run 2, and has since become the standard $\tau_h$ identification method in CMS. The first version v2.1~\cite{CMS-TAU-20-001} was presented initially, and was then upgraded to v2.5~\cite{CMS-TAU-24-001} during the early Run 3 period, introducing major improvements that will be briefly discussed next. In parallel, alternative identification strategies for genuine $\tau_h$ candidates are being explored, leveraging modern architectures such as graph neural networks (\textsc{PNet}) and transformers (\textsc{UParT}) to treat $\tau_h$ candidates within a broader jet classification framework.
 
-This has led to the deployment of the \textsc{DeepTau} neural network-based algorithm at the end of Run-2, which has since become the standard $\tau_h$ identification method in CMS. The first version v2.1 \textcolor{red}{ref} was presented initially, and was then upgrade to v2.5 \textcolor{red}{ref} during the early Run-3 period, introducing major improvements that will be discussed next. In parallel, alternative identification strategies for genuine $\tau_h$ candidates are being explored, leveraging modern architectures such as graph neural networks (\textsc{PNet}) and transformers (\textsc{UParT}) to treat $\tau_h$ candidates within a broader jet classification framework.
 
 
 \subsection{The \textsc{DeepTau} algorithm}
-
-\noindent The \textsc{DeepTau}~\cite{CMS-TAU-20-001} algorithm based on a convolutional deep neural network is designed to simultaneously discriminate hadronically decaying $\tau$ leptons from quark and gluon jets, electrons, and muons. As has already been noted, its primary goal is to enhance the purity of reconstructed $\tau_h$ candidates, addressing the inherent challenges posed by the highly collimated topology of hadronic $\tau$ decays and their similarity to narrow jets and electromagnetic objects, as illustrated in Figure \ref{fig:tau_fakes}.
-
-In order to achieve an optimal $\tau$ identification performance, the algorithm combines high-level reconstructed $\tau$ features together with low-level inputs from the inner tracker, calorimeters and muon sub-detectors using particle flow candidates, electrons and muons reconstructed within the vicinity of the $\tau$ candidate. The high-level block includes variables used during $\tau$ reconstruction or otherwise proven to provide discriminating power. The low-level block describes each object reconstructed within concentric geometric windows around the $\tau_h$ axis through its four-momentum, track quality, compatibility with the primary vertex (PV), as well as characteristics of energy deposits in the detector (ECAL, HCAL and muon station hits), among others. A summary of the input features is given in Table \ref{tab:deeptau_inputs}.
-
+\label{subsec:DeepTau}
+%
+\textsc{DeepTau} is a convolutional neural network that classifies each $\tau_h$ candidate reconstructed by HPS as a genuine $\tau_h$, a quark or gluon jet, an electron or a muon, so that the three discriminations described in Section \ref{sec:Tau_MisID} are performed by a single network~\cite{CMS-TAU-20-001,CMS-TAU-24-001}. To do so, it combines two types of information. The first is a set of high-level variables that describe the candidate as a whole, such as its kinematics, its isolation, or the compatibility of its tracks with the primary vertex. The second is the set of all particles reconstructed around the candidate, whose individual properties are arranged in two grids in the $\eta$-$\phi$ plane centered on the $\tau_h$ axis, an inner grid covering the region of the decay products and a wider outer grid that captures the surrounding activity, which is larger for jets than for genuine $\tau_h$. The input variables of both types are summarized in Table \ref{tab:deeptau_inputs}.
+%
 \begin{table}[h!]
     \centering
     \begin{tabular}{l l}
         \hline
         \textbf{Input block} & \textbf{Variables} \\
         \hline
-        \multicolumn{2}{l}{\textit{High-level features}} \\
-        $\tau_h$ candidate & $p_T$, $\eta$, $\phi$, mass, charge, decay mode \\
-        Vertex/lifetime    & $d_{xy}$, $d_z$ and their significances, SV flight length \\
-        Isolation          & charged, neutral and photon isolation sums, $\rho$ \\
+        \multicolumn{2}{l}{\textit{High-level features ($43$ variables)}} \\
+        $\tau_h$ candidate & $p_T$, $\eta$, energy, charge, number of charged and neutral constituents \\
+        Isolation          & energy sums of the different particle types around the candidate \\
+        Lifetime           & impact parameters of the leading track, properties of the SV \\
+        Strips             & spread in $\eta$ and $\phi$ of the energy in the strips \\
+        Electron rejection & calorimeter variables discriminating against electrons \\
+        Pileup             & pileup energy density $\rho$ \\
         \hline
         \multicolumn{2}{l}{\textit{Low-level features (inner and outer grids around the $\tau_h$ axis)}} \\
-        PF candidates & four-momentum, particle type, PV compatibility \\
-        Tracks        & track quality ($\chi^2$/ndof, number of hits) \\
-        Calorimeters  & ECAL and HCAL energy deposits \\
-        Muon system   & number of matched muon station hits \\
+        Particle types     & PF electrons, muons, photons, charged and neutral hadrons, \\
+                           & standalone electrons and muons \\
+        Kinematics         & $p_T$, $\Delta\eta$ and $\Delta\phi$ with respect to the $\tau_h$ axis, charge \\
+        Tracks             & track quality, compatibility with the PV or an SV \\
+        Detector deposits  & ECAL and HCAL energy, muon station hits \\
+        Pileup             & PUPPI weight \\
         \hline
     \end{tabular}
-    \caption{Summary of the input features used by the \textsc{DeepTau} algorithm. \textcolor{red}{revisar}}
+    \caption{Summary of the input features used by the \textsc{DeepTau} v2.5 algorithm~\cite{CMS-TAU-24-001}.}
     \label{tab:deeptau_inputs}
 \end{table}
 
+This set of input information is processed by a combination of dense and convolutional layers, and the final layer of the network acts as a multiclass classifier~\cite{CMS-TAU-20-001}, providing the probabilities that the reconstructed $\tau_h$ candidate corresponds to a genuine $\tau_h$, an electron, a muon, or a quark or gluon jet. From these probabilities, three discriminators are built, one against each type of background (\textsc{VSjet}, \textsc{VSe}, \textsc{VSmu}), by comparing the probability of the genuine $\tau_h$ class with that of the corresponding background. Each discriminator has its own set of working points, defined by the efficiency for genuine $\tau_h$, as described in Section \ref{subsec:Taus}. 
 
-This comprehensive set of input information is processed through a combination of based on dense and convolutional layers. The final step of the architecture organizes the output into a multiclass classifier \textcolor{red}{ref}, thereby providing probabilities that the reconstructed $\tau_h$ candidate corresponds to a hadronic $\tau$, an electron, a muon, or a quark or gluon jet. Respectively, the network produces three independent discriminator (\textsc{VSjet}, \textsc{VSe}, \textsc{VSmu}), each with its own associated working points. The performance of each of the three \textsc{DeepTau} discriminators is shown in the Receiver Operating Characteristic (ROC) curves in Figure \ref{fig:DeepTau_discriminator}, where the working points of the discriminators are indicated by the dots. 
-
-
-The figure also displays a comparison to older discriminators that were used before the development of \textsc{DeepTau}, showcasing the substantial enhancement achieved through the implementation of the deep learning-based \textsc{DeepTau} algorithm. Accordingly, the performance of \textsc{DeepTau}, indicated by the blue line in the figure, results in an increase in the yield of genuine $\tau_h$, which corresponds to a decrease in the misidentification rate when compared to the performance of the algorithms utilized during the early days of the LHC at CMS, as represented by the red and green lines in Figure \ref{fig:DeepTau_discriminator}.
-
+% This set of input information is processed by a combination of dense and convolutional layers, and the final layer of the network acts as a multiclass classifier~\cite{CMS-TAU-20-001}, providing the probabilities that the reconstructed $\tau_h$ candidate corresponds to a genuine $\tau_h$, an electron, a muon, or a quark or gluon jet. From these probabilities, three discriminators are built, one against each type of background (\textsc{VSjet}, \textsc{VSe}, \textsc{VSmu}), defined as
+% \begin{equation}
+%     D_\alpha = \frac{y_\tau}{y_\tau + y_\alpha}, \qquad \alpha \in \{e,\,\mu,\,\text{jet}\},
+%     \label{eq:deeptau_discriminant}
+% \end{equation}
+% %
+% where $y_\tau$ and $y_\alpha$ are the probabilities assigned to the genuine $\tau_h$ class and to the background class $\alpha$, so that $D_\alpha$ approaches unity for genuine $\tau_h$. Each discriminator has its own set of working points, defined by the efficiency for genuine $\tau_h$, as described in Section \ref{subsec:Taus}.
+As already mentioned, two versions of \textsc{DeepTau} have been used in CMS. The first, v2.1, was introduced at the end of Run 2 and trained exclusively on simulated events. Its successor, v2.5, used in Run 3 and in the analysis presented in this thesis, keeps essentially the same architecture, but was retrained with a larger and more balanced dataset, optimized hyperparameters and a revised set of inputs. As shown in Figure \ref{fig:DeepTau_versions}, the probability for jets to be misidentified as $\tau_h$ is reduced by $30$–$50\%$ over the whole efficiency range, the rejection of electrons improves mainly for the tightest working points, where the misidentification probability is reduced by almost a factor of two, and the rejection of muons remains unchanged.
+%
 \begin{figure}[h!]
     \centering
-
-    \begin{subfigure}[t]{0.4\linewidth}
+    \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/DeepTauVSjet.png}
-        \caption{\textsc{DeepTauVSjet}}
-        \label{fig:DeepTauVSjet}
-    \end{subfigure}
-    \hspace{0.02\linewidth}
-    \begin{subfigure}[t]{0.4\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/DeepTauVSe.png}
-        \caption{\textsc{DeepTauVSe}}
-        \label{fig:DeepTauVSe}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.4\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/DeepTauVSmu.png}
-        \caption{\textsc{DeepTauVSmu}}
-        \label{fig:DeepTauVSmu}
-    \end{subfigure}
-
-    \caption{Misidentification probability returned by the \textsc{DeepTau} algorithm for jets (a), electrons (b) and muons (c) as a function of the $\tau_h$ identification efficiency for the \textsc{DeepTauVSjet}, \textsc{DeepTauVSe} and \textsc{DeepTauVSmu} discriminators. Working points of the discriminators are indicated by the dots. Extracted from \textcolor{red}{ref}}
-    \label{fig:DeepTau_discriminator}
-\end{figure}
-
-Two versions of the \textsc{DeepTau} algorithm have been used in CMS during Run-2 and Run-3. Figure \ref{fig:DeepTau_discriminator} shows results corresponding to the first version, developed at the end of Run-2 and labeled~\textsc{v2.1}. However, at the start of Run-3, a new iteration was released, upgrading the algorithm considerably. This latest version, \textsc{v2.5}, benefits from an updated training strategy that was optimized in terms of dataset preparation and hyperparameter optimization, resulting in improved classification performance compared to its predecessor.
-
-Among the improvements implemented, the most impactful update to the \textsc{v2.5} model is the incorporation of domain adaptation techniques, developed within the Tau POG~\cite{CMS-TAU-24-001}. These techniques are designed to guarantee that the \textsc{DeepTau} performance remains unaffected by any potential mismodeling effect present in the Monte Carlo simulation utilized for training. The network is therefore trained on a mixture of data and simulation, allowing for the reduction of performance discrepancies between simulation and collision data, which became more pronounced under the evolving detector conditions of Run-3. This results in enhanced simulation-to-data agreement for the \textsc{DeepTau} classifiers, as demonstrated in Figure \ref{fig:domain_adapt}, which depicts the distribution of the \textsc{DeepTauVSjet} discriminator before and after applying domain adaptation. The inclusion of domain adaptation in the agreement has yielded notable improvements, most notably in the final bins. 
-
-Among the improvements implemented, the most impactful update to the \textsc{v2.5} model is
-the incorporation of domain adaptation by backpropagation, developed within the Tau
-POG~\cite{CMS-TAU-24-001}. The technique targets the residual mismodeling of the simulated
-samples used for training: an auxiliary output is trained to discriminate collision data
-from simulation and is connected to the network through a gradient reversal layer, so that
-the features learned by the classifier become insensitive to whether the input comes from
-data or from simulation. The $\tau_h$ classification labels are therefore still taken
-exclusively from simulation, where the origin of each candidate is known, while collision
-data enter only through the domain-discrimination task and require no labelling. The
-resulting improvement in data-to-simulation agreement is shown in
-Figure~\ref{fig:domain_adapt}, which compares the \textsc{DeepTauVSjet} discriminator
-distribution before and after applying domain adaptation; the largest gains appear in the
-highest-score bins, which are precisely the ones selected in analyses.
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{figures//chapter_III/domain_adaptation.png}
-    \caption{Distribution of the \textsc{DeepTau} discriminator against quark and gluon jets before (left) and after (right) domain adaptation, for the 2018 dataset used for domain adaptation training. Extracted from \textcolor{red}{ref}}
-    \label{fig:domain_adapt}
-\end{figure}
-
-\textcolor{red}{El mismo efecto puede verse al examinar las correcciones derivadas para account for differences en la performance del detector and of the reconstruction and identification algorithms between data and simulation... --> Plot de SF igual es más representativo que el que pongo - no quiero poner muchos más, quizas demasiada información de DeepTau?}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1\linewidth]{figures//chapter_III/SFs.png}
-    \caption{TAU-24-001-pas - \textcolor{red}{cogerla en buena calidad si al final la pongo}}
-    \label{fig:placeholder_1}
-\end{figure}
-%The corrections are systematically closer to unity for \textsc{v2.5} than for \textsc{v2.1} in both data-taking periods, which confirms the improvement in data-to-simulation agreement brought by the domain adaptation. Their absolute value remains below unity, an effect attributed to the modelling of hadronization and to imperfections in the simulation of the detector alignment and of the track hit reconstruction efficiency~\cite{CMS-TAU-24-001}. The agreement is visibly better for the 2018 dataset, which benefits from an optimized legacy reprocessing and from more mature algorithm calibrations than the early Run-3 data collected in 2022.
-
-
-A comparison of the performance of the two versions of \textsc{DeepTau} is also provided in the form of ROC curves for each discriminator. Figure \ref{fig:Deeptau_versions} represents \textsc{v2.5} (yellow) against \textsc{v2.1} (blue), where the latest version of the algorithm demonstrates a noteworthy enhancement in $\tau_h$ identification performance, particularly in discriminating agains jets and electrons, while maintaining comparable discriminator power against muons.
-
-\begin{figure}[h!]
-    \centering
-
-    \begin{subfigure}[t]{0.45\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/DT2p5vsjet.pdf}
-        \caption{\textsc{DeepTauVSjet}}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-TAU-24-001_Figure_006-a.pdf}
+        \caption{\textsc{VSjet}}
         \label{fig:DeepTau2p5VSjet}
     \end{subfigure}
-    \hspace{0.01\linewidth}
-    \begin{subfigure}[t]{0.45\linewidth}
+    \hfill
+    \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/DT2p5vsele.pdf}
-        \caption{\textsc{DeepTauVSe}}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-TAU-24-001_Figure_007-a.pdf}
+        \caption{\textsc{VSe}}
         \label{fig:DeepTau2p5VSe}
     \end{subfigure}
-    \hspace{0.02\linewidth}
-    \begin{subfigure}[t]{0.45\linewidth}
+    \hfill
+    \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/DT2p5vsmu.pdf}
-        \caption{\textsc{DeepTauVSmu}}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-TAU-24-001_Figure_008-a.pdf}
+        \caption{\textsc{VSmu}}
         \label{fig:DeepTau2p5VSmu}
     \end{subfigure}
-
-    \caption{Misidentification probability returned by the \textsc{DeepTau} algorithm for jets (a), electrons (b) and muons (c) as a function of the $\tau_h$ identification efficiency for the \textsc{DeepTauVSjet}, \textsc{DeepTauVSe} and \textsc{DeepTauVSmu} discriminators. Working points of the discriminators are indicated by the dots. Extracted from \textcolor{red}{ref}}
+    \caption{Misidentification probability of quark and gluon jets (a), electrons (b) and muons (c) as a function of the identification efficiency for genuine $\tau_h$, for the \textsc{DeepTau} v2.1 (blue) and v2.5 (orange) discriminants. The efficiency is evaluated with $H\to\tau\tau$ events and the misidentification probabilities with $t\bar{t}$, $Z\to ee$ and $Z\to\mu\mu$ events, respectively, all simulated with 2018 conditions, for $\tau_h$ candidates with $p_T<100$ GeV and $|\eta|<2.3$. The working points are indicated by filled circles, and the lower panels show the ratio between both versions~\cite{CMS-TAU-24-001}.}
     \label{fig:DeepTau_versions}
 \end{figure}
 
+The second novelty of v2.5 is the use of domain adaptation~\cite{CMS-TAU-24-001}. Since v2.1 was trained only on simulation, any mismodeling of its inputs translated into differences between data and simulation in its output. To reduce them, v2.5 is trained on a mixture of simulated events and collision data, so that the network learns to classify $\tau_h$ candidates while avoiding the features that are described differently in data and in simulation. The classification itself is still learned only from simulation, while the collision data come from a sample of $Z\to\tau\tau\to\mu\tau_h$ events rich in genuine $\tau_h$ — the same final state used for the validation in Section \ref{sec:Tau_validation}. As a result, the agreement between data and simulation improves in the highest-score bins, and the corrections that analyses must apply move closer to unity.
+%As a result, the agreement between data and simulation improves in the highest-score bins, where the difference in the last bin of the 2018 data used for the training is reduced from $17.4\%$ to $0.9\%$, and also in the 2022 data~\cite{CMS-TAU-24-001}, so that the corrections that analyses must apply move closer to unity.
 
-In summary, the use and continuous development of deep-learning algorithms has proven essential for the challenging task of identifying $\tau_h$ leptons. These algorithms effectively complement the HPS reconstruction, yielding highly satisfactory results in background rejection. As a result, these developments significantly reduce the misidentification rate while preserving the efficiency for genuine $\tau_h$ leptons, thereby increasing the overall performance of $\tau$-based analysis.
+%
+
+
+%The corrections are systematically closer to unity for \textsc{v2.5} than for \textsc{v2.1} in both data-taking periods, which confirms the improvement in data-to-simulation agreement brought by the domain adaptation. Their absolute value remains below unity, an effect attributed to the modelling of hadronization and to imperfections in the simulation of the detector alignment and of the track hit reconstruction efficiency~\cite{CMS-TAU-24-001}. The agreement is visibly better for the 2018 dataset, which benefits from an optimized legacy reprocessing and from more mature algorithm calibrations than the early Run-3 data collected in 2022.
+
+
+
+%In summary, the use and continuous development of deep-learning algorithms has proven essential for the challenging task of identifying $\tau_h$ leptons. These algorithms effectively complement the HPS reconstruction, yielding highly satisfactory results in background rejection. As a result, these developments significantly reduce the misidentification rate while preserving the efficiency for genuine $\tau_h$ leptons, thereby increasing the overall performance of $\tau$-based analysis.
 
 
 
 \subsection{Alternative strategies for \texorpdfstring{$\tau_h$}{τh} identification}
 \label{subsec:PNet}
-\noindent %The excellent performance delivered by the \textsc{DeepTau} algorithm is a compelling example of the benefits of advances in machine learning for object identification. In view of the expanding development of innovative techniques that are supported by increasingly sophisticated architectures, the CMS experiment has achieve notable advancements in the identification of hadronically decaying $\tau$. 
-In recent years, new taggers based on modern architectures have emerged as part of a \textit{unified jet tagging} philosophy. The concept underlying this approach involves the simultaneous classification of the origin of the jet, whereby the $\tau$ candidate is treated as a jet, integrating the challenge of genuine $\tau_h$ identification with the classification of jet flavor. This strategy offers several benefits, including enhanced management of correlations between the identification of different objects and rejecting specific sources of contamination, as well as optimized use of computing resources through the utilization of a single, versatile algorithm, both in offline reconstruction and in the high-level trigger.
-
-In this context of jet flavor classification, two new algorithms developed in recent years are particularly noteworthy: ParticleNet \textsc{PNet} \textcolor{red}{ref} and Unified Particle Transformer, \textsc{UParT} \textcolor{red}{ref}, each one based on a different architecture.
+%
+In recent years, a different approach to $\tau_h$ identification has emerged in CMS as part of a \textit{unified jet tagging} strategy, in which the $\tau_h$ is treated as one more type of jet, and a single network classifies each jet according to its origin, whether a $b$ quark, a $c$ quark, a light quark, a gluon, an electron, a muon or a hadronically decaying $\tau$ lepton. This approach consistently models the correlations between the identification of the different objects, allows the selection to be optimized against specific sources of contamination, and concentrates computing resources in a single algorithm, used both in the offline reconstruction and in the HLT. Two algorithms follow this strategy, \textsc{ParticleNet} (\textsc{PNet})~\cite{PNet} and the Unified Particle Transformer (\textsc{UParT})~\cite{Qu:2022mxj,CMS-UParT}, both already introduced in Section \ref{subsec:Jets} for the identification of $b$ jets. 
 
 
-\subsubsection{The ParticleNet algorithm}
+\subsubsection{The Particle Net algorithm}
+%
+\textsc{PNet} represents the jet as a \textit{particle cloud}, an unordered set of its constituent PF candidates, in contrast with the image in the $\eta$-$\phi$ plane used by \textsc{DeepTau} and with the ordered lists of particles used by \textsc{DeepJet} (Section \ref{subsec:Jets}). This is a natural representation of a jet, whose constituents have no intrinsic order and are distributed irregularly in space. The particle cloud is processed by a graph neural network, a family of architectures suited to sets of elements without a fixed order or geometric structure, in which the features of each particle are updated using those of its nearest neighbors, so that the network learns the relations between the constituents. Unlike \textsc{DeepTau}, whose inputs rely on the intermediate reconstruction performed by HPS, \textsc{PNet} uses only the properties of the individual constituents of the jet, without any previous $\tau_h$-specific reconstruction.
 
-\textsc{PNet} is one of the most notable developments within the unified jet tagging strategy at CMS. This architecture, first introduced in 2019, is based on a representation of the jet as an unordered, permutation-invariance set of particles — entities distributed irregularly in space. This representation of the jet is known as a particle cloud, and it provides a natural way to treat jets, where each point in the cloud corresponds to a PF candidate. This concept is distinct from previous representations of the jet as images in the $\eta-\phi$ plane — the approach followed by \textsc{DeepTau} — or as lists of its constituent particles, as in \textsc{DeepJet} \textcolor{red}{asegurarme de que lo haya introducido}. In regard to this, the particle cloud model suggests that the particles are not unrelated entities but rather are correlated, thus allowing for the capture of the internal structure of the jet.
+At the time of its introduction, \textsc{PNet} achieved state-of-the-art performance in jet tagging, clearly surpassing the existing methods~\cite{PNet}, and it has since been widely adopted in CMS. Its main application in Run 3, however, has been the identification of $b$ and $c$ jets, for which it was the recommended algorithm in 2022 and 2023 (Section \ref{subsec:Jets}). For $\tau_h$, its use is so far limited to the HLT, where it replaced the online version of \textsc{DeepTau} in 2024 (Section \ref{sec:triggers}), while offline analyses, including the one presented in this thesis, still rely on \textsc{DeepTau}.
 
-In contrast to \textsc{DeepTau}, whose input variables rely on the intermediate reconstruction performed by HPS, \textsc{PNet} takes the PF candidates themselves as input, using their kinematics and properties without any prior $\tau_h$-specific reconstruction step. Furthermore, the set of input variables depends on the specific tagging task. To fully exploit the potential of this approach to understanding jets, graph neural networks (GNNs) are employed; this family of architectures is particularly well-suited for working directly with sets of particles that lack a fixed geometric structure and exhibit permutational symmetry. Finally, \textsc{PNet} returns the probability of belonging to each class, also assigning each a working point, similar to how \textsc{DeepTau} operates. In the specific problem of $\tau_h$ identification, the classes are distinguished as hadronic $\tau$, quark or gluon jet, electron, or muon.
 
-%At the time of its introduction, ParticleNet achieved state-of-the-art performance and significantly surpassed existing methods. Its use has become widely adopted in Run-3 analysis for classifying the different jet flavors as a part of the unified jet tagging framework.
-
-At the time of its introduction, \textsc{PNet} achieved state-of-the-art performance in jet flavor tagging, significantly surpassing the methods available at the time~\cite{PNet}. It has since been widely adopted in Run-3 analyses as part of the unified jet tagging framework, primarily for the identification of jets originating from b and c quarks. Its application to $\tau_h$ identification is a more recent addition, whose performance relative
-to the established HPS+\textsc{DeepTau} approach is assessed in Section~\ref{subsec:tau_IDcomparison}.
 
 
 \subsubsection{The Unified Particle Transformer algorithm}
+%
+\textsc{UParT} also represents the jet as a particle cloud, but processes it with a transformer architecture, whose self-attention mechanism weighs the relation between every pair of constituents at once, instead of only between neighbors. Additionally, the \textsc{UParT} algorithm introduces variables that characterize the interaction between jet constituents and secondary vertices, known as pairwise interaction features, enhancing the sensitivity to internal structure of the jet
 
-Unified Particle Transformer, \textsc{UParT}, is another recent CMS development for jet classification. The first version, \textsc{v1}, was introduced in \textcolor{red}{202X}, and an updated version featuring architectural refinements and a larger training dataset, \textsc{v2}, was released in 2025. Similar to ParticleNet, \textsc{UParT} is equipped with a unified tagger for jet-based flavor classification where the jet representation is also expressed in terms of particle-clouds. However, this approach employs a transformer-based architecture \textcolor{red}{ref}, along with innovative training strategies, to ensure a comprehensive capture of the correlations between the jet constituents using self-attention mechanisms.
-
-Like \textsc{PNet}, \textsc{UParT} represents the jet as a particle cloud built from PF candidates and is trained on low-level inputs. The difference lies in how the relations between constituents are modeled: whereas the graph-based approach of \textsc{PNet} aggregates information from the nearest neighbors of each particle, the self-attention mechanism of the transformer relates all pairs of constituents simultaneously, providing a global description of the jet. Additionally, the \textsc{UParT} algorithm introduces variables that characterize the interaction between jet constituents and secondary vertices, known as pairwise interaction features, enhancing the sensitivity to internal jet structure.
-
-%Thus, as a particle-cloud tagger, the algorithm uses information directly from the PF candidates — which constitute the elements of the cloud — and is trained using low-level inputs and their correlations. Additionally, the \textsc{UParT} algorithm introduces variables that characterize the interaction between jet constituents and secondary vertices, known as pairwise interaction features, enhancing the sensitivity to internal jet structure. The transformer architecture provides greater flexibility for capturing global patterns, thereby complementing the description based on particle interactions characteristic of graph-based approaches such as~\textsc{PNet}.
+The first version of \textsc{UParT} was released in 2024~\cite{CMS-UParT}, and an updated version, v2, trained on a dataset twice as large and with a larger network, in 2025~\cite{CMS-DP-2025-081}. As shown in Figure \ref{fig:btag_evolution}, \textsc{UParT} improves on the performance of \textsc{PNet} in the identification of $b$ jets, and it has replaced it as the recommended algorithm for this task since 2024.\medskip
 
 
-In the unified jet tagging framework, the algorithm outputs the probabilities associated with each class considered during training, including hadronic $\tau$ leptons, quark or gluon jets, electrons and muons. The resulting \textsc{UParT} represents a new state-of-the-art approach, demonstrating improved performance with respect to previous models such as \textsc{PNet} in jet flavor classification tasks.
 
-\smallskip
-\noindent Two alternative strategies for identifying genuine $\tau_h$ deployed during Run-3 at CMS have been presented in the text above. Both algorithms have been demonstrated to be capable of processing information about the constituents of the jets and discerning non-trivial relations between them. Although both algorithms were originally designed and customized for AK4 jet classification, they both perform in an inclusive manner heavy flavor and hadronic $\tau$ identification combined with a flavor-aware jet energy and jet resolution regression \textcolor{red}{ref}. 
+\noindent In both algorithms, the $\tau_h$ is treated as a one more type of jet, and the network returns the probability that the jet belongs to each of the classes considered in the training, which correspond to jets originating from $b$ quarks, $c$ quarks, light quarks and gluons, and to electrons, muons and $\tau_h$ reconstructed as jets, together with a regression of the jet energy~\cite{CMS-UParT}. Therefore, algthough both algorithms were originally designed and customized for AK4 jet classification, they both perform in an inclusive manner heavy flavor and hadronic $\tau$ identification combined with a flavor-aware jet energy and jet resolution regression~\cite{CMS-UParT}. The $\tau_h$ classes are further split according to the charge and the decay mode of the $\tau$ lepton, so that the decay mode of a candidate is not reconstructed from its constituents, as in HPS, but corresponds to the $\tau_h$ class with the highest probability — labeled with the convention of Equation \ref{eq:tau_DM} —, and its charge is obtained in the same way. Since these classes are defined from the generated decay, the networks can separate the h$^{\pm}\pi^0$ and h$^{\pm}\pi^0\pi^0$ modes, which HPS merges into a single decay mode (Section \ref{subsec:Taus}). The class probabilities are then combined into three discriminants against jets, electrons and muons, analogous to those of \textsc{DeepTau} and each with its own set of working points, while the energy regression provides the visible $p_T$ of the $\tau_h$. The whole description of the candidate thus comes from the network itself, without relying on any previous $\tau_h$-specific reconstruction.
 
-In this context, the $\tau_h$ is treated as simply another jet, and the network simultaneously learns to distinguish it from the other jet flavors. This approach to the problem enables consistent evaluation of correlations across classes while providing a flexible classifier able to directly exploit low-level information without relying on specific object reconstructions, such as those used by HPS or \textsc{DeepTau}.
-
-The application of the aforementioned strategies to the challenge of $\tau_h$ identification enables the assessment of the extent to which these techniques can offer performance that is competitive with or complementary to that of \textsc{DeepTau}, as discussed further in the following Section \ref{subsec:tau_IDcomparison}. The main design feature of the three algorithms are summarized in Table~\ref{tab:algo_comparison}
-
+Whether these techniques offer a performance competitive with or complementary to that of \textsc{DeepTau} cannot be inferred from their architectures alone, since each algorithm operates on a different reconstructed object, and is assessed in Section \ref{subsec:tau_IDcomparison}. The main features of the three algorithms are summarized in Table \ref{tab:algo_comparison}.
+%
 \begin{table}[h!]
     \centering\footnotesize
     \begin{tabular}{l l l l}
@@ -228,19 +168,30 @@ The application of the aforementioned strategies to the challenge of $\tau_h$ id
          & \textbf{HPS+\textsc{DeepTau}} & \textbf{CHS+\textsc{PNet}} & \textbf{PUPPI+\textsc{UParT}} \\
         \hline
         Input object      & HPS $\tau_h$ candidate & AK4 jet & AK4 jet \\
-        Representation    & $\eta-\phi$ grids & particle cloud & particle cloud \\
-        Architecture      & CNN + dense & graph NN & transformer \\
-        Constituent       & within grid cells & nearest & all pairs + pairwise \\
-        correlations      &                   & neighbors & interaction features \\
-        Inputs            & high-level + low-level & low-level & low-level \\
-        Outputs           & \textsc{VSjet}, \textsc{VSe}, & jet flavor classes & jet flavor classes \\
-                          & \textsc{VSmu}         & (incl. $\tau_h$ per DM) & + energy regression \\
-        Decay mode        & from HPS (4 DMs) & from output classes & from output classes \\
+        Inputs            & high- and low-level & low-level & low-level \\
+        Representation    & $\eta$-$\phi$ grids & particle cloud & particle cloud \\
+        Architecture      & CNN & graph NN & transformer \\
+        Relations between & neighboring cells & nearest neighbors & all pairs, with \\
+        constituents      &                   &                   & pairwise features \\
+        Decay mode        & HPS (DMs $0$, $1$, $10$, $11$) & network (DMs $0$, $1$, $2$, $10$, $11$) & network (DMs $0$, $1$, $2$, $10$, $11$) \\
+        Charge            & HPS & network & network \\
+        Outputs           & \textsc{VSjet}, \textsc{VSe}, \textsc{VSmu} & jet flavor and $\tau_h$ classes, & jet flavor and $\tau_h$ classes, \\
+                          &                                             & $p_T$ regression & $p_T$ regression \\
         \hline
     \end{tabular}
     \caption{Summary of the main features of the three $\tau_h$ identification algorithms compared in this chapter.}
     \label{tab:algo_comparison}
 \end{table}
+
+
+
+
+%Thus, as a particle-cloud tagger, the algorithm uses information directly from the PF candidates — which constitute the elements of the cloud — and is trained using low-level inputs and their correlations. Additionally, the \textsc{UParT} algorithm introduces variables that characterize the interaction between jet constituents and secondary vertices, known as pairwise interaction features, enhancing the sensitivity to internal jet structure. The transformer architecture provides greater flexibility for capturing global patterns, thereby complementing the description based on particle interactions characteristic of graph-based approaches such as~\textsc{PNet}.
+
+
+
+
+
 
 \subsection{Comparison between \texorpdfstring{$\tau_h$}{τh} identification algorithms}
 \label{subsec:tau_IDcomparison}
