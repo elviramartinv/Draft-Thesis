@@ -57,31 +57,36 @@ The \textsc{DeepTau} neural network-based algorithm was deployed at the end of R
 \textsc{DeepTau} is a convolutional neural network that classifies each $\tau_h$ candidate reconstructed by HPS as a genuine $\tau_h$, a quark or gluon jet, an electron or a muon, so that the three discriminations described in Section \ref{sec:Tau_MisID} are performed by a single network~\cite{CMS-TAU-20-001,CMS-TAU-24-001}. To do so, it combines two types of information. The first is a set of high-level variables that describe the candidate as a whole, such as its kinematics, its isolation, or the compatibility of its tracks with the primary vertex. The second is the set of all particles reconstructed around the candidate, whose individual properties are arranged in two grids in the $\eta$-$\phi$ plane centered on the $\tau_h$ axis, an inner grid covering the region of the decay products and a wider outer grid that captures the surrounding activity, which is larger for jets than for genuine $\tau_h$. The input variables of both types are summarized in Table \ref{tab:deeptau_inputs}.
 %
 \begin{table}[h!]
-    \centering
-    \begin{tabular}{l l}
-        \hline
-        \textbf{Input block} & \textbf{Variables} \\
-        \hline
-        \multicolumn{2}{l}{\textit{High-level features ($43$ variables)}} \\
-        $\tau_h$ candidate & $p_T$, $\eta$, energy, charge, number of charged and neutral constituents \\
-        Isolation          & energy sums of the different particle types around the candidate \\
-        Lifetime           & impact parameters of the leading track, properties of the SV \\
-        Strips             & spread in $\eta$ and $\phi$ of the energy in the strips \\
-        Electron rejection & calorimeter variables discriminating against electrons \\
-        Pileup             & pileup energy density $\rho$ \\
-        \hline
-        \multicolumn{2}{l}{\textit{Low-level features (inner and outer grids around the $\tau_h$ axis)}} \\
-        Particle types     & PF electrons, muons, photons, charged and neutral hadrons, \\
-                           & standalone electrons and muons \\
-        Kinematics         & $p_T$, $\Delta\eta$ and $\Delta\phi$ with respect to the $\tau_h$ axis, charge \\
-        Tracks             & track quality, compatibility with the PV or an SV \\
-        Detector deposits  & ECAL and HCAL energy, muon station hits \\
-        Pileup             & PUPPI weight \\
-        \hline
-    \end{tabular}
-    \caption{Summary of the input features used by the \textsc{DeepTau} v2.5 algorithm~\cite{CMS-TAU-24-001}.}
-    \label{tab:deeptau_inputs}
+\centering
+\small
+\begin{tabular}{l l}
+\toprule
+\textbf{Input block} & \textbf{Variables} \\
+\midrule
+\midrule
+\multicolumn{2}{l}{\textit{High-level features ($43$ variables)}} \\
+\midrule
+$\tau_h$ candidate & $p_T$, $\eta$, energy, charge, number of charged and neutral constituents \\
+Isolation          & energy sums of the different particle types around the candidate \\
+Lifetime           & impact parameters of the leading track, properties of the SV \\
+Strips             & spread in $\eta$ and $\phi$ of the energy in the strips \\
+Electron rejection & calorimeter variables discriminating against electrons \\
+Pileup             & pileup energy density $\rho$ \\
+\midrule
+\multicolumn{2}{l}{\textit{Low-level features (inner and outer grids around the $\tau_h$ axis)}} \\
+\midrule
+Particle types     & PF electrons, muons, photons, charged and neutral hadrons, \\
+                   & standalone electrons and muons \\
+Kinematics         & $p_T$, $\Delta\eta$ and $\Delta\phi$ with respect to the $\tau_h$ axis, charge \\
+Tracks             & track quality, compatibility with the PV or an SV \\
+Detector deposits  & ECAL and HCAL energy, muon station hits \\
+Pileup             & PUPPI weight \\
+\bottomrule
+\end{tabular}
+\caption{Summary of the input features used by the \textsc{DeepTau} v2.5 algorithm~\cite{CMS-TAU-24-001}.}
+\label{tab:deeptau_inputs}
 \end{table}
+
 
 This set of input information is processed by a combination of dense and convolutional layers, and the final layer of the network acts as a multiclass classifier~\cite{CMS-TAU-20-001}, providing the probabilities that the reconstructed $\tau_h$ candidate corresponds to a genuine $\tau_h$, an electron, a muon, or a quark or gluon jet. From these probabilities, three discriminators are built, one against each type of background (\textsc{VSjet}, \textsc{VSe}, \textsc{VSmu}), by comparing the probability of the genuine $\tau_h$ class with that of the corresponding background. Each discriminator has its own set of working points, defined by the efficiency for genuine $\tau_h$, as described in Section \ref{subsec:Taus}. 
 
@@ -140,7 +145,7 @@ The second novelty of v2.5 is the use of domain adaptation~\cite{CMS-TAU-24-001}
 In recent years, a different approach to $\tau_h$ identification has emerged in CMS as part of a \textit{unified jet tagging} strategy, in which the $\tau_h$ is treated as one more type of jet, and a single network classifies each jet according to its origin, whether a $b$ quark, a $c$ quark, a light quark, a gluon, an electron, a muon or a hadronically decaying $\tau$ lepton. This approach consistently models the correlations between the identification of the different objects, allows the selection to be optimized against specific sources of contamination, and concentrates computing resources in a single algorithm, used both in the offline reconstruction and in the HLT. Two algorithms follow this strategy, \textsc{ParticleNet} (\textsc{PNet})~\cite{PNet} and the Unified Particle Transformer (\textsc{UParT})~\cite{Qu:2022mxj,CMS-UParT}, both already introduced in Section \ref{subsec:Jets} for the identification of $b$ jets. 
 
 
-\subsubsection{The Particle Net algorithm}
+\subsubsection{The \textsc{ParticleNet} algorithm}
 %
 \textsc{PNet} represents the jet as a \textit{particle cloud}, an unordered set of its constituent PF candidates, in contrast with the image in the $\eta$-$\phi$ plane used by \textsc{DeepTau} and with the ordered lists of particles used by \textsc{DeepJet} (Section \ref{subsec:Jets}). This is a natural representation of a jet, whose constituents have no intrinsic order and are distributed irregularly in space. The particle cloud is processed by a graph neural network, a family of architectures suited to sets of elements without a fixed order or geometric structure, in which the features of each particle are updated using those of its nearest neighbors, so that the network learns the relations between the constituents. Unlike \textsc{DeepTau}, whose inputs rely on the intermediate reconstruction performed by HPS, \textsc{PNet} uses only the properties of the individual constituents of the jet, without any previous $\tau_h$-specific reconstruction.
 
@@ -162,26 +167,28 @@ The first version of \textsc{UParT} was released in 2024~\cite{CMS-UParT}, and a
 Whether these techniques offer a performance competitive with or complementary to that of \textsc{DeepTau} cannot be inferred from their architectures alone, since each algorithm operates on a different reconstructed object, and is assessed in Section \ref{subsec:tau_IDcomparison}. The main features of the three algorithms are summarized in Table \ref{tab:algo_comparison}.
 %
 \begin{table}[h!]
-    \centering\footnotesize
+    \centering
+    \footnotesize
     \begin{tabular}{l l l l}
-        \hline
-         & \textbf{HPS+\textsc{DeepTau}} & \textbf{CHS+\textsc{PNet}} & \textbf{PUPPI+\textsc{UParT}} \\
-        \hline
-        Input object      & HPS $\tau_h$ candidate & AK4 jet & AK4 jet \\
-        Inputs            & high- and low-level & low-level & low-level \\
-        Representation    & $\eta$-$\phi$ grids & particle cloud & particle cloud \\
-        Architecture      & CNN & graph NN & transformer \\
-        Relations between & neighboring cells & nearest neighbors & all pairs, with \\
-        constituents      &                   &                   & pairwise features \\
-        Decay mode        & HPS (DMs $0$, $1$, $10$, $11$) & network (DMs $0$, $1$, $2$, $10$, $11$) & network (DMs $0$, $1$, $2$, $10$, $11$) \\
-        Charge            & HPS & network & network \\
-        Outputs           & \textsc{VSjet}, \textsc{VSe}, \textsc{VSmu} & jet flavor and $\tau_h$ classes, & jet flavor and $\tau_h$ classes, \\
-                          &                                             & $p_T$ regression & $p_T$ regression \\
-        \hline
+    \toprule
+     & \textbf{HPS+\textsc{DeepTau}} & \textbf{CHS+\textsc{PNet}} & \textbf{PUPPI+\textsc{UParT}} \\
+    \midrule
+    Input object      & HPS $\tau_h$ candidate & AK4 jet & AK4 jet \\
+    Inputs            & high- and low-level & low-level & low-level \\
+    Representation    & $\eta$-$\phi$ grids & particle cloud & particle cloud \\
+    Architecture      & CNN & graph NN & transformer \\
+    Relations between & neighboring cells & nearest neighbors & all pairs, with \\
+    constituents      &                   &                   & pairwise features \\
+    Decay mode        & HPS (DMs $0$, $1$, $10$, $11$) & network (DMs $0$, $1$, $2$, $10$, $11$) & network (DMs $0$, $1$, $2$, $10$, $11$) \\
+    Charge            & HPS & network & network \\
+    Outputs           & \textsc{VSjet}, \textsc{VSe}, \textsc{VSmu} & jet flavor and $\tau_h$ classes, & jet flavor and $\tau_h$ classes, \\
+                      &                                             & $p_T$ regression & $p_T$ regression \\
+    \bottomrule
     \end{tabular}
     \caption{Summary of the main features of the three $\tau_h$ identification algorithms compared in this chapter.}
     \label{tab:algo_comparison}
 \end{table}
+
 
 
 
@@ -195,83 +202,66 @@ Whether these techniques offer a performance competitive with or complementary t
 
 \subsection{Comparison between \texorpdfstring{$\tau_h$}{τh} identification algorithms}
 \label{subsec:tau_IDcomparison}
-%DP2025-073 
-To understand the complementarity of the described algorithms for identifying hadronic $\tau$ leptons based on advanced ML techniques, the subsequent section presents a comparison of the performance of each of them: \textsc{DeepTau v2.5}, \textsc{PNet} and \textsc{UParT v2}. The comparison will be made in terms of efficiency in the reconstruction and identification of genuine $\tau_h$ versus the ability to reject misidentified objects, as well as the accuracy in classifying $\tau$ decay modes, with the aim of discerning the strenghts of each algorithm and understanding how they complement one another. 
+%DP2025-073
+To understand the complementarity of the described algorithms for identifying hadronic $\tau$ leptons based on advanced ML techniques, the subsequent section presents a comparison of the performance of each of them: \textsc{DeepTau} v2.5, \textsc{PNet} and \textsc{UParT} v2~\cite{CMS-DP-2025-073}. The comparison uses simulated Drell--Yan events with a dilepton mass between $50$ and $120$ GeV, generated at NLO with \POWHEG{} interfaced with \PYTHIA{}, which contain genuine $\tau_h$ from $Z\to\tau\tau$ decays as well as electrons, muons and quark or gluon jets that can be misidentified as $\tau_h$, each reconstructed candidate being classified by matching it to the generated particles. The study covers theefficiency for genuine $\tau_h$, the rejection of each type of misidentified object and the assignment of the decay mode.
 
-As previously discussed, a key distinction between the algorithms lies in the neural network architectures they exploit to perform the identification. However, this task requires the use of different reconstructed objects as input for each respective algorithm. To ensure a valid comparison, it is essential to consider the distinct reconstructed objects on which each algorithm operates. As indicated previously, \textsc{DeepTau} operates directly on HPS $\tau_h$ candidates; \textsc{PNet} and \textsc{UParT}, on the other hand, are fed AK4 jets that have been reconstructed by CMS taking into account the subtraction of pileup particles using dedicated algorithms, described in Section \ref{subsec:Jets}: charged-hadron substraction (CHS) and pileup-per-particle identification (PUPPI). Therefore, given the varying reconstruction efficiencies of these objects, a unified collection of $\tau$ candidates is defined, obtained as the union of HPS $\tau$ candidates, CHS jets, and PUPPI jets, to which a very loose selection is applied.
-
-Accordingly, the performance of the classifiers is evaluated by taking into account the reconstruction efficiency of their associated reconstruction algorithm. This evaluation is based on ROC curves that show the fraction of no-$\tau_h$ objects that pass the discriminant (misidentification probability) compared to the fraction of genuine $\tau_h$ from the unified collection that pass the discriminant (efficiency) for each individual discriminant: \textsc{VSjet}, \textsc{VSe} and \textsc{VSmu}. This is depicted in Figure \ref{fig:ROC_tauID}, which demonstrates the performance of each discriminant for quark and gluon jets, electrons, and muons misidentified as $\tau_h$ using HPS+\textsc{DeepTau} (blue in the figure), CHS+\textsc{PNet} (yellow), PUPPI+\textsc{PNet} (red), and PUPPI+\textsc{UParT} (purple), where the solid markers indicate the respective working points. As illustrated in Figure \ref{fig:ROC_tauID}, the intrinsic efficiency of the HPS reconstruction is approximately \textcolor{red}{70\%}, and it can be easily recovered using \textsc{PNet}/\textsc{UParT}. The ROC curves also yield different conclusions depending on the discriminant evaluated. Thus, for discrimination agains quark and gluon jets, CHS+\textsc{PNet} demonstrates the most optimal global performance, with HPS+\textsc{DeepTau} offering a close second in the high-purity regime, configuration frequently employed in analyses; whereas in discrimination against electrons and muons, \textsc{UParT} emerges as the leader in performance, with HPS+\textsc{DeepTau} ranking second in the high-purity regime.
-
-UParT achieves the best performance, followed by HPS+DeepTau in high-rejection mode, where its efficiency is not limited by the inefficiency of the HPS reconstruction.
-
-The comparison must be read along two different axes. At a fixed efficiency within the
-range accessible to all algorithms, the performances are comparable: CHS+\textsc{PNet}
-provides the lowest jet misidentification rate, reducing it by 15--25\% with respect to
-HPS+\textsc{DeepTau}, whereas PUPPI+\textsc{UParT} performs worse than
-HPS+\textsc{DeepTau} against jets and clearly better against electrons and muons. The
-qualitative difference appears instead in the accessible range: HPS+\textsc{DeepTau}
-saturates at a $\tau_h$ efficiency of about 70\%, set by the HPS reconstruction itself,
-while the jet-based taggers extend up to approximately 90\%, recovering candidates that HPS
-does not reconstruct at all.
+However, since \textsc{DeepTau} operates on HPS candidates, while \textsc{PNet} and \textsc{UParT} operate on AK4 jets clustered after removing the pileup contribution with CHS or PUPPI (Section \ref{subsec:Jets}), their efficiencies are not directly comparable. Therefore, a unified collection of candidates is built, starting from the HPS candidates and adding the CHS and PUPPI jets that do not overlap with the candidates already included, to which a very loose selection is applied: $p_T > 20$ GeV, $|\eta| < 2.5$ and $|d_z| < 0.2$ cm. Accordingly, the efficiency of each algorithm is defined with respect to the genuine $\tau_h$ in this collection, so that it accounts for both the reconstruction on which the algorithm relies and the discriminant itself. Since analyses require a reliable charge assignment, the HPS candidates reconstructed in the two-prong decay modes, whose charge is often misassigned (Section \ref{sec:Tau_MisID}), are excluded, and the candidates recovered only as jets are required to have a charge assigned by the network with sufficient confidence.
 
 
+The resulting ROC curves are shown in Figure \ref{fig:ROC_tauID}, where HPS+\textsc{DeepTau} is compared with \textsc{PNet} applied to CHS and PUPPI jets and with \textsc{UParT} applied to PUPPI jets. The clearest difference between the algorithms is the range of efficiency they can reach. Since \textsc{DeepTau} can only select the $\tau_h$ previously reconstructed by HPS, its curves end at an efficiency of about $70\%$, the efficiency of the HPS reconstruction itself,\footnote{This value is lower than the reconstruction efficiency given in Section \ref{sec:Tau_MisID} because it is defined with respect to a different reference, which also includes the $\tau_h$ recovered only as jets, and because of the charge requirements described above, without which it rises to about $75\%$~\cite{CMS-DP-2025-073}.} while those of the jet-based taggers extend up to about $90\%$, as they also identify $\tau_h$ that HPS does not reconstruct. Part of this loss is deliberate, since the requirements of HPS on the charge and invariant mass of each decay hypothesis (Section \ref{subsec:Taus}) already reject about $80\%$ of the quark and gluon jets, at the cost of also losing part of the genuine $\tau_h$~\cite{CMS-DP-2025-073}.
+%
 \begin{figure}[htbp]
     \centering
-    
-    \begin{subfigure}{0.32\textwidth}
+    \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/ROC_IDvsJET.png}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-073_roc_VSjet.pdf}
         \caption{\textsc{VSjet}}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.32\textwidth}
+    \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/ROC_IDvsE.png}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-073_roc_VSe.pdf}
         \caption{\textsc{VSe}}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.32\textwidth}
+    \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/ROC_IDvsMU.png}
-        \caption{\textsc{VSmu}\textcolor{red}{ calidad de imagen}}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-073_roc_VSmu.pdf}
+        \caption{\textsc{VSmu}}
     \end{subfigure}
-    
-    \caption{ROC curves illustrating the performance of the \textsc{DeepTau}, \textsc{PNet}, and \textsc{UParT} algorithms to discriminate quark and gluon jets (a), electrons (b) and muons (c) misidentified as $\tau_h$ candidates. The efficiencies are evaluated taking into account the preceding reconstruction and pileup mitigation algorithms used, labeled HPS, CHS, and PUPPI. Extracted from \textcolor{red}{ref}}
-    
+    \caption{Misidentification rate of quark and gluon jets (a), electrons (b) and muons (c) as a function of the efficiency for genuine $\tau_h$, for HPS+\textsc{DeepTau} v2.5 (blue), CHS+\textsc{PNet} (orange), PUPPI+\textsc{PNet} (red) and PUPPI+\textsc{UParT} v2 (purple), evaluated in simulated Drell--Yan events. The efficiency is defined with respect to all the genuine $\tau_h$ in the unified collection of HPS candidates and CHS and PUPPI jets, counting as selected only the candidates that fulfil the charge requirements described in the text. The markers indicate the working points of each discriminant, and the lower panels show the ratio of the misidentification rate of each algorithm to that of HPS+\textsc{DeepTau}~\cite{CMS-DP-2025-073}.}
     \label{fig:ROC_tauID}
 \end{figure}
 
-The key finding from this comparison is the competitive performance of these algorithms across various scenarios. Therefore, the subsequent concern to be adressed is the overlap between the $\tau_h$ candidates identified by each algorithm.
+Beyond this difference in range, the curves can be compared at a fixed efficiency within the range accessible to all algorithms, where none of them dominates and the ranking depends on the type of misidentified object. Against quark and gluon jets, CHS+\textsc{PNet} achieves the lowest misidentification rate, between about $20$ and $45\%$ below that of HPS+\textsc{DeepTau}, the difference growing with the efficiency, while HPS+\textsc{DeepTau} remains the second best option in the high-purity regime, configuration used by most analyses. The same \textsc{PNet} network performs worse on PUPPI jets than on CHS jets, and PUPPI+\textsc{UParT} yields the highest misidentification rate, up to $50\%$ above that of HPS+\textsc{DeepTau}, which shows that the object on which each algorithm operates matters as much as its architecture. Against electrons and muons the picture changes, as PUPPI+\textsc{UParT} provides the best rejection, with misidentification rates up to several times lower than those of HPS+\textsc{DeepTau}, which in turn outperforms \textsc{PNet} at the lowest efficiencies.
 
-This is illustrated in Figure \ref{fig:venn_combined}, which displays the overlap and complement between $\tau_h$ candidates from the various reconstruction and identification combinations for the described algorithms. This behavior is represented graphically via Venn diagrams, which present the proportion
-of candidates identified exclusively by each algorithm or concurrently by multiple algorithms following the application of the Medium WP of the discriminant \textsc{VSjet}. It has been determined that CHS+\textsc{PNet} and PUPPI+\textsc{UParT} can successfully recover between 24-32\% of genuine $\tau_h$ candidates that have not been reconstructed by the HPS algorithm or identified by \textsc{DeepTau}. However, it should be noted that these recovered candidates are more likely to be misidentified jets. This illustrates the complementary nature of the algorithms: while \textsc{DeepTau} maintains high purity, \textsc{PNet} and \textsc{UParT} demonstrate highly efficient performance capable of recovering lost candidates.
+These differences become smaller at the working points used in practice. In this study, the working points of the three algorithms are defined in the same way, as the thresholds that keep a fixed fraction of the genuine $\tau_h$ reconstructed by each of them, which for the Medium WP of \textsc{VSjet} is $70\%$ — the same target used in the definition of the \textsc{DeepTau} working points. The fraction of misidentified objects finally selected by each algorithm results from two factors, the fraction that its reconstruction turns into $\tau_h$ candidates and the fraction of these candidates that pass the discriminant. The second factor is similar for the three algorithms at the working points used in the analysis presented in this thesis (Section \ref{sec:bbtt_objects}), with between $2$ and $3\%$ of the reconstructed jets passing the Medium working point of \textsc{VSjet}, and similar rates among the three algorithms for electrons and muons at the VVLoose working point of \textsc{VSe} and the Tight of \textsc{VSmu}~\cite{CMS-DP-2025-073}. The first factor, in contrast, is very different for jets. HPS already rejects most of them through its requirements on the charge and invariant mass of each decay hypothesis, and reconstructs as candidates only about $15\%$ of the misidentified jets in the unified collection, compared with between $32$ and $48\%$ for the AK4 jets on which \textsc{PNet} and \textsc{UParT} operate. As a result, at the same working point the jet-based taggers select more genuine $\tau_h$, but also about two to three times more misidentified jets.
 
-
-\begin{figure}[h!]
+This is shown in Figure \ref{fig:venn_combined}, which compares the candidates selected by each algorithm at the Medium WP of \textsc{VSjet}. The number in each region gives the fraction of all the candidates selected by at least one of the algorithms that falls in it, and the one below the name of each algorithm the total fraction it selects. For genuine $\tau_h$, about $60\%$ of the candidates are selected by all three algorithms, while about $30\%$ are selected only by \textsc{PNet}, \textsc{UParT} or both, and are therefore lost by HPS+\textsc{DeepTau}. For quark and gluon jets the picture is reversed, as HPS+\textsc{DeepTau} selects only about $30\%$ of all the misidentified jets, compared with $56\%$ for \textsc{PNet} and $72\%$ for \textsc{UParT}. HPS+\textsc{DeepTau} thus provides a purer selection, while the jet-based taggers recover genuine $\tau_h$ that would otherwise be lost, which makes the algorithms complementary rather than interchangeable.
+%
+\begin{figure}[htbp]
     \centering
-
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/Venn_1.png}
-        \caption{Genuine $\tau_h$ candidates}
-        \label{fig:venn1}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-073_venn_genuine_Medium.pdf}
+        \caption{Genuine $\tau_h$}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/Venn_2.png}
-        \caption{Quark and gluon jets misidentified as $\tau_h$}
-        \label{fig:venn2}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-073_venn_jet_Medium.pdf}
+        \caption{Quark and gluon jets}
     \end{subfigure}
-
-    \caption{Venn diagrams illustrating the overlap and complement between $\tau_h$ candidates from the HPS+\textsc{DeepTau} (blue circle), CHS+\textsc{PNet} (orange circle) and PUPPI+\textsc{UParT} (red circle) algorithms for genuine $\tau_h$ candidates (a) and jets misidentified (b). The red number and fill color of each partition indicate the fraction of candidates it contains relative to the union of all partitions in the diagram. Extracted from \textcolor{red}{ref}}
+    \caption{Overlap between the genuine $\tau_h$ (a) and the quark and gluon jets misidentified as $\tau_h$ (b) selected by HPS+\textsc{DeepTau} v2.5 (blue), CHS+\textsc{PNet} (orange) and PUPPI+\textsc{UParT} v2 (red), with the Medium working point of \textsc{VSjet}, the VVVLoose working point of \textsc{VSe} and the Loose working point of \textsc{VSmu}. The number and color of each region indicate the percentage of the candidates selected by at least one algorithm that it contains, and the percentage below the name of each algorithm the total fraction it selects~\cite{CMS-DP-2025-073}.}
     \label{fig:venn_combined}
 \end{figure}
 
-\textsc{PNet} and \textsc{UParT} have been shown to outperform in terms of $\tau_h$ recovery. Additionally, in terms of decay mode assignment, they both exhibit superior capability compared to the HPS algorithm, as they provide finer resolution in the separation of decay modes and distinguish between the $h^{\pm}\pi^0$ and $h^{\pm}\pi^0\pi^0$ DMs, which were merged by HPS.\medskip
+The jet-based taggers also differ from HPS in the assignment of the decay mode, which has been assessed by comparing the decay mode assigned to each reconstructed candidate with that of the corresponding generated $\tau_h$~\cite{CMS-DP-2025-073}. Since \textsc{PNet} and \textsc{UParT} obtain the decay mode from their output classes (Section \ref{subsec:PNet}), they can separate the h$^{\pm}\pi^0$ and h$^{\pm}\pi^0\pi^0$ modes merged by HPS, although only with limited precision. For the other modes, they assign the correct decay mode more often than HPS, in particular for three-prong decays in which one of the charged hadrons is not reconstructed, which HPS labels as two-prong candidates and the jet-based taggers assign to the correct three-prong mode. They also lose fewer $\tau_h$, as a smaller fraction of the generated decays is left without a reconstructed candidate. For the analysis presented in this thesis, which does not separate the events by decay mode, this improvement is of secondary importance, but it is relevant for measurements that rely on the individual decay products, such as that of the CP structure of the coupling between the Higgs boson and the $\tau$ lepton~\cite{CMS-HIG-20-006}.\medskip
 
 
-Overall, the revised comparison indicates that the performance of the algorithms varies across misidentified objects and in their description of the internal structure of the $\tau_h$ candidate. Each of the classifiers has been found to have different strengths. \textsc{PNet} provides the best rejection of misidentified quark and gluon jets, while \textsc{DeepTau v2.5} and \textsc{UParT v2} provide the best rejection of misidentified electrons and muons. When it comes to assign the DM, \textsc{PNet} and \textsc{UParT v2} show overall superiority. This underscores the potential value of exploring diverse machine learning architectures in enhancing $\tau_h$ candidate identification, and the efficacy of combining these architectures to achieve the most advanced $\tau_h$ identification to date.
+% DEJAR EL PARRAFO PERO NO PONER ESTA FIGURA
+
+\noindent Overall, the revised comparison indicates that the performance of the algorithms varies across misidentified objects and in their description of the internal structure of the $\tau_h$ candidate. Each of the classifiers has been found to have different strengths. \textsc{PNet} and \textsc{UParT} have been shown to outperform in terms of $\tau_h$ recovery. \textsc{PNet} provides the best rejection of misidentified quark and gluon jets, while \textsc{DeepTau v2.5} and \textsc{UParT v2} provide the best rejection of misidentified electrons and muons. When it comes to assign the DM, \textsc{PNet} and \textsc{UParT v2} show overall superiority, as they provide finer assignment of the decay mode. The three algorithms are therefore complementary, and their combination could improve the identification of $\tau_h$ beyond what each of them achieves separately~\cite{CMS-DP-2025-073}. For the time being, however, \textsc{DeepTau} remains the standard for offline analyses, and validating the three algorithms in collision data, as done in the next section, is a necessary step before the jet-based taggers can be used in physics analyses.
 
 % Finally, it should be noted that while this text has focused on standard CMS strategies, additional algorithms have been developed to target topologies not adequately covered by standard reconstruction and identification techniques. These additional algorithms are briefly mentioned below: \textsc{DisTau} \textcolor{red}{ref}, used to identify $\tau_h$ candidates that have been produced displaced from the primary interaction vertex; \textsc{Boosted DeepTau} \textcolor{red}{ref}, specially designed for $\tau_h$ candidates that have been produced as part of a boosted $\tau\tau$ system; and a modified version of HPS algorithm tailored to low-$p_T$ $\tau_h$ candidates \textcolor{red}{ref}, accompanied by a dedicated energy flow neural network called \textsc{TauNet} \textcolor{red}{ref}. \cite{CMS-DP-2025-047}
 
