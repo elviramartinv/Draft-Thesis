@@ -425,16 +425,11 @@ so that one-prong decays are labeled $0$, $1$ and $2$, and three-prong decays $1
 
 \begin{figure}[h!]
     \centering
-    \begin{tikzpicture}
-        \node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=\linewidth]{figures/chapter_III/Tau_DMs.png}};
-        \begin{scope}[x={(img.south east)}, y={(img.north west)}]
-            \foreach \x/\dm in {0.115/DM0, 0.297/DM1, 0.536/DM10, 0.800/DM11}
-                \node[below, font=\footnotesize\bfseries] at (\x, 0) {\dm};
-        \end{scope}
-    \end{tikzpicture}
-    \caption{Schematic representation of the four HPS decay modes considered at analysis level, from left to right: one prong (h$^{\pm}$), one prong plus strip (h$^{\pm}\pi^0$), three prongs (h$^{\pm}$h$^{\mp}$h$^{\pm}$) and three prongs plus strip (h$^{\pm}$h$^{\mp}$h$^{\pm}\pi^0$). Charged hadrons leave a track and deposit their energy in the HCAL, while the photons from $\pi^0$ decays are absorbed in the ECAL~\cite{Neutelings:tau_decay}.}
+    \includegraphics[width=\linewidth]{figures/chapter_II/tau_DMs_tikz.pdf}
+    \caption{Schematic representation of the four HPS decay modes considered at analysis level, from left to right: one prong (h$^{\pm}$), one prong plus strip (h$^{\pm}\pi^0$), three prongs (h$^{\pm}$h$^{\mp}$h$^{\pm}$) and three prongs plus strip (h$^{\pm}$h$^{\mp}$h$^{\pm}\pi^0$). Charged hadrons leave a track and deposit their energy in the HCAL, while the photons from $\pi^0$ decays are absorbed in the ECAL. Adapted from Ref.~\cite{Neutelings:tau_decay}.}
     \label{fig:tau_DMs}
 \end{figure}
+
 
 
 However, HPS is designed to reconstruct genuine $\tau_h$ with high efficiency, so that a sizable fraction of quark and gluon jets, as well as some electrons and muons, also yield candidates that satisfy all its requirements — a problem examined in Section \ref{sec:Tau_MisID}. These candidates are rejected in a subsequent identification step, performed since the end of Run 2 by \textsc{DeepTau}, a convolutional neural network that combines high-level properties of the $\tau_h$ candidate — such as its DM, isolation or impact parameter — with the low-level information of all the PF candidates, electrons and muons around it, and which is used in Run 3 in its version 2.5~\cite{CMS-TAU-20-001,CMS-TAU-24-001}. The network provides three discriminants, against jets, electrons and muons, each with its own set of working points defined by the efficiency for genuine $\tau_h$: for the discriminant against jets, this efficiency ranges from $98\%$ for the loosest point, VVVLoose, to $40\%$ for the tightest, VVTight, with the Medium point at $70\%$. In parallel, the \textsc{ParticleNet} and \textsc{UParT} taggers introduced in Section \ref{subsec:Jets} also identify $\tau_h$ directly from AK4 jets, without relying on HPS, and provide the DM and charge of the candidate as outputs of the network itself. These algorithms, their comparison with \textsc{DeepTau}, and their validation with Run 3 data are the subject of Chapter \ref{ch:Tau}.
