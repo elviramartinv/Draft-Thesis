@@ -281,284 +281,199 @@ As part of this thesis work, the $\tau_h$ reconstruction and identification perf
 %
 To evaluate the performance of the $\tau_h$ modeling in CMS, the simulation is compared with data collected during different data-taking periods for various distributions of relevant variables. The validation is performed in a sample enriched in $Z\to\tau\tau$ events in which one $\tau$ lepton decays into a muon and the other hadronically — the $\mu\tau_h$ final state. It provides a large sample of genuine $\tau_h$, since the muon allows the events to be recorded with high efficiency and its reconstruction is well understood, so that differences between data and simulation can be attributed to the $\tau_h$. These events constitute the signal of the validation. The main backgrounds come from processes in which a quark or gluon jet is misidentified as $\tau_h$, mainly $W$+jets production, in which the muon comes from the decay of the $W$ boson, QCD multijet events and top quark pair production, together with $Z\to\mu\mu$ events in which one of the muons is misidentified as $\tau_h$.
 
-The data used in this section were collected in 2024 SOLO MUESTRO PARA 2024? MOTIVAR QUE SOLO LO MUESTRE PARA 2024 with single-muon triggers with $p_T$ thresholds of $24$ and $27$ GeV, and correspond to an integrated luminosity of $109$ fb$^{-1}$. They are compared with simulated samples of the Summer24 campaign, produced with the 2024 detector conditions and processed in the NanoAOD format (version 15), which includes the outputs of \textsc{PNet} and \textsc{UParT} v2 for $\tau_h$ identification. The Drell--Yan process, which contains both the $Z\to\tau\tau$ signal and the $Z\to\mu\mu$ background, is simulated at NLO with \POWHEG{} interfaced with \PYTHIA{}, and the simulated samples also include $W$+jets, top quark pair and single top quark production, and diboson processes, each normalized to the most precise available cross section. The Drell--Yan contribution is further split according to the generated object matched to the $\tau_h$ candidate, so that genuine $\tau_h$, leptons and jets misidentified as $\tau_h$ are shown separately. A QUE TE REFIERES CON ESTO? CUALES SON LAS CONTRIBUCIONES QUE SE MUESTRAN SEPARADAS EN LOS PLOTS? The QCD multijet background, which is challenging to model in simulation, is estimated from data in a sideband with the same selection but with muon and $\tau_h$ candidates of the same charge, where the contributions of the other processes predicted by the simulation are subtracted, and the result is extrapolated to the signal region, with opposite charges.
+The comparison between data and simulation has been performed for all the data-taking periods of Run 3, using the same simulated samples for all of them, from the Summer24 campaign, which are produced with the detector conditions of 2024. This year is therefore the only period in which data and simulation correspond to the same conditions, so that the differences between them can be attributed to the modeling of the $\tau_h$ rather than to changes in the detector, and it is the one presented in this section. The same comparison with the first $26.5$ fb$^{-1}$ of data collected in 2025 leads to the same conclusions~\cite{CMS-DP-2025-074}, and the other periods are discussed together in Section \ref{subsec:TES_checks}. In all periods, the data were recorded with single-muon triggers with $p_T$ thresholds of $24$ and $27$ GeV, and the 2024 data correspond to an integrated luminosity of $109$ fb$^{-1}$. The simulated samples are processed in the NanoAOD format (version 15), which includes the outputs of \textsc{PNet} and \textsc{UParT} v2 for $\tau_h$ identification, and the data of all periods are processed with the same version, which for 2022 and 2023 required a dedicated reprocessing. The Drell--Yan process is simulated at NLO with \POWHEG{} interfaced with \PYTHIA{}, and the simulated samples also include $W$+jets, top quark pair and single top quark production, and diboson processes, each normalized to the most precise available cross section. Since the Drell--Yan process contributes both to the signal and to the background, it is shown in the figures split into three contributions according to the generated particle matched to the $\tau_h$ candidate, which can be a genuine $\tau_h$ — $Z\to\tau_\mu\tau_h$, the signal — an electron or a muon — $Z\to\ell\ell$, $\ell\to\tau_h$, mostly from $Z\to\mu\mu$ decays — or a jet — Drell--Yan, $j\to\tau_h$. The QCD multijet background, which is challenging to model in simulation, is estimated from data in a sideband with the same selection but with muon and $\tau_h$ candidates of the same charge, where the contributions of the other processes predicted by the simulation are subtracted, and the result is extrapolated to the signal region, with opposite charges.
 
 The simulation is corrected for the differences with data that are not related to the $\tau_h$, namely the pileup profile, the muon identification and isolation efficiencies, and the $p_T$ spectra of the $Z$ boson and of the top quark pair. No correction specific to the $\tau_h$ is applied, neither to its identification efficiency nor to its energy scale, so that the residual differences between data and simulation directly reflect how well the $\tau_h$ is modeled before calibration.
-
-The muon is required to have $p_T > 26$ GeV and $|\eta| < 2.4$, to pass the Medium identification working point and to have a relative isolation below $0.15$, while the $\tau_h$ candidate must have $p_T > 20$ GeV and $|\eta| < 2.5$ and pass the VVLoose, Tight and Medium working points of the \textsc{DeepTau} v2.5 discriminants against electrons, muons and jets, respectively, the same used in the analysis presented in this thesis (Section \ref{sec:bbtt_objects}). Both must be compatible with the primary vertex, have opposite charges and be separated by $\Delta R > 0.5$, and events with additional leptons are rejected. Finally, the transverse mass of the muon and $p_T^\text{miss}$, $m_T(\mu,p_T^\text{miss})$, is required to be below $65$ GeV. Its distribution, shown in Figure \ref{fig:val_kinematics} without this requirement, has a broad peak just below the $W$ boson mass from $W$+jets events, in which the muon and the neutrino come from the decay of the same $W$ boson, while in $Z\to\tau\tau$ events they come from two different $\tau$ leptons and the transverse mass is lower. The requirement therefore removes most of the $W$+jets background, the main source of jets misidentified as $\tau_h$.
-
-
 
 %\textcolor{red}{No dar tanto detalle?}
 %To ensure the accuracy of the validation, events in both data and MC simulations are selected within a well-controlled region enriched in $Z\rightarrow \tau\tau \rightarrow \mu \tau_h$ events using a combination of triggers to select muons with $p_T>24$ GeV. A series of selection criteria is the applied to the $\mu$ and $\tau$ candidates, as briefly described in the following. First, both candidates must have opposite electric charges to ensure that the selected topology is compatible with the $Z\rightarrow \tau\tau$ decay and to suppress other background contributions. The $\mu$ is selected using standard CMS cuts: $p_T>26$ GeV, $|\eta|<2.4$, isolation $<0.15$, and the Medium Working Point for the Muon ID in CMS \textcolor{red}{ref}. The $\tau$ is selected with $p_T > 20$ GeV and $|\eta|<2.5$, and it satisfies the following Working Points corresponding to \textsc{DeepTau v2.5}: VVLoose \textsc{VSe}, Tight \textsc{VSmu}, and Medium \textsc{VSjet}, corresponding to reconstruction efficiencies of 99\%, 99.5\% y 70\% respectively. This selection is replaced by an analogous one for the \textsc{PNet} and \textsc{UParT v2} algorithms. Finally, to define the enriched region in $Z\rightarrow \tau\tau \rightarrow \mu \tau_h$, a cut is made on the transverse mass in the muon - Missing Transverse Energy (MET) system, $m_T(\mu,MET)$, requiring $m_T(\mu,MET)<65$ GeV, as illustrated in Figure \ref{fig:mT_cut_baseline}. This is motivated to exclude
 
-To guarantee the precision of the validation, events in both data and MC simulations are selected within a well-controlled region enriched in $Z\rightarrow \tau\tau \rightarrow \mu \tau_h$ events. A series of standard selection criteria is applied to the $\mu$ and $\tau$ candidates to ensure a well-reconstructed set of objects: The muon is required to have $p_T > 26$ GeV and $|\eta| < 2.4$, to pass the Medium identification working point and to have a relative isolation below $0.15$, while the $\tau_h$ candidate must have $p_T > 20$ GeV and $|\eta| < 2.5$ and pass the VVLoose, Tight and Medium working points of the \textsc{DeepTau} v2.5 discriminants against electrons, muons and jets, respectively, the same used in the analysis presented in this thesis (Section \ref{sec:bbtt_objects}). Both must be compatible with the primary vertex, have opposite charges and be separated by $\Delta R > 0.5$, and events with additional leptons are rejected. Finally, the transverse mass of the muon and $p_T^\text{miss}$, $m_T(\mu,p_T^\text{miss})$, is required to be below $65$ GeV. Its distribution, shown in Figure \ref{fig:val_kinematics} without this requirement, has a broad peak just below the $W$ boson mass from $W$+jets events, in which the muon and the neutrino come from the decay of the same $W$ boson, while in $Z\to\tau\tau$ events they come from two different $\tau$ leptons and the transverse mass is lower. The requirement effectively removes most of the $W$+jets background, the main source of jets misidentified as $\tau_h$.
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}[t]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_mT_2024.pdf}
-        \caption{$m_T(\mu,p_T^\text{miss})$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_muon_pt_2024.pdf}
-        \caption{$p_T$ of the muon}
-    \end{subfigure}
-    \\[0.3cm]
-    \begin{subfigure}[t]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_tau_pt_2024.pdf}
-        \caption{$p_T$ of the $\tau_h$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_tau_mass_2024.pdf}
-        \caption{Mass of the $\tau_h$}
-    \end{subfigure}
-    \caption{Distributions in the 2024 data and simulation of the transverse mass of the muon and $p_T^\text{miss}$ before the requirement $m_T(\mu,p_T^\text{miss}) < 65$ GeV (a), and of the $p_T$ of the muon (b), the $p_T$ of the $\tau_h$ (c) and the mass of the $\tau_h$ (d) after it, the latter with the $Z\to\tau\tau$ contribution split according to the generated decay mode. The lower panels show the ratio between data and simulation, and the hatched band the statistical uncertainty of the simulated samples. No correction specific to the $\tau_h$ is applied~\cite{CMS-DP-2025-074}.}
-    \label{fig:val_kinematics}
-\end{figure}
-
-Figure \ref{fig:val_kinematics} also shows the $p_T$ of the muon and of the $\tau_h$ and the mass of the $\tau_h$ after the full selection. The shapes of the distributions are well described by the simulation, and the ratio between data and simulation stays close to unity, with deviations of up to about $10\%$ that are expected in the absence of corrections specific to the $\tau_h$. The largest of them appears at high $m_T(\mu,p_T^\text{miss})$, where the simulation slightly overestimates the $W$+jets contribution. The mass of the $\tau_h$ shows the narrow peak of the one-prong decays without neutral pions, at the mass of the charged pion, and the broader distributions of the other decay modes, around the masses of the intermediate resonances, all of them well reproduced.
-
-The three identification algorithms are compared in Figure \ref{fig:algorithms}. For \textsc{PNet} and \textsc{UParT}, the Medium working point of the \textsc{DeepTau} discriminant against jets is replaced by a threshold on their own discriminant against jets, chosen so that the selected yield of $Z\to\tau\tau$ events is the same as with \textsc{DeepTau}, which allows the backgrounds selected by the three algorithms to be compared directly. The figure shows, from top to bottom, the distributions of the discriminants against jets, the visible mass of the $\mu\tau_h$ system, $m_\text{vis}$, obtained with each selection, and the decay modes assigned by HPS and by the jet-based taggers.
-
-VER QUE PASA CON ESTOS WPS
-. To facilitate reliable identification performance, the $\tau_h$ must satisfy the following Working Points (WPs) in accordance with \textsc{DeepTau v2.5}: VVLoose \textsc{VSe}, Tight \textsc{VSmu}, and Medium \textsc{VSjet}, corresponding to reconstruction efficiencies of 99\%, 99.5\% y 70\% respectively. This selection is replaced by an analogous one for the \textsc{PNet} and \textsc{UParT v2} algorithms, aiming at keeping the same yield for the $Z\rightarrow \tau\tau \rightarrow \mu \tau_h$ process. To define the region enriched in $Z\rightarrow \tau\tau \rightarrow \mu \tau_h$, a requirement is imposed on the transverse mass in the muon - $p_T^\text{miss}$ system, $m_T(\mu, p_T^\text{miss})$, requiring $m_T(\mu,MET)<65$ GeV, as illustrated in Figure \ref{fig:mT_cut_baseline}. This cut excludes the high-$m_T$ region dominated by W+jet contribution, where the $\mu$ originates from a $W\rightarrow\mu\nu$ decay and the accompanying jet has a high probability of being misidentified as a $\tau_h$. In contrast, genuine $Z\rightarrow\tau\tau$ events populate the low-$m_T$ region due to the softer and less back-to-back MET arising from the $\tau$ decays, making this selection highly effective for isolating the signal enriched region.
-
-% \begin{figure}
+To guarantee the precision of the validation, events in both data and MC simulations are selected within a well-controlled region enriched in $Z\rightarrow \tau\tau \rightarrow \mu \tau_h$ events. A series of standard selection criteria is applied to the $\mu$ and $\tau$ candidates to ensure a well-reconstructed set of objects. The muon is required to have $p_T > 26$ GeV and $|\eta| < 2.4$, to pass the Medium identification working point and to have a relative isolation below $0.15$, while the $\tau_h$ candidate must have $p_T > 20$ GeV and $|\eta| < 2.5$ and pass the VVLoose, Tight and Medium working points of the \textsc{DeepTau} v2.5 discriminants against electrons, muons and jets, respectively, which correspond to target efficiencies for genuine $\tau_h$ of $99$, $99.5$ and $70\%$~\cite{CMS-TAU-24-001}, the same used in the analysis presented in this thesis (Section \ref{sec:bbtt_objects}). Both must be compatible with the primary vertex, have opposite charges and be separated by $\Delta R > 0.5$, and events with additional leptons are rejected. Finally, the transverse mass of the muon and $p_T^\text{miss}$, $m_T(\mu,p_T^\text{miss})$, is required to be below $65$ GeV. Its distribution, shown in Figure \ref{fig:mT_cut_baseline} without this requirement, has a broad peak just below the $W$ boson mass from $W$+jets events, in which the muon and the neutrino come from the decay of the same $W$ boson, while in $Z\to\tau\tau$ events they come from two different $\tau$ leptons and the transverse mass is lower. The requirement effectively removes most of the $W$+jets background, the main source of jets misidentified as $\tau_h$. 
+%
+% \begin{figure}[htbp]
 %     \centering
-%     \includegraphics[width=1\linewidth]{figures//chapter_III/mT_2025.png}
-%     \caption{Enter Caption}
+%     \includegraphics[width=0.5\linewidth]{figures/chapter_III/CMS-DP-2025-074_mT_2024.pdf}
+%     \caption{Distribution of the transverse mass of the muon and $p_T^\text{miss}$ in the 2024 data and simulation, before the requirement $m_T(\mu,p_T^\text{miss}) < 65$ GeV that defines the region enriched in $Z\to\tau\tau\to\mu\tau_h$ events. The region above this value is dominated by $W$+jets events. The lower panel shows the ratio between data and simulation, and the hatched band the statistical uncertainty of the simulated samples~\cite{CMS-DP-2025-074}.}
 %     \label{fig:mT_cut_baseline}
 % \end{figure}
-\begin{figure}
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{figures//chapter_III/mT_2025_captura.png}
-    \caption{Transverse mass distribution in the $\mu$-MET system, comparing 2025 data with MC simulation. The black line delimits the $Z\rightarrow\tau\tau\rightarrow\mu\tau_h$ enriched signal region below $m_T<65$ GeV, as marked by the arrow. The shaded region indicates the excluded region rich in W+jets contribution, and therefore with a high jet misidentification rate. \textcolor{red}{Hacerla en buena calidad (es screenshot)}}
+    \begin{tikzpicture}
+        \node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=0.5\linewidth]{figures/chapter_III/CMS-DP-2025-074_mT_2024.pdf}};
+        \begin{scope}[x={(img.south east)}, y={(img.north west)}]
+            \draw[black, dashed, line width=0.8pt] (0.412,0.353) -- (0.412,0.93);
+            \draw[black, line width=0.8pt, -{Latex[length=1.6mm]}] (0.412,0.88) -- (0.33,0.88);
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Distribution of the transverse mass of the muon and $p_T^\text{miss}$ in the 2024 data and simulation. The dashed line marks the requirement $m_T(\mu,p_T^\text{miss}) < 65$ GeV, and the arrow the region enriched in $Z\to\tau\tau\to\mu\tau_h$ events that it selects, while the region above it is dominated by $W$+jets events. The lower panel shows the ratio between data and simulation, and the hatched band the statistical uncertainty of the simulated samples~\cite{CMS-DP-2025-074}.}
     \label{fig:mT_cut_baseline}
 \end{figure}
 
-Figure \ref{fig:kinematics_mu_tau_2024} shows the simulation-to-data agreement in the signal region, as previously defined, for the kinematic behavior of the reconstructed objects, namely the $\mu$ and the $\tau_h$. To illustrate the validity of the modeling of the reconstructed objects, the distributions in $p_T$, $\eta$ and $\phi$ for both $\mu$ and $\tau_h$ are displayed for a representative year, 2025 in this case. The figure indicate that there are no substantial discrepancies in the shape of the distributions, and the data-to-MC agreement is generally as expected. Minor normalization discrepancies resulting from the absence of dedicated corrections are also anticipated.
 
-
+Figure \ref{fig:kinematics_mu_tau_2024} shows the simulation-to-data agreement in the signal region, as previously defined, for the kinematic behavior of the reconstructed objects. To illustrate the validity of the modeling, the $p_T$, $\eta$ and $\phi$ distributions of the muon and of the $\tau_h$ after the full selection are displayed. Their shapes are well described by the simulation, and the ratio between data and simulation stays close to unity, with deviations of a few percent that are expected in the absence of corrections specific to the $\tau_h$. The largest ones, of about $10\%$, appear at high $p_T$, where the fraction of $W$+jets events is larger, consistently with the overestimation of this background found at high $m_T(\mu,p_T^\text{miss})$ in Figure \ref{fig:mT_cut_baseline}), where the simulation slightly overestimates the $W$+jets contribution. The $\phi$ distributions are flat, as expected from the azimuthal symmetry of the collisions, while the $\eta$ distributions show a mild dependence, with a ratio a few percent lower in the barrel than in the endcaps for both the muon and the $\tau_h$.
+%
 \begin{figure}[htbp]
     \centering
-
-    %------------------ ROW 1: MUON ------------------%
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/muon_pt_2025.png}
-        \caption{$p_T(\mu)$}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_muon_pt_2024.pdf}
+        \caption{$p_T$ of the muon}
         \label{fig:muon_pt_2024}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/muon_eta_2025.png}
-        \caption{$\eta(\mu)$}
+        \includegraphics[width=\linewidth]{figures/chapter_III/muon_eta_2024.png}
+        \caption{$\eta$ of the muon}
         \label{fig:muon_eta_2024}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/muon_phi_2025.png}
-        \caption{$\phi(\mu)$}
+        \includegraphics[width=\linewidth]{figures/chapter_III/muon_phi_2024.png}
+        \caption{$\phi$ of the muon}
         \label{fig:muon_phi_2024}
     \end{subfigure}
-
-    \vspace{0.5cm}
-
-    %------------------ ROW 2: TAU ------------------%
+    \\[0.3cm]
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/tau_pt_2025.png}
-        \caption{$p_T(\tau_h)$}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_tau_pt_2024.pdf}
+        \caption{$p_T$ of the $\tau_h$}
         \label{fig:tau_pt_2024}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/tau_eta_2025.png}
-        \caption{$\eta(\tau_h)$}
+        \includegraphics[width=\linewidth]{figures/chapter_III/tau_eta_2024.png}
+        \caption{$\eta$ of the $\tau_h$}
         \label{fig:tau_eta_2024}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/tau_phi_2025.png}
-        \caption{$\phi(\tau_h)$}
+        \includegraphics[width=\linewidth]{figures/chapter_III/tau_phi_2024.png}
+        \caption{$\phi$ of the $\tau_h$}
         \label{fig:tau_phi_2024}
     \end{subfigure}
-
-    \caption{Comparison between data and simulation for the kinematic distributions of the muon (top row) and the $\tau_h$ candidate (bottom row) in the signal region using 2025 data}
+    \caption{Distributions of the $p_T$, $\eta$ and $\phi$ of the muon (top row) and of the $\tau_h$ (bottom row) in the 2024 data and simulation after the full selection. The lower panels show the ratio between data and simulation, and the hatched band the statistical uncertainty of the simulated samples. No correction specific to the $\tau_h$ is applied.}
     \label{fig:kinematics_mu_tau_2024}
 \end{figure}
 
-The reliability of the $\tau_h$ modeling across the various years of Run-3 is illustrated in Figure \ref{fig:mvis_all_years}. The reference variable used for comparison is the invariant mass of the visible objects in the $\mu\tau_h$ system, $m_{vis}$, since it is a robust observable that is sensitive to possible discrepancies in the $\tau_h$ reconstruction owing to the fact that the behavior of the $\mu$ is widely understood in CMS. The $m_{vis}$ distribution is shown separately for each of the data-taking periods, covering 2022, 2023, 2024, 2025, and 2026. All distributions demonstrate strong data/MC alignment, where the consistency of the shape over the years confirms the good performance in the reconstruction and identification of the $\tau_h$ during Run-3. However, for a more detailed overview, the subsequent Section \ref{subsec:TES_checks} thoroughly examines the stability in the performance of the data collected across the years in terms of relative efficiencies and misidentification rates.
-%
-%No $\tau_h$-related corrections are applied in these distributions: neither the identification efficiency scale factors nor the energy scale corrections discussed in Section \ref{...}. The residual normalization differences observed in the ratio panels are therefore a direct measure of the size of those corrections, rather than an indication of mismodelling of the $\tau_h$ reconstruction itself.
+The three identification algorithms are compared in Figure \ref{fig:algorithms} through various sets of distribution:
 %
 \begin{figure}[htbp]
     \centering
-
-    %------------------ ROW 1 ------------------%
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_2022.png}
-        \caption{2022}
-        \label{fig:mvis_2022}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_2023.png}
-        \caption{2023}
-        \label{fig:mvis_2023}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_DeepTau_2024.png}
-        \caption{2024}
-        \label{fig:mvis_2024}
-    \end{subfigure}
-
-    \vspace{0.6cm}
-
-    %------------------ ROW 2 ------------------%
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_DeepTau_2025.png}
-        \caption{2025}
-        \label{fig:mvis_2025}
-    \end{subfigure}
-    \hspace{0.03\linewidth} 
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_2026.png}
-        \caption{2026}
-        \label{fig:mvis_2026}
-    \end{subfigure}
-
-    \caption{Comparison between data and simulation for the visible mass distribution $m_{vis}$ in the signal region for the years 2022 (a), 2023 (b), 2024 (c), 2025 (d) and 2026 (e).}
-    \label{fig:mvis_all_years}
-\end{figure}
-
-
-The performance of the aforementioned $\tau_h$ identification algorithms (\textsc{DeepTau v2.5}, \textsc{PNet} and \textsc{UParT}) is compared in Figure \ref{fig:algorithms}, with data from 2024 serving as a reference. The figure illustrates the performance of each classifier through various sets of distribution:
-
-\paragraph{Score distributions:}
-The top row of Figure \ref{fig:algorithms} displays the score distributions of the discriminator \textsc{VSjet} returned by each identification algorithm, where the requirement that the $\tau_h$ candidates satisfy the medium \textsc{VSjet} WP has been removed. The range selected for each discriminator score distribution is chosen to ensure the retention of 90\% of the genuine hadronic $\tau$ candidates. The shape of the score distribution for each classifier shows discrepancies linked to the nature of each different architecture. The figure illustrates that the three $\tau_h$ identification algorithms demonstrate strong performance in terms of data-MC agreement, with \textsc{DeepTau} notably outperforming the others due to its domain adaptation feature.
-% Since domain adaptation is currently implemented only in \textsc{DeepTau}, the larger data-to-simulation discrepancies observed for \textsc{PNet} and \textsc{UParT} would translate into larger correction factors and associated systematic uncertainties for any analysis adopting them.
-
-\paragraph{Visible mass:}
-The middle row serves as an example of the behavior of the visible mass $m_{vis}$ of the system reconstructed using different $\tau_h$ identification algorithms, demonstrating satisfactory simulation-to-data consistency in all cases. As outlined in Section \ref{subsec:tau_IDcomparison}, Figure \ref{fig:algorithms} illustrates how the three identification methods have distinct rejection levels for quark and gluon jets, electrons, and muons, resulting in different yields for each contributing process. Figure \ref{fig:venn_combined} showed the overlap between the algorithms in this regard. Therefore, the combination of two or more of these identification strategies can serve to optimize the selection of genuine $\tau_h$ candidates and the rejection of misidentified objects. This is demonstrated in Figure \ref{fig:mvis_PNetDeepTau_comb}, which shows the visible mass distribution obtained from the combined selection of \textsc{DeepTau v2.5} and \textsc{PNet} algorithms, providing the strongest rejection of misidentified $\tau_h$ candidates.
-
-\paragraph{Decay mode assignment:}
-Finally, the set of plots in the last row is intended to illustrate the differences in the assignment of decay modes performed by each algorithm. In these distributions, the $Z\to\mu\tau_h$ signal simulation is separated into its various decay modes to facilitate the visualization of the correct assignment of each decay mode per algorithm under study.
-
-\begin{figure}[htbp]
-    \centering
-
-    %------------------ ROW 1: SCORES ------------------%
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/score_DeepTau_vsJET_2024.png}
-        \caption{\textsc{DeepTau v2.5} VSjet score}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_score_DeepTau_2024.pdf}
+        \caption{\textsc{DeepTau} v2.5}
         \label{fig:score_deeptau}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/score_PNet_vsJET_2024.png}
-        \caption{\textsc{PNet} VSjet score}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_score_PNet_2024.pdf}
+        \caption{\textsc{PNet}}
         \label{fig:score_pnet}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/score_UParT_vsJET_2024.png}
-        \caption{\textsc{UParT v2} VSjet score}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_score_UParT_2024.pdf}
+        \caption{\textsc{UParT} v2}
         \label{fig:score_upart}
     \end{subfigure}
-
-    \vspace{0.6cm}
-
-    %------------------ ROW 2: MVIS ------------------%
+    \\[0.3cm]
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_DeepTau_2024.png}
-        \caption{$m_{\mathrm{vis}}$ (\textsc{DeepTau v2.5})}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_mvis_DeepTau_2024.pdf}
+        \caption{\textsc{DeepTau} v2.5}
         \label{fig:mvis_deeptau}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_PNet_2024.png}
-        \caption{$m_{\mathrm{vis}}$ (\textsc{PNet})\textcolor{red}{coger en buena calidad}}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_mvis_PNet_2024.pdf}
+        \caption{\textsc{PNet}}
         \label{fig:mvis_pnet}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_UParT_2024.png}
-        \caption{$m_{\mathrm{vis}}$ (\textsc{UParT v2})\textcolor{red}{coger en buena calidad}}
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_mvis_UParT_2024.pdf}
+        \caption{\textsc{UParT} v2}
         \label{fig:mvis_upart}
     \end{subfigure}
-
-    \vspace{0.6cm}
-
-    %------------------ ROW 3: DECAY MODES ------------------%
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/HPS_DM_2024.png}
-        \caption{Decay Mode (HPS)}
-        \label{fig:dm_hps}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/PNet_DM_2024.png}
-        \caption{Decay Mode (\textsc{PNet})}
-        \label{fig:dm_pnet}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_III/UParT_DM_2024.png}
-        \caption{Decay Mode (\textsc{UParT v2}) \textcolor{red}{REHACER}}
-        \label{fig:dm_upart}
-    \end{subfigure}
-
-    \caption{
-        Summary of the validation of the three $\tau_h$ identification algorithms with 2024 data. 
-        \textbf{Top row:} score distributions of the \textsc{VSjet} discriminant for \textsc{DeepTau v2.5}, \textsc{PNet}, and \textsc{UParT v2}. 
-        \textbf{Middle row:} visible mass distributions reconstructed with each algorithm. 
-        \textbf{Bottom row:} decay mode assigned by each algorithm. 
-    }
+    \caption{Distributions in the 2024 data and simulation for the three identification algorithms. Top row, discriminants against jets of \textsc{DeepTau} v2.5 (a), \textsc{PNet} (b) and \textsc{UParT} v2 (c) for the selection based on \textsc{DeepTau}, without its requirement against jets in (a). Bottom row, visible mass of the $\mu\tau_h$ system when the requirement against jets is based on \textsc{DeepTau} (d), \textsc{PNet} (e) and \textsc{UParT} (f), with the thresholds on the last two chosen to give the same $Z\to\tau\tau$ yield as the Medium working point of \textsc{DeepTau}~\cite{CMS-DP-2025-074}.}
     \label{fig:algorithms}
 \end{figure}
 
-\begin{figure}
+\paragraph{Score distributions:} The top row shows the distributions of their discriminants against jets for the events passing the selection described above, each in the range that retains $90\%$ of the genuine $\tau_h$. Since this selection includes the Medium WP of the \textsc{DeepTau} discriminant against jets, this requirement is removed for the \textsc{DeepTau} distribution, which it would otherwise cut at the threshold of the working point. It is kept for \textsc{PNet} and \textsc{UParT}, whose distributions therefore correspond to candidates already selected by \textsc{DeepTau}, with a reduced contribution of misidentified jets. The three discriminants are reasonably well described by the simulation, but with clear differences linked to the nature of each architecture. For \textsc{DeepTau}, the ratio between data and simulation is flat over the whole range, as expected from the domain adaptation used in its training (Section \ref{subsec:DeepTau}), while for \textsc{PNet}, and especially for \textsc{UParT}, the ratio decreases towards the highest scores, precisely the region selected in analyses, with deviations of up to about $10\%$ for \textsc{PNet} and almost $20\%$ for \textsc{UParT}.
+
+
+
+
+\paragraph{Visible mass:} The bottom row shows the visible mass of the $\mu\tau_h$ system, $m_\text{vis}$, for three different selections of the $\tau_h$, each based on one of the algorithms. Unlike the discriminant distributions, which are obtained with the selection based on \textsc{DeepTau} to check the modeling of each output over its whole range, these distributions compare the selections themselves, that is, the events that an analysis relying on each algorithm would select.For \textsc{PNet} and \textsc{UParT}, the requirements against electrons and muons are therefore replaced by the equivalent working points of each algorithm, whereas the one against jets is replaced by a dedicated threshold, chosen so that the selected yield of $Z\to\tau\tau$ events is the same as with \textsc{DeepTau}. Since the requirement against jets determines most of the efficiency for genuine $\tau_h$, this allows the backgrounds selected by the three algorithms to be compared for the same signal. In addition, the selection is not restricted to the candidates reconstructed by HPS, to which \textsc{DeepTau} is limited, and also includes $\tau_h$ recovered only as jets, analogously to the unified collection used in Section \ref{subsec:tau_IDcomparison}. With the same signal, \textsc{PNet} and \textsc{UParT} select fewer events with misidentified jets than \textsc{DeepTau}, mainly from $W$+jets and QCD multijet production, which is why the total yield differs between the three distributions. \textsc{PNet}, in contrast, selects more $Z\to\mu\mu$ events in which a muon is misidentified as $\tau_h$, visible as a peak close to $90$ GeV, consistently with the weaker rejection of muons of \textsc{PNet} observed in simulation discussed in Section \ref{subsec:tau_IDcomparison}. The agreement with data follows the same pattern as for the discriminants, being best for \textsc{DeepTau}, with a flat ratio close to unity, and degrading for \textsc{PNet} and \textsc{UParT}, for which the simulation overestimates the data by about $5$ and $10\%$, respectively.WP muons y electrons?
+
+
+These differences determine which algorithm can be used in analyses. A better rejection of misidentified jets is only useful if the simulation describes the selected events, or if the remaining differences are corrected with dedicated measurements, whose uncertainties then enter the analysis. The larger discrepancies found for \textsc{PNet} and \textsc{UParT}, which do not use domain adaptation, would require larger corrections and lead to larger uncertainties, which is one of the reasons why \textsc{DeepTau} remains the algorithm used in analyses.\medskip
+
+The assignment of the decay modes made by each algorithm is shown in Figure \ref{fig:val_decay_modes}, where the $Z\to\tau\tau$ contribution is split according to the generated decay mode. The mass of the $\tau_h$, computed from the constituents selected by HPS, shows the narrow peak of the h$^{\pm}$ decays at the mass of the charged pion and the broader distributions of the other decay modes, around the masses of the intermediate resonances $\rho(770)$ and $a_1(1260)$. The decay modes assigned by HPS and by the jet-based taggers are also well described by the simulation. In particular, the h$^{\pm}\pi^0\pi^0$ decays, which HPS assigns to the h$^{\pm}\pi^0$ mode, populate a separate category in \textsc{PNet} and \textsc{UParT}, although mixed with a sizable fraction of h$^{\pm}\pi^0$ decays, as expected from the limited separation between these two modes found in simulation (Section \ref{subsec:tau_IDcomparison}).
+%
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\linewidth]{figures//chapter_III/mvis_DeepTau&PNet.png}
-    \caption{Visible mass distribution obtained from the combined selection of \textsc{DeepTau v2.5} and \textsc{PNet}, illustrating the enhanced rejection of misidentified $\tau_h$ candidates achieved when both algorithms are used simultaneously. \textcolor{red}{Es un screenshot, cogerlo en buena calidad}}
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_tau_mass_2024.pdf}
+        \caption{Mass of the $\tau_h$}
+        \label{fig:tau_mass_2024}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_DM_HPS_2024.pdf}
+        \caption{HPS}
+        \label{fig:dm_hps}
+    \end{subfigure}
+    \\[0.3cm]
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_DM_PNet_2024.pdf}
+        \caption{\textsc{PNet}}
+        \label{fig:dm_pnet}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_III/UParT_DM_2024.png}
+        \caption{\textsc{UParT} v2 \textcolor{red}{REHACER con etiquetas}}
+        \label{fig:dm_upart}
+    \end{subfigure}
+    \caption{Distributions in the 2024 data and simulation of the mass of the $\tau_h$ (a) and of the decay mode assigned by HPS (b), \textsc{PNet} (c) and \textsc{UParT} v2 (d), with the selection based on \textsc{DeepTau} and the $Z\to\tau\tau$ contribution split according to the generated decay mode. Panels (a) to (c) are taken from Ref.~\cite{CMS-DP-2025-074}.}
+    \label{fig:val_decay_modes}
+\end{figure}
+
+Since the three algorithms reject each background to a different extent and only partially overlap in the misidentified objects they select (Section \ref{subsec:tau_IDcomparison}), their selections can also be combined to exploit the strengths of each one. In particular, \textsc{PNet} provides the strongest rejection of quark and gluon jets but is outperformed by \textsc{DeepTau} in the rejection of muons at the tightest working points, whereas \textsc{UParT} already provides the best rejection of electrons and muons. The combination is therefore most useful for \textsc{PNet}, and Figure \ref{fig:mvis_PNetDeepTau_comb} shows the $m_\text{vis}$ distribution obtained when the \textsc{PNet} selection of Figure \ref{fig:mvis_pnet} is complemented with the Tight working point of the \textsc{DeepTau} discriminant against muons. This requirement is applied only to the candidates reconstructed by HPS, the only ones for which this discriminant is available, while the $\tau_h$ recovered only as jets are selected with the requirements of \textsc{PNet} alone. The additional requirement removes most of the $Z\to\mu\mu$ events that form the peak close to $90$ GeV with \textsc{PNet} alone, while the $Z\to\tau\tau$ yield and the backgrounds from misidentified jets are barely changed. It also removes the local excess of data over simulation found around $90$ GeV with \textsc{PNet} alone, which indicates that the rate of muons misidentified by this algorithm is underestimated in the simulation, so that the ratio becomes flat at the same level as in the rest of the distribution. The combined selection therefore keeps the rejection of jets of \textsc{PNet} together with the rejection of muons of \textsc{DeepTau}, and selects a lower background than either of the two algorithms alone.\bigskip
+%
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/chapter_III/CMS-DP-2025-074_mvis_PNet_DeepTauVSmu_2024.pdf}
+    \caption{Visible mass distribution of the $\mu\tau_h$ system in the 2024 data and simulation when the \textsc{PNet} selection of Figure \ref{fig:mvis_pnet} is complemented with the Tight working point of the \textsc{DeepTau} discriminant against muons, applied to the candidates reconstructed by HPS~\cite{CMS-DP-2025-074}.}
     \label{fig:mvis_PNetDeepTau_comb}
 \end{figure}
 
-These plots illustrate the difference in classifier response, mass reconstruction, and decay mode assignment across the three identification strategies, and thereby validate the performance of each algorithm in simulation relative to actual data.
+
 
 \noindent Overall, the evaluation of $\tau_h$ modeling in terms of data-to-MC comparisons has confirmed the robustness of hadronic $\tau$ identification and reconstruction algorithms. To further validate the $\tau$ lepton behavior in CMS, the following section presents the consistency of data collection throughout Run-3, with the aim of addressing possible effects arising from evolving detector conditions.
 
 
-\subsection{Stability of \texorpdfstring{$\tau_h$}{τh} performance in Run-3 data}
+\subsection{Stability across data-taking periods}
 \label{subsec:TES_checks}
 %presentación PPD (1): https://indico.cern.ch/event/1569864/contributions/6612866/attachments/3109869/5512492/TauPOG_2024_2025Data_PPD_2407.pdf
 %presentación PPD (2): https://docs.google.com/presentation/d/178-DORdl0GOepSjdjDzxOgDB1sgRS6_t_pinHd4K7ro/edit?slide=id.g3c670cd6792_0_1#slide=id.g3c670cd6792_0_1
+The data of all years are processed with the same version of the NanoAOD format as the simulation, which for 2022 and 2023 required a dedicated reprocessing.
+
+
 
 The previous section presented the Data-to-MC validation, which was designed to verify the correct modeling of $\tau_h$ reconstruction and identification in simulation. This section, in contrast, focuses on evaluating the actual response of the detector throughout the various periods of Run-3. Across these periods, the detector is subject to variations in its operating conditions due to increases in instantaneous luminosity and the aging of the components, which can influence key aspects of $\tau_h$ performance, such as the energy scale, identification efficiency and misidentification rate. Therefore, studying the stability of the collected data becomes imperative to ensure a reliable description of the data through Monte Carlo simulation. These studies thus serve as an independent verification process that complements simulation-based validation. 
 
