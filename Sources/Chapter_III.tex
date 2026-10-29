@@ -273,7 +273,7 @@ The jet-based taggers also differ from HPS in the assignment of the decay mode, 
 % DESTACAR MI TRABAJO AQUÍ
 Validating the performance of the algorithms presented for reconstructing and identifying $\tau_h$ in real data is an essential step in ensuring the reliability of any physics analysis using hadronic $\tau$ particles. Therefore, although the algorithms detailed in the previous section have been extensively optimized and evaluated in simulations, it is imperative to verify their performance in each data-taking period, since the detector conditions, the pileup and the reconstruction evolve, and any difference between data and simulation in the reconstruction or identification of $\tau_h$ propagates directly to the analyses that use them.
 
-As part of this thesis work, the $\tau_h$ reconstruction and identification performance of these algorithms has been systematically validated within the Tau POG with the data collected during Run 3, from 2022 to the beginning of 2026, and the results obtained with the 2024 and 2025 data have been published in Ref.~\cite{CMS-DP-2025-074}. The following sections present two fundamental aspects of this validation. Section \ref{subsec:Data-MC-agreement} compares data and simulation for the three identification algorithms, taking the 2024 data as reference, and Section \ref{subsec:TES_checks} studies the stability of the performance across the different data-taking periods. These studies do not measure the corrections that analyses apply to the simulation, which are derived centrally with dedicated methods and are summarized in Section \ref{subsec:tau_calibration}.
+As part of this thesis work, the $\tau_h$ reconstruction and identification performance of these algorithms has been systematically validated within the Tau POG with the data collected during Run 3, from 2022 to the beginning of 2026, and the results obtained with the 2024 and 2025 data have been published in Ref.~\cite{CMS-DP-2025-074}. The following sections present two fundamental aspects of this validation. Section \ref{subsec:Data-MC-agreement} compares data and simulation for the three identification algorithms, taking the 2024 data as reference, and Section \ref{subsec:TES_checks} studies the stability of the performance across the different data-taking periods. These studies do not measure the corrections that analyses apply to the simulation, which are derived centrally with dedicated methods and are summarized at the end of this section.
 
 
 \subsection{Comparison between data and simulation}
@@ -462,61 +462,96 @@ Since the three algorithms reject each background to a different extent and only
     \label{fig:mvis_PNetDeepTau_comb}
 \end{figure}
 
-
-
-\noindent Overall, the evaluation of $\tau_h$ modeling in terms of data-to-MC comparisons has confirmed the robustness of hadronic $\tau$ identification and reconstruction algorithms. To further validate the $\tau$ lepton behavior in CMS, the following section presents the consistency of data collection throughout Run-3, with the aim of addressing possible effects arising from evolving detector conditions.
-
+\noindent Overall, the comparison between data and simulation in 2024 has confirmed the robustness of the $\tau_h$ reconstruction and identification algorithms. The following section extends this validation to the other periods of Run 3, with the aim of addressing possible effects arising from the evolving detector conditions.
 
 \subsection{Stability across data-taking periods}
 \label{subsec:TES_checks}
+%
+The previous section verified the modeling of the $\tau_h$ reconstruction and identification in simulation with the 2024 data, the period whose conditions the simulation reproduces. This section, in contrast, focuses on the response of the detector throughout the various periods of Run 3. Across these periods, the detector is subject to variations in its operating conditions due to the increase in instantaneous luminosity and the aging of its components, which can affect key aspects of the $\tau_h$ performance, such as the energy scale, the identification efficiency and the misidentification rate. Studying the stability of the data is therefore necessary to ensure that they remain reliably described by the simulation, and serves as an independent check that complements the comparison of the previous section.
+
+The comparison between data and simulation is first repeated for each data-taking period of Run 3, from 2022 to the first $25.8$ fb$^{-1}$ of 2026, with the same selection and the same simulated samples as in the previous section, as shown in Figure \ref{fig:mvis_all_years}. The reference variable is the visible mass of the $\mu\tau_h$ system, $m_\text{vis}$, a robust observable that is sensitive to possible discrepancies in the $\tau_h$ reconstruction, since the behavior of the muon is well understood in CMS. Given that the simulation is the same for all periods, it provides a common reference, so that the changes in the agreement from one period to another reflect changes in the data. The shape of the distribution is well described in all periods, which confirms the good performance of the $\tau_h$ reconstruction and identification during Run 3, while the normalization varies between them, with the data about $15\%$ below the simulation in 2022 and in agreement within about $5\%$ in 2023, 2024 and 2025. These differences are expected, since the simulation does not reproduce the conditions of the other periods and no correction specific to the $\tau_h$ is applied; they are covered in analyses by the corrections derived for each period. The largest change in shape appears in the first data of 2026, where the ratio is about $10\%$ lower in the region of the $Z\to\tau\tau$ peak, between about $50$ and $80$ GeV, than in the tails of the distribution, which points to a lower efficiency for genuine $\tau_h$.
+%
+%
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[t]{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_2022.pdf}
+        \caption{2022}
+        \label{fig:mvis_2022}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_2023.pdf}
+        \caption{2023}
+        \label{fig:mvis_2023}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_III/CMS-DP-2025-074_mvis_DeepTau_2024.pdf}
+        \caption{2024}
+        \label{fig:mvis_2024}
+    \end{subfigure}
+    \\[0.3cm]
+    \begin{subfigure}[t]{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_DeepTau_2025.pdf}
+        \caption{2025}
+        \label{fig:mvis_2025}
+    \end{subfigure}
+    \hspace{0.03\linewidth}
+    \begin{subfigure}[t]{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_III/mvis_2026.pdf}
+        \caption{2026}
+        \label{fig:mvis_2026}
+    \end{subfigure}
+    \caption{Visible mass distribution of the $\mu\tau_h$ system in data and simulation for the data-taking periods 2022 (a), 2023 (b), 2024 (c), 2025 (d) and 2026 (e), with the selection based on \textsc{DeepTau} and the same simulated samples, produced with the conditions of 2024, for all periods.}
+    \label{fig:mvis_all_years}
+\end{figure}
+
+In addition to the comparison with simulation, the stability of the data is examined directly by comparing the data of the different periods with each other, without relying on the simulation. For this comparison, the selection of Section \ref{subsec:Data-MC-agreement} is tightened by requiring the Tight WP of the \textsc{DeepTau} discriminant against jets instead of the Medium one, which increases the purity in genuine $\tau_h$, so that the differences between periods reflect changes in the response of the detector rather than in the background composition. For these studies, \textsc{DeepTau} is the only algorithm used, as it is the algorithm used in analyses — including the one presented in this thesis — and the one for which the corrections to the simulation are derived for each period, so that its stability is the one that directly affects the physics results. The requirement $m_T(\mu,p_T^\text{miss}) < 65$ GeV is kept to preserve a region rich in genuine $\tau_h$.
+
+Figure \ref{fig:mvis_ratio_years} shows the result of this comparison. The data of 2022 and 2023, which show almost no differences between them, are merged into a single sample, and the $m_\text{vis}$ distribution of each period is normalized to unit area before computing the ratios, so that only differences in shape are compared, independently of the integrated luminosity of each period. Each panel takes a different period as reference and shows the bin-by-bin ratio of the distribution of every period to that of the reference, which is therefore flat at unity, so that the evolution of the shape can be followed with respect to each of them. The statistical uncertainty of the ratios is between $1$ and $3\%$ in most bins, well below the observed differences, which can be grouped into two regions with a different behavior:
+\begin{itemize}
+    \item The region between about $50$ and $80$ GeV corresponds to the $Z\to\tau\tau$ peak and is therefore dominated by genuine $\tau_h$. The ratios are nearly flat in this region, without the slope across the peak that a change in the $\tau_h$ energy scale would produce, which shows that the position of the peak — and therefore the energy response to genuine $\tau_h$ — is stable. Their values decrease slightly with time, by up to about $9\%$ in 2026 with respect to 2022 and 2023. Since the distributions are normalized, this decrease is at least partly a consequence of the larger fraction of events in the tails, and this comparison alone cannot distinguish it from a lower efficiency for genuine $\tau_h$. However, the comparison with simulation of Figure \ref{fig:mvis_all_years} resolves this ambiguity since, up to 2025, the agreement with simulation in the peak region does not degrade\footnote{In 2022, the data lie about $15\%$ below the simulation, but uniformly over the whole distribution, affecting equally the genuine $\tau_h$ of the peak and the misidentified jets of the tails, so that this deficit reflects a difference in the overall normalization rather than a change in the response to genuine $\tau_h$.}, whereas in 2026 the deficit with respect to the simulation is concentred in the peak, which points to a genuine loss of efficiency in the first data of that year, to be corrected by the calibration of that period.
+    \item Outside the peak, the tails of the distribution are dominated by jets misidentified as $\tau_h$, mainly from the $W$+jets and QCD multijet backgrounds. In these regions, the fraction of events increases steadily with time. Above $100$ GeV, it is about $5$--$10\%$ higher in 2024, $10$--$15\%$ in 2025 and $15$--$20\%$ in 2026 than in 2022 and 2023, and the increase is even larger at the lowest masses, which indicates a growing contribution of misidentified jets in the latest periods.
+\end{itemize}
+%
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=\linewidth]{figures/chapter_III/ratio_mvis_all.pdf}};
+        \begin{scope}[x={(img.south east)}, y={(img.north west)}]
+            \foreach \xa/\xb in {0.1248/0.1923, 0.5961/0.6636}{
+                \fill[black, fill opacity=0.07] (\xa,0.5596) rectangle (\xb,0.9657);
+                \fill[black, fill opacity=0.07] (\xa,0.1192) rectangle (\xb,0.5253);
+            }
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Ratio of the visible mass distribution of the $\mu\tau_h$ system in the data of each period of Run 3 to that of a reference period, which is 2022 and 2023 merged (top left), 2024 (top right), 2025 (bottom left) and 2026 (bottom right). All distributions are normalized to unit area before computing the ratios, and the $\tau_h$ is selected with the Tight working point of the \textsc{DeepTau} discriminant against jets. The shaded area marks the region of the $Z\to\tau\tau$ peak, between $50$ and $80$ GeV, dominated by genuine $\tau_h$, and the bands show the statistical uncertainty of each ratio at $\pm1\sigma$, obtained by adding in quadrature the relative uncertainties of the two periods, or from the reference alone for the ratio of the reference to itself.}
+    \label{fig:mvis_ratio_years}
+\end{figure}
+
+
 %presentación PPD (1): https://indico.cern.ch/event/1569864/contributions/6612866/attachments/3109869/5512492/TauPOG_2024_2025Data_PPD_2407.pdf
 %presentación PPD (2): https://docs.google.com/presentation/d/178-DORdl0GOepSjdjDzxOgDB1sgRS6_t_pinHd4K7ro/edit?slide=id.g3c670cd6792_0_1#slide=id.g3c670cd6792_0_1
-The data of all years are processed with the same version of the NanoAOD format as the simulation, which for 2022 and 2023 required a dedicated reprocessing.
+
+In this way, the stability of the $\tau_h$ performance has been verified across the five periods considered, in terms of the efficiency for genuine $\tau_h$, the misidentification rate and the energy scale. The regions most affected by the different data-taking conditions are those dominated by misidentified $\tau_h$, such as the tails of the $m_\text{vis}$ distribution outside the $Z$ boson peak. This indicates that the observed trends stem from variations in the composition and reconstruction of the jets misidentified as $\tau_h$, related to the evolution of the detector conditions, whereas the response of the detector to genuine $\tau_h$, including the position of the $Z\to\tau\tau$ peak and therefore the energy scale, remains stable, apart from the lower efficiency found in the first data of 2026. Overall, these stability tests confirm that the $\tau_h$ performance remains under control across Run 3, with minor variations consistent with the evolution of the detector, which provides an important cross-check of the robustness of the Run 3 $\tau_h$ program.\bigskip
+
+
+\noindent This chapter has described how hadronic $\tau$ leptons are reconstructed and identified in CMS, from the reconstruction of the candidates by the HPS algorithm to their identification with \textsc{DeepTau} v2.5 and with the more recent jet-based taggers, \textsc{PNet} and \textsc{UParT} v2. The comparison of the three algorithms in simulation shows that the jet-based taggers recover $\tau_h$ that HPS does not reconstruct, reaching efficiencies of about $90\%$ instead of the $70\%$ allowed by the HPS reconstruction, that \textsc{PNet} rejects misidentified jets more effectively and \textsc{UParT} misidentified electrons and muons, and that the three algorithms only partially overlap in the objects they select, so that their combination can improve the rejection of the different backgrounds.
+
+The performance of these algorithms has then been validated with the data collected during Run 3, which constitutes the contribution of this thesis to the Tau POG, and whose results with the 2024 and 2025 data have been published in Ref.~\cite{CMS-DP-2025-074}. The comparison between data and simulation in $Z\to\tau\tau\to\mu\tau_h$ events shows that \textsc{DeepTau} is the algorithm best described by the simulation, as a result of its domain adaptation, whereas the larger differences found for \textsc{PNet} and \textsc{UParT}, especially at the highest values of their discriminants, would require larger corrections before they can be used in analyses. The study of the different data-taking periods shows that the response to genuine $\tau_h$, and in particular its energy scale, remains stable throughout Run 3, apart from a loss of efficiency in the first data of 2026, while the contribution of misidentified jets grows with time. Taken together, these studies show that the simulation describes the $\tau_h$ well, but that residual differences with data remain, of up to about $15\%$ in the overall normalization, and that they change from one period to another as the detector conditions evolve.
+
+The remaining differences between data and simulation are corrected in analyses through the calibration of the $\tau_h$ identification, performed centrally by the Tau POG for each data-taking period~\cite{CMS-TAU-24-001}. This calibration consists of scale factors for the identification efficiency, defined as the ratio between the efficiencies measured in data and in simulation, and of a correction to the $\tau_h$ energy scale, both measured for each decay mode, and the former also as a function of the $p_T$ of the $\tau_h$, with a tag-and-probe method in $Z\to\tau\tau\to\mu\tau_h$ events, a selection very similar to the one used in the validation and a maximum likelihood fit to the $m_\text{vis}$ distribution. Analogous scale factors are derived for electrons and muons misidentified as $\tau_h$, whereas the contribution of misidentified jets, which depends on the selection and, as shown in Section \ref{subsec:TES_checks}, on the data-taking period, is usually estimated directly from data in each analysis. For \textsc{DeepTau} v2.5, the scale factors are typically within $20\%$ of unity, closer to it than for the previous version thanks to the domain adaptation, and the energy scale corrections measured in 2022 are within $3\%$ of unity~\cite{CMS-TAU-24-001}.
+
+The validation presented in this chapter is complementary to this calibration and a prerequisite for it. Since these corrections are factors on the efficiency and on the energy scale, measured in a few bins of $p_T$ and decay mode, they are only reliable if the simulation describes well the rest of the properties of the $\tau_h$ candidates, which is precisely what the validation verifies for each data-taking period and identification algorithm. In addition, it identifies the changes that require the corrections to be derived separately for each period, such as the loss of efficiency in 2026 or the growing contribution of misidentified jets, and it anticipates the larger corrections that the jet-based algorithms would require. The search for $HH\to bb\tau\tau$ presented in this thesis, which identifies the $\tau_h$ with \textsc{DeepTau} v2.5, applies the corrections of each data-taking period described above (Section \ref{sec:bbtt_corrections}), estimates the contribution of misidentified jets from data (Section \ref{sec:bbtt_ff}), and propagates the uncertainties of all of them as systematic uncertainties of the result (Section \ref{sec:bbtt_systematics}). Therefore, through these corrections, the validation of the $\tau_h$ performance underlies the results presented in the following chapters, as it does those of any CMS analysis with hadronically decaying $\tau$ leptons in the final state.
 
 
 
-The previous section presented the Data-to-MC validation, which was designed to verify the correct modeling of $\tau_h$ reconstruction and identification in simulation. This section, in contrast, focuses on evaluating the actual response of the detector throughout the various periods of Run-3. Across these periods, the detector is subject to variations in its operating conditions due to increases in instantaneous luminosity and the aging of the components, which can influence key aspects of $\tau_h$ performance, such as the energy scale, identification efficiency and misidentification rate. Therefore, studying the stability of the collected data becomes imperative to ensure a reliable description of the data through Monte Carlo simulation. These studies thus serve as an independent verification process that complements simulation-based validation. 
-
-The behavior of the data over the years is now addressed using an approach similar to the one presented in previous section. Events from the $Z\to\tau\tau\to\mu\tau_h$ process are selected using data collected with muon triggers and under a preselection criteria analogous to that in Section \ref{subsec:Data-MC-agreement}, with the exception that the $\tau$ must satisfy Tight \textsc{VSjet} WP criterion in order to maximize the purity in genuine $\tau_h$. This is done to ensure that consistency studies actually confirm that any variations across data-taking periods reflect genuine detector effects rather than changes in the background composition. For the studies outlined here, the \textsc{DeepTau} algorithm will be the sole discriminant employed. Furthermore, the cut on the transverse mass $m_T(\mu,MET) < 65$ GeV, as defined in Figure \ref{fig:mT_cut_baseline}, is maintained to preserve a region rich in genuine $\tau_h$ particles.
-
-Figure \ref{figr:data_across_years} shows a comparison of the visible mass of the system $m_{vis}$ over the different periods of Run-3, from 2022 to 2026. Generally, a stable trend is observed across the different data-taking years, with a slight shift observed starting from 2024 onward \textcolor{red}{????}. While deviations of this nature are consistent with the impact of deteriorating detector conditions, they warrant a more detailed investigation of the stability of the data.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{figures//chapter_III/data_across_years_barrel.png}
-    \caption{\textcolor{red}{rehacer el plot para todo eta, añadiendo full 25 + 26 y mejorando el estilo}}
-    \label{fig:data_across_years}
-\end{figure}
-
-To provide a more detailed characterization of these effects, the visible mass of the $\mu\tau_h$ system in the region enriched with Drell-Yan events is studied. As illustrated in \ref{fig:ratio_plots}, this in-depth study provides valuable insights. The strategy employed consists of plotting the ratio of the $m_{vis}$ distribution across different years for a common reference period that varies for each panel, as explained in more detail in the figure caption. This approach serves to illuminate the distinctions between the various data sets. As a result, different behaviors can be observed:
-\begin{itemize}
-    \item The $m_{vis}$ region between $40 < m_{vis} < 90$ GeV corresponds to the $Z\to\tau\tau\to\mu\tau_h$ peak and is therefore dominated by genuine hadronic $\tau$ events. This region exhibits consistent behavior over the years, following a flat ratio in all cases, with a minor decline in efficiency towards the end of Run-3, indicating stability in the response of the detector to genuine $\tau_h$.
-    \item Outside the $Z\to\tau\tau\to\mu\tau_h$ peak, in the tails of the $m_{vis}$ spectrum, the distribution is dominated by fake $\tau$ particles, primary from jets misidentified as $\tau_h$ in the W+jets background contribution. In these regions, a slight increase in events is observed for 2024, which becomes particularly noticeable in 2025 and 2026, highlighting the greater sensitivty to fakes.
-\end{itemize}
-
-
-
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=0.5\linewidth]{figures//chapter_III/mvis_ratio_fulldata.png}
-%    \caption{\textcolor{red}{estaría bien los plots anteriores pero con todos los años}}
-%    \label{fig:placeholder}
-%\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{figures//chapter_III/ratio_DY_2026.png}
-    \caption{Ratio of the visible mass $m_{vis}$ distribution in a DY-enriched region across different Run-3 years, shown with respect to a common reference year: the years 2022 and 2023 have been merged as indicated in the figure as 2223 in blue; 2024 in orange; 2025 in blue and 2026 in red. Each panel corresponds to a different reference year, illustrating the evolution of the $m_{vis}$ shape in data between 2022 and 2026. All distributions are normalized to unit area to highlight shape differences only}
-    \label{fig:placeholder_2}
-\end{figure}
-
-In this way, stability across periods has been verified to account for possible changes in the relative $\tau$ efficiencies, fake rates, and energy scale over the four considered eras. It has been observed that the regions most affected by the different data-acquisition conditions correspond to those dominated by fake $\tau_h$, suchs as events outside the $Z$ mass peak in the DY-enriched region. This indicates that the observed trends stem from variations in the composition and reconstruction of jets misidentified as $\tau_h$ particles, due to detector degradation. Conversely, the response of the detector to authentic hadronic $\tau$ particles remains consistent, validating the stability of the $\tau_h$ energy scale and the efficacy of the reconstruction process throughout the Run-3.
-
-Overall, these stability tests confirm that the performance of the $\tau_h$ in data collected by the detector remains under control across Run-3, with minor variations consistent with the evolution of the detector. This provides an important cross-check of the robustness of the Run-3 $\tau_h$ program.
-
-
-\vspace{1cm}
-\noindent This chapter has demonstrated how the HPS reconstruction and the various identification algorithms — \textsc{DeepTau v2.5}, \textsc{PNet} and \textsc{UParT} — enable the successful identification of the hadronic $\tau$ lepton in experimental collision processes. The focus has been on the various strategies available in CMS, and how the evolution of advanced machine learning techniques, as well as the combination of several of them, enables optimal results to be achieved in discriminating hadronic $\tau$ leptons from various sources of misidentification, while maintaining efficiency for genuine $\tau$ leptons. In addition, the thorough validation process using Run-3 data against Monte Carlo simulations demonstrates the resilience of these algorithms performance under actual detector operating conditions, ensuring reliable and consistent modeling across multiple years. The robustness and confidence provided by the $\tau_h$ program are of great importance for complex physical analyses in final states involving $\tau$ leptons. These elements constitute a fundamental pillar for the study of the $HH\to bb\tau\tau$ channel, which will be discussed in the following chapters.
 
 
 
