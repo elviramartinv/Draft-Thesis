@@ -151,7 +151,7 @@ The ground truth is therefore not a measurable property of the simulated event, 
 \subsection{The purity metric as performance evaluation}
 \label{subsec:metric}
 %
-Since the pair is a relative choice among the candidates of each events, no threshold is established that a candidate must meet in order for a pair to be assigned; rather, the selection consistutes a relative choice among the available candidates. This approach requires the use of a purity metric — instead of an efficiency metric accompanied by a misidentification rate —, defined as
+Since the pair is a relative choice among the candidates of each event, without any threshold that a candidate must pass, the performance requires a purity metric — instead of an efficiency accompanied by a misidentification rate —, defined as
 %
 \begin{equation}
 P = \frac{N_{\mathrm{true}}}{N},
@@ -248,8 +248,7 @@ From the definition itself, it also follows that the purity defined here cannot 
 
 The same metric is also used during training, to decide when to stop it (Section \ref{subsec:training}), and guided the optimization of the hyperparameters in the original development of the algorithm.\bigskip
 
-\noindent With the problem, the reference against which learning takes place and the metric that evaluates the result defined, the next step is the model that learns the assignment and the procedure that fixes its parameters, both common to the two algorithms and discussed in the following section. In contrast, the distinction between the two lies in the definition of the ground truth and the set of input variables, which will be addressed accordingly when discussing each algorithm separately.
-
+\noindent With the problem, the reference against which learning takes place and the metric that evaluates the result defined, the next step is the model that learns the assignment and the procedure that fixes its parameters, both common to the two algorithms and discussed in the following section.
 
 \section{A common architecture for jet assignment}
 \label{sec:architecture}
@@ -351,7 +350,7 @@ The recurrent architecture is not the only one that satisfies these conditions, 
 %
 To ensure the network can process all the information, it is necessary to define how the event is processed at its input, since the network does not operate directly on the reconstructed event, but rather on a representation of it. Therefore, it is essential to establish a method for translating the information of the event — that is, both the global variables and the ones associated with the set of jets of variable size and without intrinsic order — into an ordered sequence that the network can process. The decisions made during this translation affect the output of the network and therefore constitute the first step in defining the algorithm.
 
-To impose an ordered numerical structure on the event, it is arranged as a table in which each row corresponds to a reconstructed jet, such that each row contains two quantities: properties specific to the jet, whether its kinematics or its flavor discriminant; and global event quantities, such as the kinematics of the $H\rightarrow\tau\tau$ candidate or the missing transverse momentum. These latter quantities are replicated identically across all rows, enabling the network processing each row separately to access to information about the entire event. The arrangement, in conjunction with the information propagation between rows provided by the recurrent block, ensures that the score assigned to each jet depends on its own properties, those of the event, and those of the \textcolor{red}{other} candidates.
+To impose an ordered numerical structure on the event, it is arranged as a table in which each row corresponds to a reconstructed jet, such that each row contains two quantities: properties specific to the jet, whether its kinematics or its flavor discriminant; and global event quantities, such as the kinematics of the $H\rightarrow\tau\tau$ candidate or the missing transverse momentum. These latter quantities are replicated identically across all rows, enabling the network processing each row separately to access to information about the entire event.
 
 %y de las de los jets que le preceden en la secuencia. Que dependa además de los que le siguen es consecuencia de la normalización aplicada a la salida, y se verá al describir la arquitectura.
 
@@ -445,9 +444,6 @@ In practice, these operations are part of the network itself through the first t
 \subsection{Network architecture}
 \label{subsec:network}
 %
-Given the described table, the network is organized as a sequence of blocks that operate on the input one after another, represented in Figure \ref{fig:architecture} and described below in the order in which they act.\medskip
-
-
 Given the described table, the network is organized as a sequence of blocks that operate on the input one after another to build the score of each jet, represented in Figure \ref{fig:architecture} and described below in the order in which they act.\medskip 
 % . The first two blocks correspond to the standardization and rescaling layers already described, which allow the network to work with the disparate values in each column by bringing them to a comparable scale without altering the layout of the table. Next is the recurrent block, which serves as the central component responsible for processing the jet sequence. A dense block then processes the output to condense the information into a compact representation that can be used for the final decision. The final layer of the network is a single-unit dense layer, which is typical when the output must be compared to a binary label, and whose output is transformed to yield the final score for each jet. The entire architecture is represented in Figure \ref{fig:architecture} and each stage is described in detail in the following.\\
 %
@@ -585,7 +581,7 @@ Dropout rate\footnotemark          & 0 \\
 \subsection{Training procedure}
 \label{subsec:training}
 %
-With the network described, this subsection details the remaining elements of the training cycle of Figure \ref{fig:training_loop}, namely the events that feed it, the loss function,  the loss function that measures the discrepancy between the output and the label, how this measurement translates into a modification of the parameters, and when the process is considered complete.\medskip
+With the network described, this subsection details the remaining elements of the training cycle of Figure \ref{fig:training_loop}, namely the events that feed it, the loss function, the loss function that measures the discrepancy between the output and the label, how this measurement translates into a modification of the parameters, and when the process is considered complete.\medskip
 
 %1) conjuntos y division
 The labeled simulated events, described for each algorithm in Sections \ref{sec:HHBTag} and \ref{sec:VBFjTag}, are not used to train a single model, but two. The events are divided into two halves based on the parity of their event number, and a model is trained on each of these subsets. This allows each event to be evaluated with the model that has not seen it during training, in order to avoid potential biases. Concurrently, one-quarter of the events randomly selected within each case is set aside for validation. In other words, this quarter is not used to adjust the parameters but is instead used during the training process itself to measure the performance of the model on events that were not part of the training set.
@@ -632,7 +628,7 @@ chapter.}
 
 The final consideration regarding the training process is to verify that it proceeded as expected. To do so, an evaluation of the metrics recorded during training is necessary: the loss function and purity, are examined at the end of each epoch on both the events used for training and those reserved for validation.
 
-The examination approach addresses two issues. The first concerns the convergence of the fit, which is determined by the stabilization of the loss and purity, such that the stop should occur when improvement has been exhausted, rather than due to a fluctuation in the middle of an upward trend. The second issue is the separation between the training and validation curves, since a discrepancy between the two would indicate that the model has learned characteristics specific to the training events rather than the general relationship it should capture. The curves are, therefore, evidence that the hyperparameter configuration used— in this case, inherited — is appropriate for the problem and the samples under consideration here; consequently, they will accompany each algorithm as part of the tests to which they are subjected.
+The examination approach addresses two issues. The first concerns the convergence of the fit, which is determined by the stabilization of the loss and purity, such that the stop should occur when improvement has been exhausted, rather than due to a fluctuation in the middle of an upward trend. The second issue is the separation between the training and validation curves, since a discrepancy between the two would indicate that the model has learned characteristics specific to the training events rather than the general relationship it should capture. The curves are, therefore, evidence that the hyperparameter configuration used is appropriate for the problem and the samples under consideration here; consequently, they will accompany each algorithm as part of the tests to which they are subjected.
 
 
 \subsection{Definition and use of the input variables}
@@ -822,6 +818,7 @@ In comparing the two curves, it is notable that the validation curve shows notic
 
 In any case, the design decision documented in Section \ref{subsec:training} regarding the selection of the training endpoint is perfectly illustrated in Figure \ref{fig:hhbtag_curves}: the sharp fluctuations in the loss function illustrate that the loss value on the validation set is an unreliable indicator of the quality of the assignment, whereas purity — the metric that defines the task — maintains stability and enables unambiguous identification of the point at which improvement ceases.
 
+
 It is also important to note that the two models — even and odd — differ in the number of epochs they complete, which is \textcolor{red}{approximately XX and XX, respectively}. This discrepancy does not reflect any systematic difference between the two halves of the sample, but rather stems from the fact that the stopping criterion depends on the specific fluctuations of each fit. What is important, therefore, is that both converge to the same plateau, which ensures that both halves lead to models with equivalent performance, a fact made evident in Figure \ref{fig:hhbtag_curves}.\medskip
 
 %
@@ -879,7 +876,7 @@ normalized to unit area. \textcolor{red}{ACTUALIZAR}}
 
 It is concluded that the training behaves as expected and that the purity achieved substantially surpasses that of the explicit criterion the algorithm replaces. This is consistent across various time periods and signal scenarios, thereby validating the sample mix used in training and the decision to implement a single model for all time periods and channels. Concurrently, the shape of the score distribution showed that the algorithm provides useful information for separating the signal from the background.\bigskip
 
-\noindent The \textsc{HH-BTag} algorithm has been characterized, starting from the formulation of the problem it addresses, trough the information it uses, to the performance it achieves. And there is something important to note for what follows: only the definition of the reference truth and the set of input variables are specific to $b$ jets. Consequently, the same framework introduced in the analysis of Run 2 is reused to address an assignment problem of a different nature, the identification of the jets characteristic of VBF production.
+\noindent The \textsc{HH-BTag} algorithm has been characterized, starting from the formulation of the problem it addresses, trough the information it uses, to the performance it achieves. The same framework introduced in the analysis of Run 2 is reused to address an assignment problem of a different nature, the identification of the jets characteristic of VBF production.
 
 \section{The \textsc{VBFjTag} algorithm}
 \label{sec:VBFjTag}
@@ -914,9 +911,6 @@ In this case, the training set is limited to simulated production samples from t
 % 5 - Ground truth
 Given the problem at hand, the definition of the true label is now based on the matrix element itself. Among the partons in the final state of the hard process, the two that are neither Higgs bosons nor $b$ quarks are identified, and which therefore correspond to the scattered quarks from the fusion vertex. These are associated with the nearest generated jet, requiring $\Delta R < 0.4$, equal to the radius at which the jets are reconstructed. The generated jets are then matched with the reconstructed jets that pass the candidate selection, within a cone of $\Delta R < 0.3$, such that only when both pairings are successful is the event labeled and admitted into the training set. An additional requirement at the generation level restricts the sample to resolved configurations and to those in which the $b\bar{b}$ pair and the $\tau\tau$ system are themselves well-defined, ensuring that the assignment is learned from events in which the entire topology of the process is present.\medskip
 
-% 6 - Puente
-The phenomenology indicates where the information lies, in the position of the jet, its isolation and its relationship to the rest of the event, but, as for \textsc{HH-BTag}, the proposed variables must be assessed with the trained model.
-
 
 \subsection{Extending the input set}
 \label{subsec:vbf_inputs}
@@ -941,8 +935,8 @@ Three quantities are incorporated into this set that directly reflect the descri
 %
 where $\eta_{\max}$ and $\eta_{\min}$ refer to the extreme values of pseudorapidity among the jets in the event. This variable takes the value of one for a jet located at the center of the interval and vanishes at its ends, so that a VBF jet — which, by definition, occupies one of the edges — is characterized by values close to zero. Unlike bare pseudorapidity, centrality expresses the position of the jet relative to the angular extent of the event itself, rather than relative to the reference frame of the detector.
 
-Other quantities suggested by the phenomenology were also examined, but ultimately it was determined to exclude them due to their minimal contribution to the performance of the model, as observed after evaluating training runs under different input configurations. Among these, the distinction between jets initiated by quarks versus gluons stands out. Among these, the quark-gluon discriminant did not produce a noticeable improvement, as expected from its weak separation in the forward region where these jets are concentrated. Neither the jet multiplicity of the event nor the transverse momentum of the two leading jets normalized to the invariant mass of the pair proved to be particularly useful; these quantities were extracted directly from similar studies conducted in the $HH\to bb\gamma\gamma$ analysis \cite{bbggAN}. Both the retained and discarded quantities are listed in Table \ref{tab:vbfjtag_inputs}.
-
+Other quantities suggested by the phenomenology were also examined, but ultimately it was determined to exclude them due to their minimal contribution to the performance of the model, as observed after evaluating training runs under different input configurations. Among these, the quark-gluon discriminant, the jet multiplicity of the event and the transverse momentum of the two leading jets normalized to the invariant mass of the pair, taken from similar studies in the $HH\to bb\gamma\gamma$ analysis \cite{bbggAN}, did not improve the purity (Section \ref{subsec:vbf_performance}). Both the retained and discarded quantities are listed in Table \ref{tab:vbfjtag_inputs}.
+%
 \begin{table}[t]
 \centering
 \small
@@ -1064,14 +1058,12 @@ events produced through vector boson fusion (left) and through gluon fusion (rig
 \medskip
 
 
-After evaluating the performance of the model, the conclusion is that adapting the framework to this second problem is entirely satisfactory. The training process converges with the inherited configuration, the purity consistently exceeds the explicit criterion it replaces, and the score retains its ability to distinguish between the different processes.
+After evaluating the performance of the model, the conclusion is that adapting the framework to this second problem is entirely satisfactory. The training process converges, the purity consistently exceeds the explicit criterion it replaces, and the score retains its ability to distinguish between the different processes.
 \bigskip
 
 
 \noindent This chapter has described the development of \textsc{HH-BTag} and \textsc{VBFjTag}, two algorithms that assign the jets of the event to the $H\to b\bar{b}$ candidate and to the VBF topology, respectively, and that substantially and consistently improve upon the explicit criteria they replace. Both share the event representation, the architecture, the training procedure and the evaluation tools, and differ only in the process they describe. To conclude, the following paragraphs outline their role in the $HH\to bb\tau\tau$ analysis, the limits that lie beyond their reach and the extensions that the approach admits. \textcolor{red}{hacer una seccion de esto???}\medskip
 %MERECIERA LA PENA HACER UNA SECCIÓN AQUÍ DE FURTHER PERSPECTIVES O ALGO ASI?
-
-\noindent The two algorithms described have proven to more than adequately meet the needs for which they were designed, substantially and consistently improving upon the explicit criteria they replace. However, although the discussion in this chapter has provided a careful and detailed description of the development of both tools, their actual impact on the analysis, as well as prospects for improvement and expansion, have been beyond the scope of this work. To properly conclude, a few words are devoted below to outline these considerations.
 
 In the analysis of Chapter \ref{ch:bbtt_analysis}, \textsc{HH-BTag} selects the $H\to b\bar{b}$ candidate in the resolved topology, determining the invariant mass of the $H\to b\bar{b}$ system and the categorization of the events. Its score is also provided to the classifier that extracts the signal as a high-level variable associated with each candidate. By contrast, \textsc{VBFjTag} selects the jet pair on which the VBF category is defined, but its score is not used as a discriminant in the current Run 3 analysis strategy, which leaves room for future improvement in order to take advantage of the discriminating power it has demonstrated in the study presented here.
 
@@ -1091,4 +1083,4 @@ Finally, it should be noted that the generality of this approach is not limited 
 
 This last point was precisely what was verified using a dedicated version of \textsc{HH-BTag} for the study of $ZZ$ and $ZH$ production in the $bb\tau\tau$ final state \cite{CMS:2026zzzh}, where the pair to be identified originates from a $Z$ boson rather than from a Higgs boson. Simply replacing the simulated samples, adapting the ground truth to the new decay, and repeating the training and validation was sufficient to produce a functional model that proved to be superior to traditional methods for a problem involving a different resonance and a different mass scale. This is therefore the clearest available evidence that what has been developed here is not a solution tailored to a single process, but a procedure.
 
-None of these considerations, however, detracts from what has been achieved. Both algorithms reliably solve the problem posed to them, and much of the analysis presented below is based on them. Instead, they indicate that the approach has space for further exploration, and that the assignment of reconstructed objects to the particles that originated them remains a fruitful area of research.
+None of these considerations detracts from what has been achieved. Both algorithms reliably solve the problem posed to them, and much of the analysis presented below is based on them. Instead, they indicate that the approach has space for further exploration, and that the assignment of reconstructed objects to the particles that originated them remains a fruitful area of research.
