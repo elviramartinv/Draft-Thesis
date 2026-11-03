@@ -62,7 +62,7 @@ The label construction thus consists of two successive pairings, which are illus
 
 %
 %%% candidate pair selection
-Criteria are also established to unambiguously select the two jets of interest. For the $H\rightarrow b\bar{b}$ candidate, the pair whose invariant mass is closest to the Higgs boson mass is selected, as corresponds to the two $b$ jets originating from the Higgs\footnote{It should be emphasized that using the known mass of the boson introduces no bias whatsoever, since the ground truth is involved only in the training of the model and never in the analysis of the data}. This selection replaces the one used in the original development of the algorithm, which was based on taking the two highest-energy generated jets. \textcolor{red}{In the case of VBF jets, it holds that there are always two generated jets associated with the outgoing partons of the hard process - revisar}.
+Criteria are also established to unambiguously select the two jets of interest. For the $H\rightarrow b\bar{b}$ candidate, the pair whose invariant mass is closest to the Higgs boson mass is selected, as corresponds to the two $b$ jets originating from the Higgs\footnote{It should be emphasized that using the known mass of the boson introduces no bias whatsoever, since the ground truth is involved only in the training of the model and never in the analysis of the data}. This selection replaces the one used in the original development of the algorithm, which was based on taking the two highest-energy generated jets. For the VBF jets no choice is needed, since the two jets of interest are those associated with the two outgoing partons of the hard process, and events in which either of them is not found are discarded (Section \ref{subsec:vbf_dataset}).
 
 %% overlap removal
 In addition, overlaps are eliminated to ensure that a given jet is assigned to a single role: in the case of $b$ jets, angular separation is required from both $\tau$ candidates, and in the case of VBF-jets, angular separation is required from the $\tau$ candidates and the previously identified $b$ pair. This requirement is imposed at both the generator and reconstructed levels to guarantee the comparability of both sets.
@@ -262,87 +262,8 @@ The same metric is also used during training, to decide when to stop it (Section
 %
 According to the formulation of the supervised learning problem outlined in Section \ref{subsec:supervised}, the function whose parameters are estimated from simulated examples is, in this case, a neural network. Artificial neural networks, simply called neural networks (NNs), are parameterized functions capable of learning, from provided examples, the relationship between inputs and a desired output \cite{Goodfellow2016}. These functions are constructed from elementary units, called artificial neurons, which apply a linear combination to their inputs, determined by a set of adjustable parameters known as \textit{weights}, and followed by a nonlinear function called \textit{activation}. These units are grouped into layers, and by chaining several of them together, a function is obtained capable of representing relationships that none of them describes separately. Furthermore, layers are distinguished by the way their units connect to those of the preceding layer: in a dense layer, each unit receives all the outputs from the previous layer, while other types impose specific connections, tailored to the structure of the data they are to process. The behavior of the network is thus determined by two sets of quantities of different natures: adjustable parameters, which are determined during training, and the hyperparameters, which are set in advance and determine the structure of the network — such as the number of layers, their type, and the number of units in each — as well as the training procedure.
 
-Training therefore consists of iteratively traversing the set of labeled examples, comparing at each step the output of the model with the ground truth label through a loss function that guides the adjustment of the parameters. Thus, in each iteration, the parameters are modified to reduce the value of the loss function. The size of that modification, and the way in which it is computed, are dictated by an optimization algorithm, or \textit{optimizer}, which is itself one of the hyperparameters fixed before the training begins. The examples are processed in batches, and each complete pass through the set is called an epoch. At the end of each epoch, the performance of the model is measured with the purity, which determines when the training stops (Section \ref{subsec:training}). A schematic representation of the training process is shown in Figure \ref{fig:training_loop}.
+Training therefore consists of iteratively traversing the set of labeled examples, comparing at each step the output of the model with the ground truth label through a loss function that guides the adjustment of the parameters. Thus, in each iteration, the parameters are modified to reduce the value of the loss function. The size of that modification, and the way in which it is computed, are dictated by an optimization algorithm, or \textit{optimizer}, which is itself one of the hyperparameters fixed before the training begins. The examples are processed in batches, and each complete pass through the set is called an epoch. At the end of each epoch, the performance of the model is measured with the purity, which determines when the training stops (Section \ref{subsec:training}). 
 %
-\begin{figure}[t]
-\centering
-\begin{tikzpicture}[
-  font=\sffamily\small,
-  data/.style  ={rounded corners=3pt, draw=black!40, fill=black!5,
-                 align=center, inner sep=5pt},
-  netbox/.style={rounded corners=4pt, draw=black!45, minimum width=1.9cm,
-                 minimum height=2.3cm},
-  band/.style  ={rounded corners=2pt, draw=black!45, fill=black!12,
-                 minimum width=1.4cm, minimum height=0.45cm, inner sep=0pt,
-                 font=\sffamily\scriptsize},
-  lossb/.style ={rounded corners=3pt, draw=violet!55!black, fill=violet!16,
-                 align=center, inner sep=5pt},
-  metb/.style  ={rounded corners=3pt, draw=teal!70!black, fill=teal!16,
-                 align=center, inner sep=5pt},
-  dec/.style   ={rounded corners=3pt, draw=teal!70!black, fill=white,
-                 align=center, inner sep=5pt, thick},
-  tag/.style   ={rounded corners=2pt, draw=black!35, fill=white, dashed,
-                 align=center, inner sep=3pt, font=\sffamily\scriptsize,
-                 text=black!60},
-  arw/.style   ={-{Latex[length=2.2mm]}, thick, draw=black!55},
-  loop/.style  ={-{Latex[length=2.2mm]}, thick, draw=black!45},
-  tiny/.style  ={-{Latex[length=1.5mm]}, draw=black!45},
-  lab/.style   ={font=\sffamily\footnotesize, inner sep=1.5pt, fill=white},
-  slab/.style  ={font=\sffamily\scriptsize, inner sep=1.5pt, text=black!60},
-]
-
-% ================= row 1 : parameter fitting =================
-\node[data] (batch) at (0,4.4) {batch of labeled\\examples $(x,\,y)$};
-
-\node[netbox] (net) at (3.6,4.4) {};
-\node[band] (l1) at (3.6,5.15) {layer};
-\node[band] (l2) at (3.6,4.40) {layer};
-\node[band] (l3) at (3.6,3.65) {layer};
-\draw[tiny] (l1) -- (l2);
-\draw[tiny] (l2) -- (l3);
-\node[anchor=south, text=black!70] at (3.6,5.65) {neural network};
-\node[slab, anchor=west, text=black!70] at (4.68,5.15) {$\theta$};
-
-\node[tag] (hp) at (0.3,6.3) {hyperparameters};
-\draw[dashed, -{Latex[length=2mm]}, draw=black!40] (hp.east) -- (net.north west);
-
-\node[lossb] (loss) at (8.2,4.4) {comparison with $y$\\$\rightarrow$ loss function};
-
-\draw[arw] (batch) -- (net);
-\draw[arw] (net)   -- node[lab] {output $\hat{y}$} (loss);
-
-% ---- inner loop : parameter update ----
-\draw[loop] (loss.south) -- (8.2,2.6) -- (3.6,2.6) -- (net.south);
-\node[lab, text=black!60] at (5.9,2.6) {update of $\theta$};
-
-% ================= epoch boundary =================
-\draw[dashed, draw=black!30] (-3.0,1.9) -- (10.2,1.9);
-\node[slab, anchor=east, fill=white] at (10.2,2.13) {end of epoch};
-
-% ================= row 2 : stopping decision =================
-\node[metb] (val) at (8.2,0.85)  {purity\\evaluation};
-\node[dec]  (dec) at (3.6,0.85)  {improved?};
-\node[data] (end) at (3.6,-1.05) {keep the parameters\\of the best epoch};
-
-\draw[arw] (loss) -- (val);
-\draw[arw] (val)  -- (dec);
-\draw[arw] (dec)  -- node[slab, anchor=west] {no} (end);
-
-% ---- outer loop : next epoch ----
-\draw[loop] (dec.west) -- (-2.3,0.85) -- (-2.3,4.4) -- (batch.west);
-\node[slab, anchor=south] at (1.7,0.95) {yes};
-\node[lab, rotate=90, text=black!60] at (-2.3,2.9) {next epoch};
-
-\end{tikzpicture}
-\caption{Scheme of the training cycle. A batch of labeled examples is presented to the network,
-whose output is compared with the reference true label through the loss function; the parameters
-$\theta$ are then modified so as to reduce its value, and the cycle is repeated for every group.
-Once the complete set has been traversed — one epoch — the performance reached by the model is
-evaluated through the purity. The hyperparameters are set before the training starts and are not
-modified by the cycle. The internal structure of the network, drawn here as a generic succession
-of layers, is detailed in Section \ref{subsec:network}. \textcolor{red}{Igual quito este, me parece que es el que menos aporta}}
-\label{fig:training_loop}
-\end{figure}
 
 The design of the model is constrained by two properties of the problem. The number of reconstructed jets varies from one event to another, so that the network cannot depend on it and must produce a score for each jet, and, since the decision involves comparing the candidates with one another, the score of each jet must be informed by the presence and properties of the others.
 
@@ -567,7 +488,7 @@ Walking through Figure \ref{fig:architecture} from top to bottom:
 
 From the description above it follows that a score of the jet is related with those of the others in two distinct ways. The first is the recurrent block, which is the only stage in which information travels throught the sequence of jets. The second is the final normalization that takes place while the parameters are being adjusted: by setting the sum of the scores of the events to two, increasing the score of one candidate necessarily requires decreasing the scores of the others. If these mechanisms were omitted, the score of each jet would have no reference to the other candidates, which is precisely the limitation of explicit criteria that initially motivated the development of these algorithms.\medskip
 
-The values that fix this structure — the number of layers in each block, the number of units composing them, the activation of the dense layers — are the hyperparameters of the model that describe the network. They are gathered in Table \ref{tab:hyperparams}, and come from the optimization carried out in the original development of the algorithm \textcolor{red}{\cite{CMS-HIG-20-010,HHBTag}}.
+\noindent The values that fix this structure — the number of layers in each block, the number of units composing them, the activation of the dense layers — are the hyperparameters of the model that describe the network. They are gathered in Table \ref{tab:hyperparams}, and come from the optimization carried out in the original development of the algorithm \textcolor{red}{\cite{CMS-HIG-20-010,HHBTag}}.
 %   
 \begin{table}[t]
 \centering
@@ -691,8 +612,7 @@ The candidate jets are those reconstructed within that angular window with a tra
 %3 - muestras
 Regarding the samples used, the training set is constructed exclusively from simulated samples of the $HH\to bb\tau\tau$ signal, given that the reference label can only be defined for events containing the sought-after decay, as discussed in Section \ref{subsec:supervised}. In each retraining run, the signal samples comprise all available productions in each corresponding data-taking period. Thus, when available, they include resonant production, generated for spin-0 and spin-2 hypotheses in a mass range from $250$ to $3000$ GeV; and non-resonant production, which, in addition to the SM case, includes various BSM reference models. The mix of samples used in the dataset allows the algorithm to cover a wide range of kinematic configurations, thereby preventing the model from specializing in a specific regime and becoming biased toward a particular signal hypothesis.
 
-Therefore, the specific samples vary among versions of the algorithm. They depend on the availability of each data run, and other elements of the dataset preparation change accordingly, based on the recommendations associated with each data run, which are listed in Table \ref{tab:hhbtag_versions}. The initial version used all available simulated signal, including both gluon fusion and vector boson fusion. The second version, developed in this work for the Run 2 resonant search, was retrained on the Ultra-Legacy reprocessing of the Run 2 samples, \textcolor{red}{again with both production modes}, and its performance is presented in Section \ref{subsec:hhbtag_run2}, together with its validation for the study of $ZZ$ and $ZH$ production. The third version is the one developed for the partial analysis of Run 3 presented in this thesis, which also utilizes the available ggF and VBF production modes. The table outlines the evolution of the types of reconstructed jets\footnote{Run 2 used AK4 jets with charged hadron subtraction (CHS), complemented at low $p_T$ by a dedicated pileup jet identification, while Run 3 uses PUPPI jets, in which pileup is mitigated at the particle level (Section \ref{subsec:Jets}).} and consequently of the flavor discriminant appearing in the input variables, \textsc{DeepJet} \cite{Bols:2020bkb} in Run 2. Within Run 3 the discriminant is updated once more, with \textsc{ParticleNet} \cite{PNet} for the 2022 and 2023 periods and \textsc{UParT} \cite{Qu:2022mxj,CMS-UParT} for 2024, following the recommendation issued for each of them. Since the flavor score is the most important input of the model (Section \ref{subsec:hhbtag_inupts}) and the two discriminants assign different values to the same jet, a model trained with one of them cannot be applied to the other, so that the third version consists of two models, identical in architecture, input variables and ground truth, trained on the 2022--2023 samples with \textsc{ParticleNet} and on the 2024 samples with \textsc{UParT}, each of them applied to the periods on which it was trained. It is also important to note that the base selection inherited from the corresponding analysis differs between versions, directly impacting sample composition.\medskip
-
+Therefore, the specific samples vary among versions of the algorithm. They depend on the availability of each data run, and other elements of the dataset preparation change accordingly, based on the recommendations associated with each data run, which are listed in Table \ref{tab:hhbtag_versions}. The initial version used all available simulated signal, including both gluon fusion and vector boson fusion. The second version, developed in this work for the Run 2 resonant search, was retrained on the Ultra-Legacy reprocessing of the Run 2 samples, restricted to gluon fusion production — the only production mode considered in that search \cite{CMS-PAS-B2G-24-011} —, and its performance is presented in Section \ref{subsec:hhbtag_run2}, together with its validation for the study of $ZZ$ and $ZH$ production. The third version is the one developed for the partial analysis of Run 3 presented in this thesis, which again uses both ggF and VBF production modes. The table outlines the evolution of the types of reconstructed jets\footnote{Run 2 used AK4 jets with charged hadron subtraction (CHS), complemented at low $p_T$ by a dedicated pileup jet identification, while Run 3 uses PUPPI jets, in which pileup is mitigated at the particle level (Section \ref{subsec:Jets}).} and consequently of the flavor discriminant appearing in the input variables, \textsc{DeepJet} \cite{Bols:2020bkb} in Run 2. Within Run 3 the discriminant is updated once more, with \textsc{ParticleNet} \cite{PNet} for the 2022 and 2023 periods and \textsc{UParT} \cite{Qu:2022mxj,CMS-UParT} for 2024, following the recommendation issued for each of them. Since the flavor score is the most important input of the model (Section \ref{subsec:hhbtag_inupts}) and the two discriminants assign different values to the same jet, a model trained with one of them cannot be applied to the other, so that the third version consists of two models, identical in architecture, input variables and ground truth, trained on the 2022--2023 samples with \textsc{ParticleNet} and on the 2024 samples with \textsc{UParT}, each of them applied to the periods on which it was trained. It is also important to note that the base selection inherited from the corresponding analysis differs between versions, directly impacting sample composition.\medskip
 
 
 
@@ -712,7 +632,7 @@ The ground-truth label is then constructed from these samples according to the g
 Analysis                  & Run 2 nonresonant      & Run 2 resonant         & \multicolumn{2}{c}{Run 3} \\
 Signal hypotheses         & resonant, nonresonant  & resonant, nonresonant  & \multicolumn{2}{c}{nonresonant} \\
 Production modes          & ggF and VBF            & ggF                    & \multicolumn{2}{c}{ggF and VBF} \\
-Events after selection    & 5\,282\,013            & 3\,299\,451            & 9\,109\,430   & \textcolor{red}{XXX} \\
+Events after selection    & 5\,282\,013            & 3\,299\,451            & 9\,109\,430   & 5\,415\,358 \\
 Jet collection            & CHS                    & CHS                    & \multicolumn{2}{c}{PUPPI} \\
 Flavor discriminant      & \textsc{DeepJet}       & \textsc{DeepJet}       & \textsc{ParticleNet}   & \textsc{UParT} \\
 \bottomrule
@@ -827,7 +747,10 @@ After determining the information received by the model and its actual utilizati
 
 %--------------------------------------------------------------------
 
-Once it has been verified that the training behaves as expected, the performance of the model is evaluated in terms of purity across the different signal samples used. Figure \ref{fig:hhbtag_purity} illustrates the purity achieved on the \textcolor{red}{XXX} samples, broken down by \textcolor{red}{data collection period} and by signal scenario. \textcolor{red}{Cambiar esta figura: añadir HHBTag v1; en vez de poner todos los años por separado, poner evaluacion sobre los diferentes conjuntos de entrenamiento? Run-2 y Run-3 (dividido en 22+23 y 24) completos; que la performance se mantiene año por año comentarlo en el texto}. All figures show the purity achieved by the different versions of the model, as well as their comparison with direct assignment using the available standard flavor discriminants, applied according to the explicit ordering criterion described in Section \ref{sec:assignment}.
+Once it has been verified that the training behaves as expected, the performance of the model is evaluated in terms of purity across the different signal samples. Figure \ref{fig:hhbtag_purity} shows the purity achieved in each signal scenario, separately for the 2022--2023 and 2024 periods, each evaluated with the model trained for it, and compares it with the previous version of the algorithm and with the direct assignment based on the standard flavor discriminants, applied according to the explicit ordering criterion described in Section \ref{sec:assignment}. The 2022 and 2023 data, divided into four periods by the detector conditions (Table \ref{tab:datataking_periods}), are shown together because the performance does not change between them. This explicit check confirms what the permutation importance already indicated, namely that the data-taking period is transparent to the model (Section \ref{subsec:hhbtag_inupts}).
+
+
+% Once it has been verified that the training behaves as expected, the performance of the model is evaluated in terms of purity across the different signal samples used. Figure \ref{fig:hhbtag_purity} illustrates the purity achieved on the \textcolor{red}{XXX} samples, broken down by \textcolor{red}{data collection period} and by signal scenario. \textcolor{red}{Cambiar esta figura: añadir HHBTag v1; en vez de poner todos los años por separado, poner evaluacion sobre los diferentes conjuntos de entrenamiento? Run-2 y Run-3 (dividido en 22+23 y 24) completos; que la performance se mantiene año por año comentarlo en el texto}. All figures show the purity achieved by the different versions of the model, as well as their comparison with direct assignment using the available standard flavor discriminants, applied according to the explicit ordering criterion described in Section \ref{sec:assignment}.
 
 The figure shows that the purity values vary approximately \textcolor{red}{$4\%$} among the different coupling points considered. This is due to the kinematics of the different signals, since, as described in Section \ref{subsec:BSM_production}, the couplings modify the invariant mass spectrum of the Higgs boson pair and, consequently, the momentum of the $H\to b\bar{b}$ system, which results in different distributions of the jet variables. The assignment is thus more or less demanding depending on the point under consideration, and the same variation is observed in all the discriminants with which it is compared, whose relative order remains unchanged in all cases.
 
@@ -889,9 +812,10 @@ It is concluded that the training behaves as expected and that the purity achiev
 %
 The performance presented so far corresponds to the version retrained for the Run 3 analysis, whose role in the selection of the events and in the extraction of the signal is described in Chapter \ref{ch:bbtt_analysis}. Before this retraining, \textsc{HH-BTag} was adapted in this work to two searches performed with the Run 2 data in the same final state, the search for resonant $HH$ production \cite{CMS-PAS-B2G-24-011} and the study of $ZZ$ and $ZH$ production \cite{CMS:2026zzzh}. Beyond their own results, both put the algorithm to the test outside the conditions under which it was originally developed, the first over a much wider range of kinematic configurations and the second when the $b\bar{b}$ pair is produced by a different boson.
 
-For the resonant search, the algorithm was retrained with the Ultra-Legacy reprocessing of the Run 2 simulation, which defines the version v2 of Table \ref{tab:hhbtag_versions}. The training set combines nonresonant production, for the SM and the BSM benchmark models, with the production of the spin-0 radions and spin-2 gravitons predicted by models with warped extra dimensions (Section \ref{subsec:BSM_production}), with masses between $250$ and $3000$ GeV, \textcolor{red}{through gluon fusion and vector boson fusion}. The architecture, the input variables and the hyperparameters of the original version were kept, except for the optimizer, which was replaced by AdamW in this version (Section \ref{subsec:training}). The ground truth already selected the pair of generated $b$ jets with the invariant mass closest to the Higgs boson mass and matched them to the reconstructed jets within $\Delta R < 0.3$, but it identified the generated $b$ jets through their parton flavour, without the explicit matching to the $b$ quarks from the Higgs boson decay adopted for Run 3 (Section \ref{subsec:groundtruth}). The purities of this version are therefore not directly comparable with those of the Run 3 version (Section \ref{subsec:hhbtag_performance}).
+For the resonant search, the algorithm was retrained with the Ultra-Legacy reprocessing of the Run 2 simulation, which defines the version v2 of Table \ref{tab:hhbtag_versions}. The training set combines nonresonant production, for the SM and the BSM benchmark models, with the production of the spin-0 radions and spin-2 gravitons predicted by models with warped extra dimensions (Section \ref{subsec:BSM_production}), with masses between $250$ and $3000$ GeV, in all cases produced through gluon fusion. The architecture, the input variables and the hyperparameters of the original version were kept, except for the optimizer, which was replaced by AdamW in this version (Section \ref{subsec:training}). The ground truth already selected the pair of generated $b$ jets with the invariant mass closest to the Higgs boson mass and matched them to the reconstructed jets within $\Delta R < 0.3$, but it identified the generated $b$ jets through their parton flavour, without the explicit matching to the $b$ quarks from the Higgs boson decay adopted for Run 3 (Section \ref{subsec:groundtruth}). The purities of this version are therefore not directly comparable with those of the Run 3 version (Section \ref{subsec:hhbtag_performance}).
 
-Figure \ref{fig:hhbtag_v2_purity} shows the purity obtained on the 2018 samples of resonant production as a function of the mass of the resonance, with all the methods evaluated against this same ground truth. The retrained version reaches purities between $89.8$ and $97.4\%$, compared with $86.9$--$96.1\%$ for the original version and $79.7$--$91.8\%$ for \textsc{ParticleNet}, the best of the standard discriminants used through the explicit ordering criterion, and it improves on the original version at almost every mass point. For nonresonant production, the purity ranges from $93.3$ to $95.9\%$, compared with $92.8$--$95.1\%$ and $89.0$--$90.2\%$, respectively.
+Figure \ref{fig:hhbtag_v2_purity} shows the purity obtained on the 2018 samples of resonant production as a function of the mass of the resonance, with all the methods evaluated against this same ground truth. The retrained version reaches purities between $89.8$ and $97.4\%$, compared with $86.9$--$96.1\%$ for the original version and $79.7$--$91.8\%$ for \textsc{ParticleNet}, the best of the standard discriminants used through the explicit ordering criterion, and it improves on the original version at almost every mass point. For nonresonant production, the purity ranges from $93.3$ to $95.9\%$, compared with $92.8$--$95.1\%$ and $89.0$--$90.2\%$, respectively. Although trained only on gluon fusion, the model was also evaluated on resonant production through vector boson fusion, where it reaches purities above \textcolor{red}{$87\%$}.
+
 
 All the methods follow the same dependence on the mass, but the advantage of \textsc{HH-BTag} over the explicit criterion grows from about $3.5$ points at $250$ GeV to $8$--$10$ points at $3000$ GeV. At these masses the jets are very energetic, the performance of the $b$ tagging discriminants degrades, and the kinematic information of the event becomes decisive to identify the pair. The gain of the retrained version over the original one is smaller but systematic, and it is obtained with the same architecture and inputs by adapting the model to the reprocessed samples, which is the same reason that motivated its retraining for Run 3. This version is the one used to select the $H\to b\bar{b}$ candidate in the resonant search \cite{CMS-PAS-B2G-24-011}.\medskip
 %
@@ -958,7 +882,8 @@ The candidates among which the VBF pair is sought are derived from those on whic
 In this case, the training set is limited to simulated production samples from the vector boson fusion of the Higgs boson pair, corresponding to the data-taking periods of early Run 3 -- 2022 to 2024. As for \textsc{HH-BTag}, two models are trained, on the 2022--2023 samples with \textsc{ParticleNet} and on the 2024 samples with \textsc{UParT} as flavor discriminant (Section \ref{subsec:hhbtag_dataset}). As previously explained, the sample mix includes the full range of coupling points $(\kappa_\lambda, c_{2V}, c_V)$ available, in order to ensure that the model covers a wide range of kinematic configurations without specializing in any one. In all cases, this involves non-resonant production, \textcolor{red}{por disponibilidad? o por que no quisimos incluir resonante?}. It should be noted that the restriction to this production mode is, once again, motivated by the need to define the ground truth. However, as with the \textsc{HH-BTag}, the algorithm is applied to all events in the analysis, so events produced by gluon fusion are treated as just another background in this context.
 
 % 5 - Ground truth
-Given the problem at hand, the definition of the true label is now based on the matrix element itself. Among the partons in the final state of the hard process, the two that are neither Higgs bosons nor $b$ quarks are identified, and which therefore correspond to the scattered quarks from the fusion vertex. These are associated with the nearest generated jet, requiring $\Delta R < 0.4$, equal to the radius at which the jets are reconstructed. The generated jets are then matched with the reconstructed jets that pass the candidate selection, within a cone of $\Delta R < 0.3$, such that only when both pairings are successful is the event labeled and admitted into the training set. An additional requirement at the generation level restricts the sample to resolved configurations and to those in which the $b\bar{b}$ pair and the $\tau\tau$ system are themselves well-defined, ensuring that the assignment is learned from events in which the entire topology of the process is present.\medskip
+Given the problem at hand, the definition of the true label is now based on the matrix element itself. Among the partons in the final state of the hard process, the two that are neither Higgs bosons nor $b$ quarks are identified, and which therefore correspond to the scattered quarks from the fusion vertex. Each of them is associated with the nearest generated jet within $\Delta R < 0.4$, equal to the radius at which the jets are reconstructed, and the generated jets so obtained must satisfy the same acceptance as the reconstructed candidates, $p_T > 20$ GeV and $|\eta| < 4.7$, and be separated from the $b$ jets and the $\tau$ leptons of the event (Section \ref{subsec:groundtruth}). The two outgoing partons do not always give rise to two generated jets meeting these conditions, since one of them may produce a softer or more forward jet or overlap with another object of the event, and such events are discarded. The generated jets are then matched with the reconstructed jets that pass the candidate selection, within a cone of $\Delta R < 0.3$, and the event is labeled and admitted into the training set only when both pairings are successful, so that every event of the training set contains exactly two true VBF jets by construction. An additional requirement at the generation level restricts the sample to resolved configurations and to those in which the $b\bar{b}$ pair and the $\tau\tau$ system are themselves well-defined, ensuring that the assignment is learned from events in which the entire topology of the process is present.\medskip
+
 
 
 \subsection{Extending the input set}
@@ -1067,7 +992,7 @@ The performance of the model is evaluated with the same tests as for \textsc{HH-
 The training of the two models of each period, one for each event parity, converges in the same way as for \textsc{HH-BTag}, with the purity on the validation events stabilizing around \textcolor{red}{XX\%} after about \textcolor{red}{XX} epochs and without any significant gap between the training and validation values, which confirms that the configuration inherited from \textsc{HH-BTag} is also adequate for this problem.
 
 % 3 - Pureza
-The purity evaluated on the vector boson fusion signal samples from Run 3 is illustrated in Figure \ref{fig:vbfjtag_purity}, which breaks down the results by coupling point and compares the different versions tested based on the inputs used against the kinematic criterion employed in Run 2, as evaluated on those same samples. The algorithm outperforms the kinematic criterion in all the configurations examined, with purity values ranging from $91$ to $95\%$, compared to $83$--$89\%$ for the kinematic criterion. As for \textsc{HH-BTag}, the absolute values depend on the coupling point, by at most $4\%$, an effect that the kinematic criterion shows in the same way.
+The purity evaluated on the vector boson fusion signal samples from Run 3 is illustrated in Figure \ref{fig:vbfjtag_purity}, which breaks down the results by coupling point and compares the different versions tested based on the inputs used against the kinematic criterion employed in Run 2, as evaluated on those same samples. As for \textsc{HH-BTag}, the 2022 and 2023 periods are shown together, since the purity does not change between them, and 2024 is shown separately because it is evaluated with its own model. The algorithm outperforms the kinematic criterion in all the configurations examined, with purity values ranging from $91$ to $95\%$, compared to $83$--$89\%$ for the kinematic criterion. As for \textsc{HH-BTag}, the absolute values depend on the coupling point, by at most $4\%$, an effect that the kinematic criterion shows in the same way.
 
 It is evident that the purity achieved is lower than that obtained by the \textsc{HH-BTag}, as was to be expected since the decision in this case cannot rely on an intrinsic property of the object (Section \ref{subsec:vbf_dataset}). Instead, the problem here is more complex, compounded by the difficulties arising from the angular window covered: the set of candidates considered is expanded, and the jet reconstruction is less accurate outside the tracker coverage.
 
