@@ -167,7 +167,7 @@ P = \frac{N_{\mathrm{true}}}{N},
 %
 where $N_{\mathrm{true}}$ is the number of events in which the pair selected by the algorithm matches the one designated by the ground truth, and $N$ is the total number of events, all of which contain the two true jets by construction of the samples (Section \ref{subsec:groundtruth}).\medskip
 
-In practice, purity is measured by sorting the jets in the event according to the score assigned by the corresponding model, and checking whether the first two are labeled true. If so, the event contributes to $N_{\mathrm{true}}$. A visual representation of the process can be seen in Figure \ref{fig:purity}. It is therefore a strict, binary quantity at the event level, where both jets must be correctly identified; cases with a single correctly identified jet count the same as those where neither jet was correctly identified.\\
+In practice, purity is measured by sorting the jets in the event according to the score assigned by the corresponding model, and checking whether the first two are labeled true. If so, the event contributes to $N_{\mathrm{true}}$. A visual representation of the process can be seen in Figure \ref{fig:purity}. It is therefore a strict, binary quantity at the event level, where both jets must be correctly identified; cases with a single correctly identified jet count the same as those where neither jet was correctly identified\footnote{The purity is therefore a binomial proportion, whose statistical uncertainty follows from the event counts themselves. The vertical bars in the purity figures of this chapter are $68.27\%$ confidence-level Clopper--Pearson intervals \cite{ClopperPearson1934}, computed on the events evaluated by the two parity models (Section \ref{subsec:training}) added together.}.\medskip
 %
 \providecommand{\jetglyph}[4]{% #1=name  #2=x  #3=y  #4=style
   \node[#4] (#1) at (#2,#3) {};
@@ -340,7 +340,7 @@ $\theta$ are then modified so as to reduce its value, and the cycle is repeated 
 Once the complete set has been traversed — one epoch — the performance reached by the model is
 evaluated through the purity. The hyperparameters are set before the training starts and are not
 modified by the cycle. The internal structure of the network, drawn here as a generic succession
-of layers, is detailed in Section \ref{subsec:network}.}
+of layers, is detailed in Section \ref{subsec:network}. \textcolor{red}{Igual quito este, me parece que es el que menos aporta}}
 \label{fig:training_loop}
 \end{figure}
 
@@ -691,7 +691,7 @@ The candidate jets are those reconstructed within that angular window with a tra
 %3 - muestras
 Regarding the samples used, the training set is constructed exclusively from simulated samples of the $HH\to bb\tau\tau$ signal, given that the reference label can only be defined for events containing the sought-after decay, as discussed in Section \ref{subsec:supervised}. In each retraining run, the signal samples comprise all available productions in each corresponding data-taking period. Thus, when available, they include resonant production, generated for spin-0 and spin-2 hypotheses in a mass range from $250$ to $3000$ GeV; and non-resonant production, which, in addition to the SM case, includes various BSM reference models. The mix of samples used in the dataset allows the algorithm to cover a wide range of kinematic configurations, thereby preventing the model from specializing in a specific regime and becoming biased toward a particular signal hypothesis.
 
-Therefore, the specific samples vary among versions of the algorithm. They depend on the availability of each data run, and other elements of the dataset preparation change accordingly, based on the recommendations associated with each data run, which are listed in Table \ref{tab:hhbtag_versions}. The initial version used all available simulated signal, including both gluon fusion and vector boson fusion. The second version, developed in this work for the Run 2 resonant search, was retrained on the Ultra-Legacy reprocessing of the Run 2 samples, \textcolor{red}{again with both production modes}, and its performance is presented in Section \ref{subsec:hhbtag_run2}, together with its validation for the study of $ZZ$ and $ZH$ production. The third version is the one developed for the partial analysis of Run 3 presented in this thesis, which also utilizes the available ggF and VBF production modes. The table outlines the evolution of the types of reconstructed jets\footnote{Run 2 used AK4 jets with charged hadron subtraction (CHS), complemented at low $p_T$ by a dedicated pileup jet identification, while Run 3 uses PUPPI jets, in which pileup is mitigated at the particle level (Section \ref{subsec:Jets}).} and consequently of the flavor discriminant appearing in the input variables, \textsc{DeepJet} \cite{Bols:2020bkb} in Run 2. Within Run 3 the discriminant is updated once more: \textsc{ParticleNet} \cite{PNet} is used for the 2022 and 2023 periods and \textsc{UParT} \cite{Qu:2022mxj,CMS-UParT} for 2024, following the recommendation issued for each of them. It is also important to note that the base selection inherited from the corresponding analysis differs between versions, directly impacting sample composition.\medskip
+Therefore, the specific samples vary among versions of the algorithm. They depend on the availability of each data run, and other elements of the dataset preparation change accordingly, based on the recommendations associated with each data run, which are listed in Table \ref{tab:hhbtag_versions}. The initial version used all available simulated signal, including both gluon fusion and vector boson fusion. The second version, developed in this work for the Run 2 resonant search, was retrained on the Ultra-Legacy reprocessing of the Run 2 samples, \textcolor{red}{again with both production modes}, and its performance is presented in Section \ref{subsec:hhbtag_run2}, together with its validation for the study of $ZZ$ and $ZH$ production. The third version is the one developed for the partial analysis of Run 3 presented in this thesis, which also utilizes the available ggF and VBF production modes. The table outlines the evolution of the types of reconstructed jets\footnote{Run 2 used AK4 jets with charged hadron subtraction (CHS), complemented at low $p_T$ by a dedicated pileup jet identification, while Run 3 uses PUPPI jets, in which pileup is mitigated at the particle level (Section \ref{subsec:Jets}).} and consequently of the flavor discriminant appearing in the input variables, \textsc{DeepJet} \cite{Bols:2020bkb} in Run 2. Within Run 3 the discriminant is updated once more, with \textsc{ParticleNet} \cite{PNet} for the 2022 and 2023 periods and \textsc{UParT} \cite{Qu:2022mxj,CMS-UParT} for 2024, following the recommendation issued for each of them. Since the flavor score is the most important input of the model (Section \ref{subsec:hhbtag_inupts}) and the two discriminants assign different values to the same jet, a model trained with one of them cannot be applied to the other, so that the third version consists of two models, identical in architecture, input variables and ground truth, trained on the 2022--2023 samples with \textsc{ParticleNet} and on the 2024 samples with \textsc{UParT}, each of them applied to the periods on which it was trained. It is also important to note that the base selection inherited from the corresponding analysis differs between versions, directly impacting sample composition.\medskip
 
 
 
@@ -703,19 +703,21 @@ The ground-truth label is then constructed from these samples according to the g
 \begin{table}[t]
 \centering
 \small
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \toprule
-                          & \textsc{v1}            & \textsc{v2}            & \textsc{v3} \\
+                          & \textsc{v1}            & \textsc{v2}            & \multicolumn{2}{c}{\textsc{v3}} \\
+\cmidrule(lr){4-5}
+                          &                        &                        & 2022--2023             & 2024 \\
 \midrule
-Analysis                  & Run 2 nonresonant      & Run 2 resonant         & Run 3 \\
-Signal hypotheses         & resonant, nonresonant  & resonant, nonresonant  & nonresonant \\
-Production modes          & ggF and VBF            & \textocolor{red}{ggF and VBF}                   & ggF and VBF \\
-Events after selection    & 5\,282\,013            & 3\,299\,451            & \textcolor{red}{XXX} \\
-Jet collection            & CHS                    & CHS                    & PUPPI \\
-Flavour discriminant      & \textsc{DeepJet}       & \textsc{DeepJet}       & \textsc{ParticleNet}, \textsc{UParT} \\
+Analysis                  & Run 2 nonresonant      & Run 2 resonant         & \multicolumn{2}{c}{Run 3} \\
+Signal hypotheses         & resonant, nonresonant  & resonant, nonresonant  & \multicolumn{2}{c}{nonresonant} \\
+Production modes          & ggF and VBF            & ggF                    & \multicolumn{2}{c}{ggF and VBF} \\
+Events after selection    & 5\,282\,013            & 3\,299\,451            & 9\,109\,430   & \textcolor{red}{XXX} \\
+Jet collection            & CHS                    & CHS                    & \multicolumn{2}{c}{PUPPI} \\
+Flavor discriminant      & \textsc{DeepJet}       & \textsc{DeepJet}       & \textsc{ParticleNet}   & \textsc{UParT} \\
 \bottomrule
 \end{tabular}
-\caption{Successive versions of the \textsc{HH-BTag} algorithm and the elements of the training set preparation in which they differ.}
+\caption{Successive versions of the \textsc{HH-BTag} algorithm and the elements of the training set preparation in which they differ. The third version comprises two models, trained for the 2022--2023 and 2024 periods with the flavor discriminant reommended for each.}
 \label{tab:hhbtag_versions}
 \end{table}
 
@@ -795,12 +797,12 @@ Four measures clearly stand out from the rest. As expected, the flavor discrimin
 The hierarchy reflects two conditions that a variable must meet to be important, namely that it varies among the jets of the same event and that it provides information that cannot be recovered from the other inputs. The four dominant quantities meet both, three of them describing the jet itself and the fourth relating it to the rest of the event. The quantities of the $\tau\tau$ system and the missing transverse momentum fail the first condition, since they are replicated in all rows (Section \ref{subsec:inputs}) and cannot alter the order of the candidates on their own, and the redundant quantities fail the second, however marked the separation between their distributions (Section \ref{subsec:featimp}). Finally, the $\tau\tau$ decay channel and the \textcolor{red}{data-taking year} are completely transparent to the model, so that the assignment behaves uniformly across final states and years, as expected of an algorithm intended to be applied equally to all of them.\medskip
 
 
-The study has been repeated in each of the retraining runs, and the results obtained are always consistent with one another; therefore, only those corresponding to \textcolor{red}{version v3} are presented here. The fact that the hierarchy remains unchanged when changing the samples, the data collection conditions, and the discriminant itself indicates that the model is based on the physics of the process and not on the particular characteristics of a specific dataset.
+The study has been repeated in each of the retraining runs, and the results obtained are always consistent with one another; therefore, only those of the 2022--2023 model of version v3 are presented here, the 2024 model yielding the same hierarchy with \textsc{UParT} in place of \textsc{ParticleNet}. \textcolor{red}{REVISAR QUE ES ASI} The fact that the hierarchy remains unchanged when changing the samples, the data collection conditions, and the discriminant itself indicates that the model is based on the physics of the process and not on the particular characteristics of a specific dataset.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.85\linewidth]{figures/chapter_IV/hhbtag_feature_importance.png}
-\caption{Permutation importance of the input variables of the \textsc{HH-BTag} algorithm. Each
+\caption{Permutation importance of the input variables of the 2022--2023 model of the \textsc{HH-BTag} algorithm. Each
 entry gives the decrease in purity obtained when the values of the corresponding variable are
 randomly permuted among the jet candidates of the evaluation sample, leaving the remaining
 variables unchanged. The two sets of bars correspond to the models trained on the even and on the
@@ -813,14 +815,14 @@ odd event-number samples, each evaluated on the events it has not seen during tr
 \centering
 \includegraphics[width=0.85\linewidth]{figures/chapter_IV/par0_corrmatrix.png}
 \caption{Linear correlation coefficients between the input variables of the \textsc{HH-BTag}
-algorithm. \textcolor{red}{ACTUALIZAR}}
+algorithm, for the 2022--2023 training sample. \textcolor{red}{ACTUALIZAR}}
 \label{fig:hhbtag_corr}
 \end{figure}
 
 \subsection{Performance of the \textsc{HH-BTag} model}
 \label{subsec:hhbtag_performance}
 % AQUI IGUAL QUITO LA LOSS FUNCTION
-After determining the information received by the model and its actual utilization, the next step is to measure its performance, comparing it with the explicit criterion it replaces and across its successive versions. The training of the two models, one for each event parity, meets the criteria of Section \ref{subsec:training}. In both, the purity and the loss function stabilize after about \textcolor{red}{XX} epochs \textcolor{red}{o XXX según la parity}, with the purity on the validation events reaching a plateau around \textcolor{red}{XX\%}, and the values obtained on the training and validation events evolve together without any gap opening between them. The two models therefore converge to the same performance, even though they stop at a different number of epochs, since the stopping criterion depends on the fluctuations of each fit.\medskip
+After determining the information received by the model and its actual utilization, the next step is to measure its performance, comparing it with the explicit criterion it replaces and across its successive versions. The training of the two models of each period, one for each event parity, meets the criteria of Section \ref{subsec:training}. In both, the purity and the loss function stabilize after about \textcolor{red}{XX} epochs \textcolor{red}{o XXX según la parity}, with the purity on the validation events reaching a plateau around \textcolor{red}{XX\%}, and the values obtained on the training and validation events evolve together without any gap opening between them. The two models therefore converge to the same performance, even though they stop at a different number of epochs, since the stopping criterion depends on the fluctuations of each fit.\medskip
 
 
 %--------------------------------------------------------------------
@@ -833,16 +835,37 @@ The figure shows that the purity values vary approximately \textcolor{red}{$4\%$
 What this figure indicates, therefore, is the substantial improvement that the model introduces compared to the ordering criterion, which consistently increases purity by \textcolor{red}{$\sim 3\%$} based on the best-case scenario for standard discriminants, which is always attributed almost equally to \textsc{ParticleNet} and \textsc{RobustParT} \cite{CMS-DP-2024-024}. Regarding the comparison between versions, the previous one is evaluated here on samples and conditions for which it was not trained, so that the comparison measures how much performance is lost when a model is applied to new experimental conditions and how much of it the retraining recovers, while its performance on the Run 2 samples for which it was trained is presented in Section \ref{subsec:hhbtag_run2}.\textcolor{red}{revisar}
 %La comparación con la versión anterior merece una precisión, puesto que esta se entrenó sobre las muestras y las condiciones de Run-2 y se evalúa aquí sobre las de Run-3. No se trata de un defecto del cotejo, sino precisamente de la pregunta que el reentrenamiento viene a responder: lo que se mide es cuánto rendimiento se pierde al aplicar a unas condiciones experimentales nuevas un modelo ajustado para las anteriores, y cuánto de esa pérdida recupera el reentrenamiento. Evaluar la versión anterior sobre los datos de Run-2 respondería a una pregunta distinta —si era adecuada en su momento—, que ya se abordó en su desarrollo correspondiente y que no interviene aquí.
 %
+% \begin{figure}[tbp]
+% \centering
+% \includegraphics[width=0.95\linewidth]{figures/chapter_IV/hhbtag_purity_run3.pdf}
+% \caption{Purity of the $H\rightarrow b\bar{b}$ candidate selection on the Run 3 signal samples, for the
+% retrained \textsc{HH-BTag} algorithm, for its previous version and for the \textsc{DeepJet},
+% \textsc{ParticleNet} and \textsc{RobustParT} discriminants used through the explicit ordering
+% criterion. Each panel corresponds to one data-taking period and each bin on the horizontal axis to
+% one signal benchmark. Taken from \textcolor{red}{ACTUALIZAR - he cogido las dos primeras que he pillado}.}
+% \label{fig:hhbtag_purity}
+% \end{figure}
+
 \begin{figure}[tbp]
-\centering
-\includegraphics[width=0.95\linewidth]{figures/chapter_IV/hhbtag_purity_run3.pdf}
-\caption{Purity of the $H\rightarrow b\bar{b}$ candidate selection on the Run 3 signal samples, for the
-retrained \textsc{HH-BTag} algorithm, for its previous version and for the \textsc{DeepJet},
-\textsc{ParticleNet} and \textsc{RobustParT} discriminants used through the explicit ordering
-criterion. Each panel corresponds to one data-taking period and each bin on the horizontal axis to
-one signal benchmark. Taken from \textcolor{red}{ACTUALIZAR - he cogido las dos primeras que he pillado}.}
-\label{fig:hhbtag_purity}
+    \centering
+    \begin{subfigure}[t]{\linewidth}
+        \centering
+        \IfFileExists{figures/chapter_IV/hhbtag_purity_2022_2023.pdf}
+            {\includegraphics[width=0.95\linewidth]{figures/chapter_IV/hhbtag_purity_2022_2023.pdf}}
+            {\fbox{\parbox[c][0.3\linewidth][c]{0.9\linewidth}{\centering\textcolor{red}{Pending: hhbtag\_purity\_2022\_2023.pdf}}}}
+        \caption{2022--2023, model trained with \textsc{ParticleNet}}
+    \end{subfigure}\\[1ex]
+    \begin{subfigure}[t]{\linewidth}
+        \centering
+        \IfFileExists{figures/chapter_IV/hhbtag_purity_2024.pdf}
+            {\includegraphics[width=0.95\linewidth]{figures/chapter_IV/hhbtag_purity_2024.pdf}}
+            {\fbox{\parbox[c][0.3\linewidth][c]{0.9\linewidth}{\centering\textcolor{red}{Pending: hhbtag\_purity\_2024.pdf}}}}
+        \caption{2024, model trained with \textsc{UParT}}
+    \end{subfigure}
+    \caption{Purity of the $H\rightarrow b\bar{b}$ candidate selection on the Run 3 signal samples, for each signal benchmark (horizontal axis), in the 2022--2023 (a) and 2024 (b) periods, each evaluated with the model of version v3 trained for that period. The retrained \textsc{HH-BTag} is compared with its previous version and with the explicit ordering criterion applied to the standard flavor discriminants \textcolor{red}{(\textsc{DeepJet}, \textsc{ParticleNet}, \textsc{RobustParT} and, in 2024, \textsc{UParT}; confirmar al tener las figuras)}. The vertical bars show the statistical uncertainty (Section \ref{subsec:metric}). AQUI HABRIA QUE INDICAR TAMBIEN QUE NO CAMBIA LA PERFORMANCE ENTRE AÑOSNO? TIPO PARA 2022, 2023...}
+    \label{fig:hhbtag_purity}
 \end{figure}
+
 
 Since the purity cannot be evaluated on background samples (Section \ref{subsec:metric}), the behavior of the algorithm on them is examined through the shape of its score distribution. Figure \ref{fig:hhbtag_score} presents the distribution for the two highest-scoring jets in the event, comparing the signal to the two dominant backgrounds in the analysis: the dileptonic $t\bar{t}$ and Drell-–Yan backgrounds.
 
@@ -932,7 +955,7 @@ The candidates among which the VBF pair is sought are derived from those on whic
 %Es importante señalar aquí que aunque los dos jets asignados al par $b\bar{b}$ quedan excluidos de la elección de \textsc{VBFjTag}, si se figuran en el tensor de entrada, donde se identifica a cada uno de ellos mediante una variable que señala su condición. Tanto el bloque recurrente como la normalización de las puntuaciones acoplan entre sí todos los jets del evento, de modo que retirarlos privaría al modelo del contexto en el que ha de decidir.
 
 % 4 - Muestras
-In this case, the training set is limited to simulated production samples from the vector boson fusion of the Higgs boson pair, corresponding to the data-taking periods of early Run 3 (2022 to 2024). As previously explained, the sample mix includes the full range of coupling points $(\kappa_\lambda, c_{2V}, c_V)$ available, in order to ensure that the model covers a wide range of kinematic configurations without specializing in any one. In all cases, this involves non-resonant production, \textcolor{red}{por disponibilidad? o por que no quisimos incluir resonante?}. It should be noted that the restriction to this production mode is, once again, motivated by the need to define the ground truth. However, as with the \textsc{HH-BTag}, the algorithm is applied to all events in the analysis, so events produced by gluon fusion are treated as just another background in this context.
+In this case, the training set is limited to simulated production samples from the vector boson fusion of the Higgs boson pair, corresponding to the data-taking periods of early Run 3 -- 2022 to 2024. As for \textsc{HH-BTag}, two models are trained, on the 2022--2023 samples with \textsc{ParticleNet} and on the 2024 samples with \textsc{UParT} as flavor discriminant (Section \ref{subsec:hhbtag_dataset}). As previously explained, the sample mix includes the full range of coupling points $(\kappa_\lambda, c_{2V}, c_V)$ available, in order to ensure that the model covers a wide range of kinematic configurations without specializing in any one. In all cases, this involves non-resonant production, \textcolor{red}{por disponibilidad? o por que no quisimos incluir resonante?}. It should be noted that the restriction to this production mode is, once again, motivated by the need to define the ground truth. However, as with the \textsc{HH-BTag}, the algorithm is applied to all events in the analysis, so events produced by gluon fusion are treated as just another background in this context.
 
 % 5 - Ground truth
 Given the problem at hand, the definition of the true label is now based on the matrix element itself. Among the partons in the final state of the hard process, the two that are neither Higgs bosons nor $b$ quarks are identified, and which therefore correspond to the scattered quarks from the fusion vertex. These are associated with the nearest generated jet, requiring $\Delta R < 0.4$, equal to the radius at which the jets are reconstructed. The generated jets are then matched with the reconstructed jets that pass the candidate selection, within a cone of $\Delta R < 0.3$, such that only when both pairings are successful is the event labeled and admitted into the training set. An additional requirement at the generation level restricts the sample to resolved configurations and to those in which the $b\bar{b}$ pair and the $\tau\tau$ system are themselves well-defined, ensuring that the assignment is learned from events in which the entire topology of the process is present.\medskip
@@ -1012,7 +1035,7 @@ and for the remaining jet candidates of the event, in simulated VBF $HH\to bb\ta
 \medskip
 
 % 6 - Feature importance 
-With the set defined in this way, the next step is to examine the extent to which the trained model uses each of the variables using the permutation procedure described in Section \ref{subsec:featimp}. The result is shown in Figure \ref{fig:vbfjtag_featimp}, with the two models trained on each parity presented separately.
+With the set defined in this way, the next step is to examine the extent to which the trained model uses each of the variables using the permutation procedure described in Section \ref{subsec:featimp}. The result is shown in Figure \ref{fig:vbfjtag_featimp} for the 2022--2023 model, with the two models trained on each parity presented separately; the 2024 model, trained with \textsc{UParT} yields the same hierarchy.
 
 In this case the jet kinematic variables are clearly more dominant than in the $b\bar{b}$ pair assignment problem, in accordance with the new nature of the problem. The order is therefore supported by the properties of the problem and, once again, by the correlation matrix in Figure \ref{fig:vbfjtag_corr}. The transverse momentum heads the hierarchy, as VBF jets are the most energetic of the set of jets remaining after the $b\bar{b}$ pair subtraction. The $p_T$ of the jet is followed by the azimuthal separation with respect to the $\tau\tau$ system, which, as in \textsc{HH-BTag}, is the only azimuthal information in the set: the matrix shows it to be uncorrelated with all other variables, so that the information it provides cannot be recovered by any other means. Next, with comparable weights, come the flavor discriminant and the variable identifying the already-assigned $b$ jets, both correlated at $0.69$. Among the quantities incorporated to address this problem, isolation carries the greatest weight — again due to the lack of a substitute: it is the only variable in the set that describes the relationship of the jet to the other jets in the event, rather than to the $\tau\tau$ system or the detector. The pseudorapidity of the jet and its pseudorapidity separation relative to the $\tau\tau$ system contribute equally. Conversely, centrality is assigned a lower weight, as the information it provides is largely recoverable from the variables already present.
 %
@@ -1021,14 +1044,14 @@ In this case the jet kinematic variables are clearly more dominant than in the $
 \begin{figure}[tbp]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/chapter_IV/vbfjtag_feature_importance.jpg}
-\caption{Permutation importance of the input variables of the \textsc{VBFjTag} algorithm, shown separately for the two models trained on each event parity and evaluated on the opposite one. \textcolor{red}{ACTUALIZAR, ORDENAR POR IMPORTANCIA}}
+\caption{Permutation importance of the input variables of the 2022--2023 model of the \textsc{VBFjTag} algorithm, shown separately for the two models trained on each event parity and evaluated on the opposite one. \textcolor{red}{ACTUALIZAR, ORDENAR POR IMPORTANCIA}}
 \label{fig:vbfjtag_featimp}
 \end{figure}
 
 \begin{figure}[tbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/chapter_IV/vbfjtag_corrmatrix_par0.jpg}
-\caption{Linear correlation coefficients between the input variables of the \textsc{VBFjTag} algorithm, computed over all valid jets of the training sample. \textcolor{red}{ACTUALIZAR}}
+\caption{Linear correlation coefficients between the input variables of the \textsc{VBFjTag} algorithm, computed over all valid jets of the 2022--2023 training sample. \textcolor{red}{ACTUALIZAR}}
 \label{fig:vbfjtag_corr}
 \end{figure}
 \medskip
@@ -1041,24 +1064,44 @@ The performance of the model is evaluated with the same tests as for \textsc{HH-
 
 
 % 2 - curvas de aprendizaje
-The training of the two models converges in the same way as for \textsc{HH-BTag}, with the purity on the validation events stabilizing around \textcolor{red}{XX\%} after about \textcolor{red}{XX} epochs and without any significant gap between the training and validation values, which confirms that the configuration inherited from \textsc{HH-BTag} is also adequate for this problem.
+The training of the two models of each period, one for each event parity, converges in the same way as for \textsc{HH-BTag}, with the purity on the validation events stabilizing around \textcolor{red}{XX\%} after about \textcolor{red}{XX} epochs and without any significant gap between the training and validation values, which confirms that the configuration inherited from \textsc{HH-BTag} is also adequate for this problem.
 
 % 3 - Pureza
 The purity evaluated on the vector boson fusion signal samples from Run 3 is illustrated in Figure \ref{fig:vbfjtag_purity}, which breaks down the results by coupling point and compares the different versions tested based on the inputs used against the kinematic criterion employed in Run 2, as evaluated on those same samples. The algorithm outperforms the kinematic criterion in all the configurations examined, with purity values ranging from $91$ to $95\%$, compared to $83$--$89\%$ for the kinematic criterion. As for \textsc{HH-BTag}, the absolute values depend on the coupling point, by at most $4\%$, an effect that the kinematic criterion shows in the same way.
 
 It is evident that the purity achieved is lower than that obtained by the \textsc{HH-BTag}, as was to be expected since the decision in this case cannot rely on an intrinsic property of the object (Section \ref{subsec:vbf_dataset}). Instead, the problem here is more complex, compounded by the difficulties arising from the angular window covered: the set of candidates considered is expanded, and the jet reconstruction is less accurate outside the tracker coverage.
 
-The figure also illustrates the successive configurations examined during the development of the \textsc{VBFjTag} algorithm, and it was this comparison that informed the choice of the input set described in Section \ref{subsec:vbf_inputs}. The inclusion of isolation and centrality yields a noticeable improvement over the version that relied solely on the inherited variables, whereas adding the quantities examined and not retained brings little or no further gain. \textcolor{red}{indicar los colores de cada uno de los puntos cuando actualice el plot. El efecto de la centrality en realidad no está estudiado por separado de la isolation... no se si puedo concluir que aporta mejora, tal y como digo en la sección anterior}
+The figure also illustrates the successive configurations examined during the development of the \textsc{VBFjTag} algorithm, and it was this comparison that informed the choice of the input set described in Section \ref{subsec:vbf_inputs}. The inclusion of isolation and centrality yields a noticeable improvement over the version that relied solely on the inherited variables, whereas adding the quantities examined and not retained brings little or no further gain. \textcolor{red}{indicar los colores de cada uno de los puntos cuando actualice el plot. El efecto de la centrality en realidad no está estudiado por separado de la isolation... no se si puedo concluir que aporta mejora, tal y como digo en la sección anterior}\medskip
+%
+% \begin{figure}[tbp]
+% \centering
+% \includegraphics[width=\textwidth]{figures/chapter_IV/vbfjtag_purity_2022.jpg}
+% \caption{Purity of the \textsc{VBFjTag} algorithm compared to the kinematic criterion used in
+% Run-2, and to the successive input configurations examined during its development. \textcolor{red}{ACTUALIZAR}}
+% \label{fig:vbfjtag_purity}
+% \end{figure}
 %
 \begin{figure}[tbp]
-\centering
-\includegraphics[width=\textwidth]{figures/chapter_IV/vbfjtag_purity_2022.jpg}
-\caption{Purity of the \textsc{VBFjTag} algorithm compared to the kinematic criterion used in
-Run-2, and to the successive input configurations examined during its development. \textcolor{red}{ACTUALIZAR}}
-\label{fig:vbfjtag_purity}
+    \centering
+    \begin{subfigure}[t]{\linewidth}
+        \centering
+        \IfFileExists{figures/chapter_IV/vbfjtag_purity_2022_2023.pdf}
+            {\includegraphics[width=0.95\linewidth]{figures/chapter_IV/vbfjtag_purity_2022_2023.pdf}}
+            {\fbox{\parbox[c][0.3\linewidth][c]{0.9\linewidth}{\centering\textcolor{red}{Pending: vbfjtag\_purity\_2022\_2023.pdf}}}}
+        \caption{2022--2023, model trained with \textsc{ParticleNet}}
+    \end{subfigure}\\[1ex]
+    \begin{subfigure}[t]{\linewidth}
+        \centering
+        \IfFileExists{figures/chapter_IV/vbfjtag_purity_2024.pdf}
+            {\includegraphics[width=0.95\linewidth]{figures/chapter_IV/vbfjtag_purity_2024.pdf}}
+            {\fbox{\parbox[c][0.3\linewidth][c]{0.9\linewidth}{\centering\textcolor{red}{Pending: vbfjtag\_purity\_2024.pdf}}}}
+        \caption{2024, model trained with \textsc{UParT}}
+    \end{subfigure}
+    \caption{Purity of the VBF jet pair selection on the Run 3 vector boson fusion signal samples, for each coupling point (horizontal axis), in the 2022--2023 (a) and 2024 (b) periods, obtained with \textsc{VBFjTag} and with the kinematic criterion used in Run 2. In (a), the successive input configurations examined during the development of the algorithm, all of them studied on the 2022--2023 samples, are also shown \textcolor{red}{(indicar los colores al actualizar)}. The vertical bars show the statistical uncertainty (Section \ref{subsec:metric}).}
+    \label{fig:vbfjtag_purity}
 \end{figure}
-% 
-\medskip
+
+
 
 % 4 - Score - SI ESTO LO HAGO SOBRE LAS MUESTRAS DEL ANALISIS TENGO QUE INDICARLO
 Beyond the ranking by score reflected by the purity, it is also interesting to examine the score itself for the different contributions that the algorithm will process, since regardless of the process, it always returns a pair of VBF jets. Figure \ref{fig:vbfjtag_score} shows the distribution of these scores for the two jets selected by the model, in samples from VBF and gluon fusion production modes. \textcolor{red}{añadir backgrounds?}. The distribution shape varies significantly between the different processes: while in events produced by vector boson fusion both scores are concentrated around unity, in those produced by gluon fusion — where, by construction, the sought-after pair does not exist — the distribution is notably broader and shifts toward lower values. The model therefore is able to recognize the topology for which it was trained and respond accordingly when the sought-after pair is not present.
@@ -1089,7 +1132,10 @@ With regard to potential areas for enhancement, the training procedure followed 
 
 At the same time, the architecture itself admits improvements in line with the latest developments in machine learning for this type of problem. The recurrent block processes the jets as a sequence, thereby imposing an order on what is actually a set. This does not necessarily degrade the performance, as the results presented in this chapter attest, but it means that a property known a priori, namely that the result should not depend on the order of the jets, must be learned from the data rather than imposed by design, and that the output depends on an ordering criterion that has to be established and justified, even though the physics of the problem does not distinguish one jet from another by its position in a list. Only the final normalization is symmetric by design, and the question is whether this symmetry can be extended to the whole model.
 
-Transformers \cite{Vaswani2017}, which currently serve as the standard architecture for structured data, possess this symmetry by construction, since without positional encoding their attention mechanism makes the output associated with each element a symmetric function of all the others, so that each jet would be evaluated against the other jets themselves and not against their position in the list. The approach is not new in this field, as the latest flavor discriminants developed by CMS, which the algorithm itself receives as input, belong to this family of architectures \cite{Qu:2022mxj,CMS-UParT}, applied to the constituents of a jet rather than to the jets of the event. Such a change would remove the asymmetry and make the ordering criterion unnecessary, while the format of the input and output, the ground truth, the purity metric, the input variables and the whole evaluation framework would carry over unchanged, so that studying it would only require retraining, reoptimizing the hyperparameters and revalidating the analysis chain.\medskip
+% Transformers \cite{Vaswani2017}, which currently serve as the standard architecture for structured data, possess this symmetry by construction, since without positional encoding their attention mechanism makes the output associated with each element a symmetric function of all the others, so that each jet would be evaluated against the other jets themselves and not against their position in the list. The approach is not new in this field, as the latest flavor discriminants developed by CMS, which the algorithm itself receives as input, belong to this family of architectures \cite{Qu:2022mxj,CMS-UParT}, applied to the constituents of a jet rather than to the jets of the event. Such a change would remove the asymmetry and make the ordering criterion unnecessary, while the format of the input and output, the ground truth, the purity metric, the input variables and the whole evaluation framework would carry over unchanged, so that studying it would only require retraining, reoptimizing the hyperparameters and revalidating the analysis chain.\medskip
+
+Architectures that treat the event as a set of objects rather than as a sequence possess this symmetry by construction. Graph neural networks \cite{Shlomi:2020gdn} represent the jets as the nodes of a graph and update each of them by aggregating the information of the others through operations that do not depend on their order, while transformers \cite{Vaswani2017}, which currently serve as the standard architecture for structured data, achieve the same through their attention mechanism, which, without positional encoding, makes the output associated with each element a symmetric function of all the others. In both cases, each jet would be evaluated against the other jets themselves and not against their position in the list. Neither family is new in this field, since the latest flavor discriminants developed by CMS, which the algorithm itself receives as input, belong to them, \textsc{ParticleNet} \cite{PNet} to the first and \textsc{UParT} \cite{Qu:2022mxj,CMS-UParT} to the second, applied to the constituents of a jet rather than to the jets of the event, and models based on graph neural networks are already being explored for the selection of the $b$ jets in this final state. Such a change would remove the asymmetry and make the ordering criterion unnecessary, while the format of the input and output, the ground truth, the purity metric, the input variables and the whole evaluation framework would carry over unchanged, so that studying it would only require retraining, reoptimizing the hyperparameters and revalidating the analysis chain.\medskip
+
 
 
 % At the same time, architectural improvements can be considered that have the potential to be substantial when considering the latest trends in machine learning algorithms for this type of problem. The recurrent block used in the current structure processes the jets as a sequence, thereby imposing an order on what is actually a set. This does not necessarily result in a degradation of performance — as the results presented in this chapter attest — but it does mean that a property known a priori, such as the fact that the result should not depend on the order of the jets, must be learned by the model from the data rather than being imposed by design. The model thus devotes part of its capacity to discovering a symmetry that could have been predetermined, based on an ordering criterion that must be established and justified, and that conditions output of the model, even though the physics of the problem does not distinguish one jet from another based on its position in a list. The final normalization, on the other hand, does not suffer from the same problem; rather, the coupling it introduces is already symmetric by design. The symmetry that the network lacks is contained in the final step, and the question to consider is whether to extend it to the rest of the model rather than introducing it from the outside.
