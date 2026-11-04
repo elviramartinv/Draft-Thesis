@@ -750,11 +750,22 @@ algorithm, for the 2022--2023 training sample. The pseudorapidities and azimutha
 The distributions shown so far combine all the signal hypotheses of the training set, but the kinematics of the $H\rightarrow b\bar{b}$ candidate depends on the coupling point, since the couplings modify the invariant mass spectrum of the Higgs boson pair (Section \ref{subsec:BSM_production}). Figure \ref{fig:hhbtag_nodes} illustrates the four most important variables separately for each coupling point, in the gluon fusion and vector boson fusion samples. The flavor score, not shown, has the same distribution at all points, as expected for a property of the jet that does not depend on how the Higgs boson was produced, and the distributions of the other jets that do not arise from the $H\to b\bar{b}$ decay change little from one point to another, differing mainly between production modes, with the VBF jets populating the edges of the acceptance. The variation is therefore concentrated in the kinematics of the jets from the Higgs boson decay. In gluon fusion, the point with $\kappa_\lambda = 5$, in which the triangle diagram dominates and the pair is produced close to threshold, yields softer jets with a much weaker back-to-back correlation with the $\tau\tau$ system, while the other points are very similar. In vector boson fusion the variation is larger, and the jets from the decay range from soft and broadly distributed in $\eta$, as in the SM, to harder, more central and almost back-to-back with the $\tau\tau$ system for the points that shift the production towards high $m_{HH}$. The VBF samples, which make up most of the training set, therefore provide the widest range of kinematic configurations. Since the separation between the two categories of jets is larger when the jets from the decay are harder, more central and more back-to-back with the $\tau\tau$ system, the assignment is expected to be easier for \textsc{HH-BTag} at these points, which is the basis for the dependence of the purity on the coupling point discussed in Section \ref{subsec:hhbtag_performance}.\medskip
 %
 \begin{figure}[tbp]
-\centering
-\makebox[\textwidth][c]{\includegraphics[width=1.1\textwidth]{figures/chapter_IV/hhbtag_nodes.pdf}}
-\caption{Distributions of the pseudorapidity (top), transverse momentum (middle) and azimuthal separation from the $\tau\tau$ system (bottom) of the jets from the $H\rightarrow b\bar{b}$ decay (left) and of the other candidate jets (right), for each coupling point of the gluon fusion and vector boson fusion samples, in the 2022--2023 training sample. Each distribution is normalized to unit area.\textcolor{red}{QUEDA UN POCO FUERA DE MARGEN}}
-\label{fig:hhbtag_nodes}
+    \centering
+    \begin{subfigure}[t]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_IV/hhbtag_nodes_hbbjets.pdf}
+        \caption{Jets from the $H\rightarrow b\bar{b}$ decay}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_IV/hhbtag_nodes_otherjets.pdf}
+        \caption{Other candidate jets}
+    \end{subfigure}\\[1.5ex]
+    \includegraphics[width=0.95\linewidth]{figures/chapter_IV/hhbtag_nodes_legend.pdf}
+    \caption{Distributions of the pseudorapidity (top), transverse momentum (middle) and azimuthal separation from the $\tau\tau$ system (bottom) of the jets from the $H\rightarrow b\bar{b}$ decay (a) and of the other candidate jets (b), for each coupling point of the gluon fusion (left column of each panel) and vector boson fusion (right column) samples, in the 2022--2023 training sample. The coupling points are identified in the legend below the panels. Each distribution is normalized to unit area.}
+    \label{fig:hhbtag_nodes}
 \end{figure}
+
 
 
 % \begin{figure}[tbp]
@@ -847,24 +858,15 @@ For the resonant search, the algorithm was retrained with the Ultra-Legacy repro
 Figure \ref{fig:hhbtag_v2_purity} shows the purity obtained on the 2018 samples of resonant production as a function of the mass of the resonance, with all the methods evaluated against this same ground truth. The retrained version reaches purities between $89.8$ and $97.4\%$, compared with $86.9$--$96.1\%$ for the original version and $79.7$--$91.8\%$ for \textsc{ParticleNet}, the best of the standard discriminants used through the explicit ordering criterion, and it improves on the original version at almost every mass point. For nonresonant production, the purity ranges from $93.3$ to $95.9\%$, compared with $92.8$--$95.1\%$ and $89.0$--$90.2\%$, respectively. Although trained only on gluon fusion, the model was also evaluated on resonant production through vector boson fusion, where it reaches purities above \textcolor{red}{$87\%$}.
 
 
-All the methods follow the same dependence on the mass, but the advantage of \textsc{HH-BTag} over the explicit criterion grows from about $3.5$ points at $250$ GeV to $8$--$10$ points at $3000$ GeV. At these masses the jets are very energetic, the performance of the $b$ tagging discriminants degrades, and the kinematic information of the event becomes decisive to identify the pair. The gain of the retrained version over the original one is smaller but systematic, and it is obtained with the same architecture and inputs by adapting the model to the reprocessed samples, which is the same reason that motivated its retraining for Run 3. This version is the one used to select the $H\to b\bar{b}$ candidate in the resonant search \cite{CMS-PAS-B2G-24-011}.\medskip
+All the methods follow the same dependence on the mass, but the advantage of \textsc{HH-BTag} over the explicit criterion grows from about $3.5$ points at $250$ GeV to $8$--$10$ points at the highest masses, although with large statistical uncertainties at $3000$ GeV. At these masses the jets are very energetic, the performance of the $b$ tagging discriminants degrades, and the kinematic information of the event becomes decisive to identify the pair. The gain of the retrained version over the original one is smaller but systematic, and it is obtained with the same architecture and inputs by adapting the model to the reprocessed samples, which is the same reason that motivated its retraining for Run 3. This version is the one used to select the $H\to b\bar{b}$ candidate in the resonant search \cite{CMS-PAS-B2G-24-011}.\medskip
 %
 \begin{figure}[tbp]
-    \centering
-    \begin{subfigure}[t]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_IV/hhbtag_v2_purity_spin0_2018.pdf}
-        \caption{Spin-0 radion}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.49\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/chapter_IV/hhbtag_v2_purity_spin2_2018.pdf}
-        \caption{Spin-2 graviton}
-    \end{subfigure}
-    \caption{Purity of the $H\to b\bar{b}$ candidate selection as a function of the mass of the resonance, for the 2018 simulated samples of gluon fusion production of a spin-0 radion (a) and a spin-2 graviton (b), obtained with the retrained \textsc{HH-BTag} v2 (black), its original version v1 (purple), and the explicit ordering criterion applied to the \textsc{DeepJet} (orange) and \textsc{ParticleNet} (green) discriminants. \textcolor{red}{Igualar ejes; poner una detras de otra y poner left y right, separadas de forma parecida a lo de los njets}}
-    \label{fig:hhbtag_v2_purity}
+\centering
+\includegraphics[width=\linewidth]{figures/chapter_IV/hhbtag_v2_purity_2018.pdf}
+\caption{Purity of the $H\rightarrow b\bar{b}$ candidate selection as a function of the mass of the resonance, for the 2018 simulated samples of gluon fusion production of a spin-0 radion (left) and a spin-2 graviton (right), obtained with the retrained \textsc{HH-BTag} v2, its original version v1, and the explicit ordering criterion applied to the \textsc{ParticleNet} and \textsc{DeepJet} discriminants. The vertical bars show the statistical uncertainty (Section \ref{subsec:metric}).}
+\label{fig:hhbtag_v2_purity}
 \end{figure}
+
 
 The study of $ZZ$ and $ZH$ production in the $bb\tau\tau$ final state — which, with a cross section much larger than that of $HH$ production, provides a high-statistics channel in which to validate the strategy and the signal extraction techniques of the $HH$ search, and also allows a search for spin-0 and spin-1 resonances decaying into $ZZ$ or $ZH$ — follows the strategy of the nonresonant $HH$ analysis and therefore also relies on \textsc{HH-BTag} \cite{CMS:2026zzzh}. The two jets with the highest scores form the $b\bar{b}$ candidate, whether the pair originates from a $Z$ boson or, in $ZH$ production, from the Higgs boson, and the score of the second jet is one of the inputs of the classifier that separates the signal from the background, as in the Run 3 analysis (Chapter \ref{ch:bbtt_analysis}). Since the model had only been trained on $H\to b\bar{b}$ decays, its use in this analysis required verifying that it selects a pair produced by a $Z$ boson with the same purity.
 
@@ -1012,6 +1014,24 @@ Unlike in \textsc{HH-BTag}, the two models agree for the leading variables but d
 \caption{Linear correlation coefficients between the input variables of the \textsc{VBFjTag} algorithm, computed over all valid jets of the 2022--2023 training sample. The pseudorapidities and azimuthal separations enter in absolute value.}
 \label{fig:vbfjtag_corr}
 \end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \begin{subfigure}[t]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_IV/hhbtag_nodes_hbbjets.pdf}
+        \caption{Jets from the $H\rightarrow b\bar{b}$ decay}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.49\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/chapter_IV/hhbtag_nodes_otherjets.pdf}
+        \caption{Other candidate jets}
+    \end{subfigure}\\[1.5ex]
+    \includegraphics[width=0.95\linewidth]{figures/chapter_IV/hhbtag_nodes_legend.pdf}
+    \caption{Distributions of the pseudorapidity (top), transverse momentum (middle) and azimuthal separation from the $\tau\tau$ system (bottom) of the jets from the $H\rightarrow b\bar{b}$ decay (a) and of the other candidate jets (b), for each coupling point of the gluon fusion (left column of each panel) and vector boson fusion (right column) samples, in the 2022--2023 training sample. The coupling points are identified in the legend below the panels. Each distribution is normalized to unit area.}
+    \label{fig:hhbtag_nodes}
+\end{figure}
+
 
 \subsection{Performance of the \textsc{VBFjTag} model} 
 \label{subsec:vbf_performance}
