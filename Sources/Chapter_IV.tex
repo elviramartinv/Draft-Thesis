@@ -596,71 +596,22 @@ Besides guiding the choice of the input set, this measure also shows whether the
 \section{The \textsc{HH-BTag} algorithm}
 \label{sec:HHBTag}
 %
-So far, the shared elements in both algorithms have been identified: the event representation, the network architecture, and the tools for examining the model once it has been trained. The distinguishing features of each algorithm are based on the specific processes they are designed to address. This section therefore discusses the specific elements of \textsc{HH-BTag}, designed to select the $H\rightarrow b\bar{b}$ candidate.
+So far, the shared elements in both algorithms have been identified: the event representation, the network architecture, and the tools for examining the model once it has been trained. The distinguishing features of each algorithm are based on the specific processes they are designed to address. This section discusses the specific elements of \textsc{HH-BTag}, designed to select the $H\rightarrow b\bar{b}$ candidate.
 
-The starting point is the version developed for the di-Higgs analysis in the non-resonant $bb\tau\tau$ final state of the complete Run 2 dataset \cite{CMS-HIG-20-010}, where the algorithm was first introduced. The work presented here builds upon this version and has involved its retraining for the resonant search using the same Run 2 data \cite{CMS-PAS-B2G-24-011}, its validation for the study of $ZZ$ and $ZH$ production \cite{CMS:2026zzzh}, and its retraining for the Run 3 analysis \cite{CMS-PAS-HIG-25-008}, which constitutes the main focus of this thesis. While the network architecture has remained the same across the different versions, the changes stem from modifications to the problem conditions that vary with each data-taking period, as updates to the flavor identification algorithms -- which serve as input variables -- and the reconstruction conditions of the objects on which the algorithm operates. Concurrently, the new versions refine the definition of the ground truth referred to in Section \ref{subsec:groundtruth}, always in pursuit of the best performance NO ESTOY SEGURA QUE ESTO REALMENTE APORTE ALGO.\medskip 
+The reference version is the one developed for the di-Higgs analysis in the non-resonant $bb\tau\tau$ final state of the complete Run 2 dataset \cite{CMS-HIG-20-010}, where the algorithm was first introduced. The work presented here builds upon this version and has involved its retraining for the resonant search using the same Run 2 data \cite{CMS-PAS-B2G-24-011}, its validation for the study of $ZZ$ and $ZH$ production \cite{CMS:2026zzzh}, and its retraining for the Run 3 analysis \cite{CMS-PAS-HIG-25-008}, which constitutes the main focus of this thesis. While the network architecture has remained the same across the different versions, the changes stem from modifications to the problem conditions that vary with each iteration, as updates to the flavor identification algorithms -- which serve as input variables -- and the reconstruction conditions of the objects on which the algorithm operates.\medskip 
 
 The following subsections describe the process and the preparation of the training set, the input variables and the information the model extracts from them, and the performance achieved compared with the explicit criterion it replaces. Finally, its application to the aforementioned searches performed with the Run 2 data is presented.
 
 \subsection{\texorpdfstring{$H\to b\bar{b}$}{H->bb}: candidates and training set}
 \label{subsec:hhbtag_dataset}
 %1- fisica
-The $H\to b\bar{b}$ channel — the dominant decay mode of the Higgs boson — produces two $b$ quarks emitted back-to-back in the rest frame of the Higgs boson, whose kinematics in the laboratory is determined by the momentum of the boson ESTO ES NECESARIO? ES DECIR, LO DE QUE LA CINEMATICA SE DETERMINA POR EL MOMENTO DEL BOSON ES BASTANTE TRIVIAL, NO? O CUAL ES EL PUNTO AQUI. Their identification as $b$ jets relies on the displaced tracks and secondary vertices of the $b$ hadrons (Section \ref{subsec:Jets}), and is therefore restricted to the acceptance of the tracker, so that the problem is defined within $|\eta| < 2.5$. NO OLVIDARME DE COMENTAR ESTO EN LOS VBF JETS, DIGO QUE PNET SOLO ESTÁ DEFINIDO PARA 2.5?\medskip
+The $H\to b\bar{b}$ channel — the dominant decay mode of the Higgs boson — produces two $b$ quarks whose momenta and angular separation in the laboratory are set by the momentum of the Higgs boson, and therefore depend on the signal hypothesis. Their identification as $b$ jets relies on the displaced tracks and secondary vertices of the $b$ hadrons (Section \ref{subsec:Jets}), and is therefore restricted to the acceptance of the tracker, so that the problem is defined within $|\eta| < 2.5$.\medskip
 
 %2 - seleccion
-The candidate jets are those reconstructed within that angular window with a transverse momentum $p_T > 20$ GeV — the lowest threshold to which the jet and its flavor discriminant are calibrated — that also satisfy the jet identification quality criteria associated to each data-taking period. They are also required to have an angular separation of $\Delta R > 0.5$ from the two candidates that form the $\tau\tau$ pair, since the decay products of the $\tau$ particles can themselves be reconstructed as jets and compromise the set. Finally, at least two jets must satisfy these requirements to ensure that the $H\rightarrow b\bar{b}$ candidate can form. EL TAUTAU ESTA PREVIAMENTE SELECCIONADO, VERDAD?\medskip
+The candidate jets are those reconstructed within that angular window with a transverse momentum $p_T > 20$ GeV — the lowest threshold to which the jet and its flavor discriminant are calibrated — that also satisfy the jet identification quality criteria associated to each data-taking period. They are also required to have an angular separation of $\Delta R > 0.5$ from the two candidates of the previously selected $\tau\tau$ pair (Chapter \ref{ch:bbtt_analysis}), since the decay products of the $\tau$ leptons can themselves be reconstructed as jets. Finally, at least two jets must satisfy these requirements to ensure that the $H\rightarrow b\bar{b}$ candidate can form.\medskip
 
-%3 - muestras
-Regarding the samples used, the training set is constructed exclusively from simulated samples of the $HH\to bb\tau\tau$ signal, as the reference label can only be defined for signal events, as discussed in Section \ref{subsec:supervised}. In each retraining run, the signal samples comprise all available productions in each corresponding data-taking period. Thus, when available, they include resonant production, generated for spin-0 and spin-2 hypotheses in a mass range from $250$ to $3000$ GeV; and non-resonant production, which, in addition to the SM case, includes various BSM reference models NO SE SI "WHEN AVAILABLE" O MEJOR "SEGUN LA VERSION", ASI QUE QUIZAS SEA MEJOR HABLAR PRIMERO DE LAS VERSIONES Y LUEGO DE LAS MUESTRAS. ES DECIR, EN ESTE PRIMER PARRAFO PONER QUE SE USA EL MIX DE SAMPLES PARA CUBRIR EL WIDE RANGE OF KINEMATIC CONFIGURATION, Y JUNTARLO CON LAS VERSIONES DEL SIGUIENTE PARRAFO (Y LA TABLA DE VERSIONES); Y EN EL SIGUIENTE PARRAFO DEJAR LO DE LAS HIPOTESIS Y LAS MASAS Y SM Y BSM. The coupling points of the Run 3 samples are listed in Table \ref{tab:signal_points}. The mix of samples used in the dataset allows the algorithm to cover a wide range of kinematic configurations, thereby preventing the model from specializing in a specific regime and becoming biased toward a particular signal hypothesis.
-
-\begin{table}[tbp]
-\centering
-\small
-\definecolor{ggfA}{HTML}{98D594}\definecolor{ggfB}{HTML}{3BA458}\definecolor{ggfC}{HTML}{006428}
-\definecolor{vbfA}{HTML}{FC8A6A}\definecolor{vbfB}{HTML}{FB7656}\definecolor{vbfC}{HTML}{F96044}
-\definecolor{vbfD}{HTML}{F34935}\definecolor{vbfE}{HTML}{E83429}\definecolor{vbfF}{HTML}{D52221}
-\definecolor{vbfG}{HTML}{C3161B}\definecolor{vbfH}{HTML}{B01217}\definecolor{vbfI}{HTML}{980C13}
-\newcommand{\sline}[2][]{\tikz[baseline=-0.6ex]\draw[line width=1.2pt,#2,#1] (0,0)--(0.7,0);}
-\newcommand{\dline}[1]{\sline[dash pattern=on 3pt off 2pt]{#1}}
-\begin{tabular}{llrrrrrcc}
-\toprule
-Production & ID & $\kappa_\lambda$ & $\kappa_t$ & $c_2$ & $\kappa_V$ & $\kappa_{2V}$ & Line & \textsc{VBFjTag} \\
-\midrule
-\multirow{9}{*}{ggF} & SM & $1$    & $1$ & $0$    &  &  & \sline[line width=1.8pt]{black} & \\
-                     & G1 & $0$    & $1$ & $0$    &  &  & \sline{ggfA} & \\
-                     & G2 & $2.45$ & $1$ & $0$    &  &  & \dline{ggfB} & \\
-                     & G3 & $5$    & $1$ & $0$    &  &  & \sline{ggfC} & \\
-                     & G4$^{*}$ & $0$ & $1$ & $1$    &  &  & --- & \\
-                     & G5$^{*}$ & $1$ & $1$ & $0.10$ &  &  & --- & \\
-                     & G6$^{*}$ & $1$ & $1$ & $0.35$ &  &  & --- & \\
-                     & G7$^{*}$ & $1$ & $1$ & $3$    &  &  & --- & \\
-                     & G8$^{*}$ & $1$ & $1$ & $-2$   &  &  & --- & \\
-\midrule
-\multirow{10}{*}{VBF} & SM & $1$     &  &  & $1$      & $1$     & \sline[line width=1.8pt]{black} & yes \\
-                      & V1 & $1$     &  &  & $1$      & $0$     & \sline{vbfA} & yes \\
-                      & V2 & $14.4$  &  &  & $1.74$   & $1.37$  & \dline{vbfB} & yes \\
-                      & V3 & $10.2$  &  &  & $-0.012$ & $0.030$ & \sline{vbfC} & yes \\
-                      & V4 & $-19.3$ &  &  & $-0.758$ & $1.44$  & \dline{vbfD} & yes \\
-                      & V5 & $-1.43$ &  &  & $-0.962$ & $0.959$ & \sline{vbfE} & yes \\
-                      & V6 & $-0.94$ &  &  & $-1.21$  & $1.94$  & \dline{vbfF} & yes \\
-                      & V7 & $-1.36$ &  &  & $-1.60$  & $2.72$  & \sline{vbfG} & yes \\
-                      & V8 & $-3.39$ &  &  & $-1.83$  & $3.57$  & \dline{vbfH} & yes \\
-                      & V9 & $-5.96$ &  &  & $2.12$   & $3.87$  & \sline{vbfI} & \textcolor{red}{no?} \\
-\bottomrule
-\end{tabular}
-\caption{Coupling points of the simulated signal samples used in the Run 3 trainings, with the identifiers used in the purity figures and the line styles used in the distributions of Figures \ref{fig:hhbtag_nodes} and \ref{fig:vbfjtag_nodes}, which are shown for the 2022--2023 samples. The points marked with an asterisk are only available in 2024, while the rest are common to all periods. The couplings not listed for each production mode are fixed to their SM values. The last column indicates whether the point enters the training of \textsc{VBFjTag} SE ME HACE RARO PONER ESTA TABLA ESPECIFICA DE RUN 3 ANTES DE LA TABLA DE LAS VERSIONES DE HHBTAG. TAMBIEN SE ME HACE RARO PONER LA REFERENCIA A VBFJTAG AQUI. ES COMO QUE ABARCA MUCHO ESTA TABLA. EN LOS DE 2024 QUE NO APARECEN EN EL DESGLOSADO POR NODOS SE PUEDE QUITAR LA LINEA DIRECTAMENTE. Y QUIZAS EN ID Y LINE SE PUEDE ACOPAÑAR DE ID IN FIG (PURITIES) Y LINE IN FIG (NODES) CREO QUE QUITARÍA LA COLUMNA DE VBFJTAG Y SI ESO QUIZAS EN VBFJTAG REFERENCIAR ESTA TABLA, PERO NO MERECE LA PENA HABLAR DE VBJTAG DENTRO DE HHBTAG.}
-\label{tab:signal_points}
-\end{table}
-
-
-Therefore, the specific samples vary among versions of the algorithm, and are listed in Table \ref{tab:hhbtag_versions}. The initial version used all available simulated signal, including both gluon fusion and vector boson fusion. The second version, developed in this work for the Run 2 resonant search, was retrained on the Ultra-Legacy reprocessing of the Run 2 samples, restricted to gluon fusion production — the only production mode considered in that search \cite{CMS-PAS-B2G-24-011} —, and its performance is presented in Section \ref{subsec:hhbtag_run2}, together with its validation for the study of $ZZ$ and $ZH$ production. The third version is the one developed for the partial analysis of Run 3 presented in this thesis, which again uses both ggF and VBF production modes. In this version, a between three quarters and four fifths of the training events come from vector boson fusion production ($76\%$ in 2022--2023 and $81\%$ in 2024), a proportion that reflects the larger number of coupling points and simulated events available for each production mode after the selection, since all events contribute equally to the training. DE TODAS FORMAS ESTO DEBERIA IR UN POCO DESPUES, DONDE RESALTO LA DISTINCION ENTRE 2022-23 Y 24, NO? ADEMÁS, NO ENTIENDO EL "SINCE" EN SINCE ALL EVENTS CONTIBUTE EQUALLY TO THE TRAINING", NO ES UNA CONSECUENCIA DE ESTOS NUMEROS, NO? EN GENERAL NO ME GUSTA ESA FRASE NI DAR LOS NUMEROS The table outlines the evolution of the types of reconstructed jets\footnote{Run 2 used AK4 jets with charged hadron subtraction (CHS), complemented at low $p_T$ by a dedicated pileup jet identification, while Run 3 uses PUPPI jets, in which pileup is mitigated at the particle level (Section \ref{subsec:Jets}). ESTA NOTA ES NECESARIA? O VALE CON REEMITIR A LA SECICON JETS?} and consequently of the flavor discriminant appearing in the input variables: \textsc{DeepJet} \cite{Bols:2020bkb} in Run 2 and within Run 3 \textsc{ParticleNet} \cite{PNet} for the 2022 and 2023 periods and \textsc{UParT} \cite{Qu:2022mxj,CMS-UParT} for 2024, following the recommendation issued for each of them. Accordingly, the third version consists of two models depending on the flavor discriminant and for the rest, identical in architecture, input variables and ground truth, REESCRIBIR ESTA FRASE ANTERIOR, DESDE ACCORDINGLY, ESTÁ MAL ESCRITO each of them applied to the periods on which it was trained. It is also important to note that the base selection inherited from the corresponding analysis differs between versions, directly impacting sample composition.\medskip 
-TAMBIEN DECIR EN ALGUN SITIO QUE NO SE PESAN LOS EVENTOS, SINO QUE SE USA EL MIX TAL CUAL (Y REDIRIGIR A PERSPECTIVES -  O FURTHER IMPROVEMENTS, AUNQUE AHORA MISMO NO TIENE UNA SECCION PROPIA)
-
-
-
-% 5 - ground truth 
-
-The ground truth label is then constructed from these samples according to the general procedure described in Section \ref{subsec:groundtruth}. The generated jets associated with the $H\to b\bar{b}$ decay are subject to the same kinematic thresholds and the same separation of candidates $\tau$ as their reconstructed counterparts, to ensure the comparability of both sets. It is also required OTRA PALABRA QUE NO SEA REQUIRED? POR EVITAR REPETICION CON REQUIRING QUE VIENE DESPUES that there are exactly two generated jets that satisfy these conditions, and the correspondence with the reconstructed jets is established by requiring $\Delta R < 0.3$ between them. The event is only accepted if at least two pairings are successful. The collimated configurations excluded in this way (Section \ref{subsec:groundtruth}) are treated in the analysis with large-radius jets (Chapter \ref{ch:bbtt_analysis}). The statistics for the resulting events for each version after the entire specific selection process are shown in Table \ref{tab:hhbtag_versions}. TAMBIEN TENGO LA ESTADISTICA DE VBFTAGGER, SE PONE EN ALGUN SITIO? - 22+23 ES 1721886, LA DE 2024 LUEGO TE LA DIGO, PERO QUIERO SABER SI ENTRA EN ALGUN SITIO DE LA SECCION DE VBF JET\medskip
+%3 - version
+The training set is constructed exclusively from simulated samples of the $HH\to bb\tau\tau$ signal, as the reference label can only be defined for signal events (Section \ref{subsec:supervised}), and it mixes different signal hypotheses, which allows the algorithm to cover a wide range of kinematic configurations and prevents it from specializing in a specific regime. The samples therefore vary among the versions of the algorithm, listed in Table \ref{tab:hhbtag_versions}. The first version used all the available simulated signal, including both gluon fusion and vector boson fusion. The second version, developed in this work for the Run 2 resonant search, was retrained on the Ultra-Legacy reprocessing of the Run 2 samples, restricted to gluon fusion production — the only production mode considered in that search \cite{CMS-PAS-B2G-24-011} —, and its performance is presented in Section \ref{subsec:hhbtag_run2}, together with its validation for the study of $ZZ$ and $ZH$ production. The third version is the one developed for the Run 3 analysis presented in this thesis, which again uses both production modes.
 % 
 \begin{table}[t]
 \centering
@@ -679,9 +630,57 @@ Jet collection            & CHS                    & CHS                    & \m
 Flavor discriminant      & \textsc{DeepJet}       & \textsc{DeepJet}       & \textsc{ParticleNet}   & \textsc{UParT} \\
 \bottomrule
 \end{tabular}
-\caption{Successive versions of the \textsc{HH-BTag} algorithm and the elements of the training set preparation in which they differ. The third version comprises two models, trained for the 2022--2023 and 2024 periods with the flavor discriminant reommended for each.}
+\caption{Successive versions of the \textsc{HH-BTag} algorithm and the elements of the training set preparation in which they differ. The third version comprises two models, trained for the 2022--2023 and 2024 periods with the flavor discriminant recommended for each.}
 \label{tab:hhbtag_versions}
 \end{table}
+
+Depending on the version, the samples include resonant production, generated for spin-0 and spin-2 hypotheses with masses from $250$ to $3000$ GeV, and non-resonant production, which, in addition to the SM case, includes various BSM reference models. The coupling points of the Run 3 samples are listed in Table \ref{tab:signal_points}.
+%
+\begin{table}[tbp]
+\centering
+\small
+\definecolor{ggfA}{HTML}{98D594}\definecolor{ggfB}{HTML}{3BA458}\definecolor{ggfC}{HTML}{006428}
+\definecolor{vbfA}{HTML}{FC8A6A}\definecolor{vbfB}{HTML}{FB7656}\definecolor{vbfC}{HTML}{F96044}
+\definecolor{vbfD}{HTML}{F34935}\definecolor{vbfE}{HTML}{E83429}\definecolor{vbfF}{HTML}{D52221}
+\definecolor{vbfG}{HTML}{C3161B}\definecolor{vbfH}{HTML}{B01217}\definecolor{vbfI}{HTML}{980C13}
+\newcommand{\sline}[2][]{\tikz[baseline=-0.6ex]\draw[line width=1.2pt,#2,#1] (0,0)--(0.7,0);}
+\newcommand{\dline}[1]{\sline[dash pattern=on 3pt off 2pt]{#1}}
+\begin{tabular}{llrrrrrc}
+\toprule
+Production & ID in Fig.~\ref{fig:hhbtag_purity} & $\kappa_\lambda$ & $\kappa_t$ & $c_2$ & $\kappa_V$ & $\kappa_{2V}$ & Line in Fig.~\ref{fig:hhbtag_nodes} \\
+\midrule
+\multirow{9}{*}{ggF} & SM & $1$    & $1$ & $0$    &  &  & \sline[line width=1.8pt]{black} \\
+                     & G1 & $0$    & $1$ & $0$    &  &  & \sline{ggfA} \\
+                     & G2 & $2.45$ & $1$ & $0$    &  &  & \dline{ggfB} \\
+                     & G3 & $5$    & $1$ & $0$    &  &  & \sline{ggfC} \\
+                     & G4$^{*}$ & $0$ & $1$ & $1$    &  &  & \\
+                     & G5$^{*}$ & $1$ & $1$ & $0.10$ &  &  & \\
+                     & G6$^{*}$ & $1$ & $1$ & $0.35$ &  &  & \\
+                     & G7$^{*}$ & $1$ & $1$ & $3$    &  &  & \\
+                     & G8$^{*}$ & $1$ & $1$ & $-2$   &  &  & \\
+\midrule
+\multirow{10}{*}{VBF} & SM & $1$     &  &  & $1$      & $1$     & \sline[line width=1.8pt]{black} \\
+                      & V1 & $1$     &  &  & $1$      & $0$     & \sline{vbfA} \\
+                      & V2 & $14.4$  &  &  & $1.74$   & $1.37$  & \dline{vbfB} \\
+                      & V3 & $10.2$  &  &  & $-0.012$ & $0.030$ & \sline{vbfC} \\
+                      & V4 & $-19.3$ &  &  & $-0.758$ & $1.44$  & \dline{vbfD} \\
+                      & V5 & $-1.43$ &  &  & $-0.962$ & $0.959$ & \sline{vbfE} \\
+                      & V6 & $-0.94$ &  &  & $-1.21$  & $1.94$  & \dline{vbfF} \\
+                      & V7 & $-1.36$ &  &  & $-1.60$  & $2.72$  & \sline{vbfG} \\
+                      & V8 & $-3.39$ &  &  & $-1.83$  & $3.57$  & \dline{vbfH} \\
+                      & V9 & $-5.96$ &  &  & $2.12$   & $3.87$  & \sline{vbfI} \\
+\bottomrule
+\end{tabular}
+\caption{Coupling points of the simulated signal samples of the third version of the algorithm. The points marked with an asterisk are only available in 2024, while the rest are common to all periods. The couplings not listed for each production mode are fixed to their SM values.}
+\label{tab:signal_points}
+\end{table}
+
+The versions also differ in the reconstructed jets (Section \ref{subsec:Jets}) and consequently in the flavor discriminant used as input, \textsc{DeepJet} \cite{Bols:2020bkb} in Run 2 and, within Run 3, \textsc{ParticleNet} \cite{PNet} for the 2022 and 2023 periods and \textsc{UParT} \cite{Qu:2022mxj,CMS-UParT} for 2024, following the recommendation issued for each of them. The third version therefore consists of two models, one for each discriminant, identical in architecture, input variables and ground truth, each of them applied to the periods on which it was trained. Since no event weights are applied, the composition of the training set directly reflects the number of simulated events available after the selection. The base selection inherited from the corresponding analysis also differs between versions, which affects the composition of the samples.\medskip
+
+
+
+% 5 - ground truth 
+The ground truth label is then constructed from these samples according to the general procedure described in Section \ref{subsec:groundtruth}. The generated jets associated with the $H\to b\bar{b}$ decay are subject to the same kinematic thresholds and the same separation from the $\tau$ candidates as their reconstructed counterparts, to ensure the comparability of both sets. Exactly two generated jets must satisfy these conditions, and they are matched to the reconstructed jets within $\Delta R < 0.3$, the event being accepted only if at least two pairings are successful. The collimated configurations excluded in this way (Section \ref{subsec:groundtruth}) are treated in the analysis with large-radius jets (Chapter \ref{ch:bbtt_analysis}). The number of events resulting for each version is shown in Table \ref{tab:hhbtag_versions}.\medskip
 
 
 \subsection{Definition and assessment of the input set}
@@ -689,10 +688,10 @@ Flavor discriminant      & \textsc{DeepJet}       & \textsc{DeepJet}       & \te
 %
 For each candidate jet, the network receives a set of quantities organized according to the structure described in Section \ref{subsec:inputs}: those that characterize the jet itself occupy the specific columns of its row, while those that describe the event as a whole are replicated identically across all rows. This set was not determined in the present work, but rather stems from the original development of the algorithm, in which various high-level quantities were investigated and those found to be the most discriminating ones were retained \cite{HHBTag}.\medskip
 
-The \textsc{HH-BTag} algorithm uses fourteen variables, listed in Table \ref{tab:hhbtag_inputs} and grouped into four categories that follow from the phenomenology described in the previous subsection. For the jet itself, the flavor score provides identifying information and its kinematics include its transverse momentum and pseudorapidity, as well as its mass and energy normalized to the transverse momentum, which makes them dimensionless, so that candidates with very different momenta are comparable. The kinematics of the $\tau\tau$ candidate and the missing transverse momentum provide the context of the event and constrain the kinematics of the $H\rightarrow b\bar{b}$ candidate, while the angular distances between the jet and the $\tau\tau$ system turn the relationship between them into a quantity that the model can use directly. Finally, the global variables — the data-taking period and the reconstructed final state of the $\tau\tau$ pair — allow a single model to cover different experimental conditions and channels without training a separate model for each combination. PONER EN ALGUN SITIO QUE PASA CON LOS CONTROL CHANNELS? NO CREO QUE SEA MUY RELEVANTE EN REALIDAD, PERO BUENO SI ENCAJA EN ALGUN LADO QUIZAS COMO PIE DE NOTA : NOTA: NO SE USAN PARA ENTRENAR, AUNQUE SE (APLICA SOBRE ELLOS IGUALMENTE - SE HA VISTO QUE NO DEGRADA LA PERFORMANCE) POR QUÉ NO SE USAN PARA ENTRENAR?
+The \textsc{HH-BTag} algorithm uses fourteen variables, listed in Table \ref{tab:hhbtag_inputs} and grouped into four categories that follow from the phenomenology described in the previous subsection. For the jet itself, the flavor score provides identifying information and its kinematics include its transverse momentum and pseudorapidity, as well as its mass and energy normalized to the transverse momentum, which makes them dimensionless, so that candidates with very different momenta are comparable. The kinematics of the $\tau\tau$ candidate and the missing transverse momentum provide the context of the event and constrain the kinematics of the $H\rightarrow b\bar{b}$ candidate, while the angular distances between the jet and the $\tau\tau$ system turn the relationship between them into a quantity that the model can use directly. Finally, the global variables — the data-taking period and the reconstructed final state of the $\tau\tau$ pair — allow a single model to cover different experimental conditions and channels without training a separate model for each combination.
 
-The kinematic variables were chosen to be independent of the specific signal scenario — resonant or nonresonant, mass, spin — so that the model could cover the entire phase space of the processes under consideration QUE QUIERO DECIR CON ESTO? COMO QUE INDEPENDIENTES DE UN ESCENARIO? SI CAMBIAN SEGUN EL ESCENARIO. The set has been retained in its original form, with the exception of the various recommendations regarding the flavor discriminator, as noted in CUAL ES LA REFERNCIA? LA TABLA DE LAS VERSIONES NO?????.\medskip
-
+None of the variables refers explicitly to the signal hypothesis — resonant or nonresonant, mass, spin —, so that a single model can be applied to all the processes under consideration, although their distributions do depend on it, as discussed below. The set has been retained in its original form in all versions, with the exception of the flavor discriminant (Table \ref{tab:hhbtag_versions}).\medskip
+%
 \begin{table}[t]
 \centering
 \small
@@ -731,8 +730,11 @@ Year                     & Data-taking period \\
 \label{tab:hhbtag_inputs}
 \end{table}
 
-Figures \ref{fig:hhbtag_inputdist_main} and \ref{fig:hhbtag_inputdist_rest} show some distributions of jet variables in the 2022--2023 training sample, separately for the jets from the Higgs boson decay and for the other candidate jets of the same events, starting with the four that the model uses most (Figure \ref{fig:hhbtag_featimp}). MEJOR PONER EN LA FRASE ANTERIOR: SHOW DISTRIBUTIONS OF THE MOST IMPORTANT VARIABLES FOR THE MODEL (REFERNCIAR IMAGEN), Y QUITAR ESTO ULTIMO DE "STARTING WITH ...". Each distribution is normalized to unit area, so that the comparison concerns the shapes and not the different number of jets in each category QUE CATEGORY?. The flavor score provides the clearest separation, with the jets from the Higgs boson decay concentrated near one and the others near zero, although a fraction of the former lies at low values and a tail of the latter reaches high ones, which leaves room for the kinematic information. The jets from the Higgs boson decay are also markedly central and harder, whereas the others accumulate near the $p_T$ threshold and increase towards the edges of the angular acceptance. This last feature comes mainly from the VBF events and in which the jets characteristic of this production mode are among the candidates. The azimuthal separation from the $\tau\tau$ system reflects the topology of the process rather than the properties of the jet. The jets from the decay concentrate around $|\Delta\phi| = \pi$, facing the $\tau\tau$ system, since the two Higgs bosons are produced back-to-back in the transverse plane, whereas the distribution of the other jets is much broader. In Figure \ref{fig:hhbtag_inputdist_rest}, the separation in pseudorapidity behaves analogously, with the jets from the decay concentrated around $\Delta\eta = 0$, Y DE NUEVO SE VE LA CONTRIBUCION DE LOS VBF JETS?. Finally, the normalized energy and mass show more modest differences, the former being close to unity for the central jets from the decay and correlated with the pseudorapidity\footnote{From the definition of the four-momentum, $E/p_T = \sqrt{\cosh^2\eta + (M/p_T)^2}$, so that one of the three variables is determined by the other two. Supplying it explicitly is not necessarily superfluous, since a model with limited capacity trained on a finite number of examples then receives the combination instead of having to construct it.}, and the latter being slightly lower and narrower for the jets from the decay.\medskip
-NO CABE REFERENCIAR LA DISTINCINO POR NODOS Y MODOS DE PRODUCCION? NO TIENE CASI MAS SENTIDO PONERLO ANTES DE LOS PLOTS DE PUREZA, Y DE LA MANO DE LOS PLOTS DE LAS DISTRIBUCIONES; ALGO COMO..PARA ESTUDIAR LAS DIFERENTES CINEMATICAS BLABLABLA???
+Figures \ref{fig:hhbtag_inputdist_main} and \ref{fig:hhbtag_inputdist_rest} show the distributions of the jet variables most important for the model (Figure \ref{fig:hhbtag_featimp}) in the 2022--2023 training sample, separately for the jets from the Higgs boson decay and for the other candidate jets of the same events. Each distribution is normalized to unit area, so that the comparison concerns the shapes and not the different number of jets of each type. 
+
+The flavor score provides the clearest separation, with the jets from the Higgs boson decay concentrated near one and the others near zero, although a fraction of the former lies at low values and a tail of the latter reaches high ones, which leaves room for the kinematic information. The jets from the Higgs boson decay are also markedly central and harder, whereas the others accumulate near the $p_T$ threshold and increase towards the edges of the angular acceptance, a feature that comes mainly from the VBF events, in which the jets characteristic of this production mode are among the candidates. The azimuthal separation from the $\tau\tau$ system reflects the topology of the process rather than the properties of the jet. The jets from the decay concentrate around $|\Delta\phi| = \pi$, facing the $\tau\tau$ system, since the two Higgs bosons are produced back-to-back in the transverse plane, whereas the distribution of the other jets is much broader. 
+
+The separation in pseudorapidity behaves analogously, with the jets from the decay concentrated around $\Delta\eta = 0$ and the others extending to larger values, again because of the forward jets of the VBF events. Finally, the normalized energy and mass show more modest differences, the former being close to unity for the central jets from the decay and correlated with the pseudorapidity\footnote{From the definition of the four-momentum, $E/p_T = \sqrt{\cosh^2\eta + (M/p_T)^2}$, so that one of the three variables is determined by the other two. Supplying it explicitly is not necessarily superfluous, since a model with limited capacity trained on a finite number of examples then receives the combination instead of having to construct it.}, and the latter being slightly lower and narrower for the jets from the decay.\medskip
 %
 \begin{figure}[t]
 \centering
@@ -748,7 +750,36 @@ NO CABE REFERENCIAR LA DISTINCINO POR NODOS Y MODOS DE PRODUCCION? NO TIENE CASI
 \label{fig:hhbtag_inputdist_rest}
 \end{figure}
 
-ESTARIA BIEN PONER SUBSUBSECTIONS AQUI? AQUI SERÍA FEATURE IMPORTNACE, ANTES SERIA INPUTS DISTRIBUTIONS, O SOLO METE RUIDO? EN VBF HABRIA QUE SEGUIR UNA ESTRUCTURA SIMILAR, NO SE SI ME CONVENCE
+These distributions combine all the signal hypotheses of the training set, but the kinematics of the $H\rightarrow b\bar{b}$ candidate depends on the coupling point, since the couplings modify the invariant mass spectrum of the Higgs boson pair (Section \ref{subsec:BSM_production}). To study these differences, Figure \ref{fig:hhbtag_nodes} shows the four most important variables separately for each coupling point (Table \ref{tab:signal_points}) and production mode. 
+
+The flavor score has the same distribution at all points, both for the jets from the decay and for the other jets, as expected for a property of the jet that does not depend on how the Higgs boson was produced. The distributions of the other jets change little from one point to another, differing mainly between production modes, with the VBF jets populating the edges of the acceptance. The variation is therefore concentrated in the kinematics of the jets from the Higgs boson decay. In gluon fusion, the point G3 ($\kappa_\lambda = 5$), in which the triangle diagram dominates and the pair is produced close to threshold, yields softer jets with a much weaker back-to-back correlation with the $\tau\tau$ system, while the other points are very similar. In vector boson fusion the variation is larger, and the jets from the decay range from soft and broadly distributed in $\eta$, as in the SM, to harder, more central and almost back-to-back with the $\tau\tau$ system for the points that shift the production towards high $m_{HH}$. Since the separation between the two types of jets is larger when the jets from the decay are harder, more central and more back-to-back with the $\tau\tau$ system, the assignment is expected to be easier for \textsc{HH-BTag} at these points, which is one of the reasons behind the dependence of its purity on the coupling point discussed in Section \ref{subsec:hhbtag_performance}.\medskip
+\begin{figure}[tbp]
+    \centering
+    \definecolor{ggfLab}{HTML}{3BA458}\definecolor{vbfLab}{HTML}{E83429}
+    \newcommand{\colLabels}{%
+        \node[fill=ggfLab!20, draw=ggfLab, rounded corners=2pt, inner sep=2pt, font=\scriptsize] at ([xshift=0.34\linewidth, yshift=2.5mm]img.north west) {ggF};
+        \node[fill=vbfLab!20, draw=vbfLab, rounded corners=2pt, inner sep=2pt, font=\scriptsize] at ([xshift=0.76\linewidth, yshift=2.5mm]img.north west) {VBF};}
+    \begin{subfigure}[t]{0.49\linewidth}
+        \centering
+        \begin{tikzpicture}
+            \node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=\linewidth, trim=18 20 16 36, clip]{figures/chapter_IV/hhbtag_nodes_hbbjets.pdf}};
+            \colLabels
+        \end{tikzpicture}
+        \caption{Jets from the $H\rightarrow b\bar{b}$ decay}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.49\linewidth}
+        \centering
+        \begin{tikzpicture}
+            \node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=\linewidth, trim=18 20 16 36, clip]{figures/chapter_IV/hhbtag_nodes_otherjets.pdf}};
+            \colLabels
+        \end{tikzpicture}
+        \caption{Other candidate jets}
+    \end{subfigure}
+    \caption{Distributions of the flavor score, pseudorapidity, transverse momentum and azimuthal separation from the $\tau\tau$ system (from top to bottom) of the jets from the $H\rightarrow b\bar{b}$ decay (a) and of the other candidate jets (b), for each coupling point of the gluon fusion (left column of each panel) and vector boson fusion (right column) samples, with the line styles of Table \ref{tab:signal_points}, in the 2022--2023 training sample. Each distribution is normalized to unit area.}
+    \label{fig:hhbtag_nodes}
+\end{figure}
+
+
 The extent to which the model uses this information is measured with the permutation importance (Section \ref{subsec:featimp}), shown in Figure \ref{fig:hhbtag_featimp} for the two models, each evaluated on the events of the parity on which it was not trained. The four variables shown in Figure \ref{fig:hhbtag_inputdist_main} clearly stand out, with decreases in purity between about $4$ and $11$ percentage points when they are permuted, an order of magnitude above the rest. The first two head the list in an order that depends on the discriminant: in the 2022--2023 model, trained with \textsc{ParticleNet}, the pseudorapidity comes first, whereas in the 2024 model, trained with \textsc{UParT}, the flavor score takes the lead, consistent with the improved performance reported for this discriminant \cite{CMS-UParT}.
 %
 \begin{figure}[tbp]
@@ -781,40 +812,13 @@ The remaining variables lie one or two orders of magnitude below, and their low 
 
 
 The hierarchy reflects two conditions that a variable must meet to be important, namely that it varies among the jets of the same event and that it provides information that cannot be recovered from the other inputs. ESTO NO SE HA EXPLICADO YA EN LA INTRO DE LA PERMUTATION FEATURE IMPORTANCE? ANTES DE ESTA SECCION? NO SE PUEDE REEMITIR AHI Y RECORTAR ESTE PARRAFO? The four dominant quantities meet both, three of them describing the jet itself and the fourth relating it to the rest of the event. The quantities of the $\tau\tau$ system and the missing transverse momentum fail the first condition, since they are replicated in all rows (Section \ref{subsec:inputs}) and cannot alter the order of the candidates on their own, and the redundant quantities fail the second, however marked the separation between their distributions (Section \ref{subsec:featimp}). Finally, the $\tau\tau$ decay channel and the data-taking period are completely transparent to the model, with importances compatible with zero, so that the assignment behaves uniformly across final states and periods, as expected of an algorithm intended to be applied equally to all of them.\medskip
-\medskip
+
 
 The study has been repeated in each of the retraining runs with consistent results, and Figure \ref{fig:hhbtag_featimp} shows it for the two models of version v3. The fact that the four dominant variables remain the same when the samples, the data-taking conditions and the discriminant itself change indicates that the model is based on the physics of the process and not on the particular characteristics of a specific dataset ESTO IGUAL SE PUEDE JUNTAR CON EL PRIMER PARRAFO DE ESTA DISCUSION DE LA FEATURE IMPORTANCE (DONDE SE SEÑALA LA FIGURA EN PRIMER LUGAR), Y DE PASO AÑADIR QUE SE REPITE VARIAS VECES (QUE ES LO QUE ME DA LA BARRITA DE INCERTIDUMBRE DE LOS PLOTS) , Y PASAR LOS PLOTS ARRIBA, Y LA DISCUSION DESPUES DE LOS PLOTS.
 %
 
 
-ESTO NO IRIA MEJOR ANTES, CON LAS DISTRIBUCIONES?
-The distributions shown so far combine all the signal hypotheses of the training set, but the kinematics of the $H\rightarrow b\bar{b}$ candidate depends on the coupling point, since the couplings modify the invariant mass spectrum of the Higgs boson pair (Section \ref{subsec:BSM_production}). Figure \ref{fig:hhbtag_nodes} illustrates the four most important variables separately for each coupling point (Table \ref{tab:signal_points}), in the gluon fusion and vector boson fusion samples used in the 2022--2023 training. SI LO PONGO ANTES DE LA FEATURE IMPORNTACE, QUIZAS SEA MEJOR NO PONER LO DE LAS FOUR MOST IMPORTANT VARIABLES. The flavor score has the same distribution at all points, both for the jets from the decay and for the other jets, as expected for a property of the jet that does not depend on how the Higgs boson was produced. The distributions of the other jets that do not arise from the $H\to b\bar{b}$ decay change little from one point to another, differing mainly between production modes, with the VBF jets populating the edges of the acceptance. The variation is therefore concentrated in the kinematics of the jets from the Higgs boson decay. In gluon fusion, the point with $\kappa_\lambda = 5$, in which the triangle diagram dominates and the pair is produced close to threshold, yields softer jets with a much weaker back-to-back correlation with the $\tau\tau$ system, while the other points are very similar. In vector boson fusion the variation is larger, and the jets from the decay range from soft and broadly distributed in $\eta$, as in the SM, to harder, more central and almost back-to-back with the $\tau\tau$ system for the points that shift the production towards high $m_{HH}$: therefore, the VBF samples provide the widest range of kinematic configurations. Since the separation between the two categories of jets is larger when the jets from the decay are harder, more central and more back-to-back with the $\tau\tau$ system, the assignment is expected to be easier for \textsc{HH-BTag} at these points.\medskip
-%
-\begin{figure}[tbp]
-    \centering
-    \definecolor{ggfLab}{HTML}{3BA458}\definecolor{vbfLab}{HTML}{E83429}
-    \newcommand{\colLabels}{%
-        \node[fill=ggfLab!20, draw=ggfLab, rounded corners=2pt, inner sep=2pt, font=\scriptsize] at ([xshift=0.34\linewidth, yshift=2.5mm]img.north west) {ggF};
-        \node[fill=vbfLab!20, draw=vbfLab, rounded corners=2pt, inner sep=2pt, font=\scriptsize] at ([xshift=0.76\linewidth, yshift=2.5mm]img.north west) {VBF};}
-    \begin{subfigure}[t]{0.49\linewidth}
-        \centering
-        \begin{tikzpicture}
-            \node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=\linewidth, trim=18 20 16 36, clip]{figures/chapter_IV/hhbtag_nodes_hbbjets.pdf}};
-            \colLabels
-        \end{tikzpicture}
-        \caption{Jets from the $H\rightarrow b\bar{b}$ decay}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.49\linewidth}
-        \centering
-        \begin{tikzpicture}
-            \node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=\linewidth, trim=18 20 16 36, clip]{figures/chapter_IV/hhbtag_nodes_otherjets.pdf}};
-            \colLabels
-        \end{tikzpicture}
-        \caption{Other candidate jets}
-    \end{subfigure}
-    \caption{Distributions of the flavor score, pseudorapidity, transverse momentum and azimuthal separation from the $\tau\tau$ system (from top to bottom) of the jets from the $H\rightarrow b\bar{b}$ decay (a) and of the other candidate jets (b), for each coupling point of the gluon fusion (left column of each panel) and vector boson fusion (right column) samples, with the line styles of Table \ref{tab:signal_points}, in the 2022--2023 training sample. Each distribution is normalized to unit area.}
-    \label{fig:hhbtag_nodes}
-\end{figure}
+
 
 
 
@@ -976,7 +980,12 @@ The candidates among which the VBF pair is sought are derived from those on whic
 %Es importante señalar aquí que aunque los dos jets asignados al par $b\bar{b}$ quedan excluidos de la elección de \textsc{VBFjTag}, si se figuran en el tensor de entrada, donde se identifica a cada uno de ellos mediante una variable que señala su condición. Tanto el bloque recurrente como la normalización de las puntuaciones acoplan entre sí todos los jets del evento, de modo que retirarlos privaría al modelo del contexto en el que ha de decidir.
 
 % 4 - Muestras
-In this case, the training set is limited to simulated production samples from the vector boson fusion of the Higgs boson pair, corresponding to the data-taking periods of early Run 3 -- 2022 to 2024. As for \textsc{HH-BTag}, two models are trained, on the 2022--2023 samples with \textsc{ParticleNet} and on the 2024 samples with \textsc{UParT} as flavor discriminant (Section \ref{subsec:hhbtag_dataset}). As previously explained, the sample mix includes the full range of coupling points $(\kappa_\lambda, \kappa_{2V}, \kappa_V)$ available (Table \ref{tab:signal_points}), in order to ensure that the model covers a wide range of kinematic configurations without specializing in any one. In all cases, this involves non-resonant production, \textcolor{red}{por disponibilidad? o por que no quisimos incluir resonante?}. It should be noted that the restriction to this production mode is, once again, motivated by the need to define the ground truth. However, as with the \textsc{HH-BTag}, the algorithm is applied to all events in the analysis, so events produced by gluon fusion are treated as just another background in this context.
+In this case, the training set is limited to simulated production samples from the vector boson fusion of the Higgs boson pair, corresponding to the data-taking periods of early Run 3 -- 2022 to 2024. As for \textsc{HH-BTag}, two models are trained, on the 2022--2023 samples with \textsc{ParticleNet} and on the 2024 samples with \textsc{UParT} as flavor discriminant (Section \ref{subsec:hhbtag_dataset}). As previously explained, the sample mix includes the full range of coupling points $(\kappa_\lambda, \kappa_{2V}, \kappa_V)$ available of Table \ref{tab:signal_points}, with the exception of V9, in order to ensure that the model covers a wide range of kinematic configurations without specializing in any one. In all cases, this involves non-resonant production, \textcolor{red}{por disponibilidad? o por que no quisimos incluir resonante?}. It should be noted that the restriction to this production mode is, once again, motivated by the need to define the ground truth. However, as with the \textsc{HH-BTag}, the algorithm is applied to all events in the analysis, so events produced by gluon fusion are treated as just another background in this context.
+
+...which comprise $1\,721\,886$ events after the selection in 2022--2023 and \textcolor{red}{XXX} in 2024.
+
+The resulting training set comprises $1\,721\,886$ events in 2022--2023 and \textcolor{red}{XXX} in 2024.
+
 
 % 5 - Ground truth
 Given the problem at hand, the definition of the true label is now based on the matrix element itself. Among the partons in the final state of the hard process, the two that are neither Higgs bosons nor $b$ quarks are identified, and which therefore correspond to the scattered quarks from the fusion vertex. Each of them is associated with the nearest generated jet within $\Delta R < 0.4$, equal to the radius at which the jets are reconstructed, and the generated jets so obtained must satisfy the same acceptance as the reconstructed candidates, $p_T > 20$ GeV and $|\eta| < 4.7$, and be separated from the $b$ jets and the $\tau$ leptons of the event (Section \ref{subsec:groundtruth}). The two outgoing partons do not always give rise to two generated jets meeting these conditions, since one of them may produce a softer or more forward jet or overlap with another object of the event, and such events are discarded. The generated jets are then matched with the reconstructed jets that pass the candidate selection, within a cone of $\Delta R < 0.3$, and the event is labeled and admitted into the training set only when both pairings are successful, so that every event of the training set contains exactly two true VBF jets by construction. An additional requirement at the generation level restricts the sample to resolved configurations and to those in which the $b\bar{b}$ pair and the $\tau\tau$ system are themselves well-defined, ensuring that the assignment is learned from events in which the entire topology of the process is present.\medskip
@@ -1152,8 +1161,8 @@ The purity is lower than that of \textsc{HH-BTag}, as expected for a decision th
 
 
 % 4 - Score - SI ESTO LO HAGO SOBRE LAS MUESTRAS DEL ANALISIS TENGO QUE INDICARLO
-Beyond the ranking by score reflected by the purity, it is also interesting to examine the score itself for the different contributions that the algorithm will process, since regardless of the process, it always returns a pair of VBF jets. Figure \ref{fig:vbfjtag_score} shows the distribution of these scores for the two jets selected by the model, in samples from VBF and gluon fusion production modes. \textcolor{red}{añadir backgrounds?}. The distribution shape varies significantly between the different processes: while in events produced by vector boson fusion both scores are concentrated around unity, in those produced by gluon fusion — where, by construction, the sought-after pair does not exist — the distribution is notably broader and shifts toward lower values. The model therefore is able to recognize the topology for which it was trained and respond accordingly when the sought-after pair is not present.
-
+Beyond the ranking by score reflected by the purity, it is also interesting to examine the score itself for the different contributions that the algorithm will process, since regardless of the process, it always returns a pair of VBF jets. Figure \ref{fig:vbfjtag_score} shows the distribution of these scores for the two jets selected by the model, in samples from VBF and gluon fusion production modes. \textcolor{red}{añadir backgrounds?}. The distribution shape varies significantly between the different processes: while in events produced by vector boson fusion both scores are concentrated around unity, in those produced by gluon fusion — where, by construction, the sought-after pair does not exist — the distribution is notably broader and shifts toward lower values. The model is therefore able to recognize the topology for which it was trained and respond accordingly when the pair of interest is not present.
+%
 \begin{figure}[tbp]
 \centering
 \includegraphics[width=0.49\textwidth]{figures/chapter_IV/vbfjtag_score_qqHH.jpg}
