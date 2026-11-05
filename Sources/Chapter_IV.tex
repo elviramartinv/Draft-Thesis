@@ -730,24 +730,15 @@ Year                     & Data-taking period \\
 \label{tab:hhbtag_inputs}
 \end{table}
 
-Figures \ref{fig:hhbtag_inputdist_main} and \ref{fig:hhbtag_inputdist_rest} show the distributions of the jet variables most important for the model (Figure \ref{fig:hhbtag_featimp}) in the 2022--2023 training sample, separately for the jets from the Higgs boson decay and for the other candidate jets of the same events. Each distribution is normalized to unit area, so that the comparison concerns the shapes and not the different number of jets of each type. 
+Figure \ref{fig:hhbtag_inputdist} shows the distributions of the jet variables most important for the model (Figure \ref{fig:hhbtag_featimp}) in the 2022--2023 training sample, separately for the jets from the Higgs boson decay and for the other candidate jets of the same events. Each distribution is normalized to unit area, so that the comparison concerns the shapes and not the different number of jets of each type. 
 
-The flavor score provides the clearest separation, with the jets from the Higgs boson decay concentrated near one and the others near zero, although a fraction of the former lies at low values and a tail of the latter reaches high ones, which leaves room for the kinematic information. The jets from the Higgs boson decay are also markedly central and harder, whereas the others accumulate near the $p_T$ threshold and increase towards the edges of the angular acceptance, a feature that comes mainly from the VBF events, in which the jets characteristic of this production mode are among the candidates. The azimuthal separation from the $\tau\tau$ system reflects the topology of the process rather than the properties of the jet. The jets from the decay concentrate around $|\Delta\phi| = \pi$, facing the $\tau\tau$ system, since the two Higgs bosons are produced back-to-back in the transverse plane, whereas the distribution of the other jets is much broader. 
-
-The separation in pseudorapidity behaves analogously, with the jets from the decay concentrated around $\Delta\eta = 0$ and the others extending to larger values, again because of the forward jets of the VBF events. Finally, the normalized energy and mass show more modest differences, the former being close to unity for the central jets from the decay and correlated with the pseudorapidity\footnote{From the definition of the four-momentum, $E/p_T = \sqrt{\cosh^2\eta + (M/p_T)^2}$, so that one of the three variables is determined by the other two. Supplying it explicitly is not necessarily superfluous, since a model with limited capacity trained on a finite number of examples then receives the combination instead of having to construct it.}, and the latter being slightly lower and narrower for the jets from the decay.\medskip
+The flavor score provides the clearest separation, with the jets from the Higgs boson decay concentrated near one and the others near zero, although a fraction of the former lies at low values and a tail of the latter reaches high ones, which leaves room for the kinematic information. The jets from the Higgs boson decay are also markedly central and harder, whereas the others accumulate near the $p_T$ threshold and increase towards the edges of the angular acceptance, a feature that comes mainly from the VBF events, in which the jets characteristic of this production mode are among the candidates. The azimuthal separation from the $\tau\tau$ system reflects the topology of the process rather than the properties of the jet. The jets from the decay concentrate around $|\Delta\phi| = \pi$, facing the $\tau\tau$ system, since the two Higgs bosons are produced back-to-back in the transverse plane, whereas the distribution of the other jets is much broader. The separation in pseudorapidity behaves analogously, with the jets from the decay concentrated around $\Delta\eta = 0$ and the others extending to larger values, again because of the forward jets of the VBF events. Finally, the normalized energy shows a more modest difference, being close to unity for the central jets from the decay, and it is correlated with the pseudorapidity\footnote{From the definition of the four-momentum, $E/p_T = \sqrt{\cosh^2\eta + (M/p_T)^2}$, so that one of the three variables is determined by the other two. Supplying it explicitly is not necessarily superfluous, since a model with limited capacity trained on a finite number of examples then receives the combination instead of having to construct it.}.\medskip
 %
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.92\linewidth]{figures/chapter_IV/hhbtag_input_distributions_1.pdf}
-\caption{Distributions of the four input variables with the highest permutation importance (Figure \ref{fig:hhbtag_featimp}), namely the flavor score, the pseudorapidity and transverse momentum of the jet, and its azimuthal separation from the $\tau\tau$ system, for the jets from the $H\rightarrow b\bar{b}$ decay (black, filled) and for the other candidate jets of the same events (orange), in the 2022--2023 training sample. Each distribution is normalized to unit area.}
-\label{fig:hhbtag_inputdist_main}
-\end{figure}
-%
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.92\linewidth]{figures/chapter_IV/hhbtag_input_distributions_2.pdf}
-\caption{Same as Figure \ref{fig:hhbtag_inputdist_main}, for the pseudorapidity separation between the jet and the $\tau\tau$ system and for the energy and mass of the jet normalized to its transverse momentum.}
-\label{fig:hhbtag_inputdist_rest}
+\includegraphics[width=\linewidth]{figures/chapter_IV/hhbtag_input_distributions_combined.pdf}
+\caption{Distributions of the six jet input variables with the highest permutation importance (Figure \ref{fig:hhbtag_featimp}), namely the flavor score, $\eta$ and $p_T$ of the jet (top), its azimuthal and pseudorapidity separations from the $\tau\tau$ system and its energy normalized to the transverse momentum (bottom), for the jets from the $H\rightarrow b\bar{b}$ decay (black, filled) and for the other candidate jets of the same events (orange), in the 2022--2023 training sample. Each distribution is normalized to unit area.}
+\label{fig:hhbtag_inputdist}
 \end{figure}
 
 These distributions combine all the signal hypotheses of the training set, but the kinematics of the $H\rightarrow b\bar{b}$ candidate depends on the coupling point, since the couplings modify the invariant mass spectrum of the Higgs boson pair (Section \ref{subsec:BSM_production}). To study these differences, Figure \ref{fig:hhbtag_nodes} shows the four most important variables separately for each coupling point (Table \ref{tab:signal_points}) and production mode. 
@@ -780,42 +771,40 @@ The flavor score has the same distribution at all points, both for the jets from
 \end{figure}
 
 
-The extent to which the model uses this information is measured with the permutation importance (Section \ref{subsec:featimp}), shown in Figure \ref{fig:hhbtag_featimp} for the two models, each evaluated on the events of the parity on which it was not trained. The four variables shown in Figure \ref{fig:hhbtag_inputdist_main} clearly stand out, with decreases in purity between about $4$ and $11$ percentage points when they are permuted, an order of magnitude above the rest. The first two head the list in an order that depends on the discriminant: in the 2022--2023 model, trained with \textsc{ParticleNet}, the pseudorapidity comes first, whereas in the 2024 model, trained with \textsc{UParT}, the flavor score takes the lead, consistent with the improved performance reported for this discriminant \cite{CMS-UParT}.
+
+The extent to which the model uses this information is measured with the permutation importance (Section \ref{subsec:featimp}), repeating the permutation of each variable ten times. Figure \ref{fig:hhbtag_featimp} shows the result for the two models of version v3, with the two trainings of each model evaluated on the events of the parity on which they were not trained. The study has been repeated in each of the retraining runs with consistent results.
 %
 \begin{figure}[tbp]
     \centering
-    \begin{subfigure}[t]{\linewidth}
+    \begin{subfigure}[t]{0.49\linewidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{figures/chapter_IV/featimp_hhbtag_v3_thesis.pdf}
+        \includegraphics[height=8.7cm]{figures/chapter_IV/featimp_hhbtag_v3_thesis.pdf}
         \caption{2022--2023, model trained with \textsc{ParticleNet}}
-    \end{subfigure}\\[1ex]
-    \begin{subfigure}[t]{\linewidth}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.49\linewidth}
         \centering
-        \includegraphics[width=0.85\linewidth]{figures/chapter_IV/featimp_hhbtag_2024_thesis.pdf}
+        \includegraphics[height=8.7cm]{figures/chapter_IV/featimp_hhbtag_2024_thesis.pdf}
         \caption{2024, model trained with \textsc{UParT}}
     \end{subfigure}
-    \caption{Permutation importance of the input variables of the two models of version v3 of the \textsc{HH-BTag} algorithm, given as the mean decrease in purity over ten random permutations of each variable, with bars showing their standard deviation. The two sets of bars correspond to the model trained on odd events and evaluated on even events (black) and vice versa (blue).}
+    \caption{Permutation importance of the input variables of the two models of version v3 of the \textsc{HH-BTag} algorithm, given as the mean decrease in purity over ten random permutations of each variable, with bars showing their standard deviation. The two sets of bars correspond to the training on odd events evaluated on even events (black) and vice versa (blue).}
     \label{fig:hhbtag_featimp}
 \end{figure}
 %
+
+Four variables clearly stand out, with decreases in purity between about $4$ and $11$ percentage points when they are permuted, an order of magnitude above the rest. They are the pseudorapidity of the jet, its flavor score, its azimuthal separation from the $\tau\tau$ system and its transverse momentum. The first two head the list in an order that depends on the discriminant, with the pseudorapidity first in the 2022--2023 model, trained with \textsc{ParticleNet}, and the flavor score first in the 2024 model, trained with \textsc{UParT}, consistent with the improved performance reported for this discriminant \cite{CMS-UParT}. The fact that the same four variables dominate when the samples, the data-taking conditions and the discriminant itself change indicates that the model is based on the physics of the process and not on the particular characteristics of a specific dataset.
+
+The two trainings of each model reproduce the same hierarchy and reach the same purity, but the importances of the one evaluated on even events are systematically larger. This does not reflect a different use of the information, but a different margin in the decision. The purity only requires the two true jets to be ranked first, regardless of how far below them the third jet lies, and the training with larger importances separates them with a smaller margin, with more events in which the second and third jets receive almost equal scores. These are the events whose assignment changes most easily when an input is permuted, so that the same perturbation removes more purity from this training, even though both perform equally well. The figure is therefore read as a ranking rather than as a measure of absolute values.
+
+The remaining variables lie one or two orders of magnitude below, for two reasons. The quantities of the event, such as those of the $\tau\tau$ system and the missing transverse momentum, take the same value in all rows (Section \ref{subsec:inputs}) and therefore cannot alter the order of the candidates on their own. In particular, the $\tau\tau$ final state and the data-taking period have importances compatible with zero, so that the assignment behaves uniformly across final states and periods, as expected of an algorithm intended to be applied equally to all of them. The other jet variables are redundant (Section \ref{subsec:featimp}), and their low importance must be read together with the correlation matrix of Figure \ref{fig:hhbtag_corr}. Thus, the normalized energy is almost completely determined by the absolute pseudorapidity of the jet ($0.93$), as anticipated; the separation in pseudorapidity is the difference between the pseudorapidities of the jet and of the $\tau\tau$ system, both of them inputs; and the normalized mass is correlated with the transverse momentum ($-0.49$), so that their information is largely available through other inputs. The azimuthal separation, in contrast, is only weakly correlated with the other variables, the largest coefficient being $0.30$ with the transverse momentum of the jet, and carries information that no other input provides, which explains its high importance.\medskip
+%
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.85\linewidth]{figures/chapter_IV/corrmatrix_hhbtag_v3.pdf}
+\includegraphics[width=0.75\linewidth]{figures/chapter_IV/corrmatrix_hhbtag_v3.pdf}
 \caption{Linear correlation coefficients between the input variables of the \textsc{HH-BTag}
 algorithm, for the 2022--2023 training sample. The pseudorapidities and azimuthal separations enter in absolute value.}
 \label{fig:hhbtag_corr}
 \end{figure}
 
-The two models -- even and odd -- reproduce the same hierarchy and reach the same purity, $96.6$ and $96.5\%$, but the importances of the model evaluated on even events are systematically larger. This does not reflect a different use of the information, but a different margin in the decision. The purity only requires the two true jets to be ranked first, regardless of how far below them the third jet lies, and the model with larger importances separates them with a smaller margin, with four times more events in which the second and third jets receive almost equal scores ESTO LO HEMOS COMPROBADO? NO HACE FALTA PONER NUMEROS. These are precisely the events whose assignment changes when an input is permuted, so that the same perturbation removes more purity from this model, even though both perform equally well. The figure is therefore read as a ranking rather than as a measure of absolute values.
-
-The remaining variables lie one or two orders of magnitude below, and their low importance must be read together with the correlation matrix of Figure \ref{fig:hhbtag_corr}. The separation in pseudorapidity is the difference between the pseudorapidities of the jet and of the $\tau\tau$ system, both of them inputs; the normalized energy is almost completely determined by the absolute pseudorapidity of the jet ($0.93$), as anticipated; and the normalized mass is correlated with its transverse momentum ($-0.49$), so that their information is largely available through other inputs. The azimuthal separation, in contrast, is only weakly correlated with the other variables, the largest coefficient being $0.30$ with the transverse momentum of the jet, and carries information that no other input provides, which explains its high importance.
-
-
-The hierarchy reflects two conditions that a variable must meet to be important, namely that it varies among the jets of the same event and that it provides information that cannot be recovered from the other inputs. ESTO NO SE HA EXPLICADO YA EN LA INTRO DE LA PERMUTATION FEATURE IMPORTANCE? ANTES DE ESTA SECCION? NO SE PUEDE REEMITIR AHI Y RECORTAR ESTE PARRAFO? The four dominant quantities meet both, three of them describing the jet itself and the fourth relating it to the rest of the event. The quantities of the $\tau\tau$ system and the missing transverse momentum fail the first condition, since they are replicated in all rows (Section \ref{subsec:inputs}) and cannot alter the order of the candidates on their own, and the redundant quantities fail the second, however marked the separation between their distributions (Section \ref{subsec:featimp}). Finally, the $\tau\tau$ decay channel and the data-taking period are completely transparent to the model, with importances compatible with zero, so that the assignment behaves uniformly across final states and periods, as expected of an algorithm intended to be applied equally to all of them.\medskip
-
-
-The study has been repeated in each of the retraining runs with consistent results, and Figure \ref{fig:hhbtag_featimp} shows it for the two models of version v3. The fact that the four dominant variables remain the same when the samples, the data-taking conditions and the discriminant itself change indicates that the model is based on the physics of the process and not on the particular characteristics of a specific dataset ESTO IGUAL SE PUEDE JUNTAR CON EL PRIMER PARRAFO DE ESTA DISCUSION DE LA FEATURE IMPORTANCE (DONDE SE SEÑALA LA FIGURA EN PRIMER LUGAR), Y DE PASO AÑADIR QUE SE REPITE VARIAS VECES (QUE ES LO QUE ME DA LA BARRITA DE INCERTIDUMBRE DE LOS PLOTS) , Y PASAR LOS PLOTS ARRIBA, Y LA DISCUSION DESPUES DE LOS PLOTS.
-%
 
 
 
@@ -835,7 +824,7 @@ The study has been repeated in each of the retraining runs with consistent resul
 \subsection{Performance of the \textsc{HH-BTag} model}
 \label{subsec:hhbtag_performance}
 %
-After determining the information received by the model and its actual utilization, the next step is to measure its performance, comparing it with the explicit criterion it replaces and across its successive versions. The training of the two models of each period, one for each event parity, meets the criteria of Section \ref{subsec:training}. In both, the purity and the loss function stabilize after about \textcolor{red}{XX} epochs \textcolor{red}{o XXX según la parity}, with the purity on the validation events reaching a plateau around \textcolor{red}{XX\%}, and the values obtained on the training and validation events evolve together without any gap opening between them. The two models therefore converge to the same performance, even though they stop at a different number of epochs, since the stopping criterion depends on the fluctuations of each fit.\medskip
+After determining the information received by the model and its actual utilization, the next step is to measure its performance, comparing it with the explicit criterion it replaces and across its successive versions. The training of the two models of each period, one for each event parity, meets the criteria of Section \ref{subsec:training}. In all cases, the purity and the loss function stabilize, the stopping criterion is reached after a few tens of epochs -- between about $20$ and $40$ depending on the training -- and the values obtained on the training and validation events evolve together without any gap opening between them. The two trainings of each model converge to the same performance, even though they stop at a different number of epochs, since the stopping criterion depends on the fluctuations of each fit.\medskip
 
 
 %--------------------------------------------------------------------
@@ -1053,14 +1042,14 @@ The two variables built for this problem provide the strongest separation of all
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=0.92\linewidth]{figures/chapter_IV/vbfjtag_input_distributions_1.pdf}
+\includegraphics[width=0.5\linewidth]{figures/chapter_IV/vbfjtag_input_distributions_1.pdf}
 \caption{Distributions of the transverse momentum, pseudorapidity, isolation and centrality of the jets from the vector boson fusion vertex (black, filled) and of the other candidate jets (orange), in the 2022--2023 training sample. Each distribution is normalized to unit area.}
 \label{fig:vbfjtag_inputdist_1}
 \end{figure}
 %
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=0.92\linewidth]{figures/chapter_IV/vbfjtag_input_distributions_2.pdf}
+\includegraphics[width=0.7\linewidth]{figures/chapter_IV/vbfjtag_input_distributions_2.pdf}
 \caption{Same as Figure \ref{fig:vbfjtag_inputdist_1}, for the azimuthal and pseudorapidity separations between the jet and the $\tau\tau$ system.}
 \label{fig:vbfjtag_inputdist_2}
 \end{figure}
@@ -1115,7 +1104,7 @@ The performance of the model is evaluated with the same tests as for \textsc{HH-
 
 
 % 2 - curvas de aprendizaje
-The training of the two models of each period, one for each event parity, converges in the same way as for \textsc{HH-BTag}, with the purity on the validation events stabilizing around \textcolor{red}{XX\%} after about \textcolor{red}{XX} epochs and without any significant gap between the training and validation values, which confirms that the configuration inherited from \textsc{HH-BTag} is also adequate for this problem.
+The training of the two models of each period, one for each event parity, converges in the same way as for \textsc{HH-BTag}, with the stopping criterion reached after a few tens of epochs and without any significant gap between the training and validation values, which confirms that the configuration inherited from \textsc{HH-BTag} is also adequate for this problem.
 
 % 3 - Pureza
 The purity is shown in Figure \ref{fig:vbfjtag_purity} for each coupling point (Table \ref{tab:signal_points}), with the 2022 and 2023 periods shown together, since the purity does not change between them, and 2024 separately, as it is evaluated with its own model. The comparison with the kinematic criterion of Run 2 requires some care, since, unlike \textsc{VBFjTag}, which always selects a pair, the criterion finds no pair in about $9\%$ of the events, in which fewer than two jets satisfy its requirements. Its purity can therefore be quoted over the events in which it finds a pair, from $83$ to $89\%$, as was done in Run 2, or over all events, counting those without a pair as failures, from $75$ to $81\%$. Only the latter is directly comparable with \textsc{VBFjTag}, which reaches purities from $91$ to $95\%$, so that the gain it brings is of $14$ to $16$ percentage points, of which about $8$ come from the events in which the kinematic criterion does not find a pair, and the remaining $6$ to $8$ from a better choice among the candidates. The same picture holds in 2024. All methods follow the same pattern across the coupling points, with the largest purities at the points V1 and V3 and the lowest at V5 and V8.
