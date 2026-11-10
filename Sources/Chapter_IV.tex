@@ -967,7 +967,7 @@ As shown in Figure \ref{fig:hhbtag_zz_purity}, the dedicated trainings do not im
 \section{The \textsc{VBFjTag} algorithm}
 \label{sec:VBFjTag}
 %
-In the $HH\to bb\tau\tau$ analysis, the jets from the event play two distinct roles: while some reconstruct the $H\to b\bar{b}$ decay, others identify the vector boson fusion production topology. Now that the assignment of candidates for the first problem has been resolved in a satisfactory manner, it is natural to implement the same procedure for the second, ensuring that the selection of all jets involved in the analysis relies on the same type of algorithm and follows the same criteria. This initiative led to the development of the \textsc{VBFjTag} algorithm, which was developed in this work and applied for the first time in the analysis presented in Chapter \ref{ch:bbtt_analysis} \cite{CMS-PAS-HIG-25-008}.
+In the $HH\to bb\tau\tau$ analysis, the jets from the event play two distinct roles: while some reconstruct the $H\to b\bar{b}$ decay, others identify the vector boson fusion production topology. Now that the assignment of candidates for the first problem has been resolved in a satisfactory manner, it is natural to implement the same procedure for the second, ensuring that the selection of all jets involved in the analysis relies on the same type of algorithm and follows the same criteria. This initiative led to the \textsc{VBFjTag} algorithm, developed in this work and applied for the first time in the analysis presented in Chapter \ref{ch:bbtt_analysis} \cite{CMS-PAS-HIG-25-008}.
 
 The architecture and the training procedure of Section \ref{sec:architecture} are reused without any modification, so that only the two elements that define the problem change. The first is the definition of the ground truth, which follows from a different phenomenology. The second is the set of input variables, which must be reviewed to determine what information the model can use to learn under these new conditions.\medskip
 
@@ -984,7 +984,7 @@ This phenomenology frames the problem in terms that differ significantly from th
 
 
 % 3 - selección de candidatos
-The candidates among which the VBF pair is sought are the reconstructed jets with $p_T > 20$ GeV and $|\eta| < 4.7$, which covers the full acceptance of the calorimeter, separated by $\Delta R > 0.5$ from the two legs of the $\tau\tau$ pair. Jets with $p_T < 50$ GeV in the region $2.5 < |\eta| < 3.0$, where the resolution degrades, are also discarded\footnote{This region lies just beyond the tracker coverage, so that charged particles can no longer be associated with their vertex to remove the contribution of pileup, and soft jets there are largely spurious and poorly described by the simulation, which shows an excess of them in data. The same requirement is applied in the preselection of the analysis (Chapter \ref{ch:bbtt_analysis}).}. The algorithm is designed to be chained with \textsc{HH-BTag}, so that it operates once the $b\bar{b}$ pair has been chosen, and the VBF pair is selected among the candidates not assigned to it, at least two of which are required for the pair to be formed. 
+The candidates among which the VBF pair is sought are the reconstructed jets with $p_T > 20$ GeV and $|\eta| < 4.7$, which covers the full acceptance of the calorimeter, separated by $\Delta R > 0.5$ from the two legs of the $\tau\tau$ pair. Jets with $p_T < 50$ GeV in the region $2.5 < |\eta| < 3.0$, where the resolution degrades, are also discarded\footnote{This region lies just beyond the tracker coverage, so that charged particles can no longer be associated with their vertex to remove the contribution of pileup, and soft jets there are largely spurious and poorly described by the simulation, which shows an excess of them in data. The same requirement is applied in the preselection of the analysis (Chapter \ref{ch:bbtt_analysis}).\textcolor{red}{cita}}. The algorithm is designed to be chained with \textsc{HH-BTag}, so that it operates once the $b\bar{b}$ pair has been chosen, and the VBF pair is selected among the candidates not assigned to it, at least two of which are required for the pair to be formed. 
 %The angular window is the same as that of the kinematic criterion of Run 2 (Section \ref{sec:assignment}), but the threshold is lowered from $30$ to $20$ GeV, since the algorithm ranks the candidates instead of cutting on them, so that an additional soft jet is one more alternative for the network to reject rather than a contamination.
 
 
@@ -998,7 +998,7 @@ The training set consists of simulated samples of $HH$ production via vector bos
 
 
 % 5 - Ground truth
-Given the problem at hand, the definition of the true label is now based on the matrix element itself. Among the partons in the final state of the hard process, the two that are neither Higgs bosons nor $b$ quarks are identified, and which therefore correspond to the scattered quarks from the fusion vertex. Each of them is associated with the nearest generated jet within $\Delta R < 0.4$, equal to the radius at which the jets are reconstructed, and the generated jets so obtained must satisfy the same acceptance as the reconstructed candidates, $p_T > 20$ GeV and $|\eta| < 4.7$, and be separated from the $b$ jets and the $\tau$ leptons of the event (Section \ref{subsec:groundtruth}). The two outgoing partons do not always give rise to two generated jets meeting these conditions, since one of them may produce a softer or more forward jet or overlap with another object of the event, and such events are discarded. The generated jets are then matched with the reconstructed jets that pass the candidate selection, within a cone of $\Delta R < 0.3$, and the event is labeled and admitted into the training set only when both pairings are successful, so that every event of the training set contains exactly two true VBF jets by construction. An additional requirement at the generation level restricts the sample to resolved configurations and to those in which the $b\bar{b}$ pair and the $\tau\tau$ system are themselves well-defined, ensuring that the assignment is learned from events in which the entire topology of the process is present.\medskip
+Given the problem at hand, the definition of the true label is now based on the matrix element itself. Among the partons in the final state of the hard process, the two that are neither Higgs bosons nor $b$ quarks are identified, which therefore correspond to the scattered quarks from the fusion vertex. Each of them is associated with the nearest generated jet within $\Delta R < 0.4$, equal to the radius at which the jets are reconstructed, and the generated jets so obtained must satisfy the same acceptance as the reconstructed candidates, $p_T > 20$ GeV and $|\eta| < 4.7$, and be separated from the $b$ jets and the $\tau$ leptons of the event (Section \ref{subsec:groundtruth}). The two outgoing partons do not always give rise to two generated jets meeting these conditions, since one of them may produce a softer or more forward jet or overlap with another object of the event, and such events are discarded. The generated jets are then matched with the reconstructed jets that pass the candidate selection, within a cone of $\Delta R < 0.3$, and the event is labeled and admitted into the training set only when both pairings are successful, so that every event of the training set contains exactly two true VBF jets by construction. An additional requirement at the generation level restricts the sample to resolved configurations and to those in which the $b\bar{b}$ pair and the $\tau\tau$ system are themselves well-defined, ensuring that the assignment is learned from events in which the entire topology of the process is present.\medskip
 
 
 
@@ -1011,7 +1011,7 @@ The jets that meet the specified selection criteria form the rows of the table r
 % 2 - conjunto de variables
 The starting point in this case is the set of fourteen variables used by \textsc{HH-BTag}, listed in Table \ref{tab:hhbtag_inputs}. While intended to address a different problem, the quantities that describe the context of the event — such as the kinematics of the $\tau\tau$ system, the missing transverse momentum, and the global period and channel variables — characterize the event independently of the jet being evaluated and are therefore directly applicable here. Those that describe the jet itself and relate it to the $\tau\tau$ system also retain their relevance, although the weight the model assigns to them is not necessarily equivalent.
 
-Figure \ref{fig:vbfjtag_inputdist} shows the distributions of the most relevant inherited variables in the 2022--2023 training sample, separately for the jets from the fusion vertex and for the other candidates, the jets of the $b\bar{b}$ pair among them, normalized to unit area. The pseudorapidity provides the clearest separation, with the VBF jets concentrated at $|\eta| \approx 3$--$4$ and the other candidates in the central region. The distribution of the latter falls sharply at $|\eta| = 2.5$, the limit within which the $b$ jets are sought, and is almost empty in the transition region $2.5 < |\eta| < 3.0$, where the soft jets are removed (Section \ref{subsec:vbf_dataset}) ASEGURARME DE QUE ESTO SE DIGA AHI\footnote{The VBF jets, harder, are less affected by this removal, but show narrow structures in the same region, which point to the jet reconstruction there rather than to the physics of the process}. The transverse momentum separates the two classes more modestly, the other candidates accumulating at the threshold and the VBF jets peaking around $50$ GeV. The flavor score of the VBF jets accumulates at zero, as corresponds to light quarks, whereas the other candidates also show a peak at one from the $b$ jets.\footnote{The flavor discriminant is only computed for jets within the tracker acceptance, $|\eta| < 2.5$, and takes the value $-1$ for the others. No specific treatment is applied to this value, since it lies outside the physical range of the discriminant and therefore identifies the jets beyond the tracker unambiguously, an information that the pseudorapidity of the jet already provides.} Relative to the $\tau\tau$ system, the VBF jets lie far apart in pseudorapidity, with maxima around $|\Delta\eta| \approx 3$, whereas the azimuthal separation distinguishes the two classes only weakly, since both tend to lie opposite to the $\tau\tau$ system, the other candidates more markedly because of the $b$ jets, which recoil against it.
+Figure \ref{fig:vbfjtag_inputdist} shows the distributions of the most relevant inherited variables in the 2022--2023 training sample, separately for the jets from the fusion vertex and for the other candidates, the jets of the $b\bar{b}$ pair among them, normalized to unit area. The pseudorapidity provides the clearest separation, with the VBF jets concentrated at $|\eta| \approx 3$--$4$ and the other candidates in the central region. The distribution of the latter falls sharply at $|\eta| = 2.5$, the limit within which the $b$ jets are sought, and is almost empty in the transition region $2.5 < |\eta| < 3.0$, where the soft jets are removed (Section \ref{subsec:vbf_dataset}). The VBF jets, harder, are less affected by this removal, \textcolor{red}{but show narrow structures in the same region, which point to the jet reconstruction there rather than to the physics of the process}. The transverse momentum separates the two classes more modestly, the other candidates accumulating at the threshold and the VBF jets peaking around $50$ GeV. The flavor score of the VBF jets accumulates at zero, as corresponds to light quarks, whereas the other candidates also show a peak at one from the $b$ jets.\footnote{The flavor discriminant is only computed for jets within the tracker acceptance, $|\eta| < 2.5$, and takes the value $-1$ for the others. No specific treatment is applied to this value, since it lies outside the physical range of the discriminant and therefore identifies the jets beyond the tracker unambiguously, an information that the pseudorapidity of the jet already provides.} Relative to the $\tau\tau$ system, the VBF jets lie far apart in pseudorapidity, with maxima around $|\Delta\eta| \approx 3$, whereas the azimuthal separation distinguishes the two classes only weakly, since both tend to lie opposite to the $\tau\tau$ system, the other candidates more markedly because of the $b$ jets, which recoil against it.
 %
 \begin{figure}[tbp]
 \centering
@@ -1036,8 +1036,6 @@ where $\eta_{\max}$ and $\eta_{\min}$ refer to the extreme values of pseudorapid
 \toprule
 Variable & Description \\
 \midrule
-\multicolumn{2}{l}{\textit{Added to the input set}} \\
-\midrule
 $b$ candidate flag             & Whether the jet has been assigned to the $H\rightarrow b\bar{b}$ candidate \\
 $\Delta R_\text{min}(\text{jet}, \text{jet}')$            & Smallest angular distance to any other jet in the event \\
 Jet centrality              & Centrality of the jet within the event, Eq.\ \ref{eq:centrality} \\
@@ -1051,7 +1049,7 @@ Jet centrality              & Centrality of the jet within the event, Eq.\ \ref{
 Other quantities suggested by the phenomenology or by similar studies in the $HH\to bb\gamma\gamma$ analysis \cite{bbggAN} were also examined in a preliminary version of the training set, namely the quark-gluon discriminant, the jet multiplicity of the event and the transverse momentum of the two leading jets normalized to the invariant mass of the pair, but they were not retained, since adding them did not improve the purity.
 
 
-The distributions of the three added variables are shown in Figure \ref{fig:vbfjtag_inputdist_new}. The $b$ flag is almost never set for the VBF jets, since \textsc{HH-BTag} only rarely assigns one of them to the $b\bar{b}$ pair by mistake, whereas it is set for most of the other candidates, kept in the table as context. The VBF jets are isolated from the rest of the hadronic activity, with a minimum separation to any other jet peaking around $2.5$, whereas the other candidates are usually close to another jet, near the minimum separation allowed by the jet clustering. The centrality of the VBF jets is concentrated at zero, since they usually occupy the extremes of the pseudorapidity range of the event, while that of the other candidates spreads over the whole interval and increases towards one.
+The distributions of the three added variables are shown in Figure \ref{fig:vbfjtag_inputdist_new}. The $b$ flag is almost never set for the VBF jets, since \textsc{HH-BTag} only rarely assigns one of them to the $b\bar{b}$ pair by mistake, whereas it is set for most of the other candidates -- which are therefore mainly the two jets of the $b\bar{b}$ pair --, kept in the table as context. The VBF jets are isolated from the rest of the hadronic activity, with a minimum separation to any other jet peaking around $2.5$, whereas the other candidates are usually close to another jet, near the minimum separation allowed by the jet clustering. The centrality of the VBF jets is concentrated at zero, since they usually occupy the extremes of the pseudorapidity range of the event, while that of the other candidates spreads over the whole interval and increases towards one.
 %
 \begin{figure}[tbp]
 \centering
@@ -1089,7 +1087,7 @@ The two trainings of the model reproduce the same hierarchy, with differences be
 %
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=\linewidth]{figures/chapter_IV/corrmatrix_vbfjtag_tauonly_thesis.pdf}
+\includegraphics[width=0.75\linewidth]{figures/chapter_IV/corrmatrix_vbfjtag_tauonly_thesis.pdf}
 \caption{Linear correlation coefficients between the input variables of the \textsc{VBFjTag} algorithm, computed over all valid jets of the 2022--2023 training sample. The pseudorapidities and azimuthal separations enter in absolute value.}
 \label{fig:vbfjtag_corr}
 \end{figure}
@@ -1109,80 +1107,59 @@ The two trainings of the model reproduce the same hierarchy, with differences be
 \subsection{Performance of the \textsc{VBFjTag} model} 
 \label{subsec:vbf_performance}
 %
-The performance of the model is evaluated with the same tests as for \textsc{HH-BTag}. First, the progression of the training is examined; next, the purity achieved is compared with that of the purely kinematic criterion it replaces; finally, the shape of the score distribution is considered.
+The performance of the model is evaluated, as for \textsc{HH-BTag}, through the progression of the training and the purity compared with that of the kinematic criterion it replaces.
 
 
 % 2 - curvas de aprendizaje
-The training of the two models of each period, one for each event parity, converges in the same way as for \textsc{HH-BTag}, with the stopping criterion reached after a few tens of epochs and without any significant gap between the training and validation values, which confirms that the configuration inherited from \textsc{HH-BTag} is also adequate for this problem.
+The training of the two models of each period, one for each event parity, meets the criteria of Section \ref{subsec:training} in the same way as for \textsc{HH-BTag}. The purity and the loss function stabilize, the stopping criterion is reached after a few tens of epochs, and the values obtained on the training and validation events evolve together, which confirms that the configuration inherited from \textsc{HH-BTag} is also adequate for this problem.\medskip
+
 
 % 3 - Pureza
-The purity is shown in Figure \ref{fig:vbfjtag_purity} for each coupling point (Table \ref{tab:signal_points}), with the 2022 and 2023 periods shown together, since the purity does not change between them, and 2024 separately, as it is evaluated with its own model. It is compared with the kinematic criterion of Run 2, which selects, among the candidates not assigned to the $b\bar{b}$ pair with $p_T > 30$ GeV, the pair with the largest invariant mass, evaluated on the same events. Unlike \textsc{VBFjTag}, the criterion may find no pair when fewer than two jets satisfy its requirements, so that its purity is shown both over the events in which it finds one and over all events, counting the others as failures, the latter being the one directly comparable with \textsc{VBFjTag}. The algorithm reaches purities from $92$ to $95\%$, against \textcolor{red}{$72$ to $79\%$} for the kinematic criterion, \textcolor{red}{[descomposición: X puntos de los sucesos sin par y el resto de la elección entre candidatos, si tras la comprobación 1 las dos series de Run 2 se separan]}. The algorithm also depends less on the coupling point, varying by less than three points against about seven for the kinematic criterion. \textcolor{red}{The same picture holds in 2024.}
-
-
-    The purity is shown in Figure \ref{fig:vbfjtag_purity} for each coupling point (Table \ref{tab:signal_points}), with the 2022 and 2023 periods shown together, since the purity does not change between them, and 2024 separately, as it is evaluated with its own model. The comparison with the kinematic criterion of Run 2 requires some care, since, unlike \textsc{VBFjTag}, which always selects a pair, the criterion finds no pair in about $9\%$ of the events, in which fewer than two jets satisfy its requirements. Its purity can therefore be quoted over the events in which it finds a pair, from $83$ to $89\%$, as was done in Run 2, or over all events, counting those without a pair as failures, from $75$ to $81\%$. Only the latter is directly comparable with \textsc{VBFjTag}, which reaches purities from $91$ to $95\%$, so that the gain it brings is of $14$ to $16$ percentage points, of which about $8$ come from the events in which the kinematic criterion does not find a pair, and the remaining $6$ to $8$ from a better choice among the candidates. The same picture holds in 2024. All methods follow the same pattern across the coupling points, with the largest purities at the points V1 and V3 and the lowest at V5 and V8.
-
-
-    The purity evaluated on the vector boson fusion signal samples from Run 3 is illustrated in Figure \ref{fig:vbfjtag_purity}, which breaks down the results by coupling point (Table \ref{tab:signal_points}) and compares the different versions tested based on the inputs used against the kinematic criterion employed in Run 2, as evaluated on those same samples. As for \textsc{HH-BTag}, the 2022 and 2023 periods are shown together, since the purity does not change between them, and 2024 is shown separately because it is evaluated with its own model. The algorithm outperforms the kinematic criterion in all the configurations examined, with purity values ranging from $91$ to $95\%$, compared to $83$--$89\%$ for the kinematic criterion. As for \textsc{HH-BTag}, the absolute values depend on the coupling point, by at most $4\%$, an effect that the kinematic criterion shows in the same way.
-
-These figures are obtained on the training samples, and therefore on events in which both jets from the fusion vertex are reconstructed within the acceptance of \textsc{VBFjTag} (Section \ref{subsec:vbf_dataset}). They measure the quality of the assignment, while the effect of the algorithm on the selection of the analysis, which also involves the efficiency and the background, is discussed in Chapter \ref{ch:bbtt_analysis}.
-
-
-    It is evident that the purity achieved is lower than that obtained by the \textsc{HH-BTag}, as was to be expected since the decision in this case cannot rely on an intrinsic property of the object (Section \ref{subsec:vbf_dataset}). Instead, the problem here is more complex, compounded by the difficulties arising from the angular window covered: the set of candidates considered is expanded, and the jet reconstruction is less accurate outside the tracker coverage.
-
-The purity is lower than that of \textsc{HH-BTag}, as expected for a decision that cannot rely on an intrinsic property of the object (Section \ref{subsec:vbf_dataset}) and that covers a wider angular window, with more candidates and a less accurate jet reconstruction outside the tracker coverage.\medskip
-
-
-    The figure also illustrates the successive configurations examined during the development of the \textsc{VBFjTag} algorithm, and it was this comparison that informed the choice of the input set described in Section \ref{subsec:vbf_inputs}. The inclusion of isolation and centrality yields a noticeable improvement over the version that relied solely on the inherited variables, whereas adding the quantities examined and not retained brings little or no further gain. \textcolor{red}{indicar los colores de cada uno de los puntos cuando actualice el plot. El efecto de la centrality en realidad no está estudiado por separado de la isolation... no se si puedo concluir que aporta mejora, tal y como digo en la sección anterior}\medskip
-%
-% \begin{figure}[tbp]
-% \centering
-% \includegraphics[width=\textwidth]{figures/chapter_IV/vbfjtag_purity_2022.jpg}
-% \caption{Purity of the \textsc{VBFjTag} algorithm compared to the kinematic criterion used in
-% Run-2, and to the successive input configurations examined during its development. \textcolor{red}{ACTUALIZAR}}
-% \label{fig:vbfjtag_purity}
-% \end{figure}
+The purity is shown in Figure \ref{fig:vbfjtag_purity} for each coupling point (Table \ref{tab:signal_points}), with the 2022 and 2023 periods shown together, as for \textsc{HH-BTag}, and 2024 separately, since it is evaluated with its own model. It is compared with the kinematic criterion of Run 2 (Section \ref{sec:assignment}), which takes the pair with the largest invariant mass among the candidates with $p_T > 30$ GeV not assigned to the $b\bar{b}$ pair. Both methods are evaluated on the same events, those in which the two true VBF jets remain among the candidates once the jets of the $b\bar{b}$ pair are excluded. Unlike \textsc{VBFjTag}, which always returns a pair, the kinematic criterion finds none in $6$ to $11\%$ of these events, in which fewer than two candidates pass its threshold. Its purity is therefore shown both over all events, counting those without a pair as failures, which is the figure directly comparable with \textsc{VBFjTag}, and over the events in which it finds a pair, which isolates the quality of its choice.
 %
 \begin{figure}[tbp]
     \centering
-    \begin{subfigure}[t]{\linewidth}
-        \centering
-        \includegraphics[width=0.85\linewidth]{figures/chapter_IV/vbfjtag_purity_fair_2022_2023.pdf}
-        \caption{2022--2023, model trained with \textsc{ParticleNet}}
-    \end{subfigure}\\[1ex]
-    \begin{subfigure}[t]{\linewidth}
-        \centering
-        \includegraphics[width=0.85\linewidth]{figures/chapter_IV/vbfjtag_purity_fair_2024.pdf}
-        \caption{2024, model trained with \textsc{UParT}}
-    \end{subfigure}
-    \caption{Purity of the VBF jet pair selection at each coupling point of Table \ref{tab:signal_points} (horizontal axis) in the vector boson fusion training samples of the 2022--2023 (a) and 2024 (b) periods, obtained with \textsc{VBFjTag} and with the kinematic criterion used in Run 2. For the latter, the purity is shown both over all events, counting as failures the events in which it finds no pair (filled squares), and over the events in which it finds one (open squares). The vertical bars show the statistical uncertainty (Section \ref{subsec:metric}).}
+    \includegraphics[width=\linewidth]{figures/chapter_IV/vbfjtag_purity_fair_tauonly_both.pdf}
+    \caption{Purity of the VBF jet pair selection at each coupling point of Table \ref{tab:signal_points} (horizontal axis) in the vector boson fusion training samples of the 2022--2023 (left) and 2024 (right) periods, obtained with \textsc{VBFjTag} (circles) and with the kinematic criterion used in Run 2 (squares). For the kinematic criterion, the purity is shown both over all the events, counting as failures those in which it finds no pair (filled), and over the events in which it finds one (open). The vertical bars show the statistical uncertainty (Section \ref{subsec:metric}).}
     \label{fig:vbfjtag_purity}
 \end{figure}
 
+\textsc{VBFjTag} reaches purities from $94.5$ to $96\%$ in both periods, against $82.5$ to $85.5\%$ for the kinematic criterion over all events in 2022--2023 and $81.5$ to $83\%$ in 2024, a gain of $9.5$ to $14$ percentage points at every coupling point. Part of this gain comes from the events without a pair where the criterion fails by construction, i.e., is a gain in acceptance rather than to the network. The rest comes from the choice and is measured on the events in which the criterion does find a pair, where its purity rises to $91$--$92.5\%$ in 2022--2023 and $88.5$--$90.5\%$ in 2024. This difference, of about $3.5$ to $4$ points in 2022--2023 and $5.5$ to $6.5$ in 2024, reflects the information that the network draws from the candidates and the event beyond the invariant mass of the pair.
+
+The dependence on the coupling point separates the two contributions further. The purity of \textsc{VBFjTag} varies by less than two points across the coupling points and closely follows that of the kinematic criterion over the events with a pair, with both reaching their highest values at V1 and V3 and their lowest at V5 and V8. Unlike for \textsc{HH-BTag}, both methods base their choice on the kinematics of the jets -- the explicit criterion through the invariant mass of the pair and the network through the properties of each candidate and of the event -- so that the coupling point, which changes this kinematics, changes the difficulty of the choice in the same way for both. By contrast, the purity of the Run 2 criterion across all events exhibits the opposite trend; therefore, the different behavior of the two methods across the coupling points is driven by the acceptance that \textsc{VBFjTag} retains. 
+
+%The difference between the periods, in contrast, lies only in the explicit criterion. The difference is more likely related to the different conditions of the two simulation campaigns, to which \textsc{VBFjTag}, trained separately on each period, can adapt, whereas the fixed kinematic criterion cannot.
 
 
 
-% 4 - Score - SI ESTO LO HAGO SOBRE LAS MUESTRAS DEL ANALISIS TENGO QUE INDICARLO
-Beyond the ranking by score reflected by the purity, it is also interesting to examine the score itself for the different contributions that the algorithm will process, since regardless of the process, it always returns a pair of VBF jets. Figure \ref{fig:vbfjtag_score} shows the distribution of these scores for the two jets selected by the model, in samples from VBF and gluon fusion production modes. \textcolor{red}{añadir backgrounds?}. The distribution shape varies significantly between the different processes: while in events produced by vector boson fusion both scores are concentrated around unity, in those produced by gluon fusion — where, by construction, the sought-after pair does not exist — the distribution is notably broader and shifts toward lower values. The model is therefore able to recognize the topology for which it was trained and respond accordingly when the pair of interest is not present.
-%
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=0.49\textwidth]{figures/chapter_IV/vbfjtag_score_qqHH.jpg}
-\includegraphics[width=0.49\textwidth]{figures/chapter_IV/vbfjtag_score_ggHH.jpg}
-\caption{Distribution of the \textsc{VBFjTag} score of the two selected jets, for simulated
-events produced through vector boson fusion (left) and through gluon fusion (right).\textcolor{red}{ACTUALIZAR, AÑADIR FONDOS?, USAR LAS MUESTRAS CON LA SELECCIÓN DEL ANALISIS?}}
-\label{fig:vbfjtag_score}
-\end{figure}
-\medskip
 
 
-After evaluating the performance of the model, the conclusion is that adapting the framework to this second problem is entirely satisfactory. The training process converges, the purity exceeds that of the explicit criterion it replaces at all coupling points, and the score retains its ability to distinguish between the different processes.
-\bigskip
+%This differs from \textsc{HH-BTag}, where the explicit criterion relies only on the flavor score, which has the same distribution at all coupling points, and the dependence on the kinematics is specific to the network (Section \ref{subsec:hhbtag_performance}).   
+
+
+
+
+% %
+% \begin{figure}[tbp]
+% \centering
+% \includegraphics[width=0.49\textwidth]{figures/chapter_IV/vbfjtag_score_qqHH.jpg}
+% \includegraphics[width=0.49\textwidth]{figures/chapter_IV/vbfjtag_score_ggHH.jpg}
+% \caption{Distribution of the \textsc{VBFjTag} score of the two selected jets, for simulated
+% events produced through vector boson fusion (left) and through gluon fusion (right).\textcolor{red}{ACTUALIZAR, AÑADIR FONDOS?, USAR LAS MUESTRAS CON LA SELECCIÓN DEL ANALISIS?}}
+% \label{fig:vbfjtag_score}
+% \end{figure}
+% \medskip
+
+The framework developed for \textsc{HH-BTag} therefore carries over to this second problem with only the extension of the input set. The training converges, and the purity exceeds that of the explicit criterion it replaces at all coupling points and in both periods, through both a larger acceptance and a better choice among the candidates.\bigskip
+
+
 
 
 \noindent This chapter has described \textsc{HH-BTag} and \textsc{VBFjTag}, two algorithms that assign the jets of the event to the $H\to b\bar{b}$ candidate and to the VBF topology, respectively, and that substantially and consistently improve upon the explicit criteria they replace. The retraining of the first for the Run 2 resonant search \cite{CMS-PAS-B2G-24-011}, its validation for the study of $ZZ$ and $ZH$ production \cite{CMS:2026zzzh} and its retraining for Run 3 \cite{CMS-PAS-HIG-25-008}, together with the development of the second, constitute the contribution of this thesis presented here. Both share the event representation, the architecture, the training procedure and the evaluation tools, and differ only in the process they describe. To conclude, the following paragraphs outline their role in the $HH\to bb\tau\tau$ analysis, the limits that lie beyond their reach and the extensions that the approach admits. \textcolor{red}{hacer una seccion de esto???}\medskip
 
 
-In the analysis of Chapter \ref{ch:bbtt_analysis}, \textsc{HH-BTag} selects the $H\to b\bar{b}$ candidate in the resolved topology, determining the invariant mass of the $H\to b\bar{b}$ system and the categorization of the events. Its score is also provided to the classifier that extracts the signal as a high-level variable associated with each candidate. By contrast, \textsc{VBFjTag} selects the jet pair on which the VBF category is defined, but its score is not used as a discriminant in the current Run 3 analysis strategy, which leaves room for future improvement in order to take advantage of the discriminating power it has demonstrated in the study presented here.
+In the analysis of Chapter \ref{ch:bbtt_analysis}, \textsc{HH-BTag} selects the $H\to b\bar{b}$ candidate in the resolved topology, determining the invariant mass of the $H\to b\bar{b}$ system and the categorization of the events. Its score is also provided to the classifier that extracts the signal as a high-level variable associated with each candidate. By contrast, \textsc{VBFjTag} selects the jet pair on which the VBF category is defined, but its score is not used as a discriminant. Separating the events produced through vector boson fusion from the rest is not the task of the algorithm, which is trained only on the former to rank their candidates, and its score accordingly provides little discrimination between the two production modes.
+
 
 As noted in Section \ref{subsec:metric}, the purity excludes the losses in the reconstruction of the sought-after objects, which no assignment algorithm can recover. In the case of the pair $b\bar{b}$, this consideration poses little of a problem, as the reconstruction rate is often high. However, it is notably lower in the case of VBF jets, whose reconstruction is compromised by their location in the forward region of the detector, where the resolution is poorer and the contribution from pileup is greater. A perfect assignment algorithm would not remedy this loss, so an improvement in this regard would have to be pursued upstream, in the reconstruction of the object itself.
 
