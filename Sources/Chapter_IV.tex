@@ -967,25 +967,26 @@ As shown in Figure \ref{fig:hhbtag_zz_purity}, the dedicated trainings do not im
 \section{The \textsc{VBFjTag} algorithm}
 \label{sec:VBFjTag}
 %
-TENGO QUE DECIDIR MUCHAS COSAS AQUI TODAVÍA POR EL BUG. CUANDO ESTEN LOS PLOTS FINALES LO AÑADO
 In the $HH\to bb\tau\tau$ analysis, the jets from the event play two distinct roles: while some reconstruct the $H\to b\bar{b}$ decay, others identify the vector boson fusion production topology. Now that the assignment of candidates for the first problem has been resolved in a satisfactory manner, it is natural to implement the same procedure for the second, ensuring that the selection of all jets involved in the analysis relies on the same type of algorithm and follows the same criteria. This initiative led to the development of the \textsc{VBFjTag} algorithm, which was developed in this work and applied for the first time in the analysis presented in Chapter \ref{ch:bbtt_analysis} \cite{CMS-PAS-HIG-25-008}.
 
 The architecture and the training procedure of Section \ref{sec:architecture} are reused without any modification, so that only the two elements that define the problem change. The first is the definition of the ground truth, which follows from a different phenomenology. The second is the set of input variables, which must be reviewed to determine what information the model can use to learn under these new conditions.\medskip
 
 Given the analogy between the two algorithms, this section follows the structure of the previous one and evaluates the results with the same criteria, so that both can be compared on the same footing.
 
-\subsection{The VBF topology : candidates and training set}
+\subsection{The VBF topology: candidates and training set}
 \label{subsec:vbf_dataset}
 %
 % 1 - fenomenología
 As described in Section \ref{subsec:SM_production}, the two quarks that radiate the vector bosons in VBF production give rise to two jets emitted close to the beam direction, with a large invariant mass and a large separation in pseudorapidity, on either side of the central $HH$ system. In addition, the exchanged bosons carry no color, so that the hadronic activity between the two jets is suppressed. These jets are therefore far apart from each other and isolated from the rest of the event, the two properties that the algorithm has to exploit.\medskip
 
 % 2 - consecuencia para el problema de asignación
-This phenomenology frames the problem in terms that differ significantly from those of the $H\to b\bar{b}$ channel. In that case, the most important variable for the model was an intrinsic property of the sought-after object: its flavor. In contrast, a VBF jet originates from a light quark and shares no distinguishing properties with the jets produced by radiation in any other process. The identification algorithms described in Section \ref{subsec:Jets} provide, along with the probability that the jet originates from a $b$ quark, analogous outputs for the $c$ quark or for a hadronic $\tau$, but none of them recognizes a VBF jet, so that they could only serve to rule out other hyptheses. The only hint carried by the jet itself the separation between jets initiated by quarks and those initiated by gluons, given that the other jets in the event are predominantly of gluonic origin. This separation is, however, considerable weaker than that of heavy flavor. At the same time, these discriminants rely on the tracks of charged constituents, so their performance degrades beyond the acceptance of the tracker detector, precisely in the angular region where VBF jets are abundant. The discriminating information must therefore be sought in the position of the jet and its relationship to the rest of the event rather than in the object itself.\medskip
+This phenomenology frames the problem in terms that differ significantly from those of the $H\to b\bar{b}$ channel. In that case, the most important variable for the model was an intrinsic property of the sought-after object: its flavor. In contrast, a VBF jet originates from a light quark and shares no distinguishing properties with the jets produced by radiation in any other process. The identification algorithms described in Section \ref{subsec:Jets} provide, along with the probability that the jet originates from a $b$ quark, analogous outputs for the $c$ quark or for a hadronic $\tau$, but none of them recognizes a VBF jet, so that they could only serve to rule out other hypotheses. The only hint carried by the jet itself is the separation between jets initiated by quarks and those initiated by gluons, given that the other jets in the event are predominantly of gluonic origin. This separation is, however, considerable weaker than that of heavy flavor. At the same time, these discriminants rely on the tracks of charged constituents, so their performance degrades beyond the acceptance of the tracker detector, precisely in the angular region where VBF jets are abundant. The discriminating information must therefore be sought in the position of the jet and its relationship to the rest of the event rather than in the object itself.\medskip
 
 
 % 3 - selección de candidatos
-The candidates among which the VBF pair is sought are derived from those on which the kinematic criterion of Run 2 operated (Section \ref{sec:assignment}). In accordance, the algorithm is designed to be chained with the \textsc{HH-BTag} algorithm, so that it operates on the reconstructed jets after the other objects in the event have been processed. Candidates are selected by requiring a transverse momentum $p_T > 20$ GeV and a pseudorapidity $|\eta| < 4.7$, which covers the full acceptance of the calorimeter. Since it operates at the end of the processing chain, an angular separation of $\Delta R > 0.5$ TENER CUIDADO CON ESTO PORQUE PARECE QUE NO ES ASI EN LAS MUESTRAS USADAS PARA EL TRAINING is also required with respect to the two candidates forming the $\tau\tau$ pair and the two jets assigned to the $b\bar{b}$ pair. \textcolor{red}{Se descartan además los candidatos situados en la región $2.5 < |\eta| < 3.0$ con $p_T < 50$ GeV, donde ....?}. Furthermore, at least two jets must meet these criteria for the fusion pair to be formed.
+The candidates among which the VBF pair is sought are the reconstructed jets with $p_T > 20$ GeV and $|\eta| < 4.7$, which covers the full acceptance of the calorimeter, separated by $\Delta R > 0.5$ from the two legs of the $\tau\tau$ pair. \textcolor{red}{[Si los horns se quitan de la tabla:] As in the preselection of the analysis (Chapter \ref{ch:bbtt_analysis}), jets with $p_T < 50$ GeV in the transition region $2.5 < |\eta| < 3.0$, where the resolution degrades, are also discarded.} The algorithm is designed to be chained with \textsc{HH-BTag}, so that it operates once the $b\bar{b}$ pair has been chosen, and the VBF pair is selected among the candidates not assigned to it, at least two of which are required for the pair to be formed. 
+%The angular window is the same as that of the kinematic criterion of Run 2 (Section \ref{sec:assignment}), but the threshold is lowered from $30$ to $20$ GeV, since the algorithm ranks the candidates instead of cutting on them, so that an additional soft jet is one more alternative for the network to reject rather than a contamination.
+
 
 
 %La ventana angular era la misma, pero el umbral en momento transverso se situaba entonces en 30 GeV; aquí se rebaja a 20 GeV, lo que amplía el conjunto sobre el que se decide sin comprometer la elección, pues el algoritmo ordena en lugar de cortar y un candidato adicional no es una contaminación, sino una alternativa más que la red ha de descartar.
@@ -993,11 +994,7 @@ The candidates among which the VBF pair is sought are derived from those on whic
 %Es importante señalar aquí que aunque los dos jets asignados al par $b\bar{b}$ quedan excluidos de la elección de \textsc{VBFjTag}, si se figuran en el tensor de entrada, donde se identifica a cada uno de ellos mediante una variable que señala su condición. Tanto el bloque recurrente como la normalización de las puntuaciones acoplan entre sí todos los jets del evento, de modo que retirarlos privaría al modelo del contexto en el que ha de decidir.
 
 % 4 - Muestras
-In this case, the training set is limited to simulated production samples from the vector boson fusion of the Higgs boson pair, corresponding to the data-taking periods of early Run 3 -- 2022 to 2024. As for \textsc{HH-BTag}, two models are trained, on the 2022--2023 samples with \textsc{ParticleNet} and on the 2024 samples with \textsc{UParT} as flavor discriminant (Section \ref{subsec:hhbtag_dataset}). As previously explained, the sample mix includes the full range of coupling points $(\kappa_\lambda, \kappa_{2V}, \kappa_V)$ available of Table \ref{tab:signal_points}, with the exception of V9, in order to ensure that the model covers a wide range of kinematic configurations without specializing in any one. In all cases, this involves non-resonant production, \textcolor{red}{por disponibilidad? o por que no quisimos incluir resonante?}. It should be noted that the restriction to this production mode is, once again, motivated by the need to define the ground truth. However, as with the \textsc{HH-BTag}, the algorithm is applied to all events in the analysis, so events produced by gluon fusion are treated as just another background in this context.
-
-...which comprise $1\,721\,886$ events after the selection in 2022--2023 and \textcolor{red}{XXX} in 2024.
-
-The resulting training set comprises $1\,721\,886$ events in 2022--2023 and \textcolor{red}{XXX} in 2024.
+The training set consists of simulated samples of $HH$ production via vector boson fusion in the 2022 to 2024 periods, covering the coupling points $(\kappa_\lambda, \kappa_{2V}, \kappa_V)$ of Table \ref{tab:signal_points}, so that the model sees a wide range of kinematic configurations without specializing in any one. As for \textsc{HH-BTag}, two models are trained, one on the 2022--2023 samples with \textsc{ParticleNet} and one on the 2024 samples with \textsc{UParT} as flavor discriminant (Section \ref{subsec:hhbtag_dataset}). The restriction to vector boson fusion follows from the definition of the ground truth, which requires the pair to exist, but the algorithm is applied to all the events of the analysis, where those produced by gluon fusion are one more background in this context. After the selection, the training set comprises $1\,721\,886$ events in 2022--2023 and \textcolor{red}{XXX} in 2024.
 
 
 % 5 - Ground truth
@@ -1014,28 +1011,29 @@ The jets that meet the specified selection criteria form the rows of the table r
 % 2 - conjunto de variables
 The starting point in this case is the set of fourteen variables used by \textsc{HH-BTag}, listed in Table \ref{tab:hhbtag_inputs}. While intended to address a different problem, the quantities that describe the context of the event — such as the kinematics of the $\tau\tau$ system, the missing transverse momentum, and the global period and channel variables — characterize the event independently of the jet being evaluated and are therefore directly applicable here. Those that describe the jet itself and relate it to the $\tau\tau$ system also retain their relevance, although the weight the model assigns to them is not necessarily equivalent.
 
-Figures \ref{fig:vbfjtag_inputdist_1} and \ref{fig:vbfjtag_inputdist_2} show the distributions of the main variables in the 2022--2023 training sample, separately for the jets from the fusion vertex and for the other candidates, normalized to unit area. Among the inherited variables, the pseudorapidity provides the clearest separation, with the VBF jets concentrated at $|\eta| \approx 3$--$4$ and the others in the central region, whereas the transverse momentum separates them more modestly, the VBF jets being somewhat harder and the others accumulating near the threshold. Relative to the $\tau\tau$ system, the VBF jets lie far apart in pseudorapidity, with maxima around $|\Delta\eta| \approx 3$, while the other jets are mostly found opposite to the $\tau\tau$ system in azimuth, where the $b$ jets, which remain in the table, recoil against it, with a smaller group of harder jets aligned with the $\tau\tau$ system in both azimuth and pseudorapidity \textcolor{red}{(origen por confirmar)}.
+Figure \ref{fig:vbfjtag_inputdist} shows the distributions of the main variables in the 2022--2023 training sample, separately for the jets from the fusion vertex and for the other candidates, normalized to unit area. Among the inherited variables, the pseudorapidity provides the clearest separation, with the VBF jets concentrated at $|\eta| \approx 3$--$4$ and the other candidates in the central region, while the transverse momentum separates them more modestly, the other candidates accumulating at the threshold and the VBF jets peaking around $50$ GeV. Relative to the $\tau\tau$ system, the VBF jets lie far apart in pseudorapidity, with maxima around $|\Delta\eta| \approx 3$, whereas the azimuthal separation distinguishes the two classes only weakly, since both tend to lie opposite to the $\tau\tau$ system, the other candidates more markedly because they include the $b$ jets, which recoil against it.  AQUI NHE CAMBIADO DELTAPHI POR MT/PTJET(QUE ES LA SEXTA SEGUN EL FEATURE IMPORTANCE). ADEMÁS, TAMBIEN DEBERIAN DESCRIBIRSE AQUI ISOLATION Y CENTRALITY, ASI QUE QUIZAS TIENE MAS SENTIDO PASAR EL PARRAFO DE "Three quantities are incorporated..." ANTES DE ESTE PARRAFO, Y EL PARRAFO DE "The two variables built for this problem also separate the two classes cleary..." A CONTINUACION DE ESTE PARRAFO
+
+Other quantities suggested by the phenomenology or by similar studies in the $HH\to bb\gamma\gamma$ analysis \cite{bbggAN} were also examined in a preliminary version of the training set, namely the quark-gluon discriminant, the jet multiplicity of the event and the transverse momentum of the two leading jets normalized to the invariant mass of the pair, but they were not retained, since adding them did not improve the purity. Both the retained and discarded quantities are listed in Table \ref{tab:vbfjtag_inputs}. EN LA TABLA, MEJOR MANTENER SOLO LAS RETAINED
 
 
-
+These distributions combine all the coupling points of the training set. As for \textsc{HH-BTag} (Figure \ref{fig:hhbtag_nodes}), the kinematics of the jets sought changes with the coupling point, which is why the training set combines them all and the purity is evaluated separately for each of them (Section \ref{subsec:vbf_performance}).
 
 
 
 % La energía normalizada al momento transverso acompaña a esta última, en virtud de la relación señalada en la Sección \ref{subsec:hhbtag_inputs}, y el discriminante de sabor se acumula para los jets de fusión en los valores bajos, como corresponde a un quark ligero.\\
 
-
-
+ESTO MEJOR PASARLO ANTES, NO?
 Three quantities are incorporated into this set that directly reflect the described phenomenology. As noted, the first indicates whether the jet has been assigned to the $b\bar{b}$ pair by \textsc{HH-BTag}, which provides the network with the result of the previous step in the chain and thus with the type of jets to be excluded from the selection. The second variable translates the suppression of hadronic activity resulting from the colorless nature of the exchange into a variable that measures the isolation of the jet, defined as the smallest angular separation between the jet and any other jet in the event. The third variable measures the relative position of the jet within the event using centrality, defined as:
 %
 \begin{equation}
-\mathcal{C}_j = 1 - \left| \frac{2\,(\eta_j - \eta_c)}{\eta_{\max} - \eta_{\min}} \right| ,
+\texttt{Centrality} = 1 - \left| \frac{2\,(\eta_j - \eta_c)}{\eta_{\max} - \eta_{\min}} \right| ,
 \qquad \eta_c = \frac{\eta_{\max} + \eta_{\min}}{2},
 \label{eq:centrality}
 \end{equation}
 %
 where $\eta_{\max}$ and $\eta_{\min}$ refer to the extreme values of pseudorapidity among the jets in the event. This variable takes the value of one for a jet located at the center of the interval and vanishes at its ends, so that a VBF jet — which, by definition, occupies one of the edges — is characterized by values close to zero. Unlike bare pseudorapidity, centrality expresses the position of the jet relative to the angular extent of the event itself, rather than relative to the reference frame of the detector.
 
-Other quantities suggested by the phenomenology or by similar studies in the $HH\to bb\gamma\gamma$ analysis \cite{bbggAN} were also examined, namely the quark-gluon discriminant, the jet multiplicity of the event and the transverse momentum of the two leading jets normalized to the invariant mass of the pair, but they were not retained, since they did not improve the purity (Section \ref{subsec:vbf_performance}). Both the retained and discarded quantities are listed in Table \ref{tab:vbfjtag_inputs}.
+
 %
 \begin{table}[t]
 \centering
@@ -1046,37 +1044,24 @@ Variable & Description \\
 \midrule
 \multicolumn{2}{l}{\textit{Added to the input set}} \\
 \midrule
-$b$ jet flag             & Whether the jet has been assigned to the $H\rightarrow b\bar{b}$ candidate \\
-Jet isolation            & Smallest angular distance to any other jet in the event \\
-$\mathcal{C}_j$          & Centrality of the jet within the event, Eq.\ \ref{eq:centrality} \\
-\midrule
-\multicolumn{2}{l}{\textit{Examined and not retained}} \\
-\midrule
-Quark--gluon score       & Discriminant between quark- and gluon-initiated jets \\
-$n_{\mathrm{jets}}$      & Number of reconstructed jets in the event \\
-$p_T(\mathrm{jet}_{1,2})/m_{jj}$ & Transverse momenta of the two most forward jets over $m_{jj}$ \\
+$b$ candidate flag             & Whether the jet has been assigned to the $H\rightarrow b\bar{b}$ candidate \\
+$\Delta R_\text{min}(\text{jet}, \text{jet}')$            & Smallest angular distance to any other jet in the event \\
+Jet centrality              & Centrality of the jet within the event, Eq.\ \ref{eq:centrality} \\
 \bottomrule
 \end{tabular}
-\caption{Variables specific to the \textsc{VBFjTag} algorithm, added to those listed in Table \ref{tab:hhbtag_inputs}, together with the variables examined during its development that were not retained. \textcolor{red}{CAMBIAR LOS NOMBRES DE LAS VARIABLES PARA QUE SEAN COMO EN EL TEXTO, AQUÍ Y EN LAS FIGURAS}}
+\caption{Variables specific to the \textsc{VBFjTag} algorithm, added to those listed in Table \ref{tab:hhbtag_inputs}.}
 \label{tab:vbfjtag_inputs}
 \end{table}
 
-The two variables built for this problem provide the strongest separation of all (Figure \ref{fig:vbfjtag_inputdist_1}). The VBF jets are isolated from the rest of the hadronic activity, with a minimum separation to any other jet peaking around $2.5$, whereas the other candidates are usually close to another jet, near the minimum separation allowed by the jet clustering. The centrality of the VBF jets is concentrated at zero, since they usually occupy the extremes of the pseudorapidity range of the event, while that of the other jets spreads over the whole interval and increases towards one.
-
+The two variables built for this problem also separate the two classes cleary (Figure \ref{fig:vbfjtag_inputdist}). The VBF jets are isolated from the rest of the hadronic activity, with a minimum separation to any other jet peaking around $2.5$, whereas the other candidates are usually close to another jet, near the minimum separation allowed by the jet clustering. The centrality of the VBF jets is concentrated at zero, since they usually occupy the extremes of the pseudorapidity range of the event, while that of the other jets spreads over the whole interval and increases towards one.
 
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=0.5\linewidth]{figures/chapter_IV/vbfjtag_input_distributions_1.pdf}
-\caption{Distributions of the transverse momentum, pseudorapidity, isolation and centrality of the jets from the vector boson fusion vertex (black, filled) and of the other candidate jets (orange), in the 2022--2023 training sample. Each distribution is normalized to unit area.}
-\label{fig:vbfjtag_inputdist_1}
+\includegraphics[width=\linewidth]{figures/chapter_IV/vbfjtag_tauonly_input_distributions_combined.pdf}
+\caption{Distributions of the transverse momentum, pseudorapidity and centrality (top) and of the isolation and the azimuthal and pseudorapidity separations from the $\tau\tau$ system (bottom) of the jets from the vector boson fusion vertex (black, filled) and of the other candidate jets (orange), in the 2022--2023 training sample. Each distribution is normalized to unit area.}
+\label{fig:vbfjtag_inputdist}
 \end{figure}
-%
-\begin{figure}[tbp]
-\centering
-\includegraphics[width=0.7\linewidth]{figures/chapter_IV/vbfjtag_input_distributions_2.pdf}
-\caption{Same as Figure \ref{fig:vbfjtag_inputdist_1}, for the azimuthal and pseudorapidity separations between the jet and the $\tau\tau$ system.}
-\label{fig:vbfjtag_inputdist_2}
-\end{figure}
+
 
 
 % 6 - Feature importance 
@@ -1091,14 +1076,14 @@ Unlike in \textsc{HH-BTag}, the two models agree for the leading variables but d
 %
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=0.85\linewidth]{figures/chapter_IV/featimp_vbfjtag_thesis.pdf}
+\includegraphics[width=0.85\linewidth]{figures/chapter_IV/featimp_vbfjtag_tauonly_thesis.pdf}
 \caption{Permutation importance of the input variables of the 2022--2023 model of the \textsc{VBFjTag} algorithm, given as the mean decrease in purity over ten random permutations of each variable, with bars showing their standard deviation. The two sets of bars correspond to the model trained on odd events and evaluated on even events (black) and vice versa (blue).}
 \label{fig:vbfjtag_featimp}
 \end{figure}
 %
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=\linewidth]{figures/chapter_IV/corrmatrix_vbfjtag.pdf}
+\includegraphics[width=\linewidth]{figures/chapter_IV/corrmatrix_vbfjtag_tauonly_thesis.pdf}
 \caption{Linear correlation coefficients between the input variables of the \textsc{VBFjTag} algorithm, computed over all valid jets of the 2022--2023 training sample. The pseudorapidities and azimuthal separations enter in absolute value.}
 \label{fig:vbfjtag_corr}
 \end{figure}
