@@ -102,13 +102,12 @@ where $f^{abc}$ symbols denote the structure constants of $SU(3)_C$. Combining t
 %
 The first term is the Dirac Lagrangian of Equation \ref{eq:dirac_lagrangian}, which describes the free propagation of the quarks. The second term arises from the covariant derivative and describes the interaction between quarks and gluons, with a strength set by $g_s$ — usually expressed through $\alpha_s = g_s^2/4\pi$. The third is the kinetic term of the gluons, which, owing to the last term of Equation \ref{gluon_field}, also contains cubic and quartic gluon self-interactions, a direct consequence of the non-abelian nature of $SU(3)_C$. The requirement of local gauge invariance therefore generates the eight gluons, which differ only in the color charge they carry, and fixes their interactions with the quarks and among themselves. A gluon mass term, of the form $m_g^2\, G^a_\mu G_a^\mu$, would break this invariance, so that gluons are necessarily massless.
 
-Local gauge invariance not only requires the existence of the gluon fields, but also determines their interactions with quarks and among themselves.
 
 \subsubsection{Electroweak interaction}
 %
 The electroweak theory provides a unified description of the electromagnetic and weak interactions, obtained by imposing local gauge invariance under the group $SU(2)_L \times U(1)_Y$.
 
-The weak interaction couples universally to all fermions, connects different quark flavors through the Cabibbo-Kobayashi-Maskawa (CKM) mixing matrix, and is the only interaction observed to violate charge (C), parity (P), and combined charge-parity (P) symmetries. The violation of parity~\cite{Lee:1956qn,Wu:1957my} manifests itself in the fact that the weak interaction acts differently on fermions depending on their \textit{chirality}, defined through the matrix $\gamma^5 = i\gamma^0\gamma^1\gamma^2\gamma^3$ built from the Dirac matrices of Equation \ref{eq:dirac_lagrangian}. According to this, any fermion field can be decomposed into a left-handed and a right-handed component, obtained with the projection operators $P_L = (1-\gamma^5)/2$ and $P_R = (1+\gamma^5)/2$, and only the left-handed components of the fermions — or right-handed components of the antifermions —, transform under $SU(2)_L$, as indicated by its subscript $L$. In the limit of a massless particle, chirality coincides with \textit{helicity}, the normalized projection of the spin onto the direction of motion.
+The weak interaction couples universally to all fermions, connects different quark flavors through the Cabibbo-Kobayashi-Maskawa (CKM) mixing matrix, and is the only interaction observed to violate charge (C), parity (P), and combined charge-parity (CP) symmetries. The violation of parity~\cite{Lee:1956qn,Wu:1957my} manifests itself in the fact that the weak interaction acts differently on fermions depending on their \textit{chirality}, defined through the matrix $\gamma^5 = i\gamma^0\gamma^1\gamma^2\gamma^3$ built from the Dirac matrices of Equation \ref{eq:dirac_lagrangian}. According to this, any fermion field can be decomposed into a left-handed and a right-handed component, obtained with the projection operators $P_L = (1-\gamma^5)/2$ and $P_R = (1+\gamma^5)/2$, and only the left-handed components of the fermions — or right-handed components of the antifermions —, transform under $SU(2)_L$, as indicated by its subscript $L$. In the limit of a massless particle, chirality coincides with \textit{helicity}, the normalized projection of the spin onto the direction of motion.
 
 The fermion fields of each generation are therefore arranged into a left-handed doublet, which transforms under $SU(2)_L$, and right-handed singlets, which do not — two for quarks, and only one for leptons, since the SM contains no right-handed neutrino:
 \begin{equation}
@@ -220,7 +219,7 @@ The first contains the mass terms of the vector bosons: the degrees of freedom o
     \label{eq:boson_masses}
 \end{equation}
 %
-while the absence of any term involving the photon field reflects the fact that $U(1)_{\text{em}}$ remains unbroken, and confirms that the photon is massless. The other two contributions describe the interactions of the Higgs boson with the vector bosons, $V=W^\pm, Z$, shown in Figure \ref{fig:higgs_vertices}, namely the trilinear $HVV$ vertices and the quartic $HHVV$ vertices, with couplings
+while the absence of any term involving the photon field reflects the fact that $U(1)_{\text{em}}$ remains unbroken, and confirms that the photon is massless. The other two contributions describe the interactions of the Higgs boson with the vector bosons, $V=W^\pm, Z$, shown in Figure \ref{fig:higgs_VV}, namely the trilinear $HVV$ vertices and the quartic $HHVV$ vertices, with couplings
 \begin{equation}
     \lambda_{V} = \frac{2}{v}\, m_{V}^{2} \qquad\text{and}\qquad \lambda_{2V} = \frac{1}{v^{2}}\, m_{V}^{2}.
 \end{equation}
@@ -277,7 +276,7 @@ Both are therefore entirely fixed by the masses of the vector bosons and by the 
     \label{higgs_pot}
 \end{equation}
 %
-which contains the mass term of the Higgs boson and its trilinear and quartic self-interactions, shown in Figure \ref{fig:higgs_self}. Since $\lambda$ is a free parameter of the theory, the mass of the Higgs boson is not predicted by the SM, but once it is measured, the self-couplings are entirely determined by $m_H$ and $v$. The presence of these self-interaction terms implies that the production of pairs and triplets of Higgs bosons is predicted by the SM, at rates directly related to the parameters of the scalar potential~\cite{DiMicco:2019ngk}. The presence of these self-interaction terms implies that the production of pairs and triplets of Higgs bosons is predicted by the SM, at rates directly related to the parameters of the scalar potential~\cite{DiMicco:2019ngk}.
+which contains the mass term of the Higgs boson and its trilinear and quartic self-interactions, shown in Figure \ref{fig:higgs_self}. Since $\lambda$ is a free parameter of the theory, the mass of the Higgs boson is not predicted by the SM, but once it is measured, the self-couplings are entirely determined by $m_H$ and $v$. The presence of these self-interaction terms implies that the production of pairs and triplets of Higgs bosons is predicted by the SM, at rates directly related to the parameters of the scalar potential~\cite{DiMicco:2019ngk}.
 % %
 % The expansion of the potential also produces a constant term, $V(\phi_0) = -\lambda v^4/4$, the value of the potential at its minimum, which has been dropped from Equation \ref{higgs_pot} since a constant does not affect the equations of motion. Although it plays no role in the dynamics of the SM, it contributes to the vacuum energy, which acts as a cosmological constant and contributes to the curvature of spacetime~\cite{Weinberg:1988cp,Martin:2012bt}. The value predicted by the SM exceeds the vacuum energy density inferred from cosmological observations~\cite{Planck:2018vyg} by more than fifty orders of magnitude, a dilemma that requires either a proper quantum theory of gravity or a mechanism that cancels the vacuum energy density of the Higgs field.
 \begin{figure}[htbp]
@@ -1051,31 +1050,28 @@ In vector boson associated production, a quark-antiquark pair annihilates into a
 \begin{figure}[htbp]
     \centering
     \vspace{10pt}
-    \begin{fmffile}{higgspairtth}
+    \begin{fmffile}{higgspairvhh}
     \begin{minipage}[b]{0.28\linewidth}
         \centering\small
         \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
-            \fmfright{o1,h1,h2,o2}
-            \fmf{gluon}{i1,v1}
-            \fmf{gluon}{i2,v2}
-            \fmf{fermion}{o1,v1}
-            \fmf{fermion}{v1,vt}
-            \fmf{fermion}{vt,v2}
-            \fmf{fermion}{v2,o2}
-            \fmf{dashes}{vt,vh}
+            \fmfright{h1,h2,o}
+            \fmf{fermion}{vq,i1}
+            \fmf{fermion}{i2,vq}
+            \fmf{photon}{vq,vv}
+            \fmf{photon}{vv,o}
+            \fmf{dashes}{vv,vh}
             \fmf{dashes}{vh,h1}
             \fmf{dashes}{vh,h2}
-            \fmfforce{(0.35w,0.85h)}{v2}
-            \fmfforce{(0.35w,0.15h)}{v1}
-            \fmfforce{(0.35w,0.5h)}{vt}
-            \fmfforce{(0.68w,0.5h)}{vh}
-            \fmfforce{(1.0w,0.68h)}{h2}
-            \fmfforce{(1.0w,0.32h)}{h1}
-            \fmflabel{$g$}{i1}
-            \fmflabel{$g$}{i2}
-            \fmflabel{$\bar{t}$}{o1}
-            \fmflabel{$t$}{o2}
+            \fmfforce{(0.3w,0.5h)}{vq}
+            \fmfforce{(0.55w,0.5h)}{vv}
+            \fmfforce{(0.78w,0.3h)}{vh}
+            \fmfforce{(1.0w,0.9h)}{o}
+            \fmfforce{(1.0w,0.45h)}{h2}
+            \fmfforce{(1.0w,0.1h)}{h1}
+            \fmflabel{$\bar{q}'$}{i1}
+            \fmflabel{$q$}{i2}
+            \fmflabel{$V$}{o}
             \fmflabel{$H$}{h1}
             \fmflabel{$H$}{h2}
         \end{fmfgraph*}
@@ -1085,30 +1081,23 @@ In vector boson associated production, a quark-antiquark pair annihilates into a
         \centering\small
         \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
-            \fmfright{o1,h1,h2,o2}
-            \fmf{fermion}{i2,vq}
+            \fmfright{h1,h2,o}
             \fmf{fermion}{vq,i1}
-            \fmf{gluon}{vq,vg}
-            \fmf{fermion}{vg,a2}
-            \fmf{fermion}{a2,o2}
-            \fmf{fermion}{o1,a1}
-            \fmf{fermion}{a1,vg}
-            \fmf{dashes}{a2,h2}
-            \fmf{dashes}{a1,h1}
-            \fmfforce{(0.25w,0.5h)}{vq}
-            \fmfforce{(0.0w,0.9h)}{i2}
-            \fmfforce{(0.0w,0.1h)}{i1}
-            \fmfforce{(0.5w,0.5h)}{vg}
-            \fmfforce{(0.75w,0.8h)}{a2}
-            \fmfforce{(0.75w,0.2h)}{a1}
-            \fmfforce{(1.0w,1.0h)}{o2}
-            \fmfforce{(1.0w,0.0h)}{o1}
-            \fmfforce{(1.0w,0.62h)}{h2}
-            \fmfforce{(1.0w,0.38h)}{h1}
-            \fmflabel{$\bar{q}$}{i1}
+            \fmf{fermion}{i2,vq}
+            \fmf{photon}{vq,va}
+            \fmf{photon}{va,vb}
+            \fmf{photon}{vb,o}
+            \fmf{dashes}{va,h1}
+            \fmf{dashes}{vb,h2}
+            \fmfforce{(0.3w,0.5h)}{vq}
+            \fmfforce{(0.55w,0.5h)}{va}
+            \fmfforce{(0.75w,0.7h)}{vb}
+            \fmfforce{(1.0w,0.9h)}{o}
+            \fmfforce{(1.0w,0.45h)}{h2}
+            \fmfforce{(1.0w,0.1h)}{h1}
+            \fmflabel{$\bar{q}'$}{i1}
             \fmflabel{$q$}{i2}
-            \fmflabel{$\bar{t}$}{o1}
-            \fmflabel{$t$}{o2}
+            \fmflabel{$V$}{o}
             \fmflabel{$H$}{h1}
             \fmflabel{$H$}{h2}
         \end{fmfgraph*}
@@ -1118,39 +1107,31 @@ In vector boson associated production, a quark-antiquark pair annihilates into a
         \centering\small
         \begin{fmfgraph*}(75,55)
             \fmfleft{i1,i2}
-            \fmfright{o1,h1,h2,o2}
-            \fmf{fermion}{i2,vq}
+            \fmfright{h1,h2,o}
             \fmf{fermion}{vq,i1}
-            \fmf{gluon}{vq,vg}
-            \fmf{fermion}{vg,a2}
-            \fmf{fermion}{a2,o2}
-            \fmf{fermion}{o1,vg}
-            \fmf{dashes}{a2,vh}
-            \fmf{dashes}{vh,h1}
-            \fmf{dashes}{vh,h2}
-            \fmfforce{(0.25w,0.5h)}{vq}
-            \fmfforce{(0.0w,0.9h)}{i2}
-            \fmfforce{(0.0w,0.1h)}{i1}
-            \fmfforce{(0.5w,0.5h)}{vg}
-            \fmfforce{(0.72w,0.78h)}{a2}
-            \fmfforce{(0.84w,0.5h)}{vh}
-            \fmfforce{(1.0w,1.0h)}{o2}
-            \fmfforce{(1.0w,0.0h)}{o1}
-            \fmfforce{(1.0w,0.62h)}{h2}
-            \fmfforce{(1.0w,0.38h)}{h1}
-            \fmflabel{$\bar{q}$}{i1}
+            \fmf{fermion}{i2,vq}
+            \fmf{photon}{vq,vv}
+            \fmf{photon}{vv,o}
+            \fmf{dashes}{vv,h1}
+            \fmf{dashes}{vv,h2}
+            \fmfforce{(0.3w,0.5h)}{vq}
+            \fmfforce{(0.6w,0.5h)}{vv}
+            \fmfforce{(1.0w,0.9h)}{o}
+            \fmfforce{(1.0w,0.45h)}{h2}
+            \fmfforce{(1.0w,0.1h)}{h1}
+            \fmflabel{$\bar{q}'$}{i1}
             \fmflabel{$q$}{i2}
-            \fmflabel{$\bar{t}$}{o1}
-            \fmflabel{$t$}{o2}
+            \fmflabel{$V$}{o}
             \fmflabel{$H$}{h1}
             \fmflabel{$H$}{h2}
         \end{fmfgraph*}
     \end{minipage}
     \end{fmffile}
     \vspace{8pt}
-    \caption{LO Feynman diagrams of Higgs boson pair production in association with a top quark pair.}
-    \label{fig:HH_ttHH_diagrams}
+    \caption{LO Feynman diagrams of Higgs boson pair production in association with a vector boson.}
+    \label{fig:HH_VHH_diagrams}
 \end{figure}
+
 
 
 \subsubsection{Single top quark associated production: $qq'\rightarrow tjHH$}
