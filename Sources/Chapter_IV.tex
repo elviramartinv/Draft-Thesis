@@ -776,12 +776,12 @@ The extent to which the model uses this information is measured with the permuta
 %
 \begin{figure}[tbp]
     \centering
-    \begin{subfigure}[t]{0.49\linewidth}
+    \begin{subfigure}[t]{0.5\linewidth}
         \centering
         \includegraphics[height=8.7cm]{figures/chapter_IV/featimp_hhbtag_v3_thesis.pdf}
         \caption{2022--2023, model trained with \textsc{ParticleNet}}
     \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.49\linewidth}
+    \begin{subfigure}[t]{0.5\linewidth}
         \centering
         \includegraphics[height=8.7cm]{figures/chapter_IV/featimp_hhbtag_2024_thesis.pdf}
         \caption{2024, model trained with \textsc{UParT}}
@@ -894,6 +894,10 @@ Since the purity cannot be evaluated on background samples (Section \ref{subsec:
 REVISAR ESTO: NO CREO QUE HAGA FALTA PONERLO EXPLICITO NO? ES EL MISMO TRATAMIENTO QUE SE HACE EN EL ANALISIS O NO?
 % The Drell--Yan distribution requires an additional step, since this process is described by nine samples, one for each combination of lepton flavor ($e$, $\mu$, $\tau$) and jet multiplicity ($0$, $1$, $2$), and not by a single one. If their events were simply merged, the contribution of each sample would reflect its simulated size instead of how often the process occurs. Therefore, in addition to the generator and pileup weights, the events of each sample $i$ are weighted by $\sigma_i/\Sigma_i$, where $\sigma_i$ is the cross section of the sample used in the analysis and $\Sigma_i$ the sum of its generator weights before any selection. This factor is not needed for the signal and the $t\bar{t}$ background, each described by a single sample, since it would be a constant that cancels when the distribution is normalized to unit area.
 
+EXPLICAR MEJOR CADA FONDO (TTBAR 2BJETS REALES; DY ES 0J+1J+2J, NO? ENTONCES HAY MAS EVENTOS CON 1J... NO SE, EXPLCIAR UN POCO LAS TOPOLOGIAS DE CADA UNO DE LOS FONDOS)
+DY tenga una cola hacia 2 muy pronunciada por la presencia de eventos con un solo candidato compatible.
+ttbar tenga más eventos con dos candidatos reales, pero su distribución siga siendo distinta de la señal porque los dos jets no proceden de un mismo Higgs.
+QUIZAS TAMBIEN PUEDA REFERENCIAR LA SECCION 5.1.3 DE SIMULATED BKG SAMPLES
 
 The range of the distributions follows from the normalization of the score (Section \ref{subsec:network}). Since the scores of all the candidates in an event add up to two, the second jet cannot exceed one, where its distribution stops abruptly, and the leading jet reaches two when a single jet takes the whole total. The leading jet also cannot lie below the average score of the event, $2/N_\text{cand}$, where $N_\text{cand}$ is the number of candidates, so that its lower edge is set by the multiplicity of the event, as shown in Figure \ref{fig:hhbtag_score_ncand}. Within this range, when $k$ jets receive a high output from the last layer, each of them obtains a score close to $2/k$. This produces the main peak at one for two jets sharing the total, and the shoulder around $2/3$, for three comparable jets, which accumulates at the lower edge when the event has exactly three candidates.\textcolor{red}{por qué DY tiene mas eventos en la cola?}
 
@@ -904,7 +908,7 @@ From the signal to background comparison, it can be seen that all the processes 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/chapter_IV/hhbtag_score_signal_bkg.pdf}
-\caption{Distribution of the \textsc{HH-BTag} score of the leading (left) and second (right) jets, for the ggF SM $HH$ signal and for the dileptonic $t\bar{t}$ and Drell--Yan backgrounds, in the 2024 simulated samples with the selection of the most sensitive category of the analysis. The dashed lines mark the limits imposed by the normalization of the score, with $b_1$ and $b_2$ the scores of the two jets. Each distribution is normalized to unit area.}
+\caption{Distribution of the \textsc{HH-BTag} score of the leading (left) and second (right) jets, for the ggF SM $HH$ signal and for the dileptonic $t\bar{t}$ and Drell--Yan backgrounds, in the 2024 simulated samples with the selection of the most sensitive category of the analysis. The dashed lines mark the limits imposed by the normalization of the score, with $b_1$ and $b_2$ the scores of the two jets. Each distribution is normalized to unit area. PORQUE EN LA DERECHA NO ACABA CON LA LINEA DISCONTINUA? Y DEBERIA PONER GGHH EN LA LEYENDA}
 \label{fig:hhbtag_score}
 \end{figure}
 
