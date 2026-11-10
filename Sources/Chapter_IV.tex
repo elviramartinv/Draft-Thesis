@@ -1011,7 +1011,14 @@ The jets that meet the specified selection criteria form the rows of the table r
 % 2 - conjunto de variables
 The starting point in this case is the set of fourteen variables used by \textsc{HH-BTag}, listed in Table \ref{tab:hhbtag_inputs}. While intended to address a different problem, the quantities that describe the context of the event — such as the kinematics of the $\tau\tau$ system, the missing transverse momentum, and the global period and channel variables — characterize the event independently of the jet being evaluated and are therefore directly applicable here. Those that describe the jet itself and relate it to the $\tau\tau$ system also retain their relevance, although the weight the model assigns to them is not necessarily equivalent.
 
-Figure \ref{fig:vbfjtag_inputdist} shows the distributions of the main variables in the 2022--2023 training sample, separately for the jets from the fusion vertex and for the other candidates, normalized to unit area. Among the inherited variables, the pseudorapidity provides the clearest separation, with the VBF jets concentrated at $|\eta| \approx 3$--$4$ and the other candidates in the central region, while the transverse momentum separates them more modestly, the other candidates accumulating at the threshold and the VBF jets peaking around $50$ GeV. Relative to the $\tau\tau$ system, the VBF jets lie far apart in pseudorapidity, with maxima around $|\Delta\eta| \approx 3$, whereas the azimuthal separation distinguishes the two classes only weakly, since both tend to lie opposite to the $\tau\tau$ system, the other candidates more markedly because they include the $b$ jets, which recoil against it.  AQUI NHE CAMBIADO DELTAPHI POR MT/PTJET(QUE ES LA SEXTA SEGUN EL FEATURE IMPORTANCE). ADEMÁS, TAMBIEN DEBERIAN DESCRIBIRSE AQUI ISOLATION Y CENTRALITY, ASI QUE QUIZAS TIENE MAS SENTIDO PASAR EL PARRAFO DE "Three quantities are incorporated..." ANTES DE ESTE PARRAFO, Y EL PARRAFO DE "The two variables built for this problem also separate the two classes cleary..." A CONTINUACION DE ESTE PARRAFO
+Figure \ref{fig:vbfjtag_inputdist} shows the distributions of the main variables in the 2022--2023 training sample, separately for the jets from the fusion vertex and for the other candidates, normalized to unit area. Among the inherited variables, the pseudorapidity provides the clearest separation, with the VBF jets concentrated at $|\eta| \approx 3$--$4$ and the other candidates in the central region, while the transverse momentum separates them more modestly, the other candidates accumulating at the threshold and the VBF jets peaking around $50$ GeV. Relative to the $\tau\tau$ system, the VBF jets lie far apart in pseudorapidity, with maxima around $|\Delta\eta| \approx 3$, whereas the azimuthal separation distinguishes the two classes only weakly, since both tend to lie opposite to the $\tau\tau$ system, the other candidates more markedly because they include the $b$ jets, which recoil against it. HE CAMBIADO UNPOCO LAS FIGURAS QUE MUESTRO, HAY QUE CAMBIAR ESTE PARRAFO ACORDE - PRIMERO VOY A MOSTRAR LAS IMPORTANTES DE LAS DISTRIBUCIONES HEREDADAS - HABRA QUE DECIR QUE JET PNET NO ESTA DEFINIDA EN CIERTA VENTANA DE ETA, Y QUE NO SE LE DA NINGUN TRATAMIENTO EN CONCRETO EN EL FRAMEOWKR PERO QUE NO AFECTA
+
+DESPUES QUIERO EL PARRAFO DE "Three quantities are incorporated..." DICIENDO QUE IGUALMENTE IS B JET TAMPOCO ESTA DEFINIDO EN TODA LA VENTANA DE ETA PERO DA CONTEXTO
+
+EL PARRAFO DE MOSTRAR LAS DISTRIBUCIONES EXTRA DE LAS CANTIDADES NUEVAS
+
+EL PARRAFO DE "The two variables built for this problem also separate the two classes cleary..."
+
 
 Other quantities suggested by the phenomenology or by similar studies in the $HH\to bb\gamma\gamma$ analysis \cite{bbggAN} were also examined in a preliminary version of the training set, namely the quark-gluon discriminant, the jet multiplicity of the event and the transverse momentum of the two leading jets normalized to the invariant mass of the pair, but they were not retained, since adding them did not improve the purity. Both the retained and discarded quantities are listed in Table \ref{tab:vbfjtag_inputs}. EN LA TABLA, MEJOR MANTENER SOLO LAS RETAINED
 
@@ -1026,7 +1033,7 @@ ESTO MEJOR PASARLO ANTES, NO?
 Three quantities are incorporated into this set that directly reflect the described phenomenology. As noted, the first indicates whether the jet has been assigned to the $b\bar{b}$ pair by \textsc{HH-BTag}, which provides the network with the result of the previous step in the chain and thus with the type of jets to be excluded from the selection. The second variable translates the suppression of hadronic activity resulting from the colorless nature of the exchange into a variable that measures the isolation of the jet, defined as the smallest angular separation between the jet and any other jet in the event. The third variable measures the relative position of the jet within the event using centrality, defined as:
 %
 \begin{equation}
-\texttt{Centrality} = 1 - \left| \frac{2\,(\eta_j - \eta_c)}{\eta_{\max} - \eta_{\min}} \right| ,
+Centrality = 1 - \left| \frac{2\,(\eta_j - \eta_c)}{\eta_{\max} - \eta_{\min}} \right| ,
 \qquad \eta_c = \frac{\eta_{\max} + \eta_{\min}}{2},
 \label{eq:centrality}
 \end{equation}
@@ -1062,17 +1069,10 @@ The two variables built for this problem also separate the two classes cleary (F
 \label{fig:vbfjtag_inputdist}
 \end{figure}
 
+ 
 
-
-% 6 - Feature importance 
-With the set defined in this way, the next step is to examine the extent to which the trained model uses each of the variables using the permutation procedure described in Section \ref{subsec:featimp}. The result is shown in Figure \ref{fig:vbfjtag_featimp} for the 2022--2023 model, with the two models trained on each parity presented separately; the 2024 model, trained with \textsc{UParT} yields the same hierarchy.
-
-In this case the kinematic variables of the jet clearly dominate, in accordance with the nature of the problem. The transverse momentum heads the hierarchy, with a decrease in purity of about $25$ points, as VBF jets are the most energetic of the jets remaining after the assignment of the $b\bar{b}$ pair. It is followed by the azimuthal separation from the $\tau\tau$ system, which, as in \textsc{HH-BTag}, is only weakly correlated with the other variables (Figure \ref{fig:vbfjtag_corr}), so that its information can hardly be recovered by other means. Next come, with comparable weights between about $8$ and $15$ points, the flavor score, the pseudorapidity of the jet and its separation from the $\tau\tau$ system, strongly correlated with each other ($0.70$), the variable identifying the jets already assigned to the $b\bar{b}$ pair, and the isolation. The latter carries the greatest weight among the quantities incorporated for this problem, being the only one that describes the relationship of the jet to the other jets of the event, while the centrality is assigned a lower weight, as its information is largely recoverable from the variables already present.
-
-Unlike in \textsc{HH-BTag}, the two models agree for the leading variables but differ, in opposite directions, for a group of correlated ones. The flavor score weighs more in one of them, whereas the variable identifying the $b$ jets, the isolation and the normalized energy weigh more in the other. These variables share information, as shown by the correlation of the flavor score with the variable identifying the $b$ jets ($0.75$), with the normalized energy ($-0.67$) and with the absolute pseudorapidity ($-0.76$), the latter arising because the flavor discriminant relies on the tracker and takes low values for the forward jets. The two models therefore distribute the same information differently among them, as anticipated in Section \ref{subsec:featimp} for correlated variables.
-% In this case the jet kinematic variables are clearly more dominant than in the $b\bar{b}$ pair assignment problem, in accordance with the new nature of the problem. The order is therefore supported by the properties of the problem and, once again, by the correlation matrix in Figure \ref{fig:vbfjtag_corr}. The transverse momentum heads the hierarchy, as VBF jets are the most energetic of the set of jets remaining after the $b\bar{b}$ pair subtraction. The $p_T$ of the jet is followed by the azimuthal separation with respect to the $\tau\tau$ system, which, as in \textsc{HH-BTag}, is the only azimuthal information in the set: the matrix shows it to be uncorrelated with all other variables, so that the information it provides cannot be recovered by any other means. Next, with comparable weights, come the flavor discriminant and the variable identifying the already-assigned $b$ jets, both correlated at $0.69$. Among the quantities incorporated to address this problem, isolation carries the greatest weight — again due to the lack of a substitute: it is the only variable in the set that describes the relationship of the jet to the other jets in the event, rather than to the $\tau\tau$ system or the detector. The pseudorapidity of the jet and its pseudorapidity separation relative to the $\tau\tau$ system contribute equally. Conversely, centrality is assigned a lower weight, as the information it provides is largely recoverable from the variables already present.
-%
-%Conversely, centrality is assigned a lower weight, as the information it provides is largely recoverable from information already present, although it still contributes significantly to performance enhancement. The remaining parameters, which describe the event as a whole or are correlated with the already mentioned ones, are likewise downplayed.
+% 6 - Feature importance
+With the set defined in this way, the next step is to examine the extent to which the trained model uses each of the variables, using the permutation procedure described in Section \ref{subsec:featimp}. The result is shown in Figure \ref{fig:vbfjtag_featimp} for the 2022--2023 model, with the two models trained on each parity presented separately, while the 2024 model, trained with \textsc{UParT}, yields the same hierarchy.
 %
 \begin{figure}[tbp]
 \centering
@@ -1080,6 +1080,13 @@ Unlike in \textsc{HH-BTag}, the two models agree for the leading variables but d
 \caption{Permutation importance of the input variables of the 2022--2023 model of the \textsc{VBFjTag} algorithm, given as the mean decrease in purity over ten random permutations of each variable, with bars showing their standard deviation. The two sets of bars correspond to the model trained on odd events and evaluated on even events (black) and vice versa (blue).}
 \label{fig:vbfjtag_featimp}
 \end{figure}
+
+REVISAR TODO ESTO CON LA FIGURA ACTUALIZADA
+The transverse momentum heads the hierarchy, with a decrease in purity of about $20$ points, since the candidates not assigned to the $b\bar{b}$ pair are mostly soft jets near the threshold. It is followed by the flavor score, with $9$ to $15$ points, the isolation, with $8$ to $9$, and the variable identifying the jets assigned to the $b\bar{b}$ pair, with $7$ to $9$. The weight of the flavor score does not reflect the flavor of the VBF jets, which originate from light quarks like most of the other candidates, but the information it shares with the position of the jet and with the $b$ flag (Figure \ref{fig:vbfjtag_corr}), since the discriminant relies on the tracker and is not defined beyond $|\eta| = 2.5$, AQUI HABRIA QUE DECIR EL TRATAMIENTO QUE SE DA EN LA RED SI NO ESTÁ DEFINIDO (ES -1, PERO NO HACEMOS NADA CON ESTO; PERO BUENO, HAY QUE JUSTIFICAR QUE NO PERJUDICA, QUIZAS EN UNPIE DE NOTA, Y AÑADIR QUE AÑADIR ESTE CONTEXTO A LA RED SE HA VISTO QUE MEJORA LA PERFORMANCE EN CHECKS QUE SE HAN HECHO, while it is high for the $b$ jets. The isolation carries the greatest weight among the quantities incorporated for this problem, being the only one that describes the relationship of the jet to the other jets of the event.
+
+The pseudorapidity, despite providing the clearest separation in Figure \ref{fig:vbfjtag_inputdist}, follows with only about $3$ points, and its separation from the $\tau\tau$ system with $1$ to $2$. Their information is largely shared with other variables, as shown by the correlation of the pseudorapidity with the normalized energy ($0.85$), the flavor score ($-0.83$), the centrality ($-0.74$) and the pseudorapidity separation ($0.67$), so that permuting either of them removes little that the network cannot recover from the rest. The same holds for the centrality, of about one point, which is strongly correlated with the pseudorapidity, the flavor score and the $b$ flag. The azimuthal separation from the $\tau\tau$ system is only weakly correlated with the other variables, but it also stays below one point, in line with the weak separation it provides. The variables that describe the event as a whole carry practically no weight, as expected for quantities that take the same value for all the jets of an event.
+
+Unlike in \textsc{HH-BTag}, the two models agree for the leading variable but differ, in opposite directions, for a group of correlated ones. The flavor score weighs more in one of them, whereas the $b$ flag and the isolation weigh more in the other. These variables share information, as shown by the correlation of the flavor score with the $b$ flag and with the absolute pseudorapidity, and the two models therefore distribute the same information differently among them, as anticipated in Section \ref{subsec:featimp} for correlated variables.
 %
 \begin{figure}[tbp]
 \centering
@@ -1088,35 +1095,31 @@ Unlike in \textsc{HH-BTag}, the two models agree for the leading variables but d
 \label{fig:vbfjtag_corr}
 \end{figure}
 
-\begin{figure}[tbp]
-    \centering
-    \begin{subfigure}[t]{0.47\linewidth}
-        \centering
-        \includegraphics[width=\linewidth, trim=18 24 16 36, clip]{figures/chapter_IV/vbfjtag_nodes_vbfjets.pdf}
-        \caption{VBF jets}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.47\linewidth}
-        \centering
-        \includegraphics[width=\linewidth, trim=18 24 16 36, clip]{figures/chapter_IV/vbfjtag_nodes_otherjets.pdf}
-        \caption{Other candidate jets}
-    \end{subfigure}
-    \caption{Distributions of the transverse momentum, azimuthal separation from the $\tau\tau$ system, isolation and pseudorapidity separation from the $\tau\tau$ system (from top to bottom) of the jets from the fusion vertex (a) and of the other candidate jets (b), for each coupling point of the vector boson fusion samples, with the line styles of Table \ref{tab:signal_points}, in the 2022--2023 training sample. Each distribution is normalized to unit area.}
-    \label{fig:vbfjtag_nodes}
-\end{figure}
+
+
+% In this case the jet kinematic variables are clearly more dominant than in the $b\bar{b}$ pair assignment problem, in accordance with the new nature of the problem. The order is therefore supported by the properties of the problem and, once again, by the correlation matrix in Figure \ref{fig:vbfjtag_corr}. The transverse momentum heads the hierarchy, as VBF jets are the most energetic of the set of jets remaining after the $b\bar{b}$ pair subtraction. The $p_T$ of the jet is followed by the azimuthal separation with respect to the $\tau\tau$ system, which, as in \textsc{HH-BTag}, is the only azimuthal information in the set: the matrix shows it to be uncorrelated with all other variables, so that the information it provides cannot be recovered by any other means. Next, with comparable weights, come the flavor discriminant and the variable identifying the already-assigned $b$ jets, both correlated at $0.69$. Among the quantities incorporated to address this problem, isolation carries the greatest weight — again due to the lack of a substitute: it is the only variable in the set that describes the relationship of the jet to the other jets in the event, rather than to the $\tau\tau$ system or the detector. The pseudorapidity of the jet and its pseudorapidity separation relative to the $\tau\tau$ system contribute equally. Conversely, centrality is assigned a lower weight, as the information it provides is largely recoverable from the variables already present.
+%
+%Conversely, centrality is assigned a lower weight, as the information it provides is largely recoverable from information already present, although it still contributes significantly to performance enhancement. The remaining parameters, which describe the event as a whole or are correlated with the already mentioned ones, are likewise downplayed.
+%
+
+%
 
 
 
 \subsection{Performance of the \textsc{VBFjTag} model} 
 \label{subsec:vbf_performance}
 %
-The performance of the model is evaluated with the same tests as for \textsc{HH-BTag}. First, the progression of the training is examined; next, the purity achieved is compared with that of the purely kinematic criterion it replaces and across the successive configurations tested; and finally, the shape of the score distribution is considered.
+The performance of the model is evaluated with the same tests as for \textsc{HH-BTag}. First, the progression of the training is examined; next, the purity achieved is compared with that of the purely kinematic criterion it replaces; finally, the shape of the score distribution is considered.
 
 
 % 2 - curvas de aprendizaje
 The training of the two models of each period, one for each event parity, converges in the same way as for \textsc{HH-BTag}, with the stopping criterion reached after a few tens of epochs and without any significant gap between the training and validation values, which confirms that the configuration inherited from \textsc{HH-BTag} is also adequate for this problem.
 
 % 3 - Pureza
-The purity is shown in Figure \ref{fig:vbfjtag_purity} for each coupling point (Table \ref{tab:signal_points}), with the 2022 and 2023 periods shown together, since the purity does not change between them, and 2024 separately, as it is evaluated with its own model. The comparison with the kinematic criterion of Run 2 requires some care, since, unlike \textsc{VBFjTag}, which always selects a pair, the criterion finds no pair in about $9\%$ of the events, in which fewer than two jets satisfy its requirements. Its purity can therefore be quoted over the events in which it finds a pair, from $83$ to $89\%$, as was done in Run 2, or over all events, counting those without a pair as failures, from $75$ to $81\%$. Only the latter is directly comparable with \textsc{VBFjTag}, which reaches purities from $91$ to $95\%$, so that the gain it brings is of $14$ to $16$ percentage points, of which about $8$ come from the events in which the kinematic criterion does not find a pair, and the remaining $6$ to $8$ from a better choice among the candidates. The same picture holds in 2024. All methods follow the same pattern across the coupling points, with the largest purities at the points V1 and V3 and the lowest at V5 and V8.
+The purity is shown in Figure \ref{fig:vbfjtag_purity} for each coupling point (Table \ref{tab:signal_points}), with the 2022 and 2023 periods shown together, since the purity does not change between them, and 2024 separately, as it is evaluated with its own model. It is compared with the kinematic criterion of Run 2, which selects, among the candidates not assigned to the $b\bar{b}$ pair with $p_T > 30$ GeV, the pair with the largest invariant mass, evaluated on the same events. Unlike \textsc{VBFjTag}, the criterion may find no pair when fewer than two jets satisfy its requirements, so that its purity is shown both over the events in which it finds one and over all events, counting the others as failures, the latter being the one directly comparable with \textsc{VBFjTag}. The algorithm reaches purities from $92$ to $95\%$, against \textcolor{red}{$72$ to $79\%$} for the kinematic criterion, \textcolor{red}{[descomposición: X puntos de los sucesos sin par y el resto de la elección entre candidatos, si tras la comprobación 1 las dos series de Run 2 se separan]}. The algorithm also depends less on the coupling point, varying by less than three points against about seven for the kinematic criterion. \textcolor{red}{The same picture holds in 2024.}
+
+
+    The purity is shown in Figure \ref{fig:vbfjtag_purity} for each coupling point (Table \ref{tab:signal_points}), with the 2022 and 2023 periods shown together, since the purity does not change between them, and 2024 separately, as it is evaluated with its own model. The comparison with the kinematic criterion of Run 2 requires some care, since, unlike \textsc{VBFjTag}, which always selects a pair, the criterion finds no pair in about $9\%$ of the events, in which fewer than two jets satisfy its requirements. Its purity can therefore be quoted over the events in which it finds a pair, from $83$ to $89\%$, as was done in Run 2, or over all events, counting those without a pair as failures, from $75$ to $81\%$. Only the latter is directly comparable with \textsc{VBFjTag}, which reaches purities from $91$ to $95\%$, so that the gain it brings is of $14$ to $16$ percentage points, of which about $8$ come from the events in which the kinematic criterion does not find a pair, and the remaining $6$ to $8$ from a better choice among the candidates. The same picture holds in 2024. All methods follow the same pattern across the coupling points, with the largest purities at the points V1 and V3 and the lowest at V5 and V8.
 
 
     The purity evaluated on the vector boson fusion signal samples from Run 3 is illustrated in Figure \ref{fig:vbfjtag_purity}, which breaks down the results by coupling point (Table \ref{tab:signal_points}) and compares the different versions tested based on the inputs used against the kinematic criterion employed in Run 2, as evaluated on those same samples. As for \textsc{HH-BTag}, the 2022 and 2023 periods are shown together, since the purity does not change between them, and 2024 is shown separately because it is evaluated with its own model. The algorithm outperforms the kinematic criterion in all the configurations examined, with purity values ranging from $91$ to $95\%$, compared to $83$--$89\%$ for the kinematic criterion. As for \textsc{HH-BTag}, the absolute values depend on the coupling point, by at most $4\%$, an effect that the kinematic criterion shows in the same way.
@@ -1172,7 +1175,7 @@ events produced through vector boson fusion (left) and through gluon fusion (rig
 \medskip
 
 
-After evaluating the performance of the model, the conclusion is that adapting the framework to this second problem is entirely satisfactory. The training process converges, the purity consistently exceeds the explicit criterion it replaces, and the score retains its ability to distinguish between the different processes.
+After evaluating the performance of the model, the conclusion is that adapting the framework to this second problem is entirely satisfactory. The training process converges, the purity exceeds that of the explicit criterion it replaces at all coupling points, and the score retains its ability to distinguish between the different processes.
 \bigskip
 
 
