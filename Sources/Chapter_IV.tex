@@ -17,7 +17,7 @@ The starting point is therefore the \textsc{HH-BTag} algorithm. However, the arc
 This chapter describes both algorithms, and is organized as follows. Section \ref{sec:assignment} presents the jet assignment problem and its formulation as a supervised learning problem, Section \ref{sec:architecture} describes the architecture and training strategy common to both algorithms, and Sections \ref{sec:HHBTag} and \ref{sec:VBFjTag} detail the development of \textsc{HH-BTag} — including its versions for the Run 2 searches — and \textsc{VBFjTag}, respectively. The chapter closes with the role of both algorithms in the Run 3 analysis, their limitations and the extensions that the approach admits.\medskip
 
 
-\noindent The retraining of \textsc{HH-BTag} for the Run 2 resonant search \cite{CMS-PAS-B2G-24-011}, its validation on $Z\to b\bar{b}$ decays for the study of $ZZ$ and $ZH$ production, including a dedicated retraining \cite{CMS:2026zzzh}, its retraining for the Run 3 analysis \cite{CMS-PAS-HIG-25-008}, including the revised definition of its ground truth, and the development of \textsc{VBFjTag}, used for the first time in that analysis, constitute the contribution of this thesis presented in this chapter.
+\noindent The retraining of \textsc{HH-BTag} for the Run 2 resonant search \cite{CMS-PAS-B2G-24-011}, its validation on $Z\to b\bar{b}$ decays for the study of $ZZ$ and $ZH$ production, including a dedicated retraining \cite{CMS:2026zzzh}, its retraining for the Run 3 analysis \cite{CMS-PAS-HIG-25-008}, including the revised definition of its ground truth, and the development of \textsc{VBFjTag}, used for the first time in that analysis, constitute the contribution of this thesis presented in this chapter, summarized in Table \ref{tab:taggers_publications} at its end.
 
 
 
@@ -905,7 +905,7 @@ Since the purity cannot be evaluated on background samples (Section \ref{subsec:
 The range of the distributions follows from the normalization of the score (Section \ref{subsec:network}). Since the scores of all the candidates in an event add up to two, the second jet cannot exceed one, where its distribution stops abruptly, and the leading jet reaches two when a single jet takes the whole total. The leading jet also cannot lie below the average score of the event, $2/N_\text{cand}$, where $N_\text{cand}$ is the number of candidates, so that its lower edge is set by the multiplicity of the event, as shown in Figure \ref{fig:hhbtag_score_ncand}. Within this range, when $k$ jets receive a high output from the last layer, each of them obtains a score close to $2/k$. This produces the main peak at one for two jets sharing the total, and the shoulder around $2/3$, for three comparable jets, which accumulates at the lower edge when the event has exactly three candidates.
 
 
-From the signal to background comparison, it can be seen that all the processes peak at one, and the difference between them lies in the tails, above one for the leading jet and below one for the second, where the backgrounds exceed the signal by about an order of magnitude. Even with two $b$ tagged jets, the backgrounds do not contain a pair with the kinematics of an $H\to b\bar{b}$ decay, so that the total is not shared between two equivalent candidates but tends to concentrate on a single one. The difference is largest for Drell--Yan, whose events more often contain a single jet compatible with the decay, so that the leading jet takes most of the total, whereas the $t\bar{t}$ events usually contain two genuine $b$ jets, which, coming from different top quarks, still do not share the score as a pair from a Higgs boson decay does. The score therefore retains the ability to discriminate against the background beyond its assignment function. This information is reused in the classifier designed to separate the signal and background from the analysis, as will be detailed in Chapter \ref{ch:bbtt_analysis}. \textcolor{red}{porque la cola de DY tiene mas jets?}\medskip
+From the signal to background comparison, it can be seen that all the processes peak at one, and the difference between them lies in the tails, above one for the leading jet and below one for the second, where the backgrounds exceed the signal by about an order of magnitude. Even with two $b$ tagged jets, the backgrounds do not contain a pair with the kinematics of an $H\to b\bar{b}$ decay, so that the total is not shared between two equivalent candidates but tends to concentrate on a single one. The difference is largest for Drell--Yan, whose events more often contain a single jet compatible with the decay, so that the leading jet takes most of the total, whereas the $t\bar{t}$ events usually contain two genuine $b$ jets, which, coming from different top quarks, still do not share the score as a pair from a Higgs boson decay does. The score therefore retains the ability to discriminate against the background beyond its assignment function. This information is reused in the classifier designed to separate the signal and background from the analysis, as will be detailed in Chapter \ref{ch:bbtt_analysis}.\medskip
 %
 \begin{figure}[t]
 \centering
@@ -1080,10 +1080,11 @@ With the set defined in this way, the next step is to examine the extent to whic
 %
 \begin{figure}[tbp]
 \centering
-\includegraphics[width=0.75\linewidth]{figures/chapter_IV/featimp_vbfjtag_tauonly_thesis.pdf}
-\caption{Permutation importance of the input variables of the 2022--2023 model of the \textsc{VBFjTag} algorithm, given as the mean decrease in purity over ten random permutations of each variable, with bars showing their standard deviation. The two sets of bars correspond to the model trained on odd events and evaluated on even events (black) and vice versa (blue).}
+\includegraphics[width=\linewidth]{figures/chapter_IV/featimp_vbfjtag_tauonly_thesis_split.pdf}
+\caption{Permutation importance of the input variables of the 2022--2023 model of the \textsc{VBFjTag} algorithm, given as the mean decrease in purity over ten random permutations of each variable, with bars showing their standard deviation, for the eight most important variables (left) and the remaining ones (right), the latter on an expanded horizontal scale. The two sets of bars correspond to the model trained on odd events and evaluated on even events (black) and vice versa (blue).}
 \label{fig:vbfjtag_featimp}
 \end{figure}
+
 
 The transverse momentum clearly heads the hierarchy, with a decrease in purity of about $17$ points, since the candidates that compete with the VBF jets, once those of the $b\bar{b}$ pair are excluded, are mostly soft jets near the threshold. All the other variables follow at a large distance. The $b$ flag and the isolation come next, with about $4$ points each. The weight of the flag shows how much the network relies on it, since a jet flagged in this way is never a VBF jet, so that the jets to which the permutation moves the flag are rejected as well, and the part of its weight due to the context it provides cannot be separated from this effect. The isolation is, together with the flag, the most important of the variables added for this problem, being the only one that describes the relationship of the jet to the other jets of the event.
 
@@ -1161,9 +1162,31 @@ The dependence on the coupling point separates the two contributions further. Th
 The framework developed for \textsc{HH-BTag} therefore carries over to this second problem with only the extension of the input set. The training converges, and the purity exceeds that of the explicit criterion it replaces at all coupling points and in both periods, through both a larger acceptance and a better choice among the candidates.\bigskip
 
 
+%
+\noindent This chapter has described \textsc{HH-BTag} and \textsc{VBFjTag}, two algorithms that assign the jets of the event to the $H\to b\bar{b}$ candidate and to the VBF topology, respectively, and that consistently improve upon the explicit criteria they replace. Both share the event representation, the architecture, the training procedure and the evaluation tools, and differ only in the process they describe. Table \ref{tab:taggers_publications} summarizes the publications in which they have been used, with the version of each algorithm, its role in the corresponding analysis and the contribution of this thesis. To conclude, the following paragraphs outline their role in the $HH\to bb\tau\tau$ analysis, the limits that lie beyond their reach and the extensions that the approach admits.\medskip
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{2.0cm}>{\raggedright\arraybackslash}p{4.0cm}>{\raggedright\arraybackslash}p{4.0cm}}
+\toprule
+Publication & Data & Algorithm & Use in the analysis & Contribution of this thesis \\
+\midrule
+Nonresonant $HH\to bb\tau\tau$~\cite{CMS-HIG-20-010} & Run 2 \newline $138$ fb$^{-1}$ & \textsc{HH-BTag} v1 & $H\to b\bar{b}$ candidate & -- \\
+\addlinespace
+Resonant $HH\to bb\tau\tau$~\cite{CMS-PAS-B2G-24-011} & Run 2 \newline $138$ fb$^{-1}$ & \textsc{HH-BTag} v2 & $H\to b\bar{b}$ candidate & Retraining \\
+\addlinespace
+$ZZ/ZH\to bb\tau\tau$~\cite{CMS:2026zzzh} & Run 2 \newline $138$ fb$^{-1}$ & \textsc{HH-BTag} v2 & $Z/H\to b\bar{b}$ candidate, score as classifier input & Validation on $Z\to b\bar{b}$ decays and dedicated retraining \\
+\midrule
+Nonresonant $HH\to bb\tau\tau$~\cite{CMS-PAS-HIG-25-008} & Run 3 \newline $172$ fb$^{-1}$ & \textsc{HH-BTag} v3 & $H\to b\bar{b}$ candidate, score as classifier input & Retraining with a revised ground truth and updated flavor discriminants \\
+\addlinespace
+ & & \textsc{VBFjTag} & Jet pair selection & Development \\
+\bottomrule
+\end{tabular}
+\caption{Publications in which the \textsc{HH-BTag} and \textsc{VBFjTag} algorithms have been used, with the version of each algorithm (Table \ref{tab:hhbtag_versions}), its use in the analysis and the contribution of this thesis, described in Sections \ref{subsec:hhbtag_run2} for Run 2 and \ref{sec:HHBTag} and \ref{sec:VBFjTag} for Run 3.}
+\label{tab:taggers_publications}
+\end{table}
 
-
-\noindent This chapter has described \textsc{HH-BTag} and \textsc{VBFjTag}, two algorithms that assign the jets of the event to the $H\to b\bar{b}$ candidate and to the VBF topology, respectively, and that substantially and consistently improve upon the explicit criteria they replace. The retraining of the first for the Run 2 resonant search \cite{CMS-PAS-B2G-24-011}, its validation for the study of $ZZ$ and $ZH$ production \cite{CMS:2026zzzh} and its retraining for Run 3 \cite{CMS-PAS-HIG-25-008}, together with the development of the second, constitute the contribution of this thesis presented here. Both share the event representation, the architecture, the training procedure and the evaluation tools, and differ only in the process they describe. To conclude, the following paragraphs outline their role in the $HH\to bb\tau\tau$ analysis, the limits that lie beyond their reach and the extensions that the approach admits.\medskip
 
 
 In the analysis of Chapter \ref{ch:bbtt_analysis}, \textsc{HH-BTag} selects the $H\to b\bar{b}$ candidate in the resolved topology, determining the invariant mass of the $H\to b\bar{b}$ system and the categorization of the events. Its score is also provided to the classifier that extracts the signal as a high-level variable associated with each candidate. By contrast, \textsc{VBFjTag} selects the jet pair on which the VBF category is defined, but its score is not used as a discriminant. Separating the events produced through vector boson fusion from the rest is not the task of the algorithm, which is trained only on the former to rank their candidates, and its score accordingly provides little discrimination between the two production modes.
