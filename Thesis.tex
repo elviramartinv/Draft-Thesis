@@ -21,8 +21,6 @@
 \usepackage{tablefootnote}
 
 
-\usetikzlibrary{positioning}
-
 % ---- Figura 6.1 : paleta por fase del diagrama de flujo -------------------
 \definecolor{phSam}{HTML}{9575CD}  \definecolor{phSamBg}{HTML}{EFE7F8}
 \definecolor{phTrg}{HTML}{E2879F}  \definecolor{phTrgBg}{HTML}{FBE9EE}
@@ -45,7 +43,7 @@
   grp/.style    = {anchor=west, font=\scriptsize\bfseries, inner sep=0pt},
 }
 
-\usetikzlibrary{positioning,arrows.meta}
+\usetikzlibrary{positioning,arrows.meta,fit,backgrounds}
 
 
 % Amplitude structures and colour-coded HEFT couplings (Chapter VII).
@@ -205,6 +203,7 @@
   \usepackage{cochineal}
   \usepackage[cochineal]{newtxmath}
   \setsansfont{Latin Modern Sans}
+  \usepackage[LGR,T1]{fontenc}
   \setmonofont[Scale=MatchLowercase]{Latin Modern Mono}
 \else
   \usepackage[T1]{fontenc}

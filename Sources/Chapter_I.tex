@@ -1297,29 +1297,28 @@ Modifications in the value of $\lambda_{HHH}$ predicted by the SM have a profoun
     \label{fig:HH_xsec_vs_kl}
 \end{figure}
 
-The interference between the diagrams that contribute to HH production results in a minimum of the cross section that is not centered at $\kappa_{\lambda} = 0$, but rather at a shifted value. Gluon fusion production, in particular, shows strong dependence of its cross section on the value of $\kappa_{\lambda}$. Including the top quark Yukawa coupling modifier, $\kappa_t$, the ratio HH ggF production cross section to its SM prediction can be parametrized at leading order in terms of the square of the amplitude of the box and triangle diagrams~\cite{Carvalho:2016rys}:
+The interference between the diagrams that contribute to HH production results in a minimum of the cross section that is not centered at $\kappa_{\lambda} = 0$, but rather at a shifted value. This behavior follows from a structural property of the process. Each LO diagram contributes to the amplitude with a coefficient that depends only on the couplings of its vertices, multiplied by a function of the kinematics that does not depend on them. The cross section, given by the squared modulus of the amplitude, is therefore a polynomial in the couplings with a finite number of terms, each of them the product of a known monomial and a coefficient that carries the kinematics, and since this separation takes place at the level of the amplitude, the same holds for any differential distribution, bin by bin~\cite{Carvalho:2016rys}. For gluon fusion, the amplitude is the sum of the box contribution, proportional to $\kappa_t^2$, and the triangle contribution, proportional to $\kappa_t\kappa_\lambda$ (Figure \ref{fig:HH_ggF_diagrams}), so that the cross section consists of three terms,
+%
 \begin{equation}
-    \frac{\sigma_{HH}}{\sigma_{HH}^{SM}} = 0.28\kappa_{\lambda}^2\kappa_t^2-1.37\kappa_{\lambda}\kappa_t^3+2.09\,\kappa_t^4,
+    \sigma_\text{ggF}(\kappa_\lambda, \kappa_t)
+    = \kappa_t^4\, |A_{\Box}|^2
+    + \kappa_t^2\kappa_\lambda^2\, |A_{\triangle}|^2
+    + \kappa_t^3\kappa_\lambda\, I_{\Box\triangle},
     \label{eq:kl_kt_ggf}
 \end{equation}
 %
-which shows a minimum at $\kappa_{\lambda}/\kappa_t = 2.45$.\medskip
+namely the box and triangle contributions and their interference. Normalized to the SM cross section, the three terms take the values $2.09$, $0.28$ and $-1.37$ at LO~\cite{Carvalho:2016rys}, so that the cross section reaches its minimum at $\kappa_\lambda/\kappa_t = 2.45$.\medskip
 
-A similar approach can be followed for VBF production, whose cross section depends on $\kappa_{\lambda}$ and on the modifiers of the couplings to vector bosons, $\kappa_V=\lambda_V/\lambda_V^{SM}$ and $\kappa_{2V}=\lambda_{2V}/\lambda_{2V}^{SM}$, and can be expressed as
-%
+VBF production depends instead on $\kappa_\lambda$ and on the modifiers of the couplings to vector bosons, $\kappa_V=\lambda_V/\lambda_V^{SM}$ and $\kappa_{2V}=\lambda_{2V}/\lambda_{2V}^{SM}$. Its amplitude is the sum of three contributions, proportional to $\kappa_V\kappa_\lambda$, $\kappa_V^2$ and $\kappa_{2V}$ (Figure \ref{fig:HH_VBF_diagrams}), whose interference gives a cross section with six terms,
 \begin{equation}
-\begin{aligned}
-\sigma_{\text{VBF}}(\kappa_V, \kappa_{2V}, \kappa_\lambda) \simeq \big(\;&
-0.9\, \kappa_V^{2}\, \kappa_\lambda^{2}
-+ 31.4\, \kappa_V^{4}
-+ 16.5\, \kappa_{2V}^{2} \\
-& - 8.6\, \kappa_V^{3}\, \kappa_\lambda
-+ 5.5\, \kappa_V\, \kappa_{2V}\, \kappa_\lambda
-- 44.0\, \kappa_V^{2}\, \kappa_{2V}\,\big)\ \text{fb},
-\end{aligned}
+    \sigma_\text{VBF}(\kappa_V, \kappa_{2V}, \kappa_\lambda)
+    = \kappa_V^4\,a_1 + \kappa_V^2\kappa_\lambda^2\,a_2 + \kappa_{2V}^2\,a_3
+    + \kappa_V^3\kappa_\lambda\,a_4 + \kappa_V^2\kappa_{2V}\,a_5
+    + \kappa_V\kappa_\lambda\kappa_{2V}\,a_6 ,
+    \label{eq:vbf_poly}
 \end{equation}
 %
-where, in fact, the sensitivity to the quartic coupling $\kappa_{2V}$ is much greater than that to modifications of the trilinear self-coupling, as shown in Figure \ref{fig:VBF_modifications}. The image illustrates the VBF HH production cross section, in units of the SM value, as a function of the deviations $\delta_{\kappa_{2V}} = \kappa_{2V} - 1$ and $\delta_{\kappa_{\lambda}} = \kappa_{\lambda} -1$.
+with $a_1 = 31.4$, $a_2 = 0.9$, $a_3 = 16.5$, $a_4 = -8.6$, $a_5 = -44.0$ and $a_6 = 5.5$ fb at $\sqrt{s} = 13$ TeV~\textcolor{red}{\cite{??}}, where, in fact, the sensitivity to the quartic coupling $\kappa_{2V}$ is much greater than that to modifications of the trilinear self-coupling, as shown in Figure \ref{fig:VBF_modifications}. The image illustrates the VBF HH production cross section, in units of the SM value, as a function of the deviations $\delta_{\kappa_{2V}} = \kappa_{2V} - 1$ and $\delta_{\kappa_{\lambda}} = \kappa_{\lambda} -1$.
 A deviation of $0.5$ in $\kappa_{2V}$ enhances the cross section by a factor of about $10$ to $20$, whereas the same deviation in $\kappa_\lambda$ changes it by only about $30\%$, which highlights the much higher sensitivity to $\kappa_{2V}$. Furthermore, the $\kappa_{2V}$ coupling is particularly relevant for providing information on the deep structure of the Higgs sector and the nature of EWSB since, in many BSM models, the standard relation $\kappa_{2V}=\kappa_{V}^2$ no longer holds.\medskip
 %
 \begin{figure}
@@ -1401,8 +1400,7 @@ In contrast, gluon fusion is sensitive to interactions that do not exist in the 
     \label{fig:BSM_diagrams}
 \end{figure}
 
-
-Therefore, the amplitude of $gg\to HH$ is the sum of five contributions, each multiplied by a fixed product of couplings. Consequently, the HH cross section, given by its squared modulus, is at leading order a polynomial in the five couplings with a finite number of terms — the five squared contributions and their ten interferences:
+The amplitude of $gg\to HH$ is therefore the sum of five contributions and, as in Equation \ref{eq:kl_kt_ggf}, the cross section is at leading order a polynomial in the five couplings, with the five squared contributions and their ten interferences:
 %
 \begin{equation}
     R_{HH} = \frac{\sigma_{HH}}{\sigma_{HH}^{SM}} = \sum_{i=1}^{15} A_i\, f_i(\kappa_\lambda,\kappa_t,c_2,c_g,c_{2g}),
