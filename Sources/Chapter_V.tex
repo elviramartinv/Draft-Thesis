@@ -735,28 +735,27 @@ Figure \ref{fig:htautau_mass} compares the three estimates in the $\tau_\mu\tau_
 % eτ	73 GeV	114 GeV (16 %)	122 GeV (3.4 %)	79 %	52 %	61 %
 % τhτh	84 GeV	114 GeV (16 %)	121 GeV (2.8 %)	82 %	50 %	62 %
 %
-%
 \begin{figure}[tbp]
     \centering
-    \makebox[\linewidth][c]{%
-    \begin{subfigure}[b]{0.37\linewidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \includegraphics[width=\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/Htt_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
         \caption{Visible mass}
         \label{fig:htt_mass_vis}
-    \end{subfigure}\hspace{1mm}%
-    \begin{subfigure}[b]{0.37\linewidth}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.32\linewidth}
         \includegraphics[width=\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/Htt_svfit_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
         \caption{\textsc{FastMTT}}
         \label{fig:htt_mass_fastmtt}
-    \end{subfigure}\hspace{1mm}%
-    \begin{subfigure}[b]{0.37\linewidth}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.32\linewidth}
         \includegraphics[width=\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/Htt_regr_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
         \caption{Regression network}
         \label{fig:htt_mass_regr}
-    \end{subfigure}}
+    \end{subfigure}
     \caption[Reconstruction of the $\tau\tau$ system mass]{Mass of the $\tau\tau$ system reconstructed from the visible decay products (a), with \textsc{FastMTT} (b), and with the regression network (c), in the $\tau_\mu\tau_h$ channel and the resolved topology, with no requirement on the reconstructed masses, for the 2024 data. The points show the data and the stacked histograms the background prediction, while the ggF (black) and VBF (blue) signals are scaled to the total background yield. The lower panels show the ratio of the data to the prediction, with the statistical and total uncertainty bands.}
     \label{fig:htautau_mass}
 \end{figure}
+
 
 
 
@@ -784,7 +783,7 @@ In contrast to the case of the $\tau\tau$ system, the mass of the $H\to b\bar{b}
 %
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{figures/chapter_V/Hbb_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
+    \includegraphics[width=0.5\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/Hbb_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
     \caption[Reconstruction of the $b\bar{b}$ system mass]{Mass of the $H\to b\bar{b}$ candidate in the resolved topology, with the same selection and conventions as in Figure \ref{fig:htautau_mass}.}
     \label{fig:hbb_mass}
 \end{figure}
@@ -794,25 +793,27 @@ In contrast to the case of the $\tau\tau$ system, the mass of the $H\to b\bar{b}
 %
 In the final step of the object selection procedure, the VBF jets are assigned. Once the two Higgs boson candidates have been reconstructed, the event is examined to determine whether the jet configuration of the event is consistent with the jets characteristic of vector boson fusion production. The problem is solved with the \textsc{VBFjTag} algorithm (Section \ref{sec:VBFjTag}), used here for the first time in an analysis. Its score is evaluated over all the preselected jets with $|\eta| < 4.7$, including the two jets of the $H\to b\bar{b}$ candidate, which are flagged as such. The pair is then formed by the two jets with the highest scores among those that do not belong to the $H\to b\bar{b}$ candidate, which, when the candidate is boosted, excludes the jets within $\Delta R < 0.8$ of the large-radius jet.\medskip
 
-Figure \ref{fig:vbf_jets} shows the invariant mass and the pseudorapidity separation of the pair selected in this way, before any requirement on its kinematics. In vector boson fusion, the two jets originate from the scattered quarks, emitted at small angles with respect to the beam in opposite hemispheres, so that the pair is separated by several units of pseudorapidity and reaches invariant masses above $1$ TeV. In gluon fusion and in the backgrounds, by contrast, the selected pair is formed by jets from radiation or from the decay of other particles, concentrated at small separations and masses. The identification of a pair is therefore not sufficient to classify an event as vector boson fusion, and additional requirements on these two variables are applied in the categorization, described below.
+% , about a quarter of the resolved selection in this channel, where $t\bar{t}$ production with additional radiation dominates the background and the simulation exceeds the data by about $8\%$, a difference in normalization that is nearly uniform in both variables except at the highest invariant masses.
+% Así que no es que las variables VBF estén peor modeladas que $m_{\tau\tau}$. Lo que pasa es que esos plots seleccionan justo la parte de la muestra donde el MC sobreestima, la de sucesos con jets adicionales.
 
+Figure \ref{fig:vbf_jets} shows the invariant mass and the pseudorapidity separation of the pair selected in this way, before any requirement on its kinematics. These observables are defined only for events with at least two jets in addition to the $H\to b\bar{b}$ candidate. In vector boson fusion, the two jets originate from the scattered quarks, emitted at small angles with respect to the beam in opposite hemispheres, so that the pair is separated by several units of pseudorapidity and reaches invariant masses above $1$ TeV. In gluon fusion and in the backgrounds, by contrast, the selected pair is formed by jets from radiation or from the decay of other particles, concentrated at small separations and masses. The identification of a pair is therefore not sufficient to classify an event as vector boson fusion, and additional requirements on these two variables are applied in the categorization, described below.
+%
 \begin{figure}[tbp]
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{figures/chapter_V/VBFjj_mass_full__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
+        \includegraphics[width=\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/VBFjj_mass_full__mutau_os_iso__pg_forPlots__qcd__stack__logY__norm_sig.pdf}
         \caption{Invariant mass}
         \label{fig:vbf_jets_mjj}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{figures/chapter_V/VBFjj_deltaEta__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
+        \includegraphics[width=\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/VBFjj_deltaEta__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
         \caption{Pseudorapidity separation}
         \label{fig:vbf_jets_deta}
     \end{subfigure}
     \caption[Kinematics of the VBF jet pair]{Invariant mass (a) and pseudorapidity separation (b) of the VBF jet pair, with no requirement on its kinematics and with the same selection and conventions as in Figure \ref{fig:htautau_mass}.}
     \label{fig:vbf_jets}
 \end{figure}
-
 
 
 
@@ -853,19 +854,20 @@ where all quantities are expressed in GeV. The ellipses are much narrower along 
 \begin{figure}[tbp]
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{figures/chapter_V/masscut_mutau_sgn_Htt_regr_mass_1bM.pdf}
+        \includegraphics[width=\linewidth, trim=36bp 9bp 111bp 22bp, clip]{figures/chapter_V/masscut_mutau_sgn_Htt_regr_mass_res12b.pdf}
         \caption{Signal}
         \label{fig:mass_ellipse_sgn}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{figures/chapter_V/masscut_mutau_bkg_Htt_regr_mass_1bM.pdf}
+        \includegraphics[width=\linewidth, trim=36bp 9bp 111bp 22bp, clip]{figures/chapter_V/masscut_mutau_bkg_Htt_regr_mass_res12b.pdf}
         \caption{Background}
         \label{fig:mass_ellipse_bkg}
     \end{subfigure}
-    \caption[Elliptical mass selection]{Distribution of the reconstructed masses of the two Higgs boson candidates, $m_{bb}$ against the regressed $m_{\tau\tau}$, for the \textcolor{red}{[SM ggF]} $HH$ signal (a) and for the sum of the simulated backgrounds (b), in the res1b category of the $\tau_\mu\tau_h$ channel \textcolor{red}{[period / full dataset?]}. The green ellipse delimits the region retained by the mass selection.}
+    \caption[Elliptical mass selection]{Distribution of the reconstructed masses of the two Higgs boson candidates, $m_{bb}$ against the regressed $m_{\tau\tau}$, for the SM ggF and VBF $HH$ signal (a) and for the sum of the simulated backgrounds (b), in the res1b and res2b categories of the $\tau_\mu\tau_h$ channel before the mass selection. The green ellipse delimits the region retained by the mass selection.}
     \label{fig:mass_ellipse}
 \end{figure}
+
 
 
 
@@ -980,7 +982,7 @@ At the HLT, this trigger requires at least four jets with $p_T > 25$ GeV and $H_
 \end{equation}
 %
 
-Each factor is measured in data and simulation in a region enriched in the corresponding objects. The $\tau_h$ leg is measured in $Z\to\tau\tau\to\mu\tau_h$ events selected with a single-muon trigger, with a visible mass between $40$ and $80$ GeV and $m_T < 30$ GeV to suppress $W$+jets, as a function of the $p_T$ and $\eta$ of the $\tau_h$. The two $H_T$ components are measured in the same region as a function of $H_T$, and the $b$ tagging leg in $t\bar{t}$ events selected with an $e\mu$ trigger, as a function of the $b$ tagging score of the leading tagged jet. \textcolor{red}{actualizar si cambiamos esto (y el plot): The $H_T$ scale factors, shown in Figure \ref{fig:quadjet_sf}, depart most from unity below $H_T = 400$ GeV, where the Level-1 requirement is still in its turn-on, so this threshold is imposed offline in the region where the trigger is used.}
+Each factor is measured in data and simulation in a region enriched in the corresponding objects. The $\tau_h$ leg is measured in $Z\to\tau\tau\to\mu\tau_h$ events selected with a single-muon trigger, with a visible mass between $40$ and $80$ GeV and $m_T < 30$ GeV to suppress $W$+jets, as a function of the $p_T$ and $\eta$ of the $\tau_h$. The two $H_T$ components are measured in the same region as a function of $H_T$, and the $b$ tagging leg in $t\bar{t}$ events selected with an $e\mu$ trigger, as a function of the $b$ tagging score of the leading tagged jet. The $H_T$ scale factors, shown in Figure \ref{fig:quadjet_sf}, depart most from unity below $H_T = 400$ GeV, where the Level-1 requirement is still in its turn-on, so this threshold is imposed offline in the region where the trigger is used.}
 %
 \begin{figure}[tbp]
     \centering
@@ -1061,27 +1063,30 @@ With these corrections, the simulated prediction is complete for the signal and 
 \section{Estimation of the jet\texorpdfstring{$\to\tau_h$}{ -> tau h} background}
 \label{sec:bbtt_ff}
 %
-The contribution from events in which a hadronic jet is misidentified as a $\tau_h$, referred to simply as \textit{fakes} hereafter, does not correspond to a specific physical process, but rather comes from QCD multi-jet production, where the misidentified jet can originate from either a quark or a gluon; from top quark pair production, where it comes from the quarks in the decay; and from $W$ boson production in association with jets, where it comes from radiation in the initial or final state. 
+The contribution from events in which a hadronic jet is misidentified as a $\tau_h$, referred to simply as \textit{fakes} hereafter, does not correspond to a single physical process, but rather comes from QCD multi-jet production, where the misidentified jet can originate from either a quark or a gluon; from top quark pair production, where it comes from the quarks in the decay; and from $W$ boson production in association with jets, where it comes from radiation in the initial or final state. 
 
 The decision to model the fakes contribution using data-driven methods is justified by two factors that render MC simulation inaccurate. The first factor is statistical and stems from the low probability that a quark or gluon jet will be identified as a $\tau_h$, ranging from $10^{-2}$ to $10^{-3}$. Combined with the requirement for two additional jets that satisfy the $b$ tagging criteria, this would entail generating an unmanageably large number of simulated events to populate the signal regions with sufficient statistics. The second factor is the imperfect modeling of this misidentification in the simulation, primarily due to its dependence on detector effects. To address both limitations, a data-driven strategy is adopted, with a method that evolves from the one adopted in the Run 2 search, briefly recalled first.
 
 
 \subsection{From the ABCD method to fake factors}
 %
-In Run 2 the method used addressed only the first of these, while misidentified candidates from the other two backgrounds remained within the simulated prediction of their respective processes and were therefore subject to the limitations described above. The estimation was performed using the ABCD method, which measures this contribution in regions where it is dominant and then transfers it to the signal region. The regions in which the measurement is taken are constructed by separately and jointly inverting the condition on the relative charge of the two $\tau$ candidates and the identification criterion for the $\tau_h$ candidate. Under this approach, the shape of the distribution was inferred directly from one of the defined regions, and its normalization from the ratio of the other two. The procedure thus assumed that a single transfer factor and a single template were sufficient to describe a background that is actually a mixture of processes with different misidentification rates\footnote{The validity of these assumptions was the subject of a specific study conducted as part of this thesis, which is included in Appendix~\ref{app:abcd_validation}.}. \textcolor{red}{lo pongo en un apendice? lo pongo aquí? no lo pongo?}
+In Run 2 the method used addressed only the QCD contribution, while misidentified candidates from the other two backgrounds remained within the simulated prediction of their respective processes and were therefore subject to the limitations described above. The estimation was performed using the ABCD method, which measures this contribution in regions where it is dominant and then transfers it to the signal region. The regions in which the measurement is taken are constructed by separately and jointly inverting the condition on the relative charge of the two $\tau$ candidates and the identification criterion for the $\tau_h$ candidate. Under this approach, the shape of the distribution was inferred directly from one of the defined regions, and its normalization from the ratio of the other two. The procedure thus assumed that a single transfer factor and a single template were sufficient to describe a background that is actually a mixture of processes with different misidentification rates. The validity of these assumptions was the subject of a specific study conducted as part of this thesis, which is included in Appendix~\ref{app:abcd_validation}.
 
 \subsection{Derivation and application of the fake factors}
 %
-The \textit{fake factors} method adopted in Run 3 is based on the same principle of measuring the misidentification rate in sideband regions and transferring it to the region of interest. However, the data-driven approach is no longer limited to QCD multi-jet production but is extended to all three main processes. Consequently, the simulation of $t\bar{t}$ and $W$+jets is restricted to events in which the $\tau_h$ candidate corresponds to a generated particle, and those originating from a jet are now estimated entirely from the data, so that this contribution is not counted twice. For each process, a region where it dominates is defined, and the ratio of the number of candidates that satisfy the identification criterion of the signal region to those that do not is measured in that region. This ratio is known as the fake factor and allows the number of events with a misidentified jet that contaminate the signal region to be predicted from the candidates that fail the criterion. The procedure is independent for each of the three contributing processes — which have different misidentification rates — and is parameterized based on the kinematics of the candidate rather than averaged over it, as was done in Run 2.\medskip
+The \textit{fake factors} method adopted in Run 3 is based on the same principle of measuring the misidentification rate in sideband regions and transferring it to the signal region, but it extends the data-driven estimate to the three processes. Accordingly, the simulated $t\bar{t}$ and $W$+jets samples retain only the events in which the $\tau_h$ candidate corresponds to a generated $\tau$ lepton, electron, or muon, so that the events with a misidentified jet are not counted twice. For each process, a sideband region in which that process dominates is defined, and the fake factor is measured there as the ratio between the number of events whose $\tau_h$ candidate passes the Medium working point of the \textsc{DeepTau} discriminant against jets, as required in the signal region, and the number of events whose candidate fails it. Since each event contributes a single $\tau_h$ candidate to this test, counting events and counting candidates is equivalent. The fake factors are measured separately for each process, since their misidentification rates differ, and as a function of the kinematics of the $\tau_h$ candidate rather than as a single average value, as was done in Run 2.\medskip
+
 
 
 The method is based on four regions, represented in Figure~\ref{fig:ff_regions}: the signal region itself and three sideband regions, each enriched in one of the processes. The sideband regions are constructed using the selection described in Section \ref{sec:bbtt_flow}, by relaxing or inverting some of the conditions that were deliberately left unapplied:
 %
 \begin{itemize}
-    \item The QCD multi-jet region requires that the two $\tau$ candidates have the same charge to eliminate contributions from processes involving genuine $\tau\tau$ pairs, such as the signal, thereby achieving a purity of $99\%$. Furthermore, since its composition is particularly sensitive to topology and to the tagging requirements of the $H\to b\bar{b}$ candidate — in multi-jet events, tagged jets can be light, charm, or $b\bar{b}$ gluon-splitting pairs, which significantly alters the flavor composition and, with it, the misidentification rate — it is defined separately for each category of the analysis.
-    \item The $t\bar{t}$ region is obtained by inverting the elliptic selection in the plane of the two reconstructed masses, a mechanism that serves to eliminate the signal and thus allows the requirement for opposite charges in the signal region to be maintained. A purity of $95\%$ is achieved.
-    \item The $W$+jets region is obtained by selecting candidates with the same charge and imposing $p_T^\text{miss} > 60$ GeV and $m_T > 30$ GeV, with the aim of selecting the leptonic decay of the $W$ boson and excluding events containing jets tagged at the loose working point. Since these cuts also select any event involving neutrinos, including the signal and processes with a genuine $\tau\tau$ pair, it is again required that the candidates have the same charge. The purity achieved in this case is reduced to $80\%$, which is due to the fact that this process lacks a unique signature that distinguishes it from the others.
+    \item The QCD multi-jet region requires the two $\tau$ candidates to have the same charge, which removes the processes with a genuine $\tau\tau$ pair, including the signal, and yields a purity of $99\%$. Since the flavor of the tagged jets in multi-jet events — light, charm, or $b\bar{b}$ pairs from gluon splitting — depends strongly on the topology and on the tagging requirements, and with it the misidentification rate, this region is defined separately for each category of the analysis.
+    \item The $t\bar{t}$ region inverts the elliptic selection in the plane of the two reconstructed masses, which removes the signal while keeping the opposite-charge requirement of the signal region, and yields a purity of $95\%$.
+    \item The $W$+jets region requires $p_T^\text{miss} > 60$ GeV and $m_T > 30$ GeV to select the leptonic decay of the $W$ boson, and vetoes jets tagged at the Loose working point. Since these cuts also select any process with neutrinos, including the signal and processes with a genuine $\tau\tau$ pair, the candidates are again required to have the same charge. The purity is lower, $80\%$, since this process lacks a signature that distinguishes it from the others.
 \end{itemize}
+
+
 %El método asume que el cociente entre candidatos que superan y no superan el criterio de identificación no depende de esa configuración
 
 %Respecto al 80% Su impacto sobre la estimación queda, no obstante, acotado por tres motivos.
@@ -1092,11 +1097,11 @@ The method is based on four regions, represented in Figure~\ref{fig:ff_regions}:
 % último, $FF_{Wj}$ entra en la estimación final pesado por la fracción de sucesos de $W$+jets
 % en la región plantilla.
 
-Each of the four regions is further subdivided into two depending on whether the second candidate in the pair — $\tau_h$ in all cases — passes the Medium working point of the jet discriminator. In both halves, the contribution correctly predicted by the simulation, i.e., the genuine $\tau_h$s and the light leptons erroneously identified as $\tau_h$s, is subtracted from the data, leaving only misidentified jets.
+Each of the four regions is divided into two halves according to whether the $\tau_h$ candidate to which the method is applied passes or fails the Medium working point. In the semileptonic channels this is the only $\tau_h$ of the pair. In the $\tau_h\tau_h$ channel it is the second one, while the first must pass the Medium working point in both halves, as in the signal region, so that the method estimates the events in which the second candidate is a misidentified jet. In both halves, the contributions that the simulation describes correctly — genuine $\tau_h$ candidates and light leptons misidentified as $\tau_h$ — are subtracted from the data, so that only events with a misidentified jet remain.
 
-Next, the number of data events in both halves is counted in each of the three sideband regions, and the fake factor of the corresponding process, $FF_\text{MJ}$, $FF_{t\bar{t}}$, and $FF_{Wj}$, is calculated as the ratio of the number of events that exceed the Medium WP to the number of events that do not. It is this factor that ultimately allows estimation of the number of jets that would pass the identification criterion, which cannot be isolated from the rest, based on the events that fail the criterion, which can be counted directly.
+In each sideband region, the fake factor of the corresponding process, $FF_\text{MJ}$, $FF_{t\bar{t}}$, or $FF_{Wj}$, is the ratio of the number of events in the passing half to that in the failing half. It therefore converts the number of events whose misidentified jet fails the identification criterion, which can be counted directly, into the number of events whose misidentified jet would pass it and thus be misidentified as a $\tau_h$ in the signal region, which cannot be isolated from the rest.
 
-Once the fake factor is obtained, it is applied to half of the region that meets the same criteria as the signal region, except that it does not exceed the Medium WP, and which is called the \textit{template} region. Therefore, multiplying the number of events in the template region by the fake factor yields the prediction of misidentified jets in the signal region. However, since it is not possible to distinguish which process produces each jet in the template, a different factor cannot be applied to each one. Instead, the fractions of $t\bar{t}$, $W$+jets, and QCD multi-jets that make up the region are estimated: the first two are from the simulation as a function of the $p_T$ of the candidate, and the third is deduced as the remainder, resulting in a single combined fake factor,
+In the signal region, the failing half, called the \textit{template} region, plays the role of this denominator, and multiplying its number of events by the fake factor yields the number of events with a misidentified jet expected in the signal region. Since the process from which each misidentified jet originates is unknown, the three fake factors are combined according to the fractions of $t\bar{t}$ ($r_{t\bar{t}}$) and $W$+jets ($r_{Wj}$) events in the template region, taken from the simulation as a function of the $p_T$ of the candidate, while the QCD multi-jet fraction is deduced as the remainder,
 %
 \begin{equation}
     FF = r_{t\bar{t}} \cdot FF_{t\bar{t}} + r_{Wj} \cdot FF_{Wj}
@@ -1104,23 +1109,20 @@ Once the fake factor is obtained, it is applied to half of the region that meets
     \label{eq:fake_factor}
 \end{equation}
 % 
-which is evaluated for each event in the template based on the kinematics of its candidate and applied as a weight. The resulting distribution constitutes the prediction of fakes in the signal region.
+which is evaluated for each event of the template region from the kinematics of its candidate and applied as a weight, so that the weighted template provides both the normalization and the shape of the prediction of fakes in the signal region.
+%
 % Los \textit{fake factors} se derivan por separado para cada canal y periodo de toma de datos, en función del $p_T$ del candidato y distinguiendo entre las regiones de barril y de tapas del
 % detector; en el caso de multi-jet QCD, además, para cada categoría del análisis.
 %
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=\linewidth]{figures/chapter_V/ff_regions.pdf}
+    \includegraphics[width=\linewidth, trim=4bp 0bp 0bp 13bp, clip]{figures/chapter_V/ff_regions.pdf}
     \caption[Regions used in the Fake Factor method]{%
         Schematic representation of the regions used to estimate the
         contribution of fakes based on the data. Each region is divided into two halves depending on whether the $\tau_h$ candidate passes (top) or fails (bottom) the Medium WP of the discriminant against jets. In the sideband regions, the ratio between the two halves defines the fake factor of each process; the lower half of the signal region is the
         template region, to which they are applied.}
     \label{fig:ff_regions}
 \end{figure}
-
-\medskip
-\textcolor{red}{quad jet trigger 2024 as a exception?}
-In 2024, the QuadJet parking trigger selects a population of fakes with a markedly different composition, since only one of the four jets it requires online is identified as a $\tau$. In the $\tau_h\tau_h$ channel, the fake factors are therefore derived separately for the region selected by this trigger and for the rest of the phase space. \textcolor{red}{esto lo quito?}
 
 
 \subsection{Validation of the method} 
@@ -1150,6 +1152,8 @@ The prediction of the background in each signal region has been described. While
 \section{Systematic uncertainties}
 \label{sec:bbtt_systematics}
 %
+Each element of the prediction described in the previous sections carries an uncertainty, and the resulting sources of uncertainty fall into three families. Theoretical uncertainties reflect the limited knowledge of the cross sections and branching fractions used to normalize the simulated samples, and the effect of the same variations on the fraction of selected events. Experimental uncertainties stem from the integrated luminosity and from the limited precision of the corrections in Section \ref{sec:bbtt_corrections}, which also affect the estimate of misidentified jets in Section \ref{sec:bbtt_ff} through the objects that define its regions. Statistical uncertainties, finally, reflect the finite number of events, both in the simulated samples and in the regions used for that estimate.
+
 Each element that comprises the prediction described in the previous sections is associated with uncertainty, and the resulting sources of uncertainty fall into three distinct categories. Theoretical uncertainties reflect the limited knowledge of the cross sections and branching fractions used to normalize the simulated samples, as well as the effect that these same variations have on the fraction of events that survive selection. Experimental uncertainties stem from the measurement of the integrated luminosity and the calibration of the reconstructed objects: the object- and process-level corrections in Section \ref{sec:bbtt_corrections} are known with limited precision, and these are further compounded by the uncertainties affecting the estimation of misidentified jets in Section \ref{sec:bbtt_ff}, which depends on the calibration of the objects used to define their regions. Statistical uncertainties, finally, reflect the finite number of available events, both in the simulated samples and in the regions used for that estimation.
 
 The following subsections review these sources, which are grouped according to the part of the prediction they affect, and their distribution among the three families is discussed in Section \ref{sec:bbtt_results} when examining their impact on the final result. All of them are incorporated into the statistical model as nuisance parameters, which can modify either only the normalization of the affected process or also the shape of its distributions. The treatment of these parameters in the likelihood function is described in Section \ref{sec:stat_framework}\textcolor{red}{tengo que escribir esa seccion y ver si la referencio aqui, mi idea es que vaya en el capitulo II}.
