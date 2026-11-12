@@ -716,23 +716,41 @@ The boosted $\tau_h\tau_h$ channel is considered only for events without light l
 %
 Every $\tau$ decay contains at least one neutrino that escapes detection, so that the invariant mass of the visible decay products is shifted well below $125$ GeV and has a large width. In Run 2, the mass was instead estimated with the SVfit algorithm~\cite{fastmtt}, a likelihood method that evaluates the compatibility of each mass hypothesis with the measured momenta of the visible products and with $p_T^\text{miss}$, of which \textsc{FastMTT}~\cite{Kalinowski:2025vci} is a faster, simplified version. In Run 3, this method is replaced by a neural network that regresses the momenta of the neutrinos, so that the mass follows from the sum of the reconstructed four-momenta. The network receives categorical variables describing the event -- such as the channel and the decay mode and charge of each $\tau$ -- together with the four-momenta of the $\tau$ and $b$ jet candidates and of the systems they form, $p_T^\text{miss}$ with its covariance matrix, and the jet tagging scores. It is trained separately for each period on signal and on Drell--Yan, $t\bar{t}$, and $t\bar{t}H$ samples, and the boosted events, too few for training, are evaluated as $\tau_h\tau_h$.
 
-Figure \ref{fig:htautau_mass} compares the three estimates in the $\tau_\mu\tau_h$ channel. The visible mass places the signal around $70$ GeV, completely overlapping with the Drell--Yan peak. \textsc{FastMTT} recovers the scale but leaves a width comparable to the distance between the two peaks, while the regression concentrates the signal in a narrow peak around $125$ GeV, clearly separated from Drell--Yan. The resolution improves by about $50\%$ with respect to \textsc{FastMTT}, and the background rejection by $30$ to $40\%$ depending on the channel.\textcolor{red}{estos numeros están cogidos de una presentacion, si no lo puedo poner más generico, no se si puedo calcularlo yo} In the purely leptonic control channels, which do not enter the signal extraction, \textsc{FastMTT} is still used.
+Figure \ref{fig:htautau_mass} compares the three estimates in the $\tau_\mu\tau_h$ channel. The visible mass places the signal around $70$ GeV, completely overlapping with the Drell--Yan peak. \textsc{FastMTT} recovers the scale but leaves a width comparable to the distance between the two peaks, while the regression concentrates the signal in a narrow peak around $122$ GeV, clearly separated from Drell--Yan. The resolution improves by about $80\%$ ($75\%$) for the ggF (VBF) signal with respect to \textsc{FastMTT}, and the background rejection by $50$ ($39$) to $55\%$ ($48\%$) depending on the channel. In the purely leptonic control channels, which do not enter the signal extraction, \textsc{FastMTT} is still used.
+%The resolution is quantified as σ/μ of a Gaussian fit to the core of the signal peak; the background rejection is evaluated in the narrowest mass window containing 68% of the signal, so that all methods are compared at the same signal efficiency.
+%RESOLUCION:Para cada método se ajusta una gaussiana solo a la parte central del pico de la señal, sin las colas:
+% Se empieza con μ en el bin más alto y σ igual al RMS del histograma.
+% Se ajusta una gaussiana en el intervalo [μ − 1.5σ, μ + 1.5σ].
+% Con los μ y σ nuevos se repite el ajuste, hasta que dejan de cambiar.
+% El resultado es la posición del pico, μ (los valores X e Y de tu frase), y su anchura, σ. La resolución relativa es σ/μ, y la mejora es cuánto se reduce σ/μ al pasar de FastMTT a la regresión:
+% mejora = 1 − (σ/μ)<sub>regresión</sub> / (σ/μ)<sub>FastMTT</sub>
+%REDUCCION DE FONDOS
+% No tendría sentido comparar el fondo en una ventana fija, porque los picos tienen anchuras muy distintas. En su lugar se compara cuánto fondo hay que aceptar para quedarse con la misma fracción de señal:
+% Para cada método se busca la ventana de masa más estrecha que contiene el 68 % de la señal. Si el último bin solo se necesita en parte, se toma la fracción necesaria suponiendo el contenido uniforme dentro del bin, para que la eficiencia sea exactamente 0.68 en todos los métodos.
+% Se integra el fondo (total, y aparte solo el DY) dentro de esa misma ventana.
+% La reducción es:
+% reducción = 1 − B<sub>regresión</sub> / B<sub>FastMTT</sub>
+% Canal	Pico visible	Pico FastMTT (σ/μ)	Pico regresión (σ/μ)	Mejora en σ/μ	Menos fondo total	Menos DY
+% μτ	70 GeV	113 GeV (17 %)	122 GeV (3.2 %)	81 %	55 %	72 %
+% eτ	73 GeV	114 GeV (16 %)	122 GeV (3.4 %)	79 %	52 %	61 %
+% τhτh	84 GeV	114 GeV (16 %)	121 GeV (2.8 %)	82 %	50 %	62 %
+%
 %
 \begin{figure}[tbp]
     \centering
-    \begin{subfigure}[b]{0.34\linewidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \includegraphics[width=\linewidth]{figures/chapter_V/Htt_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
         \caption{Visible mass}
         \label{fig:htt_mass_vis}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.34\linewidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \includegraphics[width=\linewidth]{figures/chapter_V/Htt_svfit_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
         \caption{\textsc{FastMTT}}
         \label{fig:htt_mass_fastmtt}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.34\linewidth}
+    \begin{subfigure}[b]{0.32\linewidth}
         \includegraphics[width=\linewidth]{figures/chapter_V/Htt_regr_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
         \caption{Regression network}
         \label{fig:htt_mass_regr}
@@ -765,7 +783,7 @@ In contrast to the case of the $\tau\tau$ system, the mass of the $H\to b\bar{b}
 %
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{figures/chapter_V/Hbb_mass}
+    \includegraphics[width=0.5\linewidth]{figures/chapter_V/Hbb_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
     \caption[Reconstruction of the $b\bar{b}$ system mass]{Mass of the $H\to b\bar{b}$ candidate in the resolved topology, with no requirement on the reconstructed masses, in the $\tau_\mu\tau_h$ channel for the 2024 data. The points show the data and the stacked histograms the background prediction, while the ggF (black) and VBF (blue) signals are scaled to the total background yield. The lower panel shows the ratio of the data to the prediction, with the statistical and total uncertainty bands.}
     \label{fig:hbb_mass}
 \end{figure}
@@ -810,25 +828,24 @@ For these resolved categories, the high statistics also allow for a further sele
 \end{align}
 %
 where all quantities are expressed in GeV. The ellipses are much narrower along $m_{H\tau\tau}$ than along $m_{Hbb}$, since it is in the former direction that the background is most widely distributed, and therefore where a narrow cut is most effective. No mass selection is applied in the boosted and VBF categories, where the statistics are already limited, nor in the res1b and res2b categories of the $b\tau_h\tau_h$ channel.
-
-
 %
 \begin{figure}[tbp]
     \centering
     \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{figures/chapter_V/masscut_mutau_sgn.png}
+        \includegraphics[width=\linewidth]{figures/chapter_V/masscut_mutau_sgn_Htt_regr_mass_1bM.pdf}
         \caption{Signal}
         \label{fig:mass_ellipse_sgn}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.49\linewidth}
-        \includegraphics[width=\linewidth]{figures/chapter_V/masscut_mutau_bkg.png}
+        \includegraphics[width=\linewidth]{figures/chapter_V/masscut_mutau_bkg_Htt_regr_mass_1bM.pdf}
         \caption{Background}
         \label{fig:mass_ellipse_bkg}
     \end{subfigure}
-    \caption[Elliptical mass selection]{Distribution of the reconstructed masses of the two Higgs boson candidates, $m_{bb}$ against the regressed $m_{\tau\tau}$, for the SM HH signal (a) and for the sum of the simulated backgrounds (b), in the $\tau_\mu\tau_h$ channel for the 2022postEE period.. The green ellipse delimits the region retained by the mass selection.\textcolor{red}{Intentar regenerar quitando el Preliminary? y poniendo 13.6TeV}}
+    \caption[Elliptical mass selection]{Distribution of the reconstructed masses of the two Higgs boson candidates, $m_{bb}$ against the regressed $m_{\tau\tau}$, for the \textcolor{red}{[SM ggF]} $HH$ signal (a) and for the sum of the simulated backgrounds (b), in the res1b category of the $\tau_\mu\tau_h$ channel \textcolor{red}{[period / full dataset?]}. The green ellipse delimits the region retained by the mass selection.}
     \label{fig:mass_ellipse}
 \end{figure}
+
 
 
 \subsubsection{Vector boson fusion category}
@@ -908,7 +925,7 @@ This defines the set of regions over which the measurement is performed. However
 \section{Corrections to simulated events}
 \label{sec:bbtt_corrections}
 %
-The processes that populate the regions defined in the previous section, along with the generators used to simulate them, were listed in Section \ref{sec:bbtt_samples}. Although the simulated samples are reconstructed using the same algorithms as the data, the simulation is unable to accurately reproduce either the conditions under which the data were collected or the detector response to each object. There are also known shortcomings in the generator that affect the description of the $p_T$ in the two dominant backgrounds of the analysis, Drell--Yan and $t\bar{t}$, and which must be corrected. Therefore, correction factors or scale factors are introduced into the simulated events to improve the agreement between the data and the simulation. The scale factors can modify the total yield of specific samples, either by weighting each event according to its characteristics, or by modifying the four-momentum of particular objects.
+The processes that populate the regions defined in the previous section, along with the generators used to simulate them, were listed in Section \ref{sec:bbtt_samples}. Although the simulated samples are reconstructed using the same algorithms as the data, the simulation is unable to accurately reproduce either the conditions under which the data were collected or the detector response to each object. There are also known shortcomings in the generator that affect the description of the $p_T$ in the two dominant backgrounds of the analysis, Drell--Yan and $t\bar{t}$, and which must be corrected. Therefore, correction factors or scale factors are introduced into the simulated events to improve the agreement between the data and the simulation. The scale factors act in two ways: some weight each event according to its characteristics, which changes the expected number of events of the sample; others modify the four-momentum of specific objects, which changes their distributions and, since objects can then cross the selection thresholds, also the number of selected events.
 
 In many cases, these corrections are derived centrally in CMS and are common to all analyses. However, there are others that depend on trigger paths, objects, or phase spaces specific to this search, and which are in consequence derived and validated within the analysis itself. All correction factors applied to the simulated events are described below, and their associated uncertainties are described in Section \ref{sec:bbtt_systematics}.
 
@@ -923,19 +940,17 @@ The corrections included in this subsection do not depend on the simulated physi
 %
 \subsubsection{Pile-up reweighting}
 %
-The pile-up profile is set in advance for each simulation campaign based on the expected running conditions of the LHC. However, the profile actually recorded differs from this, and since the pile-up profile influences the detector response and the reconstruction of all objects, it is necessary to correct this discrepancy. Following the procedure recommended for Run 3, each simulated event is weighted according to the ratio of the distribution of the number of interactions in the data to that in the simulation.
+The pile-up profile is set in advance for each simulation campaign based on the expected running conditions of the LHC. However, the profile actually recorded differs from this, and since pile-up affects the detector response and, to an extent that depends on the object, its reconstruction, this discrepancy must be corrected. Following the procedure recommended for Run 3, each simulated event is weighted according to the ratio of the distribution of the number of interactions in the data to that in the simulation.
+
+
 
 \subsubsection{Trigger efficiency scale factors}
 %
-Trigger paths apply equally to data and simulation, but their efficiency may differ significantly between the two, requiring a correction using scale factors evaluated event-by-event and defined as the ratio of the efficiencies measured in data to those measured in simulation. For the single-lepton paths and for the lepton and $\tau_h$ legs of the cross paths, these factors are derived from centrally provided measurements, as a function of the $p_T$ of the object, and, for $\tau_h$, of its decay mode. Their combination, however, depends on the strategy of each analysis. The choice here is to use the logical OR of the single-lepton and cross paths in the semileptonic channels, whose efficiency is constructed from those of each leg under the assumption that they are uncorrelated.\medskip
+The trigger selection is applied equally to data and simulation, but its efficiency may differ between the two, and it is corrected with scale factors evaluated event by event as the ratio of the efficiencies measured in data and in simulation. For the single-lepton triggers and for the lepton and $\tau_h$ legs of the cross triggers, these efficiencies are provided centrally as a function of the $p_T$ of the object and, for $\tau_h$, of its decay mode. In the semileptonic channels, where the logical OR of both triggers is used, its efficiency is obtained by adding the efficiency of the single-lepton trigger and that of the cross trigger, and subtracting the overlap between the two. Each of these terms is built from the efficiencies of the individual legs, under the assumption that the lepton and $\tau_h$ legs are uncorrelated.\medskip
 
-The paths introduced in Run 3 and described in Section \ref{sec:triggers} lack central calibrations, and their efficiencies and scale factors are therefore measured within the analysis. This is the case for the jet leg of the DiTau+Jet path, for the path based on $p_T^\text{miss}$, for the $\tau\tau$-tagging component of the path based on large-radius jets — whose jet component is taken from the corresponding Run 3 search in the $4b$ final
-state — for the VBF paths, and for the QuadJet parking path. Specifically, the scale factors of the QuadJet path, introduced in 2024 for the $\tau_h\tau_h$ final state, were derived as part of this thesis.
+The triggers introduced in Run 3 and described in Section \ref{sec:triggers} lack central calibrations, and their scale factors are therefore measured within the analysis. This is the case for the jet leg of DiTau+Jet, for the $p_T^\text{miss}$ trigger, for the $\tau\tau$-tagging component of the large-radius jet trigger — whose jet component is taken from the corresponding Run 3 search in the $4b$ final state — for the VBF triggers, and for the QuadJet parking trigger. All of them follow the same approach. Each trigger is split into components that can be measured separately, and the efficiency of each is determined in data and simulation using a reference trigger that does not bias it, typically a single-lepton trigger or one sharing the remaining requirements. The QuadJet trigger, introduced in 2024 for the $\tau_h\tau_h$ final state and whose scale factors were derived as part of this thesis, is described below as a representative example
 
-
-%For the new paths introduced in Run 3 and described in Section \ref{sec:triggers}, which lack of central calibrations, the efficiencies and scale factors are measured within the analysis. This is the case for the jet leg of the DiTau+Jet path, of the paths based on $p_T^\text{miss}$ and on large-radius jets, of the VBF paths, and of the QuadJet parking path. Specifically, the scale factors of the QuadJet path, introduced in 2024 for the $\tau_h\tau_h$ final state, were derived as part of this thesis. 
-
-The path requires $H_T > 250$ GeV, where $H_T$ is the scalar sum of the jet $p_T$, and at least four jets with $p_T > 25$ GeV, one of them passing an online \textsc{ParticleNet} $b$ tagging requirement and another an online \textsc{ParticleNet} $\tau_h$ identification requirement. Accordingly, its efficiency is broken down into the contributions of these three elements, with the $H_T$ requirement further split into its Level-1 and HLT components:
+At the HLT, this trigger requires at least four jets with $p_T > 25$ GeV and $H_T > 250$ GeV, where $H_T$ is the scalar sum of the jet $p_T$, with one jet passing an online \textsc{ParticleNet} $b$ tagging requirement and another an online \textsc{ParticleNet} $\tau_h$ identification requirement. At Level-1, among the seeds that feed the path, the analysis requires the one with $H_T > 280$ GeV, computed from the Level-1 jets. Accordingly, its efficiency is broken down into these elements, with the $H_T$ requirement split into its Level-1 and HLT components,
 %
 \begin{equation}
     \varepsilon_\text{QuadJet} = \varepsilon_{H_T}^\text{L1}\cdot\varepsilon_{H_T}^\text{HLT}
@@ -944,8 +959,8 @@ The path requires $H_T > 250$ GeV, where $H_T$ is the scalar sum of the jet $p_T
 \end{equation}
 %
 
-Each factor is measured in both data and simulations, in a region enriched in events containing the corresponding objects and selected with a reference trigger that does not bias it. In this way, the $\tau_h$ leg is measured in $Z\to\tau\tau\to\mu\tau_h$ events selected with a single-muon trigger, requiring a visible mass between $40$ and $80$ GeV and $m_T < 30$ GeV to suppress $W$+jets, and is parameterized as a function of the $p_T$ and $\eta$ of the $\tau_h$. The two $H_T$ components are measured in the same region as a function of $H_T$, and the resulting scale factors are shown in Figure \ref{fig:quadjet_sf}. Conversely, the $b$ tagging leg is measured in $t\bar{t}$ events selected with an $e\mu$ trigger, as a function of the $b$ tagging score of the leading tagged jet. Since the Level-1 requirement becomes fully efficient only above $H_T = 400$ GeV, this threshold is imposed offline in the region where the path is used. 
-
+Each factor is measured in data and simulation in a region enriched in the corresponding objects. The $\tau_h$ leg is measured in $Z\to\tau\tau\to\mu\tau_h$ events selected with a single-muon trigger, with a visible mass between $40$ and $80$ GeV and $m_T < 30$ GeV to suppress $W$+jets, as a function of the $p_T$ and $\eta$ of the $\tau_h$. The two $H_T$ components are measured in the same region as a function of $H_T$, and the $b$ tagging leg in $t\bar{t}$ events selected with an $e\mu$ trigger, as a function of the $b$ tagging score of the leading tagged jet. \textcolor{red}{actualizar si cambiamos esto (y el plot): The $H_T$ scale factors, shown in Figure \ref{fig:quadjet_sf}, depart most from unity below $H_T = 400$ GeV, where the Level-1 requirement is still in its turn-on, so this threshold is imposed offline in the region where the trigger is used.}
+%
 \begin{figure}[tbp]
     \centering
     \includegraphics[width=\linewidth]{figures/chapter_V/quadjet_trigger_sf_HT.pdf}
@@ -955,24 +970,31 @@ Each factor is measured in both data and simulations, in a region enriched in ev
     \label{fig:quadjet_sf}
 \end{figure}
 
-The factorization neglects possible correlations between the components, and it is therefore validated in simulated signal events by comparing the efficiency obtained from Equation \ref{eq:quadjet_eff} with that measured directly, as shown in Figure \ref{fig:quadjet_closure}. The residual non-closure, of up to $15\%$ in the configuration used in the analysis, is assigned
-as an additional uncertainty.
+The factorization relies on two simplifications whose combined effect must be checked. First, it neglects possible correlations between the components. Second, the $\tau_h$ and $b$ tagging efficiencies are evaluated only for the leading $\tau_h$ and $b$ jet candidates, which are the ones required to match the trigger objects in the analysis, whereas the trigger may also have been fired by the subleading ones. The factorized efficiency therefore misses this fraction of the events and is expected to underestimate the true one. Both effects are tested in simulated ggF signal events of the $\tau_h\tau_h$ channel with $H_T > 400$ GeV, by comparing the efficiency obtained from Equation \ref{eq:quadjet_eff} with the fraction of events that fire the trigger. The comparison is shown in Figure \ref{fig:quadjet_closure} as a function of the $p_T$ of the leading $b$ jet, a variable on which none of the factors is parameterized, so that the closure is not satisfied by construction. The factorized efficiency is systematically lower, by up to about $15\%$, and this non-closure is assigned as an additional uncertainty.
+%
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.6\linewidth]{figures/chapter_V/quadjet_trigger_closure.pdf}
+    \caption[Closure of the factorized QuadJet trigger efficiency]{%
+        Efficiency of the QuadJet parking trigger in simulated ggF signal events of the
+        $\tau_h\tau_h$ channel with $H_T > 400$ GeV, as a function of the $p_T$ of the leading
+        $b$ jet, measured directly (black) and obtained from the product of the factorized
+        components (red), evaluated on the leading $\tau_h$ and $b$ jet candidates only, as in the configuration used in the analysis, with their ratio in the lower panel.}
+    \label{fig:quadjet_closure}
+\end{figure}
 
 
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=\linewidth]{figures/chapter_V/quadjet_trigger_closure.pdf}
+    \includegraphics[width=0.6\linewidth]{figures/chapter_V/closure_1d_vs_bjet1pt.pdf}
     \caption[Closure of the factorized QuadJet trigger efficiency]{%
-        Efficiency of the QuadJet parking path in simulated ggF signal events of the
-        $\tau_h\tau_h$ channel, as a function of the $p_T$ of the leading $b$ jet, measured
-        directly (black) and obtained from the product of the factorized components (red),
-        with their ratio in the lower panels. \textcolor{red}{On the left, any of the $\tau_h$ and $b$ jet
-        candidates may be matched to the trigger objects; on the right, only the leading ones,
-        as in the configuration used in the analysis. No se si me interesa mucho enseñar esto, o mostra solo la figura derecha en cualquier caso debería repetir estas figuras}}
+        Efficiency of the QuadJet parking trigger in simulated ggF signal events of the
+        $\tau_h\tau_h$ channel with $H_T > 400$ GeV, as a function of the $p_T$ of the leading
+        $b$ jet, measured directly (black) and obtained from the product of the factorized
+        components evaluated on the leading $\tau_h$ and $b$ jet candidates (red), with their
+        ratio in the lower panel.}
     \label{fig:quadjet_closure}
 \end{figure}
-
-The scale factors of the remaining paths introduced in Run 3 follow the same general approach: each path is split into the components that can be measured separately, and the efficiency of each is determined in data and simulation using a reference trigger that does not bias it, typically a single-lepton path or a path sharing the remaining requirements. The QuadJet path, for which the factorization was moreover validated explicitly in simulation, has been described in detail as a representative example of this procedure, and the derivation for the other paths is not discussed further here.
 
 
 \subsubsection{Muons and electrons}
@@ -988,8 +1010,7 @@ The $\tau_h$ candidates reconstructed with the dedicated algorithm for boosted t
 
 \subsubsection{Jets and \texorpdfstring{$p_T^\text{miss}$}{pTmiss}}
 %
-The jet energy is calibrated with the standard CMS jet energy corrections, which account for the pile-up contribution, the non-linearity of the detector response, and residual differences between data and simulation. Moreover, the Run 3 data show a significant deterioration in the jet energy resolution compared to the simulation. This discrepancy is corrected by degrading the resolution of the simulated jets. Accordingly, if the reconstructed jet can be matched to a jet built from generated particles, its four-momentum is scaled according to the $p_T$ difference between the two; otherwise, a random smearing is applied. All these corrections are propagated to $p_T^\text{miss}$, which is computed from the momenta of
-the reconstructed objects and would otherwise be inconsistent with the corrected jets.
+The jet energy is calibrated with the standard CMS jet energy corrections, which account for the pile-up contribution, the non-linearity of the detector response, and residual differences between data and simulation. Moreover, the jet energy resolution measured in data is worse than in simulation, which is corrected by degrading the resolution of the simulated jets. Accordingly, if the reconstructed jet can be matched to a jet built from generated particles, its four-momentum is scaled according to the $p_T$ difference between the two; otherwise, a random smearing is applied. All these corrections are propagated to $p_T^\text{miss}$, which is computed from the momenta of the reconstructed objects and would otherwise be inconsistent with the corrected jets.
 %In 2024, in addition to the region $2.5 < |\eta| < 3.0$ excluded at preselection, the residual correction of data jets with $p_T < 30$ GeV in $2.0 < |\eta| < 2.5$ is evaluated as if they had $p_T = 30$ GeV. 
 
 
@@ -997,91 +1018,34 @@ the reconstructed objects and would otherwise be inconsistent with the corrected
 
 \subsubsection{Identification of \texorpdfstring{$b$}{b} jets}
 %
-The selection of $b$ jets relies not only on working points of the discriminant but also on its continuous value, which is among the inputs of the networks described in Chapter \ref{ch:taggers}. The correction must therefore reproduce the shape of the distribution, and not only the efficiency at a given working point. In the 2022 and 2023 periods, the \textsc{ParticleNet} discriminant is corrected with per-event weights that modify its shape, provided centrally as a function of the discriminant value, the $p_T$, and the pseudorapidity of the jet, and measured in regions enriched in heavy- and light-flavor jets. Since these weights also alter the total number of events, which should be preserved, their effect is measured in a
-region without tagging requirements and compensated with a normalization factor derived per period, channel, and process as a function of the number of jets.
+The selection of $b$ jets relies not only on working points of the discriminant but also on its continuous value, which enters the networks described in Chapter \ref{ch:taggers}, so the correction must reproduce the shape of its distribution and not only the efficiency at a working point. In 2022 and 2023, the \textsc{ParticleNet} discriminant is corrected with centrally provided per-event weights that modify its shape, measured in regions enriched in heavy- and light-flavor jets as a function of the discriminant value and of the $p_T$ and $\eta$ of the jet. Since these weights also alter the total number of events, which should be preserved, their effect is measured in a region without tagging requirements and compensated with a normalization factor derived per period, channel, and process as a function of the number of jets.
 
-For \textsc{UParT}, in 2024, no continuous correction is available, and a correction defined per working point of the discriminant is applied instead. The central scale factors of each working point are combined with tagging efficiencies measured in simulation in the phase space of the analysis, as a function of the $p_T$, pseudorapidity, and flavor of the jet, and separately for the two signal production modes, for Drell--Yan, for $t\bar{t}$, and for the remaining processes, given their different flavor composition.
+For \textsc{UParT}, used in 2024, no shape correction is available, and the central scale factors of each working point are applied instead. They are combined with tagging efficiencies measured in simulation in the phase space of the analysis, as a function of the $p_T$, $\eta$, and flavor of the jet, and separately for each signal production mode, Drell--Yan, $t\bar{t}$, and the remaining processes, given their different flavor composition.
 
 %The central scale factors of each working point are combined with tagging efficiencies measured in simulation in the phase space of the analysis, which are needed to translate the scale factors into a per-event weight, since the probability of a jet failing a working point depends on its efficiency in simulation.
 
 
-For large-radius jets, the \textsc{ParticleNet} discriminant used to identify the merged $H\to b\bar{b}$ candidate is corrected with the central scale factors only for jets matched at generator level to an $H\to b\bar{b}$ or $Z\to b\bar{b}$ decay. All other jets passing the requirement are misidentified, since in the backgrounds, the selected jet may originate from radiation, gluon splitting, or a top quark decay, with an internal structure that differs from that of a two-body decay, and those corrections do not apply. A dedicated calibration is therefore derived, by measuring in data the efficiency of the tagging requirement for jets in Drell--Yan-like and $t\bar{t}$-like configurations, in two bins of $p_T$ and after subtracting the remaining backgrounds, and comparing it with that in simulation.
+For large-radius jets, the central scale factors of the \textsc{ParticleNet} discriminant are derived for jets that contain the two $b$ quarks from the decay of a single particle, and are therefore applied only to jets matched at generator level to a $H\to b\bar{b}$ or $Z\to b\bar{b}$ decay. In the backgrounds, however, the selected jet usually originates from radiation, gluon splitting, or a top quark decay, whose internal structure differs from that of such jets, so these scale factors do not apply. For these misidentified jets, a dedicated correction is derived by comparing the efficiency of the tagging requirement in data and simulation for jets in Drell--Yan-like and $t\bar{t}$-like events, in two bins of $p_T$ and after subtracting the remaining backgrounds.
 
 
 
 \subsection{Process-specific corrections}
 \label{subsec:bbtt_process_corrections}
 %
-The corrections described so far address the response of the detector and are common to all simulated samples. The simulation of the two dominant backgrounds, however, is also limited by the description of the physics process itself, which no object-level correction can account for. In both cases the shortcoming concerns the $p_T$ spectrum of the produced heavy particle, which is shaped by QCD radiation and by higher-order effects that the generators describe only approximately. In Drell--Yan production, the simulation does not correctly reproduce the $p_T$ of the $Z$ boson, and the corresponding correction is measured in data, in control channels with two light leptons of the same flavor where this process is practically the only one present. In top quark pair production, the $p_T$ of the top quark is corrected instead by means of a theoretical calculation at higher order than that achieved by the generator, without any measurement in data.
+The corrections described so far address the detector response and are common to all simulated samples. The simulation of the two dominant backgrounds, however, is also limited by the generators themselves, which describe only approximately the $p_T$ spectrum of the produced heavy particle, since it is shaped by QCD radiation and by higher-order effects.\medskip
 
-%Shortcomings in the generator affecting the dominant backgrounds affect the description of the transverse momentum in both cases. In Drell--Yan production, the simulation does not correctly reproduce the $p_T$ of the $Z$ boson; the corresponding correction is obtained by comparing data and simulation in control channels involving two light leptons of the same flavor, where this process is practically the only one present. In contrast, in $t\bar{t}$ production, the correction to the $p_T$ of the top quark is not measured from the data but is taken from a theoretical calculation of a higher order than that achieved by the simulator. The remaining processes, whose contribution to the total number of events in the signal regions is small, are entirely simulated, both in shape and in normalization.
+In Drell--Yan production, the simulation does not reproduce the $p_T$ of the $Z$ boson, and the corresponding correction is measured in data, in control channels with two light leptons of the same flavor where this process is practically the only one present. The dedicated correction is derived within the analysis in the $\mu\mu$ channel, in a Drell--Yan enriched region with a dilepton mass between $70$ and $110$ GeV and $p_T^\text{miss} < 45$ GeV, keeping the jet requirements of the topologies described in Section \ref{sec:bbtt_flow}. The ratio between the data, after subtracting the other simulated processes, and the Drell--Yan simulation is measured as a function of the $p_T$ of the muon pair, separately for events with two, three, and four or more central jets\footnote{This division stems from the fact that the $p_T$ of the boson and the jet multiplicity are not independent variables, but rather reflect the QCD radiation of the initial state, whose simulation loses precision as the number of emitted partons increases, necessitating separate corrections for each jet-number region.}, and fitted with a function that is Gaussian at low $p_T$ and linear at high $p_T$. Since the $p_T$ of the $Z$ boson cannot be reconstructed in the signal regions, where the $\tau$ decays include neutrinos, the resulting weight is applied as a function of its generated value. This weight restores the agreement in the $p_T$ of the muon pair and in the number of central jets, but not in the number of $b$-tagged jets for events with four or more central jets, so a second normalization factor is measured in bins of the number of central jets, $n_\text{jets} = 2, 3, 4, 5, \geq 6$, and of $b$-tagged jets, $n_{b\,\text{jets}} = 0, 1, \geq 2$. The final correction is the product of the two factors, and the $ee$ channel, not used in its derivation, is reserved for its validation.\medskip
 
+In top quark pair production, the generator predicts a harder top quark $p_T$ spectrum than observed in data, a well-documented effect of the missing higher-order corrections. In this case the correction is not measured from the data, but taken from the ratio between the differential cross section at NNLO in QCD with NLO electroweak corrections and the prediction of \POWHEG{} interfaced with \PYTHIA{}, computed at $13$ TeV  — the energy at which this calculation is available — and extrapolated to the Run 3 center-of-mass energy by a second factor. Since the top quark is not reconstructed in the analysis, the weight is evaluated with the generated $p_T$ of the quark and the antiquark, and the geometric mean of the two is applied.\medskip
 
-%
-
-\subsubsection{Drell--Yan background modeling}
-%
-Before applying the Drell--Yan production MC prediction to the analysis, it is necessary to correct the $p_T$ distribution of the $Z$ boson, which the simulation does not reproduce correctly. To measure this discrepancy, the Drell--Yan enriched channels, $ee$ and $\mu\mu$, which were reserved for this purpose in the channel definition, are used. Within them, the region in which the correction is derived is defined by an invariant mass window is defined around the $Z$ peak, between $70$ and $110$ GeV, and it is additionally required that the $p_T^\text{miss}$ reconstructed using the PUPPI algorithm be less than $45$ GeV, exploiting the specific properties of the Drell--Yan contribution to ensure a region enriched in this process. The requirements for the jets that define the topologies described in Section \ref{sec:bbtt_flow} remain unchanged, since the goal is to reproduce the phase space of the signal regions in all but the lepton pair, in order to isolate the Drell--Yan contribution.\medskip
-
-% la primera explota el carácter resonante de $Z\to\ell\ell$ frente al continuo en masa invariante que produce $t\bar{t}$, y la segunda la ausencia de neutrinos en la desintegración del $Z$, frente a los dos que acompañan a la desintegración leptónica de los $W$.
-
-% Initially, it was decided to use the correction factors derived in the context of the $H\to\tau\tau$ analysis and made available to the entire group to account for this known discrepancy. However, the phase-space description of this search proved insufficient; consequently, the final version employs a derivation of our own, consisting of a multidimensional correction obtained directly from the data and designed to capture the relevant kinematic dependencies with greater accuracy. \textcolor{red}{innecesario este parrafo?}
-%Since the corrections centrally provided for the $H\to\tau\tau$ analysis proved insufficient
-%in the phase space of this search, a dedicated multidimensional correction is derived within
-%the analysis itself.
-
-
-A dedicated multidimensional correction is derived withing the analysis itself to account for this discrepancy. The strategy begins by calculating the ratio of the data, after subtracting the simulated contribution from all processes other than Drell--Yan, to the Drell--Yan simulation, as a function of the reconstructed $p_T$ of the muon pair\footnote{In the $Z\to\mu\mu$ decay, the two muons reproduce the $p_T$ of the $Z$ boson with the resolution characteristic of muon reconstruction, making it a preferred variable against which to measure the discrepancy}. This calculation is performed separately in three regions defined by the number of central jets in the event: two, three, or four or more\footnote{This division stems from the fact that the $p_T$ of the boson and the jet multiplicity are not independent variables, but rather reflect the QCD radiation of the initial state, whose simulation loses precision as the number of emitted partons increases, necessitating separate corrections for each jet-number region.}. The resulting ratio is then fitted to a function composed of a Gaussian in the low-$p_T$ regime and a straight line in the high regime, linked by a transition function whose crossover point is also a free parameter of the fit. Figure \ref{fig:dy_fit} shows the result for the region with exactly two central jets, along with the uncertainty bands associated with each fitting regime, which are treated as independent sources in the final fit and whose derivation is detailed in Section \ref{sec:bbtt_systematics}.
-
-%La Figura \ref{fig:dy_fit} muestra el resultado para la región de exactamente dos jets centrales, donde las incertidumbres de los parámetros libres se agrupan en dos fuentes independientes asociadas a cada uno de los dos regímenes, y la variación asociada a cada una de ellas se obtiene tomando el punto de transición resultante del ajuste nominal y desplazando el contenido de los intervalos pertenecientes al régimen considerado en $1.5$ veces su incertidumbres estadística, hacia arriba y hacia abajo, y repitiendo el ajuste con los del otro régimen inalterados. 
-%
-\begin{figure}[tbp]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/chapter_V/DY_reweighting_fit.pdf}
-    \caption[Drell--Yan reweighting fit]{%
-        Fit of the ratio between the data, minus the contribution from processes other than Drell--Yan, and the Drell--Yan simulation, as a function of the reconstructed $p_T$ of the muon pair, in the Drell--Yan enriched derivation region with exactly two central jets. The nominal fit is shown as
-        a black line, and the left and right envelopes correspond to the
-        uncertainties of the Gaussian and linear regimes, respectively. Analogous fits
-        are performed for the remaining jet-number categories.}
-    \label{fig:dy_fit}
-\end{figure}
-%
-The weight obtained using this method is not applied based on the reconstructed $p_T$, but rather on the generated $p_T$, since in the signal regions the momentum of the neutrinos originating from $\tau$ decays is not reconstructed. The equivalence between the two has been verified previously in the same dedicated derivation region. This correction restores agreement between the data and simulation in the $p_T$ of the pair, in the number of central jets, and in the number of $b$-tagged jets for events with two and three central jets, but not for those with four or more. An additional normalization factor is therefore introduced, measured over five bins of the number of central jets $n_\text{jets} = 2, 3, 4, 5, \geq 6$, and three bins of the number of $b$-tagged jets, $n_{b\,\text{jets}} = 0, 1, \geq 2$.\medskip
-
-The final correction factor applied to the Drell--Yan simulation is the product of both factors. In the strategy followed, the derivation is performed on the $\mu\mu$ channel, so that the $ee$ channel is reserved for final validation, where satisfactory agreement is observed across all data-taking periods. Figure \ref{fig:dy_correction} shows the effect of the correction on two of these distributions, in the region in which it is derived; the agreement that results once the categorization of the analysis is applied is examined in Section \ref{sec:bbtt_controlplots}.
-
-
-%where satisfactory agreement is observed across all data-taking periods. Figure \ref{fig:dy_correction} shows the effect of the correction on two of these distributions.
-
-
-\begin{figure}[tbp]
-    \centering
-    \includegraphics[width=\linewidth]{figures/chapter_V/DY_correction_ptll.pdf}\\[2mm]
-    \includegraphics[width=\linewidth]{figures/chapter_V/DY_correction_njets.pdf}
-    \caption[Effect of the Drell--Yan correction]{%
-        Distributions of $p_T$ for the muon pair (top) and the number of jets (bottom) in the
-        Drell--Yan enriched derivation region, in the $\mu\mu$ channel, before (left) and
-        after (right) applying the correction, for the 2022preEE run.}
-    \label{fig:dy_correction}
-\end{figure}
-
-
-\subsubsection{Top quark pair background modeling}
-% Shape from simulation, normalisation corrected: top pT reweighting from the
-% NNLO QCD + NLO EW / POWHEG+PYTHIA8 ratio.
-The other dominant contribution in the signal regions comes from the production of top quark pairs since this process yields two genuine $b$ jets and two genuine leptons in their dileptonic decays, thereby fully reproducing the signal final state. While the simulation reasonably describes the process as a whole, it again fails to model the transverse momentum spectrum, predicting a harder top quark $p_T$ spectrum than that observed in the data. The origin of this discrepancy, however, is well documented in the experiment and is attributed to the absence of higher-order corrections in the generator used.
-
-Unlike in the previous case, control regions to derive the correction factor are not used. Instead, the correction is given by the ratio between the calculation of the differential cross section for top quark pair production as a function of the $p_T$ of the top quark at NNLO in QCD with NLO electroweak corrections and the prediction from the \POWHEG{} generator interfaced with \PYTHIA{}, evaluated at $13$ TeV — the energy at which this calculation is available. Subsequently, a second factor extrapolates this correction to the Run 3 center-of-mass energy. The resulting weight is a function of the $p_T$ of the top quark, which is not reconstructed in the analysis but is taken directly from the generated information. Therefore, the factor is evaluated separately for the quark and the antiquark in the event, and the weight ultimately applied is the geometric mean of the two.
+With these corrections, the simulated prediction is complete for the signal and for the backgrounds with genuine $\tau_h$ candidates, while the remaining processes are taken directly from the simulation in both shape and normalization. Its agreement with the data in regions enriched in Drell--Yan and $t\bar{t}$ production is shown in Section \ref{subsec:bbtt_cr}. The only background not described in this way is that of events in which a jet is misidentified as a $\tau_h$, whose estimation from data is the subject of the next section.
 
 %This is a theoretical correction rather than a measurement, and no independent estimate of its accuracy is available. Consequently, it is associated with an uncertainty equal to the magnitude of the correction itself: the variations are obtained by applying the factor twice and without applying it at all, so that the nominal weight falls midway between the two. 
 
-The agreement between the data and the resulting simulation is verified in a control region enriched in this process, described in Section \ref{sec:bbtt_controlplots}\bigskip
 
 %defined over the \textit{res2b} category -- which is where the process is most abundant due to the requirement that both $b$-jets be tagged -- and by replacing the $\tau\tau$ pair with the final state $e\mu$, where the semileptonic and dileptonic decays of the $t\bar{t}$ pair completely dominate.\\\\
 
 
-
-With these corrections, the simulated prediction is complete, both for the signal and for the backgrounds with genuine $\tau_h$ candidates: the dominant ones with the process-specific corrections just described, and the remaining ones as given by the simulation, in both shape and normalization. The only component of the background that is not described in this way is that of events in which a jet is misidentified as a $\tau_h$, whose estimation from data is the subject of the next section.
 
 
 
@@ -1318,7 +1282,7 @@ The uncertainties associated with the corrections to the two dominant background
 
 
 %Sus incertidumbres se evalúan por tanto dentro del propio análisis, y ambas se propagan como pesos, puesto que ambas correcciones lo son.
-The Drell--Yan correction is the product of two factors, each of which contributes its own sources of uncertainty. The first factor is the fit of the ratio between the data and the simulation as a function of the $p_T$ of the pair of muons, and gives rise to the uncertainty in its free parameters. Rather than treating each parameter separately, they are grouped according to the fitting regime to which they belong, resulting in two independent sources — one associated with the Gaussian regime and the other with the linear regime. To construct each of these, the transition point resulting from the nominal fit is taken, and the content of the bins falling within the regime under consideration is shifted by $1.5$ times its statistical uncertainty, both upward and downward. The fit is repeated while leaving the bins of the other regime unchanged. The functions obtained in this way define the two variations and correspond to the bands shown in Figure \ref{fig:dy_fit}. \textcolor{red}{explicar mejor esto, a mi no me queda muy claro asi..}
+The Drell--Yan correction is the product of two factors, each of which contributes its own sources of uncertainty. The first factor is the fit of the ratio between the data and the simulation as a function of the $p_T$ of the pair of muons, and gives rise to the uncertainty in its free parameters. Rather than treating each parameter separately, they are grouped according to the fitting regime to which they belong, resulting in two independent sources — one associated with the Gaussian regime and the other with the linear regime. To construct each of these, the transition point resulting from the nominal fit is taken, and the content of the bins falling within the regime under consideration is shifted by $1.5$ times its statistical uncertainty, both upward and downward. The fit is repeated while leaving the bins of the other regime unchanged. The functions obtained in this way define the two variations. \textcolor{red}{explicar mejor esto, a mi no me queda muy claro asi..}
 
 The second factor is the additional normalization, measured over five bins of the number of central jets, $n_\text{jets} = 2, 3, 4, 5, \geq 6$, and three bins of the number of jets tagged as originating from a $b$ quark, $n_{b\,\text{jets}} = 0, 1, \geq 2$. This gives rise to the statistical uncertainty of the measurement itself, grouped into three independent sources — one for each bin of $n_{b\,\text{jets}}$ — and within each source, the five bins of $n_\text{jets}$ shift collectively.\medskip
 
@@ -1359,6 +1323,7 @@ The comparison is presented in two steps. First, it shows the agreement in contr
 
 
 \subsection{Control regions}
+\label{subsec:bbtt_cr}
 %
 The two regions of focus here are enriched in the two dominant backgrounds, the Drell--Yan production and the top quark pair production, both originating from the simulation and subject to specific corrections. The remaining simulated processes include only the common corrections, and their combined contribution — grouped under \textit{Others} in the figures — is small. The prediction from misidentified jets does not contribute in these regions, and their behavior within the analysis categories is examined directly in the following subsection.
 
@@ -1372,7 +1337,9 @@ The Drell--Yan-enriched region corresponds to the res1b category in the $ee$ and
 
 Regarding the $t\bar{t}$ production, the res2b category is used to exploit the two genuine $b$ jets produced by the decays of the top quark pair, isolating the process with very high purity. Moreover, an $e\mu$ pair with opposite charges is required to further suppress the Drell--Yan contribution, which enables the verification that the prediction resulting from the dedicated correction describes the observed data.\medskip
 
-Figure \ref{fig:control_regions} illustrates a comparison between the data and the prediction in both regions, for two observables on which neither correction was derived, but to which both are sensitive: the angular separation between the two leptons in the Drell--Yan-enriched region, and the $p_T$ of the leading $b$ jet in the $t\bar{t}$-enriched region. The prediction agrees with the data within the uncertainties in both cases.
+Figures \ref{fig:cr_dy} and \ref{fig:cr_tt} compare the data and the prediction in the two regions for the complete 2022–2024 dataset. \textcolor{red}{[Some of the observables, such as the $p_T$ of the lepton pair, are directly affected by the corrections, while others, such as XXX, were not used in their derivation but are sensitive to them.]} The prediction agrees with the data within the uncertainties in both regions.
+
+    Figure \ref{fig:control_regions} illustrates a comparison between the data and the prediction in both regions, for two observables on which neither correction was derived, but to which both are sensitive: the angular separation between the two leptons in the Drell--Yan-enriched region, and the $p_T$ of the leading $b$ jet in the $t\bar{t}$-enriched region. The prediction agrees with the data within the uncertainties in both cases.
 
 
 \begin{figure}[tbp]
@@ -1386,6 +1353,37 @@ Figure \ref{fig:control_regions} illustrates a comparison between the data and t
         systematic uncertainty of the prediction.}
     \label{fig:control_regions}
 \end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    % TODO: replace each \fbox with \includegraphics[width=0.49\linewidth]{figures/chapter_V/cr_dy_<var>.pdf}
+    \fbox{\parbox[c][0.33\linewidth][c]{0.46\linewidth}{\centering DY: variable 1}}\hfill
+    \fbox{\parbox[c][0.33\linewidth][c]{0.46\linewidth}{\centering DY: variable 2}}\\[2mm]
+    \fbox{\parbox[c][0.33\linewidth][c]{0.46\linewidth}{\centering DY: variable 3}}\hfill
+    \fbox{\parbox[c][0.33\linewidth][c]{0.46\linewidth}{\centering DY: variable 4}}
+    \caption[Data and prediction in the Drell--Yan control region]{%
+        Comparison of the data and the prediction in the Drell--Yan-enriched control region, for
+        \textcolor{red}{[variable 1] (top left), [variable 2] (top right), [variable 3] (bottom left), and [variable 4] (bottom right)},
+        for the complete 2022--2024 dataset. The shaded band represents the statistical and
+        systematic uncertainty of the prediction.}
+    \label{fig:cr_dy}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    % TODO: replace each \fbox with \includegraphics[width=0.49\linewidth]{figures/chapter_V/cr_ttbar_<var>.pdf}
+    \fbox{\parbox[c][0.33\linewidth][c]{0.46\linewidth}{\centering $t\bar{t}$: variable 1}}\hfill
+    \fbox{\parbox[c][0.33\linewidth][c]{0.46\linewidth}{\centering $t\bar{t}$: variable 2}}\\[2mm]
+    \fbox{\parbox[c][0.33\linewidth][c]{0.46\linewidth}{\centering $t\bar{t}$: variable 3}}\hfill
+    \fbox{\parbox[c][0.33\linewidth][c]{0.46\linewidth}{\centering $t\bar{t}$: variable 4}}
+    \caption[Data and prediction in the $t\bar{t}$ control region]{%
+        Comparison of the data and the prediction in the $t\bar{t}$-enriched control region, for
+        \textcolor{red}{[variable 1] (top left), [variable 2] (top right), [variable 3] (bottom left), and [variable 4] (bottom right)},
+        for the complete 2022--2024 dataset. The shaded band represents the statistical and
+        systematic uncertainty of the prediction.}
+    \label{fig:cr_tt}
+\end{figure}
+
 
 
 \subsection{Distributions in the categories of the analysis}
