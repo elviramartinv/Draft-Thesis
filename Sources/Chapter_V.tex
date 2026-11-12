@@ -530,7 +530,7 @@ Muons are selected within the acceptance of the muon system, $|\eta| < 2.4$, wit
 %
 %Hadronic $\tau$ leptons are reconstructed using the \textit{hadrons-plus-strips} algorithm and identified using \textsc{DeepTau} 2018 v2.5, as described in Section \ref{sec:DeepTau2.5}. Candidates with $p_T > 20$ $(25)$ GeV and $|\eta| < 2.5$ are accepted, provided they are compatible with the primary vertex via $|d_z| < 0.2$ cm, and reconstructed in one of the decay modes with one or three charged hadrons, with or without associated neutral pions. Against electrons, the VVLoose working point is required in all channels; against muons, the Tight working point is used in the semileptonic channels and the VLoose one in $\tau_h\tau_h$, where contamination from light leptons is negligible. For jets, however, preselection is maintained at the loosest available working point, \textit{VVVLoose}; the \textit{Medium} point, which defines the signal region, is applied later, so that the band between the two remains available for constructing the control regions used to estimate the misidentified jet background. In the boosted channel, where the two $\tau$ particles are so collimated that their decay products fall within the same jet, the candidates come from the dedicated reconstruction described in Chapter \ref{ch:Tau} and are identified using the version of \textsc{DeepTau} trained specifically for this regime.
 
-Hadronic $\tau$ leptons are reconstructed with the hadrons-plus-strips algorithm and identified using \textsc{DeepTau} 2018 v2.5 (Section \ref{sec:DeepTau2.5}). Candidates with $p_T > 20$ GeV, $|\eta| < 2.5$, and $|d_z| < 0.2$ cm are accepted if reconstructed in a decay mode with one or three charged hadrons, with or without neutral pions. In the resolved channels, the discriminant against electrons is required at the VVLoose WP; against muons, the Tight WP is used in the semileptonic channels and the VLoose one in $\tau_h\tau_h$, where the contamination from light leptons is negligible. Against jets, only the loosest WP, VVVLoose, is required at this stage. The Medium WP, which defines the signal region, is applied later, so that the candidates between the two remain available for estimating the misidentified jet background. In the boosted channel, the candidates come from the dedicated reconstruction described in Section \ref{subsec:Taus} and are identified with the version of \textsc{DeepTau} trained for this regime, with the same preselection and a threshold that rises to $25$ GeV in 2024.
+Hadronic $\tau$ leptons are reconstructed with the hadrons-plus-strips algorithm and identified using \textsc{DeepTau} 2018 v2.5 (Section \ref{sec:DeepTau2.5}). Candidates with $p_T > 20$ GeV, $|\eta| < 2.5$, and $|d_z| < 0.2$ cm are accepted if reconstructed in a decay mode with one or three charged hadrons, with or without neutral pions. In the resolved channels, the discriminant against electrons is required at the VVLoose WP; against muons, the Tight WP is used in the semileptonic channels and the VLoose one in $\tau_h\tau_h$, where the contamination from light leptons is negligible. Against jets, only the loosest WP, VVVLoose, is required at this stage. The Medium WP, which defines the signal region, is applied later, so that the candidates between the two remain available for estimating the misidentified jet background. In the boosted $\tau_h\tau_h$ channel, the candidates come from the dedicated reconstruction described in Section \ref{subsec:Taus} and are identified with the version of \textsc{DeepTau} trained for this regime, with the same preselection and a threshold that rises to $25$ GeV in 2024.
 
 
 \subsection{Jets and heavy-flavor identification}
@@ -542,7 +542,7 @@ Jets are clustered from the Particle Flow candidates with the anti-$k_T$ algorit
 
 \subsection{Missing transverse momentum}
 %
-The missing transverse momentum is not preselected, but it enters the reconstruction of the $\tau\tau$ mass, together with its covariance matrix, and the definition of several control and sideband regions. The version computed with the PUPPI weights (Section \ref{subsec:MET}) is used, owing to its reduced sensitivity to pile-up, with the corrections to the energy of the jets and $\tau_h$ candidates propagated to it. The only exception is the threshold that separates the two triggers of the boosted channel, which is applied to the version computed from all the Particle Flow candidates. In addition, events in which a large and unphysical $p_T^\text{miss}$ can arise from detector noise, beam halo, poorly reconstructed vertices, or misreconstructed muons are rejected with the filters recommended centrally by the collaboration.
+The missing transverse momentum is not preselected, but it enters the reconstruction of the $\tau\tau$ mass, together with its covariance matrix, and the definition of several control and sideband regions. The version computed with the PUPPI weights (Section \ref{subsec:MET}) is used, owing to its reduced sensitivity to pile-up, with the corrections to the energy of the jets and $\tau_h$ candidates propagated to it. The only exception is the threshold that separates the two triggers of the boosted $\tau_h\tau_h$ channel, which is applied to the version computed from all the Particle Flow candidates. In addition, events in which a large and unphysical $p_T^\text{miss}$ can arise from detector noise, beam halo, poorly reconstructed vertices, or misreconstructed muons are rejected with the filters recommended centrally by the collaboration.
 
 
 
@@ -735,14 +735,14 @@ Figure \ref{fig:htautau_mass} compares the three estimates in the $\tau_\mu\tau_
     \hfill
     \begin{subfigure}[b]{0.32\linewidth}
         \includegraphics[width=\linewidth]{figures/chapter_V/Htt_regr_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
-        \caption{Regression DNN}
+        \caption{Regression network}
         \label{fig:htt_mass_regr}
     \end{subfigure}
-    \caption[Reconstruction of the $\tau\tau$ system mass]{%
-            Mass of the $\tau\tau$ system reconstructed using the three methods, in the
-            $\tau_\mu\tau_h$ channel for the data collected in 2022postEE. The black points and error bars represent the data; the background histograms are stacked; the black and cyan histograms represent the gluon fusion and vector boson fusion signals, respectively, both normalized to the background yield. The bottom panels report the ratio between the data and the background hypothesis. The shaded band in all panels represents the statistical uncertainty only.}
+    \caption[Reconstruction of the $\tau\tau$ system mass]{Mass of the $\tau\tau$ system reconstructed from the visible decay products (a), with \textsc{FastMTT} (b), and with the regression network (c), in the $\tau_\mu\tau_h$ channel and the resolved topology, with no requirement on the reconstructed masses, for the 2024 data. The points show the data and the stacked histograms the background prediction, while the ggF (black) and VBF (blue) signals are scaled to the total background yield. The lower panels show the ratio of the data to the prediction, with the statistical and total uncertainty bands.}
     \label{fig:htautau_mass}
 \end{figure}
+
+
 
 % INNECESARIO?
 %Además del output del neutrino momenta, la red tiene otra salida que simultaneously classifies the events entre señal y los fondos con el objetivo de guiar el entrenamiento y mejorar la regresión al obligar a lared a aprender representaciones que distinguen los procesos. Las entradas a la red combinan variables categóricas, como el canal del suceso, el modo de desintegración y la carga de cada $\tau$, con las variables continuas, que comprenden los cuadrimomentos de los candidatos $\tau$, de los candidatos a jet de $b$ y de los sistemas que forman entre sí, el momento transverso perdido con su matriz de covarianza, y las puntuaciones de etiquetado de los jets.
@@ -762,7 +762,15 @@ To cover the collimated regime, the large-radius jet with the highest \textsc{Pa
 
 \subsubsection{\texorpdfstring{$H\to b\bar{b}$}{H->bb} mass reconstruction}
 %
-In contrast to the case of the $\tau\tau$ system, the mass of the $H\to b\bar{b}$ candidate is derived entirely from visible observables. In the resolved topology, the reconstructed mass is simply the invariant mass of the system formed by the two jets of the candidate. In the boosted topology, it corresponds to the mass of the large-radius jet. Nevertheless, the peak of the distribution appears slightly below the expected $125$ GeV, since the semileptonic decays of the $B$ hadrons produced in the hadronization of $b$ quarks contain neutrinos that also escape detection, carrying away part of the momentum of the jet. The effect, however, is a residual shift of the peak, not a degradation comparable to that of the $\tau\tau$ system; therefore, it is not corrected.
+In contrast to the case of the $\tau\tau$ system, the mass of the $H\to b\bar{b}$ candidate is derived entirely from visible observables. In the resolved topology, the reconstructed mass is simply the invariant mass of the system formed by the two jets of the candidate. In the boosted topology, it corresponds to the mass of the large-radius jet. Nevertheless, the peak of the distribution appears slightly below the expected $125$ GeV, since the semileptonic decays of the $B$ hadrons produced in the hadronization of $b$ quarks contain neutrinos that also escape detection, carrying away part of the momentum of the jet. The effect, however, is a residual shift of the peak, not a degradation comparable to that of the $\tau\tau$ system; therefore, it is not corrected. The resulting distribution is shown in Figure \ref{fig:hbb_mass} for the resolved topology, where the signal forms a peak slightly below $125$ GeV, much narrower than the broad distribution of the $t\bar{t}$ background, whose two $b$ jets originate from different top quarks.
+%
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/chapter_V/Hbb_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
+    \caption[Reconstruction of the $b\bar{b}$ system mass]{Mass of the $H\to b\bar{b}$ candidate in the resolved topology, with no requirement on the reconstructed masses, in the $\tau_\mu\tau_h$ channel for the 2024 data. The points show the data and the stacked histograms the background prediction, while the ggF (black) and VBF (blue) signals are scaled to the total background yield. The lower panel shows the ratio of the data to the prediction, with the statistical and total uncertainty bands.}
+    \label{fig:hbb_mass}
+\end{figure}
+
 
 \subsection{The VBF jets assignment}
 %
@@ -783,7 +791,8 @@ The distinction between vector boson fusion and gluon fusion events, whether boo
 
 \subsubsection{Gluon-gluon fusion categories}
 %
-The first category examined is the least populated of the four, $b\bar{b}$-boosted gluon fusion, which includes events in which the identified large-radius jet satisfies $p_T > 300$ GeV, $|\eta| < 2.5$, and a soft-drop mass between $80$ and $170$ GeV. Additionally, the large-radius jet must pass a custom \textsc{ParticleNet} threshold of $0.75$, optimized specifically for this analysis.
+The first category examined is the least populated of the four, $b\bar{b}$-boosted gluon fusion, which includes events in which the identified large-radius jet satisfies $p_T > 300$ GeV, $|\eta| < 2.5$, and a soft-drop mass between $80$ and $170$ GeV. Additionally, the large-radius jet must pass a custom \textsc{ParticleNet} threshold of $0.75$, optimized specifically for this analysis. Since it is defined only by the topology of the $H\to b\bar{b}$ candidate, this category also accepts events produced through vector boson fusion, but it is grouped with gluon fusion because this production mode dominates its signal content and its events are scored by the gluon fusion discriminant (Section \ref{sec:bbtt_extraction}).
+
 
 % Additionally, the large-radius jet must pass a threshold of $0.75$ on the \textsc{ParticleNet}
 % discriminant. In the absence of centrally calibrated working points for Run 3, this value was
@@ -801,7 +810,9 @@ For these resolved categories, the high statistics also allow for a further sele
     \tau_h\tau_h   &: \left(\frac{m_{H\tau\tau} - 130}{36}\right)^{2} + \left(\frac{m_{Hbb} - 125}{222}\right)^{2} \leq 1,
 \end{align}
 %
-where all quantities are expressed in GeV. The ellipses are much narrower along $m_{H\tau\tau}$ than along $m_{Hbb}$, since it is in the former direction that the background is most widely distributed, and therefore where a narrow cut is most effective. No mass selection is applied in the boosted and VBF categories, where the statistics are already limited, nor in the resolved categories of the boosted $\tau_h\tau_h$ channel.
+where all quantities are expressed in GeV. The ellipses are much narrower along $m_{H\tau\tau}$ than along $m_{Hbb}$, since it is in the former direction that the background is most widely distributed, and therefore where a narrow cut is most effective. No mass selection is applied in the boosted and VBF categories, where the statistics are already limited, nor in the res1b and res2b categories of the $b\tau_h\tau_h$ channel.
+
+
 %
 \begin{figure}[tbp]
     \centering
