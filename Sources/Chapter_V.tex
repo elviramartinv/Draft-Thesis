@@ -738,26 +738,27 @@ Figure \ref{fig:htautau_mass} compares the three estimates in the $\tau_\mu\tau_
 %
 \begin{figure}[tbp]
     \centering
-    \begin{subfigure}[b]{0.32\linewidth}
-        \includegraphics[width=\linewidth]{figures/chapter_V/Htt_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
+    \makebox[\linewidth][c]{%
+    \begin{subfigure}[b]{0.37\linewidth}
+        \includegraphics[width=\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/Htt_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
         \caption{Visible mass}
         \label{fig:htt_mass_vis}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.32\linewidth}
-        \includegraphics[width=\linewidth]{figures/chapter_V/Htt_svfit_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
+    \end{subfigure}\hspace{1mm}%
+    \begin{subfigure}[b]{0.37\linewidth}
+        \includegraphics[width=\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/Htt_svfit_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
         \caption{\textsc{FastMTT}}
         \label{fig:htt_mass_fastmtt}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.32\linewidth}
-        \includegraphics[width=\linewidth]{figures/chapter_V/Htt_regr_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
+    \end{subfigure}\hspace{1mm}%
+    \begin{subfigure}[b]{0.37\linewidth}
+        \includegraphics[width=\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/Htt_regr_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
         \caption{Regression network}
         \label{fig:htt_mass_regr}
-    \end{subfigure}
+    \end{subfigure}}
     \caption[Reconstruction of the $\tau\tau$ system mass]{Mass of the $\tau\tau$ system reconstructed from the visible decay products (a), with \textsc{FastMTT} (b), and with the regression network (c), in the $\tau_\mu\tau_h$ channel and the resolved topology, with no requirement on the reconstructed masses, for the 2024 data. The points show the data and the stacked histograms the background prediction, while the ggF (black) and VBF (blue) signals are scaled to the total background yield. The lower panels show the ratio of the data to the prediction, with the statistical and total uncertainty bands.}
     \label{fig:htautau_mass}
 \end{figure}
+
+
 
 
 
@@ -784,7 +785,7 @@ In contrast to the case of the $\tau\tau$ system, the mass of the $H\to b\bar{b}
 \begin{figure}[tbp]
     \centering
     \includegraphics[width=0.5\linewidth]{figures/chapter_V/Hbb_mass__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
-    \caption[Reconstruction of the $b\bar{b}$ system mass]{Mass of the $H\to b\bar{b}$ candidate in the resolved topology, with no requirement on the reconstructed masses, in the $\tau_\mu\tau_h$ channel for the 2024 data. The points show the data and the stacked histograms the background prediction, while the ggF (black) and VBF (blue) signals are scaled to the total background yield. The lower panel shows the ratio of the data to the prediction, with the statistical and total uncertainty bands.}
+    \caption[Reconstruction of the $b\bar{b}$ system mass]{Mass of the $H\to b\bar{b}$ candidate in the resolved topology, with the same selection and conventions as in Figure \ref{fig:htautau_mass}.}
     \label{fig:hbb_mass}
 \end{figure}
 
@@ -793,7 +794,27 @@ In contrast to the case of the $\tau\tau$ system, the mass of the $H\to b\bar{b}
 %
 In the final step of the object selection procedure, the VBF jets are assigned. Once the two Higgs boson candidates have been reconstructed, the event is examined to determine whether the jet configuration of the event is consistent with the jets characteristic of vector boson fusion production. The problem is solved with the \textsc{VBFjTag} algorithm (Section \ref{sec:VBFjTag}), used here for the first time in an analysis. Its score is evaluated over all the preselected jets with $|\eta| < 4.7$, including the two jets of the $H\to b\bar{b}$ candidate, which are flagged as such. The pair is then formed by the two jets with the highest scores among those that do not belong to the $H\to b\bar{b}$ candidate, which, when the candidate is boosted, excludes the jets within $\Delta R < 0.8$ of the large-radius jet.\medskip
 
-However, the identification of a candidate pair in a given event is not sufficient to classify it as resulting from vector boson fusion production. Instead, additional kinematic requirements must also be met, as described below, along with the rest of the categorization scheme.
+Figure \ref{fig:vbf_jets} shows the invariant mass and the pseudorapidity separation of the pair selected in this way, before any requirement on its kinematics. In vector boson fusion, the two jets originate from the scattered quarks, emitted at small angles with respect to the beam in opposite hemispheres, so that the pair is separated by several units of pseudorapidity and reaches invariant masses above $1$ TeV. In gluon fusion and in the backgrounds, by contrast, the selected pair is formed by jets from radiation or from the decay of other particles, concentrated at small separations and masses. The identification of a pair is therefore not sufficient to classify an event as vector boson fusion, and additional requirements on these two variables are applied in the categorization, described below.
+
+\begin{figure}[tbp]
+    \centering
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{figures/chapter_V/VBFjj_mass_full__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
+        \caption{Invariant mass}
+        \label{fig:vbf_jets_mjj}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\linewidth}
+        \includegraphics[width=\linewidth]{figures/chapter_V/VBFjj_deltaEta__mutau_os_iso__pg_forPlots__qcd__stack__norm_sig.pdf}
+        \caption{Pseudorapidity separation}
+        \label{fig:vbf_jets_deta}
+    \end{subfigure}
+    \caption[Kinematics of the VBF jet pair]{Invariant mass (a) and pseudorapidity separation (b) of the VBF jet pair, with no requirement on its kinematics and with the same selection and conventions as in Figure \ref{fig:htautau_mass}.}
+    \label{fig:vbf_jets}
+\end{figure}
+
+
+
 
 \subsection{Event categorization}
 % poner en algun sitio que está heredado del run 2 (y en qué puntos difiere), ya que en la linea472 si que estoy poniendo eso, pero esta descontextualizado
@@ -974,19 +995,7 @@ The factorization relies on two simplifications whose combined effect must be ch
 %
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=0.6\linewidth]{figures/chapter_V/quadjet_trigger_closure.pdf}
-    \caption[Closure of the factorized QuadJet trigger efficiency]{%
-        Efficiency of the QuadJet parking trigger in simulated ggF signal events of the
-        $\tau_h\tau_h$ channel with $H_T > 400$ GeV, as a function of the $p_T$ of the leading
-        $b$ jet, measured directly (black) and obtained from the product of the factorized
-        components (red), evaluated on the leading $\tau_h$ and $b$ jet candidates only, as in the configuration used in the analysis, with their ratio in the lower panel.}
-    \label{fig:quadjet_closure}
-\end{figure}
-
-
-\begin{figure}[tbp]
-    \centering
-    \includegraphics[width=0.6\linewidth]{figures/chapter_V/closure_1d_vs_bjet1pt.pdf}
+    \includegraphics[width=0.5\linewidth]{figures/chapter_V/closure_1d_vs_bjet1pt_shortlegend.pdf}
     \caption[Closure of the factorized QuadJet trigger efficiency]{%
         Efficiency of the QuadJet parking trigger in simulated ggF signal events of the
         $\tau_h\tau_h$ channel with $H_T > 400$ GeV, as a function of the $p_T$ of the leading
