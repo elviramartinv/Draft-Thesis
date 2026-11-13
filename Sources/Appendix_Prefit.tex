@@ -1,25 +1,163 @@
 \chapter{Additional pre-fit distributions}
 \label{app:prefit}
 %
-This appendix collects the pre-fit distributions that complement those shown in Section \ref{sec:bbtt_controlplots}. They are obtained with the same selection, corrections, and uncertainty band as in that section, for \textcolor{red}{[2024 / the complete 2022--2024 dataset]}, and are grouped into the control regions, where the corrections of the two dominant backgrounds are tested, and the categories of the analysis, where the complete prediction is compared with the data before the fit.
+This appendix collects the pre-fit distributions that complement those shown in Section \ref{sec:bbtt_controlplots}. They are obtained with the same selection, corrections, and uncertainty band as in that section, for the 2024 data-taking period, and are grouped into the control regions, where the corrections of the two dominant backgrounds are tested, and the categories of the analysis, where the complete prediction is compared with the data before the fit.
 
 \section{Control regions}
 \label{app:prefit_cr}
 %
-\textcolor{red}{[Additional observables in the Drell--Yan-enriched region, in the $ee$ and $\mu\mu$ channels, and in the $t\bar{t}$-enriched region of Section \ref{subsec:bbtt_cr}: $p_T$ and $\eta$ of the two leptons and of the two jets of the $H\to b\bar{b}$ candidate, $b$ tagging scores, numbers of jets and of $b$-tagged jets, $p_T^\text{miss}$, $\Delta R$ between the leptons, $p_T$ of the $HH$ system, and VBF jet pair variables.]}
+This section complements Figures \ref{fig:cr_dy} and \ref{fig:cr_tt} with the remaining observables of the two control regions defined in Section \ref{subsec:bbtt_cr}. They comprise the kinematics of the two leptons and of the two jets of the $H\to b\bar{b}$ candidate, the $b$ tagging and \textsc{HH-BTag} scores of these jets, the variables of the lepton pair, of the $H\to b\bar{b}$ candidate, and of the $HH$ system, $p_T^\text{miss}$, the angular separations within each pair, the scalar sum $H_T$ of the jet $p_T$, the number of $b$-tagged jets, and the variables of the VBF jet pair.
 
-% Template for a 2x2 figure (replace the paths):
-% \begin{figure}[tbp]
-%     \centering
-%     \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/...}\hfill
-%     \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/...}\\[2mm]
-%     \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/...}\hfill
-%     \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/...}
-%     \caption[...]{%
-%         Data and prediction in ... : ... (top left), ... (top right), ... (bottom left),
-%         and ... (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
-%     \label{fig:app_...}
-% \end{figure}
+\subsection{Drell--Yan-enriched region}
+\label{app:prefit_cr_dy}
+%
+The distributions of the Drell--Yan-enriched region are shown in the $ee$ channel, which was not used in the derivation of the Drell--Yan correction, in Figures \ref{fig:app_dy_leptons} to \ref{fig:app_dy_vbf}. The observables of Figure \ref{fig:cr_dy} are also shown in Figure \ref{fig:app_dy_mumu} for the $\mu\mu$ channel, in which the correction was derived. The prediction describes the data within the uncertainties in most observables. The largest deviation appears in the $b$ tagging scores of the two jets, where the ratio of data to prediction decreases from about $1.1$ at low scores to about $0.85$ at the highest ones. This is expected, since in 2024 the $b$ tagging discriminant is corrected only through the scale factors of its working points, which fix the efficiency at each threshold but not the shape of the distribution (Section \ref{subsec:bbtt_object_corrections}). The data also fall below the prediction at the largest angular separations between the two leptons.
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/lep1_pt__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/lep1_eta__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\\[2mm]
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/lep2_pt__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/lep2_eta__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}
+    \caption[Lepton kinematics in the Drell--Yan control region]{%
+        Data and prediction in the Drell--Yan-enriched control region, $ee$ channel, in 2024: $p_T$ of the leading electron (top left), $\eta$ of the leading electron (top right), $p_T$ of the subleading electron (bottom left), and $\eta$ of the subleading electron (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_dy_leptons}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/bjet1_pt__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/bjet1_eta__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\\[2mm]
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/bjet2_pt__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/bjet2_eta__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}
+    \caption[Jet kinematics in the Drell--Yan control region]{%
+        Data and prediction in the Drell--Yan-enriched control region, $ee$ channel, in 2024: $p_T$ of the first $b$ jet candidate (top left), $\eta$ of the first $b$ jet candidate (top right), $p_T$ of the second $b$ jet candidate (bottom left), and $\eta$ of the second $b$ jet candidate (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_dy_jets}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/bjet1_btag__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/bjet2_btag__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\\[2mm]
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/bjet1_hhbtag__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/bjet2_hhbtag__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}
+    \caption[Tagging scores in the Drell--Yan control region]{%
+        Data and prediction in the Drell--Yan-enriched control region, $ee$ channel, in 2024: \textsc{UParT} score of the first $b$ jet candidate (top left), \textsc{UParT} score of the second $b$ jet candidate (top right), \textsc{HH-BTag} score of the first $b$ jet candidate (bottom left), and \textsc{HH-BTag} score of the second $b$ jet candidate (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_dy_tagging}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/Htt_mass__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/Hbb_pt__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\\[2mm]
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/HH_pt__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/PuppiMET_smeared_xycorr_pt__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}
+    \caption[Reconstructed systems in the Drell--Yan control region]{%
+        Data and prediction in the Drell--Yan-enriched control region, $ee$ channel, in 2024: mass of the electron pair (top left), $p_T$ of the $H\to b\bar{b}$ candidate (top right), $p_T$ of the $HH$ system (bottom left), and $p_T^\text{miss}$ (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_dy_systems}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/deltaRtautau__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/deltaR_bb__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\\[2mm]
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/HT_ctjets__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/nBtaggedJets__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}
+    \caption[Event variables in the Drell--Yan control region]{%
+        Data and prediction in the Drell--Yan-enriched control region, $ee$ channel, in 2024: $\Delta R$ between the electrons (top left), $\Delta R$ between the $b$ jet candidates (top right), $H_T$ (bottom left), and number of $b$-tagged jets (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_dy_event}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/VBFjj_mass_full__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/VBFjj_deltaEta__ee_os_iso_DYCR__pg_forPlotsCR__stack.pdf}
+    \caption[VBF jet pair in the Drell--Yan control region]{%
+        Data and prediction in the Drell--Yan-enriched control region, $ee$ channel, for the VBF jet pair in 2024: invariant mass (left) and pseudorapidity separation (right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_dy_vbf}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/Htt_pt__mumu_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/nCentralJets__mumu_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\\[2mm]
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/Hbb_mass__mumu_os_iso_DYCR__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res1b/THESIS_CR_DYCR_Prod_26_04_thesis/HH_mass__mumu_os_iso_DYCR__pg_forPlotsCR__stack.pdf}
+    \caption[Drell--Yan control region in the $\mu\mu$ channel]{%
+        Data and prediction in the Drell--Yan-enriched control region, $\mu\mu$ channel, in 2024: $p_T$ of the muon pair (top left), number of jets (top right), mass of the $H\to b\bar{b}$ candidate (bottom left), and mass of the $HH$ system (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_dy_mumu}
+\end{figure}
+
+\subsection{$t\bar{t}$-enriched region}
+\label{app:prefit_cr_tt}
+%
+The distributions of the $t\bar{t}$-enriched region, in the $e\mu$ channel, are shown in Figures \ref{fig:app_tt_leptons} to \ref{fig:app_tt_vbf}. The prediction describes the data within the uncertainties in all of them, including the $b$ tagging scores, which in this region are dominated by genuine $b$ jets.
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/lep1_pt__emu_os_iso__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/lep1_eta__emu_os_iso__pg_forPlotsCR__stack.pdf}\\[2mm]
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/lep2_pt__emu_os_iso__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/lep2_eta__emu_os_iso__pg_forPlotsCR__stack.pdf}
+    \caption[Lepton kinematics in the $t\bar{t}$ control region]{%
+        Data and prediction in the $t\bar{t}$-enriched control region in 2024: $p_T$ of the muon (top left), $\eta$ of the muon (top right), $p_T$ of the electron (bottom left), and $\eta$ of the electron (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_tt_leptons}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/bjet1_eta__emu_os_iso__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/bjet2_pt__emu_os_iso__pg_forPlotsCR__stack.pdf}\\[2mm]
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/bjet2_eta__emu_os_iso__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/nCentralJets__emu_os_iso__pg_forPlotsCR__stack.pdf}
+    \caption[Jet kinematics in the $t\bar{t}$ control region]{%
+        Data and prediction in the $t\bar{t}$-enriched control region in 2024: $\eta$ of the first $b$ jet candidate (top left), $p_T$ of the second $b$ jet candidate (top right), $\eta$ of the second $b$ jet candidate (bottom left), and number of jets (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_tt_jets}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/bjet1_btag__emu_os_iso__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/bjet2_btag__emu_os_iso__pg_forPlotsCR__stack.pdf}\\[2mm]
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/bjet1_hhbtag__emu_os_iso__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/bjet2_hhbtag__emu_os_iso__pg_forPlotsCR__stack.pdf}
+    \caption[Tagging scores in the $t\bar{t}$ control region]{%
+        Data and prediction in the $t\bar{t}$-enriched control region in 2024: \textsc{UParT} score of the first $b$ jet candidate (top left), \textsc{UParT} score of the second $b$ jet candidate (top right), \textsc{HH-BTag} score of the first $b$ jet candidate (bottom left), and \textsc{HH-BTag} score of the second $b$ jet candidate (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_tt_tagging}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/Htt_mass__emu_os_iso__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/Htt_pt__emu_os_iso__pg_forPlotsCR__stack.pdf}\\[2mm]
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/Hbb_pt__emu_os_iso__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/HH_pt__emu_os_iso__pg_forPlotsCR__stack.pdf}
+    \caption[Reconstructed systems in the $t\bar{t}$ control region]{%
+        Data and prediction in the $t\bar{t}$-enriched control region in 2024: mass of the lepton pair (top left), $p_T$ of the lepton pair (top right), $p_T$ of the $H\to b\bar{b}$ candidate (bottom left), and $p_T$ of the $HH$ system (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_tt_systems}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/deltaRtautau__emu_os_iso__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/deltaR_bb__emu_os_iso__pg_forPlotsCR__stack.pdf}\\[2mm]
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/HT_ctjets__emu_os_iso__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/nBtaggedJets__emu_os_iso__pg_forPlotsCR__stack.pdf}
+    \caption[Event variables in the $t\bar{t}$ control region]{%
+        Data and prediction in the $t\bar{t}$-enriched control region in 2024: $\Delta R$ between the leptons (top left), $\Delta R$ between the $b$ jet candidates (top right), $H_T$ (bottom left), and number of $b$-tagged jets (bottom right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_tt_event}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/VBFjj_mass_full__emu_os_iso__pg_forPlotsCR__stack.pdf}\hfill
+    \includegraphics[width=0.49\linewidth, trim=11bp 0bp 40bp 14bp, clip]{figures/chapter_V/CR_res2b/THESIS_CR_Prod_26_04/VBFjj_deltaEta__emu_os_iso__pg_forPlotsCR__stack.pdf}
+    \caption[VBF jet pair in the $t\bar{t}$ control region]{%
+        Data and prediction in the $t\bar{t}$-enriched control region for the VBF jet pair in 2024: invariant mass (left) and pseudorapidity separation (right), with the same conventions as in Figure \ref{fig:cr_dy}.}
+    \label{fig:app_tt_vbf}
+\end{figure}
+
+\clearpage
 
 \section{Categories of the analysis}
 \label{app:prefit_sr}
